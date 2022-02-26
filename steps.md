@@ -1,12 +1,15 @@
+<!-- When home tab is selected, display none left and right nav,
+make .main-content flex 100%; -->
+
 # Conceptual Site Functionality
 
 ## Header
 
 The header is always present (except when sm). The header contains tab links that load components within the `.main-row` (everything below header) that are specific to that tab:
 
-- `.left-nav`
-- `.main-content`
-- `right-nav`
+-   `.left-nav`
+-   `.main-content`
+-   `right-nav`
 
 ## Home Section
 
@@ -24,8 +27,8 @@ When you click a tab other than Home, components to that tab are displayed (.mai
 
 Need an event listener that does the following:
 
-- When a tab is clicked is clicked for the first time when the site is loaded, it remembers that tab.
-- When you click another tab, it removes the formatting of the first tab and applies it to the new tab.
+-   When a tab is clicked is clicked for the first time when the site is loaded, it remembers that tab.
+-   When you click another tab, it removes the formatting of the first tab and applies it to the new tab.
 
 > Currently `tabs.js` is not applying formatting to other tabs than Home.
 
@@ -61,7 +64,7 @@ In `generate-left-nav.js`, the following should apply:
 2. If a `MenuItemModel` has a parent, then add the class `.text-gray` to it.
 3. If you click a child, apply the class `.child-active` to the parent, which increases its font-weight to indicate where you are located in the nav.
 4. If you click another child:
-   1. check to see if the child belongs to the same parent. If it does, no nothing. If it does not, remove the class `.child-active` from the old parent and apply it to the parent of new child.
+    1. check to see if the child belongs to the same parent. If it does, no nothing. If it does not, remove the class `.child-active` from the old parent and apply it to the parent of new child.
 
 ### Main Content
 
@@ -81,8 +84,8 @@ The right-nav contains links to H2s in .main-content and has scrollspy implement
 
 The Right Nav needs to do the following using javascript:
 
-- locate all H2s chronology in `.main-content`, save them, and assign IDs to them like `#heading-1`, incrementing the ID for each one.
-- underneath `<div id=right'>` (the right nav element) generate the following elements for each H2 with styles applied. The ID is added when the element is created.
+-   locate all H2s chronology in `.main-content`, save them, and assign IDs to them like `#heading-1`, incrementing the ID for each one.
+-   underneath `<div id=right'>` (the right nav element) generate the following elements for each H2 with styles applied. The ID is added when the element is created.
 
 ```HTML
 <a class="list-group-item list-group-item-action right-nav-link" href="#heading-1">Heading 2</a>
@@ -95,8 +98,8 @@ The Right Nav needs to do the following using javascript:
 You need to two level scrollspy:
 <https://getbootstrap.com/docs/4.0/components/scrollspy/>
 
-- `a.nav-link.active` is the parent
-- `.nav.nav-pills` is the container that contains the children. It's `display:none;` by default.
+-   `a.nav-link.active` is the parent
+-   `.nav.nav-pills` is the container that contains the children. It's `display:none;` by default.
 
 When `a.nav-link.active`, set display of `.nav.nav-pills` to display:flex;
 
