@@ -3,6 +3,21 @@ function toggleSelect(tab) {
     tab.classList.toggle('tab-border-bottom-blue');
 }
 
+let selectedTab;
+function selectTab(tab) {
+    selectTab = tab;
+    // Get this working.
+    // globalThis.history.pushState(
+    //     'page2',
+    //     'Title',
+    //     `/${formatTabInnerText(tab)}`
+    // );
+}
+
+function formatTabInnerText(tab) {
+    return tab.innerText.replace(' ', '').toLowerCase();
+}
+
 async function loadProjectpage(tab) {
     const innerText = tab.innerText;
     const formattedInnerText = innerText.replace(' ', '').toLowerCase();
@@ -16,14 +31,15 @@ async function loadProjectpage(tab) {
 
 // Want to get reference for all tabs. Query Selector is one item.
 const tabs = Array.from(globalThis.document.querySelectorAll('.tab'));
-let selectedTab;
 // Parse URL to determine initial selected tab.
 const regExpExecArray = /\S+\/{1}tab(\d{1})/.exec(globalThis.document.URL);
 let pathTabNumber;
 if (regExpExecArray) pathTabNumber = regExpExecArray[1];
+let tab;
 if (pathTabNumber)
-    selectedTab = tabs.find((tab) => tab.innerText.endsWith(pathTabNumber));
-if (!selectedTab) selectedTab = tabs.find((tab) => tab.innerText === 'Home');
+    tab = tabs.find((tab) => tab.innerText.endsWith(pathTabNumber));
+if (!selectedTab) tab = tabs.find((tab) => tab.innerText === 'Home');
+selectTab(tab);
 
 // Run the toggleSelect function, passing in the first tab.
 toggleSelect(selectedTab);
