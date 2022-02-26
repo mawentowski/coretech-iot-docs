@@ -13,12 +13,18 @@ async function loadProjectpage(tab) {
         globalThis.document.querySelector('div.main-content');
     mainContentDiv.innerHTML = contentText;
 }
-// Parse URL to determine initial selected tab.
 
 // Want to get reference for all tabs. Query Selector is one item.
-const tabs = globalThis.document.querySelectorAll('.tab');
-// Gain reference to first tab.
-let selectedTab = tabs[0];
+const tabs = Array.from(globalThis.document.querySelectorAll('.tab'));
+let selectedTab;
+// Parse URL to determine initial selected tab.
+const regExpExecArray = /\S+\/{1}tab(\d{1})/.exec(globalThis.document.URL);
+let pathTabNumber;
+if (regExpExecArray) pathTabNumber = regExpExecArray[1];
+if (pathTabNumber)
+    selectedTab = tabs.find((tab) => tab.innerText.endsWith(pathTabNumber));
+if (!selectedTab) selectedTab = tabs.find((tab) => tab.innerText === 'Home');
+
 // Run the toggleSelect function, passing in the first tab.
 toggleSelect(selectedTab);
 // For each tab thats in the array of tabs, pass a reference to the occurred (click event)
