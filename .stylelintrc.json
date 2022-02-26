@@ -1,0 +1,25 @@
+{
+    "overrides": [
+        {
+            "extends": [
+                "stylelint-config-standard",
+                "stylelint-config-prettier"
+            ],
+            "files": ["**/*.css"]
+        },
+        {
+            "extends": [
+                "stylelint-config-standard-scss",
+                "stylelint-config-prettier-scss"
+            ],
+            "files": ["**/*.scss"],
+            "rules": {
+                "scss/at-import-partial-extension": "always"
+            }
+        }
+    ],
+    "plugins": ["stylelint-prettier"],
+    "rules": {
+        "prettier/prettier": true
+    }
+}

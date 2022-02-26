@@ -1,0 +1,22 @@
+{
+    "ignorePatterns": ["projects/**/*"],
+    "overrides": [
+        {
+            "extends": ["plugin:prettier/recommended"],
+            "files": ["*.js"],
+            "parserOptions": {
+                "ecmaVersion": 2015,
+                "sourceType": "module"
+            },
+            "rules": {
+                "max-len": "off",
+                "no-fallthrough": "off",
+                "no-shadow": "off",
+                "no-underscore-dangle": "off",
+                "prettier/prettier": ["warn", { "singleQuote": true }],
+                "sort-imports": "warn"
+            }
+        }
+    ],
+    "root": true
+}

@@ -1,0 +1,32 @@
+{
+    "name": "tripane-template",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "serve": "npx http-server -p 4200",
+        "lint": "npx stylelint '**/*.css' '**/*.scss' || true & markdownlint-cli2 '**/*.md' '#node_modules' & npx eslint '**/*.js' '**/*.html'"
+    },
+    "repository": {
+        "type": "git",
+        "url": "ssh://git-codecommit.us-east-2.amazonaws.com/v1/repos/tripane-template"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "eslint": "^7.32.0",
+        "eslint-config-prettier": "^6.15.0",
+        "eslint-plugin-import": "^2.24.2",
+        "eslint-plugin-jsdoc": "^30.7.13",
+        "eslint-plugin-prettier": "^3.4.1",
+        "http-server": "^14.1.0",
+        "markdownlint": "^0.25.1",
+        "prettier": "^2.3.2",
+        "stylelint": "^14.2.0",
+        "stylelint-config-prettier": "^9.0.3",
+        "stylelint-config-prettier-scss": "0.0.1",
+        "stylelint-config-standard-scss": "^3.0.0",
+        "stylelint-prettier": "^2.0.0"
+    }
+}
