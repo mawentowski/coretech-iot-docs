@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { marked } = require('marked');
 
 function deriveTabLabelFromFileName(filename) {
     const regExpExecArray = /(\S*).html/.exec(filename);
