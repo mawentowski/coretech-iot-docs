@@ -1,5 +1,5 @@
-const fs = require('fs');
 const { marked } = require('marked');
+const fs = require('fs');
 const fse = require('fs-extra');
 
 function getMarkdownFilenameWithoutExtension(filename) {
@@ -19,7 +19,7 @@ function deriveTabLabelFromTopicFileName(filename) {
     return tabLabel;
 }
 
-const buildFolderName = 'build';
+const buildFolderName = 'dist';
 const srcFolderName = 'src';
 const topicsFolderName = 'topics';
 const buildTopicsPath = `${buildFolderName}/${topicsFolderName}`;
@@ -46,7 +46,7 @@ fs.readdirSync(`${srcTopicsPath}/`).forEach((filename) => {
         html
     );
     const tabLabel = deriveTabLabelFromTopicFileName(filename);
-    indexContentSegments[0] += `<button class="">${tabLabel}</button>\n`;
+    indexContentSegments[0] += `<button class="tab">${tabLabel}</button>\n`;
 });
 fs.writeFileSync(
     `${buildFolderName}/${indexFilename}`,

@@ -4,8 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "build": "npx marked -i",
-        "serve": "cd build && npx http-server -p 4200",
+        "build": "node build.js",
+        "serve": "cd dist && npx http-server -p 4200",
         "lint": "npx stylelint '**/*.css' '**/*.scss' || true & markdownlint-cli2 '**/*.md' '#node_modules' & npx eslint '**/*.js' '**/*.html'"
     },
     "repository": {

@@ -16,8 +16,8 @@ function formatTabInnerText(tab) {
 
 async function loadProjectPage(tab) {
     const innerText = tab.innerText;
-    const formattedInnerText = innerText.replace(' ', '').toLowerCase();
-    const relativeUrl = `/tabs/${formattedInnerText}.html`;
+    const formattedInnerText = innerText.replace(' ', '-').toLowerCase();
+    const relativeUrl = `/topics/${formattedInnerText}.html`;
     const httpResponse = await globalThis.fetch(relativeUrl);
     const contentText = await httpResponse.text();
     const mainContentDiv =
