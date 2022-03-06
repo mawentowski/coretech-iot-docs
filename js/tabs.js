@@ -1,24 +1,20 @@
-function toggleSelect(tab) {
+function toggleSelectStyles(tab) {
     tab.classList.toggle('text-black');
     tab.classList.toggle('tab-border-bottom-blue');
 }
 
 let selectedTab;
 function selectTab(tab) {
-    selectTab = tab;
-    // Get this working.
-    // globalThis.history.pushState(
-    //     'page2',
-    //     'Title',
-    //     `/${formatTabInnerText(tab)}`
-    // );
+    selectedTab = tab;
+    toggleSelectStyles(tab);
+    loadProjectPage(tab);
 }
 
 function formatTabInnerText(tab) {
     return tab.innerText.replace(' ', '').toLowerCase();
 }
 
-async function loadProjectpage(tab) {
+async function loadProjectPage(tab) {
     const innerText = tab.innerText;
     const formattedInnerText = innerText.replace(' ', '').toLowerCase();
     const relativeUrl = `/tabs/${formattedInnerText}.html`;
@@ -38,16 +34,15 @@ if (regExpExecArray) pathTabNumber = regExpExecArray[1];
 let tab;
 if (pathTabNumber)
     tab = tabs.find((tab) => tab.innerText.endsWith(pathTabNumber));
-if (!selectedTab) tab = tabs.find((tab) => tab.innerText === 'Home');
-selectTab(tab);
 
-// Run the toggleSelect function, passing in the first tab.
-toggleSelect(selectedTab);
-// For each tab thats in the array of tabs, pass a reference to the occurred (click event)
+if (!tab) tab = tabs.find((tab) => tab.innerText === 'Home');
+
+// designate select
+selectTab(tab);
+// load the Home page
+
 for (const tab of tabs)
     tab.addEventListener('click', function (event) {
-        toggleSelect(selectedTab);
-        toggleSelect(event.target);
-        selectedTab = event.target;
-        loadProjectpage(selectedTab);
+        toggleSelectStyles(selectedTab);
+        selectTab(event.target);
     });

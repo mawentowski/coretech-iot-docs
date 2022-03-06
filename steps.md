@@ -1,6 +1,3 @@
-<!-- When home tab is selected, display none left and right nav,
-make .main-content flex 100%; -->
-
 # Conceptual Site Functionality
 
 ## Header
