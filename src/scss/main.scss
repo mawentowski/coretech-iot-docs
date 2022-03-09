@@ -12,6 +12,7 @@ html {
 
 body {
   position: relative;
+  counter-reset: ol-listitem;
 
   .header {
     width: 100%;
@@ -448,6 +449,7 @@ body {
     color: #697386;
   }
 }
+
 .main-content {
   .title-box {
     margin-bottom: 2.2rem;
@@ -460,6 +462,7 @@ body {
 
     .action-statement {
       font-size: 24px;
+      line-height: 28px;
     }
   }
 
@@ -480,56 +483,115 @@ body {
     }
 
     li {
-      margin: 4px 0;
+      margin: 7px 0;
+      position: relative;
     }
 
+    ol > li {
+      list-style-type: none;
+      position: relative;
+      padding-left: 7px;
+    }
+
+    // ol li::marker {
+    //   display: none;
+    // }
+
+    ol {
+      counter-reset: ol-listitem;
+    }
+    ol > li::before {
+      counter-increment: ol-listitem;
+      content: counter(ol-listitem);
+      background-color: #ffe8ee;
+      color: #697386;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 20px;
+      text-align: center;
+      padding: -6px 0;
+      height: 20px;
+      width: 20px;
+      border-radius: 10px;
+      position: absolute;
+      left: -24px;
+      top: 3px;
+    }
     ol,
     ul {
-      padding-top: 12px;
-      padding-left: 1.4rem;
+      padding-left: 1.55rem;
     }
 
-    ul.bulleted-list {
-      list-style: none;
+    ul li {
+      margin: 7px 0;
+      list-style-type: none;
+    }
 
+    ul {
       li {
         position: relative;
         font-size: 16px;
-        line-height: 26px;
+        // line-height: 26px;
 
         a {
         }
       }
     }
+    ul > li {
+      padding-left: 13px;
+    }
 
-    ul.bulleted-list.bullets > li::before {
+    ul > li::before {
       content: "";
       position: absolute;
       width: 6px;
       height: 6px;
-      left: -17px;
+      left: -12px;
       top: 10px;
       border-radius: 50%;
       background: #83c9d2;
     }
 
-    ul.bulleted-list.sub-bullets > li::before {
-      content: "";
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      left: -17px;
-      top: 10px;
-      border-radius: 50%;
-      border: 1.5px solid #83c9d2;
-    }
+    // ul.sub-bullets li::before {
+    //   content: "";
+    //   position: absolute;
+    //   width: 6px;
+    //   height: 6px;
+    //   left: -17px;
+    //   top: 10px;
+    //   border-radius: 50%;
+    //   border: 1.5px solid #83c9d2;
+    // }
 
     h2 {
       color: #1a1f36;
       font-weight: 600;
-      padding: 16px 0px 12px;
       font-size: 21px !important;
+      padding: 32px 0px 12px;
     }
+    counter-reset: section;
+    h2.numbered--h2 {
+      padding-top: 16px;
+    }
+    h2.numbered--h2::before {
+      color: #8c98a5;
+      padding-right: 5px;
+      counter-increment: section; /* Increment the value of section counter by 1 */
+      content: counter(
+        section
+      ); /* Display counter value in default style (decimal) */
+    }
+
+    // position: absolute;
+    // width: 6px;
+    // height: 6px;
+    // left: -17px;
+    // top: 10px;
+    // border-radius: 50%;
+    // background: #83c9d2;
+
+    // background: #E3E8EE;
+    // content: counter(section);
 
     .information-block {
       display: flex;
@@ -539,6 +601,7 @@ body {
       font-size: 14px;
       font-weight: 400;
       padding: 12px 20px;
+      margin-top: 20px;
       margin-bottom: 10px;
 
       div {
@@ -576,6 +639,7 @@ body {
     }
 
     .image-section {
+      padding: 32px 0px 12px;
       img.onscreen-image {
       }
 
@@ -633,13 +697,13 @@ body {
 
     ol.step-actions {
       //   list-style: none;
-      margin-top: 1rem;
-      margin-bottom: 1rem;
+      //   margin-top: 1rem;
+      //   margin-bottom: 1rem;
 
       li {
         position: relative;
-        font-size: 16px;
-        line-height: 26px;
+        // font-size: 16px;
+        // line-height: 26px;
 
         a {
         }
@@ -652,19 +716,6 @@ body {
     }
 
     ul.checklist {
-    }
-
-    ul.checklist {
-      list-style: none;
-
-      li {
-        position: relative;
-        font-size: 16px;
-        line-height: 26px;
-
-        a {
-        }
-      }
     }
 
     ul.checklist > li::before {
@@ -811,7 +862,7 @@ body {
         width: 6px;
         height: 6px;
         left: -17px;
-        top: 5px;
+        top: 3px;
         background-image: url("../images/svgs/email.svg");
         background-repeat: no-repeat;
         background-size: 16px 16px;
