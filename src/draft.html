@@ -16,6 +16,12 @@
     <link href="font-awesome/css/fontawesome.css" rel="stylesheet">
     <link href="font-awesome/css/solid.css" rel="stylesheet">
     <link href="font-awesome/css/v4-shims.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&family=Roboto+Mono:wght@200&display=swap" rel="stylesheet">
+
+
   </head>
 
   <body>
@@ -104,7 +110,7 @@
 
 
 
-<div id="content" class="content scrollable" data-spy="scroll" data-target="#right-nav" data-offset="0" class="scrollspy-example" style="position:relative;">
+<div id="content" class="content" data-spy="scroll" data-target="#right-nav" data-offset="0" class="scrollspy-example" style="position:relative;">
 <div class="breadcrumb">
 <a class="topic-parent text-black" href="#">
     <img class="stype-icon" src="images/strype-icon.png" alt="" />
@@ -119,27 +125,36 @@
 </div>
 
 <div class="main-content">
-<div class="title-box">
-    <h1 class="topic-title">Heading 1</h1>
-    <div class="action-statement">
-        Use this information to perform the following task.
+
+<div class="article">
+    <div class="title-box">
+        <h1 class="topic-title">Heading 1</h1>
+        <div class="action-statement">
+            Use this information to perform the following task.
+        </div>
     </div>
-</div>
-<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi sapiente adipisci obcaecati tempora molestiae accusantium vero dolor eos similique! Expedita!</p>
-<div class="document">
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi sapiente adipisci obcaecati tempora molestiae accusantium vero dolor eos similique! Expedita!</p>
     <div class="section numbered-section">
-        <h2 id="heading-2" class="numbered--h2">
-            Numbered H2
-        </h2>
+        <div class="section-header">
+            <h2 id="heading-2" class="numbered--h2">
+                Numbered H2
+            </h2>
+            <span class="tag">Client-side</span>
+            <span class="tag">Server-side</span>
+        </div>
+        
         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate, inventore. Amet asperiores illum quaerat expedita nulla aliquam ullam doloremque quidem.
         </p>
         <h3>Heading 3</h3>
         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore reiciendis fuga cum ipsam ipsa recusandae ab cupiditate, vel mollitia accusantium.</p>
     </div>
-    <div class="section numbered-section">
-            <h2 id="heading-2" class="numbered--h2">
-                Numbered H2
-            </h2>
+    <div class="section-header">
+        <h2 id="heading-2" class="numbered--h2">
+            Numbered H2
+        </h2>
+        <span class="tag">Client-side</span>
+        <span class="tag">Server-side</span>
+    </div>
         
         <p>First, you need a Stripe account. <a href="#">Register now</a>.
         </p>
@@ -148,37 +163,10 @@
         </p>
         <ol>
             <li>
-                Step 1
+                Step 1 <span class="inline-code">code</span>
             </li>
             <li>
-                Step 1
-            </li>
-            <li>
-                Step 1
-            </li>
-            <li>
-                Step 1
-            </li>
-            <li>
-                Step 1
-            </li>
-        </ol>
-    </div>
-    <div class="section numbered-section">
-        <h2 id="heading-2" class="numbered--h2">
-            Numbered H2
-        </h2>
-        <p>First, you need a Stripe account. <a href="#">Register now</a>.
-        </p>
-        <p>
-            In the Dashboard, open the <a href="#">Payment links</a> page and click <b>+ New</b>. Then:
-        </p>
-        <ol>
-            <li>
-                Step 1
-            </li>
-            <li>
-                Step 1
+                Step 1 <a href="#" class="api-tag">Print API</a>
             </li>
             <li>
                 Step 1
@@ -190,7 +178,8 @@
                 Step 1
             </li>
         </ol>
-    </div>
+    
+
     <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio
         numquam cumque aperiam cupiditate quod, a quis ipsa pariatur nemo,
@@ -198,6 +187,32 @@
         quas.
     </p>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit:</p>
+
+
+    <!-- Pre artcile
+    https://developer.mozilla.org/en-US/docs/Web/HTML/Element/pre
+ -->
+    <div class="code-snippet">
+<pre>
+git status
+git add 
+git commit</pre>
+<div class="copy-btn-container">
+<button onclick="myFunction()" class="copy-btn">
+
+</button>
+
+
+
+<!-- <span class="copied-confirm-msg">
+    Copied!
+</span> -->
+</div>
+
+    </div>
+    <p class="caption">
+        The following image calls attention to something onscreen.
+    </p>
 
     <ul class="bulleted-list bullets">
         <li><b>Lorem</b> ipsum dolor sit amet.</li>
@@ -242,7 +257,7 @@
 
     <div class="image-section">
         <img src="images/example.jpg" alt="" class="onscreen-image" />
-        <p class="img-caption">
+        <p class="caption">
             The following image calls attention to something onscreen.
         </p>
         <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem accusantium, minima officia nemo architecto cum iure necessitatibus quisquam soluta cumque?</P>
@@ -287,7 +302,7 @@
         exercitationem illum quae veniam quos.
     </p>
     <h2 id="heading-3">Heading 2</h2>
-    <h2>Multi-level list</h2>
+ 
     <ol>
         <li>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo
@@ -476,6 +491,7 @@
             </div>
         </div>
     </div>
+</div>
     <div class="document-footer">
         <div class="rating-section">
             <h2 class="rating-question">Was this page helpful?</h2>
@@ -545,6 +561,7 @@
     <script src="js/toggle-toc.js"></script>
     <script src="js/add-remove-classes.js"></script>
     <script src="js/tabs.js"></script>
+    <script src="js/copy-btn.js"></script>
 
   </body>
 </html>

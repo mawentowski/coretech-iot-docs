@@ -7,27 +7,37 @@ jQuery(document).ready(function ($) {
       $(".left-nav-col").removeClass("fit-viewport");
     }
     if (ww <= 767) {
-      //   $("body").addClass("unscrollable");
+      $("body").addClass("scrollable");
       $(".header").addClass("hidden");
       $(".main-row").addClass("pos-static");
       $(".left-nav-col").addClass("pos-fixed-top-left");
       $(".left-nav-col").addClass("hidden");
+
+      $(".left-nav-col").addClass("fit-viewport-height");
+
       $(".toc-header").addClass("display-flex");
+      $(".content").addClass("unscrollable");
+      $("body").removeClass("unscrollable");
       $(".header").removeClass("display-flex");
       $(".main-row").removeClass("pos-fixed");
       $(".left-nav-col").removeClass("display-flex");
-      $(".left-nav-col").removeClass("pos-sticky");
+      $(".content").removeClass("scrollable");
     } else if (ww >= 768) {
-      //   $("body").removeClass("unscrollable");
+      $("body").removeClass("scrollable");
       $(".header").removeClass("hidden");
       $(".main-row").removeClass("pos-static");
       $(".left-nav-col").removeClass("pos-fixed-top-left");
       $(".left-nav-col").removeClass("hidden");
+
+      $(".left-nav-col").removeClass("fit-viewport-height");
+
       $(".toc-header").removeClass("display-flex");
+      $(".content").removeClass("unscrollable");
+      $("body").addClass("unscrollable");
       $(".header").addClass("display-flex");
       $(".main-row").addClass("pos-fixed");
       $(".left-nav-col").addClass("display-flex");
-      $(".left-nav-col").addClass("pos-sticky");
+      $(".content").addClass("scrollable");
     }
     if (ww <= 991) {
       $(".right-nav-col").addClass("hidden");

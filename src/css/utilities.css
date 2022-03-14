@@ -29,7 +29,13 @@
 .display-flex {
   display: flex;
 }
+.flex-direction-col {
+  flex-direction: column;
+}
 .fit-viewport {
   height: 100vh;
   width: 100vw;
+}
+.fit-viewport-height {
+  height: 100vh;
 }
