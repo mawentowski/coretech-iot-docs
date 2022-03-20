@@ -1,91 +1,95 @@
 .border-properties {
-  border: 0.1px solid #ddd;
+    border: 0.1px solid #ddd;
 }
 
 h2 {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
 }
 
 .article p {
-  line-height: 26px;
-  font-size: 16px;
-  padding: 12px 0 0;
-  font-weight: 400;
-  margin-bottom: 0 !important;
+    line-height: 26px;
+    font-size: 16px;
+    padding: 12px 0 0;
+    font-weight: 400;
+    margin-bottom: 0 !important;
 }
 
 body {
-  line-height: 20px;
-  font-size: 14px;
-  font-weight: 400;
-  white-space: normal;
+    line-height: 20px;
+    font-size: 14px;
+    font-weight: 400;
+    white-space: normal;
 }
 
 li {
-  line-height: 25px;
+    line-height: 25px;
 }
+
 .main-content {
-  font-size: 16px;
+    font-size: 16px;
 }
 
 input.search-field {
-  opacity: 0.6;
-  flex-grow: 1;
-  border: 1px solid rgb(84 105 212 / 50%);
-  border-radius: 5px;
-  font-family: inherit;
-  font-weight: 400;
-  padding: 8px 12px;
+    opacity: 0.6;
+    flex-grow: 1;
+
+    // border: 1px solid rgba(white / 50%);
+    border: 1px solid #ffffff80;
+    border-radius: 5px;
+    font-family: inherit;
+    font-weight: 400;
+    padding: 8px 12px;
 }
 
 /* global */
 body {
-  color: #3c4257;
+    color: #3c4257;
 }
 
 /* utility */
 .text-black {
-  /* apply global color */
-  color: inherit;
+    /* apply global color */
+    color: inherit;
 }
 
 a {
-  color: #5469d4;
-  text-decoration: none;
+    color: #5469d4;
+    text-decoration: none;
 }
 
 /* Tabs */
 a.text-black:hover {
-  /* make bolder when hover over tab text */
-  color: #1a1f36;
+    /* make bolder when hover over tab text */
+    color: #1a1f36;
 }
 
 /* when click a tab, toggle this class */
 
 .tab-border-bottom-blue {
-  border-bottom: 2px solid #5469d4;
+    border-bottom: 2px solid #5469d4;
 }
 
 /* LEFT NAV */
+
 /* First level topic and topics with children 
 have text-black applied */
 .left-nav-col a.text-black:hover {
-  /* hovering does not change color */
-  color: inherit;
+    /* hovering does not change color */
+    color: inherit;
 }
 
 /* for all unselected children  */
 .text-gray {
-  color: #697386;
+    color: #697386;
 }
 
 a.text-gray:hover {
-  /* check font weight */
-  color: inherit;
+    /* check font weight */
+    color: inherit;
 }
 
 /* activated when you select an item under menu-item group */
 .child-active {
-  font-weight: 700;
+    font-weight: 700;
 }

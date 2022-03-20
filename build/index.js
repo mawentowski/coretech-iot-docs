@@ -1,8 +1,10 @@
 import {
     DIST_DIRECTORY,
+    SASS_FOLDER,
     SRC_DIRECTORY,
     getFilenameWithoutExtension,
 } from './shared.js';
+import { compileSass } from './compile-sass.js';
 import { marked } from 'marked';
 import fs from 'fs';
 import fse from 'fs-extra';
@@ -26,8 +28,10 @@ fse.copySync(SRC_DIRECTORY, DIST_DIRECTORY, { overwrite: true });
 // Remove copies of topic markdown files.
 fs.rmdirSync(buildTopicsPath, { recursive: true });
 fs.mkdirSync(buildTopicsPath);
-// Remove copies of sass files.
-fs.rmdirSync(`${DIST_DIRECTORY}/scss`, { recursive: true });
+// Remove copies of Sass files.
+fs.rmdirSync(`${DIST_DIRECTORY}/${SASS_FOLDER}`, { recursive: true });
+// Compile Sass into CSS
+compileSass();
 
 const indexFilename = 'index.html';
 let indexContent = fs.readFileSync(`${SRC_DIRECTORY}/${indexFilename}`, 'utf8');
