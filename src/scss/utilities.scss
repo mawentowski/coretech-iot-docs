@@ -1,41 +1,52 @@
 .hidden {
-  display: none;
+    display: none;
 }
+
 .scrollable {
-  overflow-y: scroll;
+    overflow-y: scroll;
 }
+
 .unscrollable {
-  overflow-y: hidden;
+    overflow-y: hidden;
 }
+
 .pos-sticky {
-  position: sticky;
-  top: 0;
+    position: sticky;
+    top: 0;
 }
+
 .pos-static {
-  position: static;
+    position: static;
 }
+
 .pos-fixed {
-  position: fixed;
+    position: fixed;
 }
+
 .pos-fixed-top-left {
-  position: fixed;
-  top: 0;
-  left: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
+
 .pos-fixed-bottom-left {
-  position: fixed;
-  bottom: 0;
+    position: fixed;
+    bottom: 0;
 }
+
 .display-flex {
-  display: flex;
+    display: flex;
 }
+
 .flex-direction-col {
-  flex-direction: column;
+    flex-direction: column;
 }
+
 .fit-viewport {
-  height: 100vh;
-  width: 100vw;
+    height: 100vh;
+    width: 100vw;
 }
+
 .fit-viewport-height {
-  height: 100vh;
+    height: 100vh;
 }

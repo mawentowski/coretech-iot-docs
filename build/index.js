@@ -47,7 +47,7 @@ fs.readdirSync(`${srcTopicsPath}/`).forEach((filename) => {
         html
     );
     const tabLabel = deriveTabLabelFromTopicFileName(filename);
-    indexContentSegments[0] += `<button class="tab">${tabLabel}</button>\n`;
+    indexContentSegments[0] += `<button class="plain tab">${tabLabel}</button>\n`;
 });
 fs.writeFileSync(
     `${DIST_DIRECTORY}/${indexFilename}`,
