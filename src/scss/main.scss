@@ -13,14 +13,14 @@ body {
     counter-reset: ol-listitem;
     counter-reset: section;
 
-    button {
-        &.plain {
-            background: transparent;
-            border: 0;
-            cursor: pointer;
-            padding: 0;
-        }
-    }
+    // button {
+    //     &.plain {
+    //         background: transparent;
+    //         border: 0;
+    //         cursor: pointer;
+    //         padding: 0;
+    //     }
+    // }
 
     .header {
         width: 100%;
@@ -258,8 +258,8 @@ body {
             }
 
             .dl-pdf-row {
-                position: fixed;
-                bottom: 0;
+                // position: fixed;
+                // bottom: 0;
                 padding: 25px;
 
                 .dl-pdf-icon {
@@ -288,11 +288,13 @@ body {
                 .toc-header,
                 .toc-header *,
                 .toc-filter-row,
-                .toc-filter-row *,
-                .dl-pdf-row,
-                .dl-pdf-row * {
+                .toc-filter-row * {
                     display: none;
                 }
+
+                // .dl-pdf-row,
+                // .dl-pdf-row * {
+                //     display: none;
             }
         }
         @media (max-width: 767px) {

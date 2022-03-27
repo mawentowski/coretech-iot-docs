@@ -1,42 +1,33 @@
-// Below is => 768 breakpoint
-
-.left-nav-col {
-  position: relative;
-
-  .left-nav {
-    width: 100%;
-    // set specific height
-    height: 95%;
-    position: absolute;
-    // if content is pushed beyond set height, make it scroll
-    overflow-y: scroll;
-  }
-
-  .dl-pdf-row {
-    // position this row absolutely
-    position: absolute;
-    // 0 from the bottom
-    bottom: 0;
-    // make background white, right now its transparent so you can see underneath
-    background-color: white;
-    // set width to 100% of the width of its container
-    width: 100%;
-  }
-}
-
 @media (max-width: 767px) {
 }
 
-// This works:
 @media (min-width: 768px) {
-  body .main-row .left-nav-col .left-nav {
-    overflow-y: scroll;
-  }
+    .left-nav-col {
+        position: relative;
 
-  body .main-row .left-nav-col .dl-pdf-row {
-    position: absolute;
-    bottom: 0;
-    background-color: white;
-    width: 100%;
-  }
+        .left-nav {
+            width: 100%;
+
+            // set specific height
+            height: 95%;
+            position: absolute;
+
+            // if content is pushed beyond set height, make it scroll
+            overflow-y: scroll;
+        }
+
+        .dl-pdf-row {
+            // position this row absolutely
+            position: absolute;
+
+            // 0 from the bottom
+            bottom: 0;
+
+            // make background white, right now its transparent so you can see underneath
+            background-color: white;
+
+            // set width to 100% of the width of its container
+            width: 100%;
+        }
+    }
 }

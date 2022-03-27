@@ -1,6 +1,6 @@
-# First Topic
+# tab-1_chapter-1_topic-2.md
 
-## H2
+## Supported Styles
 
 ### H3
 
@@ -33,13 +33,21 @@ _italicized text_
 | Header    | Title       |
 | Paragraph | Text        |
 
-```
+```JSON
 {
   "firstName": "John",
   "lastName": "Smith",
   "age": 25
 }
 ```
+
+~~The world is flat.~~
+
+-   [x] Write the press release
+-   [ ] Update the website
+-   [ ] Contact the media
+
+## Unsupported Styles
 
 Here's a sentence with a footnote. [^1]
 
@@ -49,12 +57,6 @@ Here's a sentence with a footnote. [^1]
 
 term
 : definition
-
-~~The world is flat.~~
-
--   [x] Write the press release
--   [ ] Update the website
--   [ ] Contact the media
 
 That is so funny! :joy:
 
