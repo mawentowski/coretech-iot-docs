@@ -93,10 +93,11 @@ function insertLeftNavOptionIntoDistIndexHtml(
     let distIndexHtmlContent = getDistIndexHtmlContent();
     const lastIndexOfForwardSlash = srcItemPath.lastIndexOf('/');
     const parentFolderPath = srcItemPath.slice(0, lastIndexOfForwardSlash);
+    const tabName = deriveLabelFromItemname(parentFolderPath.split('/')[2]);
     const optionsInsertPointEnding = `child left-nav options before here.-->`;
     const optionsInsertPoint = `<!--${parentFolderPath} ${optionsInsertPointEnding}`;
     const indexContentSegments = distIndexHtmlContent.split(optionsInsertPoint);
-    let optionHtml = `<div class="left-nav-option">`;
+    let optionHtml = `<div class="left-nav-option hidden" data-tab-name="${tabName}">`;
     if (isSection) {
         const svgMarkup =
             '<path d="M70 35A35 35 0 1135 0a35 35 0 0135 35"/><path d="M45.88 33.74l-.66-.66L27.3 15.1a1.78 1.78 0 00-2.52 0l-.66.66a1.78 1.78 0 000 2.52L40.78 35 24.12 51.72a1.78 1.78 0 000 2.52l.66.66a1.78 1.78 0 002.52 0L45.17 37l.66-.66a1.8 1.8 0 000-2.53z"/>';
@@ -111,7 +112,7 @@ function insertLeftNavOptionIntoDistIndexHtml(
         const topicHtmlFileRelativeUrl = srcItemPath.slice(
             srcItemPath.indexOf('/')
         );
-        optionHtml += `<button class="left-nav-item" data-relative-url="${topicHtmlFileRelativeUrl}">${optionLabel}</button>`;
+        optionHtml += `<button class="left-nav-item plain" data-relative-url="${topicHtmlFileRelativeUrl}">${optionLabel}</button>`;
     }
     optionHtml += '</div>';
     indexContentSegments[0] += optionHtml;

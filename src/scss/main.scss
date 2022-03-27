@@ -13,14 +13,14 @@ body {
     counter-reset: ol-listitem;
     counter-reset: section;
 
-    // button {
-    //     &.plain {
-    //         background: transparent;
-    //         border: 0;
-    //         cursor: pointer;
-    //         padding: 0;
-    //     }
-    // }
+    button {
+        &.plain {
+            background: transparent;
+            border: 0;
+            cursor: pointer;
+            padding: 0;
+        }
+    }
 
     .header {
         width: 100%;
@@ -96,7 +96,7 @@ body {
                 display: flex;
                 flex-grow: 1;
 
-                .tab {
+                button.tab {
                     padding: 10px 0;
 
                     // border: 2px solid transparent;
