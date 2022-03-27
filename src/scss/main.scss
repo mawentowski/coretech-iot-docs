@@ -208,9 +208,21 @@ body {
                     padding: 4px;
 
                     &.left-nav-option {
-                        .left-nav-section-container {
+                        > .left-nav-section-container {
                             display: flex;
                             align-items: center;
+
+                            &.collapsed {
+                                > div.left-nav-option {
+                                    display: none;
+                                }
+                            }
+
+                            &.expanded {
+                                > div.left-nav-option {
+                                    display: unset;
+                                }
+                            }
 
                             .svg-container {
                                 width: 15px;
@@ -251,11 +263,6 @@ body {
                     //     }
 
                     // }
-                }
-
-                // collapse class empty, just for toggle
-                .menu-item-group:not(.expanded) * {
-                    display: none;
                 }
             }
 

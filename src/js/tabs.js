@@ -7,14 +7,14 @@ let selectedTab;
 function selectTab(tab) {
     selectedTab = tab;
     toggleSelectStyles(tab);
-    loadProjectPage(tab);
+    loadTopicPage(tab);
 }
 
 function formatTabInnerText(tab) {
     return tab.innerText.replace(' ', '').toLowerCase();
 }
 
-async function loadProjectPage(tab) {
+async function loadTopicPage(tab) {
     const innerText = tab.innerText;
     const formattedInnerText = innerText.replace(' ', '-').toLowerCase();
     const relativeUrl = `/topics/${formattedInnerText}.html`;
