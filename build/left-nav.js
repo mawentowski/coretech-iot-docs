@@ -21,15 +21,21 @@ function buildHtmlBasedOnFolderContents(srcFolderPath) {
         globalThis.console.log('item', itemName);
         const isFile = itemName.includes('.');
         globalThis.console.log('Is item a file?', isFile);
+        const itemNameWithoutExtension = itemName;
         if (isFile)
             itemNameWithoutExtension = getFilenameWithoutExtension(itemName);
         const label = deriveLabelFromItemName(itemNameWithoutExtension);
+        const buildItemPath = `${newDistFolderPath}/${itemName}`;
+        const srcItemPath = `${srcFolderPath}/${itemName}`;
         if (isFile) {
             // Convert markdown to HTML and create left-nav option.
-            insertLeftNavOptionIntoDistIndexHtml(itemNameWithoutExtension);
+            insertLeftNavOptionIntoDistIndexHtml(
+                itemNameWithoutExtension,
+                srcItemPath
+            );
             createTopicHtmlFileFromMarkdown(
-                `${srcFolderPath}/${itemName}`,
-                itemNameWithoutExtension
+                itemNameWithoutExtension,
+                srcItemPath
             );
         } else {
             if (srcFolderPath === srcTopicsPath)
@@ -37,6 +43,7 @@ function buildHtmlBasedOnFolderContents(srcFolderPath) {
             else
                 insertLeftNavOptionIntoDistIndexHtml(
                     itemNameWithoutExtension,
+                    srcItemPath,
                     true
                 );
             const newDistFolderPath =
@@ -53,8 +60,8 @@ function buildHtmlBasedOnFolderContents(srcFolderPath) {
 }
 
 function createTopicHtmlFileFromMarkdown(
-    markdownFilePath,
-    filenameWithoutExtension
+    filenameWithoutExtension,
+    markdownFilePath
 ) {
     const fileContent = fs.readFileSync(markdownFilePath, textEncoding);
     const html = marked.parse(fileContent);
@@ -78,11 +85,19 @@ function getDistIndexHtmlContent() {
     return fs.readFileSync(`${DIST_DIRECTORY}/${indexFilename}`, textEncoding);
 }
 
-function insertLeftNavOptionIntoDistIndexHtml(optionLabel, isSection = false) {
+function insertLeftNavOptionIntoDistIndexHtml(
+    optionLabel,
+    srcItemPath,
+    isSection = false
+) {
     let distIndexHtmlContent = getDistIndexHtmlContent();
-    const optionsInsertPoint = '<!--Left-nav options before here.-->';
-    const indexContentSegments = distIndexHtmlContent.split(tabsInsertPoint);
-    let optionHtml = `<div class="left-nav-option">`;
+    const lastIndexOfForwardSlash = srcItemPath.lastIndexOf('/');
+    const parentFolderPath = srcItemPath.slice(0, lastIndexOfForwardSlash);
+    const tabName = deriveLabelFromItemname(parentFolderPath.split('/')[2]);
+    const optionsInsertPointEnding = `child left-nav options before here.-->`;
+    const optionsInsertPoint = `<!--${parentFolderPath} ${optionsInsertPointEnding}`;
+    const indexContentSegments = distIndexHtmlContent.split(optionsInsertPoint);
+    let optionHtml = `<div class="left-nav-option hidden" data-tab-name="${tabName}">`;
     if (isSection) {
         const svgMarkup =
             '<path d="M70 35A35 35 0 1135 0a35 35 0 0135 35"/><path d="M45.88 33.74l-.66-.66L27.3 15.1a1.78 1.78 0 00-2.52 0l-.66.66a1.78 1.78 0 000 2.52L40.78 35 24.12 51.72a1.78 1.78 0 000 2.52l.66.66a1.78 1.78 0 002.52 0L45.17 37l.66-.66a1.8 1.8 0 000-2.53z"/>';
@@ -91,8 +106,14 @@ function insertLeftNavOptionIntoDistIndexHtml(optionLabel, isSection = false) {
             <span class="svg-contaner">
                 <svg viewBox="0 0 70 70">${svgMarkup}</svg>
             </span>
+            <!--${srcItemPath} ${optionsInsertPointEnding}
         </span>`;
-    } else optionHtml += `<button>${optionLabel}</button>`;
+    } else {
+        const topicHtmlFileRelativeUrl = srcItemPath.slice(
+            srcItemPath.indexOf('/')
+        );
+        optionHtml += `<button class="left-nav-item plain" data-relative-url="${topicHtmlFileRelativeUrl}">${optionLabel}</button>`;
+    }
     optionHtml += '</div>';
     indexContentSegments[0] += optionHtml;
     const newDistIndexHtmlContent = indexContentSegments.join(tabsInsertPoint);
