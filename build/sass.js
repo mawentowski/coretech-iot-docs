@@ -4,8 +4,8 @@ import {
     SRC_DIRECTORY,
     getFilenameWithoutExtension,
 } from './shared.js';
-import sass from 'sass';
 import fs from 'fs';
+import sass from 'sass';
 
 const cssExtension = 'css';
 const sassDirectory = `${SRC_DIRECTORY}/${SASS_FOLDER}`;

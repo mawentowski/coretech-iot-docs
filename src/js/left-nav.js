@@ -5,7 +5,7 @@ const leftNavOptionDivs = globalThis.document.querySelectorAll(
     'div.left-nav-option'
 );
 
-function toggleSelectStyles(tab) {
+function toggleSelectTabStyles(tab) {
     tab.classList.toggle('text-black');
     tab.classList.toggle('tab-border-bottom-blue');
 }
@@ -13,17 +13,19 @@ function toggleSelectStyles(tab) {
 let selectedTab;
 function selectTab(tab) {
     selectedTab = tab;
-    toggleSelectStyles(tab);
+    toggleSelectTabStyles(tab);
     leftNavOptionDivs.forEach((leftNavOptionDiv) => {
         const isVisible =
-            leftNavOptionDiv.dataset.tabName === selectTab.innerText;
+            leftNavOptionDiv.dataset.tabName === selectedTab.innerText;
         leftNavOptionDiv.classList[isVisible ? 'remove' : 'add']('hidden');
+
+        globalThis.console.log('Is visible? ', isVisible);
     });
 }
 
-async function onLeftNavButtonClicked(event) {
-    const leftNavButton = event.target;
-    const relativeUrl = leftNavButton.dataset.relativeUrl;
+async function onLeftNavItemButtonClicked(event) {
+    const leftNavItemButton = event.target;
+    const relativeUrl = leftNavItemButton.dataset.relativeUrl;
     const httpResponse = await globalThis.fetch(relativeUrl);
     const htmlResponseText = await httpResponse.text();
     const mainContentDiv =
@@ -39,7 +41,7 @@ function onLeftNavSectionClicked(event) {
 }
 
 function toggleLeftNavSectionCollapsed(leftNavSectionContainerSpan) {
-    if (leftNavSectionContainerSpan.className.includes('expanded')) {
+    if (leftNavSectionContainerSpan.classList.contains('expanded')) {
         leftNavSectionContainerSpan.classList.remove('expanded');
         leftNavSectionContainerSpan.classList.add('collapsed');
     } else {
@@ -48,15 +50,15 @@ function toggleLeftNavSectionCollapsed(leftNavSectionContainerSpan) {
     }
 }
 
+for (const tab of tabs)
+    tab.addEventListener(clickEventName, function (event) {
+        toggleSelectTabStyles(selectedTab);
+        selectTab(event.target);
+    });
+
 // To do: Parse URL to determine initial selected tab.
 // Designate an initial selected tab.
 selectTab(tabs[0]);
-
-for (const tab of tabs)
-    tab.addEventListener('click', function (event) {
-        toggleSelectStyles(selectedTab);
-        selectTab(event.target);
-    });
 
 leftNavOptionDivs.forEach((leftNavOptionDiv) => {
     const leftNavSectionContainerSpan = leftNavOptionDiv.querySelector(
@@ -65,7 +67,10 @@ leftNavOptionDivs.forEach((leftNavOptionDiv) => {
     if (leftNavSectionContainerSpan)
         leftNavSectionContainerSpan.addEventListener(onLeftNavSectionClicked);
     else {
-        const itemButton = leftNavOptionDiv.querySelector('button');
-        itemButton.addEventListener(clickEventName, onLeftNavButtonClicked);
+        const leftNavItemButton = leftNavOptionDiv.querySelector('button');
+        leftNavItemButton.addEventListener(
+            clickEventName,
+            onLeftNavItemButtonClicked
+        );
     }
 });
