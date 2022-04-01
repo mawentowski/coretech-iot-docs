@@ -249,6 +249,10 @@ body {
                                 }
                             }
                         }
+
+                        button.left-nav-item.active {
+                            color: $active-color;
+                        }
                     }
                 }
 

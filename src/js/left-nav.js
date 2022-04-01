@@ -28,6 +28,14 @@ function selectTab(tab) {
     });
 }
 
+let selectedLeftNavItemButton;
+function selectLeftNavItemButton(button) {
+    if (selectedLeftNavItemButton)
+        selectedLeftNavItemButton.classList.toggle('active');
+    selectedLeftNavItemButton = button;
+    selectedLeftNavItemButton.classList.toggle('active');
+}
+
 function findSectionContainerSpanOfLeftNavOptionDiv(leftNavOptionDiv) {
     return leftNavOptionDiv.querySelector('.left-nav-section-container');
 }
@@ -40,6 +48,7 @@ function findSvgElementOfLeftNavSectionContainerSpan(
 
 async function onLeftNavItemButtonClicked(event) {
     const leftNavItemButton = event.target;
+    selectLeftNavItemButton(leftNavItemButton);
     const relativeUrl = leftNavItemButton.dataset.relativeUrl;
     const httpResponse = await globalThis.fetch(relativeUrl);
     const htmlResponseText = await httpResponse.text();
