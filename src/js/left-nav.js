@@ -7,20 +7,35 @@ const leftNavOptionDivs = globalThis.document.querySelectorAll(
 
 function toggleSelectTabStyles(tab) {
     tab.classList.toggle('text-black');
-    tab.classList.toggle('tab-border-bottom-blue');
+    tab.classList.toggle('active');
 }
 
 let selectedTab;
 function selectTab(tab) {
     selectedTab = tab;
-    toggleSelectTabStyles(tab);
+    toggleSelectTabStyles(selectedTab);
     leftNavOptionDivs.forEach((leftNavOptionDiv) => {
+        const leftNavSectionContainerSpan =
+            findSectionContainerSpanOfLeftNavOptionDiv(leftNavOptionDiv);
+        if (
+            leftNavSectionContainerSpan &&
+            leftNavSectionContainerSpan.classList.contains('expanded')
+        )
+            toggleLeftNavSectionExpanded(leftNavSectionContainerSpan);
         const isVisible =
             leftNavOptionDiv.dataset.tabName === selectedTab.innerText;
         leftNavOptionDiv.classList[isVisible ? 'remove' : 'add']('hidden');
-
-        globalThis.console.log('Is visible? ', isVisible);
     });
+}
+
+function findSectionContainerSpanOfLeftNavOptionDiv(leftNavOptionDiv) {
+    return leftNavOptionDiv.querySelector('.left-nav-section-container');
+}
+
+function findSvgElementOfLeftNavSectionContainerSpan(
+    leftNavSectionContainerSpan
+) {
+    return leftNavSectionContainerSpan.querySelector('svg');
 }
 
 async function onLeftNavItemButtonClicked(event) {
@@ -33,14 +48,11 @@ async function onLeftNavItemButtonClicked(event) {
     mainContentDiv.innerHTML = htmlResponseText;
 }
 
-function onLeftNavSectionClicked(event) {
-    const leftNavSectionContainerSpan = event.target;
-    toggleLeftNavSectionCollapsed(leftNavSectionContainerSpan);
-    const svgElement = leftNavSectionContainerSpan.querySelector('svg');
-    svgElement.classList.toggle('rotated');
+function onLeftNavSectionClicked(leftNavSectionContainerSpan) {
+    toggleLeftNavSectionExpanded(leftNavSectionContainerSpan);
 }
 
-function toggleLeftNavSectionCollapsed(leftNavSectionContainerSpan) {
+function toggleLeftNavSectionExpanded(leftNavSectionContainerSpan) {
     if (leftNavSectionContainerSpan.classList.contains('expanded')) {
         leftNavSectionContainerSpan.classList.remove('expanded');
         leftNavSectionContainerSpan.classList.add('collapsed');
@@ -48,6 +60,10 @@ function toggleLeftNavSectionCollapsed(leftNavSectionContainerSpan) {
         leftNavSectionContainerSpan.classList.remove('collapsed');
         leftNavSectionContainerSpan.classList.add('expanded');
     }
+    const svgElement = findSvgElementOfLeftNavSectionContainerSpan(
+        leftNavSectionContainerSpan
+    );
+    svgElement.classList.toggle('rotated');
 }
 
 for (const tab of tabs)
@@ -61,16 +77,22 @@ for (const tab of tabs)
 selectTab(tabs[0]);
 
 leftNavOptionDivs.forEach((leftNavOptionDiv) => {
-    const leftNavSectionContainerSpan = leftNavOptionDiv.querySelector(
-        'span.left-nav-section-container'
-    );
-    if (leftNavSectionContainerSpan)
-        leftNavSectionContainerSpan.addEventListener(onLeftNavSectionClicked);
-    else {
-        const leftNavItemButton = leftNavOptionDiv.querySelector('button');
-        leftNavItemButton.addEventListener(
+    const leftNavButton = leftNavOptionDiv.querySelector('button');
+    if (leftNavButton.classList.contains('left-nav-section')) {
+        const leftNavSectionContainerSpan =
+            findSectionContainerSpanOfLeftNavOptionDiv(leftNavOptionDiv);
+        leftNavButton.addEventListener(clickEventName, () =>
+            onLeftNavSectionClicked(leftNavSectionContainerSpan)
+        );
+        const svgElement = findSvgElementOfLeftNavSectionContainerSpan(
+            leftNavSectionContainerSpan
+        );
+        svgElement.addEventListener(clickEventName, () =>
+            onLeftNavSectionClicked(leftNavSectionContainerSpan)
+        );
+    } else
+        leftNavButton.addEventListener(
             clickEventName,
             onLeftNavItemButtonClicked
         );
-    }
 });

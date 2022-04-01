@@ -96,28 +96,44 @@ function insertLeftNavOptionIntoDistIndexHtml(
         relativeItemPath.lastIndexOf('/')
     );
     const tabName = deriveLabelFromItemName(parentFolderPath.split('/')[2]);
-    const optionsInsertPointEnding = `child left-nav options before here.-->`;
-    const optionsInsertPoint =
-        srcItemPath.split('/').length === 4
-            ? '<!--Left-nav options before here.-->'
-            : `<!--${parentFolderPath} ${optionsInsertPointEnding}`;
+    const optionsInsertPointEnding = 'child left-nav options before here.';
+    const isTopLevelLeftNavOption = srcItemPath.split('/').length === 4;
+    const optionsInsertPoint = isTopLevelLeftNavOption
+        ? '<!--Left-nav options before here.-->'
+        : `<!--${parentFolderPath} ${optionsInsertPointEnding}-->`;
     const distIndexHtmlContentSegments =
         distIndexHtmlContent.split(optionsInsertPoint);
-    let optionHtml = `<div class="left-nav-option collapsed hidden" data-tab-name="${tabName}">\n`;
+    let optionHtml;
     if (isSection) {
         const svgMarkup =
             '<path d="M70 35A35 35 0 1135 0a35 35 0 0135 35"/><path d="M45.88 33.74l-.66-.66L27.3 15.1a1.78 1.78 0 00-2.52 0l-.66.66a1.78 1.78 0 000 2.52L40.78 35 24.12 51.72a1.78 1.78 0 000 2.52l.66.66a1.78 1.78 0 002.52 0L45.17 37l.66-.66a1.8 1.8 0 000-2.53z"/>';
-        optionHtml += `
-        <span class="left-nav-section-container">\n
-            <span class="svg-container">\n
-                <svg viewBox="0 0 70 70">${svgMarkup}</svg>\n
-            </span>\n
-            ${optionLabel}\n
-            <!--${relativeItemPath} ${optionsInsertPointEnding}\n
-        </span>\n`;
+        let leftNavOptionDivClass = 'hidden left-nav-option';
+        if (isTopLevelLeftNavOption)
+            leftNavOptionDivClass = `${leftNavOptionDivClass} top-level`;
+        optionHtml = `
+        <div class="${leftNavOptionDivClass}" data-tab-name="${tabName}">
+        <span class="collapsed left-nav-section-container">
+            <span class="svg-container">
+                <svg viewBox="0 0 70 70">${svgMarkup}</svg>
+            </span>
+            <button class="left-nav-section plain">${optionLabel}</button>
+            <!--${relativeItemPath} ${optionsInsertPointEnding}-->
+        </span>`;
     } else {
-        const topicHtmlFileRelativeUrl = relativeItemPath;
-        optionHtml += `<button class="left-nav-item plain" data-relative-url="${topicHtmlFileRelativeUrl}">${optionLabel}</button>`;
+        const filename =
+            getFilenameWithoutExtension(
+                srcItemPath.slice(srcItemPath.lastIndexOf('/') + 1)
+            ) + '.html';
+        const topicHtmlFileRelativeUrl = `${parentFolderPath}/${filename}`;
+        global.console.log(
+            'Topic HTML file relative URL',
+            topicHtmlFileRelativeUrl
+        );
+        optionHtml = `
+        <div class="left-nav-option hidden" data-tab-name="${tabName}">
+        <button class="left-nav-item plain" data-relative-url="${topicHtmlFileRelativeUrl}">
+            ${optionLabel}
+        </button>`;
     }
     optionHtml += '</div>';
     distIndexHtmlContentSegments[0] += optionHtml;
