@@ -1,3 +1,5 @@
+$active-color: #5469d4;
+
 html {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
         'Helvetica Neue', Ubuntu, sans-serif;
@@ -98,16 +100,13 @@ body {
 
                 button.tab {
                     padding: 10px 0;
-
-                    // border: 2px solid transparent;
-                    // background: transparent;
                     margin-right: 20px;
-                }
 
-                // .tab:nth-of-type(4) {
-                //     color: #5469d4;
-                //     border-bottom: 2px solid #5469d4;
-                // }
+                    &.active {
+                        color: $active-color;
+                        border-bottom: 2px solid $active-color;
+                    }
+                }
             }
 
             .apis-support {
@@ -203,15 +202,19 @@ body {
                 padding-right: 25px;
                 padding-top: 20px;
 
-                // Javascripts inserts here
-                > div {
+                div {
                     padding: 4px;
 
                     &.left-nav-option {
-                        > .left-nav-section-container {
-                            display: flex;
-                            align-items: center;
+                        $svg-dimension: 24px;
 
+                        margin-left: $svg-dimension;
+
+                        &.top-level {
+                            margin-left: 0;
+                        }
+
+                        .left-nav-section-container {
                             &.collapsed {
                                 > div.left-nav-option {
                                     display: none;
@@ -220,29 +223,35 @@ body {
 
                             &.expanded {
                                 > div.left-nav-option {
-                                    display: unset;
+                                    display: block;
                                 }
                             }
 
                             .svg-container {
+                                cursor: pointer;
                                 width: 15px;
 
                                 svg {
-                                    width: 100%;
-                                }
+                                    height: $svg-dimension;
+                                    width: $svg-dimension;
 
-                                svg path:nth-of-type(1) {
-                                    fill: transparent;
-                                }
+                                    &.rotated {
+                                        transform: rotate(90deg);
+                                    }
 
-                                svg path:nth-of-type(2) {
-                                    fill: black;
-                                }
+                                    path:nth-of-type(1) {
+                                        fill: transparent;
+                                    }
 
-                                svg.rotated {
-                                    transform: rotate(90deg);
+                                    path:nth-of-type(2) {
+                                        fill: black;
+                                    }
                                 }
                             }
+                        }
+
+                        button.left-nav-item.active {
+                            color: $active-color;
                         }
                     }
                 }
@@ -314,8 +323,8 @@ body {
         }
         @media (min-width: 992px) {
             .left-nav-col {
-                flex: 0 0 20%;
-                max-width: 20%;
+                flex: 0 0 30%;
+                max-width: 30%;
 
                 // padding-top: 25px;
             }
@@ -408,7 +417,7 @@ body {
                 }
 
                 .list-group-item.active {
-                    color: #5469d4 !important;
+                    color: $active-color !important;
                     background-color: transparent !important;
                     border-color: transparent !important;
                 }

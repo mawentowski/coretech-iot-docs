@@ -5,25 +5,51 @@ const leftNavOptionDivs = globalThis.document.querySelectorAll(
     'div.left-nav-option'
 );
 
-function toggleSelectStyles(tab) {
+function toggleSelectTabStyles(tab) {
     tab.classList.toggle('text-black');
-    tab.classList.toggle('tab-border-bottom-blue');
+    tab.classList.toggle('active');
 }
 
 let selectedTab;
 function selectTab(tab) {
     selectedTab = tab;
-    toggleSelectStyles(tab);
+    toggleSelectTabStyles(selectedTab);
     leftNavOptionDivs.forEach((leftNavOptionDiv) => {
+        const leftNavSectionContainerSpan =
+            findSectionContainerSpanOfLeftNavOptionDiv(leftNavOptionDiv);
+        if (
+            leftNavSectionContainerSpan &&
+            leftNavSectionContainerSpan.classList.contains('expanded')
+        )
+            toggleLeftNavSectionExpanded(leftNavSectionContainerSpan);
         const isVisible =
-            leftNavOptionDiv.dataset.tabName === selectTab.innerText;
+            leftNavOptionDiv.dataset.tabName === selectedTab.innerText;
         leftNavOptionDiv.classList[isVisible ? 'remove' : 'add']('hidden');
     });
 }
 
-async function onLeftNavButtonClicked(event) {
-    const leftNavButton = event.target;
-    const relativeUrl = leftNavButton.dataset.relativeUrl;
+let selectedLeftNavItemButton;
+function selectLeftNavItemButton(button) {
+    if (selectedLeftNavItemButton)
+        selectedLeftNavItemButton.classList.toggle('active');
+    selectedLeftNavItemButton = button;
+    selectedLeftNavItemButton.classList.toggle('active');
+}
+
+function findSectionContainerSpanOfLeftNavOptionDiv(leftNavOptionDiv) {
+    return leftNavOptionDiv.querySelector('.left-nav-section-container');
+}
+
+function findSvgElementOfLeftNavSectionContainerSpan(
+    leftNavSectionContainerSpan
+) {
+    return leftNavSectionContainerSpan.querySelector('svg');
+}
+
+async function onLeftNavItemButtonClicked(event) {
+    const leftNavItemButton = event.target;
+    selectLeftNavItemButton(leftNavItemButton);
+    const relativeUrl = leftNavItemButton.dataset.relativeUrl;
     const httpResponse = await globalThis.fetch(relativeUrl);
     const htmlResponseText = await httpResponse.text();
     const mainContentDiv =
@@ -31,41 +57,51 @@ async function onLeftNavButtonClicked(event) {
     mainContentDiv.innerHTML = htmlResponseText;
 }
 
-function onLeftNavSectionClicked(event) {
-    const leftNavSectionContainerSpan = event.target;
-    toggleLeftNavSectionCollapsed(leftNavSectionContainerSpan);
-    const svgElement = leftNavSectionContainerSpan.querySelector('svg');
-    svgElement.classList.toggle('rotated');
+function onLeftNavSectionClicked(leftNavSectionContainerSpan) {
+    toggleLeftNavSectionExpanded(leftNavSectionContainerSpan);
 }
 
-function toggleLeftNavSectionCollapsed(leftNavSectionContainerSpan) {
-    if (leftNavSectionContainerSpan.className.includes('expanded')) {
+function toggleLeftNavSectionExpanded(leftNavSectionContainerSpan) {
+    if (leftNavSectionContainerSpan.classList.contains('expanded')) {
         leftNavSectionContainerSpan.classList.remove('expanded');
         leftNavSectionContainerSpan.classList.add('collapsed');
     } else {
         leftNavSectionContainerSpan.classList.remove('collapsed');
         leftNavSectionContainerSpan.classList.add('expanded');
     }
+    const svgElement = findSvgElementOfLeftNavSectionContainerSpan(
+        leftNavSectionContainerSpan
+    );
+    svgElement.classList.toggle('rotated');
 }
+
+for (const tab of tabs)
+    tab.addEventListener(clickEventName, function (event) {
+        toggleSelectTabStyles(selectedTab);
+        selectTab(event.target);
+    });
 
 // To do: Parse URL to determine initial selected tab.
 // Designate an initial selected tab.
 selectTab(tabs[0]);
 
-for (const tab of tabs)
-    tab.addEventListener('click', function (event) {
-        toggleSelectStyles(selectedTab);
-        selectTab(event.target);
-    });
-
 leftNavOptionDivs.forEach((leftNavOptionDiv) => {
-    const leftNavSectionContainerSpan = leftNavOptionDiv.querySelector(
-        'span.left-nav-section-container'
-    );
-    if (leftNavSectionContainerSpan)
-        leftNavSectionContainerSpan.addEventListener(onLeftNavSectionClicked);
-    else {
-        const itemButton = leftNavOptionDiv.querySelector('button');
-        itemButton.addEventListener(clickEventName, onLeftNavButtonClicked);
-    }
+    const leftNavButton = leftNavOptionDiv.querySelector('button');
+    if (leftNavButton.classList.contains('left-nav-section')) {
+        const leftNavSectionContainerSpan =
+            findSectionContainerSpanOfLeftNavOptionDiv(leftNavOptionDiv);
+        leftNavButton.addEventListener(clickEventName, () =>
+            onLeftNavSectionClicked(leftNavSectionContainerSpan)
+        );
+        const svgElement = findSvgElementOfLeftNavSectionContainerSpan(
+            leftNavSectionContainerSpan
+        );
+        svgElement.addEventListener(clickEventName, () =>
+            onLeftNavSectionClicked(leftNavSectionContainerSpan)
+        );
+    } else
+        leftNavButton.addEventListener(
+            clickEventName,
+            onLeftNavItemButtonClicked
+        );
 });

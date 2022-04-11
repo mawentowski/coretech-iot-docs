@@ -1,8 +1,15 @@
-import { DIST_DIRECTORY, SASS_FOLDER, SRC_DIRECTORY } from './shared.js';
-import { buildLeftNav } from './left-nav';
+import {
+    DIST_DIRECTORY,
+    SASS_FOLDER,
+    SRC_DIRECTORY,
+    TOPICS_FOLDER_NAME,
+} from './shared.js';
+import { buildLeftNav } from './left-nav.js';
 import { compileSass } from './sass.js';
 import fs from 'fs';
 import fse from 'fs-extra';
+
+const buildTopicsPath = `${DIST_DIRECTORY}/${TOPICS_FOLDER_NAME}`;
 
 // Replace build folder and contents with fresh copy of src folder.
 fse.copySync(SRC_DIRECTORY, DIST_DIRECTORY, { overwrite: true });
