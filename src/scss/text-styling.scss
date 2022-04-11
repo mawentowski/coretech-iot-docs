@@ -41,15 +41,6 @@ input.search-field {
 }
 
 /* global */
-body {
-    color: #3c4257;
-}
-
-/* utility */
-.text-black {
-    /* apply global color */
-    color: inherit;
-}
 
 a {
     color: #5469d4;
@@ -72,6 +63,17 @@ a.text-black:hover {
 
 /* First level topic and topics with children 
 have text-black applied */
+
+body {
+    color: #3c4257;
+}
+
+/* utility */
+.text-black {
+    /* apply global color */
+    color: inherit;
+}
+
 .left-nav-col a.text-black:hover {
     /* hovering does not change color */
     color: inherit;
