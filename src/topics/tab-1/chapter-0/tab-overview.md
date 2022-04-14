@@ -1,5 +1,12 @@
 # tab-1_tab-overview.md
 
+<div class="title-box">
+    <h1 class="topic-title">Heading 1</h1>
+    <div class="action-statement">
+        Test. Use this information to perform the following task.
+    </div>
+</div>
+
 ## Supported Styles
 
 ### H3

@@ -161,6 +161,7 @@ body {
     .main-row {
         display: flex;
         top: 125px;
+        width: 100vw;
 
         .left-nav-col {
             z-index: 2000;
@@ -321,8 +322,8 @@ body {
         }
         @media (min-width: 992px) {
             .left-nav-col {
-                flex: 0 0 30%;
-                max-width: 30%;
+                flex: 0 0 20%;
+                max-width: 20%;
 
                 // padding-top: 25px;
             }
@@ -719,7 +720,7 @@ h2.numbered--h2::before {
     border: none;
 }
 
-.article h3 {
+h3 {
     padding-top: 16px;
     font-size: 16px;
     font-weight: 600;
@@ -733,7 +734,7 @@ h2.numbered--h2::before {
     }
 }
 
-.article p.caption {
+p.caption {
     padding-top: 4px;
     text-align: center;
     font-size: 12px;

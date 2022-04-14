@@ -2,6 +2,10 @@
     display: none;
 }
 
+.home-hidden {
+    display: none;
+}
+
 .scrollable {
     overflow-y: scroll;
 }
@@ -42,8 +46,8 @@
     flex-basis: 100%;
 }
 
-.flex-basis-75 {
-    flex-basis: 75%;
+.flex-basis-80 {
+    flex-basis: 80%;
 }
 
 .flex-basis-70 {
