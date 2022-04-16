@@ -1,6 +1,7 @@
 const clickEventName = 'click';
 // Want to get reference for all tabs. Query Selector is one item.
 const tabs = Array.from(globalThis.document.querySelectorAll('button.tab'));
+const leftNav = globalThis.document.querySelector('div.left-nav');
 const leftNavOptionDivs = globalThis.document.querySelectorAll(
     'div.left-nav-option'
 );
@@ -26,6 +27,11 @@ function selectTab(tab) {
             leftNavOptionDiv.dataset.tabName === selectedTab.innerText;
         leftNavOptionDiv.classList[isVisible ? 'remove' : 'add']('hidden');
     });
+    const firstVisibleLeftNavItemButton = leftNav.querySelector(
+        'div.left-nav-option:not(.hidden) > button.left-nav-item'
+    );
+    if (firstVisibleLeftNavItemButton)
+        onLeftNavItemButtonClicked(firstVisibleLeftNavItemButton);
 }
 
 let selectedLeftNavItemButton;
@@ -46,8 +52,7 @@ function findSvgElementOfLeftNavSectionContainerSpan(
     return leftNavSectionContainerSpan.querySelector('svg');
 }
 
-async function onLeftNavItemButtonClicked(event) {
-    const leftNavItemButton = event.target;
+async function onLeftNavItemButtonClicked(leftNavItemButton) {
     selectLeftNavItemButton(leftNavItemButton);
     const relativeUrl = leftNavItemButton.dataset.relativeUrl;
     const httpResponse = await globalThis.fetch(relativeUrl);
@@ -100,8 +105,7 @@ leftNavOptionDivs.forEach((leftNavOptionDiv) => {
             onLeftNavSectionClicked(leftNavSectionContainerSpan)
         );
     } else
-        leftNavButton.addEventListener(
-            clickEventName,
-            onLeftNavItemButtonClicked
+        leftNavButton.addEventListener(clickEventName, (event) =>
+            onLeftNavItemButtonClicked(event.target)
         );
 });
