@@ -5,6 +5,7 @@ import {
     getFilenameWithoutExtension,
 } from './shared.js';
 import fs from 'fs';
+import fse from 'fs-extra';
 import { marked } from 'marked';
 
 const srcTopicsPath = `${SRC_DIRECTORY}/${TOPICS_FOLDER_NAME}`;
@@ -29,10 +30,7 @@ function buildHtmlBasedOnFolderContents(srcFolderPath) {
         const label = deriveLabelFromItemName(itemNameWithoutExtension);
         const srcItemPath = `${srcFolderPath}/${itemName}`;
         if (isFile) {
-            createTopicHtmlFileFromMarkdown(
-                itemNameWithoutExtension,
-                srcItemPath
-            );
+            createHtmlFromSrc(srcItemPath);
             insertLeftNavOptionIntoDistIndexHtml(label, srcItemPath);
         } else {
             if (srcFolderPath === srcTopicsPath)
@@ -51,20 +49,30 @@ function buildHtmlBasedOnFolderContents(srcFolderPath) {
     });
 }
 
-function createTopicHtmlFileFromMarkdown(
-    filenameWithoutExtension,
-    markdownFilePath
-) {
-    const fileContent = fs.readFileSync(markdownFilePath, textEncoding);
-    const htmlFilePath =
+function createHtmlFromSrc(srcFilePath) {
+    const fileName = srcFilePath.slice(srcFilePath.lastIndexOf('/') + 1);
+    global.console.log('createHtmlFromSrc fileName', fileName);
+    const distHtmlFolder =
         DIST_DIRECTORY +
-        markdownFilePath.slice(
-            markdownFilePath.indexOf('/'),
-            markdownFilePath.lastIndexOf('/') + 1
+        srcFilePath.slice(
+            srcFilePath.indexOf('/'),
+            srcFilePath.lastIndexOf('/') + 1
         );
-    globalThis.console.log('HTML file path', htmlFilePath);
-    const html = marked.parse(fileContent);
-    fs.writeFileSync(`${htmlFilePath}/${filenameWithoutExtension}.html`, html);
+    global.console.log('createHtmlFromSrc distHtmlPath', distHtmlFolder);
+    const isSrcHtml = srcFilePath.endsWith('.html');
+    if (isSrcHtml)
+        fse.copySync(srcFilePath, `${distHtmlFolder}/${fileName}`, {
+            overwrite: true,
+        });
+    else {
+        const fileContent = fs.readFileSync(srcFilePath, textEncoding);
+        const html = marked.parse(fileContent);
+        const filenameWithoutExtension = getFilenameWithoutExtension(fileName);
+        fs.writeFileSync(
+            `${distHtmlFolder}/${filenameWithoutExtension}.html`,
+            html
+        );
+    }
 }
 
 function deriveLabelFromItemName(itemName) {
