@@ -30,7 +30,6 @@ jQuery(document).ready(function ($) {
             $('.menu-icon-row').addClass('hidden');
             $('.main-row').removeClass('pos-static');
             $('.left-nav-col').removeClass('pos-fixed-top-left');
-            //   ignore if Home tab is loaded by default or selected.
             $('.left-nav-col').removeClass('hidden');
             $('.left-nav-col').removeClass('fit-viewport-height');
             $('.toc-header').removeClass('display-flex');
