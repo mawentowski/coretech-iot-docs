@@ -32,7 +32,6 @@ export function addRemoveClasses() {
         $('.right-nav-col').addClass('hidden');
     } else if (viewportWidth >= 768) {
         if (!isHomeTabSelected) {
-            $('.header').removeClass('hidden');
             $('.menu-icon-row').addClass('hidden');
             $('.left-nav-col').removeClass('hidden');
             $('.toc-header').removeClass('display-flex');
@@ -42,6 +41,7 @@ export function addRemoveClasses() {
             $('.left-nav-col').addClass('display-flex');
             $('.content').removeClass('flex-basis-100');
         }
+        $('.header').removeClass('hidden');
         $('body').removeClass('scrollable');
         $('.main-row').removeClass('pos-static');
         $('.left-nav-col').removeClass('pos-fixed-top-left');
