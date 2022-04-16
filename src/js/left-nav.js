@@ -1,3 +1,6 @@
+import { HOME_TAB_NAME } from './shared.js';
+import { addRemoveClasses } from './add-remove-classes.js';
+
 const clickEventName = 'click';
 // Want to get reference for all tabs. Query Selector is one item.
 const tabs = Array.from(globalThis.document.querySelectorAll('button.tab'));
@@ -11,9 +14,8 @@ function toggleSelectTabStyles(tab) {
     tab.classList.toggle('active');
 }
 
-let selectedTab;
 function selectTab(tab) {
-    selectedTab = tab;
+    globalThis.selectedTab = tab;
     toggleSelectTabStyles(selectedTab);
     leftNavOptionDivs.forEach((leftNavOptionDiv) => {
         const leftNavSectionContainerSpan =
@@ -32,6 +34,7 @@ function selectTab(tab) {
     );
     if (firstVisibleLeftNavItemButton)
         onLeftNavItemButtonClicked(firstVisibleLeftNavItemButton);
+    addRemoveClasses();
 }
 
 let selectedLeftNavItemButton;
@@ -88,7 +91,7 @@ for (const tab of tabs)
 
 // To do: Parse URL to determine initial selected tab.
 // Designate an initial selected tab.
-selectTab(tabs.find((tab) => tab.innerText === 'Home'));
+selectTab(tabs.find((tab) => tab.innerText === HOME_TAB_NAME));
 
 leftNavOptionDivs.forEach((leftNavOptionDiv) => {
     const leftNavButton = leftNavOptionDiv.querySelector('button');

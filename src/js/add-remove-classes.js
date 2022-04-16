@@ -1,64 +1,78 @@
-jQuery(document).ready(function ($) {
-    var alterClass = function () {
-        var ww = document.body.clientWidth;
-        if (ww <= 575) {
-            $('.left-nav-col').addClass('fit-viewport');
-        } else if (ww >= 576) {
-            $('.left-nav-col').removeClass('fit-viewport');
-        }
-        if (ww <= 767) {
-            $('body').addClass('scrollable');
-            $('.header').addClass('hidden');
+import { HOME_TAB_NAME } from './shared.js';
+
+export function addRemoveClasses() {
+    const isHomeTabSelected =
+        globalThis.selectedTab?.innerText === HOME_TAB_NAME;
+    const viewportWidth = document.body.clientWidth;
+    if (viewportWidth <= 575) addClass('.left-nav-col', 'fit-viewport');
+    else if (viewportWidth >= 576) removeClass('.left-nav-col', 'fit-viewport');
+    if (viewportWidth <= 767) {
+        if (isHomeTabSelected) {
+            $('.menu-icon-row').addClass('hidden');
+            $('.toc-header').addClass('hidden');
+        } else {
             $('.menu-icon-row').addClass('display-flex');
-            $('.main-row').addClass('pos-static');
-            $('.left-nav-col').addClass('pos-fixed-top-left');
-            $('.left-nav-col').addClass('hidden');
-            $('.left-nav-col').addClass('fit-viewport-height');
             $('.toc-header').addClass('display-flex');
-            $('.content').addClass('unscrollable');
-            $('.content').addClass('flex-basis-100');
-            $('body').removeClass('unscrollable');
-            $('.header').removeClass('display-flex');
             $('.menu-icon-row').removeClass('hidden');
-            $('.main-row').removeClass('pos-fixed');
-            $('.left-nav-col').removeClass('display-flex');
-            $('.content').removeClass('scrollable');
             $('.content').removeClass('flex-basis-80');
-        } else if (ww >= 768) {
-            $('body').removeClass('scrollable');
+        }
+        $('.header').addClass('hidden');
+        $('.left-nav-col').addClass('hidden');
+        $('.left-nav-col').removeClass('display-flex');
+        $('.header').removeClass('display-flex');
+        $('body').addClass('scrollable');
+        $('.main-row').addClass('pos-static');
+        $('.left-nav-col').addClass('pos-fixed-top-left');
+        $('.left-nav-col').addClass('fit-viewport-height');
+        $('.content').addClass('unscrollable');
+        $('.content').addClass('flex-basis-100');
+        $('body').removeClass('unscrollable');
+        $('.main-row').removeClass('pos-fixed');
+        $('.content').removeClass('scrollable');
+        $('.right-nav-col').addClass('hidden');
+    } else if (viewportWidth >= 768) {
+        if (!isHomeTabSelected) {
             $('.header').removeClass('hidden');
             $('.menu-icon-row').addClass('hidden');
-            $('.main-row').removeClass('pos-static');
-            $('.left-nav-col').removeClass('pos-fixed-top-left');
             $('.left-nav-col').removeClass('hidden');
-            $('.left-nav-col').removeClass('fit-viewport-height');
             $('.toc-header').removeClass('display-flex');
-            $('.content').removeClass('unscrollable');
-            //   ignore if Home tab is loaded by default or selected.
             $('.content').addClass('flex-basis-80');
-            $('body').addClass('unscrollable');
             $('.header').addClass('display-flex');
             $('.menu-icon-row').removeClass('display-flex');
-            $('.main-row').addClass('pos-fixed');
-            //   ignore if Home tab is loaded by default or selected.
             $('.left-nav-col').addClass('display-flex');
-            $('.content').addClass('scrollable');
-            //   ignore if Home tab is loaded by default or selected.
             $('.content').removeClass('flex-basis-100');
         }
-        if (ww <= 991) {
-            $('.right-nav-col').addClass('hidden');
-            //   ignore if Home tab is loaded by default or selected.
-            $('.right-nav-col').removeClass('display-flex');
-        } else if (ww >= 992) {
-            $('.right-nav-col').removeClass('hidden');
-            //   ignore if Home tab is loaded by default or selected.
-            $('.right-nav-col').addClass('display-flex');
-        }
-    };
-    $(window).resize(function () {
-        alterClass();
-    });
-    //Fire it when the page first loads:
-    alterClass();
+        $('body').removeClass('scrollable');
+        $('.main-row').removeClass('pos-static');
+        $('.left-nav-col').removeClass('pos-fixed-top-left');
+        $('.left-nav-col').removeClass('fit-viewport-height');
+        $('.content').removeClass('unscrollable');
+        $('body').addClass('unscrollable');
+        $('.main-row').addClass('pos-fixed');
+        $('.content').addClass('scrollable');
+    }
+    if (viewportWidth <= 991 && !isHomeTabSelected)
+        $('.right-nav-col').removeClass('display-flex');
+    else if (viewportWidth >= 992 && !isHomeTabSelected) {
+        $('.right-nav-col').removeClass('hidden');
+        //   ignore if Home tab is loaded by default or selected.
+        $('.right-nav-col').addClass('display-flex');
+    }
+}
+
+function queryDom(elementSelector) {
+    return globalThis.document.querySelector(elementSelector);
+}
+
+function addClass(elementSelector, className) {
+    queryDom(elementSelector).classList.add(className);
+}
+
+function removeClass(elementSelector, className) {
+    queryDom(elementSelector).classList.remove(className);
+}
+
+globalThis.document.addEventListener('DOMContentLoaded', () => {
+    addRemoveClasses();
+    globalThis.addEventListener('resize', addRemoveClasses);
 });

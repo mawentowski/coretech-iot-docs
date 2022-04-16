@@ -5,7 +5,7 @@
             "extends": ["plugin:prettier/recommended"],
             "files": ["*.js"],
             "parserOptions": {
-                "ecmaVersion": 8,
+                "ecmaVersion": 11,
                 "sourceType": "module"
             },
             "rules": {
@@ -13,7 +13,12 @@
                 "no-fallthrough": "off",
                 "no-shadow": "off",
                 "no-underscore-dangle": "off",
-                "prettier/prettier": ["warn", { "singleQuote": true }],
+                "prettier/prettier": [
+                    "warn",
+                    {
+                        "singleQuote": true
+                    }
+                ],
                 "sort-imports": "warn"
             }
         }
