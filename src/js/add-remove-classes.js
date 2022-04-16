@@ -1,11 +1,16 @@
-import { HOME_TAB_NAME } from './shared.js';
-
+import {
+    HOME_TAB_NAME,
+    addClassToHtmlElementBySelector,
+    removeClassFromHtmlElementBySelector,
+} from './shared.js';
 export function addRemoveClasses() {
     const isHomeTabSelected =
         globalThis.selectedTab?.innerText === HOME_TAB_NAME;
     const viewportWidth = document.body.clientWidth;
-    if (viewportWidth <= 575) addClass('.left-nav-col', 'fit-viewport');
-    else if (viewportWidth >= 576) removeClass('.left-nav-col', 'fit-viewport');
+    if (viewportWidth <= 575)
+        addClassToHtmlElementBySelector('.left-nav-col', 'fit-viewport');
+    else if (viewportWidth >= 576)
+        removeClassFromHtmlElementBySelector('.left-nav-col', 'fit-viewport');
     if (viewportWidth <= 767) {
         if (isHomeTabSelected) {
             $('.menu-icon-row').addClass('hidden');
@@ -58,18 +63,6 @@ export function addRemoveClasses() {
         //   ignore if Home tab is loaded by default or selected.
         $('.right-nav-col').addClass('display-flex');
     }
-}
-
-function queryDom(elementSelector) {
-    return globalThis.document.querySelector(elementSelector);
-}
-
-function addClass(elementSelector, className) {
-    queryDom(elementSelector).classList.add(className);
-}
-
-function removeClass(elementSelector, className) {
-    queryDom(elementSelector).classList.remove(className);
 }
 
 globalThis.document.addEventListener('DOMContentLoaded', () => {
