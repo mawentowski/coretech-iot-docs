@@ -20,33 +20,43 @@ export function buildLeftNav() {
 }
 
 function buildHtmlBasedOnFolderContents(srcFolderPath) {
-    fs.readdirSync(srcFolderPath).forEach((itemName) => {
-        globalThis.console.log('item', itemName);
-        const isFile = itemName.includes('.');
-        globalThis.console.log('Is item a file?', isFile);
-        const itemNameWithoutExtension = isFile
-            ? getFilenameWithoutExtension(itemName)
-            : itemName;
-        const label = deriveLabelFromItemName(itemNameWithoutExtension);
-        const srcItemPath = `${srcFolderPath}/${itemName}`;
-        if (isFile) {
-            createHtmlFromSrc(srcItemPath);
-            insertLeftNavOptionIntoDistIndexHtml(label, srcItemPath);
-        } else {
-            if (srcFolderPath === srcTopicsPath)
-                insertTabIntoDistIndexHtml(label);
-            else insertLeftNavOptionIntoDistIndexHtml(label, srcItemPath, true);
-            const newDistFolderPath =
-                DIST_DIRECTORY +
-                srcFolderPath.slice(srcFolderPath.indexOf('/'));
-            globalThis.console.log(
-                'New folder in dist directory.',
-                newDistFolderPath
-            );
-            fs.mkdirSync(`${newDistFolderPath}/${itemName}`);
-            buildHtmlBasedOnFolderContents(`${srcFolderPath}/${itemName}`);
-        }
-    });
+    fs.readdirSync(srcFolderPath)
+        .sort(
+            (firstItemName, secondItemName) =>
+                firstItemName.charCodeAt(0) < secondItemName.charCodeAt(0)
+        )
+        .forEach((itemName) => {
+            globalThis.console.log('item', itemName);
+            const isFile = itemName.includes('.');
+            globalThis.console.log('Is item a file?', isFile);
+            const itemNameWithoutExtension = isFile
+                ? getFilenameWithoutExtension(itemName)
+                : itemName;
+            const label = deriveLabelFromItemName(itemNameWithoutExtension);
+            const srcItemPath = `${srcFolderPath}/${itemName}`;
+            if (isFile) {
+                createHtmlFromSrc(srcItemPath);
+                insertLeftNavOptionIntoDistIndexHtml(label, srcItemPath);
+            } else {
+                if (srcFolderPath === srcTopicsPath)
+                    insertTabIntoDistIndexHtml(label);
+                else
+                    insertLeftNavOptionIntoDistIndexHtml(
+                        label,
+                        srcItemPath,
+                        true
+                    );
+                const newDistFolderPath =
+                    DIST_DIRECTORY +
+                    srcFolderPath.slice(srcFolderPath.indexOf('/'));
+                globalThis.console.log(
+                    'New folder in dist directory.',
+                    newDistFolderPath
+                );
+                fs.mkdirSync(`${newDistFolderPath}/${itemName}`);
+                buildHtmlBasedOnFolderContents(`${srcFolderPath}/${itemName}`);
+            }
+        });
 }
 
 function createHtmlFromSrc(srcFilePath) {
@@ -76,7 +86,11 @@ function createHtmlFromSrc(srcFilePath) {
 }
 
 function deriveLabelFromItemName(itemName) {
-    const itemNameSegments = itemName.split('-');
+    const itemNameSegments = itemName.split(/_|-/);
+    global.console.log(
+        'deriveLabelFromItemName itemNameSegments'.itemNameSegments
+    );
+    itemNameSegments.splice(0, 1);
     const label = itemNameSegments.reduce(
         (accumulator, currentValue, currentIndex) => {
             if (currentIndex) accumulator += ' ';
