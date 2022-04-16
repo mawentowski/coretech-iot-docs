@@ -83,7 +83,7 @@ for (const tab of tabs)
 
 // To do: Parse URL to determine initial selected tab.
 // Designate an initial selected tab.
-selectTab(tabs[0]);
+selectTab(tabs.find((tab) => tab.innerText === 'Home'));
 
 leftNavOptionDivs.forEach((leftNavOptionDiv) => {
     const leftNavButton = leftNavOptionDiv.querySelector('button');
