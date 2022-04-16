@@ -21,10 +21,13 @@ export function buildLeftNav() {
 
 function buildHtmlBasedOnFolderContents(srcFolderPath) {
     fs.readdirSync(srcFolderPath)
-        .sort(
-            (firstItemName, secondItemName) =>
-                firstItemName.charCodeAt(0) < secondItemName.charCodeAt(0)
-        )
+        .sort((firstItemName, secondItemName) => {
+            const firstItemNameSegments = splitItemName(firstItemName);
+            const firstItemIndex = global.Number(firstItemNameSegments[0]);
+            const secondItemNameSegments = splitItemName(secondItemName);
+            const secondItemIndex = global.Number(secondItemNameSegments[0]);
+            return firstItemIndex < secondItemIndex;
+        })
         .forEach((itemName) => {
             globalThis.console.log('item', itemName);
             const isFile = itemName.includes('.');
@@ -86,7 +89,7 @@ function createHtmlFromSrc(srcFilePath) {
 }
 
 function deriveLabelFromItemName(itemName) {
-    const itemNameSegments = itemName.split(/_|-/);
+    const itemNameSegments = splitItemName(itemName);
     global.console.log(
         'deriveLabelFromItemName itemNameSegments'.itemNameSegments
     );
@@ -169,6 +172,10 @@ function insertTabIntoDistIndexHtml(tabLabel) {
         distIndexHtmlContent.split(tabsInsertPoint);
     distIndexHtmlContentSegments[0] += `<button class="plain tab">${tabLabel}</button>\n`;
     distIndexHtmlContent = distIndexHtmlContentSegments.join(tabsInsertPoint);
+}
+
+function splitItemName(itemName) {
+    return itemName.split(/_|-/);
 }
 
 function writeToDistIndexHtml() {
