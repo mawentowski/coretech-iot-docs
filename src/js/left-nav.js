@@ -37,12 +37,83 @@ function selectTab(tab) {
     addRemoveClasses();
 }
 
+function applySelectionsBasedOnUrl() {
+    const urlSegments = globalThis.location.href.split('/');
+    const tabName = urlSegments[3];
+    const tabNameSegments = tabName.split(/_|-/);
+    const formattedTabName = tabNameSegments.join(' ');
+    const sectionName = urlSegments[4];
+    const itemName = urlSegments[5];
+    const tab =
+        tabs.find(
+            (tab) =>
+                tab.innerText.toLowerCase() === formattedTabName.toLowerCase()
+        ) ?? tabs.find((tab) => tab.innerText === HOME_TAB_NAME);
+    selectTab(tab);
+    const leftNavSectionContainerSpans = globalThis.document.querySelectorAll(
+        'span.left-nav-section-container'
+    );
+    const targetedLeftNavSectionContainerSpan = globalThis.Array.from(
+        leftNavSectionContainerSpans
+    ).find(
+        (sectionContainerSpan) =>
+            sectionContainerSpan
+                .querySelector('button.left-nav-section')
+                .innerText.toLowerCase() ===
+            sectionName?.replace(/_|-/, ' ').toLowerCase()
+    );
+    let leftNavItemParent;
+    if (targetedLeftNavSectionContainerSpan) {
+        toggleLeftNavSectionExpanded(targetedLeftNavSectionContainerSpan);
+        leftNavItemParent = targetedLeftNavSectionContainerSpan;
+    } else leftNavItemParent = globalThis.document;
+    const leftNavItems = leftNavItemParent.querySelectorAll(
+        'button.left-nav-item'
+    );
+    const targetedLeftNavItem = globalThis.Array.from(leftNavItems).find(
+        (item) =>
+            item.innerText.toLowerCase() ===
+            itemName?.replace(/_|-/, ' ').toLowerCase()
+    );
+    if (targetedLeftNavItem) selectLeftNavItemButton(targetedLeftNavItem);
+}
+
+function reflectSelectionsInUrl() {
+    const relativeUrlSegments =
+        selectedLeftNavItemButton.dataset.relativeUrl.split('/');
+    const path = relativeUrlSegments.reduce(
+        (accumulator, currentValue, index) => {
+            if (index > 1) {
+                const pathArgumentSegments = currentValue.split('_');
+                let urlFormattedItemName = pathArgumentSegments[1];
+                const fileExtensionStartIndex = currentValue.indexOf('.');
+                if (fileExtensionStartIndex !== -1)
+                    urlFormattedItemName = urlFormattedItemName.slice(
+                        0,
+                        urlFormattedItemName.indexOf('.')
+                    );
+                accumulator += `/${urlFormattedItemName}`;
+            }
+            return accumulator;
+        },
+        ''
+    );
+    globalThis.history.pushState({}, '', path);
+}
+
 let selectedLeftNavItemButton;
-function selectLeftNavItemButton(button) {
+async function selectLeftNavItemButton(button) {
     if (selectedLeftNavItemButton)
         selectedLeftNavItemButton.classList.toggle('active');
     selectedLeftNavItemButton = button;
     selectedLeftNavItemButton.classList.toggle('active');
+    const relativeUrl = button.dataset.relativeUrl;
+    const httpResponse = await globalThis.fetch(relativeUrl);
+    const htmlResponseText = await httpResponse.text();
+    const mainContentDiv =
+        globalThis.document.querySelector('div.main-content');
+    mainContentDiv.innerHTML = htmlResponseText;
+    reflectSelectionsInUrl();
 }
 
 function findSectionContainerSpanOfLeftNavOptionDiv(leftNavOptionDiv) {
@@ -57,12 +128,6 @@ function findSvgElementOfLeftNavSectionContainerSpan(
 
 async function onLeftNavItemButtonClicked(leftNavItemButton) {
     selectLeftNavItemButton(leftNavItemButton);
-    const relativeUrl = leftNavItemButton.dataset.relativeUrl;
-    const httpResponse = await globalThis.fetch(relativeUrl);
-    const htmlResponseText = await httpResponse.text();
-    const mainContentDiv =
-        globalThis.document.querySelector('div.main-content');
-    mainContentDiv.innerHTML = htmlResponseText;
 }
 
 function onLeftNavSectionClicked(leftNavSectionContainerSpan) {
@@ -89,9 +154,7 @@ for (const tab of tabs)
         selectTab(event.target);
     });
 
-// To do: Parse URL to determine initial selected tab.
-// Designate an initial selected tab.
-selectTab(tabs.find((tab) => tab.innerText === HOME_TAB_NAME));
+applySelectionsBasedOnUrl();
 
 leftNavOptionDivs.forEach((leftNavOptionDiv) => {
     const leftNavButton = leftNavOptionDiv.querySelector('button');

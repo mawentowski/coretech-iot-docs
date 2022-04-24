@@ -29,7 +29,7 @@
     "scripts": {
         "build": "node build/index.js",
         "lint": "npx stylelint '**/*.css' '**/*.scss' || true & markdownlint-cli2 '**/*.md' '#node_modules' & npx eslint '**/*.js' '**/*.html'",
-        "serve": "cd dist && npx http-server -c 0 -p 4200"
+        "serve": "cd dist && npx http-server -c 0 --port 4200 --proxy http://127.0.0.1:4200?"
     },
     "type": "module",
     "version": "1.0.0"
