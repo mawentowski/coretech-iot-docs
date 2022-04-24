@@ -26,21 +26,8 @@ function applySelectionsBasedOnUrl() {
             (tab) => formatForComparison(tab.innerText) === formattedTabName
         ) ?? tabs.find((tab) => tab.innerText === HOME_TAB_NAME);
     selectTab(tab);
-    const targetedLeftNavOptionDivs = globalThis.Array.from(
-        leftNavOptionDivs
-    ).filter(
-        (div) => formatForComparison(div.dataset.tabName) === formattedTabName
-    );
-    const leftNavSectionContainerSpans = targetedLeftNavOptionDivs.reduce(
-        (accumulator, currentValue) => {
-            const sectionContainerSpan =
-                findSectionContainerSpanOfLeftNavOptionDiv(currentValue);
-            if (sectionContainerSpan) accumulator.push(sectionContainerSpan);
-
-            return accumulator;
-        },
-        []
-    );
+    const leftNavSectionContainerSpans =
+        getLeftNavSectionContainerSpansForSelectedTab();
     let leftNavItemParent;
     const targetedLeftNavSectionContainerSpans = [];
     sectionNames.forEach((sectionName, index) => {
@@ -91,7 +78,27 @@ function findSvgElementOfLeftNavSectionContainerSpan(
 }
 
 function formatForComparison(value) {
-    return value.replace(/_|-|\s/g, '').toLowerCase() ?? '';
+    return value?.replace(/_|-|\s/g, '').toLowerCase() ?? '';
+}
+
+function getLeftNavSectionContainerSpansForSelectedTab() {
+    const formattedTabName = formatForComparison(selectedTab.innerText);
+    const leftNavOptionDivsForSelectedTab = globalThis.Array.from(
+        leftNavOptionDivs
+    ).filter(
+        (div) => formatForComparison(div.dataset.tabName) === formattedTabName
+    );
+    const leftNavSectionContainerSpans = leftNavOptionDivsForSelectedTab.reduce(
+        (accumulator, currentValue) => {
+            const sectionContainerSpan =
+                findSectionContainerSpanOfLeftNavOptionDiv(currentValue);
+            if (sectionContainerSpan) accumulator.push(sectionContainerSpan);
+
+            return accumulator;
+        },
+        []
+    );
+    return leftNavSectionContainerSpans;
 }
 
 function getFirstVisibleLeftNavItemButton() {
@@ -137,6 +144,7 @@ async function selectLeftNavItemButton(button) {
         selectedLeftNavItemButton.classList.toggle('active');
     selectedLeftNavItemButton = button;
     selectedLeftNavItemButton.classList.toggle('active');
+    toggleActiveClassOnLeftNavSectionContainerSpans();
     const relativeUrl = button.dataset.relativeUrl;
     const httpResponse = await globalThis.fetch(relativeUrl);
     const htmlResponseText = await httpResponse.text();
@@ -165,6 +173,15 @@ function selectTab(tab) {
     if (firstVisibleLeftNavItemButton)
         onLeftNavItemButtonClicked(firstVisibleLeftNavItemButton);
     addRemoveClasses();
+}
+
+function toggleActiveClassOnLeftNavSectionContainerSpans() {
+    const leftSectionContainerSpans =
+        getLeftNavSectionContainerSpansForSelectedTab();
+    leftSectionContainerSpans.forEach((span) => {
+        const activeItem = span.querySelector('button.active.left-nav-item');
+        span.classList[activeItem ? 'add' : 'remove']('active');
+    });
 }
 
 function toggleLeftNavSectionExpanded(leftNavSectionContainerSpan) {

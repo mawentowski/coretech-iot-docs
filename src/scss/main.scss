@@ -219,20 +219,16 @@ body {
                         }
 
                         .left-nav-section-container {
-                            &.collapsed {
-                                > div.left-nav-option {
-                                    display: none;
-                                }
+                            &.active > button:first-of-type.left-nav-section {
+                                @extend %bold;
                             }
 
-                            &.expanded {
-                                > button:first-of-type.left-nav-section {
-                                    @extend %bold;
-                                }
+                            &.collapsed > div.left-nav-option {
+                                display: none;
+                            }
 
-                                > div.left-nav-option {
-                                    display: block;
-                                }
+                            &.expanded > div.left-nav-option {
+                                display: block;
                             }
 
                             .svg-container {
