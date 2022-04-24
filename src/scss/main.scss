@@ -390,14 +390,14 @@ body {
             }
         }
 
-        @media (min-width: 992px) {
-            .content {
-                .main-content {
-                    flex: 0 0 75%;
-                    max-width: 75%;
-                }
-            }
-        }
+        // @media (min-width: 992px) {
+        //     .content {
+        //         .main-content {
+        //             flex: 0 0 75%;
+        //             max-width: 75%;
+        //         }
+        //     }
+        // }
 
         .right-nav-col {
             position: fixed;
@@ -449,8 +449,7 @@ body {
     }
 }
 
-.breadcrumb {
-    display: flex;
+.topic-breadcrumb {
     margin-bottom: 0.7rem;
 
     img.stype-icon {
