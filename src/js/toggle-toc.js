@@ -3,6 +3,9 @@ const leftNavCol = globalThis.document.querySelector('.left-nav-col');
 const content = globalThis.document.querySelector('.content');
 const rightOverlayCol = globalThis.document.querySelector('.toggled-overlay');
 const tocHeaderCancel = globalThis.document.querySelector('.toc-header-cancel');
+const leftNavItem = globalThis.document.querySelector(
+    'button.left-nav-item.plain'
+);
 
 // when you click the button.toc-menu...
 tocMenuButton.addEventListener('click', toggleToc);
@@ -47,4 +50,15 @@ globalThis.window.addEventListener('resize', function () {
         content.classList.remove('pos-fixed');
         content.classList.add('scrollable');
     }
+});
+
+//  Or you click a .left-nav-item to load it.
+
+leftNavItem.addEventListener('click', function () {
+    leftNavCol.classList.toggle('hidden');
+    leftNavCol.classList.remove('display-flex');
+    //   leftNavCol.classList.remove("flex-direction-col");
+    rightOverlayCol.classList.toggle('hidden');
+    content.classList.toggle('pos-fixed');
+    content.classList.toggle('scrollable');
 });
