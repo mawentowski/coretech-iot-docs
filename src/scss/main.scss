@@ -390,14 +390,14 @@ body {
             }
         }
 
-        // @media (min-width: 992px) {
-        //     .content {
-        //         .main-content {
-        //             flex: 0 0 75%;
-        //             max-width: 75%;
-        //         }
-        //     }
-        // }
+        @media (min-width: 992px) {
+            .content {
+                .main-content {
+                    flex: 0 0 75%;
+                    max-width: 75%;
+                }
+            }
+        }
 
         .right-nav-col {
             position: fixed;
@@ -1120,3 +1120,26 @@ a.api-tag::after {
     background-size: 16px auto;
     bottom: 1.4px;
 }
+
+// @media (max-width: 767px) {
+//     .header,
+//     .left-nav-col {
+//         display: none;
+//     }
+// }
+
+// $('.header').addClass('hidden');
+// $('.left-nav-col').addClass('hidden');
+
+// $('.left-nav-col').removeClass('display-flex');
+// $('.header').removeClass('display-flex');
+// $('body').addClass('scrollable');
+// $('.main-row').addClass('pos-static');
+// $('.left-nav-col').addClass('pos-fixed-top-left');
+// $('.left-nav-col').addClass('fit-viewport-height');
+// $('.content').addClass('unscrollable');
+// $('.content').addClass('flex-basis-100');
+// $('body').removeClass('unscrollable');
+// $('.main-row').removeClass('pos-fixed');
+// $('.content').removeClass('scrollable');
+// $('.right-nav-col').addClass('hidden');

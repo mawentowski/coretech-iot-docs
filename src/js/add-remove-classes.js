@@ -13,14 +13,19 @@ export function addRemoveClasses() {
         removeClassFromHtmlElementBySelector('.left-nav-col', 'fit-viewport');
     if (viewportWidth <= 767) {
         if (isHomeTabSelected) {
-            $('.menu-icon-row').addClass('hidden');
-            $('.toc-header').addClass('hidden');
+            addClassToHtmlElementBySelector('.menu-icon-row', 'hidden');
+            addClassToHtmlElementBySelector('.toc-header', 'hidden');
         } else {
-            $('.menu-icon-row').addClass('display-flex');
-            $('.toc-header').addClass('display-flex');
-            $('.menu-icon-row').removeClass('hidden');
-            $('.content').removeClass('flex-basis-80');
+            addClassToHtmlElementBySelector('.menu-icon-row', 'hidden');
+            addClassToHtmlElementBySelector('.toc-header', 'display-flex');
+            removeClassFromHtmlElementBySelector('.menu-icon-row', 'hidden');
+            removeClassFromHtmlElementBySelector('.content', 'flex-basis-80');
         }
+
+        // addClassToHtmlElementBySelector('.header', 'hidden-if-sm, hidden-if-home');
+
+        // go into HTML, add class to everything that needs to be added to everything.
+
         $('.header').addClass('hidden');
         $('.left-nav-col').addClass('hidden');
         $('.left-nav-col').removeClass('display-flex');
