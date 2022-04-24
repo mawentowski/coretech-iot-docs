@@ -40,14 +40,13 @@ function selectTab(tab) {
 function applySelectionsBasedOnUrl() {
     const urlSegments = globalThis.location.href.split('/');
     const tabName = urlSegments[3];
-    const tabNameSegments = tabName.split(/_|-/);
-    const formattedTabName = tabNameSegments.join(' ');
     const sectionName = urlSegments[4];
-    const itemName = urlSegments[5];
+    const itemName = urlSegments[urlSegments.length - 1];
     const tab =
         tabs.find(
             (tab) =>
-                tab.innerText.toLowerCase() === formattedTabName.toLowerCase()
+                formatForComparison(tab.innerText) ===
+                formatForComparison(tabName)
         ) ?? tabs.find((tab) => tab.innerText === HOME_TAB_NAME);
     selectTab(tab);
     const leftNavSectionContainerSpans = globalThis.document.querySelectorAll(
@@ -57,10 +56,10 @@ function applySelectionsBasedOnUrl() {
         leftNavSectionContainerSpans
     ).find(
         (sectionContainerSpan) =>
-            sectionContainerSpan
-                .querySelector('button.left-nav-section')
-                .innerText.toLowerCase() ===
-            sectionName?.replace(/_|-/, ' ').toLowerCase()
+            formatForComparison(
+                sectionContainerSpan.querySelector('button.left-nav-section')
+                    .innerText
+            ) === formatForComparison(sectionName)
     );
     let leftNavItemParent;
     if (targetedLeftNavSectionContainerSpan) {
@@ -72,10 +71,14 @@ function applySelectionsBasedOnUrl() {
     );
     const targetedLeftNavItem = globalThis.Array.from(leftNavItems).find(
         (item) =>
-            item.innerText.toLowerCase() ===
-            itemName?.replace(/_|-/, ' ').toLowerCase()
+            formatForComparison(item.innerText) ===
+            formatForComparison(itemName)
     );
     if (targetedLeftNavItem) selectLeftNavItemButton(targetedLeftNavItem);
+}
+
+function formatForComparison(value) {
+    return value.replace(/_|-|\s/, '').toLowerCase() ?? '';
 }
 
 function reflectSelectionsInUrl() {
