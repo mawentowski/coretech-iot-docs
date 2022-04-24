@@ -172,7 +172,6 @@ body {
             z-index: 2000;
             border-right: 0.1px solid #ddd;
             background-color: white;
-            flex-direction: column;
 
             .toc-header {
                 max-width: 100%;
@@ -301,44 +300,6 @@ body {
                 .dl-pdf-txt {
                     margin-left: 10px;
                 }
-            }
-        }
-        @media (min-width: 576px) {
-            .left-nav-col {
-                width: 400px;
-                height: 100vh;
-            }
-        }
-        @media (min-width: 768px) {
-            // The hidden class is removed, if there, then display set to Flex.
-            .left-nav-col {
-                flex-basis: 25%;
-                max-width: 25%;
-
-                .toc-header,
-                .toc-header *,
-                .toc-filter-row,
-                .toc-filter-row * {
-                    display: none;
-                }
-
-                // .dl-pdf-row,
-                // .dl-pdf-row * {
-                //     display: none;
-            }
-        }
-        @media (max-width: 767px) {
-            .left-nav-col {
-                .left-nav {
-                }
-            }
-        }
-        @media (min-width: 992px) {
-            .left-nav-col {
-                flex: 0 0 20%;
-                max-width: 20%;
-
-                // padding-top: 25px;
             }
         }
 
@@ -1116,25 +1077,64 @@ a.api-tag::after {
     bottom: 1.4px;
 }
 
-// @media (max-width: 767px) {
-//     .header,
-//     .left-nav-col {
-//         display: none;
-//     }
-// }
+.left-nav-col {
+    flex-direction: column;
+}
 
-// $('.header').addClass('hidden');
-// $('.left-nav-col').addClass('hidden');
+.dl-pdf-row {
+    // position this row absolutely
+    background-color: white;
+}
 
-// $('.left-nav-col').removeClass('display-flex');
-// $('.header').removeClass('display-flex');
-// $('body').addClass('scrollable');
-// $('.main-row').addClass('pos-static');
-// $('.left-nav-col').addClass('pos-fixed-top-left');
-// $('.left-nav-col').addClass('fit-viewport-height');
-// $('.content').addClass('unscrollable');
-// $('.content').addClass('flex-basis-100');
-// $('body').removeClass('unscrollable');
-// $('.main-row').removeClass('pos-fixed');
-// $('.content').removeClass('scrollable');
-// $('.right-nav-col').addClass('hidden');
+@media (min-width: 576px) {
+    .left-nav-col {
+        width: 400px;
+        height: 100vh;
+        flex-direction: column;
+        overflow-y: scroll;
+    }
+}
+
+@media (min-width: 768px) {
+    .left-nav-col {
+        position: relative;
+        flex-basis: 25%;
+        max-width: 25%;
+        height: 82vh;
+        overflow-y: hidden;
+
+        .toc-header,
+        .toc-header *,
+        .toc-filter-row,
+        .toc-filter-row * {
+            display: none;
+        }
+
+        .left-nav {
+            width: 100%;
+            height: 90%;
+            position: absolute;
+            overflow-y: scroll;
+        }
+
+        .dl-pdf-row {
+            // position this row absolutely
+            position: absolute;
+
+            // 0 from the bottom
+            bottom: 0;
+
+            // set width to 100% of the width of its container
+            width: 100%;
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .left-nav-col {
+        flex: 0 0 20%;
+        max-width: 20%;
+
+        // padding-top: 25px;
+    }
+}
