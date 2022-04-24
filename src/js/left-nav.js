@@ -40,32 +40,63 @@ function selectTab(tab) {
 function applySelectionsBasedOnUrl() {
     const urlSegments = globalThis.location.href.split('/');
     const tabName = urlSegments[3];
-    const sectionName = urlSegments[4];
+    const sectionNames = urlSegments.slice(4, urlSegments.length - 1);
     const itemName = urlSegments[urlSegments.length - 1];
+    const formattedTabName = formatForComparison(tabName);
     const tab =
         tabs.find(
-            (tab) =>
-                formatForComparison(tab.innerText) ===
-                formatForComparison(tabName)
+            (tab) => formatForComparison(tab.innerText) === formattedTabName
         ) ?? tabs.find((tab) => tab.innerText === HOME_TAB_NAME);
     selectTab(tab);
-    const leftNavSectionContainerSpans = globalThis.document.querySelectorAll(
-        'span.left-nav-section-container'
+    const targetedLeftNavOptionDivs = globalThis.Array.from(
+        leftNavOptionDivs
+    ).filter(
+        (div) => formatForComparison(div.dataset.tabName) === formattedTabName
     );
-    const targetedLeftNavSectionContainerSpan = globalThis.Array.from(
-        leftNavSectionContainerSpans
-    ).find(
-        (sectionContainerSpan) =>
-            formatForComparison(
-                sectionContainerSpan.querySelector('button.left-nav-section')
-                    .innerText
-            ) === formatForComparison(sectionName)
+    const leftNavSectionContainerSpans = targetedLeftNavOptionDivs.reduce(
+        (accumulator, currentValue) => {
+            const sectionContainerSpan =
+                findSectionContainerSpanOfLeftNavOptionDiv(currentValue);
+            if (sectionContainerSpan) accumulator.push(sectionContainerSpan);
+
+            return accumulator;
+        },
+        []
     );
     let leftNavItemParent;
-    if (targetedLeftNavSectionContainerSpan) {
+    sectionNames.forEach((sectionName, index) => {
+        const targetedLeftNavSectionContainerSpan = globalThis.Array.from(
+            leftNavSectionContainerSpans
+        ).find((sectionContainerSpan) => {
+            if (sectionName === 'sub-chapter-1') {
+                globalThis.console.log(
+                    'comparison formatted section name',
+                    formatForComparison(sectionName)
+                );
+
+                globalThis.console.log(
+                    'comparison formatted button innner text',
+                    formatForComparison(
+                        sectionContainerSpan.querySelector(
+                            'button.left-nav-section'
+                        ).innerText
+                    )
+                );
+            }
+            return (
+                formatForComparison(
+                    sectionContainerSpan.querySelector(
+                        'button.left-nav-section'
+                    ).innerText
+                ) === formatForComparison(sectionName)
+            );
+        });
+        if (!targetedLeftNavSectionContainerSpan) return;
         toggleLeftNavSectionExpanded(targetedLeftNavSectionContainerSpan);
-        leftNavItemParent = targetedLeftNavSectionContainerSpan;
-    } else leftNavItemParent = globalThis.document;
+        if (index === sectionNames.length - 1)
+            leftNavItemParent = targetedLeftNavSectionContainerSpan;
+    });
+    if (!leftNavItemParent) leftNavItemParent = globalThis.document;
     const leftNavItems = leftNavItemParent.querySelectorAll(
         'button.left-nav-item'
     );
@@ -78,7 +109,7 @@ function applySelectionsBasedOnUrl() {
 }
 
 function formatForComparison(value) {
-    return value.replace(/_|-|\s/, '').toLowerCase() ?? '';
+    return value.replace(/_|-|\s/g, '').toLowerCase() ?? '';
 }
 
 function reflectSelectionsInUrl() {
