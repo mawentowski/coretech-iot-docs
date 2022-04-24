@@ -13,15 +13,6 @@ export function addRemoveClasses() {
             '.topic-breadcrumb',
             'display-flex'
         );
-        $('.left-nav-col').addClass('hidden');
-        $('.left-nav-col').removeClass('display-flex');
-        $('.content').addClass('flex-basis-100');
-        $('.content').removeClass('flex-basis-75');
-        $('.content').removeClass('flex-basis-80');
-        $('.main-content').addClass('flex-basis-100');
-        $('.main-content').removeClass('flex-basis-75');
-        $('.right-nav-col').addClass('hidden');
-        $('.right-nav-col').removeClass('display-flex');
     } else {
         addClassToHtmlElementBySelector('.topic-breadcrumb', 'display-flex');
         removeClassFromHtmlElementBySelector('.topic-breadcrumb', 'hidden');
@@ -33,19 +24,15 @@ export function addRemoveClasses() {
     else if (viewportWidth >= 576)
         removeClassFromHtmlElementBySelector('.left-nav-col', 'fit-viewport');
     if (viewportWidth <= 767) {
-        addClassToHtmlElementBySelector('.content', 'flex-basis-100');
-        removeClassFromHtmlElementBySelector('.content', 'flex-basis-80');
-        addClassToHtmlElementBySelector('.menu-icon-row', 'hidden');
-        addClassToHtmlElementBySelector('.toc-header', 'display-flex');
-        removeClassFromHtmlElementBySelector('.menu-icon-row', 'hidden');
-        // if (isHomeTabSelected) {
-        //     addClassToHtmlElementBySelector('.menu-icon-row', 'hidden');
-        //     addClassToHtmlElementBySelector('.toc-header', 'hidden');
-        // } else {
-        //     addClassToHtmlElementBySelector('.menu-icon-row', 'hidden');
-        //     addClassToHtmlElementBySelector('.toc-header', 'display-flex');
-        //     removeClassFromHtmlElementBySelector('.menu-icon-row', 'hidden');
-        // }
+        if (isHomeTabSelected) {
+            addClassToHtmlElementBySelector('.menu-icon-row', 'hidden');
+            addClassToHtmlElementBySelector('.toc-header', 'hidden');
+        } else {
+            addClassToHtmlElementBySelector('.menu-icon-row', 'hidden');
+            addClassToHtmlElementBySelector('.toc-header', 'display-flex');
+            removeClassFromHtmlElementBySelector('.menu-icon-row', 'hidden');
+            removeClassFromHtmlElementBySelector('.content', 'flex-basis-80');
+        }
 
         // addClassToHtmlElementBySelector('.header', 'hidden-if-sm, hidden-if-home');
 
@@ -64,14 +51,8 @@ export function addRemoveClasses() {
         $('body').removeClass('unscrollable');
         $('.main-row').removeClass('pos-fixed');
         $('.content').removeClass('scrollable');
-    }
-    if (viewportWidth >= 767 && isHomeTabSelected) {
-        $('.left-nav-col').addClass('hidden');
-        $('.left-nav-col').removeClass('display-flex');
         $('.right-nav-col').addClass('hidden');
-        $('.right-nav-col').removeClass('display-flex');
-    }
-    if (viewportWidth >= 768) {
+    } else if (viewportWidth >= 768) {
         if (!isHomeTabSelected) {
             $('.menu-icon-row').addClass('hidden');
             $('.left-nav-col').removeClass('hidden');
@@ -92,21 +73,9 @@ export function addRemoveClasses() {
         $('.main-row').addClass('pos-fixed');
         $('.content').addClass('scrollable');
     }
-    if (viewportWidth >= 768 && isHomeTabSelected) {
-        $('.left-nav-col').addClass('hidden');
-        $('.left-nav-col').removeClass('display-flex');
-        $('.right-nav-col').addClass('hidden');
+    if (viewportWidth <= 991 && !isHomeTabSelected)
         $('.right-nav-col').removeClass('display-flex');
-    }
-    if (viewportWidth <= 991) {
-        $('.right-nav-col').addClass('hidden');
-        $('.right-nav-col').removeClass('display-flex');
-    }
-    if (viewportWidth <= 991 && !isHomeTabSelected) {
-        $('.main-content').removeClass('flex-basis-75');
-    }
-    if (viewportWidth >= 992 && !isHomeTabSelected) {
-        $('.main-content').addClass('flex-basis-75');
+    else if (viewportWidth >= 992 && !isHomeTabSelected) {
         $('.right-nav-col').removeClass('hidden');
         //   ignore if Home tab is loaded by default or selected.
         $('.right-nav-col').addClass('display-flex');
