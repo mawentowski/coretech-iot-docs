@@ -2,7 +2,7 @@
 
 import { HOME_TAB_NAME } from './shared.js';
 import { addRemoveClasses } from './add-remove-classes.js';
-
+import { cancelToc } from './toggle-toc.js';
 // Constants
 
 const clickEventName = 'click';
@@ -12,7 +12,10 @@ const leftNav = globalThis.document.querySelector('div.left-nav');
 const leftNavOptionDivs = globalThis.document.querySelectorAll(
     'div.left-nav-option'
 );
-
+const showLeftNavSpan = globalThis.document.querySelector('span.show-left-nav');
+const tocHeaderTextDiv = globalThis.document.querySelector(
+    'div.toc-header-text'
+);
 // Functions
 
 function applySelectionsBasedOnUrl() {
@@ -152,11 +155,14 @@ async function selectLeftNavItemButton(button) {
         globalThis.document.querySelector('div.main-content');
     mainContentDiv.innerHTML = htmlResponseText;
     reflectSelectionsInUrl();
+    cancelToc();
 }
 
 function selectTab(tab) {
     globalThis.selectedTab = tab;
     toggleSelectTabStyles(selectedTab);
+    showLeftNavSpan.innerText = tab.innerText;
+    tocHeaderTextDiv.innerText = tab.innerText;
     leftNavOptionDivs.forEach((leftNavOptionDiv) => {
         const leftNavSectionContainerSpan =
             findSectionContainerSpanOfLeftNavOptionDiv(leftNavOptionDiv);

@@ -145,19 +145,19 @@ body {
     }
 
     // Row containing ToC Button at xs/sm brkp
-    .menu-icon-row {
+    .header-narrow-viewport {
         max-width: 100vw;
         padding: 22px 25px;
         background-color: #f7fafc;
 
-        .toc-menu {
+        .show-left-nav-button-container {
             border-radius: 4px;
 
             i.fa.fa-bars {
                 display: inline-block;
             }
 
-            .toc-menu-label {
+            button.show-left-nav {
                 margin-left: 10px;
             }
         }
