@@ -1,130 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <base href="/"/>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="css/main.css" type="text/css" />
-    <link rel="stylesheet" href="css/resets.css" type="text/css" />
-    <link rel="stylesheet" href="css/utilities.css" type="text/css" />
-    <link rel="stylesheet" href="css/text-styling.css" type="text/css" />
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <!-- Font awesome, web fonts -->
-    <link href="font-awesome/css/brands.css" rel="stylesheet">
-    <link href="font-awesome/css/fontawesome.css" rel="stylesheet">
-    <link href="font-awesome/css/solid.css" rel="stylesheet">
-    <link href="font-awesome/css/v4-shims.css" rel="stylesheet">
-  </head>
+    <head>
+        <base href="/" />
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="css/main.css" type="text/css" />
+        <link rel="stylesheet" href="css/resets.css" type="text/css" />
+        <link rel="stylesheet" href="css/utilities.css" type="text/css" />
+        <link rel="stylesheet" href="css/text-styling.css" type="text/css" />
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+        <!-- Font awesome, web fonts -->
+        <link href="font-awesome/css/brands.css" rel="stylesheet" />
+        <link href="font-awesome/css/fontawesome.css" rel="stylesheet" />
+        <link href="font-awesome/css/solid.css" rel="stylesheet" />
+        <link href="font-awesome/css/v4-shims.css" rel="stylesheet" />
+    </head>
 
+    <body>
+        <div class="header">
+            <div class="header-top">
+                <div class="logo-search-col">
+                    <div class="logo-holder">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="62"
+                            height="25"
+                        >
+                            <path
+                                fill="#32325d"
+                                d="M5 10.1c0-.6.6-.9 1.4-.9 1.2 0 2.8.4 4 1.1V6.5c-1.3-.5-2.7-.8-4-.8C3.2 5.7 1 7.4 1 10.3c0 4.4 6 3.6 6 5.6 0 .7-.6 1-1.5 1-1.3 0-3-.6-4.3-1.3v3.8c1.5.6 2.9.9 4.3.9 3.3 0 5.5-1.6 5.5-4.5.1-4.8-6-3.9-6-5.7zM29.9 20h4V6h-4v14zM16.3 2.7l-3.9.8v12.6c0 2.4 1.8 4.1 4.1 4.1 1.3 0 2.3-.2 2.8-.5v-3.2c-.5.2-3 .9-3-1.4V9.4h3V6h-3V2.7zm8.4 4.5L24.6 6H21v14h4v-9.5c1-1.2 2.7-1 3.2-.8V6c-.5-.2-2.5-.5-3.5 1.2zm5.2-2.3l4-.8V.8l-4 .8v3.3zM61.1 13c0-4.1-2-7.3-5.8-7.3s-6.1 3.2-6.1 7.3c0 4.8 2.7 7.2 6.6 7.2 1.9 0 3.3-.4 4.4-1.1V16c-1.1.6-2.3.9-3.9.9s-2.9-.6-3.1-2.5H61c.1-.2.1-1 .1-1.4zm-7.9-1.5c0-1.8 1.1-2.5 2.1-2.5s2 .7 2 2.5h-4.1zM42.7 5.7c-1.6 0-2.5.7-3.1 1.3l-.1-1h-3.6v18.5l4-.7v-4.5c.6.4 1.4 1 2.8 1 2.9 0 5.5-2.3 5.5-7.4-.1-4.6-2.7-7.2-5.5-7.2zm-1 11c-.9 0-1.5-.3-1.9-.8V10c.4-.5 1-.8 1.9-.8 1.5 0 2.5 1.6 2.5 3.7 0 2.2-1 3.8-2.5 3.8z"
+                            ></path>
+                        </svg>
+                        <svg
+                            viewBox="0 0 59 17"
+                            width="59"
+                            height="17"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M23.27.88c4.26 0 7.27 3.2 7.27 7.7 0 4.51-3 7.71-7.27 7.71s-7.28-3.2-7.28-7.7S19 .89 23.27.89zm17.55 0c1.45 0 2.9.37 4.29 1.08v2.56a7.36 7.36 0 0 0-3.81-1.26c-2.88 0-4.87 2.19-4.87 5.33 0 3.11 1.99 5.32 4.87 5.32 1.21 0 2.53-.45 3.8-1.25v2.55a9.32 9.32 0 0 1-4.28 1.08c-4.28 0-7.31-3.2-7.31-7.7s3.03-7.7 7.31-7.7zm12.73 0c1.32 0 2.68.28 4 .82v2.58a7.42 7.42 0 0 0-3.8-1.13c-1.59 0-2.69.8-2.69 2 0 2.96 7.23 1.47 7.23 6.7 0 2.63-2.25 4.44-5.41 4.44-1.43 0-2.92-.32-4.35-1v-2.61a7.73 7.73 0 0 0 4.15 1.34c1.65 0 2.77-.87 2.77-2.12 0-3.05-7.23-1.56-7.23-6.71 0-2.56 2.2-4.3 5.33-4.3zM5.7 1.14c4.27 0 7.3 3.1 7.3 7.45s-3.03 7.44-7.3 7.44H.32V1.14h5.4zm17.56 2.12c-2.58 0-4.35 2.21-4.35 5.33 0 3.11 1.77 5.32 4.35 5.32 2.57 0 4.35-2.2 4.35-5.32s-1.78-5.33-4.35-5.33zm-17.7.2H3.13v10.26h2.42c2.69 0 4.55-2.1 4.55-5.13S8.25 3.46 5.56 3.46z"
+                                fill="#556CD6"
+                                fill-rule="evenodd"
+                            ></path>
+                        </svg>
+                    </div>
+                    <input
+                        type="text"
+                        class="search-field"
+                        placeholder="Search documentation..."
+                    />
+                </div>
+                <div class="account-col">
+                    <div class="account-col-content">
+                        <a
+                            href="www.google.com"
+                            class="create-account default-font-properties"
+                            >Create Account
+                        </a>
 
-  <body>
-    <div class="header">
-      <div class="header-top">
-        <div class="logo-search-col">
-          <div class="logo-holder">
-            <svg xmlns="http://www.w3.org/2000/svg" width="62" height="25"><path fill="#32325d" d="M5 10.1c0-.6.6-.9 1.4-.9 1.2 0 2.8.4 4 1.1V6.5c-1.3-.5-2.7-.8-4-.8C3.2 5.7 1 7.4 1 10.3c0 4.4 6 3.6 6 5.6 0 .7-.6 1-1.5 1-1.3 0-3-.6-4.3-1.3v3.8c1.5.6 2.9.9 4.3.9 3.3 0 5.5-1.6 5.5-4.5.1-4.8-6-3.9-6-5.7zM29.9 20h4V6h-4v14zM16.3 2.7l-3.9.8v12.6c0 2.4 1.8 4.1 4.1 4.1 1.3 0 2.3-.2 2.8-.5v-3.2c-.5.2-3 .9-3-1.4V9.4h3V6h-3V2.7zm8.4 4.5L24.6 6H21v14h4v-9.5c1-1.2 2.7-1 3.2-.8V6c-.5-.2-2.5-.5-3.5 1.2zm5.2-2.3l4-.8V.8l-4 .8v3.3zM61.1 13c0-4.1-2-7.3-5.8-7.3s-6.1 3.2-6.1 7.3c0 4.8 2.7 7.2 6.6 7.2 1.9 0 3.3-.4 4.4-1.1V16c-1.1.6-2.3.9-3.9.9s-2.9-.6-3.1-2.5H61c.1-.2.1-1 .1-1.4zm-7.9-1.5c0-1.8 1.1-2.5 2.1-2.5s2 .7 2 2.5h-4.1zM42.7 5.7c-1.6 0-2.5.7-3.1 1.3l-.1-1h-3.6v18.5l4-.7v-4.5c.6.4 1.4 1 2.8 1 2.9 0 5.5-2.3 5.5-7.4-.1-4.6-2.7-7.2-5.5-7.2zm-1 11c-.9 0-1.5-.3-1.9-.8V10c.4-.5 1-.8 1.9-.8 1.5 0 2.5 1.6 2.5 3.7 0 2.2-1 3.8-2.5 3.8z"></path></svg>
-            <svg viewBox="0 0 59 17" width="59" height="17" xmlns="http://www.w3.org/2000/svg"><path d="M23.27.88c4.26 0 7.27 3.2 7.27 7.7 0 4.51-3 7.71-7.27 7.71s-7.28-3.2-7.28-7.7S19 .89 23.27.89zm17.55 0c1.45 0 2.9.37 4.29 1.08v2.56a7.36 7.36 0 0 0-3.81-1.26c-2.88 0-4.87 2.19-4.87 5.33 0 3.11 1.99 5.32 4.87 5.32 1.21 0 2.53-.45 3.8-1.25v2.55a9.32 9.32 0 0 1-4.28 1.08c-4.28 0-7.31-3.2-7.31-7.7s3.03-7.7 7.31-7.7zm12.73 0c1.32 0 2.68.28 4 .82v2.58a7.42 7.42 0 0 0-3.8-1.13c-1.59 0-2.69.8-2.69 2 0 2.96 7.23 1.47 7.23 6.7 0 2.63-2.25 4.44-5.41 4.44-1.43 0-2.92-.32-4.35-1v-2.61a7.73 7.73 0 0 0 4.15 1.34c1.65 0 2.77-.87 2.77-2.12 0-3.05-7.23-1.56-7.23-6.71 0-2.56 2.2-4.3 5.33-4.3zM5.7 1.14c4.27 0 7.3 3.1 7.3 7.45s-3.03 7.44-7.3 7.44H.32V1.14h5.4zm17.56 2.12c-2.58 0-4.35 2.21-4.35 5.33 0 3.11 1.77 5.32 4.35 5.32 2.57 0 4.35-2.2 4.35-5.32s-1.78-5.33-4.35-5.33zm-17.7.2H3.13v10.26h2.42c2.69 0 4.55-2.1 4.55-5.13S8.25 3.46 5.56 3.46z" fill="#556CD6" fill-rule="evenodd"></path></svg>
-          </div>
-          <input type="text" class="search-field" placeholder="Search documentation...">
+                        <form action="https://www.w3docs.com/" target="_blank">
+                            <button
+                                type="submit"
+                                class="sign-in primary-color default-font-properties"
+                            >
+                                Sign In
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="header-bottom">
+                <div class="content-tabs">
+                    <!--Content tabs before here.-->
+                </div>
+                <div class="apis-support">
+                    <span class="apids-dropdown">
+                        <form action="/action_page.php">
+                            <label for="version default-font-properties"
+                                >Version</label
+                            >
+                            <select name="version" id="version">
+                                <option value="v1">v1</option>
+                                <option value="v1.1">v1.1</option>
+                                <option value="v2">v2</option>
+                                <option value="v3">v3</option>
+                            </select>
+                        </form>
+                    </span>
+                    <a class="" href="www.google.com"> Support </a>
+                </div>
+            </div>
         </div>
-        <div class="account-col">
-          <div class="account-col-content">
-            <a href="www.google.com" class="create-account default-font-properties">Create Account
-            </a>
-
-            <form action="https://www.w3docs.com/" target="_blank">
-              <button type="submit" class="sign-in primary-color default-font-properties">Sign In</button>
-           </form>
-
-          </div>
-        </div>
-
-      </div>
-      <div class="header-bottom">
-        <div class="content-tabs">
-        <!--Content tabs before here.-->
-        </div>
-        <div class="apis-support">
-          <span class="apids-dropdown">
-            <form action="/action_page.php">
-              <label for="version default-font-properties">Version</label>
-              <select name="version" id="version">
-            
-                  <option value="v1">v1</option>
-                  <option value="v1.1">v1.1</option>
-                  <option value="v2">v2</option>
-                  <option value="v3">v3</option>
-
-              </select>
-            </form>
-          </span>
-          <a class="" href="www.google.com">
-            Support
-          </a>
-        </div>
-      </div>
-    </div>
-
-      <div class="menu-icon-row">
+        <!-- <div class="menu-icon-row">
         <div>
           <div class="toc-menu">
-            <span><i class="fa fa-bars"></i></span><span class="toc-menu-label">Tab 1</span></span>
+            <span><i class="fa fa-bars"></i></span><span class="toc-menu-label"></span></span>
           </div>
-      </div>
-      </div>
-
-      
-      <div class="main-row">
-    
-        <div class="left-nav-col hidden">
-          <div class="toc-header">
-            <div class="toc-header-text">
-              Tab 1
+      </div> -->
+        <div class="header-narrow-viewport">
+            <div>
+                <div class="show-left-nav-button-container">
+                    <span>
+                        <!--Put icon in button.-->
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <span class="show-left-nav"></span>
+                </div>
             </div>
-            <div class="toc-header-cancel">
-              <i class="fa fa-times"></i>
-            </div>
-          </div>
-          <div class="toc-filter-row">
-            <input type="text" class="search-field" placeholder="Search documentation...">
-          </div>
-          <div class="left-nav">
-            <!--Left-nav options before here.-->
-          </div>
-          <div class="dl-pdf-row ">
-       
-              <span class="dl-pdf-icon"><i class="fa fa-file-pdf"></i></span><span class="dl-pdf-txt">Download PDF</span>
-          
-          </div>
         </div>
-
-        <div class="toggled-overlay hidden pos-fixed-bottom-left fit-viewport">
-        </div>
-
-
-
-
-          <div id="content" class="content scrollable flex-basis-100" data-spy="scroll" data-target="#right-nav" data-offset="0" class="scrollspy-example" style="position:relative;">
-            <div class="topic-breadcrumb">
-                <a class="topic-parent text-black" href="#">
-                    <!-- <img class="stype-icon" src="images/strype-icon.png" alt="" /> -->
-                    Tab Overview
-                </a>
-                <div class="dot-separator"></div>
-                <a href="#" class="breadcrumb-link text-gray">Home</a>
-                <div class="breadcrumb-separator">/</div>
-                <a href="#" class="breadcrumb-link text-gray">Tab Overview</a>
-                <div class="breadcrumb-separator">/</div>
-                <a href="#" class="breadcrumb-link text-gray">Chapter Overview</a>
+        <div class="main-row">
+            <div class="left-nav-col hidden">
+                <div class="toc-header">
+                    <div class="toc-header-text"></div>
+                    <div class="toc-header-cancel">
+                        <i class="fa fa-times"></i>
+                    </div>
+                </div>
+                <div class="toc-filter-row">
+                    <input
+                        type="text"
+                        class="search-field"
+                        placeholder="Search documentation..."
+                    />
+                </div>
+                <div class="left-nav">
+                    <!--Left-nav options before here.-->
+                </div>
+                <div class="dl-pdf-row">
+                    <span class="dl-pdf-icon"
+                        ><i class="fa fa-file-pdf"></i></span
+                    ><span class="dl-pdf-txt">Download PDF</span>
+                </div>
             </div>
-            
-            <!-- Should not be main-content because it handles media queries,
+
+            <div
+                class="toggled-overlay hidden pos-fixed-bottom-left fit-viewport"
+            ></div>
+
+            <div
+                id="content"
+                class="content scrollable flex-basis-100"
+                data-spy="scroll"
+                data-target="#right-nav"
+                data-offset="0"
+                class="scrollspy-example"
+                style="position: relative"
+            >
+                <div class="topic-breadcrumb">
+                    <a class="topic-parent text-black" href="#">
+                        <!-- <img class="stype-icon" src="images/strype-icon.png" alt="" /> -->
+                        Tab Overview
+                    </a>
+                    <div class="dot-separator"></div>
+                    <a href="#" class="breadcrumb-link text-gray">Home</a>
+                    <div class="breadcrumb-separator">/</div>
+                    <a href="#" class="breadcrumb-link text-gray"
+                        >Tab Overview</a
+                    >
+                    <div class="breadcrumb-separator">/</div>
+                    <a href="#" class="breadcrumb-link text-gray"
+                        >Chapter Overview</a
+                    >
+                </div>
+
+                <!-- Should not be main-content because it handles media queries,
             needs to populate inside -->
-            <div class="main-content"></div>
-            <!-- <div class="main-content">
+                <div class="main-content"></div>
+                <!-- <div class="main-content">
                 <div class="article">
                 </div>
                 <div class="document-footer">
@@ -173,30 +218,44 @@
                     </div>
                 </div>
             </div> -->
-            
-
-
-          </div>
-          <div class="right-nav-col">
-            <div class="pre-right-nav">
-              On this page
             </div>
-            <div id="right-nav" class="list-group right-nav">
-              <a class="list-group-item list-group-item-action right-nav-link" href="#heading-1">Heading 2</a>
-              <a class="list-group-item list-group-item-action right-nav-link" href="#heading-2">Heading 2</a>
-              <a class="list-group-item list-group-item-action right-nav-link" href="#heading-3">Heading 2</a>
+            <div class="right-nav-col">
+                <div class="pre-right-nav">On this page</div>
+                <div id="right-nav" class="list-group right-nav">
+                    <a
+                        class="list-group-item list-group-item-action right-nav-link"
+                        href="#heading-1"
+                        >Heading 2</a
+                    >
+                    <a
+                        class="list-group-item list-group-item-action right-nav-link"
+                        href="#heading-2"
+                        >Heading 2</a
+                    >
+                    <a
+                        class="list-group-item list-group-item-action right-nav-link"
+                        href="#heading-3"
+                        >Heading 2</a
+                    >
+                </div>
             </div>
-          </div>
-      </div>
-  
+        </div>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"
+        ></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> -->
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"
+        ></script>
 
-    <!-- My javascript files -->
-    <script src="js/left-nav.js" type="module"></script>
-    <script src="js/toggle-toc.js"></script>
-    <script src="js/add-remove-classes.js" type="module"></script>
-  </body>
+        <!-- My javascript files -->
+        <script src="js/left-nav.js" type="module"></script>
+        <script src="js/toggle-toc.js"></script>
+        <script src="js/add-remove-classes.js" type="module"></script>
+    </body>
 </html>

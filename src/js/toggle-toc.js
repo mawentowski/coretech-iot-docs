@@ -1,4 +1,6 @@
-const tocMenuButton = globalThis.document.querySelector('.toc-menu');
+const tocMenuButton = globalThis.document.querySelector(
+    '.header-narrow-viewport'
+);
 const leftNavCol = globalThis.document.querySelector('.left-nav-col');
 const content = globalThis.document.querySelector('.content');
 const rightOverlayCol = globalThis.document.querySelector('.toggled-overlay');
@@ -20,14 +22,16 @@ function toggleToc() {
 }
 
 // if you click the cancel btn:
-tocHeaderCancel.addEventListener('click', function () {
+tocHeaderCancel.addEventListener('click', cancelToc);
+export function cancelToc() {
     leftNavCol.classList.toggle('hidden');
     leftNavCol.classList.remove('display-flex');
     //   leftNavCol.classList.remove("flex-direction-col");
     rightOverlayCol.classList.toggle('hidden');
     content.classList.toggle('pos-fixed');
     content.classList.toggle('scrollable');
-});
+}
+
 // Or, if you click the overlay (same):
 rightOverlayCol.addEventListener('click', function () {
     leftNavCol.classList.toggle('hidden');
