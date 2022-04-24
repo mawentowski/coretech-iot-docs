@@ -1,5 +1,9 @@
+// Imports
+
 import { HOME_TAB_NAME } from './shared.js';
 import { addRemoveClasses } from './add-remove-classes.js';
+
+// Constants
 
 const clickEventName = 'click';
 // Want to get reference for all tabs. Query Selector is one item.
@@ -9,33 +13,7 @@ const leftNavOptionDivs = globalThis.document.querySelectorAll(
     'div.left-nav-option'
 );
 
-function toggleSelectTabStyles(tab) {
-    tab.classList.toggle('text-black');
-    tab.classList.toggle('active');
-}
-
-function selectTab(tab) {
-    globalThis.selectedTab = tab;
-    toggleSelectTabStyles(selectedTab);
-    leftNavOptionDivs.forEach((leftNavOptionDiv) => {
-        const leftNavSectionContainerSpan =
-            findSectionContainerSpanOfLeftNavOptionDiv(leftNavOptionDiv);
-        if (
-            leftNavSectionContainerSpan &&
-            leftNavSectionContainerSpan.classList.contains('expanded')
-        )
-            toggleLeftNavSectionExpanded(leftNavSectionContainerSpan);
-        const isVisible =
-            leftNavOptionDiv.dataset.tabName === selectedTab.innerText;
-        leftNavOptionDiv.classList[isVisible ? 'remove' : 'add']('hidden');
-    });
-    const firstVisibleLeftNavItemButton = leftNav.querySelector(
-        'div.left-nav-option:not(.hidden) > button.left-nav-item'
-    );
-    if (firstVisibleLeftNavItemButton)
-        onLeftNavItemButtonClicked(firstVisibleLeftNavItemButton);
-    addRemoveClasses();
-}
+// Functions
 
 function applySelectionsBasedOnUrl() {
     const urlSegments = globalThis.location.href.split('/');
@@ -64,39 +42,27 @@ function applySelectionsBasedOnUrl() {
         []
     );
     let leftNavItemParent;
+    const targetedLeftNavSectionContainerSpans = [];
     sectionNames.forEach((sectionName, index) => {
         const targetedLeftNavSectionContainerSpan = globalThis.Array.from(
             leftNavSectionContainerSpans
-        ).find((sectionContainerSpan) => {
-            if (sectionName === 'sub-chapter-1') {
-                globalThis.console.log(
-                    'comparison formatted section name',
-                    formatForComparison(sectionName)
-                );
-
-                globalThis.console.log(
-                    'comparison formatted button innner text',
-                    formatForComparison(
-                        sectionContainerSpan.querySelector(
-                            'button.left-nav-section'
-                        ).innerText
-                    )
-                );
-            }
-            return (
+        ).find(
+            (sectionContainerSpan) =>
                 formatForComparison(
                     sectionContainerSpan.querySelector(
                         'button.left-nav-section'
                     ).innerText
                 ) === formatForComparison(sectionName)
-            );
-        });
+        );
         if (!targetedLeftNavSectionContainerSpan) return;
+        targetedLeftNavSectionContainerSpans.push(
+            targetedLeftNavSectionContainerSpan
+        );
         toggleLeftNavSectionExpanded(targetedLeftNavSectionContainerSpan);
         if (index === sectionNames.length - 1)
             leftNavItemParent = targetedLeftNavSectionContainerSpan;
     });
-    if (!leftNavItemParent) leftNavItemParent = globalThis.document;
+    if (!leftNavItemParent) leftNavItemParent = leftNav;
     const leftNavItems = leftNavItemParent.querySelectorAll(
         'button.left-nav-item'
     );
@@ -106,10 +72,40 @@ function applySelectionsBasedOnUrl() {
             formatForComparison(itemName)
     );
     if (targetedLeftNavItem) selectLeftNavItemButton(targetedLeftNavItem);
+    else {
+        targetedLeftNavSectionContainerSpans.forEach((span) =>
+            toggleLeftNavSectionExpanded(span)
+        );
+        selectLeftNavItemButton(getFirstVisibleLeftNavItemButton());
+    }
+}
+
+function findSectionContainerSpanOfLeftNavOptionDiv(leftNavOptionDiv) {
+    return leftNavOptionDiv.querySelector('.left-nav-section-container');
+}
+
+function findSvgElementOfLeftNavSectionContainerSpan(
+    leftNavSectionContainerSpan
+) {
+    return leftNavSectionContainerSpan.querySelector('svg');
 }
 
 function formatForComparison(value) {
     return value.replace(/_|-|\s/g, '').toLowerCase() ?? '';
+}
+
+function getFirstVisibleLeftNavItemButton() {
+    return leftNav.querySelector(
+        'div.left-nav-option:not(.hidden) > button.left-nav-item'
+    );
+}
+
+async function onLeftNavItemButtonClicked(leftNavItemButton) {
+    selectLeftNavItemButton(leftNavItemButton);
+}
+
+function onLeftNavSectionClicked(leftNavSectionContainerSpan) {
+    toggleLeftNavSectionExpanded(leftNavSectionContainerSpan);
 }
 
 function reflectSelectionsInUrl() {
@@ -150,22 +146,25 @@ async function selectLeftNavItemButton(button) {
     reflectSelectionsInUrl();
 }
 
-function findSectionContainerSpanOfLeftNavOptionDiv(leftNavOptionDiv) {
-    return leftNavOptionDiv.querySelector('.left-nav-section-container');
-}
-
-function findSvgElementOfLeftNavSectionContainerSpan(
-    leftNavSectionContainerSpan
-) {
-    return leftNavSectionContainerSpan.querySelector('svg');
-}
-
-async function onLeftNavItemButtonClicked(leftNavItemButton) {
-    selectLeftNavItemButton(leftNavItemButton);
-}
-
-function onLeftNavSectionClicked(leftNavSectionContainerSpan) {
-    toggleLeftNavSectionExpanded(leftNavSectionContainerSpan);
+function selectTab(tab) {
+    globalThis.selectedTab = tab;
+    toggleSelectTabStyles(selectedTab);
+    leftNavOptionDivs.forEach((leftNavOptionDiv) => {
+        const leftNavSectionContainerSpan =
+            findSectionContainerSpanOfLeftNavOptionDiv(leftNavOptionDiv);
+        if (
+            leftNavSectionContainerSpan &&
+            leftNavSectionContainerSpan.classList.contains('expanded')
+        )
+            toggleLeftNavSectionExpanded(leftNavSectionContainerSpan);
+        const isVisible =
+            leftNavOptionDiv.dataset.tabName === selectedTab.innerText;
+        leftNavOptionDiv.classList[isVisible ? 'remove' : 'add']('hidden');
+    });
+    const firstVisibleLeftNavItemButton = getFirstVisibleLeftNavItemButton();
+    if (firstVisibleLeftNavItemButton)
+        onLeftNavItemButtonClicked(firstVisibleLeftNavItemButton);
+    addRemoveClasses();
 }
 
 function toggleLeftNavSectionExpanded(leftNavSectionContainerSpan) {
@@ -181,6 +180,13 @@ function toggleLeftNavSectionExpanded(leftNavSectionContainerSpan) {
     );
     svgElement.classList.toggle('rotated');
 }
+
+function toggleSelectTabStyles(tab) {
+    tab.classList.toggle('text-black');
+    tab.classList.toggle('active');
+}
+
+// Use functions
 
 for (const tab of tabs)
     tab.addEventListener(clickEventName, function (event) {
