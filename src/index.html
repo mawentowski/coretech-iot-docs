@@ -18,6 +18,11 @@
         <link href="font-awesome/css/solid.css" rel="stylesheet" />
         <link href="font-awesome/css/v4-shims.css" rel="stylesheet" />
         <!-- <script src="https://use.fontawesome.com/f8850a2b1e.js"></script> -->
+    
+        <link rel="stylesheet"
+        href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
+    
+    
     </head>
 
     <body>
@@ -48,11 +53,19 @@
                             ></path>
                         </svg>
                     </div>
-                    <input
-                        type="text"
-                        class="search-field"
-                        placeholder="Search documentation..."
-                    />
+
+                    <div class="search-docs-container">
+                        <div class="search-prepend">
+                            <!-- <embed src="/src/images/svgs/search-docs.svg" alt=""> -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"/></svg>
+                        </div>
+                        <input type="text" class="docs-search-field" placeholder="Search documentation" />
+                        <div class="search-append">
+                            <!-- <i class="fa fa-file-pdf"></i> -->
+                        </div>
+                    </div>
+        
+
                 </div>
                 <div class="account-col">
                     <div class="account-col-content">
@@ -257,5 +270,13 @@
         <script src="js/left-nav.js" type="module"></script>
         <script src="js/toggle-toc.js"></script>
         <script src="js/add-remove-classes.js"></script>
+
+        <!-- highlight.js -->
+        <!-- <script src="syntax-highlighting/highlight/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> -->
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+    
+        <script>hljs.highlightAll();</script>
     </body>
 </html>

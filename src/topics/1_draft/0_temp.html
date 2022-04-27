@@ -14,17 +14,23 @@ https://developer.mozilla.org/en-US/docs/Web/HTML/Element/pre -->
 
 
 <div class="code-snippet">
-<pre>
-# Set your secret key. Remember to switch to your live secret key in production.
-# See your keys here: https://dashboard.stripe.com/apikeys
-Stripe.api_key = 'sk_test_4eC39HqLyjWDarjtT1zdp7dc'
+<pre><code class="language-swift">
+import Foundation
 
-Stripe::Subscription.update(
-    'sub_49ty4767H20z6a',
-    {
-    cancel_at_period_end: true,
+@objc class Person: Entity {
+    var name: String!
+    var age:  Int!
+
+    init(name: String, age: Int) {
+    /* /* ... */ */
     }
-)
+
+    // Return a descriptive string for this person
+    func description(offset: Int = 0) -> String {
+    return "\(name) is \(age + offset) years old"
+    }
+}
+</code>
 </pre>
 <div class="copy-btn-container">
 <button onclick="myFunction()" class="copy-btn">
@@ -32,6 +38,18 @@ Stripe::Subscription.update(
 </button>
 
 
+<!-- [
+    {
+        "name": "Molecule Man",
+        "age": 29,
+        "secretIdentity": "Dan Jukes",
+        "powers": [
+        "Radiation resistance",
+        "Turning tiny",
+        "Radiation blast"
+        ]
+    }
+] -->
 
 <!-- <span class="copied-confirm-msg">
     Copied!
