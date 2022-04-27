@@ -628,7 +628,7 @@ h2.numbered--h2::before {
     font-weight: 400;
     padding: 12px 20px;
     margin-top: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 
     div {
         position: relative;
@@ -1085,6 +1085,7 @@ a.api-tag::after {
 .dl-pdf-row {
     // position this row absolutely
     background-color: white;
+    border-top: 1px solid #e3e8ed;
 }
 
 @media (min-width: 576px) {
