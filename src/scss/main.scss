@@ -1091,6 +1091,11 @@ a.api-tag::after {
         width: 400px;
         height: 100vh;
         flex-direction: column;
+    }
+}
+
+@media (max-width: 767px) {
+    .left-nav-col {
         overflow-y: scroll;
     }
 }
