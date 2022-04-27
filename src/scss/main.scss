@@ -145,19 +145,19 @@ body {
     }
 
     // Row containing ToC Button at xs/sm brkp
-    .menu-icon-row {
+    .header-narrow-viewport {
         max-width: 100vw;
         padding: 22px 25px;
         background-color: #f7fafc;
 
-        .toc-menu {
+        .show-left-nav-button-container {
             border-radius: 4px;
 
             i.fa.fa-bars {
                 display: inline-block;
             }
 
-            .toc-menu-label {
+            button.show-left-nav {
                 margin-left: 10px;
             }
         }
@@ -218,20 +218,16 @@ body {
                         }
 
                         .left-nav-section-container {
-                            &.collapsed {
-                                > div.left-nav-option {
-                                    display: none;
-                                }
+                            &.active > button:first-of-type.left-nav-section {
+                                @extend %bold;
                             }
 
-                            &.expanded {
-                                > button:first-of-type.left-nav-section {
-                                    @extend %bold;
-                                }
+                            &.collapsed > div.left-nav-option {
+                                display: none;
+                            }
 
-                                > div.left-nav-option {
-                                    display: block;
-                                }
+                            &.expanded > div.left-nav-option {
+                                display: block;
                             }
 
                             .svg-container {
@@ -1054,13 +1050,14 @@ a.continue-link {
 }
 
 .inline-code {
-    font-size: 15px;
+    font-size: inherit;
     color: #3c4356;
     font-weight: 500;
     padding: 1px 2px;
-    background: #f7fafc;
+    background: rgb(247 250 252);
     border: 1px solid #e3e8ed;
     border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 a.api-tag {
@@ -1095,6 +1092,11 @@ a.api-tag::after {
         width: 400px;
         height: 100vh;
         flex-direction: column;
+    }
+}
+
+@media (max-width: 767px) {
+    .left-nav-col {
         overflow-y: scroll;
     }
 }
