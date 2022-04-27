@@ -6,6 +6,40 @@
         </div>
     </div>
 
+<!-- How to create vertical tabs:
+https://www.w3schools.com/howto/howto_js_vertical_tabs.asp
+
+Pre artcile
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/pre -->
+
+
+<div class="code-snippet">
+<pre>
+# Set your secret key. Remember to switch to your live secret key in production.
+# See your keys here: https://dashboard.stripe.com/apikeys
+Stripe.api_key = 'sk_test_4eC39HqLyjWDarjtT1zdp7dc'
+
+Stripe::Subscription.update(
+    'sub_49ty4767H20z6a',
+    {
+    cancel_at_period_end: true,
+    }
+)
+</pre>
+<div class="copy-btn-container">
+<button onclick="myFunction()" class="copy-btn">
+
+</button>
+
+
+
+<!-- <span class="copied-confirm-msg">
+    Copied!
+</span> -->
+</div>
+
+    </div>
+    
     <div class="warning">
         <div class="alert-icon-holder">
             <i class="fa-solid fa-triangle-exclamation"></i>
@@ -119,27 +153,7 @@
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit:</p>
 
 
-    <!-- Pre artcile
-    https://developer.mozilla.org/en-US/docs/Web/HTML/Element/pre
- -->
-    <div class="code-snippet">
-<pre>
-git status
-git add 
-git commit</pre>
-<div class="copy-btn-container">
-<button onclick="myFunction()" class="copy-btn">
-
-</button>
-
-
-
-<!-- <span class="copied-confirm-msg">
-    Copied!
-</span> -->
-</div>
-
-    </div>
+ 
     <p class="caption">
         The following image calls attention to something onscreen.
     </p>
