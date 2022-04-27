@@ -158,7 +158,12 @@ body {
             }
 
             button.show-left-nav {
-                margin-left: 10px;
+                border: none;
+                background-color: transparent;
+
+                .tab-label {
+                    margin-left: 5px;
+                }
             }
         }
     }
@@ -289,119 +294,122 @@ body {
             .dl-pdf-row {
                 // position: fixed;
                 // bottom: 0;
-                padding: 25px;
+                padding: 10px 25px;
 
-                .dl-pdf-icon {
-                    .fa.fa-file-pdf {
-                        display: inline-block;
-                    }
-                }
+                // background-color: #f7fafc;
+            }
 
-                .dl-pdf-txt {
-                    margin-left: 10px;
+            .dl-pdf-icon {
+                .fa.fa-file-pdf {
+                    display: inline-block;
                 }
             }
-        }
 
-        .toggled-overlay {
-            // .hidden applied by default, click button.toc-menu to toggle
-            background-color: black;
-            opacity: 0.5;
-            z-index: 1999;
+            .dl-pdf-txt {
+                margin-left: 10px;
+            }
         }
+    }
 
+    .toggled-overlay {
+        // .hidden applied by default, click button.toc-menu to toggle
+        background-color: black;
+        opacity: 0.5;
+        z-index: 1999;
+    }
+
+    .content {
+        // height: fit-content;
+        display: flex;
+        flex-direction: column;
+        padding-top: 20px;
+
+        // overflow-y: scroll;
+        position: relative;
+        padding-left: 48px;
+        padding-right: 48px;
+        overflow-y: auto;
+
+        h4#item-1 {
+        }
+    }
+
+    // @media (min-width: 576px) {
+    //     .content {
+    //         flex: 0 0 100%;
+    //         max-width: 100%;
+    //         height: 90vh;
+    //     }
+    // }
+
+    @media (max-width: 767px) {
         .content {
-            // height: fit-content;
-            display: flex;
-            flex-direction: column;
-            padding-top: 20px;
-
-            // overflow-y: scroll;
-            position: relative;
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+    }
+    @media (min-width: 768px) {
+        .content {
+            height: 84vh;
             padding-left: 48px;
             padding-right: 48px;
+        }
+    }
 
-            h4#item-1 {
-            }
+    // @media (min-width: 992px) {
+    //     .content {
+    //         .main-content {
+    //             flex: 0 0 75%;
+    //             max-width: 75%;
+    //         }
+    //     }
+    // }
+
+    .right-nav-col {
+        position: fixed;
+        right: 20px;
+        top: 160px;
+        width: 17%;
+        padding: 5px;
+        flex-direction: column;
+
+        .pre-right-nav {
+            font-size: 13px;
+            text-transform: uppercase;
+            padding-bottom: 7px;
+            white-space: normal;
         }
 
-        // @media (min-width: 576px) {
-        //     .content {
-        //         flex: 0 0 100%;
-        //         max-width: 100%;
-        //         height: 90vh;
-        //     }
-        // }
-
-        @media (max-width: 767px) {
-            .content {
-                padding-left: 25px;
-                padding-right: 25px;
-            }
-        }
-        @media (min-width: 768px) {
-            .content {
-                height: 84vh;
-                padding-left: 48px;
-                padding-right: 48px;
-            }
-        }
-
-        // @media (min-width: 992px) {
-        //     .content {
-        //         .main-content {
-        //             flex: 0 0 75%;
-        //             max-width: 75%;
-        //         }
-        //     }
-        // }
-
-        .right-nav-col {
-            position: fixed;
-            right: 20px;
-            top: 160px;
-            width: 17%;
-            padding: 5px;
+        .right-nav {
+            display: flex;
             flex-direction: column;
 
-            .pre-right-nav {
-                font-size: 13px;
-                text-transform: uppercase;
-                padding-bottom: 7px;
-                white-space: normal;
+            .list-group-item {
+                border: none !important;
             }
 
-            .right-nav {
-                display: flex;
-                flex-direction: column;
-
-                .list-group-item {
-                    border: none !important;
-                }
-
-                .list-group-item.active {
-                    color: $active-color !important;
-                    background-color: transparent !important;
-                    border-color: transparent !important;
-                }
-
-                .list-group-item-action:focus,
-                .list-group-item-action:hover {
-                    color: #697386;
-                    background-color: transparent !important;
-                }
-
-                a.right-nav-link {
-                    color: #697386;
-                    font-weight: 400;
-                    padding: 7px 0 1px;
-                    font-size: 14px;
-                }
-
-                // a.right-nav-link:nth-of-type(1) {
-                //     color: #694386;
-                // }
+            .list-group-item.active {
+                color: $active-color !important;
+                background-color: transparent !important;
+                border-color: transparent !important;
             }
+
+            .list-group-item-action:focus,
+            .list-group-item-action:hover {
+                color: #697386;
+                background-color: transparent !important;
+            }
+
+            a.right-nav-link {
+                color: #697386;
+                font-weight: 400;
+                padding: 7px 0 1px;
+                font-size: 14px;
+            }
+
+            // a.right-nav-link:nth-of-type(1) {
+            //     color: #694386;
+            // }
         }
     }
 }
@@ -1112,7 +1120,7 @@ a.api-tag::after {
         position: relative;
         flex-basis: 25%;
         max-width: 25%;
-        height: 82vh;
+        height: 84.6vh;
         overflow-y: hidden;
 
         .toc-header,
