@@ -19,6 +19,7 @@ body {
     position: relative;
     counter-reset: ol-listitem;
     counter-reset: section;
+    counter-reset: code-line-numbers;
 
     button {
         &.plain {
