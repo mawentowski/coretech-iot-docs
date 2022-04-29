@@ -263,8 +263,16 @@ body {
                     margin-left: $svg-dimension;
 
                     &.top-level {
-                        margin-left: 0;
+                        margin-left: 10px;
                     }
+
+                    // .second-level {
+                    //     // no SVG, rename top level to first level
+                    //     text-transform: uppercase;
+                    //     font-weight: 350;
+                    //     font-size: 13px;
+                    //     margin: 7px 0px;
+                    // }
 
                     .left-nav-section-container {
                         &.active > button:first-of-type.left-nav-section {
@@ -307,10 +315,19 @@ body {
 
                         &.left-nav-item {
                             color: #697386;
+                            font-weight: 300;
 
                             &.active {
                                 color: $active-color;
                             }
+                        }
+
+                        &.left-nav-item:hover {
+                            font-weight: 350;
+                        }
+
+                        &.left-nav-item.active:hover {
+                            font-weight: 300;
                         }
                     }
                 }
