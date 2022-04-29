@@ -706,24 +706,24 @@ h2.numbered--h2::before {
     }
 }
 
-.code-snippet {
-    display: flex;
-    position: relative;
-    border: 0.1px solid #ddd;
-    background-color: rgb(247 250 252);
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: 400;
-    padding: 12px 20px 3px 12px;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    font-family: Inconsolata, monospace;
-    font-family: 'Roboto Mono', monospace;
+// .method-example {
+//     display: flex;
+//     position: relative;
+//     border: 0.1px solid #ddd;
+//     background-color: rgb(247 250 252);
+//     border-radius: 5px;
+//     font-size: 14px;
+//     font-weight: 400;
+//     padding: 12px 20px 3px 12px;
+//     margin-top: 20px;
+//     margin-bottom: 10px;
+//     font-family: Inconsolata, monospace;
+//     font-family: 'Roboto Mono', monospace;
 
-    pre {
-        margin-bottom: 0;
-    }
-}
+//     pre {
+//         margin-bottom: 0;
+//     }
+// }
 
 .copy-btn-container {
     width: 34px;

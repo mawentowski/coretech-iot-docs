@@ -12,6 +12,9 @@
         <link rel="stylesheet" href="css/table.css" type="text/css" />
         <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+        <link rel="stylesheet" href="css/hljs-styles.css" type="text/css" />
+        
+        
         <!-- Font awesome, web fonts -->
         <link href="font-awesome/css/brands.css" rel="stylesheet" />
         <link href="font-awesome/css/fontawesome.css" rel="stylesheet" />
@@ -28,67 +31,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200&display=swap" rel="stylesheet">
    
    
-        <style>
-            /*
-Dark style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Org>
-*/
 
-.hljs {
-  color: #ddd;
-  background: #303030;
-}
-
-.hljs-keyword,
-.hljs-selector-tag,
-.hljs-literal,
-.hljs-section,
-.hljs-link {
-  color: white;
-}
-
-
-.hljs-subst {
-  /* default */
-}
-
-.hljs-string,
-.hljs-title,
-.hljs-name,
-.hljs-type,
-.hljs-attribute,
-.hljs-symbol,
-.hljs-bullet,
-.hljs-built_in,
-.hljs-addition,
-.hljs-variable,
-.hljs-template-tag,
-.hljs-template-variable {
-  color: #d88;
-}
-
-.hljs-comment,
-.hljs-quote,
-.hljs-deletion,
-.hljs-meta {
-  color: #979797;
-}
-
-.hljs-keyword,
-.hljs-selector-tag,
-.hljs-literal,
-.hljs-title,
-.hljs-section,
-.hljs-doctag,
-.hljs-type,
-.hljs-name,
-.hljs-strong {
-  font-weight: bold;
-}
-
-.hljs-emphasis {
-  font-style: italic;
-}
-        </style>
     </head>
 
     <body>
@@ -272,7 +215,7 @@ Dark style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Or
                         Copied!
                     </div>
                 
-<div id="bash" class="tabcontent"><pre><code>
+<div id="bash" class="tabcontent dark"><pre><code>
 # Retrieve the subscription:
 curl https://api.stripe.com/v1/subscriptions/sub_49ty4767H20z6a \
     -u sk_test_4eC39HqLyjWDarjtT1zdp7dc:
@@ -288,7 +231,7 @@ curl https://api.stripe.com/v1/subscriptions/sub_49ty4767H20z6a \
 </pre>
 </div>
 
-<div id="Ruby" class="tabcontent"><pre><code class="language-ruby">
+<div id="Ruby" class="tabcontent dark"><pre><code class="language-ruby">
 # Set your secret key. Remember to switch to your live secret key in production.
 # See your keys here: https://dashboard.stripe.com/apikeys
 Stripe.api_key = 'sk_test_4eC39HqLyjWDarjtT1zdp7dc'
@@ -312,7 +255,7 @@ Stripe::Subscription.update(
 </pre>
 </div>
 
-<div id="Python" class="tabcontent"><pre><code>
+<div id="Python" class="tabcontent dark"><pre><code>
 # Set your secret key. Remember to switch to your live secret key in production.
 # See your keys here: https://dashboard.stripe.com/apikeys
 stripe.api_key = 'sk_test_4eC39HqLyjWDarjtT1zdp7dc'
@@ -332,7 +275,7 @@ stripe.Subscription.modify(
 </pre>
 </div>
 
-<div id="PHP" class="tabcontent"><pre><code>
+<div id="PHP" class="tabcontent dark"><pre><code>
 // Set your secret key. Remember to switch to your live secret key in production.
 // See your keys here: https://dashboard.stripe.com/apikeys
 \Stripe\Stripe::setApiKey('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
@@ -352,7 +295,7 @@ $subscription = \Stripe\Subscription::retrieve('sub_49ty4767H20z6a');
 </pre>
 </div>
 
-<div id="Java" class="tabcontent"><pre><code class="language-java">
+<div id="Java" class="tabcontent dark"><pre><code class="language-java">
 // Set your secret key. Remember to switch to your live secret key in production.
 // See your keys here: https://dashboard.stripe.com/apikeys
 Stripe.apiKey = "sk_test_4eC39HqLyjWDarjtT1zdp7dc";
@@ -375,7 +318,7 @@ subscription.update(params);
 </pre>
 </div>
 
-<div id="Node" class="tabcontent"><pre><code class="javascript">
+<div id="Node" class="tabcontent dark"><pre><code class="javascript">
 // Set your secret key. Remember to switch to your live secret key in production.
 // See your keys here: https://dashboard.stripe.com/apikeys
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
@@ -393,7 +336,7 @@ stripe.subscriptions.update('sub_49ty4767H20z6a', {
 </pre>
 </div>
 
-<div id="Go" class="tabcontent"><pre><code class="language-go">
+<div id="Go" class="tabcontent dark"><pre><code class="language-go">
 // Set your secret key. Remember to switch to your live secret key in production.
 // See your keys here: https://dashboard.stripe.com/apikeys
 stripe.Key = "sk_test_4eC39HqLyjWDarjtT1zdp7dc"
@@ -414,7 +357,7 @@ subscription, err = sub.Update("sub_49ty4767H20z6a", params)
 </pre>
 </div>
 
-<div id=".NET" class="tabcontent"><pre><code class="language-vbnet">
+<div id=".NET" class="tabcontent dark"><pre><code class="language-vbnet">
 // Set your secret key. Remember to switch to your live secret key in production.
 // See your keys here: https://dashboard.stripe.com/apikeys
 StripeConfiguration.ApiKey = "sk_test_4eC39HqLyjWDarjtT1zdp7dc";
@@ -441,6 +384,31 @@ subscription = service.Update("sub_49ty4767H20z6a", options);
 
 
 </div>
+
+<div class="method-example atom-one-light">
+    <div class="method-example-top-bar">
+        Request Body
+    </div>
+    <pre><code>
+[
+    {
+        "name": "Molecule Man",
+        "age": 29,
+        "secretIdentity": "Dan Jukes",
+        "powers": [
+        "Radiation resistance",
+        "Turning tiny",
+        "Radiation blast"
+        ]
+    }
+]
+    </code>
+    </pre>
+
+    
+        </div>
+    
+        
 
             </div>
             <div class="right-nav-col">
