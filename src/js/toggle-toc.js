@@ -6,6 +6,7 @@ const tocHeaderCancel = globalThis.document.querySelector('.toc-header-cancel');
 const leftNavItem = globalThis.document.querySelector(
     'button.left-nav-item.plain'
 );
+const moreTabs = globalThis.document.querySelector('.more-tabs');
 
 // when you click the button.toc-menu...
 tocMenuButton.addEventListener('click', toggleToc);
