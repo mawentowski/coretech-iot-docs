@@ -13,7 +13,7 @@
         <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
         <link rel="stylesheet" href="css/hljs-styles.css" type="text/css" />
-        
+        <link rel="stylesheet" href="css/drop-down.css" type="text/css" />
         
         <!-- Font awesome, web fonts -->
         <link href="font-awesome/css/brands.css" rel="stylesheet" />
@@ -100,7 +100,7 @@
                     <!--Content tabs before here.-->
                 </div>
                 <div class="apis-support">
-                    <span class="apids-dropdown">
+                    <!-- <span class="apids-dropdown">
                         <form action="/action_page.php">
                             <label for="version default-font-properties"
                                 >Version</label
@@ -112,7 +112,23 @@
                                 <option value="v3">v3</option>
                             </select>
                         </form>
-                    </span>
+                    </span> -->
+                    
+                    <div class="dropdown">
+                        <button onclick="myFunction()" class="dropbtn">APIs & SDKs
+                        
+                            <span class="svg-container">
+                                <svg id="apis-drop-down-expander" viewBox="0 0 70 70" class=""><path d="M70 35A35 35 0 1135 0a35 35 0 0135 35"></path><path d="M45.88 33.74l-.66-.66L27.3 15.1a1.78 1.78 0 00-2.52 0l-.66.66a1.78 1.78 0 000 2.52L40.78 35 24.12 51.72a1.78 1.78 0 000 2.52l.66.66a1.78 1.78 0 002.52 0L45.17 37l.66-.66a1.8 1.8 0 000-2.53z"></path></svg>
+                            </span>
+                        
+                        </button>
+                        <div id="myDropdown" class="dropdown-content hidden">
+                          <a href="https://www.google.com" target="_blank">Bagdrop</a>
+                          <a href="#">Payment</a>
+                          <a href="#">Scan</a>
+                        </div>
+                      </div>
+                    
                     <a class="" href="www.google.com"> Support </a>
                 </div>
             </div>
@@ -450,11 +466,11 @@ subscription = service.Update("sub_49ty4767H20z6a", options);
         <script src="js/toggle-toc.js"></script>
         <script src="js/add-remove-classes.js"></script>
         <script src="js/code-tab.js"></script>
-
+        <script src="js/drop-down.js"></script>
         <!-- highlight.js -->
      <!-- and it's easy to individually load additional languages -->
      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
-    
+     
      <script>
        hljs.highlightAll();
      </script>

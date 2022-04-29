@@ -44,6 +44,7 @@ body {
         padding-right: 2%;
         padding-top: 20px;
         border-bottom: 0.1px solid #ddd;
+        z-index: 1;
 
         .header-top {
             display: flex;
@@ -135,7 +136,8 @@ body {
                     padding-bottom: 4px;
                     border-radius: 4px;
                     background-color: white;
-                    border: 0.2px solid #ddd;
+                    border: 0.20000000000000018px solid #ddd;
+                    box-shadow: 3px 3px 8px #ddd;
                 }
             }
         }
@@ -1197,5 +1199,32 @@ a.api-tag::after {
         max-width: 20%;
 
         // padding-top: 25px;
+    }
+}
+
+.dropdown {
+    .dropbtn {
+        .svg-container {
+            cursor: pointer;
+            width: 15px;
+
+            svg {
+                height: 19px;
+                width: 17px;
+                margin-bottom: 2px;
+
+                &.rotated {
+                    transform: rotate(-90deg);
+                }
+
+                path:nth-of-type(1) {
+                    fill: transparent;
+                }
+
+                path:nth-of-type(2) {
+                    fill: black;
+                }
+            }
+        }
     }
 }

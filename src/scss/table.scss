@@ -42,16 +42,20 @@ table.main-table {
     margin-top: 20px;
     margin-bottom: 30px;
 
-    .icon-holder {
+    div {
+        position: relative;
         padding-left: 12px;
-        flex: 0 0 5%;
-        max-width: 5%;
     }
 
-    .alert-text {
-        padding-left: 12px;
-        flex: 0 0 95%;
-        max-width: 95%;
+    div::before {
+        content: '';
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        left: -10px;
+        top: 8px;
+        background: url(../images/svgs/warning.svg);
+        background-repeat: no-repeat;
     }
 
     // div::before {
