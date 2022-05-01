@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <base href="/" />
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,13 +9,29 @@
         <link rel="stylesheet" href="css/resets.css" type="text/css" />
         <link rel="stylesheet" href="css/utilities.css" type="text/css" />
         <link rel="stylesheet" href="css/text-styling.css" type="text/css" />
+        <link rel="stylesheet" href="css/table.css" type="text/css" />
         <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+        <link rel="stylesheet" href="css/hljs-styles.css" type="text/css" />
+        <link rel="stylesheet" href="css/drop-down.css" type="text/css" />
+        
         <!-- Font awesome, web fonts -->
         <link href="font-awesome/css/brands.css" rel="stylesheet" />
         <link href="font-awesome/css/fontawesome.css" rel="stylesheet" />
         <link href="font-awesome/css/solid.css" rel="stylesheet" />
         <link href="font-awesome/css/v4-shims.css" rel="stylesheet" />
+        <script src="https://use.fontawesome.com/f8850a2b1e.js"></script>
+    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
+    
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200&display=swap" rel="stylesheet">
+   
+   
+
     </head>
 
     <body>
@@ -47,11 +62,19 @@
                             ></path>
                         </svg>
                     </div>
-                    <input
-                        type="text"
-                        class="search-field"
-                        placeholder="Search documentation..."
-                    />
+
+                    <div class="search-docs-container">
+                        <div class="search-prepend">
+                            <!-- <embed src="/src/images/svgs/search-docs.svg" alt=""> -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"/></svg>
+                        </div>
+                        <input type="text" class="docs-search-field" placeholder="Search documentation" />
+                        <div class="search-append">
+                            <!-- <i class="fa fa-file-pdf"></i> -->
+                        </div>
+                    </div>
+        
+
                 </div>
                 <div class="account-col">
                     <div class="account-col-content">
@@ -77,7 +100,7 @@
                     <!--Content tabs before here.-->
                 </div>
                 <div class="apis-support">
-                    <span class="apids-dropdown">
+                    <!-- <span class="apids-dropdown">
                         <form action="/action_page.php">
                             <label for="version default-font-properties"
                                 >Version</label
@@ -89,32 +112,47 @@
                                 <option value="v3">v3</option>
                             </select>
                         </form>
-                    </span>
+                    </span> -->
+                    
+                    <div class="dropdown">
+                        <button onclick="myFunction()" class="dropbtn">APIs & SDKs
+                        
+                            <span class="svg-container">
+                                <svg id="apis-drop-down-expander" viewBox="0 0 70 70" class=""><path d="M70 35A35 35 0 1135 0a35 35 0 0135 35"></path><path d="M45.88 33.74l-.66-.66L27.3 15.1a1.78 1.78 0 00-2.52 0l-.66.66a1.78 1.78 0 000 2.52L40.78 35 24.12 51.72a1.78 1.78 0 000 2.52l.66.66a1.78 1.78 0 002.52 0L45.17 37l.66-.66a1.8 1.8 0 000-2.53z"></path></svg>
+                            </span>
+                        
+                        </button>
+                        <div id="myDropdown" class="dropdown-content hidden">
+                          <a href="https://www.google.com" target="_blank">Bagdrop</a>
+                          <a href="#">Payment</a>
+                          <a href="#">Scan</a>
+                        </div>
+                      </div>
+                    
                     <a class="" href="www.google.com"> Support </a>
                 </div>
             </div>
         </div>
-        <!-- <div class="menu-icon-row">
+
+        <!-- <div class="header-narrow-viewport">
         <div>
           <div class="toc-menu">
             <span><i class="fa fa-bars"></i></span><span class="toc-menu-label"></span></span>
           </div>
+        </div>
       </div> -->
         <div class="header-narrow-viewport">
-            <div>
-                <div class="show-left-nav-button-container">
-                    <span>
-                        <!--Put icon in button.-->
-                        <i class="fa fa-bars"></i>
-                    </span>
-                    <span class="show-left-nav"></span>
-                </div>
-            </div>
+        <div class="show-left-nav-button-container">
+            <button class="show-left-nav">
+                <span><i class="fa fa-bars"></i></span><span class="tab-label">Tab 1</span></span>
+            </button>
         </div>
+      </div>
+
         <div class="main-row">
             <div class="left-nav-col hidden">
                 <div class="toc-header">
-                    <div class="toc-header-text"></div>
+                    <div class="toc-header-text">Tab 1</div>
                     <div class="toc-header-cancel">
                         <i class="fa fa-times"></i>
                     </div>
@@ -128,7 +166,22 @@
                 </div>
                 <div class="left-nav">
                     <!--Left-nav options before here.-->
+                    <div class="more-tabs">
+                      <div class="more-tabs-header">
+                          More Tabs
+                      </div>
+
+                      <a href="https://www.google.com" target="_blank">Test</a>
+                      <a href="https://www.google.com" target="_blank">Test</a>
+                      <a href="https://www.google.com" target="_blank">Test</a>
+                      <a href="https://www.google.com" target="_blank">Test</a>
+                      <a href="https://www.google.com" target="_blank">Test</a>
+                    
+                    </div>
                 </div>
+
+
+      
                 <div class="dl-pdf-row">
                     <span class="dl-pdf-icon"
                         ><i class="fa fa-file-pdf"></i></span
@@ -169,55 +222,225 @@
                 <!-- Should not be main-content because it handles media queries,
             needs to populate inside -->
                 <div class="main-content"></div>
-                <!-- <div class="main-content">
-                <div class="article">
-                </div>
-                <div class="document-footer">
-                    <div class="rating-section">
-                        <h2 class="rating-question">Was this page helpful?</h2>
-                        <button type="button" class="rating-btn">
-                            <i class="fa fa-thumbs-up"></i> Yes
-                        </button>
-                        <button type="button" class="rating-btn">
-                            <i class="fa fa-thumbs-up"></i> No
-                        </button>
-                    </div>
-                    <div class="footer-bottom">
-                        <div class="footer-col">
-                            <ul class="footer-lines">
-                                <li>
-                                    <p>Questions? <a href="#">Contact Us</a>.</p>
-                                </li>
-                
-                                <li>
-                                    <p>
-                                        View Developer tutorials on <a href="#">Youtube</a>.
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>Check our our <a href="#">product changelog</a>.</p>
-                                </li>
-                            </ul>
+
+                <div class="code-section">
+                    <div class="code-section-header">
+                        <div class="code-tabs">
+                            <button class="tablinks" onclick="openTab(event, 'bash')" id="defaultOpen">curl</button>
+                            <button class="tablinks" onclick="openTab(event, 'Ruby')">Ruby</button>
+                            <button class="tablinks" onclick="openTab(event, 'Python')">Python</button>
+                            <button class="tablinks" onclick="openTab(event, 'PHP')">PHP</button>
+                            <button class="tablinks" onclick="openTab(event, 'Java')">Java</button>
+                            <button class="tablinks" onclick="openTab(event, 'Node')">Node</button>
+                            <button class="tablinks" onclick="openTab(event, 'Go')">Go</button>
+                            <button class="tablinks" onclick="openTab(event, '.NET')">.NET</button>
                         </div>
-                        <div class="footer-col">
-                            <div class="signup-prompt">
-                                <p>Sign up for developer updates:</p>
-                            </div>
-                            <div class="newsletter-submit-container">
-                                <input type="text" class="search-field" placeholder="" />
-                                <div class="newsletter-append">
-                                    <span class="newsletter-append-text"> Sign up </span>
-                                </div>
-                            </div>
+                        <div class="copy-icon">
+                            <button class="copy-code-btn">
                 
-                            <div class="subscribe">
-                                You can subscribe at any time. Read our
-                                <a href="#">Privacy Policy</a>
-                            </div>
+                            </button>
                         </div>
+
                     </div>
-                </div>
-            </div> -->
+                    <div class="copied-popup">
+                        Copied!
+                    </div>
+                
+<div id="bash" class="tabcontent dark"><pre><code>
+# Retrieve the subscription:
+curl https://api.stripe.com/v1/subscriptions/sub_49ty4767H20z6a \
+    -u sk_test_4eC39HqLyjWDarjtT1zdp7dc:
+
+# Update the subscription using retrieved ID:
+curl https://api.stripe.com/v1/subscriptions/sub_49ty4767H20z6a \
+    -u sk_test_4eC39HqLyjWDarjtT1zdp7dc: \
+    -d "cancel_at_period_end"="false" \
+    -d "proration_behavior"="create_prorations" \
+    -d "items[0][id]"="si_09IkI4u3ZypJUk5onGUZpe8O" \
+    -d "items[0][price]"="price_CBb6IXqvTLXp3f"
+</code>
+</pre>
+</div>
+
+<div id="Ruby" class="tabcontent dark"><pre><code class="language-ruby">
+# Set your secret key. Remember to switch to your live secret key in production.
+# See your keys here: https://dashboard.stripe.com/apikeys
+Stripe.api_key = 'sk_test_4eC39HqLyjWDarjtT1zdp7dc'
+
+subscription = Stripe::Subscription.retrieve('sub_49ty4767H20z6a')
+
+Stripe::Subscription.update(
+    subscription.id,
+    {
+    cancel_at_period_end: false,
+    proration_behavior: 'create_prorations',
+    items: [
+        {
+        id: subscription.items.data[0].id,
+        price: 'price_CBb6IXqvTLXp3f'
+        }
+    ]
+    }
+)
+</code>
+</pre>
+</div>
+
+<div id="Python" class="tabcontent dark"><pre><code>
+# Set your secret key. Remember to switch to your live secret key in production.
+# See your keys here: https://dashboard.stripe.com/apikeys
+stripe.api_key = 'sk_test_4eC39HqLyjWDarjtT1zdp7dc'
+
+subscription = stripe.Subscription.retrieve('sub_49ty4767H20z6a')
+
+stripe.Subscription.modify(
+    subscription.id,
+    cancel_at_period_end=False,
+    proration_behavior='create_prorations',
+    items=[{
+    'id': subscription['items']['data'][0].id,
+    'price': 'price_CBb6IXqvTLXp3f',
+    }]
+)
+</code>
+</pre>
+</div>
+
+<div id="PHP" class="tabcontent dark"><pre><code>
+// Set your secret key. Remember to switch to your live secret key in production.
+// See your keys here: https://dashboard.stripe.com/apikeys
+\Stripe\Stripe::setApiKey('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+
+$subscription = \Stripe\Subscription::retrieve('sub_49ty4767H20z6a');
+\Stripe\Subscription::update('sub_49ty4767H20z6a', [
+    'cancel_at_period_end' => false,
+    'proration_behavior' => 'create_prorations',
+    'items' => [
+    [
+        'id' => $subscription->items->data[0]->id,
+        'price' => 'price_CBb6IXqvTLXp3f',
+    ],
+    ],
+]);
+</code>
+</pre>
+</div>
+
+<div id="Java" class="tabcontent dark"><pre><code class="language-java">
+// Set your secret key. Remember to switch to your live secret key in production.
+// See your keys here: https://dashboard.stripe.com/apikeys
+Stripe.apiKey = "sk_test_4eC39HqLyjWDarjtT1zdp7dc";
+
+Subscription subscription = Subscription.retrieve("sub_49ty4767H20z6a");
+
+SubscriptionUpdateParams params =
+    SubscriptionUpdateParams.builder()
+    .setCancelAtPeriodEnd(false)
+    .setProrationBehavior(SubscriptionUpdateParams.ProrationBehavior.CREATE_PRORATIONS)
+    .addItem(
+        SubscriptionUpdateParams.Item.builder()
+        .setId(subscription.getItems().getData().get(0).getId())
+        .setPrice("price_CBb6IXqvTLXp3f")
+        .build())
+    .build();
+
+subscription.update(params);
+</code>
+</pre>
+</div>
+
+<div id="Node" class="tabcontent dark"><pre><code class="javascript">
+// Set your secret key. Remember to switch to your live secret key in production.
+// See your keys here: https://dashboard.stripe.com/apikeys
+const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+
+const subscription = await stripe.subscriptions.retrieve('sub_49ty4767H20z6a');
+stripe.subscriptions.update('sub_49ty4767H20z6a', {
+    cancel_at_period_end: false,
+    proration_behavior: 'create_prorations',
+    items: [{
+    id: subscription.items.data[0].id,
+    price: 'price_CBb6IXqvTLXp3f',
+    }]
+});
+</code>
+</pre>
+</div>
+
+<div id="Go" class="tabcontent dark"><pre><code class="language-go">
+// Set your secret key. Remember to switch to your live secret key in production.
+// See your keys here: https://dashboard.stripe.com/apikeys
+stripe.Key = "sk_test_4eC39HqLyjWDarjtT1zdp7dc"
+
+subscription, err := sub.Get("sub_49ty4767H20z6a", nil)
+params := &stripe.SubscriptionParams{
+    CancelAtPeriodEnd: stripe.Bool(false),
+    ProrationBehavior: stripe.String(string(stripe.SubscriptionProrationBehaviorCreateProrations)),
+    Items: []*stripe.SubscriptionItemsParams{
+    {
+        ID: stripe.String(subscription.Items.Values[0].ID),
+        Price: stripe.String("price_CBb6IXqvTLXp3f"),
+    },
+    },
+}
+subscription, err = sub.Update("sub_49ty4767H20z6a", params)
+</code>
+</pre>
+</div>
+
+<div id=".NET" class="tabcontent dark"><pre><code class="language-vbnet">
+// Set your secret key. Remember to switch to your live secret key in production.
+// See your keys here: https://dashboard.stripe.com/apikeys
+StripeConfiguration.ApiKey = "sk_test_4eC39HqLyjWDarjtT1zdp7dc";
+
+var service = new SubscriptionService();
+Subscription subscription = service.Get("sub_49ty4767H20z6a");
+
+var items = new List<SubscriptionItemOptions> {
+    new SubscriptionItemOptions {
+        Id = subscription.Items.Data[0].Id,
+        Price = "price_CBb6IXqvTLXp3f",
+    },
+};
+
+var options = new SubscriptionUpdateOptions {
+    CancelAtPeriodEnd = false,
+    ProrationBehavior = "create_prorations",
+    Items = items,
+};
+subscription = service.Update("sub_49ty4767H20z6a", options);
+</code>
+</pre>
+</div>
+
+
+</div>
+
+<div class="method-example atom-one-light">
+    <div class="method-example-top-bar">
+        Request Body
+    </div>
+    <pre><code>
+[
+    {
+        "name": "Molecule Man",
+        "age": 29,
+        "secretIdentity": "Dan Jukes",
+        "powers": [
+        "Radiation resistance",
+        "Turning tiny",
+        "Radiation blast"
+        ]
+    }
+]
+    </code>
+    </pre>
+
+    
+        </div>
+    
+        
+
             </div>
             <div class="right-nav-col">
                 <div class="pre-right-nav">On this page</div>
@@ -256,6 +479,20 @@
         <!-- My javascript files -->
         <script src="js/left-nav.js" type="module"></script>
         <script src="js/toggle-toc.js"></script>
-        <script src="js/add-remove-classes.js" type="module"></script>
+        <script src="js/add-remove-classes.js"></script>
+        <script src="js/code-tab.js"></script>
+        <script src="js/drop-down.js"></script>
+        <!-- highlight.js -->
+     <!-- and it's easy to individually load additional languages -->
+     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+     
+     <script>
+       hljs.highlightAll();
+     </script>
+     <script>
+document.getElementById('defaultOpen').click();
+
+
+        </script>
     </body>
 </html>

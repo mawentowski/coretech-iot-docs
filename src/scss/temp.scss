@@ -295,7 +295,7 @@ body {
     }
 
     // Row containing ToC Button at xs/sm brkp
-    .menu-icon-row {
+    .header-narrow-viewport {
         display: flex;
         max-width: 100vw;
         padding: 22px 25px;
@@ -314,7 +314,7 @@ body {
         }
     }
     @media (min-width: 768px) {
-        .menu-icon-row {
+        .header-narrow-viewport {
             display: none;
         }
     }
@@ -842,7 +842,7 @@ h2.numbered--h2::before {
     }
 }
 
-.code-snippet {
+.method-example {
     display: flex;
     position: relative;
     border: 0.1px solid #ddd;

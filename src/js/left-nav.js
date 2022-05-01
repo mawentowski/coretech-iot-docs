@@ -12,7 +12,9 @@ const leftNav = globalThis.document.querySelector('div.left-nav');
 const leftNavOptionDivs = globalThis.document.querySelectorAll(
     'div.left-nav-option'
 );
-const showLeftNavSpan = globalThis.document.querySelector('span.show-left-nav');
+const showLeftNavButton = globalThis.document.querySelector(
+    'button.show-left-nav'
+);
 const tocHeaderTextDiv = globalThis.document.querySelector(
     'div.toc-header-text'
 );
@@ -161,7 +163,7 @@ async function selectLeftNavItemButton(button) {
 function selectTab(tab) {
     globalThis.selectedTab = tab;
     toggleSelectTabStyles(selectedTab);
-    showLeftNavSpan.innerText = tab.innerText;
+    showLeftNavButton.innerText = tab.innerText;
     tocHeaderTextDiv.innerText = tab.innerText;
     leftNavOptionDivs.forEach((leftNavOptionDiv) => {
         const leftNavSectionContainerSpan =

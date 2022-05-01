@@ -14,7 +14,7 @@ By default, the `Home` tab is selected has formatting applied indicating that.
 
 `.home-section` that contains the div `.home-content` is the first "page" loaded and does not have a side or right nav.
 
-> The `menu-icon-row` needs to be set to `display: none` when the Home tab is displayed by default when the page loads or when it is selected later. There is a display utility class that can be applied.
+> The `header-narrow-viewport` needs to be set to `display: none` when the Home tab is displayed by default when the page loads or when it is selected later. There is a display utility class that can be applied.
 
 ## Tabs and the Main Row
 
