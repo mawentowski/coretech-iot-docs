@@ -48,13 +48,13 @@ https://highlightjs.org/usage/ -->
         </thead>
         <tbody>
             <tr>
-                <td><span class="inline-code">checkout.session.completed</code></td>
+                <td><span class="inline-code">checkout.session.completed</span></td>
                 <td>Sent when a customer clicks the Pay or Subscribe button in Checkout, informing you of a new purchase.</td></tr>
-                <tr><td><span class="inline-code">invoice.paid</code></td>
+                <tr><td><span class="inline-code">invoice.paid</span></td>
                 <td>Sent each billing interval when a payment succeeds.</td>
             </tr>
             <tr>
-                <td><span class="inline-code">invoice.payment_failed</code></td>
+                <td><span class="inline-code">invoice.payment_failed</span></td>
                 <td>Sent each billing interval if there is an issue with your customer’s payment method.</td>
 
             </tr>
@@ -416,8 +416,6 @@ https://highlightjs.org/usage/ -->
                 <a href="#">Link 1</a>
             </div>
         </div>
-    </div>
-</div>
     <div class="document-footer">
         <div class="rating-section">
             <h2 class="rating-question">Was this page helpful?</h2>
@@ -463,7 +461,6 @@ https://highlightjs.org/usage/ -->
             </div>
         </div>
     </div>
-</div>
 <div class="code-section">
     <div class="code-section-header">
         <div class="code-tabs">
@@ -511,17 +508,17 @@ Stripe.api_key = 'sk_test_4eC39HqLyjWDarjtT1zdp7dc'
 subscription = Stripe::Subscription.retrieve('sub_49ty4767H20z6a')
 
 Stripe::Subscription.update(
-subscription.id,
-{
-cancel_at_period_end: false,
-proration_behavior: 'create_prorations',
-items: [
-{
-id: subscription.items.data[0].id,
-price: 'price_CBb6IXqvTLXp3f'
-}
-]
-}
+    subscription.id,
+    {
+        cancel_at_period_end: false,
+        proration_behavior: 'create_prorations',
+        items: [
+            {
+                id: subscription.items.data[0].id,
+                price: 'price_CBb6IXqvTLXp3f'
+            }
+        ]
+    }
 )
 </code>
 </pre>
@@ -535,13 +532,15 @@ stripe.api_key = 'sk_test_4eC39HqLyjWDarjtT1zdp7dc'
 subscription = stripe.Subscription.retrieve('sub_49ty4767H20z6a')
 
 stripe.Subscription.modify(
-subscription.id,
-cancel_at_period_end=False,
-proration_behavior='create_prorations',
-items=[{
-'id': subscription['items']['data'][0].id,
-'price': 'price_CBb6IXqvTLXp3f',
-}]
+    subscription.id,
+    cancel_at_period_end=False,
+    proration_behavior='create_prorations',
+    items=[
+        {
+            'id': subscription['items']['data'][0].id,
+            'price': 'price_CBb6IXqvTLXp3f',
+        }
+    ]
 )
 </code>
 </pre>
@@ -554,15 +553,16 @@ items=[{
 
 $subscription = \Stripe\Subscription::retrieve('sub_49ty4767H20z6a');
 \Stripe\Subscription::update('sub_49ty4767H20z6a', [
-'cancel_at_period_end' => false,
-'proration_behavior' => 'create_prorations',
-'items' => [
-[
-'id' => $subscription->items->data[0]->id,
-'price' => 'price_CBb6IXqvTLXp3f',
-],
-],
-]);
+        'cancel_at_period_end' => false,
+        'proration_behavior' => 'create_prorations',
+        'items' => [
+            [
+                'id' => $subscription->items->data[0]->id,
+                'price' => 'price_CBb6IXqvTLXp3f',
+            ],
+        ],
+    ]
+);
 </code>
 </pre>
 </div>
@@ -657,7 +657,7 @@ subscription = service.Update("sub_49ty4767H20z6a", options);
     <div class="method-example-top-bar">
         Request Body
     </div>
-    <pre><code>
+    <code><pre>
 [
     {
         "name": "Molecule Man",
@@ -670,17 +670,10 @@ subscription = service.Update("sub_49ty4767H20z6a", options);
         ]
     }
 ]
-    </code>
-    </pre>
+
+    </pre></code>
 
     
         </div>
 
 </div>
-<script src="js/code-tab.js"></script>
-<script>
-    hljs.highlightAll();
-</script>
-<script>
-    document.getElementById('defaultOpen').click();
-</script>

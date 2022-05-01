@@ -156,6 +156,7 @@ async function selectLeftNavItemButton(button) {
     const mainContentDiv =
         globalThis.document.querySelector('div.main-content');
     mainContentDiv.innerHTML = htmlResponseText;
+    supportCodeSample();
     reflectSelectionsInUrl();
     cancelToc();
 }
@@ -181,6 +182,17 @@ function selectTab(tab) {
     if (firstVisibleLeftNavItemButton)
         onLeftNavItemButtonClicked(firstVisibleLeftNavItemButton);
     addRemoveClasses();
+}
+
+function supportCodeSample() {
+    const defaultOpenCodeSampleButton =
+        globalThis.document.getElementById('defaultOpen');
+    // If code sample is present...
+    if (!defaultOpenCodeSampleButton) return;
+    // Issue click event tagetting its default button.
+    defaultOpenCodeSampleButton.click();
+    // Highlight code characters.
+    globalThis.hljs.highlightAll();
 }
 
 function toggleActiveClassOnLeftNavSectionContainerSpans() {
