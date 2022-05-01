@@ -25,12 +25,12 @@ function toggleToc() {
 // if you click the cancel btn:
 tocHeaderCancel.addEventListener('click', cancelToc);
 export function cancelToc() {
-    leftNavCol.classList.toggle('hidden');
+    leftNavCol.classList.add('hidden');
     leftNavCol.classList.remove('display-flex');
     //   leftNavCol.classList.remove("flex-direction-col");
-    rightOverlayCol.classList.toggle('hidden');
-    content.classList.toggle('pos-fixed');
-    content.classList.toggle('scrollable');
+    rightOverlayCol.classList.add('hidden');
+    content.classList.add('pos-fixed');
+    content.classList.add('scrollable');
 }
 
 // Or, if you click the overlay (same):
