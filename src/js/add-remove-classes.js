@@ -38,7 +38,7 @@ export function addRemoveClasses() {
         addClassToHtmlElementBySelector('.content', 'flex-basis-100');
         removeClassFromHtmlElementBySelector('.content', 'flex-basis-80');
         addClassToHtmlElementBySelector('.header-narrow-viewport', 'hidden');
-        addClassToHtmlElementBySelector('.toc-header', 'display-flex');
+        // addClassToHtmlElementBySelector('.toc-header', 'display-flex');
         removeClassFromHtmlElementBySelector(
             '.header-narrow-viewport',
             'hidden'
@@ -83,7 +83,7 @@ export function addRemoveClasses() {
         if (!isHomeTabSelected) {
             $('.header-narrow-viewport').addClass('hidden');
             $('.left-nav-col').removeClass('hidden');
-            $('.toc-header').removeClass('display-flex');
+            // $('.toc-header').removeClass('display-flex');
             $('.content').addClass('flex-basis-80');
             $('.header').addClass('display-flex');
             $('.header-narrow-viewport').removeClass('display-flex');

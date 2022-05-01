@@ -131,7 +131,7 @@ function insertLeftNavOptionIntoDistIndexHtml(
     let optionHtml;
     if (isSection) {
         const svgMarkup =
-            '<path d="M70 35A35 35 0 1135 0a35 35 0 0135 35"/><path d="M45.88 33.74l-.66-.66L27.3 15.1a1.78 1.78 0 00-2.52 0l-.66.66a1.78 1.78 0 000 2.52L40.78 35 24.12 51.72a1.78 1.78 0 000 2.52l.66.66a1.78 1.78 0 002.52 0L45.17 37l.66-.66a1.8 1.8 0 000-2.53z"/>';
+            '<path d="M118.6 105.4l128 127.1C252.9 239.6 256 247.8 256 255.1s-3.125 16.38-9.375 22.63l-128 127.1c-9.156 9.156-22.91 11.9-34.88 6.943S64 396.9 64 383.1V128c0-12.94 7.781-24.62 19.75-29.58S109.5 96.23 118.6 105.4z"/>';
         let leftNavOptionDivClass = 'hidden left-nav-option';
         if (isTopLevelLeftNavOption)
             leftNavOptionDivClass = `${leftNavOptionDivClass} top-level`;
@@ -139,7 +139,7 @@ function insertLeftNavOptionIntoDistIndexHtml(
         <div class="${leftNavOptionDivClass}" data-tab-name="${tabName}">
         <span class="collapsed left-nav-section-container">
             <span class="svg-container">
-                <svg viewBox="0 0 70 70">${svgMarkup}</svg>
+                <svg viewBox="0 0 256 512">${svgMarkup}</svg>
             </span>
             <button class="left-nav-section plain">${optionLabel}</button>
             <!--${relativeItemPath} ${optionsInsertPointEnding}-->
