@@ -262,7 +262,11 @@ body {
                     margin-left: $svg-dimension;
 
                     &.top-level {
-                        margin-left: 10px;
+                        margin-left: 34px;
+
+                        &.left-nav-option-with-section {
+                            margin-left: 10px;
+                        }
                     }
 
                     // .second-level {
