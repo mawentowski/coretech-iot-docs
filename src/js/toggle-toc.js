@@ -1,3 +1,5 @@
+import { VIEWPORT_WIDTH_RANGE_COLLECTION } from './viewport-width-range-collection.js';
+
 const tocMenuButton = globalThis.document.querySelector(
     '.header-narrow-viewport'
 );
@@ -25,6 +27,8 @@ function toggleToc() {
 // if you click the cancel btn:
 tocHeaderCancel.addEventListener('click', cancelToc);
 export function cancelToc() {
+    const viewportWidth = globalThis.document.body.clientWidth;
+    if (viewportWidth >= VIEWPORT_WIDTH_RANGE_COLLECTION.wide.start) return;
     leftNavCol.classList.add('hidden');
     leftNavCol.classList.remove('display-flex');
     //   leftNavCol.classList.remove("flex-direction-col");
