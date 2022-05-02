@@ -282,9 +282,12 @@ table.main-table {
         font-weight: 500;
     }
 
-    a {
-        padding: 4px;
-        margin: 1px 25px 2px 1px;
+    button.active {
+        color: #5469d4;
+    }
+
+    button {
+        margin: 1px 25px 2px 4px;
     }
 }
 
