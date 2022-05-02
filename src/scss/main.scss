@@ -17,6 +17,7 @@ html {
 
 body {
     position: relative;
+    overflow-x: hidden;
     counter-reset: ol-listitem;
     counter-reset: section;
     counter-reset: code-line-numbers;
@@ -222,6 +223,18 @@ body {
                 margin-left: 5px;
             }
         }
+
+        .show-left-nav::before {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            left: -17px;
+            top: 3px;
+            background-image: url('../images/svgs/bars-solid.svg');
+            background-repeat: no-repeat;
+            background-size: 16px 16px;
+            border-radius: 0;
+        }
     }
 }
 
@@ -393,7 +406,7 @@ body {
         .dl-pdf-row {
             // position: fixed;
             // bottom: 0;
-            padding: 10px 25px;
+            padding: 10px 31px;
 
             // background-color: #f7fafc;
         }

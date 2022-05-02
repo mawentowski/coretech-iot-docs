@@ -13,6 +13,7 @@ const leftNavItem = globalThis.document.querySelector(
     'button.left-nav-item.plain'
 );
 const moreTabs = globalThis.document.querySelector('.more-tabs');
+const bodyElement = globalThis.document.querySelector('body');
 
 // when you click the button.toc-menu...
 showLeftNavButton.addEventListener('click', openToc);
@@ -26,6 +27,8 @@ function openToc() {
     content.classList.add('scrollable');
     tocHeader.classList.remove('hidden');
     tocHeader.classList.add('display-flex');
+    bodyElement.classList.add('unscrollable');
+    bodyElement.classList.remove('scrollable');
 }
 
 // if you click the cancel btn:
@@ -41,6 +44,8 @@ export function cancelToc() {
     content.classList.add('scrollable');
     tocHeader.classList.remove('display-flex');
     tocHeader.classList.add('hidden');
+    bodyElement.classList.remove('unscrollable');
+    bodyElement.classList.add('scrollable');
 }
 
 // Or, if you click the overlay (same):
