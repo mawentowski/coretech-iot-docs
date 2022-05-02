@@ -263,8 +263,13 @@ body {
                 &.left-nav-option {
                     $svg-dimension: 24px;
 
-                    // margin-left: $svg-dimension;
+                    margin-left: $svg-dimension;
                     margin-left: -4px;
+
+                    .left-nav-section,
+                    .left-nav-item {
+                        text-align: left;
+                    }
 
                     &.top-level {
                         margin-left: 11px;
@@ -282,13 +287,13 @@ body {
                         }
                     }
 
-                    // .second-level {
-                    //     // no SVG, rename top level to first level
-                    //     text-transform: uppercase;
-                    //     font-weight: 350;
-                    //     font-size: 13px;
-                    //     margin: 7px 0px;
-                    // }
+                    .second-level {
+                        // no SVG, rename top level to first level
+                        text-transform: uppercase;
+                        font-weight: 350;
+                        font-size: 13px;
+                        margin: 7px 0;
+                    }
 
                     .left-nav-section-container {
                         &.active > button:first-of-type.left-nav-section {
