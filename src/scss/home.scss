@@ -79,7 +79,7 @@
 
     .learn-boxes-container {
         display: flex;
-        margin: 32px 0 48px;
+        margin: 17px 0 48px;
 
         .learn-box {
             flex-basis: 33.3%;
@@ -124,3 +124,94 @@
         }
     }
 }
+
+@media (max-width: 767px) {
+    .learn-section {
+        display: none;
+    }
+}
+@media (min-width: 768px) {
+    .learn-section {
+        display: block;
+    }
+}
+
+.browse-section {
+    h2 {
+        padding-bottom: 0;
+    }
+
+    .columns-container {
+        display: flex;
+        margin: 0 0 48px;
+
+        .column {
+            flex-basis: 50%;
+            padding: 32px 20px 32px 0;
+
+            .api-section {
+                margin-bottom: 35px;
+
+                .api-name {
+                    color: #1a1f36;
+                    font-size: 16px;
+                    font-weight: 600;
+                    line-height: 24px;
+                }
+
+                .api-function {
+                    display: flex;
+                    margin: 12px 0 0;
+
+                    .svg-container {
+                        width: 32px;
+                        display: flex;
+                        align-items: center;
+
+                        svg {
+                            width: 100%;
+                            fill: #6c8eef;
+                        }
+                    }
+
+                    .function-content {
+                        padding-left: 15px;
+
+                        .function-header {
+                            color: rgb(60 66 87);
+                            font-size: 14px;
+                            font-weight: 600;
+                        }
+
+                        .function-summary {
+                            color: rgb(60 66 87);
+                            font-size: 14px;
+                            font-weight: 400;
+                        }
+                    }
+                }
+            }
+        }
+
+        .column:nth-of-type(2) {
+            background-color: #f7fafc;
+            border-radius: 8px;
+            padding-left: 48px;
+        }
+    }
+}
+
+// color:
+// font-size:
+// font-weight:
+// padding:
+
+// color:
+// font-size:
+// font-weight:
+// padding:
+
+// color:
+// font-size:
+// font-weight:
+// padding:
