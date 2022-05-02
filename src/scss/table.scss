@@ -141,25 +141,32 @@ table.main-table {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 25px;
-            height: 39px;
+            width: 35px;
+            height: 36px;
 
             button.copy-code-btn {
-                background: url(../images/svgs/copy-btn.svg);
-                background-repeat: no-repeat;
                 border: none;
                 color: white;
-                background-color: white;
+                background-color: transparent;
                 width: 18px;
                 height: 21px;
                 vertical-align: center;
                 position: absolute;
-                right: 10;
+                top: 5px;
+                right: 12px;
+
+                svg {
+                    fill: #a3adb9;
+                }
+
+                svg:hover {
+                    fill: #3c4356;
+                }
             }
 
-            button.copy-code-btn:active {
-                color: #ccc;
-            }
+            // button.copy-code-btn:active {
+            //     color: #ccc;
+            // }
         }
     }
 }

@@ -1007,7 +1007,7 @@ a.continue-link {
                 width: 6px;
                 height: 6px;
                 left: -17px;
-                top: 3px;
+                top: 13px;
                 background-image: url('../images/svgs/email.svg');
                 background-repeat: no-repeat;
                 background-size: 16px 16px;
@@ -1023,7 +1023,7 @@ a.continue-link {
                 width: 6px;
                 height: 6px;
                 left: -20px;
-                top: 0;
+                top: 11px;
                 background-image: url('../images/svgs/video.svg');
                 background-repeat: no-repeat;
                 background-size: 23px 23px;
@@ -1037,7 +1037,7 @@ a.continue-link {
                 width: 6px;
                 height: 6px;
                 left: -17px;
-                top: 3px;
+                top: 11px;
                 background-image: url('../images/svgs/page.svg');
                 background-repeat: no-repeat;
                 background-size: 20px 18px;
@@ -1247,6 +1247,7 @@ a.api-tag::after {
     display: flex;
     flex-grow: 1;
     position: relative;
+    margin-left: 12px;
 
     .search-prepend {
         position: absolute;
