@@ -1,0 +1,126 @@
+.home-banner {
+}
+
+.featured-tab-preview {
+    h2 {
+        font-size: 24px;
+    }
+
+    .preview-tab-thumbnail {
+        float: right;
+        width: 440px;
+
+        img {
+            width: 100%;
+        }
+    }
+    @media (max-width: 767px) {
+        .preview-tab-thumbnail {
+            display: none;
+        }
+    }
+    @media (min-width: 768px) {
+        .preview-tab-thumbnail {
+            display: block;
+        }
+    }
+
+    .action-statement {
+        font-size: 19px;
+        line-height: 26px;
+        padding: 0 32px 20px 0;
+    }
+
+    button.get-started {
+        position: relative;
+        bottom: 2px;
+        background: #5369d4;
+        color: white;
+        border: none;
+        box-shadow: none;
+        border-radius: 5px;
+        padding: 5px 12px;
+        font-size: inherit;
+        font-weight: 500;
+        height: fit-content;
+
+        .btn-contents {
+            display: flex;
+
+            .btn-text {
+            }
+
+            .svg-container {
+                width: 12px;
+                margin-left: 4px;
+
+                svg {
+                    width: 100%;
+                    fill: white;
+                }
+            }
+        }
+    }
+
+    .preview-tags {
+        padding-top: 24px;
+
+        span.tag {
+            margin: 0 10px 0 0;
+        }
+    }
+}
+
+.learn-section {
+    padding-top: 35px;
+
+    h2 {
+    }
+
+    .learn-boxes-container {
+        display: flex;
+        margin: 32px 0 48px;
+
+        .learn-box {
+            flex-basis: 33.3%;
+
+            .box-image-row {
+                .svg-container {
+                    width: 32px;
+
+                    svg {
+                        width: 100%;
+                        fill: #6c8eef;
+                    }
+                }
+            }
+
+            .learn-heading {
+                color: rgb(84 105 212);
+                font-size: 16px;
+                font-weight: 400;
+                padding: 15px 0 0;
+            }
+
+            .learn-description {
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 24px;
+                color: rgb(60 66 87);
+                padding: 4px 0 0;
+            }
+        }
+
+        .learn-box:nth-of-type(1) {
+            padding-right: 30px;
+        }
+
+        .learn-box:nth-of-type(2) {
+            padding-left: 30px;
+        }
+
+        .learn-box:nth-of-type(3) {
+            padding-left: 60px;
+        }
+    }
+}

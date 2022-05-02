@@ -508,21 +508,19 @@ body {
     }
 }
 
-.main-content {
-    .title-box {
-        margin-bottom: 2.2rem;
+.title-box {
+    margin-bottom: 2.2rem;
 
-        h1.topic-title {
-            @extend %bold;
+    h1.topic-title {
+        @extend %bold;
 
-            margin-bottom: 1rem;
-            font-size: 32px;
-        }
+        margin-bottom: 1rem;
+        font-size: 32px;
+    }
 
-        .action-statement {
-            font-size: 24px;
-            line-height: 28px;
-        }
+    .action-statement {
+        font-size: 20px;
+        line-height: 28px;
     }
 }
 
@@ -672,6 +670,7 @@ h2 {
 
 h2.numbered--h2 {
     padding: 0;
+    font-size: 21px !important;
 }
 
 h2.numbered--h2::before {
@@ -764,7 +763,7 @@ h2.numbered--h2::before {
 
 h3 {
     padding-top: 16px;
-    font-size: 16px;
+    font-size: 16px !important;
     font-weight: 600;
     color: rgb(26 31 54);
 }
