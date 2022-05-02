@@ -73,10 +73,14 @@ body {
                         position: absolute;
                         left: 13px;
                         top: 10px;
+                        width: 20px;
+                        height: 20px;
+                        z-index: 1;
 
-                        .fa.fa-file-pdf {
-                            display: inline-block;
-                            color: red;
+                        svg {
+                            width: 13px;
+                            height: 23px;
+                            fill: #4f576a;
                         }
                     }
 
@@ -88,23 +92,28 @@ body {
                         flex-grow: 1;
                         border-radius: 5px 0 0 5px;
                         border: 1.9px solid #e8ecf0;
-                        border-right: none;
                         opacity: 0.6;
                         margin-left: 0;
                         font-size: 13px;
                     }
 
                     .search-append {
+                        border: 0.1px solid #e8ecf0;
+                        background-color: rgb(247 250 252);
+                        border-radius: 4px;
                         position: absolute;
                         right: 13px;
                         top: 10px;
-
-                        .fa.fa-file-pdf {
-                            display: inline-block;
-                        }
+                        width: 20px;
+                        height: 20px;
+                        z-index: 1;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding-bottom: 4px;
                     }
 
-                    .search-append-text {
+                    span.search-append-text {
                     }
                 }
             }
@@ -163,7 +172,7 @@ body {
         }
 
         button.tab:nth-of-type(1) {
-            padding-left: 15px;
+            padding-left: 9px;
         }
     }
 
@@ -282,7 +291,7 @@ body {
                             }
 
                             .left-nav-option-with-section {
-                                margin-left: 8px;
+                                margin-left: 11px;
                             }
                         }
                     }
