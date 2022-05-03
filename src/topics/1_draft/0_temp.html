@@ -18,7 +18,215 @@ https://www.w3schools.com/howto/howto_js_tabs.asp -->
 <!-- Syntax syntax-highlighting
 https://highlightjs.org/usage/ -->
 
+<div class="code-section-no-header"></div>
 
+
+<div class="code-section">
+    <div class="code-section-header">
+        <div class="code-tabs">
+            <button class="tablinks" onclick="openTab(event, 'bash')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET')">.NET</button>
+        </div>
+        <div class="copy-icon">
+            <button class="copy-code-btn">
+                <svg
+                viewBox="0 0 1000 1000"
+                height="20"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+              >
+                <title>Copy to Clipboard</title>
+                <path d="M704 896H64V320h640v192h64V192c0-35-29-64-64-64H512C512 57 455 0 384 0S256 57 256 128H64c-35 0-64 29-64 64v704c0 35 29 64 64 64h640c35 0 64-29 64-64V768h-64v128zM192 192h64s64-29 64-64 29-64 64-64 64 29 64 64 32 64 64 64h64s64 29 64 64H128c0-39 28-64 64-64zm-64 512h128v-64H128v64zm448-128V448L320 640l256 192V704h320V576H576zM128 832h192v-64H128v64zm320-448H128v64h320v-64zM256 512H128v64h128v-64z"
+                />
+              </svg>
+              
+            </button>
+        </div>
+
+    </div>
+    <div class="copied-popup">
+        Copied!
+    </div>
+
+<div id="bash" class="tabcontent dark"><pre><code>
+# Retrieve the subscription:
+curl https://api.stripe.com/v1/subscriptions/sub_49ty4767H20z6a \
+-u sk_test_4eC39HqLyjWDarjtT1zdp7dc:
+
+# Update the subscription using retrieved ID:
+curl https://api.stripe.com/v1/subscriptions/sub_49ty4767H20z6a \
+-u sk_test_4eC39HqLyjWDarjtT1zdp7dc: \
+-d "cancel_at_period_end"="false" \
+-d "proration_behavior"="create_prorations" \
+-d "items[0][id]"="si_09IkI4u3ZypJUk5onGUZpe8O" \
+-d "items[0][price]"="price_CBb6IXqvTLXp3f"
+</code>
+</pre>
+</div>
+
+<div id="Ruby" class="tabcontent dark"><pre><code class="language-ruby">
+# Set your secret key. Remember to switch to your live secret key in production.
+# See your keys here: https://dashboard.stripe.com/apikeys
+Stripe.api_key = 'sk_test_4eC39HqLyjWDarjtT1zdp7dc'
+
+subscription = Stripe::Subscription.retrieve('sub_49ty4767H20z6a')
+
+Stripe::Subscription.update(
+    subscription.id,
+    {
+        cancel_at_period_end: false,
+        proration_behavior: 'create_prorations',
+        items: [
+            {
+                id: subscription.items.data[0].id,
+                price: 'price_CBb6IXqvTLXp3f'
+            }
+        ]
+    }
+)
+</code>
+</pre>
+</div>
+
+<div id="Python" class="tabcontent dark"><pre><code>
+# Set your secret key. Remember to switch to your live secret key in production.
+# See your keys here: https://dashboard.stripe.com/apikeys
+stripe.api_key = 'sk_test_4eC39HqLyjWDarjtT1zdp7dc'
+
+subscription = stripe.Subscription.retrieve('sub_49ty4767H20z6a')
+
+stripe.Subscription.modify(
+    subscription.id,
+    cancel_at_period_end=False,
+    proration_behavior='create_prorations',
+    items=[
+        {
+            'id': subscription['items']['data'][0].id,
+            'price': 'price_CBb6IXqvTLXp3f',
+        }
+    ]
+)
+</code>
+</pre>
+</div>
+
+<div id="PHP" class="tabcontent dark"><pre><code>
+// Set your secret key. Remember to switch to your live secret key in production.
+// See your keys here: https://dashboard.stripe.com/apikeys
+\Stripe\Stripe::setApiKey('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+
+$subscription = \Stripe\Subscription::retrieve('sub_49ty4767H20z6a');
+\Stripe\Subscription::update('sub_49ty4767H20z6a', [
+        'cancel_at_period_end' => false,
+        'proration_behavior' => 'create_prorations',
+        'items' => [
+            [
+                'id' => $subscription->items->data[0]->id,
+                'price' => 'price_CBb6IXqvTLXp3f',
+            ],
+        ],
+    ]
+);
+</code>
+</pre>
+</div>
+
+<div id="Java" class="tabcontent dark"><pre><code class="language-java">
+// Set your secret key. Remember to switch to your live secret key in production.
+// See your keys here: https://dashboard.stripe.com/apikeys
+Stripe.apiKey = "sk_test_4eC39HqLyjWDarjtT1zdp7dc";
+
+Subscription subscription = Subscription.retrieve("sub_49ty4767H20z6a");
+
+SubscriptionUpdateParams params =
+SubscriptionUpdateParams.builder()
+.setCancelAtPeriodEnd(false)
+.setProrationBehavior(SubscriptionUpdateParams.ProrationBehavior.CREATE_PRORATIONS)
+.addItem(
+SubscriptionUpdateParams.Item.builder()
+.setId(subscription.getItems().getData().get(0).getId())
+.setPrice("price_CBb6IXqvTLXp3f")
+.build())
+.build();
+
+subscription.update(params);
+</code>
+</pre>
+</div>
+
+<div id="Node" class="tabcontent dark"><pre><code class="javascript">
+// Set your secret key. Remember to switch to your live secret key in production.
+// See your keys here: https://dashboard.stripe.com/apikeys
+const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+
+const subscription = await stripe.subscriptions.retrieve('sub_49ty4767H20z6a');
+stripe.subscriptions.update('sub_49ty4767H20z6a', {
+cancel_at_period_end: false,
+proration_behavior: 'create_prorations',
+items: [{
+id: subscription.items.data[0].id,
+price: 'price_CBb6IXqvTLXp3f',
+}]
+});
+</code>
+</pre>
+</div>
+
+<div id="Go" class="tabcontent dark"><pre><code class="language-go">
+// Set your secret key. Remember to switch to your live secret key in production.
+// See your keys here: https://dashboard.stripe.com/apikeys
+stripe.Key = "sk_test_4eC39HqLyjWDarjtT1zdp7dc"
+
+subscription, err := sub.Get("sub_49ty4767H20z6a", nil)
+params := &stripe.SubscriptionParams{
+CancelAtPeriodEnd: stripe.Bool(false),
+ProrationBehavior: stripe.String(string(stripe.SubscriptionProrationBehaviorCreateProrations)),
+Items: []*stripe.SubscriptionItemsParams{
+{
+ID: stripe.String(subscription.Items.Values[0].ID),
+Price: stripe.String("price_CBb6IXqvTLXp3f"),
+},
+},
+}
+subscription, err = sub.Update("sub_49ty4767H20z6a", params)
+</code>
+</pre>
+</div>
+
+<div id=".NET" class="tabcontent dark"><pre><code class="language-vbnet">
+// Set your secret key. Remember to switch to your live secret key in production.
+// See your keys here: https://dashboard.stripe.com/apikeys
+StripeConfiguration.ApiKey = "sk_test_4eC39HqLyjWDarjtT1zdp7dc";
+
+var service = new SubscriptionService();
+Subscription subscription = service.Get("sub_49ty4767H20z6a");
+
+var items = new List<SubscriptionItemOptions> {
+new SubscriptionItemOptions {
+Id = subscription.Items.Data[0].Id,
+Price = "price_CBb6IXqvTLXp3f",
+},
+};
+
+var options = new SubscriptionUpdateOptions {
+CancelAtPeriodEnd = false,
+ProrationBehavior = "create_prorations",
+Items = items,
+};
+subscription = service.Update("sub_49ty4767H20z6a", options);
+</code>
+</pre>
+</div>
+
+
+</div>
 
 
     
@@ -32,7 +240,7 @@ https://highlightjs.org/usage/ -->
             doloremque sed officia.
         </div>
     </div>
-    <div class="info">
+    <div class="information-block">
         <div class="">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque
             magnam ullam eaque consectetur non quia? Aspernatur vero
@@ -172,7 +380,7 @@ https://highlightjs.org/usage/ -->
         deserunt natus tempora consectetur temporibus omnis quo id at odit
         quas.
     </p>
-    <div class="info">
+    <div class="information-block">
         <div class="">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque
             magnam ullam eaque consectetur non quia? Aspernatur vero
@@ -469,212 +677,7 @@ https://highlightjs.org/usage/ -->
             </div>
         </div>
     </div> -->
-<div class="code-section">
-    <div class="code-section-header">
-        <div class="code-tabs">
-            <button class="tablinks" onclick="openTab(event, 'bash')" id="defaultOpen">curl</button>
-            <button class="tablinks" onclick="openTab(event, 'Ruby')">Ruby</button>
-            <button class="tablinks" onclick="openTab(event, 'Python')">Python</button>
-            <button class="tablinks" onclick="openTab(event, 'PHP')">PHP</button>
-            <button class="tablinks" onclick="openTab(event, 'Java')">Java</button>
-            <button class="tablinks" onclick="openTab(event, 'Node')">Node</button>
-            <button class="tablinks" onclick="openTab(event, 'Go')">Go</button>
-            <button class="tablinks" onclick="openTab(event, '.NET')">.NET</button>
-        </div>
-        <div class="copy-icon">
-            <button class="copy-code-btn">
-                <svg
-                viewBox="0 0 1000 1000"
-                height="20"
-                width="20"
-                xmlns="http://www.w3.org/2000/svg"
-                role="img"
-              >
-                <title>Copy to Clipboard</title>
-                <path d="M704 896H64V320h640v192h64V192c0-35-29-64-64-64H512C512 57 455 0 384 0S256 57 256 128H64c-35 0-64 29-64 64v704c0 35 29 64 64 64h640c35 0 64-29 64-64V768h-64v128zM192 192h64s64-29 64-64 29-64 64-64 64 29 64 64 32 64 64 64h64s64 29 64 64H128c0-39 28-64 64-64zm-64 512h128v-64H128v64zm448-128V448L320 640l256 192V704h320V576H576zM128 832h192v-64H128v64zm320-448H128v64h320v-64zM256 512H128v64h128v-64z"
-                />
-              </svg>
-              
-            </button>
-        </div>
 
-    </div>
-    <div class="copied-popup">
-        Copied!
-    </div>
-
-<div id="bash" class="tabcontent dark"><pre><code>
-# Retrieve the subscription:
-curl https://api.stripe.com/v1/subscriptions/sub_49ty4767H20z6a \
--u sk_test_4eC39HqLyjWDarjtT1zdp7dc:
-
-# Update the subscription using retrieved ID:
-curl https://api.stripe.com/v1/subscriptions/sub_49ty4767H20z6a \
--u sk_test_4eC39HqLyjWDarjtT1zdp7dc: \
--d "cancel_at_period_end"="false" \
--d "proration_behavior"="create_prorations" \
--d "items[0][id]"="si_09IkI4u3ZypJUk5onGUZpe8O" \
--d "items[0][price]"="price_CBb6IXqvTLXp3f"
-</code>
-</pre>
-</div>
-
-<div id="Ruby" class="tabcontent dark"><pre><code class="language-ruby">
-# Set your secret key. Remember to switch to your live secret key in production.
-# See your keys here: https://dashboard.stripe.com/apikeys
-Stripe.api_key = 'sk_test_4eC39HqLyjWDarjtT1zdp7dc'
-
-subscription = Stripe::Subscription.retrieve('sub_49ty4767H20z6a')
-
-Stripe::Subscription.update(
-    subscription.id,
-    {
-        cancel_at_period_end: false,
-        proration_behavior: 'create_prorations',
-        items: [
-            {
-                id: subscription.items.data[0].id,
-                price: 'price_CBb6IXqvTLXp3f'
-            }
-        ]
-    }
-)
-</code>
-</pre>
-</div>
-
-<div id="Python" class="tabcontent dark"><pre><code>
-# Set your secret key. Remember to switch to your live secret key in production.
-# See your keys here: https://dashboard.stripe.com/apikeys
-stripe.api_key = 'sk_test_4eC39HqLyjWDarjtT1zdp7dc'
-
-subscription = stripe.Subscription.retrieve('sub_49ty4767H20z6a')
-
-stripe.Subscription.modify(
-    subscription.id,
-    cancel_at_period_end=False,
-    proration_behavior='create_prorations',
-    items=[
-        {
-            'id': subscription['items']['data'][0].id,
-            'price': 'price_CBb6IXqvTLXp3f',
-        }
-    ]
-)
-</code>
-</pre>
-</div>
-
-<div id="PHP" class="tabcontent dark"><pre><code>
-// Set your secret key. Remember to switch to your live secret key in production.
-// See your keys here: https://dashboard.stripe.com/apikeys
-\Stripe\Stripe::setApiKey('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
-
-$subscription = \Stripe\Subscription::retrieve('sub_49ty4767H20z6a');
-\Stripe\Subscription::update('sub_49ty4767H20z6a', [
-        'cancel_at_period_end' => false,
-        'proration_behavior' => 'create_prorations',
-        'items' => [
-            [
-                'id' => $subscription->items->data[0]->id,
-                'price' => 'price_CBb6IXqvTLXp3f',
-            ],
-        ],
-    ]
-);
-</code>
-</pre>
-</div>
-
-<div id="Java" class="tabcontent dark"><pre><code class="language-java">
-// Set your secret key. Remember to switch to your live secret key in production.
-// See your keys here: https://dashboard.stripe.com/apikeys
-Stripe.apiKey = "sk_test_4eC39HqLyjWDarjtT1zdp7dc";
-
-Subscription subscription = Subscription.retrieve("sub_49ty4767H20z6a");
-
-SubscriptionUpdateParams params =
-SubscriptionUpdateParams.builder()
-.setCancelAtPeriodEnd(false)
-.setProrationBehavior(SubscriptionUpdateParams.ProrationBehavior.CREATE_PRORATIONS)
-.addItem(
-SubscriptionUpdateParams.Item.builder()
-.setId(subscription.getItems().getData().get(0).getId())
-.setPrice("price_CBb6IXqvTLXp3f")
-.build())
-.build();
-
-subscription.update(params);
-</code>
-</pre>
-</div>
-
-<div id="Node" class="tabcontent dark"><pre><code class="javascript">
-// Set your secret key. Remember to switch to your live secret key in production.
-// See your keys here: https://dashboard.stripe.com/apikeys
-const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
-
-const subscription = await stripe.subscriptions.retrieve('sub_49ty4767H20z6a');
-stripe.subscriptions.update('sub_49ty4767H20z6a', {
-cancel_at_period_end: false,
-proration_behavior: 'create_prorations',
-items: [{
-id: subscription.items.data[0].id,
-price: 'price_CBb6IXqvTLXp3f',
-}]
-});
-</code>
-</pre>
-</div>
-
-<div id="Go" class="tabcontent dark"><pre><code class="language-go">
-// Set your secret key. Remember to switch to your live secret key in production.
-// See your keys here: https://dashboard.stripe.com/apikeys
-stripe.Key = "sk_test_4eC39HqLyjWDarjtT1zdp7dc"
-
-subscription, err := sub.Get("sub_49ty4767H20z6a", nil)
-params := &stripe.SubscriptionParams{
-CancelAtPeriodEnd: stripe.Bool(false),
-ProrationBehavior: stripe.String(string(stripe.SubscriptionProrationBehaviorCreateProrations)),
-Items: []*stripe.SubscriptionItemsParams{
-{
-ID: stripe.String(subscription.Items.Values[0].ID),
-Price: stripe.String("price_CBb6IXqvTLXp3f"),
-},
-},
-}
-subscription, err = sub.Update("sub_49ty4767H20z6a", params)
-</code>
-</pre>
-</div>
-
-<div id=".NET" class="tabcontent dark"><pre><code class="language-vbnet">
-// Set your secret key. Remember to switch to your live secret key in production.
-// See your keys here: https://dashboard.stripe.com/apikeys
-StripeConfiguration.ApiKey = "sk_test_4eC39HqLyjWDarjtT1zdp7dc";
-
-var service = new SubscriptionService();
-Subscription subscription = service.Get("sub_49ty4767H20z6a");
-
-var items = new List<SubscriptionItemOptions> {
-new SubscriptionItemOptions {
-Id = subscription.Items.Data[0].Id,
-Price = "price_CBb6IXqvTLXp3f",
-},
-};
-
-var options = new SubscriptionUpdateOptions {
-CancelAtPeriodEnd = false,
-ProrationBehavior = "create_prorations",
-Items = items,
-};
-subscription = service.Update("sub_49ty4767H20z6a", options);
-</code>
-</pre>
-</div>
-
-
-</div>
 <div class="method-example atom-one-light">
     <div class="method-example-top-bar">
         Request Body
