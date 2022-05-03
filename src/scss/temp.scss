@@ -29,7 +29,7 @@
         h2 {
         }
 
-        .information-block {
+        .info {
         }
 
         h3 {
@@ -804,7 +804,7 @@ h2.numbered--h2::before {
     ); /* Display counter value in default style (decimal) */
 }
 
-.information-block {
+.info {
     display: flex;
     border: 0.1px solid #ddd;
     background-color: rgb(247 250 252);
