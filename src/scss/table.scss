@@ -89,10 +89,100 @@ table.main-table {
     }
 }
 
+.code-section-no-tabs {
+    margin: 23px 0;
+    background-color: transparent;
+    position: relative;
+
+    .copy-code-btn-container {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 35px;
+        height: 36px;
+        z-index: 2;
+
+        button.copy-code-btn {
+            border: none;
+            color: white;
+            background-color: transparent;
+            width: 18px;
+            height: 21px;
+            vertical-align: center;
+            position: absolute;
+            top: 5px;
+            right: 12px;
+
+            svg {
+                fill: #a3adb9;
+            }
+
+            svg:hover {
+                fill: #3c4356;
+            }
+        }
+    }
+
+    .copied-popup {
+        position: absolute;
+        bottom: 24px;
+        right: 12px;
+        width: 72px;
+        height: 20px;
+
+        /* padding: 18px; */
+        padding: 0 11px;
+        border-radius: 4px;
+        color: #a3acb9;
+        z-index: 1;
+        background-color: #2e4c7e;
+        font-size: 13px;
+        font-weight: 500;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+            'Helvetica Neue', Ubuntu, sans-serif;
+    }
+
+    .code-content {
+        // border-top: none;
+        // border: none;
+        // color: white;
+        // display: none;
+        // font-family: 'Roboto Mono', monospace;
+        // padding: 6px 12px;
+
+        // position: relative;
+
+        // padding-left: 50px;
+
+        pre {
+            font-size: 13px;
+            margin-bottom: 0 !important;
+
+            // sdf
+            padding: 3px 12px 25px;
+
+            // dfd
+
+            > code {
+                background-color: #202e63;
+            }
+
+            code.hljs {
+                padding: 0 !important;
+                overflow-x: unset !important;
+            }
+        }
+    }
+}
+
 // "Menlo","Consolas",monospace
 .code-section {
     /* Style the tab */
-    margin-bottom: 16px 0;
+    margin: 23px 0;
     border-radius: 10px;
     position: relative;
 
@@ -135,7 +225,7 @@ table.main-table {
             }
         }
 
-        .copy-icon {
+        .copy-code-btn-container {
             position: relative;
             background-color: #192652;
             display: flex;
@@ -208,18 +298,6 @@ table.main-table {
 
             > code {
                 background-color: #202e63;
-
-                // position: relative;
-
-                // span::before {
-                //     counter-increment: code-line-numbers;
-                //     content: counter(code-line-numbers);
-                //     position: absolute;
-                //     color: white;
-                //     z-index: 1;
-                //     font-family: 'Roboto Mono', monospace;
-                //     font-size: 13px;
-                // }
             }
 
             code.hljs {

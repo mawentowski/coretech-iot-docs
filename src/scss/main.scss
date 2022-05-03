@@ -384,11 +384,23 @@ body {
 
     // overflow-y: scroll;
     position: relative;
-    padding-left: 48px;
-    padding-right: 48px;
     overflow-y: auto;
 
     h4#item-1 {
+    }
+}
+
+@media (max-width: 767px) {
+    .content {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+}
+@media (min-width: 768px) {
+    .content {
+        padding-left: 48px;
+        padding-right: 48px;
+        height: 84vh;
     }
 }
 
@@ -399,20 +411,6 @@ body {
 //         height: 90vh;
 //     }
 // }
-
-@media (max-width: 767px) {
-    .content {
-        padding-left: 25px;
-        padding-right: 25px;
-    }
-}
-@media (min-width: 768px) {
-    .content {
-        height: 84vh;
-        padding-left: 48px;
-        padding-right: 48px;
-    }
-}
 
 // @media (min-width: 992px) {
 //     .content {
