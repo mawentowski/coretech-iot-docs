@@ -1,0 +1,182 @@
+--- # yaml document begining
+Get-Started:
+    - Introduction
+    - SITA Flex Overvew:
+          - SITA Flex Overview
+          - Who is it for?
+          - High-Level Use Cases
+          - Knowledge Prerequisites
+          - Basic Concepts
+          - SITA Flex APIs
+          - Azure Service Bus
+          - Application Configuration
+          - Development Effort/Scope
+          - Customer Registration
+          - Flex Environments
+          - Recommended Tools
+          - Next Steps / Get Support
+    - Release Notes:
+          - v2.1
+          - v2
+          - v1.2
+    - Test Environments:
+          - Test Environments Overview
+          - SITA Flex Suitcase
+          - Citrix Virtualized SITA Flex Environment
+    - Get Started:
+          - Overview:
+                - Get Started using Flex
+                - Prerequisites
+                - Get Credentials
+                - Protect Sensitive Information
+                  - Login to a Test Environment
+          - Authentication
+          - Get Access Token
+          - Construct an API Request
+    - Useful Information:
+          - Glossary
+          - Links
+    - Next Steps
+
+APIs:
+    - Session:
+          - Overview
+          - Reserve a Location
+            - Best Practices
+          - Check for an Existing Subscription
+          - Create a Subscription
+            - Best Practices
+          - Get Location Capabilities
+          - Connect to a Device
+          - Best Practices
+          - Next Steps
+    - Print:
+          - Overview
+          - Endpoints
+          - Make an API Call
+          - Messages Overview
+          - API Walkthrough
+          - Best Practices
+          - Messages Reference
+    - Scan:
+          - Overview
+          - Endpoints
+          - Make an API Call
+          - Messages Overview
+          - API Walkthrough
+          - Best Practices
+          - Messages Reference
+    - GateAccess:
+          - Overview
+          - Endpoints
+          - Make an API Call
+          - Device Processes
+          - Messages Overview
+          - API Walkthrough
+          - Best Practices
+          - Messages Reference
+    - Payment:
+          - Overview
+          - Endpoints
+          - Make an API Call
+          - Messages Overview
+          - API Walkthrough
+          - Best Practices
+          - Messages Reference
+    - Troubleshooting:
+          - Environments
+          - Error Codes
+# yaml document begining
+# Get-Started:
+#     - Introduction
+#     - SITA Flex Overvew:
+#           - SITA Flex Overview
+#           - Who is it for?
+#           - High-Level Use Cases
+#           - Knowledge Prerequisites
+#           - Basic Concepts
+#           - SITA Flex APIs
+#           - Azure Service Bus
+#           - Application Configuration
+#           - Development Effort/Scope
+#           - Customer Registration
+#           - Flex Environments
+#           - Recommended Tools
+#           - Next Steps / Get Support
+#     - Release Notes:
+#           - v2.1
+#           - v2
+#           - v1.2
+#     - Test Environments:
+#           - Test Environments Overview
+#           - SITA Flex Suitcase
+#           - Citrix Virtualized SITA Flex Environment
+#     - Get Started:
+#           - Overview:
+#                 - Get Started using Flex
+#                 - Prerequisites
+#                 - Get Credentials
+#                 - Protect Sensitive Information
+#                   - Login to a Test Environment
+#           - Authentication
+#           - Get Access Token
+#           - Construct an API Request
+#     - Useful Information:
+#           - Glossary
+#           - Links
+#     - Next Steps
+# Session:
+#     - Overview
+#     - Reservations:
+#           - Reserve a Location
+#           - Best Practices
+#     - Subscriptions:
+#           - Check for an Existing Subscription
+#           - Create a Subscription
+#           - Best Practices
+#     - Locations:
+#           - Get Location Capabilities
+#     - Connections:
+#           - Connect to a Device
+#           - Best Practices
+#     - Next Steps
+# Print:
+#     - Overview
+#     - Make an API Call:
+#           - Endpoints
+#           - Construct a Print Request
+#     - Service Bus Messages:
+#           - Overview - 'Service Bus Messages'
+#           - Messages Reference
+#     - API Walkthrough
+#     - Best Practices
+# Scan:
+#     - Introduction
+#     - Endpoints
+#     - Make an API Call:
+#           - Construct a Scan Request
+#     - Service Bus Messages:
+#           - Overview - 'Service Bus Messages'
+#           - Messages Reference
+#     - API Walkthrough
+#     - Best Practices
+# GateAccess:
+#     - Introduction
+#     - Endpoints
+#     - Make an API Call
+#     - Device Processes
+#     - Messages Overview
+#     - API Walkthrough
+#     - Best Practices
+#     - Messages Reference
+# Payment:
+#     - Introduction
+#     - Endpoints
+#     - Make an API Call
+#     - Messages Overview
+#     - API Walkthrough
+#     - Best Practices
+#     - Messages Reference
+# Troubleshooting:
+#     - Environments
+#     - Error Codes
