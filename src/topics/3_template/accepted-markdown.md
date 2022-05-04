@@ -1,4 +1,4 @@
-# tab-1_chapter-1_topic-2.md
+# tab-2_tab-overview.md
 
 ## Supported Styles
 
@@ -12,13 +12,11 @@ _italicized text_
 
 > blockquote
 
-1. First item
-2. Second item
-3. Third item
-
--   First item
--   Second item
--   Third item
+1. Lists can be nested
+    - Four spaces
+        - Eight spaces
+            - Twelve spaces
+2. And back
 
 `code`
 
@@ -26,7 +24,7 @@ _italicized text_
 
 [markdown cheat sheet](https://www.markdownguide.org/cheat-sheet/)
 
-![alt text](image.jpg)
+![alt text](../../../dist/images/svgs/tab-preview-thumbnail.svg)
 
 | Syntax    | Description |
 | --------- | ----------- |

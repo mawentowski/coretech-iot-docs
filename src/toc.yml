@@ -1,7 +1,7 @@
 --- # yaml document begining
-Get-Started:
-    - Introduction
-    - SITA Flex Overvew:
+1_get-started:
+    - 0_Introduction
+    - 1_SITA Flex Overvew:
           - SITA Flex Overview
           - Who is it for?
           - High-Level Use Cases
@@ -24,28 +24,24 @@ Get-Started:
           - SITA Flex Suitcase
           - Citrix Virtualized SITA Flex Environment
     - Get Started:
-          - Overview:
-                - Get Started using Flex
-                - Prerequisites
-                - Get Credentials
-                - Protect Sensitive Information
-                  - Login to a Test Environment
+          - Get Started using Flex
+          - Prerequisites
+          - Get Credentials / Protect Sensitive Information
+          - Login to a Test Environment
           - Authentication
           - Get Access Token
           - Construct an API Request
     - Useful Information:
           - Glossary
           - Links
-    - Next Steps
+    - Next Steps (INCLUDES GET SUPPORT)
 
 APIs:
     - Session:
           - Overview
-          - Reserve a Location
-            - Best Practices
-          - Check for an Existing Subscription
-          - Create a Subscription
-            - Best Practices
+          - Reserve a Location INCLUDES Best Practices
+          - Check for an Existing Subscription (ROot file)
+          - Create a Subscription INCLUDES Best Practices
           - Get Location Capabilities
           - Connect to a Device
           - Best Practices

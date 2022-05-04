@@ -1,0 +1,107 @@
+<h2 id="create-a-subscription">Check for an Existing Subscription</h2>
+<p>
+    The GET <code>/session/v2/subscriptions</code> request should be sent prior
+    to connecting to devices at a new location to determine if there is an
+    existing subscription in the same region as that location. If there is an
+    existing subscription, that subscription should be used and a&#160;<b
+        >POST</b
+    >
+    <code>/session/v2/subscriptions</code> request <i>should not</i> be made.
+</p>
+<div class="note">
+    <b>Note:</b>&#160;For more information on subscriptions and SAS&#160;tokens,
+    see
+    <a href="../Session API/Create a Subscription.htm"
+        >POST&#160;/session/v2/subscriptions.</a
+    >
+</div>
+<p>
+    Sending a <b>POST</b> <code>/session/v2/subscriptions</code> request when
+    <i>there is</i> an existing subscription creates a new SAS&#160;token,
+    resulting in two SAS&#160;tokens available to connect to the same
+    subscription.&#160;
+</p>
+<p>
+    Maintaining two SAS tokens can be problematic, and therefore should be
+    avoided. The GET&#160;<code>/session/v2/subscriptions</code> request returns
+    the information necessary for the airline backend to determine whether a
+    subscription is already in place to avoid multiple SAS&#160;tokens.
+</p>
+<div class="note">
+    <p>
+        <strong>Note:</strong> No Request Body is required to send this request.
+    </p>
+</div>
+<h3 id="response-body-1">Response Body</h3>
+<h4>Subscription in&#160;Region Exists</h4>
+<p>
+    If <i>there is</i> an existing subscription that relates to the
+    <code>location-id</code> passed in the Request Header, a successful GET
+    <code>/session/v2/subscriptions</code> request returns a
+    <code>2xx</code> success status code with the JSON Response Body containing
+    the Service Bus details of the existing subscription.
+</p>
+<div class="note">
+    <b>Note</b>:&#160;See
+    <a href="../Session API/Create a Subscription.htm"
+        >POST&#160;/session/v2/subscriptions</a
+    >
+    for a full description of the returned properties. The only property not
+    returned by this GET&#160;request (that is returned by the
+    POST&#160;request)&#160;is the <code>connectionString</code> since this
+    request is informational only and does not provide connection details.
+</div>
+<MadCap:codeSnippet>
+    <codeSnippetCopyButton />
+    <codeSnippetBody
+        MadCap:useLineNumbers="False"
+        MadCap:lineNumberStart="1"
+        MadCap:continue="False"
+        xml:space="preserve"
+        >{ "subscriptionId": "4ec343b2-eab5-4fd3-b0c4-3cd5bc30ee5c",
+        "topicName": "airline-messages", "subscriptionName":
+        "2c73e63e-a3ef-4fcc-b13c-d2a90912bca8c", "expiryTime":
+        "2021-10-22T23:54:50.8272178+00:00" }
+    </codeSnippetBody>
+</MadCap:codeSnippet>
+<div
+    id="sample-response-body-for-post-sessionv2subscriptions-request-containing-details-for-connecting-to-the-subscription"
+    class="caption"
+>
+    Sample Response Body for a GET <code>session/v2/subscriptions</code> request
+    containing Service Bus details for the existing subscription.
+</div>
+<p>
+    The airline backend would then pass the <code>subscriptionId</code> of the
+    existing subscription in requests to connect to devices at the location.
+</p>
+<h4>Subscription in&#160;Region Does Not Exist</h4>
+<p>
+    If <i>there is</i> an existing subscription that relates to the
+    <code>location-id</code> passed in the Request Header, a successful GET
+    <code>/session/v2/subscriptions</code> request returns a <code>404</code>
+    <b>Not Found</b> status code with an empty JSON Response Body.
+</p>
+<MadCap:codeSnippet>
+    <codeSnippetCopyButton />
+    <codeSnippetBody
+        MadCap:useLineNumbers="False"
+        MadCap:lineNumberStart="1"
+        MadCap:continue="False"
+        xml:space="preserve"
+        >{ "type": "https://tools.ietf.org/html/rfc7231#section-6.5.4", "title":
+        "Not Found", "status": 404, "detail": "No subscription exists.",
+        "traceId": "00-712743294f9fab00462e9394d267a105-b74f52e0fef41979-00"
+        }</codeSnippetBody
+    >
+</MadCap:codeSnippet>
+<div class="caption">
+    Sample Response Body for a GET <code>session/v2/subscriptions</code> request
+    indicating that no subscription exists.
+</div>
+<p>
+    This response indicates a subscription does not exist the airline backend
+    should
+    <a href="../Session API/Create a Subscription.htm">create a subscription</a>
+    that can be used with the location.
+</p>

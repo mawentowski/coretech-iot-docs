@@ -4,7 +4,7 @@
 .dark pre {
     background-color: #202e63;
 
-    .hljs {
+    code.hljs {
         color: #ddd;
 
         // background: #303030;
@@ -65,9 +65,11 @@
 
 .atom-one-light {
     pre {
+        background-color: #f7fafc;
+
         code.hljs {
             color: #383a42;
-            background-color: #f7fafc;
+            background-color: transparent;
 
             .hljs-comment,
             .hljs-quote {
