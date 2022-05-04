@@ -1,0 +1,799 @@
+<h2 id="bagdrop-api-walkthrough">Bagdrop API Walkthrough</h2>
+<p>
+    Follow along with this walkthrough to experience the Bagdrop API, including
+    connecting to an SBD and completing an entire bagdrop process that ends with
+    releasing the bag to the Baggage Handling System (BHS).
+</p>
+<p>The following tools are used to demonstrate the Print API:</p>
+<ul>
+    <li>
+        The
+        <a href="Citrix Virtualized SITA Flex_1.htm"
+            >Citrix Virtualized SITA Flex Environment</a
+        >
+        to add devices.
+    </li>
+    <li>
+        The SITA Flex API Postman Collection that allows you to send requests to
+        Flex.
+    </li>
+    <li>
+        Your airline backend to receive messages from the Azure Service Bus.
+    </li>
+</ul>
+<blockquote>
+    <p>
+        <strong>Note:</strong> This walkthrough provides some basic
+        troubleshooting steps. However, if an error displays that is not
+        covered, refer to the
+        <a href="Troubleshooting Environments_1.htm"
+            >Troubleshooting Environments</a
+        >
+        or
+        <a href="Troubleshooting Error Codes_1.htm"
+            >Troubleshooting Error Codes</a
+        >
+        sections for detailed steps on how to resolve the issue.
+    </p>
+</blockquote>
+<h3 id="prerequisite-steps-3">Prerequisite Steps</h3>
+<ol>
+    <li>
+        Login to the
+        <a href="Citrix Virtualized SITA Flex_1.htm"
+            >Citrix Virtualized SITA Flex Environment</a
+        >
+        you set up previously.
+    </li>
+    <li>
+        In Postman, open the <strong>SITA Flex API Collection</strong> and
+        <strong>Postman environment</strong> <code>.json</code> files. In the
+        Postman environment file:
+        <ul>
+            <li>
+                Ensure your <code>clientid</code> and
+                <code>clientsecret</code> are populated in both the
+                <strong>Initial Value</strong> and
+                <strong>Current Value</strong> columns.
+            </li>
+            <li>
+                Ensure the <code>{{location}}</code> variable corresponds to the
+                VM&#39;s machine name as seen in the Peripheral View. For
+                example, a VM with machine name <code>ZZU1CKB005</code> as seen
+                in the Peripheral view could correspond to a
+                <code>location</code> called
+                <code>A-ZZU-MZUZUAIRPORT-ZZU1CKB005</code> in the Postman
+                Environment.
+            </li>
+        </ul>
+    </li>
+    <li>
+        In Postman, perform the following:
+        <ul>
+            <li>Send a Get Access token request.</li>
+            <li>Send a POST <code>/session/v2/subscriptions</code> request.</li>
+            <li>Send a POST <code>/site/v2/reservations</code> request.</li>
+        </ul>
+    </li>
+</ol>
+<h3 id="add-an-sbd-device">Add an SBD Device</h3>
+<blockquote>
+    <p>
+        <strong>Note:</strong> If an SBD has already been added, skip this
+        section.
+    </p>
+</blockquote>
+<ol>
+    <li>
+        In the Device Simulator of the VM, click <strong>Add Device</strong>.
+    </li>
+</ol>
+<p><img src="images%5Cdevice-sim-add.jpg" alt="" /></p>
+<h5 id="add-an-sbd-in-device-simulator">Add an SBD in Device Simulator</h5>
+<ol start="2">
+    <li>
+        <p>
+            Select <strong>SBD</strong> from the
+            <strong>Device Type</strong> drop-down.
+        </p>
+    </li>
+    <li><p>Leave the other settings as is.</p></li>
+    <li>
+        <p>Click <strong>Add Device</strong>.</p>
+        <ul>
+            <li>The SBD is now available in the Device Simulator.</li>
+            <li>
+                By default, the SBD does not have a door. To trigger
+                door-related Service Bus messages, you will add a door to the
+                SBD in the following steps.
+            </li>
+        </ul>
+    </li>
+    <li>
+        <p>
+            On the device, click <strong>Options</strong>, then
+            <strong>Settings</strong>.
+        </p>
+    </li>
+    <li>
+        <p>
+            Click the <strong>SBD Bag Door</strong> drop-down and select
+            <strong>(1) Door is installed</strong>.
+        </p>
+    </li>
+</ol>
+<p><img src="images%5Csita-sbd-settings.png" alt="" /></p>
+<h5 id="sbd-bag-door-setting-set-to-door-is-installed">
+    SBD Bag Door Setting set to <code>Door is installed</code>
+</h5>
+<ol start="7">
+    <li>Click <strong>Save and Close</strong>.</li>
+    <li>
+        On the device, click <strong>Run</strong>.
+        <ul>
+            <li>
+                An SBD Device Simulator screen displays. You may keep it open
+                for later use.
+            </li>
+        </ul>
+    </li>
+</ol>
+<h3 id="connect-to-the-sbd">Connect to the SBD</h3>
+<ol>
+    <li>
+        In Postman, send a <code>/session/v2/connections</code> request to
+        connect to the SBD.
+        <ul>
+            <li>
+                <strong>Note:</strong> After connecting to a device, a
+                connection <code>expiryTime</code> is returned in the Response
+                Body set to <strong>30 minutes</strong> from the time the
+                <code>session/v2/connections</code> request was made.
+            </li>
+        </ul>
+    </li>
+</ol>
+<blockquote>
+    <p>
+        <strong>Note:</strong> Notice in the Request Body that the
+        <code>DeviceId</code> will be populated based by the variable
+        <code>{{location}}</code> in the Postman environment.
+    </p>
+</blockquote>
+<ol start="2">
+    <li>
+        Check the Service Bus subscription for a
+        <code>BagdropDeviceStatus</code> message shown below.
+    </li>
+</ol>
+<pre><code class="language-JSON">{
+    &quot;DeviceStatus&quot;: &quot;Online&quot;,
+    &quot;DeviceInUse&quot;: false
+}
+</code></pre>
+<h5
+    id="bagdropdevicestatus-service-bus-message-indicating-the-device-is-online-and-not-exclusively-reserved"
+>
+    <code>BagdropDeviceStatus</code> Service Bus Message indicating the device
+    is <code>Online</code> and not exclusively reserved
+</h5>
+<p>
+    The message should indicate the SBD is <code>Online</code> and is not
+    exclusively being used (<code
+        >&quot;DeviceInUse&quot;: &quot;false&quot;</code
+    >). The device is available to successfully receive a
+    <code>/bagdrop/v2/getbag</code> request.
+</p>
+<blockquote>
+    <p>
+        <strong>Note</strong>: In the Tests tab of Postman, there is a
+        Javascript function that updates the
+        <code>sbd_connection_id</code> environmental variable after connecting
+        to the SBD. This variable makes it so you do not need to manually enter
+        a <code>connectionId</code> in subsequent calls to the bagdrop API.
+    </p>
+</blockquote>
+<h4 id="devicestatus-is-offline-3">
+    <code>DeviceStatus</code> is <code>Offline</code>
+</h4>
+<p>
+    If the <code>DeviceStatus</code> returns as <code>Offline</code>, check to
+    see if the device is running in the Device Simulator. If there is a
+    <strong>Stop</strong> button on the device in Device Simulator, the device
+    is running.
+</p>
+<p>
+    <em>If <u>it is not</u> running:</em>
+</p>
+<ol>
+    <li>Click <strong>Run</strong>.</li>
+    <li>
+        In the Peripheral View, check to see if the SBD
+        <strong>Status</strong> is now <code>Online</code>.
+    </li>
+</ol>
+<p>
+    <em>If <u>it is</u> running</em>, from the Device Simulator on the VM:
+</p>
+<ol>
+    <li>Click <strong>Stop</strong>.</li>
+    <li>Click <strong>Run</strong>.</li>
+    <li>
+        In the Peripheral View, check to see if the SBD
+        <strong>Status</strong> is now <code>Online</code>.
+    </li>
+</ol>
+<h3 id="initiate-a-bag-drop-process">Initiate a Bag Drop Process</h3>
+<ol>
+    <li>
+        In Postman, send a <code>/bagdrop/v2/getbag</code> request.
+        <ul>
+            <li>
+                The Bagdrop API acknowledges the request by returning a
+                <code>2xx</code> success status code, as seen in a tool like
+                Postman.
+            </li>
+            <li>
+                If you added a door to the SBD earlier, notice that the door
+                icon disappeared in the SBD Device Simulator. This simulates the
+                door opening on a real bagdrop after a bagdrop process was
+                initiated.
+            </li>
+        </ul>
+    </li>
+</ol>
+<p><img src="images%5Csbd-door-disappear.png" alt="" /></p>
+<h5
+    id="device-simulator-showing-an-opened-door-after-sending-a-bagdropv2getbag-request"
+>
+    Device Simulator showing an &#39;opened door&#39; after sending a
+    <code>/bagdrop/v2/getbag</code> request
+</h5>
+<blockquote>
+    <p>
+        <strong>Note:</strong> On a real bag drop, a message such as
+        &quot;Please place your bag on the belt&quot; would display.
+    </p>
+</blockquote>
+<ul>
+    <li>
+        An updated <code>BagdropDeviceStatus</code> message displays on the
+        Service Bus, indicating the SBD is now &#39;In Use&#39;.
+    </li>
+</ul>
+<pre><code class="language-JSON">{
+    &quot;DeviceStatus&quot;: &quot;Online&quot;,
+    &quot;DeviceInUse&quot;: true
+}
+</code></pre>
+<h5
+    id="bagdropdevicestatus-service-bus-message-indicating-the-device-is-now-exclusively-reserved"
+>
+    <code>BagdropDeviceStatus</code> Service Bus Message indicating the device
+    is now exclusively reserved
+</h5>
+<ul>
+    <li>
+        A <code>DoorOpening</code> message displays on the Service Bus with an
+        empty Message Body. This simply indicates the door of the SBD has
+        opened.
+    </li>
+    <li>
+        A <code>GetBagResponse</code> message displays on the Service Bus which
+        is an indication the bagdrop process is initiated. The property
+        <code>&quot;Bag&quot;: null</code> indicates there is no bag information
+        because, for the purpose of this simulation, the passenger has not yet
+        placed a bag onto the belt.
+    </li>
+</ul>
+<pre><code class="language-json">{
+    &quot;Bag&quot;: null,
+    &quot;IsSuccess&quot;: true,
+    &quot;Error&quot;: null
+}
+</code></pre>
+<h5
+    id="getbagresponse-service-bus-message-indicating-no-baggage-data-has-been-collected"
+>
+    <code>GetBagResponse</code> Service Bus Message indicating no baggage data
+    has been collected
+</h5>
+<h4 id="timeout-at-entry-area-1">Timeout at Entry Area</h4>
+<p>
+    A <code>BagDropTransactionTimeout</code> message displays on the service bus
+    with an empty Message Body when too much time has elapsed since the
+    <code>/bagdrop/v2/getbag</code> request was made. Another
+    <code>/bagdrop/v2/getbag</code> request must be made to restart the bagdrop
+    process. If you send a <code>/bagdrop/v2/processbag</code> request when a
+    timeout has occurred, and you have not sent the
+    <code>/bagdrop/v2/getbag</code> request, you will receive an error status
+    code.
+</p>
+<h3 id="place-a-bag-on-the-belt">Place a Bag on the Belt</h3>
+<ol>
+    <li>
+        <p>
+            With the SBD Device Simulator open, click <strong>New Bag</strong>.
+        </p>
+        <p><img src="images%5Csbd-new-bag.png" alt="" /></p>
+        <ul>
+            <li>A <strong>New Bag</strong> window displays.</li>
+        </ul>
+    </li>
+    <li><p>Leave all settings as is.</p></li>
+    <li>
+        <p>Click <strong>Create Bag</strong>.</p>
+        <ul>
+            <li>A new <strong>Bag #</strong> panel is displayed.</li>
+        </ul>
+    </li>
+</ol>
+<blockquote>
+    <p>
+        <strong>Note:</strong> The bag in its current state is simulating the
+        passenger holding the bag prior to placing the bag on the belt.
+    </p>
+</blockquote>
+<ol start="3">
+    <li>
+        Ensure the door is open (not red).
+        <ul>
+            <li>
+                If the door has turned red (door is closed), send another
+                <code>/bagdrop/v2/getbag</code> request to open it.
+            </li>
+        </ul>
+    </li>
+    <li>
+        Click <strong>Place Selected Bag</strong> next to the New Bag button you
+        clicked earlier (see previous screenshot).
+        <ul>
+            <li>
+                The bag (in green) displays in the SBD image in the
+                <strong>Entry Area</strong> like when a real bag is placed by a
+                passenger in the <strong>Entry Area</strong> of an SBD.
+            </li>
+            <li>
+                The <strong>Weight Scale Status</strong> (below the purple belt)
+                displays <strong>Scale is debouncing</strong> (you must look
+                quickly to see it), then <strong>Scale is settled</strong> after
+                a few seconds to indicate the settled weight has been
+                determined.
+            </li>
+        </ul>
+    </li>
+</ol>
+<blockquote>
+    <p>
+        <strong>Note</strong>: If the passenger is using a mobile app, the app
+        may request confirmation that the bag has been placed by displaying a
+        &quot;I have placed the bag&quot; prompt. After tapping the button, the
+        passenger is brought to the next step in the bagdrop process.
+    </p>
+</blockquote>
+<h3 id="view-settled-weight">View Settled Weight</h3>
+<p>
+    In the SBD Device Simulator, notice above the <strong>New Bag</strong> and
+    <strong>Place Selected Bag</strong> buttons is a field with two properties
+    called <strong>Bounce</strong>.
+</p>
+<p>
+    In the previous step, you placed a bag onto the belt. When this occurred,
+    the belt was &#39;in-motion&#39; while the weight on the belt settled, like
+    a real bag drop. The <strong>Bounce</strong> properties simulate the
+    fluctuation of weight while the weight of the bag settles.
+</p>
+<p>
+    The settled weight is calculated after the specified number of balancing
+    events (<strong>5</strong> by default) has occurred.
+</p>
+<p><img src="images%5Csbd-bounce.png" alt="" /></p>
+<h5
+    id="sbd-device-simulator-showing-bounce-properties-that-simulate-the-motion-of-the-belt-after-placing-a-bag"
+>
+    SBD Device Simulator showing <code>Bounce</code> Properties that simulate
+    the motion of the belt after placing a bag
+</h5>
+<p>To view the settled weight:</p>
+<ol>
+    <li>Click the <strong>Session History</strong> tab.</li>
+</ol>
+<p><img src="images%5Csbd-session-history.png" alt="" /></p>
+<p>
+    In the Session History log, notice that the <strong>Bounce</strong> events
+    are shown. For each event, a weight measurement is taken. Within the
+    characters of the event string, <code>SW=2</code> means the bag is still
+    settling on the weight scale. Notice how from one event to the next, the
+    weight goes up and down, indicated by the <code>CW=</code> value. For
+    example, one measurement could be <code>CW=23.8</code> then the next could
+    be <code>CW=24.5</code>.
+</p>
+<p>
+    In the last event, the <code>SW=4</code> indicates this measurement is the
+    final measurement taken when the bag has settled and not in motion.
+</p>
+<p>
+    A <code>BagPlaced</code> message displays on the Service Bus once a settled
+    weight is determined:
+</p>
+<pre><code class="language-json">{
+    &quot;Bag&quot;: {
+        &quot;Tags&quot;: [],
+        &quot;Weight&quot;: {
+            &quot;Amount&quot;: 23.8,
+            &quot;Unit&quot;: &quot;Kg&quot;
+        },
+        &quot;Position&quot;: &quot;Entry&quot;,
+        &quot;VolumeResult&quot;: {
+            &quot;Width&quot;: {
+                &quot;Amount&quot;: 0.0,
+                &quot;Unit&quot;: &quot;Cm&quot;
+            },
+            &quot;Height&quot;: {
+                &quot;Amount&quot;: 0.0,
+                &quot;Unit&quot;: &quot;Cm&quot;
+            },
+            &quot;Length&quot;: {
+                &quot;Amount&quot;: 0.0,
+                &quot;Unit&quot;: &quot;Cm&quot;
+            },
+            &quot;TubDetection&quot;: &quot;NoTub&quot;
+        }
+    },
+    &quot;IsSuccess&quot;: true,
+    &quot;Error&quot;: null
+}
+</code></pre>
+<h5
+    id="bagplaced-service-bus-message-displaying-properties-of-the-placed-bag-1"
+>
+    <code>BagPlaced</code> Service Bus message displaying properties of the
+    &#39;placed bag&#39;
+</h5>
+<p>
+    The <code>&quot;Position&quot;: &quot;Entry&quot;</code> indicates that the
+    bag is currently located on the <code>Entry</code> position of the SBD unit.
+</p>
+<blockquote>
+    <p>
+        <strong>Note:</strong> The <code>Position</code> will update when new
+        measurements are made as the bagdrop process progresses and the position
+        of the bag changes.
+    </p>
+</blockquote>
+<p>
+    <code>&quot;IsSuccess&quot;: true</code> indicates that a bag has been
+    placed on the belt, and a settled weight has been calculated for the bag, in
+    addition to other measurements such as the dimensions of the bag.
+</p>
+<blockquote>
+    <p>
+        <strong>Note</strong>: The SBD device in the SBD Device Simulator is not
+        capable of providing a the <code>VolumeResult</code> that includes the
+        baggage dimensions, returning <code>&quot;Amount&quot;: 0.0</code> for
+        the various dimensions. However, some SBDs have this capability. When
+        interacting with an actual SBD with the capability to take measurements,
+        those measurements will display. How your airline backend could use this
+        information is to potentially reject a bag if a bag&#39;s
+        <code>width</code> is greater than a certain allowed amount, for
+        example.
+    </p>
+</blockquote>
+<h3 id="process-the-bag">Process the Bag</h3>
+<ol>
+    <li>
+        In Postman, send a <code>/bagdrop/v2/processbag</code> request.
+        <ul>
+            <li>
+                The Bagdrop API acknowledges the request by returning a
+                <code>2xx</code> success status code, as seen in a tool such as
+                Postman.
+            </li>
+            <li>
+                In the SBD Device Simulator, notice that the door has closed,
+                and the bag has now moved from the <code>Entry</code> position
+                to the <code>Process</code> position to simulate the belt moving
+                down the bag. The bag is not accessible to the passenger in this
+                position.
+            </li>
+        </ul>
+    </li>
+</ol>
+<p><img src="images%5Csbd-process.png" alt="" /></p>
+<h5 id="device-simulator-showing-the-bag-has-moved-to-the-processing-area">
+    Device Simulator showing the bag has moved to the Processing Area
+</h5>
+<blockquote>
+    <p>
+        <strong>Note:</strong> On a real bag drop, a message such as
+        &quot;Processing Bag, please wait.&quot; would display and the door to
+        the bag drop would close (if not already closed).
+    </p>
+</blockquote>
+<ul>
+    <li>
+        A <code>DoorClosing</code> message may display on the Service Bus with
+        an empty Message Body. This indicates the door has closed after the
+        passenger placed the bag on the belt.
+    </li>
+    <li>
+        A <code>BagChanged</code> message displays on the Service Bus which
+        indicates the bag has changed position. This message looks like the
+        <code>BagPlaced</code> message, except with the property
+        <code>Position</code> set to <code>Process</code>.
+    </li>
+</ul>
+<blockquote>
+    <p>
+        <strong>Note:</strong> In the simulation, the same baggage information
+        collected from the measurement taken in the
+        <strong>Entry Area</strong> is displayed in the
+        <code>BagChanged</code> message. However, on a real bagdrop, it is
+        possible the baggage information may change. For example, the SBD may be
+        configured to take a measurement in the
+        <strong>Processing Area</strong> rather than
+        <strong>Entry Area</strong>. Or another measurement may be made in the
+        Processing Area that updates the measurements.
+    </p>
+</blockquote>
+<ul>
+    <li>
+        A <code>ProcessBagResponse</code> message displays on the Service Bus
+        that indicates the bag was successfully processed (<code
+            >&quot;IsSuccess&quot;: true</code
+        >). This message, like the <code>Bag Placed</code> and
+        <code>BagChanged</code> messages, displays the baggage measurements.
+    </li>
+</ul>
+<h4 id="not-enough-time-remaining-on-connection">
+    Not enough time remaining on connection
+</h4>
+<p>
+    A Bagdrop API returns a <code>400 Bad Request</code> error status code when
+    the connection to a device is soon to reach its 30-minute
+    <code>expiryTime</code> set after the POST
+    <code>/session/v2/connections</code> was made.
+</p>
+<pre><code class="language-JSON">{
+    &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc7231#section-6.5.1&quot;,
+    &quot;title&quot;: &quot;Bad Request&quot;,
+    &quot;status&quot;: 400,
+    &quot;detail&quot;: &quot;Not enough time remaining on connection.&quot;,
+    &quot;traceId&quot;: &quot;00-baf5325b0757fc408018bca88119a826-65e7e75f65b69c4a-00&quot;
+}
+</code></pre>
+<h5 id="the-connection-to-the-device-is-soon-to-be-expired">
+    The connection to the device is soon to be expired
+</h5>
+<p>
+    The resolution is to simply send another
+    <code>session/v2/connections</code> request to create a new connection and
+    receive a new <code>expiryTime</code>.
+</p>
+<h4 id="timeout-at-process-area-1">Timeout at Process Area</h4>
+<p>
+    A <code>BagDropTransactionTimeout</code> message displays on the Service Bus
+    with an empty Message Body when too much time has elapsed since the
+    <code>/bagdrop/v2/process</code> request was made.
+</p>
+<p>To resolve the issue:</p>
+<ol>
+    <li>
+        <p>
+            Right-click the bag in the SBD Device Simulator and select
+            <strong>Remove</strong>.
+        </p>
+    </li>
+    <li>
+        <p>
+            Check the Service Bus for a <code>StatusChanged</code> message which
+            indicates the bag was removed. The device then goes
+            <code>Offline</code>.
+        </p>
+    </li>
+</ol>
+<pre><code class="language-JSON">{
+    &quot;DeviceStatus&quot;:&quot;Offline&quot;,
+    &quot;BagDropStatus&quot;:&quot;BagRemovedUnexpectedly&quot;
+}
+</code></pre>
+<h5
+    id="statuschanged-service-bus-message-indicating-the-bag-was-unexpectedly-removed-from-the-processing-area"
+>
+    <code>StatusChanged</code> Service Bus message indicating the bag was
+    unexpectedly removed from the Processing area
+</h5>
+<blockquote>
+    <p>
+        <strong>Note:</strong> In a bag drop process with a real SBD,
+        unexpectedly removing the bag from the belt displays the same
+        <code>BagDropStatus</code>.
+    </p>
+</blockquote>
+<ol start="3">
+    <li><p>Close the SBD Device Simulator Window.</p></li>
+    <li>
+        <p>
+            On the SBD Device in Device Simulator, click <strong>Run</strong>.
+        </p>
+        <ul>
+            <li>A new SBD Device Simulator opens.</li>
+            <li>
+                An updated <code>BagdropDeviceStatus</code> message displays on
+                the Service Bus, indicating the SBD is now <code>Online</code>.
+            </li>
+        </ul>
+    </li>
+</ol>
+<pre><code class="language-JSON">{
+    &quot;DeviceStatus&quot;: &quot;Online&quot;,
+    &quot;DeviceInUse&quot;: false
+}
+</code></pre>
+<h5
+    id="bagdropdevicestatus-service-bus-message-indicating-the-device-is-now-online"
+>
+    <code>BagdropDeviceStatus</code> Service Bus Message indicating the device
+    is now <code>Online</code>
+</h5>
+<ol start="5">
+    <li>
+        Send a <code>/bagdrop/v2/getbag</code> request.
+        <ul>
+            <li>
+                If successful, the Bagdrop API returns a <code>2xx</code> status
+                code returns a successful <code>GetBagResponse</code> message on
+                the Service Bus.
+            </li>
+        </ul>
+    </li>
+</ol>
+<h3 id="simulate-a-customer-resolving-an-issue">
+    Simulate a Customer Resolving an Issue
+</h3>
+<ol>
+    <li>
+        With the bag in the Process Area, send a
+        <code>/bagdrop/v2/returnbag</code> to simulate the SBD returning the bag
+        to the customer to resolve an issue.
+        <ul>
+            <li>
+                The bag moves from the <strong>Processing Area</strong> back to
+                the <strong>Entry Area</strong> and the door opens for a short
+                period. If the door closes, sending another
+                <code>/bagdrop/v2/returnbag</code> request will open the door
+                again.
+            </li>
+            <li>
+                A <code>DoorOpening</code> message displays on the Service Bus
+                with an empty Message Body. This simply indicates the door of
+                the SBD has opened so the bag can be accessible to the passenger
+                to resolve the issue.
+            </li>
+            <li>
+                A <code>BagChanged</code> message displays on the Service Bus
+                which indicates the bag has changed <code>Position</code> from
+                the <code>Process</code> area to the <code>Entry</code> area.
+            </li>
+            <li>
+                A <code>ReturnBagResponse</code> message displays on the Service
+                Bus which indicates the request to return the bag to the
+                <code>Entry</code> position was successful
+                (<code>&quot;IsSuccess&quot;:true</code>).
+            </li>
+        </ul>
+    </li>
+</ol>
+<p><img src="images%5Csbd-return-cancel-entry.png" alt="" /></p>
+<h5
+    id="sbd-device-simulator-showing-the-bag-has-returned-to-the-entry-area-where-the-customer-can-resolve-the-issue"
+>
+    SBD Device Simulator showing the bag has returned to the Entry Area where
+    the customer can resolve the issue
+</h5>
+<blockquote>
+    <p>
+        <strong>Note:</strong> In a real-life scenario, the customer would
+        resolve a minor issue if no intervention is required by the agent.
+    </p>
+</blockquote>
+<ol start="2">
+    <li>
+        To simulate the customer having resolved the issue, send another
+        <code>/bagdrop/v2/processbag</code> request to close the door and move
+        the bag back the <strong>Processing Area</strong>.
+    </li>
+</ol>
+<h3 id="simulate-an-agent-intervening-to-resolve-an-issue">
+    Simulate an Agent Intervening to Resolve an Issue
+</h3>
+<ol>
+    <li>
+        With the bag in the Process Area, send a
+        <code>/bagdrop/v2/cancelbag</code> request to simulate the bagdrop
+        returning the bag due to an issue that requires agent assistance and
+        cannot be resolved by the customer.
+        <ul>
+            <li>
+                The bag moves from the <strong>Processing</strong>
+                <strong>Area</strong> back to the <strong>Entry</strong>
+                <strong>Area</strong> and the door opens for a short period.
+            </li>
+            <li>
+                The same messages received on the Service Bus after sending a
+                <code>/bagdrop/v2/returnbag</code> request are received after
+                sending a <code>/bagdrop/v2/cancelbag</code> request. They
+                indicate the bag has returned to the <strong>Entry</strong>
+                <strong>Area</strong>.
+            </li>
+        </ul>
+    </li>
+</ol>
+<p><img src="images%5Csbd-return-cancel-entry.png" alt="" /></p>
+<h5
+    id="sbd-device-simulator-showing-the-bag-has-returned-to-the-entry-area-where-the-agent-can-resolve-the-issue"
+>
+    SBD Device Simulator showing the bag has returned to the Entry Area where
+    the agent can resolve the issue
+</h5>
+<blockquote>
+    <p>
+        <strong>Note:</strong> In a real-life scenario, the agent would be
+        alerted to resolve the issue at the SBD.
+    </p>
+</blockquote>
+<ol start="2">
+    <li>
+        To simulate the agent having resolved the issue, send another
+        <code>/bagdrop/v2/processbag</code> request to close the door and move
+        the bag back the <strong>Processing Area</strong>.
+    </li>
+</ol>
+<h3 id="release-the-bag-to-the-bhs">Release the Bag to the BHS</h3>
+<ol>
+    <li>
+        <p>
+            With the bag in the <strong>Process</strong> Area, send a
+            <code>/bagdrop/v2/releasebag</code> request to simulate the
+            completion of the bagdrop process with the SBD unit releasing the
+            bag.
+        </p>
+        <ul>
+            <li>
+                The bag moves from the <strong>Processing Area</strong> to the
+                <strong>BHS Release Area</strong> where it will remain in the VM
+                until it is removed.
+            </li>
+            <li>
+                A <code>BagChanged</code> message displays on the Service Bus
+                which indicates the bag&#39;s position has changed.
+            </li>
+            <li>
+                A <code>ReleaseBagResponse</code> message displays on the
+                Service Bus which indicates the request to release the bag to
+                the BHS was successful
+                (<code>&quot;IsSuccess&quot;:true</code>).
+            </li>
+            <li>
+                You can start a new bag drop process at this point by adding a
+                new bag, sending a <code>/bagdrop/v2/getbag</code> request, then
+                placing the new bag on the belt (performing the same process
+                again).
+            </li>
+        </ul>
+    </li>
+</ol>
+<p><img src="images%5Csbd-release-bag.png" alt="" /></p>
+<h5
+    id="sbd-device-simulator-showing-the-bag-has-been-successfully-released-to-the-bhs-release-area"
+>
+    SBD Device Simulator showing the bag has been successfully released to the
+    BHS Release Area
+</h5>
+<ul>
+    <li>
+        If you wish, you can start a new bag drop process at this point by
+        adding a new bag, sending a <code>/bagdrop/v2/getbag</code> request,
+        then placing the new bag on the belt.
+    </li>
+</ul>

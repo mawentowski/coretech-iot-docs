@@ -1,0 +1,500 @@
+<h2 id="gateaccess-api-walkthrough">GateAccess API Walkthrough</h2>
+<p>
+    Follow along with this walkthrough to experience the GateAccess API,
+    including initiating a boarding process, simulating a board pass scan,
+    accepting one passenger, rejecting another passenger, and ending the
+    boarding process. The following tools are used to demonstrate the GateAccess
+    API:
+</p>
+<ul>
+    <li>
+        The <a href="">Citrix Virtualized Environmental VM</a> to add devices.
+    </li>
+    <li>
+        The SITA Flex API Postman Collection that allows you to send requests to
+        Flex.
+    </li>
+    <li>
+        Your airline backend to receive messages from the Azure Service Bus.
+    </li>
+</ul>
+<p>
+    You will be interacting with an BGR device and simulating the scanning of a
+    boarding pass using the Device Simulator. Since GateAccess API considers all
+    Gate devices as the same, the same process you will follow in this
+    walkthrough applies to a Self-Boarding Gate as well. The only exception is
+    how <code>Message</code> data are handled.
+</p>
+<blockquote>
+    <p>
+        <strong>Note:</strong> This walkthrough provides some basic
+        troubleshooting steps. However, if an error displays that is not
+        covered, refer to the
+        <a href="Troubleshooting Environments_1.htm"
+            >Troubleshooting Environments</a
+        >
+        or
+        <a href="Troubleshooting Error Codes_1.htm"
+            >Troubleshooting Error Codes</a
+        >
+        sections for detailed steps on how to resolve the issue.
+    </p>
+</blockquote>
+<h3 id="prerequisite-steps-2">Prerequisite Steps</h3>
+<ol>
+    <li>
+        Login to the <a href="">Citrix Virtualized SITA Flex Environment</a> you
+        set up previously.
+    </li>
+    <li>
+        In Postman, open the <strong>SITA Flex API Collection</strong> and
+        <strong>Postman environment</strong> <code>.json</code> files. In the
+        Postman environment file:
+        <ul>
+            <li>
+                Ensure your <code>clientid</code> and
+                <code>clientsecret</code> are populated in both the
+                <strong>Initial Value</strong> and
+                <strong>Current Value</strong> columns.
+            </li>
+            <li>
+                Ensure the <code>{{location}}</code> variable corresponds to the
+                VM&#39;s machine name as seen in the Peripheral View. For
+                example, a VM with machine name <code>ZZU1CKB005</code> as seen
+                in the Peripheral view could correspond to a
+                <code>location</code> called
+                <code>A-ZZU-MZUZUAIRPORT-ZZU1CKB005</code> in the Postman
+                Environment.
+            </li>
+        </ul>
+    </li>
+    <li>
+        In Postman, perform the following:
+        <ul>
+            <li>Send a Get Access token request.</li>
+            <li>Send a POST <code>/session/v2/subscriptions</code> request.</li>
+            <li>Send a POST <code>/site/v2/reservations</code> request.</li>
+        </ul>
+    </li>
+</ol>
+<h3 id="add-an-bgr-device">Add an BGR Device</h3>
+<blockquote>
+    <p>
+        <strong>Note:</strong> If an BGR has already been added, skip this
+        section.
+    </p>
+</blockquote>
+<ol>
+    <li>
+        In the Device Simulator of the VM, click <strong>Add Device</strong>.
+    </li>
+</ol>
+<p><img src="images%5Cdevice-sim-add.jpg" alt="" /></p>
+<ol start="2">
+    <li>
+        <p>
+            Select <strong>BGR</strong> from the
+            <strong>Device Type</strong> drop-down.
+        </p>
+    </li>
+    <li><p>Leave the other setting as is.</p></li>
+    <li>
+        <p>Click <strong>Add Device</strong>.</p>
+        <ul>
+            <li>The BGR device is now available in the Device Simulator.</li>
+        </ul>
+    </li>
+    <li>
+        <p>On the device, click <strong>Run</strong>.</p>
+        <ul>
+            <li>
+                A BGR Device Simulator screen displays. Leave this window open.
+            </li>
+        </ul>
+    </li>
+    <li>
+        <p>
+            Notice how the <strong>Display Output</strong> contains the text
+            <code>Not in Use</code>. Once the boarding process is started, the
+            text will change to <code>Ready to Scan</code>.
+        </p>
+    </li>
+</ol>
+<h3 id="connect-to-the-bgr">Connect to the BGR</h3>
+<ol>
+    <li>
+        In Postman, send a <code>/session/v2/connections</code> request to
+        connect to the BGR.
+    </li>
+</ol>
+<blockquote>
+    <p>
+        <strong>Note:</strong> Notice in the Request Body that the
+        <code>DeviceId</code> will be populated partially based on the
+        variable<code>{{location}}</code> in the Postman environment.
+    </p>
+</blockquote>
+<ol start="2">
+    <li>
+        Check the Service Bus subscription for a
+        <code>GateDeviceStatus</code> message:
+    </li>
+</ol>
+<pre><code class="language-JSON">{
+    &quot;DeviceStatus&quot;: &quot;Online&quot;
+}
+</code></pre>
+<h5
+    id="gatedevicestatus-service-bus-message-body-showing-the-gate-device-is-online-1"
+>
+    <code>GateDeviceStatus</code> Service Bus Message Body showing the gate
+    device is <code>Online</code>
+</h5>
+<p>
+    The message should return the <code>DeviceStatus</code> as
+    <code>Online</code>.
+</p>
+<blockquote>
+    <p>
+        <strong>Note</strong>: In the Tests tab of Postman, there is some
+        Javascript that updates the <code>bgr_connection_id</code> environmental
+        variable after connecting to the BGR. This variable is used so you do
+        not need to manually enter a <code>connectionId</code> in subsequent
+        calls to the GateAccess API.
+    </p>
+</blockquote>
+<h4 id="devicestatus-is-offline-2">
+    <code>DeviceStatus</code> is <code>Offline</code>
+</h4>
+<p>
+    If the <code>DeviceStatus</code> returns as <code>Offline</code>, check to
+    see if the device is running in the Device Simulator. If there is a
+    <strong>Stop</strong> button on the device in Device Simulator, the device
+    is running.
+</p>
+<p><img src="images%5Cbgr-stop-online.png" alt="" /></p>
+<p>
+    <em>If <u>it is not</u> running:</em>
+</p>
+<ol>
+    <li>Click <strong>Run</strong>.</li>
+    <li>
+        In the Peripheral View, check to see if the BGR
+        <strong>Status</strong> is now <code>Online</code>.
+    </li>
+    <li>
+        Check the Service Bus for a new <code>GateDeviceStatus</code> message
+        indicating the BGR is now <code>Online</code>.
+        <ul>
+            <li>The issue should now be resolved.</li>
+        </ul>
+    </li>
+</ol>
+<p>
+    <em>If <u>it is</u> running</em>, from the Device Simulator on the VM:
+</p>
+<ol>
+    <li>Click <strong>Stop</strong>.</li>
+    <li>Click <strong>Run</strong>.</li>
+    <li>
+        In the Peripheral View, check to see if the BGR
+        <strong>Status</strong> is now <code>Online</code>.
+    </li>
+    <li>
+        Check the Service Bus for a new <code>GateDeviceStatus</code> message
+        indicating the BGR is now <code>Online</code>.
+        <ul>
+            <li>The issue should now be resolved.</li>
+        </ul>
+    </li>
+</ol>
+<h3 id="initiate-boarding-process">Initiate Boarding Process</h3>
+<p>The next step is to initiate the boarding process:</p>
+<ol>
+    <li>
+        In Postman, send a <code>/gateaccess/v2/opengate</code> request.
+        <ul>
+            <li>
+                The GateAccess API acknowledges the request by returning a
+                <code>2xx</code> success status code, as seen in a tool like
+                Postman.
+            </li>
+        </ul>
+    </li>
+    <li>
+        Check the Service Bus for a new <code>ScanDeviceStatus</code> message
+        that indicates the request to initiate the boarding process was
+        successful.
+    </li>
+</ol>
+<pre><code class="language-json">{
+    &quot;IsSuccess&quot;: true,
+    &quot;Error&quot;: null
+}
+</code></pre>
+<h5
+    id="opengateresponse-service-bus-message-body-indicating-the-request-to-initiate-the-boarding-process-has-succeeded-1"
+>
+    <code>OpenGateResponse</code> Service Bus Message Body indicating the
+    request to initiate the boarding process has succeeded
+</h5>
+<ol start="3">
+    <li>
+        Open the BGR Device Simulator, and you will notice the display now says
+        <strong>Ready to Scan</strong>, indicating the device is now able to
+        read barcode scans.
+    </li>
+</ol>
+<p><img src="images%5Cbgr-ready-to-scan.png" alt="" /></p>
+<h3 id="simulate-a-boarding-pass-scan">Simulate a Boarding Pass Scan</h3>
+<p>
+    Using the VM, you will simulate an agent scanning a boarding pass using a
+    BGR by manually entering Barcode data, then reading the data to the device.
+</p>
+<ol>
+    <li>
+        With the BGR Simulator in the VM, manually enter some data in the
+        <strong>Barcode</strong> text box, then click the
+        <strong>Read</strong> button.
+    </li>
+</ol>
+<blockquote>
+    <p>
+        <strong>Note:</strong> Below is a realistic sample of barcode data, but
+        the data you enter is not important for the purpose of this walkthrough.
+        Also, you can only manually type information into the text box and not
+        paste content from outside the VM.
+    </p>
+</blockquote>
+<p><img src="images%5Cbgr-load-barcode.png" alt="" /></p>
+<h5 id="bgr-device-simulator-with-barcode-data-entered">
+    BGR Device Simulator with Barcode Data entered
+</h5>
+<ol start="2">
+    <li>
+        Click the <strong>Read</strong> button to simulate the BGR executing a
+        scan and collecting the barcode data.
+    </li>
+</ol>
+<p><img src="images%5Cocr-read-mrz.png" alt="" /></p>
+<ol start="3">
+    <li>
+        Check the Service Bus for a new <code>BoardingPassData</code> message
+        that includes the scanned barcode as a Base64-encoded string.
+    </li>
+</ol>
+<pre><code class="language-JSON">{
+   &quot;BarcodeData&quot;:&quot;6M1AZKUR AHMETKUR ERG6ULZ ZRHISTTK 1912 211Y024F0028 150&gt;10B1OO2211BTK 292352404859427 1 020K X&quot;
+}
+</code></pre>
+<h5
+    id="boardingpassdata-service-bus-message-body-including-the-scanned-boarding-pass-data"
+>
+    <code>BoardingPassData</code> Service Bus Message Body including the scanned
+    boarding pass data
+</h5>
+<h3 id="timeout-error-1">Timeout Error</h3>
+<p>
+    If you receive an <code>ErrorOccurred</code> Service Bus message mentioning
+    a timeout, this indicates that the time allowed to accept or reject the
+    passenger after the scan has expired and you must tell the API to restart
+    the process.
+</p>
+<pre><code class="language-JSON">{
+   &quot;Message&quot;:&quot;Timeout has occurred while executing the command &#39;DisplayCommand&#39;!&quot;
+}
+</code></pre>
+<h5
+    id="erroroccurred-service-bus-message-body-indicating-a-timeout-has-occurred-1"
+>
+    <code>ErrorOccurred</code> Service Bus Message Body indicating a timeout has
+    occurred
+</h5>
+<p>To resolve:</p>
+<ol>
+    <li>Send a <code>/gateaccess/v2/closegate</code> request</li>
+    <li>
+        Delete the connection to the BGR through a <strong>DEL</strong>
+        <code>/session/v2/connections</code> request.
+    </li>
+    <li>
+        Create a new connection to the BGR through a <strong>POST</strong>
+        <code>/session/v2/connections</code> request.
+    </li>
+    <li>Send a <code>/gateaccess/v2/opengate</code> request.</li>
+    <li>
+        In the VM, manually enter barcode data and click <strong>Read</strong>.
+    </li>
+</ol>
+<h3 id="accept-a-passenger">Accept a Passenger</h3>
+<ol>
+    <li>
+        In Postman, open the <code>gateaccess/v2/acceptpassenger</code> request.
+    </li>
+    <li>
+        In the Request Body, change the <code>Message</code> to say
+        <code>Passenger Okay to Board</code>:
+    </li>
+</ol>
+<pre><code class="language-Json">{
+    &quot;ConnectionId&quot;: &quot;{{bgr_connection_id}}&quot;,
+    &quot;CorrelationId&quot;: &quot;{{$guid}}&quot;,
+    &quot;Message&quot;: [&quot;Passenger Okay to Board&quot;],
+    &quot;ReceiptData&quot;: {
+      &quot;Data&quot;: &quot;#NN#RD#FONT1#SIZE7#FREEBOARDING RECEIPT#FONT1#SIZE7#FREECLASS CHANGE#FONT1#SIZE0#FREE#FONT1#SIZE0#FREEYour class has changed - See Below#FONT1#SIZE0#FREE#FONT1#SIZE3#NAMELEE/MAYLIN MDM#FONT1#SIZE3#FREE#FONT1#SIZE3#ALCDMH#FONT1#SIZE3#FLNR0002#FONT1#SIZE3#DATE16JAN#FONT1#SIZE3#BORDKUL#FONT1#SIZE3#DESTLHR#FONT1#SIZE3#SQNR8#FONT1#SIZE7#SEAT1K#FONT1#SIZE7#CLSSF#FONT1#SIZE0#FREE&quot;
+    }
+}
+</code></pre>
+<h5
+    id="sample-gateaccessv2acceptpassenger-request-body-with-message-data-to-display-to-the-agent-that-the-passenger-is-ok-to-board"
+>
+    Sample <code>gateaccess/v2/acceptpassenger</code> Request Body with
+    <code>Message</code> data to display to the agent that the passenger is
+    &#39;Ok&#39; to board
+</h5>
+<ol start="3">
+    <li>
+        Send the <code>gateaccess/v2/acceptpassenger</code> that tells the
+        GateAccess API that the passenger has boarded successfully.
+        <ul>
+            <li>
+                The GateAccess API acknowledges the request by returning a
+                <code>2xx</code> success status code, as seen in a tool like
+                Postman.
+            </li>
+        </ul>
+    </li>
+    <li>
+        Check the Service Bus for a <code>AcceptPassengerResponse</code> message
+        indicates that the request was made with no errors.
+    </li>
+</ol>
+<pre><code class="language-json">{
+    &quot;IsSuccess&quot;: true,
+    &quot;Error&quot;: null
+}
+</code></pre>
+<h5
+    id="acceptpassengerresponse-service-bus-message-body-indicating-that-request-to-accept-the-passenger-was-successful-1"
+>
+    <code>AcceptPassengerResponse</code> Service Bus Message Body indicating
+    that request to accept the passenger was successful
+</h5>
+<ol start="5">
+    <li>
+        In the BGR Device Simulator, notice the that the message
+        <code>Passenger Okay to Board</code> passed in the Request Body is
+        displayed in the <strong>Display Output</strong>.
+    </li>
+</ol>
+<p><img src="images%5Cbgr-pax-accepted.png" alt="" /></p>
+<h3 id="reject-a-passenger">Reject a Passenger</h3>
+<ol>
+    <li>
+        In the BGR Device Simulator, enter some new characters into the
+        <strong>Barcode</strong> text box then <strong>Read</strong> the barcode
+        to the device to simulate the agent scanning the next passenger&#39;s
+        barcode.
+        <ul>
+            <li>
+                Instead of accepting the passenger this time, you will reject
+                him/her.
+            </li>
+        </ul>
+    </li>
+    <li>
+        In Postman, open the
+        <code>/gateaccess/v2/rejectpassenger</code> request.
+    </li>
+    <li>
+        In the Request Body, change the <code>Message</code> to say
+        <code>Passenger Not Okay to Board</code>:
+    </li>
+</ol>
+<pre><code class="language-Json">{
+    &quot;ConnectionId&quot;: &quot;{{bgr_connection_id}}&quot;,
+    &quot;CorrelationId&quot;: &quot;{{$guid}}&quot;,
+    &quot;Message&quot;: [ &quot;Passenger Not Ok to Board&quot; ],
+    &quot;Alarm&quot;: true
+}
+</code></pre>
+<h5
+    id="sample-gateaccessv2rejectpassenger-request-body-with-message-data-to-display-to-the-agent-that-the-passenger-is-not-ok-to-board-1"
+>
+    Sample <code>gateaccess/v2/rejectpassenger</code> Request Body with
+    <code>Message</code> data to display to the agent that the passenger is
+    &#39;Not Ok&#39; to board
+</h5>
+<ol start="4">
+    <li>
+        Send the <code>gateaccess/v2/rejectpassenger</code> that tells the
+        GateAccess API that the passenger was rejected and cannot board.
+        <ul>
+            <li>
+                The GateAccess API acknowledges the request by returning a
+                <code>2xx</code> success status code, as seen in a tool like
+                Postman.
+            </li>
+        </ul>
+    </li>
+    <li>
+        If you look fast enough in the <strong>BGR Device Simulator</strong>,
+        you will notice a red exclamation mark displays in the
+        <strong>Display Icon</strong> window. This indicates to the agent that
+        the passenger is &#39;Not Ok&#39; to board. If you did not see it, you
+        can click <strong>Read</strong> and send the request again to trigger
+        the icon.
+    </li>
+</ol>
+<p><img src="images%5Cbgr-reject-exclam.png" alt="" /></p>
+<ol start="6">
+    <li>
+        Check the Service Bus for a <code>RejectPassengerResponse</code> message
+        that indicates that the request was made with no errors.
+    </li>
+</ol>
+<pre><code class="language-json">{
+    &quot;IsSuccess&quot;: true,
+    &quot;Error&quot;: null
+}
+</code></pre>
+<h5
+    id="rejectpassengerresponse-service-bus-message-body-indicating-that-request-to-reject-the-passenger-was-successful-1"
+>
+    <code>RejectPassengerResponse</code> Service Bus Message Body indicating
+    that request to reject the passenger was successful
+</h5>
+<h3 id="end-the-boarding-process">End the Boarding Process</h3>
+<ol>
+    <li>
+        In Postman, send a <code>/gateaccess/v2/closegate</code> request to tell
+        the GateAccess API that the boarding process has ended.
+        <ul>
+            <li>
+                The GateAccess API acknowledges the request by returning a
+                <code>2xx</code> success status code, as seen in a tool like
+                Postman.
+            </li>
+        </ul>
+    </li>
+    <li>Check the Service Bus for a <code>CloseGateResponse</code> message.</li>
+</ol>
+<pre><code class="language-json">{
+    &quot;IsSuccess&quot;: true,
+    &quot;Error&quot;: null
+}
+</code></pre>
+<h5
+    id="closegateresponse-service-bus-message-body-indicating-the-request-to-end-the-boarding-process-has-succeeded-1"
+>
+    <code>CloseGateResponse</code> Service Bus Message Body indicating the
+    request to end the boarding process has succeeded
+</h5>
+<ol start="3">
+    <li>
+        In the BGR Device Simulator, notice that the
+        <strong>Display Output</strong> says <code>Not In Use</code> like how it
+        did before sending the <code>/gateaccess/v2/opengate</code> request at
+        the very beginning of this walkthrough.
+    </li>
+</ol>

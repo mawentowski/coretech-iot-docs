@@ -1,0 +1,122 @@
+<h2 id="get-location-capabilities">Get Location Capabilities</h2>
+<p>
+    The POST <code>/site/v2/locations/{locationId}</code> request provides a way
+    for airline backends to determine what devices are configured at a location
+    and their capabilities.
+</p>
+<blockquote>
+    <p>
+        <strong>Note:</strong> This request is not required, but it can return
+        useful information for an airline backend act upon.
+    </p>
+</blockquote>
+<p>
+    You must pass the <code>locationId</code> as a path parameter in the
+    request.
+</p>
+<h3 id="response-body-2">Response Body</h3>
+<p>
+    A successful request returns a <code>2xx</code> success status code with the
+    JSON Response Body containing the list of devices and their capabilities at
+    the requested <code>locationId</code>:
+</p>
+<pre><code class="language-JSON">[
+    {
+        &quot;deviceId&quot;: &quot;A-ZZU-MZUZUAIRPORT-ZZU1CKB004.ATB1&quot;,
+        &quot;capabilities&quot;: [
+            &quot;PrintBoardingPass&quot;
+        ]
+    },
+    {
+        &quot;deviceId&quot;: &quot;A-ZZU-MZUZUAIRPORT-ZZU1CKB004.BTP1&quot;,
+        &quot;capabilities&quot;: [
+            &quot;PrintBagTag&quot;
+        ]
+    },
+    {
+        &quot;deviceId&quot;: &quot;A-ZZU-MZUZUAIRPORT-ZZU1CKB004.LSR1&quot;,
+        &quot;capabilities&quot;: [
+            &quot;ReadBarcode&quot;
+        ]
+    },
+    {
+        &quot;deviceId&quot;: &quot;A-ZZU-MZUZUAIRPORT-ZZU1CKB004.LSR2&quot;,
+        &quot;capabilities&quot;: [
+            &quot;ReadBarcode&quot;
+        ]
+    },
+    {
+        &quot;deviceId&quot;: &quot;A-ZZU-MZUZUAIRPORT-ZZU1CKB004.OCR1&quot;,
+        &quot;capabilities&quot;: [
+            &quot;ReadTravelDocument&quot;,
+            &quot;ReadBarcode&quot;
+        ]
+    },
+    {
+        &quot;deviceId&quot;: &quot;A-ZZU-MZUZUAIRPORT-ZZU1CKB004.PMT1&quot;,
+        &quot;capabilities&quot;: [
+            &quot;ProcessPayment&quot;
+        ]
+    },
+    {
+        &quot;deviceId&quot;: &quot;A-ZZU-MZUZUAIRPORT-ZZU1CKB004.SBD1&quot;,
+        &quot;capabilities&quot;: [
+            &quot;BagDrop&quot;
+        ]
+    },
+    {
+        &quot;deviceId&quot;: &quot;A-ZZU-MZUZUAIRPORT-ZZU1CKB004.BGR1&quot;,
+        &quot;capabilities&quot;: [
+            &quot;Gate&quot;
+        ]
+    }
+]
+</code></pre>
+<h5
+    id="sample-response-body-for-post-sitev2locations-request-containing-device-details-at-a-location"
+>
+    Sample Response Body for POST <code>/site/v2/locations/</code> request
+    containing device details at a location
+</h5>
+<h4 id="deviceid"><code>deviceId</code></h4>
+<p>
+    The Response Body includes a <code>deviceId</code> for each device
+    configured at a location.
+</p>
+<p>
+    The <code>deviceId</code> is comprised of the location (for example,
+    <code>A-ZZU-MZUZUAIRPORT-ZZU1CKB004</code>), followed by the name of the
+    device (for example, <code>.BGR1</code>).
+</p>
+<p>
+    The airline backend then uses these IDs to connect to devices at the
+    location. For example, to connect to an ATB through a POST
+    <code>/session/v2/connections</code> request, you must pass the
+    <code>DeviceId</code> in the Request Body.
+</p>
+<h4 id="capabilities"><code>capabilities</code></h4>
+<p>
+    Many times, you can determine the capabilities of a device by simply looking
+    at the <code>deviceId</code>. For example, the <code>ATB</code> device only
+    has the capability to print a boarding pass. So, when a
+    <code>deviceId</code> contains <code>.ATB</code>, it is assumed that device
+    only has the <code>PrintBoardingPass</code> capability.
+</p>
+<pre><code>{
+    &quot;deviceId&quot;: &quot;A-ZZU-MZUZUAIRPORT-ZZU1CKB004.ATB1&quot;,
+    &quot;capabilities&quot;: [
+     &quot;PrintBoardingPass&quot;
+    ]
+},
+</code></pre>
+<h5 id="sample-atb-device-whose-only-capability-is-to-print-a-boarding-pass">
+    Sample ATB Device whose only capability is to print a boarding pass
+</h5>
+<p>
+    However, some devices have multiple capabilities. For example, a General
+    Purpose Printer (GPP) may have both the capabilities
+    <code>PrintBoardingPass</code> and <code>PrintBagTag</code>. Returning a
+    list of devices is useful to an airline backend particularly in cases where
+    devices at a location have multiple capabilities and can receive different
+    kinds of requests.
+</p>

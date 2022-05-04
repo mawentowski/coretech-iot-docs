@@ -1,0 +1,47 @@
+<h2 id="application-configuration">Application Configuration</h2>
+<p>
+    Customers have a certain degree of freedom when it comes to setting up their
+    applications to use Flex APIs.
+</p>
+<h3 id="airline-backends">Airline Backends</h3>
+<p>
+    An airline backend is the server/data center that communicates with Flex. An
+    airline may choose to have a single backend that services multiple
+    applications, or multiple backends to service multiple applications. For
+    example, an airline may have an airline backend for a passenger-facing
+    mobile app and another for a desktop app for agents.
+</p>
+<blockquote>
+    <p>
+        <strong>Tip:</strong> While possible to have a single backend servicing
+        multiple apps, it is more common to having separate airline backends for
+        each app. Ultimately, it is for the airline to determine the best
+        approach.
+    </p>
+</blockquote>
+<p>
+    Once again, whether an airline backend manages one or multiple applications,
+    each application has its own set of credentials.
+</p>
+<h3 id="subscriptions">Subscriptions</h3>
+<p>
+    Because the Service Bus is Azure Region-specific, each airline backend must
+    maintain one subscription <u>for each Azure Region</u>. For any one Azure
+    Region, all messages sent from devices in that region display on that
+    region&#39;s subscription.
+</p>
+<p>
+    A subscription is created when an airline backend sends a POST
+    <code>session/v2/subscriptions</code> request.
+</p>
+<h3 id="client-applications">Client Applications</h3>
+<p>
+    Airline backends should be designed to service thousands of clients. Flex
+    does not interact with any client applications, only the airline backends
+    that service those clients. If a client application requests to print a
+    boarding pass, it is the responsibility of the backend to send the response
+    back to the device that made the request (e.g., &quot;Print
+    Successful&quot;). In other words, the airline backend must be able to pair
+    requests with responses and handle the overall interaction with its client
+    applications.
+</p>

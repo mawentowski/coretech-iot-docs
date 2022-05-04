@@ -1,0 +1,348 @@
+<h2 id="scan-api-walkthrough">Scan API Walkthrough</h2>
+<p>
+    Follow along with this walkthrough to experience the Scan API, including
+    connecting to a device, issuing a scan command, then reading the response.
+    The following tools are used to demonstrate the Print API:
+</p>
+<ul>
+    <li>
+        The
+        <a href="Citrix Virtualized SITA Flex_1.htm"
+            >Citrix Virtualized SITA Flex Environment</a
+        >
+        to add devices.
+    </li>
+    <li>
+        The SITA Flex API Postman Collection that allows you to send requests to
+        Flex.
+    </li>
+    <li>
+        Your airline backend to receive messages from the Azure Service Bus.
+    </li>
+</ul>
+<p>
+    You will be interacting with an OCR device and simulating the scanning of a
+    passport in the VM. With this knowledge, you can apply the same steps to
+    interacting with other scan devices.
+</p>
+<blockquote>
+    <p>
+        <strong>Note:</strong> This walkthrough provides some basic
+        troubleshooting steps. However, if an error displays that is not
+        covered, refer to the
+        <a href="Troubleshooting Environments_1.htm"
+            >Troubleshooting Environments</a
+        >
+        or
+        <a href="Troubleshooting Error Codes_1.htm"
+            >Troubleshooting Error Codes</a
+        >
+        sections for detailed steps on how to resolve the issue.
+    </p>
+</blockquote>
+<h3 id="prerequisite-steps-1">Prerequisite Steps</h3>
+<ol>
+    <li>
+        Login to the
+        <a href="Citrix Virtualized SITA Flex_1.htm"
+            >Citrix Virtualized SITA Flex Environment</a
+        >
+        you set up previously.
+    </li>
+    <li>
+        In Postman, open the <strong>SITA Flex API Collection</strong> and
+        <strong>Postman environment</strong> <code>.json</code> files. In the
+        Postman environment file:
+        <ul>
+            <li>
+                Ensure your <code>clientid</code> and
+                <code>clientsecret</code> are populated in both the
+                <strong>Initial Value</strong> and
+                <strong>Current Value</strong> columns.
+            </li>
+            <li>
+                Ensure the <code>{{location}}</code> variable corresponds to the
+                VM&#39;s machine name as seen in the Peripheral View. For
+                example, a VM with machine name <code>ZZU1CKB005</code> as seen
+                in the Peripheral view could correspond to a
+                <code>location</code> called
+                <code>A-ZZU-MZUZUAIRPORT-ZZU1CKB005</code> in the Postman
+                Environment.
+            </li>
+        </ul>
+    </li>
+    <li>
+        In Postman, perform the following:
+        <ul>
+            <li>Send a Get Access token request.</li>
+            <li>Send a POST <code>/session/v2/subscriptions</code> request.</li>
+            <li>Send a POST <code>/site/v2/reservations</code> request.</li>
+        </ul>
+    </li>
+</ol>
+<h3 id="add-an-osr-device">Add an OSR Device</h3>
+<blockquote>
+    <p>
+        <strong>Note:</strong> If an OCR has already been added, skip this
+        section.
+    </p>
+</blockquote>
+<ol>
+    <li>
+        In the Device Simulator of the VM, click <strong>Add Device</strong>.
+    </li>
+</ol>
+<p><img src="images/device-sim-add.jpg" alt="" /></p>
+<ol start="2">
+    <li>
+        Select <strong>OCR</strong> from the
+        <strong>Device Type</strong> drop-down.
+    </li>
+    <li>Leave the other settings as is.</li>
+    <li>
+        Click <strong>Add Device</strong>.
+        <ul>
+            <li>The OCR device is now available in the Device Simulator.</li>
+        </ul>
+    </li>
+    <li>
+        On the device, click <strong>Run</strong>.
+        <ul>
+            <li>
+                An OCR Device Simulator screen displays. You may keep it open
+                for later use.
+            </li>
+        </ul>
+    </li>
+</ol>
+<h3 id="connect-to-the-ocr">Connect to the OCR</h3>
+<ol>
+    <li>
+        In Postman, send a <code>/session/v2/connections</code> request to
+        connect to the OCR.
+        <ul>
+            <li>
+                After connecting to a device, a connection
+                <code>expiryTime</code> is returned in the Response Body set to
+                <strong>30 minutes</strong> from the time the
+                <code>session/v2/connections</code> request was made.
+            </li>
+        </ul>
+    </li>
+</ol>
+<blockquote>
+    <p>
+        <strong>Note:</strong> Notice in the Request Body that the
+        <code>DeviceId</code> will be populated partially based on the variable
+        <code>{{location}}</code> in the Postman environment.
+    </p>
+</blockquote>
+<ol start="2">
+    <li>
+        Check the Service Bus subscription for a
+        <code>ScanDeviceStatus</code> message:
+    </li>
+</ol>
+<pre><code class="language-JSON">{
+    &quot;DeviceStatus&quot;: &quot;Online&quot;,
+    &quot;DeviceInUse&quot;: &quot;false&quot;
+}
+</code></pre>
+<h5
+    id="scandevicestatus-service-bus-message-body-showing-the-scan-device-is-online-and-not-currently-in-use-1"
+>
+    <code>ScanDeviceStatus</code> Service Bus Message Body showing the scan
+    device is <code>Online</code> and not currently &#39;In Use&#39;
+</h5>
+<p>
+    The message should return the <code>DeviceStatus</code> as
+    <code>Online</code> and a <code>DeviceInUse</code> property set to
+    <code>false</code>. When a print device is not &#39;in use&#39;, it means
+    the device is not exclusively reserved yet through a
+    <code>/scan/v2/startscanning</code> request, and thus can be reserved by any
+    airline backend that has connected to it.
+</p>
+<blockquote>
+    <p>
+        <strong>Note</strong>: In the Tests tab of Postman, there is some
+        Javascript that updates the <code>ocr_connection_id</code> environmental
+        variable after connecting to the OCR. This variable is used so you do
+        not need to manually enter a <code>connectionId</code> in subsequent
+        calls to the Print API.
+    </p>
+</blockquote>
+<h4 id="devicestatus-is-offline-1">
+    <code>DeviceStatus</code> is <code>Offline</code>
+</h4>
+<p>
+    If the <code>DeviceStatus</code> returns as <code>Offline</code>, check to
+    see if the device is running in the Device Simulator. If there is a
+    <strong>Stop</strong> button on the device in Device Simulator, the device
+    is running.
+</p>
+<p><img src="images%5Cocr-stopped-offline.png" alt="" /></p>
+<p>
+    <em>If <u>it is not</u> running:</em>
+</p>
+<ol>
+    <li>Click <strong>Run</strong>.</li>
+    <li>
+        In the Peripheral View, check to see if the OCR
+        <strong>Status</strong> is now <code>Online</code>.
+    </li>
+    <li>
+        Check the Service Bus for a new <code>ScanDeviceStatus</code> message
+        indicating the SBD is now <code>Online</code>.
+        <ul>
+            <li>The issue should now be resolved.</li>
+        </ul>
+    </li>
+</ol>
+<p>
+    <em>If <u>it is</u> running</em>, from the Device Simulator on the VM:
+</p>
+<ol>
+    <li>Click <strong>Stop</strong>.</li>
+    <li>Click <strong>Run</strong>.</li>
+    <li>
+        In the Peripheral View, check to see if the OCR
+        <strong>Status</strong> is now <code>Online</code>.
+    </li>
+    <li>
+        Check the Service Bus for a new <code>ScanDeviceStatus</code> message
+        indicating the SBD is now <code>Online</code>.
+        <ul>
+            <li>The issue should now be resolved.</li>
+        </ul>
+    </li>
+</ol>
+<h3 id="reserve-the-ocr">Reserve the OCR</h3>
+<p>
+    The next step is to reserve the OCR to give the airline backend exclusive
+    access to interact with it.
+</p>
+<ol>
+    <li>
+        In Postman, send a <code>/scan/v2/startscanning</code> request.
+        <ul>
+            <li>
+                If successful, the Scan API returns a <code>2xx</code> success
+                status code with the Response Body containing an
+                <code>accessExpiryTime</code> set to
+                <strong>5 minutes</strong> in the future.
+            </li>
+        </ul>
+    </li>
+</ol>
+<pre><code class="language-json">{
+    &quot;accessExpiryTime&quot;: &quot;2021-09-30T14:50:07.347Z&quot;
+}
+</code></pre>
+<h5
+    id="scan-api-response-body-containing-date-time-when-exclusive-access-to-the-device-expires-1"
+>
+    Scan API Response Body containing date-time when exclusive access to the
+    device expires
+</h5>
+<ol start="2">
+    <li>
+        Check the Service Bus for a new <code>ScanDeviceStatus</code> message.
+        <ul>
+            <li>
+                The <code>DeviceInUse</code> property should be set to
+                <code>true</code>, indicating that the device is now exclusively
+                reserved and may begin sending messages to the airline backend
+                that made the <code>/scan/v2/startscanning</code> request.
+            </li>
+        </ul>
+    </li>
+</ol>
+<pre><code class="language-json">{
+    &quot;DeviceStatus&quot;: &quot;Online&quot;,
+    &quot;DeviceInUse&quot;: &quot;true&quot;
+}
+</code></pre>
+<h5
+    id="devicestatus-service-bus-message-body-indicating-the-device-is-online-and-is-exclusively-reserved-by-the-airline-backend"
+>
+    <code>DeviceStatus</code> Service Bus Message Body indicating the device is
+    <code>Online</code> and is exclusively reserved by the airline backend
+</h5>
+<h3 id="simulate-a-passport-scan">Simulate a Passport Scan</h3>
+<p>
+    Using the VM, you will simulate an OCR scanning a passport by manually
+    entering MRZ data then reading that data to the device.
+</p>
+<ol>
+    <li>
+        With the OCR Simulator in the VM, manually enter some data in the
+        <strong>MRZ Data</strong> text box, then click the
+        <strong>Read</strong> button.
+    </li>
+</ol>
+<blockquote>
+    <p>
+        <strong>Note:</strong> Below is a realistic sample of MRZ data, but the
+        data you enter is not important for the purpose of this walkthrough.
+        Also, you can only manually type information into the text box and not
+        paste content from outside the VM.
+    </p>
+</blockquote>
+<p><img src="images%5Cocr-load-mrz.png" alt="" /></p>
+<h5 id="ocr-device-simulator-with-mrz-data-entered">
+    OCR Device Simulator with MRZ Data entered
+</h5>
+<ol start="2">
+    <li>
+        Click the <strong>Read</strong> button to simulate the OCR executing a
+        scan and collecting the MRZ data.
+    </li>
+</ol>
+<p><img src="images%5Cocr-read-mrz.png" alt="" /></p>
+<ol start="3">
+    <li>
+        Check the Service Bus for a new <code>TravelDocumentRead</code> message
+        that includes the scanned passport data as <code>MrzData</code> in the
+        Message Body.
+    </li>
+</ol>
+<pre><code class="language-json">{
+    &quot;MrzData&quot;: &quot;P&lt;D&lt;&lt;SCHMIDT&lt;&lt;KARL&lt;HEINZ&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;\r1234567897D&lt;&lt;0102030M0405063&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8&quot;
+}
+</code></pre>
+<h5
+    id="traveldocumentread-service-bus-message-body-that-returned-passport-mrzdata-scanned-by-the-ocr-device"
+>
+    <code>TravelDocumentRead</code> Service Bus Message Body that returned
+    passport <code>MrzData</code> &#39;scanned&#39; by the OCR device
+</h5>
+<h3 id="release-the-ocr">Release the OCR</h3>
+<ol>
+    <li>
+        In Postman, send a <code>/scan/v2/stopscanning</code> request to release
+        the device from exclusive access.
+        <ul>
+            <li>
+                The Scan API acknowledges the request by returning a
+                <code>2xx</code> success status code, as seen in a tool like
+                Postman.
+            </li>
+        </ul>
+    </li>
+    <li>
+        Check the Service Bus for a <code>ScanDeviceStatus</code> message
+        indicating the device is no longer &#39;in use&#39;.
+    </li>
+</ol>
+<pre><code class="language-JSON">{
+    &quot;DeviceStatus&quot;: &quot;Online&quot;,
+    &quot;DeviceInUse&quot;: &quot;false&quot;
+}
+</code></pre>
+<h5
+    id="devicestatus-service-bus-message-body-indicating-the-device-is-no-longer-in-use-and-is-available-to-be-reserved-by-another-backend-or-the-same-airline-backend"
+>
+    <code>DeviceStatus</code> Service Bus Message Body indicating the device is
+    no longer &#39;in use&#39; and is available to be reserved by another
+    backend or the same airline backend
+</h5>

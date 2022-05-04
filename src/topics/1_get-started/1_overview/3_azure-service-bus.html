@@ -1,0 +1,81 @@
+<h2 id="azure-service-bus">Azure Service Bus</h2>
+<p>
+    To use the SITA Flex APIs properly, having a firm understanding of the
+    Service Bus is required.
+</p>
+<p>
+    The Azure Service Bus is a message broker Flex uses to send messages to an
+    airline backend. The Service Bus subscription provides a back channel for
+    asynchronous and unsolicited messages from the platform and devices.
+</p>
+<p>
+    A full description of the Service Bus is out of scope for this
+    documentation, but this section seeks to explain how Flex interacts with it
+    on a high level. See the
+    <a
+        href="https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview"
+        >Microsoft Docs</a
+    >
+    on the Service Bus for a deeper dive.
+</p>
+<p>A few key takeaways:</p>
+<ul>
+    <li><p>Each airline backend needs its own subscription.</p></li>
+    <li>
+        <p>
+            Flex airports and their Flex locations will be configured in a
+            specific Azure Region.
+        </p>
+    </li>
+    <li>
+        <p>
+            Subscriptions are specific to an Azure Region and so your backend
+            may need several subscriptions to receive messages from all the
+            airport locations you operate at.
+        </p>
+    </li>
+    <li>
+        <p>
+            The subscription is intended to be long lived; you should ensure
+            that you refresh the subscription when it expires.
+        </p>
+    </li>
+    <li>
+        <p>
+            It is the responsibility of the airline backend system to correctly
+            route the messages received on a subscription to the correct client
+            applications.
+        </p>
+    </li>
+    <li><p>Flex communications are both synchronous and asynchronous.</p></li>
+</ul>
+<h3 id="flex-api-http-responses-and-service-bus-messages">
+    Flex API HTTP Responses and Service Bus Messages
+</h3>
+<p>
+    It is important to know that after sending Flex API HTTP requests, the HTTP
+    responses are oftentimes not the primary source of information airline
+    backends will act upon.
+</p>
+<p>
+    Instead, whenever a Flex API request is sent to a device, an action is
+    carried out of the device and a &#39;response&#39; Service Bus message is
+    sent to the Azure Service Bus subscription the airline backend is
+    &#39;subscribed to&#39;. The <code>MessageType</code> determines the type of
+    information returned.
+</p>
+<p>
+    Hence, the HTTP response returned by Flex is synchronous and only
+    acknowledges a request has been made. The Service Bus message returned on
+    the Service Bus Subscription after sending an HTTP request to Flex is an
+    asynchronous response and can be considered the &#39;true&#39; response to
+    the API request.
+</p>
+<h3 id="download-client-library">Download Client Library</h3>
+<p>
+    Microsoft Service Bus client libraries can be downloaded from
+    <a
+        href="https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview#client-libraries"
+        >here</a
+    >.
+</p>

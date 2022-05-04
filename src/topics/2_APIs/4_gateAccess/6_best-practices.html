@@ -1,0 +1,66 @@
+<h2 id="best-practices-5">Best Practices</h2>
+<h3 id="device-screen-messages">Device Screen Messages</h3>
+<p>
+    The GateAccess API does not recognize if a request is being sent to a
+    Boarding Gate Reader or a Self-Boarding Gate. From the perspective of the
+    API, these devices are the same. So, any <code>Message</code> can be passed
+    in the Request Body, but whether or not the message displays depends on the
+    device type.
+</p>
+<p>
+    The <code>Message</code> passed by the airline in the Request Bodies of the
+    <code>/gateaccess/v2/acceptpassenger</code> and
+    <code>/gateaccess/v2/rejectpassenger</code> requests are meant to be
+    messages for agents during an agent-driven boarding process using a Boarding
+    Gate Reader. Since any boarding process involving a Self-Boarding Gate is a
+    passenger-driven process, any <code>Message</code> passed to a SBG device is
+    ignored.
+</p>
+<h3 id="receipt-data">Receipt Data</h3>
+<p>
+    Most Self-Boarding Gates, and some Boarding Gate Readers, have a receipt
+    printer capable of receiving <code>ReceiptData</code> passed in the Request
+    Body of a <code>/gateaccess/v2/acceptpassenger</code> request. The data must
+    adhere to the AEA format for printing receipts.
+</p>
+<p>
+    A scenario where this could apply is if a passenger scans their boarding
+    pass at a Self-Boarding Gate and their seat has changed so their boarding
+    pass does not show the correct seat. The printer prints a receipt indicating
+    that their class has changed with their new seat number.
+</p>
+<p>
+    The following is a sample Request Body of a
+    <code>/gateaccess/v2/acceptpassenger</code> request that passes
+    <code>ReceiptData</code> to be printed for the passenger.
+</p>
+<pre><code class="language-JSON">{
+    &quot;ConnectionId&quot;: &quot;{{bgr_connection_id}}&quot;,
+    &quot;CorrelationId&quot;: &quot;{{$guid}}&quot;,
+    &quot;Message&quot;: [&quot;MSG Line 1&quot;, &quot;MSG Line 2&quot;],
+    &quot;ReceiptData&quot;: {
+      &quot;Data&quot;: &quot;#NN#RD#FONT1#SIZE7#FREEBOARDING RECEIPT#FONT1#SIZE7#FREECLASS CHANGE#FONT1#SIZE0#FREE#FONT1#SIZE0#FREEYour class has changed - See Below#FONT1#SIZE0#FREE#FONT1#SIZE3#NAMELEE/MAYLIN MDM#FONT1#SIZE3#FREE#FONT1#SIZE3#ALCDMH#FONT1#SIZE3#FLNR0002#FONT1#SIZE3#DATE16JAN#FONT1#SIZE3#BORDKUL#FONT1#SIZE3#DESTLHR#FONT1#SIZE3#SQNR8#FONT1#SIZE7#SEAT1K#FONT1#SIZE7#CLSSF#FONT1#SIZE0#FREE&quot;
+    }
+}
+</code></pre>
+<h5
+    id="sample-gateaccessv2acceptpassenger-request-body-that-passes-receiptdata-to-be-printed-for-the-passenger-1"
+>
+    Sample <code>/gateaccess/v2/acceptpassenger</code> Request Body that passes
+    <code>ReceiptData</code> to be printed for the passenger
+</h5>
+<p>
+    It is important to note that a gate that prints a receipt only opens when
+    the passenger has taken the receipt. If the passenger does not take the
+    receipt, the gate will not open.
+</p>
+<h3 id="fraud-situations">Fraud Situations</h3>
+<p>
+    Self-Boarding Gates generate more Error-style messages because they have
+    sensors that track passengers&#39; movements through the gate and generate
+    errors depending on different fraud situations. The
+    <em>IATA Technical Peripheral Specification (formerly AEA) Edition 2018</em>
+    goes into elaborate detail of all the possible situations that could trigger
+    an error, along with diagrams that illustrate the various positions of the
+    passenger in relation to the boarding gate.
+</p>

@@ -1,0 +1,91 @@
+<h2 id="connect-to-a-device">Connect to a Device</h2>
+<p>
+    The POST <code>/session/v2/connections</code> request creates a connection
+    to a device at specific location and associates that device to a
+    subscription where it can send messages for the airline backend to consume.
+</p>
+<h3 id="request-body-2">Request Body</h3>
+<p>
+    You must pass three properties in the Request Body of a
+    <code>/session/v2/connections</code> request:
+</p>
+<ul>
+    <li>
+        The <code>DeviceId</code> returned after sending the
+        <code>/site/v2/locations/{locationId}</code> request that listed devices
+        configured at a site.
+    </li>
+    <li>
+        The <code>subscriptionId</code> is a Flex-specific ID of the Service Bus
+        subscription the <code>DeviceId</code> will be associated to.
+    </li>
+    <li>
+        The <code>ReservationId</code> of the location where the device is
+        configured. This ID tells the Flex API that the airline has reserved the
+        location where the device is located.
+    </li>
+</ul>
+<p>The following is a sample Request Body:</p>
+<pre><code class="language-JSON">{
+    &quot;SubscriptionId&quot;: &quot;87fd60f9-aea8-466e-9659-43ad928c75f6&quot;,
+    &quot;ReservationId&quot;: &quot;46d2309e-0ec5-4ef9-98f1-e45a54c76688&quot;,
+    &quot;DeviceId&quot;: &quot;A-ZZU-MZUZUAIRPORT-ZZU1CKB005.BTP1&quot;
+}
+</code></pre>
+<h5
+    id="sample-request-body-for-post-sessionv2connections-request-seeking-to-connect-to-a-btp-device"
+>
+    Sample Request Body for POST <code>/session/v2/connections</code> request
+    seeking to connect to a BTP device
+</h5>
+<h3 id="response-body-3">Response Body</h3>
+<p>
+    A successful request returns a <code>2xx</code> success status code with the
+    JSON Response Body containing the connection details.
+</p>
+<pre><code class="language-JSON">{
+    &quot;connectionId&quot;: &quot;a060a6f1-ec5b-43cb-8f0b-bf6f8891ebdf&quot;,
+    &quot;reservationId&quot;: &quot;46d2309e-0ec5-4ef9-98f1-e45a54c76688&quot;,
+    &quot;subscriptionId&quot;: &quot;87fd60f9-aea8-466e-9659-43ad928c75f6&quot;,
+    &quot;deviceId&quot;: &quot;A-ZZU-MZUZUAIRPORT-ZZU1CKB005.BTP1&quot;,
+    &quot;expiryTime&quot;: &quot;2021-11-26T09:30:35.9528789+00:00&quot;
+}
+</code></pre>
+<h5
+    id="sample-response-body-for-post-sitev2reservation-request-containing-the-connectionid"
+>
+    Sample Response Body for POST <code>/site/v2/reservation</code> request
+    containing the <code>connectionId</code>
+</h5>
+<p>
+    The returned <code>connectionId</code> is now associated to the
+    <code>subscriptionId</code>, so any messages coming from the device will
+    display on that subscription. The airline backend will now use this
+    <code>connectionId</code> to send commands to the device through Flex.
+</p>
+<p>
+    An <code>expiryTime</code> set to <strong>5 minutes</strong> from the time
+    of the request is returned. This indicates when the connection to the device
+    expires.
+</p>
+<blockquote>
+    <p>
+        <strong>Tip:</strong> If continued access to the device is desired,
+        ensure to send another POST <code>/session/v2/connections</code> request
+        to create a new connection at the time of expiry of the old connection.
+    </p>
+</blockquote>
+<p>
+    The API also returns properties passed in the Request Body (for example, the
+    <code>reservationId</code>).
+</p>
+<h3 id="best-practices-2">Best Practices</h3>
+<h4 id="deleting-connections">Deleting Connections</h4>
+<p>
+    If a connection is no longer needed, it is best practice to delete the
+    connection to allow other airline backends to connect to the device. This is
+    achieved by sending a DEL
+    <code>/session/v2/connections/{connection_id}</code> request, passing in the
+    <code>connection_id</code> of the connection to be deleted as a path
+    parameter.
+</p>

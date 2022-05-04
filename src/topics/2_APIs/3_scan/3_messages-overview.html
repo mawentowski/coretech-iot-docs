@@ -1,0 +1,230 @@
+<h2 id="service-bus-messages-1">Service Bus Messages</h2>
+<p>
+    The following is not an exhaustive list of all possible Service Bus
+    <code>Message Types</code>. Only the most common ones encountered when
+    sending Scan API requests are described.
+</p>
+<h3 id="scandevicestatus">ScanDeviceStatus</h3>
+<h4 id="devicestatus-as-online">
+    <code>DeviceStatus</code> as <code>Online</code>
+</h4>
+<p>
+    After you connect to a device, a <code>ScanDeviceStatus</code> message is
+    displayed on the Service Bus that should indicate the
+    <code>DeviceStatus</code> is <code>Online</code> with the
+    <code>DeviceInUse</code> property set to <code>false</code>.
+</p>
+<pre><code class="language-JSON">{
+    &quot;DeviceStatus&quot;: &quot;Online&quot;,
+    &quot;DeviceInUse&quot;: &quot;false&quot;
+}
+</code></pre>
+<h5
+    id="scandevicestatus-service-bus-message-body-showing-the-scan-device-is-online-and-not-currently-in-use"
+>
+    <code>ScanDeviceStatus</code> Service Bus Message Body showing the scan
+    device is <code>Online</code> and not currently &#39;In Use&#39;
+</h5>
+<blockquote>
+    <p>
+        <strong>Note</strong>:
+        <code>&quot;DeviceInUse&quot;: &quot;false&quot;</code> is the default
+        value when no application instance has reserved the device
+        (<code>/scan/v2/startscanning</code>).
+    </p>
+</blockquote>
+<h4 id="devicestatus-changes-1"><code>DeviceStatus</code> Changes</h4>
+<p>
+    If a device status changes from <code>Online</code> to
+    <code>Offline</code> or <code>PoweredOff</code>, a
+    <code>ScanDeviceStatus</code> message is sent with an updated
+    <code>DeviceStatus</code>.
+</p>
+<p>
+    The following sample message is returned when the
+    <code>DeviceStatus</code> of an exclusively reserved device changes to
+    <code>PoweredOff</code>.
+</p>
+<pre><code class="language-json">{
+    &quot;DeviceStatus&quot;: &quot;PoweredOff&quot;,
+    &quot;DeviceInUse&quot;: &quot;true&quot;
+}
+</code></pre>
+<h5
+    id="scandevicestatus-service-bus-message-body-showing-the-scan-device-is-poweredoff"
+>
+    <code>ScanDeviceStatus</code> Service Bus Message Body showing the scan
+    device is <code>PoweredOff</code>
+</h5>
+<h4 id="deviceinuse-as-true"><code>DeviceInUse</code> as <code>True</code></h4>
+<p>
+    A connection to scan device (<code>/session/v2/connections</code>) is not
+    enough to receive unsolicited scan data from that device. The airline
+    backend needs to tell the device it wants to receive scan data
+    &#39;exclusively&#39; by sending a
+    <code>/scan/v2/startscanning</code> request. &#39;Exclusively&#39; using a
+    device means it is locked and will only send scan data to airline backend
+    that made the request.
+</p>
+<p>
+    Upon making a <code>/scan/v2/startscanning</code> request, the Scan API
+    acknowledges the request with a synchronous message, returning a
+    <code>2xx</code> success status code (as seen in a tool like Postman) and an
+    <code>accessExpiryTime</code> in the Response Body.
+</p>
+<pre><code class="language-json">{
+    &quot;accessExpiryTime&quot;: &quot;2021-09-30T14:50:07.347Z&quot;
+}
+</code></pre>
+<h5
+    id="scan-api-response-body-containing-date-time-when-exclusive-access-to-the-device-expires"
+>
+    Scan API Response Body containing date-time when exclusive access to the
+    device expires
+</h5>
+<p>
+    Unless explicitly released through a
+    <code>/scan/v2/stopscanning</code> request, exclusive access to the device
+    will automatically release once the <code>accessExpiryTime</code> has been
+    reached. This date-time is <strong>5 minutes</strong> from the time the
+    <code>/scan/v2/startscanning</code> request was made.
+</p>
+<blockquote>
+    <p>
+        <strong>Note</strong>: Subsequent calls to
+        <code>/scan/v2/startscanning</code> will extend the
+        <code>accessExpiryTime</code> by five minutes from the time of the
+        request. Repeated requests can be used to maintain exclusive access for
+        a longer period.
+    </p>
+</blockquote>
+<p>
+    Now that the request has been successfully made, the Scan API sends the
+    <code>DeviceID</code> of the device to the IoT Hub where it is then routed
+    to the correct workstation and peripheral. After carrying out the command,
+    another <code>ScanDeviceStatus</code> message is routed to the Service Bus
+    subscription.
+</p>
+<p>
+    In the Message Body, the <code>DeviceInUse</code> property is set to
+    <code>true</code> which indicates that the device is now exclusively
+    reserved and now may begin sending messages to the airline backend that made
+    the <code>/scan/v2/startscanning</code> request.
+</p>
+<pre><code class="language-json">{
+    &quot;DeviceStatus&quot;: &quot;Online&quot;,
+    &quot;DeviceInUse&quot;: &quot;true&quot;
+}
+</code></pre>
+<h5
+    id="devicestatus-service-bus-message-body-indicating-the-device-is-exclusively-reserved-by-the-airline-backend"
+>
+    <code>DeviceStatus</code> Service Bus Message Body indicating the device is
+    exclusively reserved by the airline backend
+</h5>
+<blockquote>
+    <p>
+        <strong>Note:</strong> The same <code>ScanDeviceStatus</code> message is
+        sent to all subscribers with an active connection to the scan device to
+        indicate the device can no longer be given a
+        <code>/scan/v2/startscanning</code> request.
+    </p>
+</blockquote>
+<h4 id="deviceinuse-as-false">
+    <code>DeviceInUse</code> as <code>False</code>
+</h4>
+<p>
+    When input from the device is no longer needed, make a
+    <code>/scan/v2/stopscanning</code> request to release exclusive access to
+    the device so it can be used by other airline backends.
+</p>
+<p>
+    The Scan API acknowledges the request with a synchronous message, returning
+    a <code>2xx</code> success status code (as seen in a tool like Postman).
+</p>
+<p>
+    An asynchronous <code>ScanDeviceStatus</code> message is sent to all
+    subscribers with an active connection to the scan device to indicate the
+    device is no longer exclusively being used (<code
+        >&quot;DeviceInUse&quot;: &quot;false&quot;</code
+    >) and is available to successfully receive a
+    <code>/scan/v2/startscanning</code> request.
+</p>
+<pre><code class="language-JSON">{
+    &quot;DeviceStatus&quot;: &quot;Online&quot;,
+    &quot;DeviceInUse&quot;: &quot;false&quot;
+}
+</code></pre>
+<h5
+    id="devicestatus-service-bus-message-body-indicating-the-device-is-no-longer-in-use-and-is-available-to-be-reserved"
+>
+    <code>DeviceStatus</code> Service Bus Message Body indicating the device is
+    no longer &#39;in use&#39; and is available to be reserved
+</h5>
+<h3 id="barcoderead">BarcodeRead</h3>
+<p>
+    When the device executes a scan, a message is sent to the Service Bus
+    containing data in the Message Body determined by the type of scan. The type
+    of device determines the <code>MessageType</code>, as well as the type of
+    data returned.
+</p>
+<p>
+    For example, an LSR device that scans a barcode returns a
+    <code>BarcodeRead</code> message on the Service Bus, providing the string
+    that contains the barcode (<code>BarCodeData</code>) as well as the type of
+    barcode (<code>BarCodeType</code>). The type of barcode can be 1D, 2D, etc.
+</p>
+<pre><code class="language-JSON">{
+    &quot;BarCodeData&quot;:&quot;6M1AZKUR AHMETKUR ERG6ULZ ZRHISTTK 1912 211Y024F0028 150&gt;10B1OO2211BTK 292352404859427 1 020K X\r\n&quot;,
+    &quot;BarCodeType&quot;:&quot;6&quot;
+}
+</code></pre>
+<h5
+    id="barcoderead-service-bus-message-body-that-returned-barcode-data-scanned-by-an-lsr-device"
+>
+    <code>BarcodeRead</code> Service Bus Message Body that returned barcode data
+    scanned by an LSR device
+</h5>
+<h3 id="magneticcardread">MagneticCardRead</h3>
+<p>
+    An MSR device that scans the magnetic strip on the back of a payment card
+    returns a <code>MagneticCardRead</code> message on the Service Bus,
+    providing the <code>CardType</code> and <code>Track</code> data.
+</p>
+<pre><code class="language-JSON">{
+   &quot;CardType&quot;:&quot;OtherCard&quot;,
+   &quot;Track1&quot;:&quot;8102172196=000&quot;,
+   &quot;Track2&quot;:&quot;18102172196=10=31122004=&quot;,
+   &quot;Track3&quot;:&quot;&quot;,
+   &quot;Track4&quot;:&quot;&quot;
+}
+</code></pre>
+<h5
+    id="magneticcardread-service-bus-message-body-that-returned-credit-card-data-scanned-by-an-msr-device"
+>
+    <code>MagneticCardRead</code> Service Bus Message Body that returned credit
+    card data scanned by an MSR device
+</h5>
+<blockquote>
+    <p>
+        <strong>Note:</strong> The magnetic stripe on the back of a card is
+        separated into 4 tracks/rows of data that are returned by the Service
+        Bus as multiple lines of <code>Track</code> data in the Message Body.
+    </p>
+</blockquote>
+<h3 id="traveldocumentread">TravelDocumentRead</h3>
+<p>
+    An OCR device that scans a passport returns a
+    <code>TravelDocumentRead</code> message on the Service Bus, providing the
+    scanned passport data as <code>MrzData</code> in the Message Body.
+</p>
+<pre><code class="language-JSON">{
+    &quot;MrzData&quot;: &quot;P&lt;D&lt;&lt;SCHMIDT&lt;&lt;KARL&lt;HEINZ&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;\r1234567897D&lt;&lt;0102030M0405063&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8&quot;,
+}
+</code></pre>
+<h5
+    id="traveldocumentread-service-bus-message-body-that-returned-passport-mrzdata-scanned-by-an-ocr-device"
+>
+    <code>TravelDocumentRead</code> Service Bus Message Body that returned
+    passport <code>MrzData</code> scanned by an OCR device
+</h5>

@@ -1,0 +1,72 @@
+<h2 id="endpoints-3">Endpoints</h2>
+<p>
+    The end path for BagDrop API endpoints begins with <strong>POST</strong>
+    <code>/bagdrop/v2</code>, followed by the endpoint (i.e. action) for the
+    device to carry out.
+</p>
+<h3 id="post-bagdropv2getbag">POST /bagdrop/v2/getbag</h3>
+<p>
+    Send a POST <code>/bagdrop/v2/getbag</code> request to initiate a bagdrop
+    process and open the door (if there is a door) of the SBD so the passenger
+    can place their bag on the belt.
+</p>
+<p>![](flow-diagrams\bagdrop - getbag.svg)</p>
+<h5 id="post-bagdropv2getbag-endpoint-flow">
+    POST <code>/bagdrop/v2/getbag</code> Endpoint Flow
+</h5>
+<h3 id="post-bagdropv2processbag">POST /bagdrop/v2/processbag</h3>
+<p>
+    After the passenger places a bag on the belt, the bag&#39;s measurements are
+    taken, and a settled weight is calculated. Send a POST
+    <code>/bagdrop/v2/processbag</code> request to close the door and move the
+    bag from the <code>Entry</code> position to the
+    <code>Process</code> position.
+</p>
+<p><img src="flow-diagrams%5Cbagdrop-processbag.svg" alt="" /></p>
+<h5 id="post-bagdropv2processbag-endpoint-flow">
+    POST <code>/bagdrop/v2/processbag</code> Endpoint Flow
+</h5>
+<h3 id="post-bagdropv2returnbag">POST /bagdrop/v2/returnbag</h3>
+<p>
+    If an issue arises when the bag is in the <code>Process</code> position, and
+    the customer <em>can resolve the issue</em>, send a POST
+    <code>/bagdrop/v2/returnbag</code> request to open the door and return the
+    bag to the <code>Entry</code> position where the customer to resolve the
+    issue.
+</p>
+<p>
+    Once the customer resolves the issue, send another POST
+    <code>/bagdrop/v2/processbag</code> request to return the bag to the
+    <code>Process</code> position so the bagdrop process can continue.
+</p>
+<p>![](flow-diagrams\bagdrop -returnbag.svg)</p>
+<h5 id="post-bagdropv2returnbag-endpoint-flow">
+    POST <code>/bagdrop/v2/returnbag</code> Endpoint Flow
+</h5>
+<h3 id="post-bagdropv2cancelbag">POST /bagdrop/v2/cancelbag</h3>
+<p>
+    If an issue arises when the bag is in the <code>Process</code> position, and
+    the customer <em>cannot to resolve the issue</em>, send a POST
+    <code>/bagdrop/v2/cancelbag</code> request to open the door and return the
+    bag to the <code>Entry</code> position where the agent can resolve the
+    issue.
+</p>
+<p>
+    Once the agent resolves the issue, send another POST
+    <code>/bagdrop/v2/processbag</code> request to return the bag to the
+    <code>Process</code> position so the bagdrop process can continue.
+</p>
+<p>![](flow-diagrams\bagdrop -cancelbag.svg)</p>
+<h5 id="post-bagdropv2cancelbag-endpoint-flow">
+    POST <code>/bagdrop/v2/cancelbag</code> Endpoint Flow
+</h5>
+<h3 id="post-bagdropv2releasebag">POST /bagdrop/v2/releasebag</h3>
+<p>
+    Once the bag has been processed, send a POST
+    <code>/bagdrop/v2/releasebag</code> request to move the bag to the Baggage
+    Handling System (BHS Area) and complete the bagdrop process.
+</p>
+<p>![](flow-diagrams\bagdrop -releasebag.svg)</p>
+<h5 id="post-bagdropv2releasebag-endpoint-flow">
+    POST <code>/bagdrop/v2/releasebag</code> Endpoint Flow
+</h5>

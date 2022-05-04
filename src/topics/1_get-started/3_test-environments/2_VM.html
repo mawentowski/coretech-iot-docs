@@ -1,0 +1,290 @@
+<h2 id="citrix-virtualized-sita-flex-environment">
+    Citrix Virtualized SITA Flex Environment
+</h2>
+<p>
+    In addition to using the devices included in the SITA Flex suitcase, you may
+    also interact with Flex using a Device simulator in a virtualized
+    environment configured with Flex. The Device Simulator hosts
+    &quot;fake&quot; devices that behave like the real ones included in the
+    suitcase.
+</p>
+<p>
+    It is recommended that you download the
+    <strong>Citrix Workspace</strong> application to access SITA&#39;s Citrix
+    NetScaler Gateway.
+</p>
+<h3 id="install-citrix-workspace">Install Citrix Workspace</h3>
+<ol>
+    <li>
+        Download the latest version of the
+        <a
+            href="https://www.citrix.com/en-gb/downloads/workspace-app/windows/workspace-app-for-windows-latest.html"
+            >Citrix Workspace app</a
+        >.
+    </li>
+    <li>Download and open the installer.</li>
+    <li>
+        Select all default settings.
+        <ul>
+            <li>
+                The installation completes, with the option to
+                <strong>Add Account</strong>.
+            </li>
+        </ul>
+    </li>
+    <li>
+        Click <strong>Add Account</strong>.
+        <ul>
+            <li>The <strong>Citrix Workspace</strong> displays.</li>
+        </ul>
+    </li>
+</ol>
+<h3 id="log-in-to-citrix-workspace">Log in to Citrix Workspace</h3>
+<ol>
+    <li>
+        Enter and submit the <strong>Store URL</strong> provided to you by SITA.
+    </li>
+    <li>
+        Enter your <strong>Citrix Workspace</strong>
+        <strong>Username</strong> and <strong>Password</strong> provided by
+        SITA.
+    </li>
+    <li>Click <strong>Sign In</strong>.</li>
+</ol>
+<h3 id="optional-view-primary-account">Optional: View Primary Account</h3>
+<p>
+    After signing in for the first-time, <code>Store Service</code> has now been
+    added as your primary account.
+</p>
+<p>To view accounts:</p>
+<ol>
+    <li>
+        <p>
+            Click the drop-down arrow to the left of the search bar in the
+            application header and select <strong>Accounts</strong>.
+        </p>
+        <p><img src="images/citrix-workspace.jpg" alt="" /></p>
+        <ul>
+            <li>
+                The <code>(Primary)</code> account <code>Store Service</code> is
+                visible.
+            </li>
+        </ul>
+        <p><img src="images/add-remove-accs.jpg" alt="" /></p>
+        <ul>
+            <li>
+                You may also <strong>Add</strong> or
+                <strong>Remove</strong> accounts from this window.
+            </li>
+        </ul>
+    </li>
+    <li>
+        <p>Click <strong>Ok</strong> to close the window.</p>
+    </li>
+</ol>
+<h3 id="add-vm-to-workspace">Add VM to Workspace</h3>
+<p>
+    If the VM you are assigned is not visible from the home page, you may add
+    it.
+</p>
+<p>To add a VM to your workspace:</p>
+<ol>
+    <li>
+        Click on the <strong>+</strong> icon on the left side of the screen.
+    </li>
+    <li>
+        Click the VM you have been assigned.
+        <ul>
+            <li>
+                A VM icon transitions onto your workspace that allows quick
+                access to that VM.
+            </li>
+            <li>
+                If you click <strong>+</strong> again, you will notice a green
+                check mark displays next to the VM to indicate it has been
+                added.
+            </li>
+        </ul>
+    </li>
+</ol>
+<h3 id="log-into-the-vm">Log into the VM</h3>
+<blockquote>
+    <p>
+        <strong>Note</strong>: Copying and pasting information into the VM is
+        not allowed for security reasons -- you must hand type all information.
+        If you need assistance making something available on the desktop,
+        contact
+        <a
+            href="mailto:&#102;&#x6c;&#101;&#x78;&#x2e;&#x61;&#x70;&#105;&#46;&#115;&#x75;&#112;&#x70;&#111;&#x72;&#116;&#x40;&#115;&#105;&#x74;&#x61;&#46;&#97;&#x65;&#114;&#111;"
+            >&#102;&#x6c;&#101;&#x78;&#x2e;&#x61;&#x70;&#105;&#46;&#115;&#x75;&#112;&#x70;&#111;&#x72;&#116;&#x40;&#115;&#105;&#x74;&#x61;&#46;&#97;&#x65;&#114;&#111;</a
+        >.
+    </p>
+</blockquote>
+<p>To log in to the VM:</p>
+<ol>
+    <li>
+        <p>
+            Click the quick access link to the VM you have been assigned from
+            your workspace.
+        </p>
+        <ul>
+            <li>
+                If you see an error stating &quot;The resource is unavailable
+                currently&quot;, refer to
+                <a href="VM Not Available_1.htm"
+                    >troubleshooting an unavailable VM</a
+                >.
+            </li>
+        </ul>
+    </li>
+    <li>
+        <p>Enter your <strong>VNC Password</strong> provided by SITA.</p>
+        <ul>
+            <li>If successful, the Windows lock screen displays.</li>
+        </ul>
+    </li>
+    <li>
+        <p>
+            Right-click the blue header of the <strong>VNC Window</strong> and
+            select <strong>Send Ctrl+Alt+Del</strong>.<img
+                src="images/vnc-window.jpg"
+                alt=""
+            />
+        </p>
+        <ul>
+            <li>A VM Windows Login screen displays.</li>
+        </ul>
+    </li>
+    <li>
+        <p>
+            Enter and submit the Windows Credentials (SITA APC Logon) that you
+            have been provided by SITA.
+        </p>
+        <ul>
+            <li>
+                The <strong>Peripheral View</strong> opens and displays the
+                status of the devices.
+            </li>
+        </ul>
+    </li>
+</ol>
+<p><img src="images/perip-view-status.jpg" alt="" /></p>
+<h3 id="add-a-device">Add a Device</h3>
+<p>
+    Devices must be added using the Device Simulator before they can interact
+    with Flex.
+</p>
+<p>To add a device:</p>
+<ol>
+    <li>
+        <p>
+            Double-click the <strong>Device Simulator</strong> icon screen on
+            Windows desktop.
+        </p>
+        <p><img src="images/device-sim-shortcut.jpg" alt="" /></p>
+        <ul>
+            <li>The <strong>Device Simulator</strong> displays.</li>
+        </ul>
+    </li>
+    <li>
+        <p>Click <strong>Add Device</strong>.</p>
+        <p><img src="images/device-sim-add.jpg" alt="" /></p>
+    </li>
+</ol>
+<blockquote>
+    <p>
+        <strong>Note:</strong> For demonstrative purposes, you will be adding an
+        <code>ATBStandard</code> device. However, note that there are many other
+        devices available.
+    </p>
+</blockquote>
+<ol start="3">
+    <li>
+        Click the <strong>Device Type</strong> drop-down and select
+        <code>ATB Standard</code>.
+    </li>
+</ol>
+<p><img src="images/device-type.jpg" alt="" /></p>
+<ol start="4">
+    <li>
+        <p>
+            Leave all default values the same for the selected
+            <code>ATB Standard</code> device.
+        </p>
+    </li>
+    <li>
+        <p>Click <strong>Add Device</strong>.</p>
+        <ul>
+            <li>
+                The device now displays in <strong>Device Simulator</strong> and
+                is available to <strong>Run</strong>.
+            </li>
+        </ul>
+    </li>
+    <li>
+        <p>
+            On the device, click <strong>Options</strong>, then
+            <strong>Settings</strong>.
+        </p>
+        <ul>
+            <li>An <strong>ATB Settings</strong> window displays.</li>
+            <li>
+                You may modify several fields that enable changes in the
+                behavior of the device. However, the default values should be
+                enough for your initial development.
+            </li>
+        </ul>
+    </li>
+</ol>
+<p><img src="images/atb-settings.jpg" alt="" /></p>
+<ol start="7">
+    <li>
+        Click <strong>Save and Close</strong> in the
+        <strong>ATB Settings</strong> window.
+    </li>
+</ol>
+<h3 id="run-the-device">Run the Device</h3>
+<ol>
+    <li>
+        On the device, click <strong>Run</strong>.
+        <ul>
+            <li>
+                The <strong>ATB Simulator</strong> page displays, and the
+                <strong>Session Log</strong> updates as the device is activated.
+            </li>
+        </ul>
+    </li>
+</ol>
+<p><img src="images/run-device-periph.jpg" alt="" /></p>
+<ol start="2">
+    <li>
+        <p>
+            From Windows desktop, return to the
+            <strong>Peripheral View</strong> and observe that the
+            <strong>ATB</strong> device status is now showing in green as
+            <code>Online</code>.
+        </p>
+        <p><img src="images/run-device-periph-1.jpg" alt="" /></p>
+    </li>
+</ol>
+<h3 id="next-steps-1">Next Steps</h3>
+<p>
+    After having successfully added and run a device in the
+    <strong>Device Simulator</strong>, you are now ready to interact with the
+    device using the Flex APIs.
+</p>
+<p>
+    Repeat the steps above for any other device type. Many devices can run at
+    the same time using the Device Simulator.
+</p>
+<blockquote>
+    <p>
+        <strong>Note</strong>: All the default values should be used when adding
+        and running the device, unless otherwise stated.
+    </p>
+</blockquote>
+<p>
+    Continue to
+    <a href="Get Started using Flex_1.htm">Get Started using Flex</a> to
+    interact with the device you just added.
+</p>

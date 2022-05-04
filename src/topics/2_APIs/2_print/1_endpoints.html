@@ -1,0 +1,34 @@
+<h2 id="endpoints">Endpoints</h2>
+<p>
+    The end path for the Print API starts with <strong>POST</strong>
+    <code>/print/v2</code>, followed by the endpoint (i.e. action) for a device
+    to carry out.
+</p>
+<h3 id="post-printv2boardingpasstype">POST /print/v2/boardingpass/{type}</h3>
+<p>
+    Send a POST <code>/print/v2/boardingpass/{type}</code> request to an ATB
+    device to print a boarding pass in the specified format <code>{type}</code>.
+    Using this endpoint, boarding passes may be printed in either
+    <code>pdf</code> or <code>svg</code> format.
+</p>
+<h3 id="post-printv2boardingpassaea">POST /print/v2/boardingpass/aea</h3>
+<p>
+    Send a POST <code>/print/v2/boardingpass/aea</code> request to an ATB device
+    to print a boarding pass in <code>aea</code> format.
+</p>
+<h3 id="post-printv2baggagetagtype">POST /print/v2/baggagetag/{type}</h3>
+<p>
+    Send a POST <code>/print/v2/baggagetag/{type}</code> request to a BTP device
+    to print a baggage tag in the specified format <code>{type}</code>. Using
+    this endpoint, baggage tags may be printed in <code>svg</code> format only.
+</p>
+<h3 id="post-printv2baggagetagaea">POST /print/v2/baggagetag/aea</h3>
+<p>
+    Send a POST <code>/print/v2/baggagetag/aea</code> request to an BTP device
+    to print a baggage tag in <code>aea</code> format.
+</p>
+<h3 id="post-printv2report">POST /print/v2/report</h3>
+<p>
+    Send a Post <code>/print/v2/report</code> request to a DCP device to print a
+    report.
+</p>

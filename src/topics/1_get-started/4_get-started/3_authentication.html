@@ -1,0 +1,61 @@
+<h2 id="authenticate">Authenticate</h2>
+<p>
+    Flex APIs use the Microsoft OAuth2 flow for authentication. Read
+    Microsoft&#39;s official documentation on
+    <a
+        href="https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/auth-oauth2"
+        >OAuth2</a
+    >
+    for more details.
+</p>
+<p>
+    SITA assigns you an application id (i.e., <code>client_id</code>),
+    application secret (i.e., <code>client_secret</code>) and
+    <code>resource</code> that can then be used to obtain an
+    <code>access_token</code> for SITA Flex APIs (referred to as
+    <code>bearer_token</code> in the Authorization Header of requests).
+</p>
+<ul>
+    <li>
+        The <code>client_id</code> is the public identifier for your app and is
+        unique across all clients that the authorization server handles.
+    </li>
+    <li>
+        The <code>client_secret</code> is a secret known only to your
+        application and the authorization server.
+    </li>
+    <li>
+        The <code>resource</code> is a GUID denoting the resource / service /
+        application that &quot;access to&quot; is being requested.
+    </li>
+</ul>
+<blockquote>
+    <p>
+        <strong>Note:</strong> The generic <code>resource</code> for the PRX
+        (Pre-Production) environment used for authentication is
+        <code>51583536-28c7-4ea6-8d94-d0a7e91cb1cb</code>.
+    </p>
+</blockquote>
+<p>
+    Credentials are provided for each airline backend that will be creating a
+    service bus subscription.
+</p>
+<p>
+    The <code>access_token</code> provides authentication for clients to
+    securely call Flex APIs protected by Azure, and it must be included in the
+    header of API calls.
+</p>
+<blockquote>
+    <p><strong>Note</strong>: Access tokens are valid for 60 minutes.</p>
+</blockquote>
+<p>The basic grant flow for the Pre-Production Environment is shown below:</p>
+<p><img src="images/grant-flow.png" alt="" /></p>
+<h5 id="grant-flow-for-pre-production-environment">
+    Grant Flow for Pre-Production Environment
+</h5>
+<blockquote>
+    <p>
+        <strong>Note:</strong> SITA Flex uses the v1.0 endpoints of the
+        Microsoft Identify Platform (i.e., Azure Active Directory).
+    </p>
+</blockquote>

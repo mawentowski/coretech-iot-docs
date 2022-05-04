@@ -1,0 +1,293 @@
+<h1 id="troubleshooting-error-codes">Troubleshooting Error Codes</h1>
+<p>
+    Flex APIs follow standard RESTful API status code conventions when it comes
+    to error codes. These troubleshooting guidelines are intended to be as
+    specific as possible to Flex APIs.
+</p>
+<h2 id="400-bad-request">400 Bad Request</h2>
+<p>The request was invalid.</p>
+<h3 id="invalid-request">Invalid Request</h3>
+<p>
+    Flex returns this error code when some part of the Request URL is invalid,
+    excluding a Resource which triggers a <code>404: Resource not found</code>.
+    The <code>error_description</code> indicates which value was incorrect.
+</p>
+<p>
+    In the example below, Flex returned this error after sending a Get Access
+    token request and the <code>AAD_tenent</code> passed in the Resource URL is
+    invalid. It could be the case that this value was incorrectly spelled, for
+    example.
+</p>
+<pre><code class="language-JSON">{
+    &quot;error&quot;: &quot;invalid_request&quot;,
+    &quot;error_description&quot;: &quot;AADSTS900023: Specified tenant identifier &#39;{{tennt}}&#39; is neither a valid DNS name, nor a valid external domain.\r\nTrace ID: e2f39c31-d6fb-4c66-9c35-a815eeb33300\r\nCorrelation ID: 225c9f55-e2ef-4c24-8619-306a0ce36cbd\r\nTimestamp: 2021-11-05 11:42:40Z&quot;,
+    &quot;error_codes&quot;: [
+        900023
+    ],
+    &quot;timestamp&quot;: &quot;2021-11-05 11:42:40Z&quot;,
+    &quot;trace_id&quot;: &quot;e2f39c31-d6fb-4c66-9c35-a815eeb33300&quot;,
+    &quot;correlation_id&quot;: &quot;225c9f55-e2ef-4c24-8619-306a0ce36cbd&quot;,
+    &quot;error_uri&quot;: &quot;https://login.microsoftonline.com/error?code=900023&quot;
+}
+</code></pre>
+<h5 id="response-body-when-aad_tenent-passed-in-resource-url-is-invalid">
+    Response Body when <code>AAD_tenent</code> passed in Resource URL is invalid
+</h5>
+<p>
+    The resolution is to simply correct the invalid value in the Resource URL,
+    then attempt another request.
+</p>
+<h3 id="one-or-more-validation-errors-occurred">
+    One or more validation errors occurred
+</h3>
+<p>
+    A Flex API returns this error in either one of the following scenarios. They
+    are somewhat specific to Postman when attempting to pass values as variables
+    that may no longer be valid. They occur:
+</p>
+<ul>
+    <li>
+        when attempting to connect to, or interact with, a peripheral when a
+        <code>session/v2/subscriptions</code> request was made unsuccessfully
+        during this session:
+    </li>
+</ul>
+<pre><code class="language-JSON">{
+    &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc7231#section-6.5.1&quot;,
+    &quot;title&quot;: &quot;One or more validation errors occurred.&quot;,
+    &quot;status&quot;: 400,
+    &quot;traceId&quot;: &quot;00-68e38c2ba0ec8840a4005dadea0d81c0-32fa28d00f6b3340-00&quot;,
+    &quot;errors&quot;: {
+        &quot;$.SubscriptionId&quot;: [
+            &quot;The JSON value could not be converted to System.Guid. Path: $.SubscriptionId | LineNumber: 1 | BytePositionInLine: 24.&quot;
+        ]
+    }
+}
+</code></pre>
+<h5 id="response-body-when-no-subscription-exists">
+    Response Body when no subscription exists
+</h5>
+<ul>
+    <li>when the connection to a device has expired:</li>
+</ul>
+<pre><code class="language-JSON">{
+    &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc7231#section-6.5.1&quot;,
+    &quot;title&quot;: &quot;One or more validation errors occurred.&quot;,
+    &quot;status&quot;: 400,
+    &quot;traceId&quot;: &quot;00-815de99286d3954fa69fce27b1ce06df-819ec6565c1c944a-00&quot;,
+    &quot;errors&quot;: {
+        &quot;$.connectionId&quot;: [
+            &quot;The JSON value could not be converted to System.Guid. Path: $.connectionId | LineNumber: 1 | BytePositionInLine: 20.&quot;
+        ]
+    }
+}
+</code></pre>
+<h5 id="response-body-when-connection-to-device-has-expired">
+    Response Body when connection to device has expired
+</h5>
+<ul>
+    <li>
+        when attempting to delete a connection to a device when at present there
+        is no connection.
+    </li>
+</ul>
+<pre><code class="language-JSON">{
+    &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc7231#section-6.5.1&quot;,
+    &quot;title&quot;: &quot;One or more validation errors occurred.&quot;,
+    &quot;status&quot;: 400,
+    &quot;traceId&quot;: &quot;00-ddcc4b696af7fc4e90e1566144750fbb-51c76a2b58fbdd49-00&quot;,
+    &quot;errors&quot;: {
+        &quot;connectionId&quot;: [
+            &quot;The value &#39;null&#39; is not valid.&quot;
+        ]
+    }
+}
+</code></pre>
+<h5
+    id="response-body-when-attempting-to-delete-a-connection-when-it-does-not-exist"
+>
+    Response Body when attempting to delete a connection when it does not exist
+</h5>
+<p>
+    To determine which scenario applies, check the <code>errors</code> value in
+    the Response Body:
+</p>
+<ul>
+    <li>
+        If the error says <code>SubscriptionId</code>, then no subscription
+        exists. Simply send a <code>session/v2/subscriptions</code> request to
+        create and receive details for a new subscription.
+    </li>
+    <li>
+        If the error says <code>connectionId</code> with a
+        <code>could not be converted</code> message, then the connection to the
+        device has expired. Simply connect to the device again.
+    </li>
+    <li>
+        If the error says <code>connectionId</code> with a
+        <code>The value &#39;null&#39; is not valid.</code> message, then there
+        is no connection to delete.
+    </li>
+</ul>
+<h3 id="connection-has-expired">Connection has expired</h3>
+<p>
+    A Flex API returns this error when the connection to a device has expired.
+</p>
+<pre><code class="language-JSON">{
+    &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc7231#section-6.5.1&quot;,
+    &quot;title&quot;: &quot;Bad Request&quot;,
+    &quot;status&quot;: 400,
+    &quot;detail&quot;: &quot;Connection has expired.&quot;,
+    &quot;traceId&quot;: &quot;00-baf5325b0757fc408018bca88119a826-65e7e75f65b69c4a-00&quot;
+}
+</code></pre>
+<h5 id="the-connection-to-the-device-has-expired">
+    The connection to the device has expired
+</h5>
+<p>
+    After connecting to a device, a connection <code>expiryTime</code> is
+    returned in the Response Body set to <strong>30 minutes</strong> from the
+    time the <code>session/v2/connections</code> request was made.
+</p>
+<p>
+    The resolution is to simply send another
+    <code>session/v2/connections</code> request.
+</p>
+<h3 id="no-connection-exists">No Connection Exists</h3>
+<p>
+    A Flex API returns this error when the connection to a device has expired.
+</p>
+<pre><code class="language-JSON">{
+    &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc7231#section-6.5.1&quot;,
+    &quot;title&quot;: &quot;Bad Request&quot;,
+    &quot;status&quot;: 400,
+    &quot;detail&quot;: &quot;No Connection Exists.&quot;,
+    &quot;traceId&quot;: &quot;00-baf5325b0757fc408018bca88119a826-65e7e75f65b69c4a-00&quot;
+}
+</code></pre>
+<h5 id="the-connection-to-the-device-has-expired-1">
+    The connection to the device has expired
+</h5>
+<p>
+    After connecting to a device, a connection <code>expiryTime</code> is
+    returned in the Response Body set to <strong>30 minutes</strong> from the
+    time the <code>session/v2/connections</code> request was made.
+</p>
+<p>
+    The resolution is to simply send another
+    <code>session/v2/connections</code> request.
+</p>
+<h2 id="401-unauthorized">401 Unauthorized</h2>
+<p>
+    The request did not include an authentication token, or the authentication
+    token was expired.
+</p>
+<h3 id="unauthorized">Unauthorized</h3>
+<p>
+    Flex returns this error when the <code>access_token</code> included in the
+    Authorization Header of a request has expired.
+</p>
+<pre><code class="language-JSON">{
+    &quot;type&quot;: &quot;https://httpstatuses.com/401&quot;,
+    &quot;title&quot;: &quot;Unauthorized&quot;,
+    &quot;status&quot;: 401,
+    &quot;traceId&quot;: &quot;00-1e8461bd7e3e4448940a7aa2237a2515-9cfcf731cb93354b-00&quot;
+}
+</code></pre>
+<h5 id="response-body-when-access_token-has-expired">
+    Response Body when <code>access_token</code> has expired
+</h5>
+<p>
+    After requesting a Get Access Token, the returned
+    <code>access_token</code> has an <code>expires_in</code> value of
+    <code>3599</code> seconds, as indicated in the Response Body. This duration
+    of time roughly equals <strong>60 minutes</strong>.
+</p>
+<p>
+    Ensure that you refresh this access token by sending another Get Access
+    Token request if continued access is required.
+</p>
+<p>After refreshing the access token, you must reconnect to devices.</p>
+<h2 id="403-forbidden">403 Forbidden</h2>
+<p>The client did not have permission to access the requested resource.</p>
+<h3 id="forbidden">Forbidden</h3>
+<p>
+    A Flex API returns this error when your permissions are not sufficient to
+    perform the operation. Contact
+    <a
+        href="mailto:&#102;&#x6c;&#101;&#120;&#46;&#97;&#112;&#105;&#46;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#x73;&#x69;&#x74;&#97;&#x2e;&#97;&#x65;&#114;&#111;"
+        >&#102;&#x6c;&#101;&#120;&#46;&#97;&#112;&#105;&#46;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#x73;&#x69;&#x74;&#97;&#x2e;&#97;&#x65;&#114;&#111;</a
+    >
+    to request permission.
+</p>
+<pre><code class="language-JSON">{
+    &quot;type&quot;: &quot;https://httpstatuses.com/403&quot;,
+    &quot;title&quot;: &quot;Forbidden&quot;,
+    &quot;status&quot;: 403,
+    &quot;traceId&quot;: &quot;00-a0876953d809b243aef112b22fab2139-1d37802bf725bf42-00&quot;
+}
+</code></pre>
+<h5 id="response-body-when-permissions-are-insufficient-to-access-the-resource">
+    Response Body when permissions are insufficient to access the resource
+</h5>
+<h2 id="404-resource-not-found">404 Resource Not Found</h2>
+<p>The requested resource was not found.</p>
+<h3 id="resource-not-found">Resource not found</h3>
+<p>
+    A Flex API returns this error when a Flex Resource, also known as an API,
+    has been entered incorrectly in the Resource URL.
+</p>
+<ol>
+    <li>
+        Verify you are targeting the endpoint below for the Pre-production
+        environment that your development environment has been configured in:
+        <a href="https://sita-apiprx-eastus-apimanagement.azure-api.net/"
+            >https://sita-apiprx-eastus-apimanagement.azure-api.net/</a
+        >.
+    </li>
+    <li>
+        Identify and correct any other erroneous information, then attempt
+        another request.
+    </li>
+</ol>
+<pre><code class="language-JSON">{
+    &quot;statusCode&quot;: 404,
+    &quot;message&quot;: &quot;Resource not found&quot;
+}
+</code></pre>
+<h5 id="response-body-when-an-invalid-resource-is-included-in-the-url">
+    Response Body when an invalid Resource is included in the URL
+</h5>
+<h2 id="500-internal-server-error">500 Internal Server Error</h2>
+<p>
+    The request was not completed due to an internal error on the server side.
+</p>
+<h3 id="an-error-has-occurred-while-communicating-with-the-device">
+    An error has occurred while communicating with the device
+</h3>
+<p>
+    Any 500 Internal Errors are indicative of a major failure and should be sent
+    immediately to
+    <a
+        href="mailto:&#x66;&#x6c;&#x65;&#x78;&#x2e;&#x61;&#112;&#x69;&#46;&#115;&#117;&#112;&#x70;&#111;&#x72;&#116;&#x40;&#x73;&#105;&#x74;&#x61;&#46;&#97;&#101;&#114;&#x6f;"
+        >&#x66;&#x6c;&#x65;&#x78;&#x2e;&#x61;&#112;&#x69;&#46;&#115;&#117;&#112;&#x70;&#111;&#x72;&#116;&#x40;&#x73;&#105;&#x74;&#x61;&#46;&#97;&#101;&#114;&#x6f;</a
+    >.
+</p>
+<pre><code class="language-JSON">{
+    &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc7231#section-6.6.1&quot;,
+    &quot;title&quot;: &quot;An error occurred while processing your request.&quot;,
+    &quot;status&quot;: 500,
+    &quot;detail&quot;: &quot;An error has occurred while communicating with the device.&quot;,
+    &quot;traceId&quot;: &quot;00-986e0e92622762478a360016038a2602-93ae8d22a22c9041-00&quot;
+}
+</code></pre>
+<h5
+    id="response-body-that-can-occur-for-many-reasons-when-a-major-error-has-been-encountered"
+>
+    Response Body that can occur for many reasons when a major error has been
+    encountered
+</h5>
+<h2 id="503-service-unavailable">503 Service Unavailable</h2>
+<p>
+    Standard error indicating the server is unavailable. Try again at a later.
+</p>

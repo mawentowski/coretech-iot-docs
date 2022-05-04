@@ -1,0 +1,192 @@
+<h2 id="sita-flex-apis">SITA Flex APIs</h2>
+<p>
+    The SITA Flex platform contains the following APIs, each with a variety of
+    endpoints and methods to access them in different ways.
+</p>
+<blockquote>
+    <p>
+        <strong>Note</strong>: The endpoints below describe the use of devices
+        to perform certain actions like printing or scanning. For an in-depth
+        explanation of device types, consult the
+        <em
+            >IATA Technical Peripheral Specification (formerly AEA) Edition
+            2018</em
+        >.
+    </p>
+</blockquote>
+<h3 id="session-api">Session API</h3>
+<p>
+    The <a href="Session API_1.htm">Session API</a> endpoints allow your airline
+    backend to connect to devices configured in the SITA Flex environment so it
+    can receive messages from those devices.
+</p>
+<p>
+    When using this API, you must <strong>subscribe</strong> to the Azure
+    Service Bus, <strong>reserve</strong> a location for exclusive access, then
+    create a <strong>connection</strong> to Flex devices to receive messages on
+    the subscription.
+</p>
+<p>Example locations configured in the SITA Flex environment include:</p>
+<ul>
+    <li>Airport CUTE type workstations for check-in and boarding</li>
+    <li>CUSS Type devices such as a Self-Service Kiosk</li>
+    <li>Self-Service BagDrop and Self-Service Boarding Gate</li>
+</ul>
+<h3 id="print-api">Print API</h3>
+<p>
+    The <a href="Print API_1.htm">Print API</a> endpoints allow your airline
+    backend to use airport devices to print airport documents such as boarding
+    passes, bag tags, and reports.
+</p>
+<p>The supported devices at present are the following:</p>
+<table>
+    <thead>
+        <tr>
+            <th>Acronym</th>
+            <th>Definition</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>ATB</td>
+            <td>
+                Automated Ticket &amp; Boarding Pass Printer. Supports SVG, PDF,
+                or AEA formats.
+            </td>
+        </tr>
+        <tr>
+            <td>BTP</td>
+            <td>Baggage Tag Printer. Supports PDF or AEA formats.</td>
+        </tr>
+        <tr>
+            <td>DCP</td>
+            <td>Document Printer</td>
+        </tr>
+        <tr>
+            <td>GPP</td>
+            <td>General Purpose Printer</td>
+        </tr>
+    </tbody>
+</table>
+<h3 id="scan-api">Scan API</h3>
+<p>
+    The <a href="Scan API_1.htm">Scan API</a> endpoints allow your airline
+    backend to use airport devices to read travel documents like boarding
+    passes, bag tags, and passports.
+</p>
+<p>The supported devices at present are the following:</p>
+<table>
+    <thead>
+        <tr>
+            <th>Acronym</th>
+            <th>Definition</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>LSR</td>
+            <td>Laser Sensor Reader (Bar Code Scanner)</td>
+        </tr>
+        <tr>
+            <td>MSR</td>
+            <td>Magnetic Stripe Readers</td>
+        </tr>
+        <tr>
+            <td>OCR</td>
+            <td>Optical Character Recognition</td>
+        </tr>
+    </tbody>
+</table>
+<h3 id="payment-api">Payment API</h3>
+<p>
+    The Payment API endpoints allow your airline backend to take a payment from
+    a customer using a secure PCI compliant payment solution.
+</p>
+<p>They cover:</p>
+<ul>
+    <li>
+        Specifying the amount, currency, and vendor of a payment transaction.
+    </li>
+    <li>
+        Printing receipts and verifying signatures in the case that this is
+        required.
+    </li>
+    <li>Handling errors when they occur during the payment process.</li>
+</ul>
+<p>The only supported device at present is:</p>
+<table>
+    <thead>
+        <tr>
+            <th>Acronym</th>
+            <th>Definition</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>PMT</td>
+            <td>Payment Device for Chip and Pin transactions.</td>
+        </tr>
+    </tbody>
+</table>
+<blockquote>
+    <p>
+        <strong>Note:</strong> The Payment API full documentation will be
+        provided in a future release of this document.
+    </p>
+</blockquote>
+<h3 id="gateaccess-api">GateAccess API</h3>
+<p>
+    The <a href="GateAccess API_1.htm">GateAccess API</a> endpoints allow your
+    airline backend to interact with Boarding Gate Readers (BGR/BCR) and
+    Self-Boarding Gates (SBG).
+</p>
+<p>The supported devices at present are the following:</p>
+<table>
+    <thead>
+        <tr>
+            <th>Acronym</th>
+            <th>Definition</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>BCR</td>
+            <td>Boarding Card Reader</td>
+        </tr>
+        <tr>
+            <td>BGR</td>
+            <td>Boarding Gate Reader</td>
+        </tr>
+        <tr>
+            <td>SBG</td>
+            <td>Self-Boarding Gate</td>
+        </tr>
+    </tbody>
+</table>
+<h3 id="bagdrop-api">Bagdrop API</h3>
+<p>
+    The <a href="Bagdrop API.htm">Bagdrop API</a> endpoints allow your airline
+    backend to control a Self Bagdrop Unit to:
+</p>
+<ul>
+    <li>move the bag between the various parts of the bagdrop process.</li>
+    <li>
+        retrieve information about the bag that is currently being processed by
+        the unit.
+    </li>
+</ul>
+<p>The only supported device at present is:</p>
+<table>
+    <thead>
+        <tr>
+            <th>Acronym</th>
+            <th>Definition</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>SBD</td>
+            <td>Self-Bag Drop</td>
+        </tr>
+    </tbody>
+</table>

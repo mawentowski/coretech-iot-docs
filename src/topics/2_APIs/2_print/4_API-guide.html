@@ -1,0 +1,298 @@
+<h2 id="print-api-walkthrough">Print API Walkthrough</h2>
+<p>
+    Follow along with this walkthrough to experience the Print API, including
+    connecting to a device, issuing a print command, then reading the response.
+    The following tools are used to demonstrate the Print API:
+</p>
+<ul>
+    <li>
+        The
+        <a href="Citrix Virtualized SITA Flex_1.htm"
+            >Citrix Virtualized SITA Flex Environment</a
+        >
+        to add devices.
+    </li>
+    <li>
+        The SITA Flex API Postman Collection that allows you to send requests to
+        Flex.
+    </li>
+    <li>
+        Your airline backend to receive messages from the Azure Service Bus.
+    </li>
+</ul>
+<p>
+    You will be interacting with an ATB device (Automated Ticket &amp; Boarding
+    Pass Printer) since it supports the most print format possibilities like
+    SVG, PDF, or AEA. With this knowledge, you can apply the same steps to
+    interacting with other print devices.
+</p>
+<blockquote>
+    <p>
+        <strong>Note:</strong> This walkthrough provides some basic
+        troubleshooting steps. However, if an error displays that is not
+        covered, refer to the
+        <a href="Troubleshooting Environments_1.htm"
+            >Troubleshooting Environments</a
+        >
+        or
+        <a href="Troubleshooting Error Codes_1.htm"
+            >Troubleshooting Error Codes</a
+        >
+        sections for detailed steps on how to resolve the issue.
+    </p>
+</blockquote>
+<h3 id="prerequisite-steps">Prerequisite Steps</h3>
+<ol>
+    <li>
+        Login to the
+        <a href="Citrix Virtualized SITA Flex_1.htm"
+            >Citrix Virtualized SITA Flex Environment</a
+        >
+        you set up previously.
+    </li>
+    <li>
+        In Postman, open the <strong>SITA Flex API Collection</strong> and
+        <strong>Postman environment</strong> <code>.json</code> files. In the
+        Postman environment file:
+        <ul>
+            <li>
+                Ensure your <code>clientid</code> and
+                <code>clientsecret</code> are populated in both the
+                <strong>Initial Value</strong> and
+                <strong>Current Value</strong> columns.
+            </li>
+            <li>
+                Ensure the <code>{{location}}</code> variable corresponds to the
+                VM&#39;s machine name as seen in the Peripheral View. For
+                example, a VM with machine name <code>ZZU1CKB005</code> as seen
+                in the Peripheral view could correspond to a
+                <code>location</code> called
+                <code>A-ZZU-MZUZUAIRPORT-ZZU1CKB005</code> in the Postman
+                Environment.
+            </li>
+        </ul>
+    </li>
+    <li>
+        In Postman, perform the following:
+        <ul>
+            <li>Send a Get Access token request.</li>
+            <li>Send a POST <code>/session/v2/subscriptions</code> request.</li>
+            <li>Send a POST <code>/site/v2/reservations</code> request.</li>
+        </ul>
+    </li>
+</ol>
+<h3 id="add-an-atb-device">Add an ATB Device</h3>
+<blockquote>
+    <p>
+        <strong>Note:</strong> If an ATB has already been added, skip this
+        section.
+    </p>
+</blockquote>
+<ol>
+    <li>
+        In the Device Simulator of the VM, click <strong>Add Device</strong>.
+    </li>
+</ol>
+<p><img src="images/device-sim-add.jpg" alt="" /></p>
+<ol start="2">
+    <li>
+        Select <strong>ATBStandard</strong> from the
+        <strong>Device Type</strong> drop-down.
+    </li>
+    <li>Leave the other setting as is.</li>
+    <li>
+        Click <strong>Add Device</strong>.
+        <ul>
+            <li>The ATB device is now available in the Device Simulator.</li>
+        </ul>
+    </li>
+    <li>
+        On the device, click <strong>Run</strong>.
+        <ul>
+            <li>
+                An ATB Device Simulator screen displays. You may keep it open
+                for later use.
+            </li>
+        </ul>
+    </li>
+</ol>
+<h3 id="connect-to-the-atb">Connect to the ATB</h3>
+<ol>
+    <li>
+        In Postman, send a <code>/session/v2/connections</code> request to
+        connect to the ATB.
+        <ul>
+            <li>
+                After connecting to a device, a connection
+                <code>expiryTime</code> is returned in the Response Body set to
+                <strong>30 minutes</strong> from the time the
+                <code>session/v2/connections</code> request was made.
+            </li>
+        </ul>
+    </li>
+</ol>
+<blockquote>
+    <p>
+        <strong>Note:</strong> Notice in the Request Body that the
+        <code>DeviceId</code> will be populated based by the variable
+        <code>{{location}}</code> in the Postman environment.
+    </p>
+</blockquote>
+<ol start="2">
+    <li>
+        Check the Service Bus subscription for a
+        <code>PrintDeviceStatus</code> message:
+    </li>
+</ol>
+<pre><code class="language-JSON">{
+    &quot;DeviceStatus&quot;: &quot;Online&quot;,
+    &quot;MediaStatus&quot;: &quot;Ok&quot;,
+    &quot;BinStatus&quot;: &quot;Ok&quot;
+}
+</code></pre>
+<h5 id="printdevicestatus-service-bus-message-indicating-the-device-is-online">
+    <code>PrintDeviceStatus</code> Service Bus Message indicating the device is
+    online
+</h5>
+<p>
+    The message should return a <code>DeviceStatus</code> of
+    <code>Online</code>, with <code>MediaStatus</code> and
+    <code>BinStatus</code> as <code>Ok</code> if there are no issues with the
+    printer. If there are no issues, the device is now available to successfully
+    receive Print requests.
+</p>
+<blockquote>
+    <p>
+        <strong>Note</strong>: In the Tests tab of Postman, there is some
+        Javascript that updates the <code>atb_connection_id</code> environmental
+        variable after connecting to the ATB. This variable is used so you do
+        not need to manually enter a <code>connectionId</code> in subsequent
+        calls to the Print API.
+    </p>
+</blockquote>
+<h4 id="devicestatus-is-offline">
+    <code>DeviceStatus</code> is <code>Offline</code>
+</h4>
+<p>
+    If the <code>DeviceStatus</code> returns as <code>Offline</code>, check to
+    see if the device is running in the Device Simulator. If there is a
+    <strong>Stop</strong> button on the device in Device Simulator, the device
+    is running.
+</p>
+<p>
+    <em>If <u>it is not</u> running:</em>
+</p>
+<ol>
+    <li>Click <strong>Run</strong>.</li>
+    <li>
+        In the Peripheral View, check to see if the ATB
+        <strong>Status</strong> is now <code>Online</code>.
+    </li>
+</ol>
+<p>
+    <em>If <u>it is</u> running</em>, from the Device Simulator on the VM:
+</p>
+<ol>
+    <li>Click <strong>Stop</strong>.</li>
+    <li>Click <strong>Run</strong>.</li>
+    <li>
+        In the Peripheral View, check to see if the ATB
+        <strong>Status</strong> is now <code>Online</code>.
+    </li>
+</ol>
+<h3 id="print-a-boarding-pass-pdf">Print a Boarding Pass PDF</h3>
+<ol>
+    <li>
+        <p>
+            In Postman, send a <code>/print/v2/boardingpass/pdf</code> request.
+        </p>
+        <blockquote>
+            <p>
+                <strong>Note:</strong> In the Request Body, notice that PDF
+                <code>printData</code> has been included for you.
+            </p>
+        </blockquote>
+    </li>
+    <li>
+        <p>
+            Check the Service Bus for a new <code>PrintResponse</code> message.
+        </p>
+        <ul>
+            <li>
+                The Print API acknowledges the request by returning a
+                <code>2xx</code> success status code, as seen in a tool like
+                Postman.
+            </li>
+            <li>
+                If <code>IsSuccess</code> is <code>true</code>, then the print
+                was successful. The number of <code>SuccessfulPrints</code> is
+                returned. In this case, the device printed
+                <code>1</code> boarding pass in PDF format.
+            </li>
+        </ul>
+    </li>
+</ol>
+<pre><code class="language-JSON">{
+    &quot;IsSuccess&quot;: true,
+    &quot;Error&quot;: null,
+    &quot;SuccessfulPrints&quot;: &quot;1&quot;
+}
+</code></pre>
+<h5 id="printresponse-service-bus-message-indicating-a-successful-print-1">
+    <code>PrintResponse</code> Service Bus Message indicating a successful print
+</h5>
+<ol start="3">
+    <li>
+        Go to the <strong>ATB Simulator</strong> window in the VM.
+        <ul>
+            <li>
+                The printed boarding pass should be visible in the
+                <strong>Print Preview</strong>.
+            </li>
+        </ul>
+    </li>
+</ol>
+<p><img src="images%5Cprint-bp-pdf.png" alt="" /></p>
+<h5 id="atb-simulator-with-boarding-pass-displaying-in-print-preview">
+    ATB Simulator with Boarding Pass displaying in Print Preview
+</h5>
+<h3 id="simulate-an-unsuccessful-print">Simulate an Unsuccessful Print</h3>
+<p>
+    The ATB Simulator (and simulators for other print devices) allows you to add
+    a <strong>Fault Indicator</strong> (for example, a paper jam) to simulate a
+    failed print scenario.
+</p>
+<ol>
+    <li>
+        In the ATB Simulator, set the <strong>Fault Indicator</strong> to
+        <code>Paper Jam</code>.
+    </li>
+</ol>
+<p><img src="images%5Cprint-bp-pdf-paperjam.png" alt="" /></p>
+<ol start="2">
+    <li>In Postman, send a <code>/print/v2/boardingpass/pdf</code> request.</li>
+    <li>Check the Service Bus for a new <code>PrintResponse</code> message.</li>
+</ol>
+<pre><code class="language-JSON">{
+    &quot;IsSuccess&quot;: false,
+    &quot;Error&quot;: {
+        &quot;ErrorCode&quot;: &quot;NotAbleToPrint&quot;,
+        &quot;Message&quot;: &quot;PrintNotOk/UnSuccessfulPrint, with Jammed&quot;
+    },
+    &quot;SuccessfulPrints&quot;: &quot;0&quot;
+}
+</code></pre>
+<h5
+    id="printresponse-service-bus-message-indicating-an-unsuccessful-print-with-reason-message"
+>
+    <code>PrintResponse</code> Service Bus Message indicating an unsuccessful
+    print with reason <code>Message</code>
+</h5>
+<p>
+    <code>IsSuccess</code> should be <code>false</code>, which indicates the
+    Print was unsuccessful. A general error displays,
+    <code>NotAbleToPrint</code>, followed by an error <code>Message</code> that
+    explains why the print was unsuccessful. In this case, it is because the
+    printer is jammed.
+</p>
+<p>The resolution would be to physically locate the printer and unjam it.</p>

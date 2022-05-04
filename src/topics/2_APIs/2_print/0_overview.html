@@ -1,0 +1,55 @@
+<h1 id="print-api-1">Print API</h1>
+<p>
+    The <strong>Print API</strong> endpoints allow your airline backend to use
+    airport devices to print airport documents like boarding passes, bag tags,
+    and reports.
+</p>
+<p>
+    A variety of print formats are supported, including PDF, SVGs, AEA Pectabs,
+    Logos, Templates, and Print Data. AEA is a legacy format, while SVG and PDF
+    provide more richness of detail that modern applications require. However,
+    there may be use cases where AEA format is required, so the option is
+    provided.
+</p>
+<blockquote>
+    <p>
+        <strong>Note:</strong> This documentation does not go into detail about
+        all device types and print formats. It only seeks to demonstrate the
+        capabilities of select devices with SITA Flex. For more information,
+        refer to the AEA Spec. You may request a copy from
+        <a
+            href="mailto:&#x66;&#x6c;&#101;&#120;&#x2e;&#x61;&#112;&#x69;&#46;&#115;&#x75;&#112;&#x70;&#x6f;&#x72;&#116;&#64;&#115;&#x69;&#x74;&#x61;&#46;&#x61;&#101;&#x72;&#x6f;"
+            >&#x66;&#x6c;&#101;&#120;&#x2e;&#x61;&#112;&#x69;&#46;&#115;&#x75;&#112;&#x70;&#x6f;&#x72;&#116;&#64;&#115;&#x69;&#x74;&#x61;&#46;&#x61;&#101;&#x72;&#x6f;</a
+        >.
+    </p>
+</blockquote>
+<p>The supported devices at present are the following:</p>
+<table>
+    <thead>
+        <tr>
+            <th>Acronym</th>
+            <th>Definition</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>ATB</td>
+            <td>
+                Automated Ticket &amp; Boarding Pass Printer that supports the
+                print formats <code>pdf</code>, <code>svg</code>, or
+                <code>aea</code>.
+            </td>
+        </tr>
+        <tr>
+            <td>BTP</td>
+            <td>
+                Baggage Tag Printer that supports the formats
+                <code>pdf</code> and <code>aea</code>.
+            </td>
+        </tr>
+        <tr>
+            <td>DCP</td>
+            <td>Document Printer that can print reports.</td>
+        </tr>
+    </tbody>
+</table>

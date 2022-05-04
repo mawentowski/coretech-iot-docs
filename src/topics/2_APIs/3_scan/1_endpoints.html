@@ -1,0 +1,17 @@
+<h2 id="endpoints-1">Endpoints</h2>
+<p>
+    The end path for the Scan API starts with <strong>POST</strong>
+    <code>/scan/v2</code>, followed by the endpoint (i.e. action) for a device
+    to carry out.
+</p>
+<h3 id="post-scanv2startscanning">POST /scan/v2/startscanning</h3>
+<p>
+    Send a POST <code>/scan/v2/startscanning</code> request to request exclusive
+    access to a device so it can start reading travel documents.
+</p>
+<h3 id="post-scanv2stopscanning">POST /scan/v2/stopscanning</h3>
+<p>
+    Send a POST <code>/scan/v2/stopscanning</code> request to release a device
+    from exclusive access so other airline backends can reserve the device and
+    use it to read travel documents.
+</p>

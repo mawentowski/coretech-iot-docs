@@ -1,0 +1,107 @@
+<h2 id="construct-a-gateaccess-request">Construct a GateAccess Request</h2>
+<h3 id="resource-urls-3">Resource URLs</h3>
+<p>At present, GateAccess API Resource URLs are comprised of:</p>
+<ul>
+    <li>
+        A REST API standard method preceding the URL for accessing the endpoint.
+        In the case of the GateAccess API, the only method used is POST.
+    </li>
+    <li>
+        A Base URL specific to the SITA Flex environment, sometimes displayed as
+        <code>{{baseurl}}</code> in the Resource URL in Postman.
+    </li>
+    <li>
+        The end path of the Resource URL is comprised of the API name
+        (<code>gateaccess</code>) followed by the endpoint name. For example,
+        the end path <code>gateaccess/v2/opengate</code> contains the API
+        <code>gateaccess</code> followed by the endpoint <code>opengate</code>.
+    </li>
+</ul>
+<blockquote>
+    <p>
+        <strong>Note:</strong> No path parameters are required when sending
+        GateAccess API requests.
+    </p>
+</blockquote>
+<h3 id="header-parameters-3">Header Parameters</h3>
+<p>
+    A <code>location-id</code> is required in the header of the request. Flex
+    APIs use the Azure API Management service (APIM) to route requests to the
+    correct Azure Region based on the airport code extracted from the
+    <code>LocationId</code>.
+</p>
+<h3 id="authorization-headers-3">Authorization Headers</h3>
+<p>
+    An <code>access_token</code> is required in the Authorization Header of
+    requests for authentication.
+</p>
+<blockquote>
+    <p>
+        <strong>Note:</strong> The <code>access_token</code> is displayed as the
+        Postman variable <code>bearer_token</code> in the
+        <strong>Authorization</strong> tab of API requests in the provided
+        Postman collection.
+    </p>
+</blockquote>
+<h3 id="request-bodies-3">Request Bodies</h3>
+<p>
+    All Request Bodies must include the <code>ConnectionId</code> of the device
+    the airline backend is sending the command to.
+</p>
+<ul>
+    <li>
+        When sending a <code>gateaccess/v2/acceptpassenger</code> or
+        <code>/gateaccess/v2/rejectpassenger</code> request, a
+        <code>Message</code> may be included that displays on the device if the
+        device is a Boarding Gate Reader.
+    </li>
+</ul>
+<p>
+    If the device is a Self-Boarding Gate, the message is ignored. Below is an
+    example <code>gateaccess/v2/acceptpassenger</code> request passing in
+    <code>Message</code> data. It is possible to display the message on multiple
+    lines as shown below:
+</p>
+<pre><code class="language-JSON">{
+    &quot;ConnectionId&quot;: &quot;{{bgr_connection_id}}&quot;,
+    &quot;CorrelationId&quot;: &quot;{{$guid}}&quot;,
+    &quot;Message&quot;: [&quot;MSG Line 1&quot;, &quot;MSG Line 2&quot;],
+    &quot;ReceiptData&quot;: {
+      &quot;Data&quot;: &quot;&quot;
+    }
+}
+</code></pre>
+<h5
+    id="sample-gateaccessv2acceptpassenger-request-including-message-data-to-be-displayed-to-the-agent"
+>
+    Sample <code>gateaccess/v2/acceptpassenger</code> request including
+    <code>Message</code> data to be displayed to the agent
+</h5>
+<ul>
+    <li>
+        When sending a <code>gateaccess/v2/acceptpassenger</code> request,
+        <code>ReceiptData</code> may be passed to a device printer to print a
+        receipt for the passenger.
+    </li>
+</ul>
+<pre><code class="language-JSON">{
+    &quot;ConnectionId&quot;: &quot;{{bgr_connection_id}}&quot;,
+    &quot;CorrelationId&quot;: &quot;{{$guid}}&quot;,
+    &quot;Message&quot;: [&quot;&quot;],
+    &quot;ReceiptData&quot;: {
+      &quot;Data&quot;: &quot;#NN#RD#FONT1#SIZE7#FREEBOARDING RECEIPT#FONT1#SIZE7#FREECLASS CHANGE#FONT1#SIZE0#FREE#FONT1#SIZE0#FREEYour class has changed - See Below#FONT1#SIZE0#FREE#FONT1#SIZE3#NAMELEE/MAYLIN MDM#FONT1#SIZE3#FREE#FONT1#SIZE3#ALCDMH#FONT1#SIZE3#FLNR0002#FONT1#SIZE3#DATE16JAN#FONT1#SIZE3#BORDKUL#FONT1#SIZE3#DESTLHR#FONT1#SIZE3#SQNR8#FONT1#SIZE7#SEAT1K#FONT1#SIZE7#CLSSF#FONT1#SIZE0#FREE&quot;
+    }
+}
+</code></pre>
+<h5
+    id="sample-gateaccessv2acceptpassenger-request-body-that-passes-receiptdata-to-be-printed-for-the-passenger"
+>
+    Sample <code>/gateaccess/v2/acceptpassenger</code> Request Body that passes
+    <code>ReceiptData</code> to be printed for the passenger
+</h5>
+<ul>
+    <li>
+        When sending a <code>/gateaccess/v2/rejectpassenger</code>, you may
+        specify if an <code>Alarm</code> sounds.
+    </li>
+</ul>

@@ -1,0 +1,218 @@
+<h2 id="create-a-subscription">Create a Subscription</h2>
+<p>
+    The POST <code>/session/v2/subscriptions</code> request creates a
+    subscription on the Azure Service Bus and returns a Service Bus endpoint and
+    SAS token for the airline backend to connect to the subscription.
+</p>
+<p>
+    Sending a POST <code>/session/v2/subscriptions</code> request does not
+    &#39;subscribe&#39; to the Service Bus, it only creates a subscription and
+    returns connection details. The application must then connect to the Service
+    Bus connection using the connection details provided.
+</p>
+<p>
+    The Microsoft Service Bus documentation provides best practices for how
+    applications should be configured to do this for each client library:
+    <a
+        href="https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview#client-libraries"
+        >Azure Service Bus messaging overview - Azure Service Bus</a
+    >.
+</p>
+<blockquote>
+    <p>
+        <strong>Note:</strong> No Request Body is required to create a
+        subscription.
+    </p>
+</blockquote>
+<h3 id="response-body-1">Response Body</h3>
+<p>
+    A successful request returns a <code>2xx</code> success status code with the
+    JSON Response Body containing the Service Bus details for the new
+    subscription.
+</p>
+<pre><code class="language-JSON">{
+    &quot;subscriptionId&quot;: &quot;4ec343b2-eab5-4fd3-b0c4-3cd5bc30ee5c&quot;,
+    &quot;topicName&quot;: &quot;airline-messages&quot;,
+    &quot;subscriptionName&quot;: &quot;2c73e63e-a3ef-4fcc-b13c-d2a90912bca8c&quot;,
+    &quot;expiryTime&quot;: &quot;2021-10-22T23:54:50.8272178+00:00&quot;,
+    &quot;connectionString&quot;: &quot;Endpoint=sb://flex-pry-eastus-asb.servicebus.windows.net;SharedAccessSignature=SharedAccessSignature sr=https%3A%2F%2Fflex-pry-eastus-asb.servicebus.windows.net%2Fairline-messages%2Fsubscriptions%2F2c73e63e-a3ef-4fcc-b13c-d290912bca8c%2F&amp;sig=dL2mHQJgfnCIc5SZZ8UgmzSPYoAIJkGEqN7hmAgFKz8%3D&amp;se=1634946891&amp;skn=ClientAccessKey&quot;
+}
+</code></pre>
+<h5
+    id="sample-response-body-for-post-sessionv2subscriptions-request-containing-details-for-connecting-to-the-subscription"
+>
+    Sample Response Body for POST <code>session/v2/subscriptions</code> request
+    containing details for connecting to the subscription
+</h5>
+<p>
+    <strong>Warning:</strong> Not sending a
+    <code>/session/v2/subscriptions</code> request results in a
+    <strong>400 Bad Request</strong> error, as described in the
+    <a href="400 Bad Request_1.htm">400 Bad Request</a> troubleshooting section.
+</p>
+<h4 id="connectionstring"><code>connectionString</code></h4>
+<p>
+    The <code>connectionString</code> returned in the Response Body contains the
+    subscription&#39;s Service Bus endpoint that begins after
+    <code>Endpoint=</code>. In the example Response Body displayed previously,
+    the endpoint is:
+    <code>sb://flex-pry-eastus-asb.servicebus.windows.net</code>. Notice the
+    endpoint contains the environment. In the example, the Pre-Production
+    environment is named <code>pry</code> and the Azure Region containing the
+    subscription is <code>eastus</code>.
+</p>
+<p>
+    The <code>SharedAccessSignature</code>, also known as a SAS token, follows
+    the Service Bus endpoint and contains the airline backend&#39;s credentials
+    for accessing the subscription. The entire value of the SAS token needs to
+    be passed in the Authorization Header of requests made to the Azure Service
+    Bus REST API.
+</p>
+<p>
+    It is not necessary to understand the contents of the SAS token. It is
+    important to include the full SAS token value in the HTTP Authorization
+    Headers of requests sent to the Azure Service Bus REST API. Without these
+    credentials, you will receive a <code>Not Authorized</code> error message.
+</p>
+<blockquote>
+    <p>
+        <strong>Note:</strong> To learn more about SAS tokens, consult the
+        Microsoft documentation on
+        <a href="https://docs.microsoft.com/en-us/azure/service-bus-messaging/"
+            >Azure Service Bus Messaging</a
+        >.
+    </p>
+</blockquote>
+<h4 id="subscriptionid"><code>subscriptionId</code></h4>
+<p>
+    The <code>subscriptionId</code> is a Flex-specific ID passed in the Request
+    Body of connection requests to associate a device with a specific Service
+    Bus Subscription.
+</p>
+<p>
+    For example, when connecting to an ATB device, the airline backend will send
+    a POST <code>/session/v2/connections</code> request, including the
+    <code>subscriptionId</code> in the Request Body. The returned
+    <code>connectionID</code> is now associated to the subscription, and thus
+    Flex knows to route any messages coming from the device to that specific
+    subscription.
+</p>
+<blockquote>
+    <p>
+        <strong>Tip:</strong> In Postman, if you click the
+        <strong>Tests</strong> tab, you will notice there is Javascript code
+        that sets the environmental variable <code>{{subscription_id}}</code> to
+        the <code>subscriptionId</code> returned after making the request. Now,
+        when future requests are made in this session, the
+        <code>subscriptionId</code> is included in the Response Body without the
+        need to manually enter it.
+    </p>
+</blockquote>
+<h4 id="expirytime"><code>expiryTime</code></h4>
+<p>
+    After sending the request, an <code>expiryTime</code> is returned set to
+    <strong>12 hours</strong> from the time the request was made, at which point
+    the subscription expires.
+</p>
+<h4 id="service-bus-properties">Service Bus Properties</h4>
+<p>
+    The Response Body also contains properties that are Service Bus-specific.
+    These properties are passed in verbatim when you use the Microsoft SDK to
+    connect to the subscription.
+</p>
+<p>
+    The <code>topicName</code> and <code>subscriptionName</code> are identifiers
+    to tell your application which specific subscription it should read Service
+    Bus messages. The <code>topicName</code> has a fixed value of
+    <code>airline-messages</code> in all situations, and
+    <code>subscriptionName</code> is a GUID returned per subscription.
+</p>
+<h3 id="best-practices-1">Best Practices</h3>
+<h4 id="how-to-handle-subscriptions">How to Handle Subscriptions</h4>
+<p>
+    The airline backend can handle subscriptions in several different ways. The
+    first way is to keep a subscription alive through repeated calls to the POST
+    <code>session/v2/subscriptions</code> endpoint to create a new SAS token
+    when the old one expires. The SAS token is contained in the
+    <code>connectionString</code> in the Response Body.
+</p>
+<blockquote>
+    <p>
+        <strong>Note:</strong> The SAS token contains the credentials needed by
+        the airline backend to access the Azure Service Bus.
+    </p>
+</blockquote>
+<p>
+    The second way is to have an &#39;on-demand&#39; solution whereby the
+    airline backend determines if there is a subscription in place for the
+    specified location. If there is already a subscription for the location, the
+    airline backend uses that subscription and does not send a request to create
+    a new one. If there is no subscription in place, it sends a POST
+    <code>session/v2/subscriptions</code> request to create a new subscription.
+</p>
+<blockquote>
+    <p>
+        <strong>Note:</strong> The airline backend will only ever have one
+        subscription for an Azure Region. So, if a new subscription is created,
+        it will continue to use that subscription for all requests from client
+        applications in that region.
+    </p>
+</blockquote>
+<h4 id="avoid-multiple-sas-tokens">Avoid Multiple SAS Tokens</h4>
+<p>
+    Making repeated calls to POST <code>session/v2/subscriptions</code> does not
+    create a new subscription. The same <code>subscriptionId</code> associated
+    with the existing subscription is returned in the Response Body. However, it
+    is important to note that <u>a new SAS token is generated</u>.
+</p>
+<p>
+    If a POST <code>session/v2/subscriptions</code> request is made, and there
+    is an existing SAS token that has yet to reach its <code>expiryTime</code>,
+    there are now two SAS tokens. In this case, the airline backend should
+    disconnect from the old SAS token and connect to the new one that has an
+    <code>expiryTime</code>.
+</p>
+<blockquote>
+    <p>
+        <strong>Note:</strong> In best practice, an airline backend would never
+        encounter a situation where it would need to disconnect from an old SAS
+        token to use the new one. The ideal scenario would be to allow the old
+        SAS token to expire then create a new one by sending a
+        <code>session/v2/subscriptions</code> request.
+    </p>
+</blockquote>
+<p>
+    If the airline backend drops an active connection the Azure Service Bus by
+    disconnecting from a SAS token, no messages are lost. Any messages sent to
+    the subscription are queued and will display once another connection is made
+    with a new SAS token.
+</p>
+<h4 id="protect-subscriptions-details">Protect Subscriptions Details</h4>
+<p>
+    Since SITA Flex only expects to be interacting with the one authenticated
+    system such as your Application Web Server, it is recommended that the Azure
+    Service Bus subscription details should not be shared amongst several
+    parties. They should remain secret for specific usage in your application at
+    any given point and should not have several consumers who subscribe to this
+    Azure Service Bus. It is recommended that the Web Server backend of your
+    application subscribes to this Azure Service Bus subscription and then any
+    clients that need to be notified are signaled by your backend application
+    using another technology such as SignalR, or an equivalent.
+</p>
+<h4 id="subscription-removal">Subscription Removal</h4>
+<p>
+    If an ill-behaved application does not properly clean-up its subscription,
+    an auto-delete on idle takes care of the subscription removal (<code
+        >AutoDeleteOnIdle</code
+    >
+    property in Azure Service Bus). Currently, the time is controlled by SITA
+    Flex Core services and is set to <strong>24 hours</strong>.
+</p>
+<h4 id="deleting-subscriptions">Deleting Subscriptions</h4>
+<p>
+    If a subscription is no longer needed, it is best practice to delete the
+    subscription by sending a DEL
+    <code>/session/v2/subscriptions/{subscription_id}</code> request, passing in
+    the <code>subscription_id</code> of the subscription to be deleted as a path
+    parameter.
+</p>

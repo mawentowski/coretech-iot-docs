@@ -1,0 +1,38 @@
+<h1 id="scan-api-1">Scan API</h1>
+<p>
+    The <strong>Scan API</strong> endpoints allow your airline backend to use
+    airport devices to read travel documents like boarding passes, bag tags, and
+    passports.
+</p>
+<p>The supported devices at present are the following:</p>
+<table>
+    <thead>
+        <tr>
+            <th>Device Acronym</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>LSR</td>
+            <td>
+                Laser Sensor Reader that reads <code>BarCodeData</code> from
+                barcodes.
+            </td>
+        </tr>
+        <tr>
+            <td>MSR</td>
+            <td>
+                Magnetic Stripe Reader that reads card payments, returning
+                <code>CardType</code> and <code>Track</code> data.
+            </td>
+        </tr>
+        <tr>
+            <td>OCR</td>
+            <td>
+                Optical Character Recognition device that reads
+                <code>MrzData</code> from passports.
+            </td>
+        </tr>
+    </tbody>
+</table>

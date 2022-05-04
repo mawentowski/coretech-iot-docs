@@ -1,0 +1,288 @@
+<h2 id="service-bus-messages-3">Service Bus Messages</h2>
+<p>
+    The following is not an exhaustive list of all possible Service Bus
+    <code>Message Types</code>. Only the most common ones encountered when
+    sending Bagdrop API requests are described.
+</p>
+<h3 id="bagdropdevicestatus">BagdropDeviceStatus</h3>
+<p>A <code>BagdropDeviceStatus</code> message displays on the Service Bus:</p>
+<ul>
+    <li>
+        when the <code>DeviceStatus</code> changes. For example, when the SBD
+        goes from <code>Online</code> to <code>Offline</code>, or vice versa. An
+        SBD may go <code>Offline</code> due to an issue with the device, or when
+        a <code>BagDropTransactionTimeout</code> occurs.
+    </li>
+    <li>
+        after a <code>/bagdrop/v2/getbag</code> request is sent, which initiates
+        the bagdrop process and reserves the SBD for exclusive access by the
+        airline backend. The <code>DeviceInUse</code> property changes from
+        <code>false</code> (the value displayed after sending the POST
+        <code>/session/v2/connections</code> request) to <code>true</code>.
+    </li>
+</ul>
+<pre><code class="language-JSON">{
+    &quot;DeviceStatus&quot;: &quot;Online&quot;,
+    &quot;DeviceInUse&quot;: true
+}
+</code></pre>
+<h5
+    id="example-bagdropdevicestatus-service-bus-message-indicating-the-device-is-online-and-exclusively-reserved"
+>
+    Example <code>BagdropDeviceStatus</code> Service Bus Message indicating the
+    device is online and exclusively reserved
+</h5>
+<h3 id="dooropening-and-doorclosing">DoorOpening and DoorClosing</h3>
+<blockquote>
+    <p>
+        <strong>Note:</strong> These messages only display if the SBD is
+        configured to have a door.
+    </p>
+</blockquote>
+<p>A <code>DoorOpening</code> message displays on the Service Bus:</p>
+<ul>
+    <li>
+        When a <code>/bagdrop/v2/getbag</code> request is sent that opens the
+        door to the SBD so the passenger can place her bag on the belt.
+    </li>
+    <li>
+        When an issue has occurred and either a
+        <code>/bagdrop/v2/returnbag</code> or
+        <code>/bagdrop/v2/cancelbag</code> request was sent to open the door and
+        return the bag to the <code>Entry</code> position so the issue can be
+        resolved by the customer or an agent.
+    </li>
+</ul>
+<p>A <code>DoorClosing</code> message displays on the Service Bus:</p>
+<ul>
+    <li>
+        after a <code>/bagdrop/v2/processbag</code> request is sent. The door to
+        the SBD closes and the bag moves from the <code>Entry</code> position to
+        the <code>Process</code> position.
+    </li>
+</ul>
+<blockquote>
+    <p><strong>Note:</strong> Both messages contain an empty Message Body.</p>
+</blockquote>
+<h3 id="bagplaced">BagPlaced</h3>
+<p>
+    After a <code>/bagdrop/v2/getbag</code> request initiates the bagdrop
+    process, the door to the SBD opens (if there is a door) so the passenger can
+    place the bag on the belt. Baggage information may be collected by the SBD
+    and displayed in a <code>BagPlaced</code> message on the Service Bus.
+</p>
+<pre><code class="language-json">{
+    &quot;Bag&quot;: {
+        &quot;Tags&quot;: [],
+        &quot;Weight&quot;: {
+            &quot;Amount&quot;: 23.8,
+            &quot;Unit&quot;: &quot;Kg&quot;
+        },
+        &quot;Position&quot;: &quot;Entry&quot;,
+        &quot;VolumeResult&quot;: {
+            &quot;Width&quot;: {
+                &quot;Amount&quot;: 0.0,
+                &quot;Unit&quot;: &quot;Cm&quot;
+            },
+            &quot;Height&quot;: {
+                &quot;Amount&quot;: 0.0,
+                &quot;Unit&quot;: &quot;Cm&quot;
+            },
+            &quot;Length&quot;: {
+                &quot;Amount&quot;: 0.0,
+                &quot;Unit&quot;: &quot;Cm&quot;
+            },
+            &quot;TubDetection&quot;: &quot;NoTub&quot;
+        }
+    },
+    &quot;IsSuccess&quot;: true,
+    &quot;Error&quot;: null
+}
+</code></pre>
+<h5 id="bagplaced-service-bus-message-displaying-properties-of-the-placed-bag">
+    <code>BagPlaced</code> Service Bus message displaying properties of the
+    &#39;placed&#39; bag
+</h5>
+<p>
+    The <code>&quot;Position&quot;: &quot;Entry&quot;</code> indicates that the
+    bag is currently located on the <code>Entry</code> position of the SBD unit.
+</p>
+<p>
+    <code>&quot;IsSuccess&quot;: true</code> indicates that a bag has been
+    placed on the belt, and a settled weight has been calculated for the bag, in
+    addition to other measurements such as the dimensions of the bag.
+</p>
+<h3 id="bagchanged">BagChanged</h3>
+<p>
+    The structure of the <code>BagChanged</code> message is identical to the
+    <code>BagPlaced</code> message and displays baggage information collected
+    through a measurement.
+</p>
+<p>
+    The property of importance is <code>Position</code>. Whenever a bag moves
+    from one position to the next, a <code>BagChanged</code> message displays
+    that indicates the value of <code>Position</code> has changed. For example,
+    when the bag moves from the <strong>Entry Area</strong> to the
+    <strong>Process Area</strong>, the property <code>Position</code> changes
+    from <code>Entry</code> to <code>Process</code>. When the bag moves back
+    from <code>Process</code> to <code>Entry</code>, in the case of an issue,
+    this message displays as well.
+</p>
+<p>
+    Regarding the baggage information, the following scenarios are possible,
+    depending on the configuration of the SBD:
+</p>
+<ul>
+    <li>
+        The <code>Process</code> position may be the first-time baggage
+        information was collected (not the <code>Entry</code> position).
+    </li>
+    <li>
+        Baggage information may be collected a second time at the
+        <code>Process</code> position, updating the values collected at the
+        <code>Entry</code> position.
+    </li>
+    <li>
+        Baggage information is not collected at all at the
+        <code>Process</code> position. The baggage information matches the
+        information collected in the <code>Entry</code> position.
+    </li>
+</ul>
+<h3 id="bagresponses">BagResponses</h3>
+<blockquote>
+    <p>
+        <strong>Note:</strong> For this documentation, Service Bus
+        <code>MessageTypes</code> that contain the text
+        <code>BagResponse</code> are grouped together since they all simply
+        confirm the success or failure of a request. In actuality, the
+        <code>MessageTypes</code> will be specific to the type of request that
+        was sent. For example, after a <code>/bagdrop/v2/getbag</code> request
+        is sent, a <code>GetBagResponse</code> response displays on the Service
+        Bus.
+    </p>
+</blockquote>
+<p>
+    <code>BagResponse</code> messages display on the Service Bus after sending
+    requests to the BagDrop API at different stages of a bagdrop process and are
+    often sent in conjunction with other types of messages such as a
+    <code>BagChanged</code> and <code>BagdropDeviceStatus</code> message.
+</p>
+<p>
+    The only purpose of a <code>BagResponse</code> message is to indicate
+    whether the request was successful (<code>&quot;IsSuccess&quot;: true</code
+    >). The structure of <code>BagResponse</code> messages are identical to the
+    <code>BagPlaced</code> and <code>BagChanged</code> messages that display
+    collected baggage information.
+</p>
+<p>
+    The following <code>BagResponse</code> messages display on the Service Bus
+    by endpoint:
+</p>
+<ul>
+    <li>
+        A <code>GetBagResponse</code> is received after a
+        <code>/bagdrop/v2/getbag</code> request is sent to initiate the bag drop
+        process and open the SBD door if there is one.
+    </li>
+</ul>
+<p>
+    If the SBD has a door, the property <code>&quot;Bag&quot;: null</code> is
+    returned which indicates no baggage information was collected because a bag
+    has not been placed on the belt yet.
+</p>
+<p>
+    If the SBD does not have a door, the <code>GetBagResponse</code> message
+    includes the baggage information collected from the bag placed on the belt
+    at the time the <code>/bagdrop/v2/getbag</code> request was sent.
+</p>
+<ul>
+    <li>
+        <p>
+            A <code>ProcessBagResponse</code> is received after a
+            <code>/bagdrop/v2/processbag</code> request is sent to move the bag
+            from the <code>Entry</code> position to the
+            <code>Process</code> position where the bag can be processed.
+        </p>
+    </li>
+    <li>
+        <p>
+            A <code>ReturnBagResponse</code> is received after a
+            <code>/bagdrop/v2/returnbag</code> request is sent to return the bag
+            to the <code>Entry</code> position <em>where the passenger</em> can
+            resolve an issue.
+        </p>
+    </li>
+    <li>
+        <p>
+            A <code>CancelBagResponse</code> is received after a
+            <code>/bagdrop/v2/cancelbag</code> request is sent to return the bag
+            to the <code>Entry</code> position <em>where the agent</em> can
+            resolve an issue.
+        </p>
+    </li>
+    <li>
+        <p>
+            A <code>ReleaseBagResponse</code> is received after a
+            <code>/bagdrop/v2/releasebag</code> request is sent to release the
+            bag to the Baggage Handling System (BHS Area).
+        </p>
+    </li>
+</ul>
+<h4 id="errorcodes">ErrorCodes</h4>
+<p>
+    If a request fails, the Service Bus message will return no baggage
+    information with an <code>ErrorCode</code> and
+    <code>Message</code> describing why the request failed. A possible cause is
+    there was a <code>BagDropTransactionTimeout</code> that prevents sending any
+    further requests to the SBD.
+</p>
+<pre><code class="language-JSON">{
+   &quot;Bag&quot;:null,
+   &quot;IsSuccess&quot;:false,
+   &quot;Error&quot;:{
+      &quot;ErrorCode&quot;:&quot;UnknownError&quot;,
+      &quot;Message&quot;:&quot;ReturnBag failed, device status: . Bag cannot be Returned.&quot;
+   }
+}
+</code></pre>
+<h5
+    id="sample-returnbagresponse-message-indicating-the-reason-the-request-failed"
+>
+    Sample <code>ReturnBagResponse</code> Message indicating the reason the
+    request failed
+</h5>
+<h3 id="bagdroptransactiontimeout">BagDropTransactionTimeout</h3>
+<p>
+    A <code>BagDropTransactionTimeout</code> message displays on the Service Bus
+    with an empty Message Body when too much time has elapsed since the last
+    Bagdrop API request was made.
+</p>
+<h4 id="timeout-at-entry-area">Timeout at Entry Area</h4>
+<p>
+    If this error occurs when the bag is in the <code>Entry</code> position,
+    another <code>/bagdrop/v2/getbag</code> request must be made to restart the
+    bagdrop process. If you send a <code>/bagdrop/v2/processbag</code> request
+    when a timeout has occurred, and you have not sent the
+    <code>/bagdrop/v2/getbag</code> request, you will receive an error status
+    code.
+</p>
+<h4 id="timeout-at-process-area">Timeout at Process Area</h4>
+<p>
+    If this error occurs when the bag is in the <code>Process</code> position, a
+    <code>BagdropDeviceStatus</code> message also displays on the Service Bus
+    indicating the device is no longer &#39;in use&#39; (<code
+        >&quot;DeviceInUse&quot;: false</code
+    >).
+</p>
+<p>
+    You will receive an error status code when sending any further requests. For
+    example, if you attempt to send a
+    <code>/bagdrop/v2/releasebag</code> request to continue to the next phase in
+    the bagdrop process, you will receive an error.
+</p>
+<p>
+    At this stage, sending another <code>/bagdrop/v2/getbag</code> request to
+    restart the bag drop process will not resolve the issue because there is a
+    bag located in the <code>Process</code> position that requires action. The
+    process cannot be restarted until the bag is removed.
+</p>

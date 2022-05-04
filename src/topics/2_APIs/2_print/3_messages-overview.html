@@ -1,0 +1,119 @@
+<h2 id="service-bus-messages">Service Bus Messages</h2>
+<p>
+    The following is not an exhaustive list of all possible Service Bus
+    <code>Message Types</code>. Only the most common ones encountered when
+    sending Print API requests are described.
+</p>
+<h3 id="printdevicestatus">PrintDeviceStatus</h3>
+<h4 id="devicestatus-is-online">
+    <code>DeviceStatus</code> is <code>Online</code>
+</h4>
+<p>
+    After you connect to a print device, a
+    <code>PrintDeviceStatus</code> message is displayed on the Service Bus that
+    should indicate the <code>DeviceStatus</code> is <code>Online</code>.
+</p>
+<pre><code class="language-JSON">{
+    &quot;DeviceStatus&quot;: &quot;Online&quot;,
+    &quot;MediaStatus&quot;: &quot;Ok&quot;,
+    &quot;BinStatus&quot;: &quot;Ok&quot;
+}
+</code></pre>
+<h5
+    id="printdevicestatus-service-bus-message-showing-the-print-device-is-online"
+>
+    <code>PrintDeviceStatus</code> Service Bus Message showing the Print device
+    is <code>Online</code>
+</h5>
+<h4 id="devicestatus-changes"><code>DeviceStatus</code> Changes</h4>
+<p>
+    If the device&#39;s status changes for whatever reason (for example, the
+    device goes <code>Offline</code> or the paper becomes jammed), a
+    <code>DeviceStatus</code> message may display after requesting a print
+    followed by an unsuccessful <code>PrintResponse</code> message.
+</p>
+<pre><code class="language-json">{
+    &quot;DeviceStatus&quot;: &quot;Online&quot;,
+    &quot;MediaStatus&quot;: &quot;Jammed&quot;,
+    &quot;BinStatus&quot;: &quot;Ok&quot;
+}
+</code></pre>
+<h5
+    id="devicestatus-service-bus-message-sent-after-requesting-a-print-on-a-printer-with-a-paper-jam"
+>
+    <code>DeviceStatus</code> Service Bus Message sent after requesting a print
+    on a printer with a paper jam
+</h5>
+<h3 id="printresponse">PrintResponse</h3>
+<p>
+    After sending a request to print to a device, the
+    <code>PrintResponse</code> is the primary <code>MessageType</code> received
+    on the Service Bus after making a print request. It is virtually identical
+    across devices and print formats. Its sole purpose to indicate if the print
+    was successful and how many documents were printed.
+</p>
+<p>
+    Upon making a POST <code>/print/v2/</code> request, the Print API
+    acknowledges the request with a synchronous message, returning a
+    <code>2xx</code> success status code no matter if the print was successful
+    or unsuccessful. It merely indicates the Print API successfully sent the
+    request.
+</p>
+<p>
+    The API takes the <code>ConnectionId</code> and looks up the details
+    associated with the ID, most notably the <code>DeviceId</code>. The
+    <code>DeviceID</code> is sent to IoT Hub where is it routed to the correct
+    workstation to carry out the command on the peripheral (for example,
+    printing).
+</p>
+<p>
+    The Print API then routes the messages to the Service Bus topic for sending
+    messages to airlines (<code>airline-messages</code>), returned as
+    <code>MessageData</code> in the <strong>Message Body</strong>.
+    <code>MessageData</code> indicates if the request was successful.
+</p>
+<p>
+    A successful print returns a <code>PrintResponse</code> message with
+    <code>IsSuccess</code> set to <code>true</code>, in which case the number of
+    successful prints is returned.
+</p>
+<pre><code class="language-JSON">{
+    &quot;IsSuccess&quot;: true,
+    &quot;Error&quot;: null,
+    &quot;SuccessfulPrints&quot;: &quot;1&quot;
+}
+</code></pre>
+<h5 id="printresponse-service-bus-message-indicating-a-successful-print">
+    <code>PrintResponse</code> Service Bus Message indicating a successful print
+</h5>
+<p>
+    For an unsuccessful print, a <code>PrintResponse</code> message displays
+    with <code>IsSuccess</code> set to <code>false</code> in the Message Body.
+    An <code>ErrorCode</code> and <code>Message</code> are returned. In this
+    case, the reason for the failed print request is that the printer is jammed.
+</p>
+<pre><code class="language-JSON">{
+    &quot;IsSuccess&quot;: false,
+    &quot;Error&quot;: {
+        &quot;ErrorCode&quot;: &quot;NotAbleToPrint&quot;,
+        &quot;Message&quot;: &quot;PrintNotOk/UnSuccessfulPrint, with Jammed&quot;
+    },
+    &quot;SuccessfulPrints&quot;: &quot;0&quot;
+}
+</code></pre>
+<h5
+    id="printresponse-service-bus-message-indicating-an-unsuccessful-print-due-to-paper-jam"
+>
+    <code>PrintResponse</code> Service Bus Message indicating an unsuccessful
+    print due to paper jam
+</h5>
+<blockquote>
+    <p>
+        <strong>Note:</strong> The actual text contained in the error
+        <code>Message</code> is determined by the software on the workstation.
+    </p>
+</blockquote>
+<p>
+    The resolution would be to physically locate the printer, unjam the paper,
+    then attempt to send another print request.
+</p>

@@ -1,0 +1,37 @@
+<h2 id="endpoints-2">Endpoints</h2>
+<p>
+    The end path for the GateAccess API starts with <strong>POST</strong>
+    <code>/gateaccess/v2</code>, followed by the endpoint (i.e. action) for
+    device to carry out.
+</p>
+<h3 id="post-gateaccessv2opengate">POST /gateaccess/v2/opengate</h3>
+<p>
+    Send a <code>/gateaccess/v2/opengate</code> request to initiate the boarding
+    process. For a Self-Boarding Gate, the passenger is now allowed to proceed
+    to scan their boarding pass. For Boarding Gate Readers, the agent scanning
+    boarding passes is now ready to receive passengers in the queue.
+</p>
+<h3 id="post-gateaccessv2acceptpassenger">
+    POST gateaccess/v2/acceptpassenger
+</h3>
+<p>
+    Send a <code>gateaccess/v2/acceptpassenger</code> request to tell the
+    GateAccess API that a passenger has boarded successfully. Send this request
+    each time a passenger is processed successfully.
+</p>
+<h3 id="post-gateaccessv2rejectpassenger">
+    POST /gateaccess/v2/rejectpassenger
+</h3>
+<p>
+    Send a <code>/gateaccess/v2/rejectpassenger</code> request to tell the
+    GateAccess API that a passenger is not allowed to board and must see an
+    agent. Send this request each time a passenger is processed unsuccessfully.
+</p>
+<h3 id="post-gateaccessv2closegate">POST /gateaccess/v2/closegate</h3>
+<p>
+    Send a <code>/gateaccess/v2/closegate</code> request to end the boarding
+    process. For a Self-Boarding Gate, this triggers the gate to close. For
+    Boarding Gate Readers, this indicates the boarding process has ended and the
+    agent scanning boarding passes will no longer do so unless the boarding
+    process is initiated over again (<code>/gateaccess/v2/opengate</code>).
+</p>

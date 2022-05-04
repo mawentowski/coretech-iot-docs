@@ -1,0 +1,67 @@
+<h2 id="best-practices-4">Best Practices</h2>
+<h3 id="avoid-device-access-expiration">Avoid Device Access Expiration</h3>
+<p>
+    Perform multiple <code>/scan/v2/startscanning</code> requests to extend the
+    <code>accessExpiryTime</code> if continued access to the device is needed.
+    Repeated requests can be used to maintain exclusive access for a longer
+    period.
+</p>
+<h3 id="releasing-devices">Releasing Devices</h3>
+<p>
+    Once an airline backend is done with a device, it is important to release
+    the device so other airline backends can reserve it. This is achieved by
+    sending a <code>/scan/v2/startscanning</code> request, passing in the
+    <code>deviceId</code> in the Request Body.
+</p>
+<h3 id="multiple-user-scenario">Multiple User Scenario</h3>
+<ul>
+    <li>
+        When more than one application user requests exclusive access to a scan
+        device, the first user to call <code>/scan/v2/startscanning</code> is
+        granted exclusive access for five minutes.
+    </li>
+    <li>
+        All users with a connection to the device are sent a
+        <code>ScanDeviceStatus</code> message on their Service Bus subscriptions
+        that indicates the device has been reserved for exclusive access.
+    </li>
+    <li>
+        If a second user attempts to gain exclusive access to the device by
+        sending a <code>/scan/v2/startscanning</code> request, they will receive
+        an error that the device is not available.
+    </li>
+    <li>
+        To prevent a long wait for a second user when the first user is
+        potentially not using the device anymore, a second user may send a
+        <code>/scan/v2/startscanning</code> request that triggers the following:
+        <ul>
+            <li>
+                The first user is sent an <code>AccessExpiry</code> message on
+                the Service Bus, with a new <code>AccessExpiryTime</code> only
+                <strong>30 seconds</strong> in the future.
+            </li>
+            <li>
+                The first user can react by sending another
+                <code>/scan/v2/startscanning</code> request to reset the
+                <code>AccessExpiryTime</code> to <strong>5 minutes</strong> from
+                the time of the request.
+            </li>
+            <li>
+                The first user can immediately release exclusive access to the
+                device by sending a <code>/scan/v2/stopscanning</code> request.
+            </li>
+            <li>
+                The first user can do nothing, and exclusive access will release
+                after the 30 seconds has elapsed.
+            </li>
+            <li>
+                If the exclusive access is relinquished, all users connected to
+                the device will receive a <code>ScanDeviceStatus</code> message
+                on their Service Bus subscriptions that indicates the device is
+                no longer reserved for exclusive access. Another user may now
+                request exclusive access by sending a
+                <code>/scan/v2/startscanning</code> request.
+            </li>
+        </ul>
+    </li>
+</ul>
