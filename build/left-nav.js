@@ -22,6 +22,13 @@ export function buildLeftNav() {
 function buildHtmlBasedOnFolderContents(srcFolderPath) {
     fs.readdirSync(srcFolderPath)
         .sort((firstItemName, secondItemName) => {
+            global.console.log(
+                `Sorting ${srcFolderPath} src folder items.`,
+                'firstItemName',
+                firstItemName,
+                'secondItemName',
+                secondItemName
+            );
             const firstItemNameSegments = splitItemName(firstItemName);
             const firstItemIndex = global.Number(firstItemNameSegments[0]);
             const secondItemNameSegments = splitItemName(secondItemName);
