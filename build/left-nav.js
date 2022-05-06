@@ -96,6 +96,7 @@ function createHtmlFromSrc(srcFilePath) {
 }
 
 function deriveLabelFromItemName(itemName) {
+    global.console.log('deriveLabelFromItemName', itemName);
     const itemNameSegments = splitItemName(itemName);
     global.console.log(
         'deriveLabelFromItemName itemNameSegments'.itemNameSegments
@@ -122,10 +123,29 @@ function insertLeftNavOptionIntoDistIndexHtml(
     srcItemPath,
     isSection = false
 ) {
+    global.console.log(
+        'insertLeftNavOptionIntoDistIndexHtml',
+        'optionLabel',
+        optionLabel,
+        'srcItemPath',
+        srcItemPath,
+        'isSection',
+        isSection
+    );
     const relativeItemPath = srcItemPath.slice(srcItemPath.indexOf('/'));
+    global.console.log(
+        'insertLeftNavOptionIntoDistIndexHtml',
+        'relativeItemPath',
+        relativeItemPath
+    );
     const parentFolderPath = relativeItemPath.slice(
         0,
         relativeItemPath.lastIndexOf('/')
+    );
+    global.console.log(
+        'insertLeftNavOptionIntoDistIndexHtml',
+        'parentFolderPath',
+        parentFolderPath
     );
     const tabName = deriveLabelFromItemName(parentFolderPath.split('/')[2]);
     const optionsInsertPointEnding = 'child left-nav options before here.';

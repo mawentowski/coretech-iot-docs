@@ -27,7 +27,8 @@
         "url": "ssh://git-codecommit.us-east-2.amazonaws.com/v1/repos/tripane-template"
     },
     "scripts": {
-        "build": "node build/index.js",
+        "build": "npm run deleteDsStoreFiles && node build/index.js",
+        "deleteDsStoreFiles": "find . -name '.DS_Store' -delete",
         "lint": "npx stylelint '**/*.css' '**/*.scss' || true & markdownlint-cli2 '**/*.md' '#node_modules' & npx eslint '**/*.js' '**/*.html'",
         "serve": "cd dist && npx http-server -c 0 --port 4200 --proxy http://127.0.0.1:4200?"
     },
