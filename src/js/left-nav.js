@@ -217,9 +217,16 @@ function toggleLeftNavSectionExpanded(leftNavSectionContainerSpan) {
     svgElement.classList.toggle('rotated');
 }
 
-function toggleSelectTabStyles(tab) {
-    tab.classList.toggle('text-black');
-    tab.classList.toggle('active');
+function toggleSelectTabStyles(targetTab) {
+    let matchingTab;
+    for (const tab of tabs) {
+        if (tab !== targetTab && tab.innerText === targetTab.innerText)
+            matchingTab = tab;
+    }
+    [targetTab, matchingTab].forEach((element) => {
+        element.classList.toggle('text-black');
+        element.classList.toggle('active');
+    });
 }
 
 // Use functions

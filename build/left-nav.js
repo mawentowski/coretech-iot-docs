@@ -194,10 +194,13 @@ function insertLeftNavOptionIntoDistIndexHtml(
 }
 
 function insertTabIntoDistIndexHtml(tabLabel) {
-    const tabsInsertPoint = '<!--Content tabs before here.-->';
+    const tabsInsertPoint = '<!--Tab buttons before here.-->';
     const distIndexHtmlContentSegments =
         distIndexHtmlContent.split(tabsInsertPoint);
-    distIndexHtmlContentSegments[0] += `<button class="plain tab">${tabLabel}</button>\n`;
+    for (let i = 0; i < distIndexHtmlContentSegments.length - 1; i++)
+        distIndexHtmlContentSegments[
+            i
+        ] += `<button class="plain tab">${tabLabel}</button>\n`;
     distIndexHtmlContent = distIndexHtmlContentSegments.join(tabsInsertPoint);
 }
 
