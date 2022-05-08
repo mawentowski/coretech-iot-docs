@@ -160,32 +160,13 @@ body {
         button.show-left-nav {
             border: none;
             background-color: transparent;
-
-            .svg-container {
-                width: 3%;
-            }
-
-            .tab-label {
-            }
-
-            .tab-label::before {
-                position: absolute;
-                width: 6px;
-                height: 6px;
-                left: 0;
-                top: 3px;
-                background-image: url('../images/svgs/bars-solid.svg');
-                background-repeat: no-repeat;
-                background-size: 16px 16px;
-                border-radius: 0;
-            }
         }
 
-        .show-left-nav::before {
+        .button.show-left-nav::before {
             position: absolute;
             width: 6px;
             height: 6px;
-            left: -17px;
+            left: 0;
             top: 3px;
             background-image: url('../images/svgs/bars-solid.svg');
             background-repeat: no-repeat;
