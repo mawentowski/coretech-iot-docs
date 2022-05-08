@@ -147,7 +147,10 @@
 .method-example {
     pre {
         code.hljs {
-            padding: 0 1em;
+            padding-left: 1em;
+            padding-right: 1em;
+            margin-top: -3.2em;
+            margin-bottom: -1.6em;
             border-radius: 0 0 10px 10px;
         }
     }

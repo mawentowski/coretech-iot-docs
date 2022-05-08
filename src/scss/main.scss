@@ -157,16 +157,27 @@ body {
     .show-left-nav-button-container {
         border-radius: 4px;
 
-        i.fa.fa-bars {
-            display: inline-block;
-        }
-
         button.show-left-nav {
             border: none;
             background-color: transparent;
 
+            .svg-container {
+                width: 3%;
+            }
+
             .tab-label {
-                margin-left: 5px;
+            }
+
+            .tab-label::before {
+                position: absolute;
+                width: 6px;
+                height: 6px;
+                left: 0;
+                top: 3px;
+                background-image: url('../images/svgs/bars-solid.svg');
+                background-repeat: no-repeat;
+                background-size: 16px 16px;
+                border-radius: 0;
             }
         }
 
