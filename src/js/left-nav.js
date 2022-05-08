@@ -11,14 +11,15 @@ const leftNav = globalThis.document.querySelector('div.left-nav');
 const leftNavOptionDivs = globalThis.document.querySelectorAll(
     'div.left-nav-option'
 );
+const mainContentDiv = globalThis.document.querySelector('div.main-content');
 const showLeftNavButton = globalThis.document.querySelector(
     'button.show-left-nav'
 );
 const tocHeaderTextDiv = globalThis.document.querySelector(
     'div.toc-header-text'
 );
-// Functions
 
+// Functions
 function applySelectionsBasedOnUrl() {
     const urlSegments = globalThis.location.href.split('/');
     const tabName = urlSegments[3];
@@ -149,15 +150,28 @@ async function selectLeftNavItemButton(button) {
     selectedLeftNavItemButton = button;
     selectedLeftNavItemButton.classList.toggle('active');
     toggleActiveClassOnLeftNavSectionContainerSpans();
+    const loadStartDate = new Date();
+    mainContentDiv.innerHTML = `
+    <div class="loading-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>`;
     const relativeUrl = button.dataset.relativeUrl;
     const httpResponse = await globalThis.fetch(relativeUrl);
     const htmlResponseText = await httpResponse.text();
-    const mainContentDiv =
-        globalThis.document.querySelector('div.main-content');
-    mainContentDiv.innerHTML = htmlResponseText;
-    supportCodeSample();
-    reflectSelectionsInUrl();
-    cancelToc();
+    const loadEndDate = new Date();
+    const dateDiffMillis = loadEndDate - loadStartDate;
+    const minLoadingSpinnerMillis = 500;
+    const remainingLoadingSpinnerMillis =
+        minLoadingSpinnerMillis - dateDiffMillis;
+    globalThis.setTimeout(() => {
+        mainContentDiv.innerHTML = htmlResponseText;
+        supportCodeSample();
+        reflectSelectionsInUrl();
+        cancelToc();
+    }, remainingLoadingSpinnerMillis);
 }
 
 function selectTab(tab) {
