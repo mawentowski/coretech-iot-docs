@@ -1,5 +1,4 @@
 // Imports
-
 import { HOME_TAB_NAME } from './shared.js';
 import { addRemoveClasses } from './add-remove-classes.js';
 import { cancelToc } from './toggle-toc.js';

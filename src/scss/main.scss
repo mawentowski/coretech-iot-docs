@@ -155,23 +155,21 @@ body {
     background-color: #f7fafc;
 
     .show-left-nav-button-container {
+        align-items: center;
         border-radius: 4px;
+        cursor: pointer;
+        display: flex;
 
         button.show-left-nav {
             border: none;
             background-color: transparent;
         }
 
-        .button.show-left-nav::before {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            left: 0;
-            top: 3px;
-            background-image: url('../images/svgs/bars-solid.svg');
-            background-repeat: no-repeat;
-            background-size: 16px 16px;
-            border-radius: 0;
+        img {
+            $dimension: 10px;
+
+            height: $dimension;
+            width: $dimension;
         }
     }
 }

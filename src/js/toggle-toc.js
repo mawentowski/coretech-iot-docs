@@ -1,9 +1,8 @@
 import { VIEWPORT_WIDTH_RANGE_COLLECTION } from './viewport-width-range-collection.js';
 
-// const tocMenuButton = globalThis.document.querySelector(
-//     '.header-narrow-viewport'
-// );
-const showLeftNavButton = globalThis.document.querySelector('.show-left-nav');
+const showLeftNavButtonContainer = globalThis.document.querySelector(
+    '.show-left-nav-button-container'
+);
 const leftNavCol = globalThis.document.querySelector('.left-nav-col');
 const content = globalThis.document.querySelector('.content');
 const rightOverlayCol = globalThis.document.querySelector('.toggled-overlay');
@@ -16,7 +15,7 @@ const moreTabs = globalThis.document.querySelector('.more-tabs');
 const bodyElement = globalThis.document.querySelector('body');
 
 // when you click the button.toc-menu...
-showLeftNavButton.addEventListener('click', openToc);
+showLeftNavButtonContainer.addEventListener('click', openToc);
 function openToc() {
     // make the leftNavCal and right-overlay 'unhidden' and make the content unscrollable
     leftNavCol.classList.remove('hidden');
