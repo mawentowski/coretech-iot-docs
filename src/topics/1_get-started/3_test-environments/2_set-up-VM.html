@@ -1,0 +1,396 @@
+<div class="title-box">
+    <h1 class="topic-title">Citrix Virtualized SITA Flex Environment</h1>
+    <div class="action-statement">
+        Set up a virtual machine for application development
+    </div>
+</div>
+<p>
+    In addition to using the devices included in the SITA Flex suitcase, you may
+    also interact with Flex using a Device simulator in a virtualized
+    environment configured with Flex. The Device Simulator hosts
+    &quot;fake&quot; devices that behave like the real ones included in the
+    suitcase.
+</p>
+
+<div class="info-alert">
+    <div class="">
+        It is recommended that you download the
+        <strong>Citrix Workspace</strong> application to access SITA&#39;s
+        Citrix NetScaler Gateway.
+    </div>
+</div>
+
+<div class="numbered-sections-container">
+    <div class="section numbered-section">
+        <div class="section-header">
+            <h2 id="heading-2" class="numbered-h2">Install Citrix Workspace</h2>
+            <span class="tag">VM</span>
+        </div>
+        <ol>
+            <li>
+                Download the latest version of the
+                <a
+                    href="https://www.citrix.com/en-gb/downloads/workspace-app/windows/workspace-app-for-windows-latest.html"
+                    >Citrix Workspace app</a
+                >.
+            </li>
+            <li>Download and open the installer.</li>
+            <li>
+                Select all default settings.
+                <ul>
+                    <li>
+                        The installation completes, with the option to
+                        <strong>Add Account</strong>.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                Click <strong>Add Account</strong>.
+                <ul>
+                    <li>The <strong>Citrix Workspace</strong> displays.</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+    <div class="section numbered-section">
+        <div class="section-header">
+            <h2 id="heading-2" class="numbered-h2">
+                Log in to Citrix Workspace
+            </h2>
+            <span class="tag">VM</span>
+        </div>
+        <ol>
+            <li>
+                Enter and submit the <strong>Store URL</strong> provided to you
+                by SITA.
+            </li>
+            <li>
+                Enter your <strong>Citrix Workspace</strong>
+                <strong>Username</strong> and <strong>Password</strong> provided
+                by SITA.
+            </li>
+            <li>Click <strong>Sign In</strong>.</li>
+        </ol>
+    </div>
+    <div class="section numbered-section">
+        <div class="section-header">
+            <h2 id="heading-2" class="numbered-h2">
+                Optional: View Primary Account
+            </h2>
+            <span class="tag">VM</span>
+        </div>
+        <p>
+            After signing in for the first-time,
+            <code class="inline-code">Store Service</code> has now been added as
+            your primary account.
+        </p>
+        <p>To view accounts:</p>
+        <ol>
+            <li>
+              
+                    Click the drop-down arrow to the left of the search bar in the
+                    application header and select <strong>Accounts</strong>.
+           
+                <ul>
+                    <li>
+                        The <code class="inline-code">(Primary)</code> account
+                        <code class="inline-code">Store Service</code> is visible.
+                    </li>
+                </ul>
+                
+                <ul>
+                    <li>
+                        You may also <strong>Add</strong> or
+                        <strong>Remove</strong> accounts from this window.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>Click <strong>Ok</strong> to close the window.</p>
+            </li>
+        </ol>
+    </div> 
+    <div class="section numbered-section">
+        <div class="section-header">
+            <h2 id="heading-2" class="numbered-h2">Add VM to Workspace</h2>
+            <span class="tag">VM</span>
+        </div>
+        <p>
+            If the VM you are assigned is not visible from the home page, you may
+            add it.
+        </p>
+        <p>To add a VM to your workspace:</p>
+        <ol>
+            <li>
+                Click on the <strong>+</strong> icon on the left side of the screen.
+            </li>
+            <li>
+                Click the VM you have been assigned.
+                <ul>
+                    <li>
+                        A VM icon transitions onto your workspace that allows quick
+                        access to that VM.
+                    </li>
+                    <li>
+                        If you click <strong>+</strong> again, you will notice a
+                        green check mark displays next to the VM to indicate it has
+                        been added.
+                    </li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+    <div class="section numbered-section">
+        <div class="section-header">
+            <h2 id="heading-2" class="numbered-h2">Log into the VM</h2>
+            <span class="tag">VM</span>
+        </div>
+        <p>Login to the virtual machine using the credentials provided to you as part of registration.</p>
+        <!-- make tip -->
+        <div class="warning-alert">
+            <div class="">
+            
+                    <strong>Note</strong>: Copying and pasting information into the
+                    VM is not allowed for security reasons. You must hand type all
+                    information. If you need assistance making something available
+                    on the desktop, contact
+                    <a href="mailto:mark.wentowski@techwritex.com"
+                        >techsupport@techwritex.com</a
+                    >.
+         
+            </div>
+        </div>
+        <p>To log in to the VM:</p>
+        <ol>
+            <li>
+              
+                Click the quick access link to the VM you have been assigned
+                from your workspace.
+            
+                <ul>
+                    <li>
+                        If you see an error stating &quot;The resource is
+                        unavailable currently&quot;, refer to
+                        <a href="VM Not Available_1.htm"
+                            >troubleshooting an unavailable VM</a
+                        >.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                Enter your <strong>VNC Password</strong> provided by SITA.
+                <ul>
+                    <li>If successful, the Windows lock screen displays.</li>
+                </ul>
+            </li>
+            <li>
+                
+                    Right-click the blue header of the
+                    <strong>VNC Window</strong> and select
+                    <strong>Send Ctrl+Alt+Del</strong>.<img
+                        src="images/vnc-window.jpg"
+                        alt=""
+                    />
+                
+                <ul>
+                    <li>A VM Windows Login screen displays.</li>
+                </ul>
+            </li>
+            <li>
+               
+                    Enter and submit the Windows Credentials (SITA APC Logon) that
+                    you have been provided by SITA.
+                
+                <ul>
+                    <li>
+                        The <strong>Peripheral View</strong> opens and displays the
+                        status of the devices.
+                    </li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+    <div class="section numbered-section">
+        <div class="section-header">
+            <h2 id="heading-2" class="numbered-h2">Add a Device</h2>
+            <span class="tag">VM</span>
+        </div>
+        <p>
+            Devices must be added using the Device Simulator before they can interact
+            with Flex.
+        </p>
+        <p>To add a device:</p>
+        <ol>
+            <li>
+            
+                    Double-click the <strong>Device Simulator</strong> icon screen on
+                    Windows desktop.
+             
+                
+                <ul>
+                    <li>The <strong>Device Simulator</strong> displays.</li>
+                </ul>
+            </li>
+            <li>
+                <p>Click <strong>Add Device</strong>.</p>
+                
+            </li>
+            <div class="info-alert">
+                <div class="">
+                    <p>
+                        <strong>Note:</strong> For demonstrative purposes, you will be
+                        adding an <code class="inline-code">ATBStandard</code> device.
+                        However, note that there are many other devices available.
+                    </p>
+                </div>
+            </div>
+            <li>
+                Click the <strong>Device Type</strong> drop-down and select
+                <code class="inline-code">ATB Standard</code>.
+            </li>
+            <li>
+                <p>
+                    Leave all default values the same for the selected
+                    <code class="inline-code">ATB Standard</code> device.
+                </p>
+            </li>
+            <li>
+                Click <strong>Add Device</strong>.
+                <ul>
+                    <li>
+                        The device now displays in
+                        <strong>Device Simulator</strong> and is available to
+                        <strong>Run</strong>.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>
+                    On the device, click <strong>Options</strong>, then
+                    <strong>Settings</strong>.
+                </p>
+                <ul>
+                    <li>An <strong>ATB Settings</strong> window displays.</li>
+                    <li>
+                        You may modify several fields that enable changes in the
+                        behavior of the device. However, the default values should
+                        be enough for your initial development.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                Click <strong>Save and Close</strong> in the
+                <strong>ATB Settings</strong> window.
+            </li>
+        </ol>
+
+
+    </div>
+    <div class="section numbered-section">
+        <div class="section-header">
+            <h2 id="heading-2" class="numbered-h2">Run the Device</h2>
+            <span class="tag">VM</span>
+        </div>
+        <ol>
+            <li>
+                On the device, click <strong>Run</strong>.
+                <ul>
+                    <li>
+                        The <strong>ATB Simulator</strong> page displays, and the
+                        <strong>Session Log</strong> updates as the device is
+                        activated.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>
+                    From Windows desktop, return to the
+                    <strong>Peripheral View</strong> and observe that the
+                    <strong>ATB</strong> device status is now showing in green as
+                    <code class="inline-code">Online</code>.
+                </p>
+            </li>
+    </div>
+
+
+</div>
+
+<h2>In Conclusion</h2>
+    
+<!-- <h2 id="next-steps-1">Next Steps</h3> -->
+<p>
+    After having successfully added and run a device in the
+    <strong>Device Simulator</strong>, you are now ready to interact with
+    the device using the Flex APIs.
+</p>
+<p>
+    Repeat the steps above for any other device type. Many devices can run
+    at the same time using the Device Simulator.
+</p>
+<div class="info-alert">
+    <div class="">
+        
+            <strong>Note</strong>: All the default values should be used
+            when adding and running the device, unless otherwise stated.
+     
+    </div>
+
+</div>
+<p>
+    Continue to <a href="/get-started/get-started/overview">Get Started Using Flex</a> to interact with the device you just added.
+</p>
+
+<div class="continued-reading-section">
+    <h2 class="continued-reading">Next Steps</h2>
+    <ul class="continue-link-list">
+        <div class="continue-link-row">
+            <div class="svg-container">
+                <svg
+                    version="1.1"
+                    id="Capa_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    x="0px"
+                    y="0px"
+                    viewBox="0 0 482.204 482.204"
+                    style="enable-background: new 0 0 482.204 482.204"
+                    xml:space="preserve"
+                >
+                    <g>
+                        <path
+                            style="fill: #5469d4"
+                            d="M83.127,344.477c54.602,1.063,101.919,9.228,136.837,23.613c0.596,0.244,1.227,0.366,1.852,0.366
+                    c0.95,0,1.895-0.279,2.706-0.822c1.349-0.902,2.158-2.418,2.158-4.041l0.019-261.017c0-1.992-1.215-3.783-3.066-4.519
+                    L85.019,42.899c-1.496-0.596-3.193-0.411-4.527,0.494c-1.334,0.906-2.133,2.413-2.133,4.025v292.197
+                    C78.359,342.264,80.479,344.425,83.127,344.477z"
+                        />
+                        <path
+                            style="fill: #5469d4"
+                            d="M480.244,89.256c-1.231-0.917-2.824-1.198-4.297-0.759l-49.025,14.657
+                    c-2.06,0.616-3.471,2.51-3.471,4.659v252.151c0,0,0.218,3.978-3.97,3.978c-4.796,0-7.946,0-7.946,0
+                    c-39.549,0-113.045,4.105-160.93,31.6l-9.504,5.442l-9.503-5.442c-47.886-27.494-121.381-31.6-160.93-31.6c0,0-8.099,0-10.142,0
+                    c-1.891,0-1.775-2.272-1.775-2.271V107.813c0-2.149-1.411-4.043-3.47-4.659L6.256,88.497c-1.473-0.439-3.066-0.158-4.298,0.759
+                    S0,91.619,0,93.155v305.069c0,1.372,0.581,2.681,1.597,3.604c1.017,0.921,2.375,1.372,3.741,1.236
+                    c14.571-1.429,37.351-3.131,63.124-3.131c56.606,0,102.097,8.266,131.576,23.913c4.331,2.272,29.441,15.803,41.065,15.803
+                    c11.624,0,36.733-13.53,41.063-15.803c29.48-15.647,74.971-23.913,131.577-23.913c25.771,0,48.553,1.702,63.123,3.131
+                    c1.367,0.136,2.725-0.315,3.742-1.236c1.016-0.923,1.596-2.231,1.596-3.604V93.155C482.203,91.619,481.476,90.173,480.244,89.256z
+                    "
+                        />
+                        <path
+                            style="fill: #5469d4"
+                            d="M257.679,367.634c0.812,0.543,1.757,0.822,2.706,0.822c0.626,0,1.256-0.122,1.853-0.366
+                    c34.917-14.386,82.235-22.551,136.837-23.613c2.648-0.052,4.769-2.213,4.769-4.861V47.418c0-1.613-0.799-3.12-2.133-4.025
+                    c-1.334-0.904-3.031-1.09-4.528-0.494L258.569,98.057c-1.851,0.736-3.065,2.527-3.065,4.519l0.019,261.017
+                    C255.521,365.216,256.331,366.732,257.679,367.634z"
+                        />
+                    </g>
+                </svg>
+            </div>
+            <div>
+                <a href="/get-started/get-started/overview"
+                    >Get Started Using Flex</a
+                >
+            </div>
+        </div>
+    </ul>
+</div>
