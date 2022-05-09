@@ -975,7 +975,7 @@ a.continue-link {
     .footer-bottom {
         display: flex;
         padding: 32px 0;
-        margin-top: 20px;
+        margin-top: 54px;
         border-top: 0.1px solid #ddd;
 
         p {
@@ -1132,6 +1132,22 @@ a.continue-link {
         border: 1px solid #e3e8ed;
         border-radius: 4px;
         font-family: 'Courier New', Courier, monospace;
+    }
+
+    span.method {
+        font-weight: 600;
+
+        &.post {
+            color: #0b825d;
+        }
+
+        &.get {
+            color: #95bedd;
+        }
+
+        &.del {
+            color: #e57049;
+        }
     }
 }
 

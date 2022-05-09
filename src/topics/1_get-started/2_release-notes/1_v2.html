@@ -1,0 +1,158 @@
+<div class="title-box">
+    <h1 class="topic-title">Release Notes: v2</h1>
+    <div class="action-statement">
+        View changes implemented for the v2 release
+    </div>
+</div>
+
+<p>
+    For customers moving from the previous release, this section describes some
+    of the basic changes you should consider for the new version of the APIs.
+</p>
+<h2 id="no-session-token">No Session Token</h2>
+<p>
+    Previously, to use Flex APIs, a
+    <code class="inline-code">/v1/location/getsessiontoken</code> request must
+    be made to acquire a session token that tracks the session and maps all
+    calls made during the session. The Request Body needed to include a
+    <code class="inline-code">LocationID</code> and
+    <code class="inline-code">AirlineCode</code>. The request returned the
+    <code class="inline-code">SessionToken</code> to be included in the Request
+    Body of all future API calls made during the session.
+</p>
+<p>
+    There is no longer a need to request a session token. The
+    <code class="inline-code">access_token</code>, included as the
+    <code class="inline-code">bearer_token</code> in Authorization Headers, now
+    contains the required information to map your API calls during the session.
+    The <code class="inline-code">access_token</code> contains application
+    registration details including the application name that contains the
+    <code class="inline-code">AirlineCode</code>. Certain roles assigned to that
+    <code class="inline-code">AirlineCode</code> govern the allowed interactions
+    with Flex APIs.
+</p>
+<h2 id="subscribe-request-changes">Subscribe Request Changes</h2>
+<p>
+    In V1, the response after sending a
+    <code class="inline-code">/v1/location/subscribe</code> request included a
+    <code class="inline-code">locationCapabilityList</code> with a list of
+    devices at the location and their statues. In V2, the
+    <code class="inline-code">/session/v2/subscriptions</code> request
+    <em>only returns Service Bus details</em> for the new subscription.
+</p>
+<p>
+    The Service Bus details are largely the same, except some of the property
+    names are different.
+</p>
+<ul>
+    <li>
+        There is a new <code class="inline-code">Subscription ID</code> that is
+        Flex-specific and must be included in all requests connecting to and
+        interacting with devices.
+    </li>
+    <li>
+        The <code class="inline-code">serviceBusSharedAccessToken</code> is now
+        contained within the
+        <code class="inline-code">connectionString</code> that holds all
+        information required for Azure to validate you have access to the Azure
+        Service Bus.
+    </li>
+    <li>
+        The property <code class="inline-code">serviceBusTopic</code> has
+        replaced <code class="inline-code">topicName</code> and has a fixed
+        value of <code class="inline-code">airline-messages</code> in all
+        situations.
+    </li>
+    <li>
+        The property <code class="inline-code">subscriptionName</code> has
+        replaced <code class="inline-code">serviceBusSubscription</code> and is
+        a GUID returned per subscription.
+    </li>
+    <li>
+        Both properties <code class="inline-code">serviceBusTopic</code> and
+        <code class="inline-code">subscriptionName</code> are identifiers to
+        tell your application which specific channel it should read Service Bus
+        messages.
+    </li>
+</ul>
+<h2 id="new-reservation-endpoint">New Reservation Endpoint</h2>
+<p>
+    The new <span class="method post">POST</span>
+    <code class="inline-code">/site/v2/reservations</code> request limits use of
+    a location to the airline backend with a specific airline code that made the
+    request. The airline backend must reserve the location to make use of its
+    devices.
+</p>
+<h2 id="no-device-status-request">No Device Status Request</h2>
+<p>
+    There is a no longer a
+    <code class="inline-code">/v1/location/status/</code> request available to
+    return device statuses at a location. Instead, when you connect to a device,
+    a <code class="inline-code">DeviceStatus</code> message is displayed on the
+    Service Bus that indicates the device status. When the device status changes
+    in some cases, a new message is sent.
+</p>
+<p>
+    The
+    <code class="inline-code">/session/v2/locations/{locationId}</code> returns
+    a list of devices and their capabilities, but not their statuses.
+</p>
+<h2 id="connect-not-reserve">Connect, not Reserve</h2>
+<p>
+    The V1 <span class="method post">POST</span>
+    <code class="inline-code">/v1/peripheral/reserve</code> request should not
+    be confused with the new
+    <code class="inline-code">/site/v2/reservations</code> endpoint, they are
+    unrelated. Previously, the purpose of reserving a device was to connect to
+    it. The new <code class="inline-code">/site/v2/reservations</code> endpoint
+    is about reserving a location for exclusive access to its devices.
+</p>
+<p>
+    Instead of reserving a device through a
+    <span class="method post">POST</span>
+    <code class="inline-code">/v1/peripheral/reserve</code> request, you now
+    connect to a device by making a <span class="method post">POST</span>
+    <code class="inline-code">/session/v2/connections</code> request. The
+    outcome of the request is the same, to connect to a device to send and
+    receive messages.
+</p>
+<p>
+    Instead of passing a <code class="inline-code">LocatorList</code> value to
+    identify the peripheral, the IoT Hub identifier
+    <code class="inline-code">deviceID</code> is passed.
+</p>
+<h2 id="deviceid-instead-of-locator">DeviceID instead of Locator</h2>
+<p>
+    The IoT Hub identifier <code class="inline-code">deviceID</code> is now used
+    in requests instead of <code class="inline-code">Locator</code>.
+</p>
+<h2 id="no-transactionid-or-requestid">No TransactionID or RequestID</h2>
+<p>
+    In V1, the <code class="inline-code">TransactionId</code> property was
+    required to pair certain kinds of requests with responses on the Service
+    Bus. In addition, certain requests also required a
+    <code class="inline-code">RequestId</code> used by the API to ensure that
+    duplicate messages are not processed.
+</p>
+<p>Both these properties are no longer required.</p>
+<h2 id="no-enable-or-disable-devices">No Enable or Disable Devices</h2>
+<p>
+    Previously, devices needed to be enabled to indicate the application is
+    ready to receive data via reading or scanning and disabled to stop the flow
+    of information from the device to the application.
+</p>
+<p>
+    You no longer need to Enable or Disable devices, except for scan devices.
+    Enable is now <span class="method post">POST</span>
+    <code class="inline-code">/scan/v2/startscanning</code> and Disable is now
+    <span class="method post">POST</span>
+    <code class="inline-code">/scan/v2/stopscanning</code>. The
+    <code class="inline-code">/scan/v2/startscanning</code> request readies the
+    device to start scanning airport documents.
+</p>
+<h2 id="no-aea-command-request">No AEA Command Request</h2>
+<p>
+    While it is possible to send an AEA format print request, there is no longer
+    the ability to send AEA commands to a device to handle the whole device
+    interaction in your application as was possible previously.
+</p>

@@ -187,7 +187,7 @@ Once again, whether an airline backend manages one or multiple applications, eac
 
 Because the Service Bus is Azure Region-specific, each airline backend must maintain one subscription <u>for each Azure Region</u>. For any one Azure Region, all messages sent from devices in that region display on that region's subscription.
 
-A subscription is created when an airline backend sends a POST `session/v2/subscriptions` request.
+A subscription is created when an airline backend sends a <span class="method post">POST</span> `session/v2/subscriptions` request.
 
 ### Client Applications
 
@@ -532,15 +532,15 @@ Many of the endpoints associated with the V1 Locations API have been replaced by
 There is **no longer a Peripheral API** that lets you reserve and release devices, it has been broken out into separate APIs that deal with the different device functions.
 
 -   For example, printing and scanning devices are now controlled by **Print API** and **Scan API**, respectively.
--   The request to reserve a device is now made to the Session API by sending a POST `/session/v2/connections` request, and you may use the DEL method to delete the connection (or reservation as referred to in V1).
+-   The request to reserve a device is now made to the Session API by sending a <span class="method post">POST</span> `/session/v2/connections` request, and you may use the <span class="method del">DEL</span> method to delete the connection (or reservation as referred to in V1).
 
-### New DEL Methods
+### New <span class="method del">DEL</span> Methods
 
-To conform with REST API standards, some requests initially categorized as POST methods that involve the deletion of certain entities are now changed to DEL methods. For example:
+To conform with REST API standards, some requests initially categorized as <span class="method post">POST</span> methods that involve the deletion of certain entities are now changed to <span class="method del">DEL</span> methods. For example:
 
--   Instead of unsubscribing from a Service Bus Subscription with a POST `/v1/location/unsubscribe` request, you now send a **DEL** `/session/v2/subscriptions/{subscription_id}` request.
+-   Instead of unsubscribing from a Service Bus Subscription with a <span class="method post">POST</span> `/v1/location/unsubscribe` request, you now send a **DEL** `/session/v2/subscriptions/{subscription_id}` request.
 
--   Instead of releasing a peripheral after reserving it (POST `/v1/peripheral/release`), you send a request to delete the connection **DEL** `/session/v2/connections/{connection_id}`.
+-   Instead of releasing a peripheral after reserving it (<span class="method post">POST</span> `/v1/peripheral/release`), you send a request to delete the connection **DEL** `/session/v2/connections/{connection_id}`.
 
 The GET method will also be incorporated into future releases.
 
@@ -564,7 +564,7 @@ The Service Bus details are largely the same, except some of the property names 
 
 ### New Reservation Endpoint
 
-The new POST `/site/v2/reservations` request limits use of a location to the airline backend with a specific airline code that made the request. The airline backend must reserve the location to make use of its devices.
+The new <span class="method post">POST</span> `/site/v2/reservations` request limits use of a location to the airline backend with a specific airline code that made the request. The airline backend must reserve the location to make use of its devices.
 
 ### No Device 'Status' Request
 
@@ -574,9 +574,9 @@ The `/session/v2/locations/{locationId}` returns a list of devices and their cap
 
 ### 'Connect', not 'Reserve'
 
-The V1 POST `/v1/peripheral/reserve` request should not be confused with the new `/site/v2/reservations` endpoint, they are unrelated. Previously, the purpose of reserving a device was to 'connect' to it. The new `/site/v2/reservations` endpoint is about reserving a location for exclusive access to its devices.
+The V1 <span class="method post">POST</span> `/v1/peripheral/reserve` request should not be confused with the new `/site/v2/reservations` endpoint, they are unrelated. Previously, the purpose of reserving a device was to 'connect' to it. The new `/site/v2/reservations` endpoint is about reserving a location for exclusive access to its devices.
 
-Instead of 'reserving' a device through a POST `/v1/peripheral/reserve` request, you now 'connect' to a device by making a POST `/session/v2/connections` request. The outcome of the request is the same, to connect to a device to send and receive messages.
+Instead of 'reserving' a device through a <span class="method post">POST</span> `/v1/peripheral/reserve` request, you now 'connect' to a device by making a <span class="method post">POST</span> `/session/v2/connections` request. The outcome of the request is the same, to connect to a device to send and receive messages.
 
 Instead of passing a `LocatorList` value to identify the peripheral, the IoT Hub identifier `deviceID` is passed.
 
@@ -594,7 +594,7 @@ Both these properties are no longer required.
 
 Previously, devices needed to be 'enabled' to indicate the application is ready to receive data via reading or scanning and 'disabled' to stop the flow of information from the device to the application.
 
-You no longer need to Enable or Disable devices, except for scan devices. 'Enable' is now POST `/scan/v2/startscanning` and 'Disable' is now POST `/scan/v2/stopscanning`. The `/scan/v2/startscanning` request readies the device to start scanning airport documents.
+You no longer need to Enable or Disable devices, except for scan devices. 'Enable' is now <span class="method post">POST</span> `/scan/v2/startscanning` and 'Disable' is now <span class="method post">POST</span> `/scan/v2/stopscanning`. The `/scan/v2/startscanning` request readies the device to start scanning airport documents.
 
 ### No AEA Command Request
 
@@ -771,7 +771,7 @@ At present, all Flex Resource Endpoint URLs are comprised of:
 -   A REST API standard method preceding the URL for accessing the endpoint, either POST, GET, or DEL.
 -   A Base URL specific to the SITA Flex environment, sometimes displayed as `{{baseurl}}` in the Resource URL in Postman.
 -   The end path of the Resource URL is typically comprised of the API name followed by the endpoint name. For example, the end path `/session/v2/subscriptions` contains the API `session` followed by the endpoint `subscriptions`.
--   Path parameters, which may or may not be required depending on the endpoint. For example, certain endpoints require you to pass a `locationId` and DEL operations require you to pass the ID of the entity you wish to delete. Path parameters are the only kind of parameters passed in the Resource URLs.
+-   Path parameters, which may or may not be required depending on the endpoint. For example, certain endpoints require you to pass a `locationId` and <span class="method del">DEL</span> operations require you to pass the ID of the entity you wish to delete. Path parameters are the only kind of parameters passed in the Resource URLs.
 
 ### Header Parameters
 
@@ -795,13 +795,13 @@ The **Session API** endpoints allow airline backends to connect to devices confi
 
 The flow of the API is to:
 
--   **Reserve** a location configured in the SITA Flex environment by sending a POST `/site/v2/reservations` request.
+-   **Reserve** a location configured in the SITA Flex environment by sending a <span class="method post">POST</span> `/site/v2/reservations` request.
 
--   **Subscribe** to the Azure Service Bus subscription for your airline backend through a POST `/session/v2/subscriptions` request.
+-   **Subscribe** to the Azure Service Bus subscription for your airline backend through a <span class="method post">POST</span> `/session/v2/subscriptions` request.
 
--   **Get Location Capabilities** through a POST `/site/v2/locations/{locationId}` request that returns list of devices at a location and their capabilities.
+-   **Get Location Capabilities** through a <span class="method post">POST</span> `/site/v2/locations/{locationId}` request that returns list of devices at a location and their capabilities.
 
--   Create a **connection** to Flex devices to receive messages on the subscription through a POST `/session/v2/connections` request.
+-   Create a **connection** to Flex devices to receive messages on the subscription through a <span class="method post">POST</span> `/session/v2/connections` request.
 
 > **Note:** The Get Location Capabilities endpoint (`/site/v2/locations/{locationId}`) is not serviced by the Session API. It is serviced by the Location API. However, it fits logically in the Session API flow at the time this documentation was written.
 >
@@ -817,13 +817,13 @@ Example locations configured in the SITA Flex environment include:
 
 ## Reserve a Location
 
-The POST `/site/v2/reservations` request limits use of a location to the airline backend with a specific airline code that made the request. The airline backend must reserve the location to make use of its devices.
+The <span class="method post">POST</span> `/site/v2/reservations` request limits use of a location to the airline backend with a specific airline code that made the request. The airline backend must reserve the location to make use of its devices.
 
 > **Note:** Flex knows the airline code of the requester because it is encoded in the access token.
 
 ### Request Body
 
-The airline backend sends a POST `/site/v2/reservations` request, passing the `LocationId` in the Request Body it wishes to reserve.
+The airline backend sends a <span class="method post">POST</span> `/site/v2/reservations` request, passing the `LocationId` in the Request Body it wishes to reserve.
 
 The following is a sample Response Body containing the location to be reserved:
 
@@ -833,7 +833,7 @@ The following is a sample Response Body containing the location to be reserved:
 }
 ```
 
-##### Sample Request Body for POST `/site/v2/reservation` request containing the `LocationId` passed from the client app
+##### Sample Request Body for <span class="method post">POST</span> `/site/v2/reservation` request containing the `LocationId` passed from the client app
 
 ### Response Body
 
@@ -850,13 +850,13 @@ A successful request returns a `2xx` success status code with the JSON Response 
 ]
 ```
 
-##### Sample Response Body for POST `/site/v2/reservation` request containing the `reservationId`
+##### Sample Response Body for <span class="method post">POST</span> `/site/v2/reservation` request containing the `reservationId`
 
 The Response Body contains informational properties such as the `airlineCode` encoded in the access token and `locationID` passed in the Request Body. The property `expiryTime` indicates when the reservation is due to expire.
 
 > **Note:** It is important that airline backends keep track of when a location reservation is about to expire so it can request a new reservation if continued access is desired.
 
-Now that the location is reserved by an airline code, any request made by another airline will be rejected. This will occur until the reservation's `expiryTime` has been reached or the airline who made the reservation has sent a DEL `/site/v2/reservation` to delete the reservation.
+Now that the location is reserved by an airline code, any request made by another airline will be rejected. This will occur until the reservation's `expiryTime` has been reached or the airline who made the reservation has sent a <span class="method del">DEL</span> `/site/v2/reservation` to delete the reservation.
 
 The following error displays when attempting to reserve a location that is already reserved:
 
@@ -874,19 +874,19 @@ The following error displays when attempting to reserve a location that is alrea
 
 > **Note:** For a ground handler, there is a concept that any airlines it handles can share a location at the same time.
 
-Sending a DEL `/site/v2/reservations/{reservation_id}` request returns a `2xx` success status code and deletes a reservation if one exists.
+Sending a <span class="method del">DEL</span> `/site/v2/reservations/{reservation_id}` request returns a `2xx` success status code and deletes a reservation if one exists.
 
 ### Best Practices
 
 #### Deleting Reservations
 
-It is important to delete the reservation once done with a location because an active reservation prevents other airline backends from using the location. This is achieved by sending a DEL `/site/v2/reservations/{reservation_id}` request, passing in the `reservation_id` of the reservation to be deleted as a path parameter.
+It is important to delete the reservation once done with a location because an active reservation prevents other airline backends from using the location. This is achieved by sending a <span class="method del">DEL</span> `/site/v2/reservations/{reservation_id}` request, passing in the `reservation_id` of the reservation to be deleted as a path parameter.
 
 ## Create a Subscription
 
-The POST `/session/v2/subscriptions` request creates a subscription on the Azure Service Bus and returns a Service Bus endpoint and SAS token for the airline backend to connect to the subscription.
+The <span class="method post">POST</span> `/session/v2/subscriptions` request creates a subscription on the Azure Service Bus and returns a Service Bus endpoint and SAS token for the airline backend to connect to the subscription.
 
-Sending a POST `/session/v2/subscriptions` request does not 'subscribe' to the Service Bus, it only creates a subscription and returns connection details. The application must then connect to the Service Bus connection using the connection details provided.
+Sending a <span class="method post">POST</span> `/session/v2/subscriptions` request does not 'subscribe' to the Service Bus, it only creates a subscription and returns connection details. The application must then connect to the Service Bus connection using the connection details provided.
 
 The Microsoft Service Bus documentation provides best practices for how applications should be configured to do this for each client library: [Azure Service Bus messaging overview - Azure Service Bus](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview#client-libraries).
 
@@ -906,7 +906,7 @@ A successful request returns a `2xx` success status code with the JSON Response 
 }
 ```
 
-##### Sample Response Body for POST `session/v2/subscriptions` request containing details for connecting to the subscription
+##### Sample Response Body for <span class="method post">POST</span> `session/v2/subscriptions` request containing details for connecting to the subscription
 
 **Warning:** Not sending a `/session/v2/subscriptions` request results in a **400 Bad Request** error, as described in the <a href="400 Bad Request_1.htm">400 Bad Request</a> troubleshooting section.
 
@@ -924,7 +924,7 @@ It is not necessary to understand the contents of the SAS token. It is important
 
 The `subscriptionId` is a Flex-specific ID passed in the Request Body of connection requests to associate a device with a specific Service Bus Subscription.
 
-For example, when connecting to an ATB device, the airline backend will send a POST `/session/v2/connections` request, including the `subscriptionId` in the Request Body. The returned `connectionID` is now associated to the subscription, and thus Flex knows to route any messages coming from the device to that specific subscription.
+For example, when connecting to an ATB device, the airline backend will send a <span class="method post">POST</span> `/session/v2/connections` request, including the `subscriptionId` in the Request Body. The returned `connectionID` is now associated to the subscription, and thus Flex knows to route any messages coming from the device to that specific subscription.
 
 > **Tip:** In Postman, if you click the **Tests** tab, you will notice there is Javascript code that sets the environmental variable `{{subscription_id}}` to the `subscriptionId` returned after making the request. Now, when future requests are made in this session, the `subscriptionId` is included in the Response Body without the need to manually enter it.
 
@@ -942,19 +942,19 @@ The `topicName` and `subscriptionName` are identifiers to tell your application 
 
 #### How to Handle Subscriptions
 
-The airline backend can handle subscriptions in several different ways. The first way is to keep a subscription alive through repeated calls to the POST `session/v2/subscriptions` endpoint to create a new SAS token when the old one expires. The SAS token is contained in the `connectionString` in the Response Body.
+The airline backend can handle subscriptions in several different ways. The first way is to keep a subscription alive through repeated calls to the <span class="method post">POST</span> `session/v2/subscriptions` endpoint to create a new SAS token when the old one expires. The SAS token is contained in the `connectionString` in the Response Body.
 
 > **Note:** The SAS token contains the credentials needed by the airline backend to access the Azure Service Bus.
 
-The second way is to have an 'on-demand' solution whereby the airline backend determines if there is a subscription in place for the specified location. If there is already a subscription for the location, the airline backend uses that subscription and does not send a request to create a new one. If there is no subscription in place, it sends a POST `session/v2/subscriptions` request to create a new subscription.
+The second way is to have an 'on-demand' solution whereby the airline backend determines if there is a subscription in place for the specified location. If there is already a subscription for the location, the airline backend uses that subscription and does not send a request to create a new one. If there is no subscription in place, it sends a <span class="method post">POST</span> `session/v2/subscriptions` request to create a new subscription.
 
 > **Note:** The airline backend will only ever have one subscription for an Azure Region. So, if a new subscription is created, it will continue to use that subscription for all requests from client applications in that region.
 
 #### Avoid Multiple SAS Tokens
 
-Making repeated calls to POST `session/v2/subscriptions` does not create a new subscription. The same `subscriptionId` associated with the existing subscription is returned in the Response Body. However, it is important to note that <u>a new SAS token is generated</u>.
+Making repeated calls to <span class="method post">POST</span> `session/v2/subscriptions` does not create a new subscription. The same `subscriptionId` associated with the existing subscription is returned in the Response Body. However, it is important to note that <u>a new SAS token is generated</u>.
 
-If a POST `session/v2/subscriptions` request is made, and there is an existing SAS token that has yet to reach its `expiryTime`, there are now two SAS tokens. In this case, the airline backend should disconnect from the old SAS token and connect to the new one that has an `expiryTime`.
+If a <span class="method post">POST</span> `session/v2/subscriptions` request is made, and there is an existing SAS token that has yet to reach its `expiryTime`, there are now two SAS tokens. In this case, the airline backend should disconnect from the old SAS token and connect to the new one that has an `expiryTime`.
 
 > **Note:** In best practice, an airline backend would never encounter a situation where it would need to disconnect from an old SAS token to use the new one. The ideal scenario would be to allow the old SAS token to expire then create a new one by sending a `session/v2/subscriptions` request.
 
@@ -970,11 +970,11 @@ If an ill-behaved application does not properly clean-up its subscription, an au
 
 #### Deleting Subscriptions
 
-If a subscription is no longer needed, it is best practice to delete the subscription by sending a DEL `/session/v2/subscriptions/{subscription_id}` request, passing in the `subscription_id` of the subscription to be deleted as a path parameter.
+If a subscription is no longer needed, it is best practice to delete the subscription by sending a <span class="method del">DEL</span> `/session/v2/subscriptions/{subscription_id}` request, passing in the `subscription_id` of the subscription to be deleted as a path parameter.
 
 ## Get Location Capabilities
 
-The POST `/site/v2/locations/{locationId}` request provides a way for airline backends to determine what devices are configured at a location and their capabilities.
+The <span class="method post">POST</span> `/site/v2/locations/{locationId}` request provides a way for airline backends to determine what devices are configured at a location and their capabilities.
 
 > **Note:** This request is not required, but it can return useful information for an airline backend act upon.
 
@@ -1038,7 +1038,7 @@ A successful request returns a `2xx` success status code with the JSON Response 
 ]
 ```
 
-##### Sample Response Body for POST `/site/v2/locations/` request containing device details at a location
+##### Sample Response Body for <span class="method post">POST</span> `/site/v2/locations/` request containing device details at a location
 
 #### `deviceId`
 
@@ -1046,7 +1046,7 @@ The Response Body includes a `deviceId` for each device configured at a location
 
 The `deviceId` is comprised of the location (for example, `A-ZZU-MZUZUAIRPORT-ZZU1CKB004`), followed by the name of the device (for example, `.BGR1`).
 
-The airline backend then uses these IDs to connect to devices at the location. For example, to connect to an ATB through a POST `/session/v2/connections` request, you must pass the `DeviceId` in the Request Body.
+The airline backend then uses these IDs to connect to devices at the location. For example, to connect to an ATB through a <span class="method post">POST</span> `/session/v2/connections` request, you must pass the `DeviceId` in the Request Body.
 
 #### `capabilities`
 
@@ -1065,7 +1065,7 @@ However, some devices have multiple capabilities. For example, a General Purpose
 
 ## Connect to a Device
 
-The POST `/session/v2/connections` request creates a connection to a device at specific location and associates that device to a subscription where it can send messages for the airline backend to consume.
+The <span class="method post">POST</span> `/session/v2/connections` request creates a connection to a device at specific location and associates that device to a subscription where it can send messages for the airline backend to consume.
 
 ### Request Body
 
@@ -1085,7 +1085,7 @@ The following is a sample Request Body:
 }
 ```
 
-##### Sample Request Body for POST `/session/v2/connections` request seeking to connect to a BTP device
+##### Sample Request Body for <span class="method post">POST</span> `/session/v2/connections` request seeking to connect to a BTP device
 
 ### Response Body
 
@@ -1101,13 +1101,13 @@ A successful request returns a `2xx` success status code with the JSON Response 
 }
 ```
 
-##### Sample Response Body for POST `/site/v2/reservation` request containing the `connectionId`
+##### Sample Response Body for <span class="method post">POST</span> `/site/v2/reservation` request containing the `connectionId`
 
 The returned `connectionId` is now associated to the `subscriptionId`, so any messages coming from the device will display on that subscription. The airline backend will now use this `connectionId` to send commands to the device through Flex.
 
 An `expiryTime` set to **5 minutes** from the time of the request is returned. This indicates when the connection to the device expires.
 
-> **Tip:** If continued access to the device is desired, ensure to send another POST `/session/v2/connections` request to create a new connection at the time of expiry of the old connection.
+> **Tip:** If continued access to the device is desired, ensure to send another <span class="method post">POST</span> `/session/v2/connections` request to create a new connection at the time of expiry of the old connection.
 
 The API also returns properties passed in the Request Body (for example, the `reservationId`).
 
@@ -1115,7 +1115,7 @@ The API also returns properties passed in the Request Body (for example, the `re
 
 #### Deleting Connections
 
-If a connection is no longer needed, it is best practice to delete the connection to allow other airline backends to connect to the device. This is achieved by sending a DEL `/session/v2/connections/{connection_id}` request, passing in the `connection_id` of the connection to be deleted as a path parameter.
+If a connection is no longer needed, it is best practice to delete the connection to allow other airline backends to connect to the device. This is achieved by sending a <span class="method del">DEL</span> `/session/v2/connections/{connection_id}` request, passing in the `connection_id` of the connection to be deleted as a path parameter.
 
 ## Interact with a Device
 
@@ -1147,25 +1147,25 @@ The supported devices at present are the following:
 
 The end path for the Print API starts with **POST** `/print/v2`, followed by the endpoint (i.e. action) for a device to carry out.
 
-### POST /print/v2/boardingpass/{type}
+### <span class="method post">POST</span> /print/v2/boardingpass/{type}
 
-Send a POST `/print/v2/boardingpass/{type}` request to an ATB device to print a boarding pass in the specified format `{type}`. Using this endpoint, boarding passes may be printed in either `pdf` or `svg` format.
+Send a <span class="method post">POST</span> `/print/v2/boardingpass/{type}` request to an ATB device to print a boarding pass in the specified format `{type}`. Using this endpoint, boarding passes may be printed in either `pdf` or `svg` format.
 
-### POST /print/v2/boardingpass/aea
+### <span class="method post">POST</span> /print/v2/boardingpass/aea
 
-Send a POST `/print/v2/boardingpass/aea` request to an ATB device to print a boarding pass in `aea` format.
+Send a <span class="method post">POST</span> `/print/v2/boardingpass/aea` request to an ATB device to print a boarding pass in `aea` format.
 
-### POST /print/v2/baggagetag/{type}
+### <span class="method post">POST</span> /print/v2/baggagetag/{type}
 
-Send a POST `/print/v2/baggagetag/{type}` request to a BTP device to print a baggage tag in the specified format `{type}`. Using this endpoint, baggage tags may be printed in `svg` format only.
+Send a <span class="method post">POST</span> `/print/v2/baggagetag/{type}` request to a BTP device to print a baggage tag in the specified format `{type}`. Using this endpoint, baggage tags may be printed in `svg` format only.
 
-### POST /print/v2/baggagetag/aea
+### <span class="method post">POST</span> /print/v2/baggagetag/aea
 
-Send a POST `/print/v2/baggagetag/aea` request to an BTP device to print a baggage tag in `aea` format.
+Send a <span class="method post">POST</span> `/print/v2/baggagetag/aea` request to an BTP device to print a baggage tag in `aea` format.
 
-### POST /print/v2/report
+### <span class="method post">POST</span> /print/v2/report
 
-Send a Post `/print/v2/report` request to a DCP device to print a report.
+Send a <span class="method post">POST</span> `/print/v2/report` request to a DCP device to print a report.
 
 ## Construct a Print Request
 
@@ -1176,7 +1176,7 @@ At present, Print API Resource URLs are comprised of:
 -   A REST API standard method preceding the URL for accessing the endpoint. In the case of the Print API, the only method used is POST.
 -   A Base URL specific to the SITA Flex environment, sometimes displayed as `{{baseurl}}` in the Resource URL in Postman.
 -   The end path of the Resource URL is comprised of the API name (`print`) followed by the endpoint name. For example, the end path `/print/v2/boardingpass/` contains the API `print` followed by the endpoint `boardingpass`.
--   Path parameters, which may or may not be required depending on the endpoint. For example, when sending a POST `/print/v2/boardingpass/` request, you must append the path parameter `{type}` to the end path to indicate the requested print format for the boarding pass: POST `/print/v2/boardingpass/pdf`.
+-   Path parameters, which may or may not be required depending on the endpoint. For example, when sending a <span class="method post">POST</span> `/print/v2/boardingpass/` request, you must append the path parameter `{type}` to the end path to indicate the requested print format for the boarding pass: <span class="method post">POST</span> `/print/v2/boardingpass/pdf`.
 
 ### Header Parameters
 
@@ -1206,7 +1206,7 @@ The following is a sample Request Body for printing a boarding pass using an ATB
 }
 ```
 
-##### Sample Request Body for POST `/print/v2/boardingpass/` request
+##### Sample Request Body for <span class="method post">POST</span> `/print/v2/boardingpass/` request
 
 The following is a sample Request Body for printing a bag tag using a BTP device in PDF format. The PDF data are represented by `printData`, same as when printing a PDF using an ATB. However, there is another data property called `rfidData` associated with baggage tag data specific to the BTP.
 
@@ -1222,7 +1222,7 @@ The following is a sample Request Body for printing a bag tag using a BTP device
 }
 ```
 
-##### Sample Request Body for POST `/print/v2/baggagetag/pdf` request
+##### Sample Request Body for <span class="method post">POST</span> `/print/v2/baggagetag/pdf` request
 
 The following is a sample Request Body for printing either a boarding pass or bag tag in AEA format. Notice that `aeaPrintData` is used instead of `printData`.
 
@@ -1280,7 +1280,7 @@ If the device's status changes for whatever reason (for example, the device goes
 
 After sending a request to print to a device, the `PrintResponse` is the primary `MessageType` received on the Service Bus after making a print request. It is virtually identical across devices and print formats. Its sole purpose to indicate if the print was successful and how many documents were printed.
 
-Upon making a POST `/print/v2/` request, the Print API acknowledges the request with a synchronous message, returning a `2xx` success status code no matter if the print was successful or unsuccessful. It merely indicates the Print API successfully sent the request.
+Upon making a <span class="method post">POST</span> `/print/v2/` request, the Print API acknowledges the request with a synchronous message, returning a `2xx` success status code no matter if the print was successful or unsuccessful. It merely indicates the Print API successfully sent the request.
 
 The API takes the `ConnectionId` and looks up the details associated with the ID, most notably the `DeviceId`. The `DeviceID` is sent to IoT Hub where is it routed to the correct workstation to carry out the command on the peripheral (for example, printing).
 
@@ -1337,8 +1337,8 @@ You will be interacting with an ATB device (Automated Ticket & Boarding Pass Pri
     - Ensure the `{{location}}` variable corresponds to the VM's machine name as seen in the Peripheral View. For example, a VM with machine name `ZZU1CKB005` as seen in the Peripheral view could correspond to a `location` called `A-ZZU-MZUZUAIRPORT-ZZU1CKB005` in the Postman Environment.
 3. In Postman, perform the following:
     - Send a Get Access token request.
-    - Send a POST `/session/v2/subscriptions` request.
-    - Send a POST `/site/v2/reservations` request.
+    - Send a <span class="method post">POST</span> `/session/v2/subscriptions` request.
+    - Send a <span class="method post">POST</span> `/site/v2/reservations` request.
 
 ### Add an ATB Device
 
@@ -1482,13 +1482,13 @@ The supported devices at present are the following:
 
 The end path for the Scan API starts with **POST** `/scan/v2`, followed by the endpoint (i.e. action) for a device to carry out.
 
-### POST /scan/v2/startscanning
+### <span class="method post">POST</span> /scan/v2/startscanning
 
-Send a POST `/scan/v2/startscanning` request to request exclusive access to a device so it can start reading travel documents.
+Send a <span class="method post">POST</span> `/scan/v2/startscanning` request to request exclusive access to a device so it can start reading travel documents.
 
-### POST /scan/v2/stopscanning
+### <span class="method post">POST</span> /scan/v2/stopscanning
 
-Send a POST `/scan/v2/stopscanning` request to release a device from exclusive access so other airline backends can reserve the device and use it to read travel documents.
+Send a <span class="method post">POST</span> `/scan/v2/stopscanning` request to release a device from exclusive access so other airline backends can reserve the device and use it to read travel documents.
 
 ## Construct a Scan Request
 
@@ -1667,8 +1667,8 @@ You will be interacting with an OCR device and simulating the scanning of a pass
     - Ensure the `{{location}}` variable corresponds to the VM's machine name as seen in the Peripheral View. For example, a VM with machine name `ZZU1CKB005` as seen in the Peripheral view could correspond to a `location` called `A-ZZU-MZUZUAIRPORT-ZZU1CKB005` in the Postman Environment.
 3. In Postman, perform the following:
     - Send a Get Access token request.
-    - Send a POST `/session/v2/subscriptions` request.
-    - Send a POST `/site/v2/reservations` request.
+    - Send a <span class="method post">POST</span> `/session/v2/subscriptions` request.
+    - Send a <span class="method post">POST</span> `/site/v2/reservations` request.
 
 ### Add an OSR Device
 
@@ -1834,19 +1834,19 @@ The supported devices at present are the following:
 
 The end path for the GateAccess API starts with **POST** `/gateaccess/v2`, followed by the endpoint (i.e. action) for device to carry out.
 
-### POST /gateaccess/v2/opengate
+### <span class="method post">POST</span> /gateaccess/v2/opengate
 
 Send a `/gateaccess/v2/opengate` request to initiate the boarding process. For a Self-Boarding Gate, the passenger is now allowed to proceed to scan their boarding pass. For Boarding Gate Readers, the agent scanning boarding passes is now ready to receive passengers in the queue.
 
-### POST gateaccess/v2/acceptpassenger
+### <span class="method post">POST</span> gateaccess/v2/acceptpassenger
 
 Send a `gateaccess/v2/acceptpassenger` request to tell the GateAccess API that a passenger has boarded successfully. Send this request each time a passenger is processed successfully.
 
-### POST /gateaccess/v2/rejectpassenger
+### <span class="method post">POST</span> /gateaccess/v2/rejectpassenger
 
 Send a `/gateaccess/v2/rejectpassenger` request to tell the GateAccess API that a passenger is not allowed to board and must see an agent. Send this request each time a passenger is processed unsuccessfully.
 
-### POST /gateaccess/v2/closegate
+### <span class="method post">POST</span> /gateaccess/v2/closegate
 
 Send a `/gateaccess/v2/closegate` request to end the boarding process. For a Self-Boarding Gate, this triggers the gate to close. For Boarding Gate Readers, this indicates the boarding process has ended and the agent scanning boarding passes will no longer do so unless the boarding process is initiated over again (`/gateaccess/v2/opengate`).
 
@@ -2147,8 +2147,8 @@ You will be interacting with an BGR device and simulating the scanning of a boar
     - Ensure the `{{location}}` variable corresponds to the VM's machine name as seen in the Peripheral View. For example, a VM with machine name `ZZU1CKB005` as seen in the Peripheral view could correspond to a `location` called `A-ZZU-MZUZUAIRPORT-ZZU1CKB005` in the Postman Environment.
 3. In Postman, perform the following:
     - Send a Get Access token request.
-    - Send a POST `/session/v2/subscriptions` request.
-    - Send a POST `/site/v2/reservations` request.
+    - Send a <span class="method post">POST</span> `/session/v2/subscriptions` request.
+    - Send a <span class="method post">POST</span> `/site/v2/reservations` request.
 
 ### Add an BGR Device
 
@@ -2417,49 +2417,49 @@ The only supported device at present is the following:
 
 The end path for BagDrop API endpoints begins with **POST** `/bagdrop/v2`, followed by the endpoint (i.e. action) for the device to carry out.
 
-### POST /bagdrop/v2/getbag
+### <span class="method post">POST</span> /bagdrop/v2/getbag
 
-Send a POST `/bagdrop/v2/getbag` request to initiate a bagdrop process and open the door (if there is a door) of the SBD so the passenger can place their bag on the belt.
+Send a <span class="method post">POST</span> `/bagdrop/v2/getbag` request to initiate a bagdrop process and open the door (if there is a door) of the SBD so the passenger can place their bag on the belt.
 
 ![](flow-diagrams\bagdrop - getbag.svg)
 
-##### POST `/bagdrop/v2/getbag` Endpoint Flow
+##### <span class="method post">POST</span> `/bagdrop/v2/getbag` Endpoint Flow
 
-### POST /bagdrop/v2/processbag
+### <span class="method post">POST</span> /bagdrop/v2/processbag
 
-After the passenger places a bag on the belt, the bag's measurements are taken, and a settled weight is calculated. Send a POST `/bagdrop/v2/processbag` request to close the door and move the bag from the `Entry` position to the `Process` position.
+After the passenger places a bag on the belt, the bag's measurements are taken, and a settled weight is calculated. Send a <span class="method post">POST</span> `/bagdrop/v2/processbag` request to close the door and move the bag from the `Entry` position to the `Process` position.
 
 ![](flow-diagrams\bagdrop-processbag.svg)
 
-##### POST `/bagdrop/v2/processbag` Endpoint Flow
+##### <span class="method post">POST</span> `/bagdrop/v2/processbag` Endpoint Flow
 
-### POST /bagdrop/v2/returnbag
+### <span class="method post">POST</span> /bagdrop/v2/returnbag
 
-If an issue arises when the bag is in the `Process` position, and the customer _can resolve the issue_, send a POST `/bagdrop/v2/returnbag` request to open the door and return the bag to the `Entry` position where the customer to resolve the issue.
+If an issue arises when the bag is in the `Process` position, and the customer _can resolve the issue_, send a <span class="method post">POST</span> `/bagdrop/v2/returnbag` request to open the door and return the bag to the `Entry` position where the customer to resolve the issue.
 
-Once the customer resolves the issue, send another POST `/bagdrop/v2/processbag` request to return the bag to the `Process` position so the bagdrop process can continue.
+Once the customer resolves the issue, send another <span class="method post">POST</span> `/bagdrop/v2/processbag` request to return the bag to the `Process` position so the bagdrop process can continue.
 
 ![](flow-diagrams\bagdrop -returnbag.svg)
 
-##### POST `/bagdrop/v2/returnbag` Endpoint Flow
+##### <span class="method post">POST</span> `/bagdrop/v2/returnbag` Endpoint Flow
 
-### POST /bagdrop/v2/cancelbag
+### <span class="method post">POST</span> /bagdrop/v2/cancelbag
 
-If an issue arises when the bag is in the `Process` position, and the customer _cannot to resolve the issue_, send a POST `/bagdrop/v2/cancelbag` request to open the door and return the bag to the `Entry` position where the agent can resolve the issue.
+If an issue arises when the bag is in the `Process` position, and the customer _cannot to resolve the issue_, send a <span class="method post">POST</span> `/bagdrop/v2/cancelbag` request to open the door and return the bag to the `Entry` position where the agent can resolve the issue.
 
-Once the agent resolves the issue, send another POST `/bagdrop/v2/processbag` request to return the bag to the `Process` position so the bagdrop process can continue.
+Once the agent resolves the issue, send another <span class="method post">POST</span> `/bagdrop/v2/processbag` request to return the bag to the `Process` position so the bagdrop process can continue.
 
 ![](flow-diagrams\bagdrop -cancelbag.svg)
 
-##### POST `/bagdrop/v2/cancelbag` Endpoint Flow
+##### <span class="method post">POST</span> `/bagdrop/v2/cancelbag` Endpoint Flow
 
-### POST /bagdrop/v2/releasebag
+### <span class="method post">POST</span> /bagdrop/v2/releasebag
 
-Once the bag has been processed, send a POST `/bagdrop/v2/releasebag` request to move the bag to the Baggage Handling System (BHS Area) and complete the bagdrop process.
+Once the bag has been processed, send a <span class="method post">POST</span> `/bagdrop/v2/releasebag` request to move the bag to the Baggage Handling System (BHS Area) and complete the bagdrop process.
 
 ![](flow-diagrams\bagdrop -releasebag.svg)
 
-##### POST `/bagdrop/v2/releasebag` Endpoint Flow
+##### <span class="method post">POST</span> `/bagdrop/v2/releasebag` Endpoint Flow
 
 ## Construct a BagDrop Request
 
@@ -2496,7 +2496,7 @@ The following is not an exhaustive list of all possible Service Bus `Message Typ
 A `BagdropDeviceStatus` message displays on the Service Bus:
 
 -   when the `DeviceStatus` changes. For example, when the SBD goes from `Online` to `Offline`, or vice versa. An SBD may go `Offline` due to an issue with the device, or when a `BagDropTransactionTimeout` occurs.
--   after a `/bagdrop/v2/getbag` request is sent, which initiates the bagdrop process and reserves the SBD for exclusive access by the airline backend. The `DeviceInUse` property changes from `false` (the value displayed after sending the POST `/session/v2/connections` request) to `true`.
+-   after a `/bagdrop/v2/getbag` request is sent, which initiates the bagdrop process and reserves the SBD for exclusive access by the airline backend. The `DeviceInUse` property changes from `false` (the value displayed after sending the <span class="method post">POST</span> `/session/v2/connections` request) to `true`.
 
 ```JSON
 {
@@ -2651,8 +2651,8 @@ The following tools are used to demonstrate the Print API:
     - Ensure the `{{location}}` variable corresponds to the VM's machine name as seen in the Peripheral View. For example, a VM with machine name `ZZU1CKB005` as seen in the Peripheral view could correspond to a `location` called `A-ZZU-MZUZUAIRPORT-ZZU1CKB005` in the Postman Environment.
 3. In Postman, perform the following:
     - Send a Get Access token request.
-    - Send a POST `/session/v2/subscriptions` request.
-    - Send a POST `/site/v2/reservations` request.
+    - Send a <span class="method post">POST</span> `/session/v2/subscriptions` request.
+    - Send a <span class="method post">POST</span> `/site/v2/reservations` request.
 
 ### Add an SBD Device
 
@@ -2871,7 +2871,7 @@ The `"Position": "Entry"` indicates that the bag is currently located on the `En
 
 #### Not enough time remaining on connection
 
-A Bagdrop API returns a `400 Bad Request` error status code when the connection to a device is soon to reach its 30-minute `expiryTime` set after the POST `/session/v2/connections` was made.
+A Bagdrop API returns a `400 Bad Request` error status code when the connection to a device is soon to reach its 30-minute `expiryTime` set after the <span class="method post">POST</span> `/session/v2/connections` was made.
 
 ```JSON
 {
@@ -2988,7 +2988,7 @@ In the **Peripheral View**, it is possible devices statuses display as `Unknown`
 
 To resolve the issue:
 
-1. Send DEL `/session/v2/subscriptions` request to unsubscribe from your current Flex API session.
+1. Send <span class="method del">DEL</span> `/session/v2/subscriptions` request to unsubscribe from your current Flex API session.
 2. Perform one of the following, depending on the situation:
 
     - If you are using the VM, shut down the **Device Simulator** completely by deleting all the devices and exiting the application.

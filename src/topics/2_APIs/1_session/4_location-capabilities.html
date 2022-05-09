@@ -1,8 +1,9 @@
 <h2 id="get-location-capabilities">Get Location Capabilities</h2>
 <p>
-    The POST <code>/site/v2/locations/{locationId}</code> request provides a way
-    for airline backends to determine what devices are configured at a location
-    and their capabilities.
+    The <span class="method post">POST</span>
+    <code class="inline-code">/site/v2/locations/{locationId}</code> request
+    provides a way for airline backends to determine what devices are configured
+    at a location and their capabilities.
 </p>
 <blockquote>
     <p>
@@ -11,14 +12,15 @@
     </p>
 </blockquote>
 <p>
-    You must pass the <code>locationId</code> as a path parameter in the
-    request.
+    You must pass the <code class="inline-code">locationId</code> as a path
+    parameter in the request.
 </p>
 <h3 id="response-body-2">Response Body</h3>
 <p>
-    A successful request returns a <code>2xx</code> success status code with the
-    JSON Response Body containing the list of devices and their capabilities at
-    the requested <code>locationId</code>:
+    A successful request returns a <code class="inline-code">2xx</code> success
+    status code with the JSON Response Body containing the list of devices and
+    their capabilities at the requested
+    <code class="inline-code">locationId</code>:
 </p>
 <pre><code class="language-JSON">[
     {
@@ -75,34 +77,39 @@
 <h5
     id="sample-response-body-for-post-sitev2locations-request-containing-device-details-at-a-location"
 >
-    Sample Response Body for POST <code>/site/v2/locations/</code> request
-    containing device details at a location
+    Sample Response Body for <span class="method post">POST</span>
+    <code class="inline-code">/site/v2/locations/</code> request containing
+    device details at a location
 </h5>
-<h4 id="deviceid"><code>deviceId</code></h4>
+<h4 id="deviceid"><code class="inline-code">deviceId</code></h4>
 <p>
-    The Response Body includes a <code>deviceId</code> for each device
-    configured at a location.
+    The Response Body includes a <code class="inline-code">deviceId</code> for
+    each device configured at a location.
 </p>
 <p>
-    The <code>deviceId</code> is comprised of the location (for example,
-    <code>A-ZZU-MZUZUAIRPORT-ZZU1CKB004</code>), followed by the name of the
-    device (for example, <code>.BGR1</code>).
+    The <code class="inline-code">deviceId</code> is comprised of the location
+    (for example,
+    <code class="inline-code">A-ZZU-MZUZUAIRPORT-ZZU1CKB004</code>), followed by
+    the name of the device (for example,
+    <code class="inline-code">.BGR1</code>).
 </p>
 <p>
     The airline backend then uses these IDs to connect to devices at the
     location. For example, to connect to an ATB through a POST
-    <code>/session/v2/connections</code> request, you must pass the
-    <code>DeviceId</code> in the Request Body.
+    <code class="inline-code">/session/v2/connections</code> request, you must
+    pass the <code class="inline-code">DeviceId</code> in the Request Body.
 </p>
-<h4 id="capabilities"><code>capabilities</code></h4>
+<h4 id="capabilities"><code class="inline-code">capabilities</code></h4>
 <p>
     Many times, you can determine the capabilities of a device by simply looking
-    at the <code>deviceId</code>. For example, the <code>ATB</code> device only
-    has the capability to print a boarding pass. So, when a
-    <code>deviceId</code> contains <code>.ATB</code>, it is assumed that device
-    only has the <code>PrintBoardingPass</code> capability.
+    at the <code class="inline-code">deviceId</code>. For example, the
+    <code class="inline-code">ATB</code> device only has the capability to print
+    a boarding pass. So, when a
+    <code class="inline-code">deviceId</code> contains
+    <code class="inline-code">.ATB</code>, it is assumed that device only has
+    the <code class="inline-code">PrintBoardingPass</code> capability.
 </p>
-<pre><code>{
+<pre> <code class="inline-code">{
     &quot;deviceId&quot;: &quot;A-ZZU-MZUZUAIRPORT-ZZU1CKB004.ATB1&quot;,
     &quot;capabilities&quot;: [
      &quot;PrintBoardingPass&quot;
@@ -115,8 +122,9 @@
 <p>
     However, some devices have multiple capabilities. For example, a General
     Purpose Printer (GPP) may have both the capabilities
-    <code>PrintBoardingPass</code> and <code>PrintBagTag</code>. Returning a
-    list of devices is useful to an airline backend particularly in cases where
-    devices at a location have multiple capabilities and can receive different
-    kinds of requests.
+    <code class="inline-code">PrintBoardingPass</code> and
+    <code class="inline-code">PrintBagTag</code>. Returning a list of devices is
+    useful to an airline backend particularly in cases where devices at a
+    location have multiple capabilities and can receive different kinds of
+    requests.
 </p>

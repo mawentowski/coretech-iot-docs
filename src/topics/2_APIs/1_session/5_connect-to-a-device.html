@@ -1,28 +1,30 @@
 <h2 id="connect-to-a-device">Connect to a Device</h2>
 <p>
-    The POST <code>/session/v2/connections</code> request creates a connection
-    to a device at specific location and associates that device to a
+    The <span class="method post">POST</span>
+    <code class="inline-code">/session/v2/connections</code> request creates a
+    connection to a device at specific location and associates that device to a
     subscription where it can send messages for the airline backend to consume.
 </p>
 <h3 id="request-body-2">Request Body</h3>
 <p>
     You must pass three properties in the Request Body of a
-    <code>/session/v2/connections</code> request:
+    <code class="inline-code">/session/v2/connections</code> request:
 </p>
 <ul>
     <li>
-        The <code>DeviceId</code> returned after sending the
-        <code>/site/v2/locations/{locationId}</code> request that listed devices
-        configured at a site.
+        The <code class="inline-code">DeviceId</code> returned after sending the
+        <code class="inline-code">/site/v2/locations/{locationId}</code> request
+        that listed devices configured at a site.
     </li>
     <li>
-        The <code>subscriptionId</code> is a Flex-specific ID of the Service Bus
-        subscription the <code>DeviceId</code> will be associated to.
+        The <code class="inline-code">subscriptionId</code> is a Flex-specific
+        ID of the Service Bus subscription the
+        <code class="inline-code">DeviceId</code> will be associated to.
     </li>
     <li>
-        The <code>ReservationId</code> of the location where the device is
-        configured. This ID tells the Flex API that the airline has reserved the
-        location where the device is located.
+        The <code class="inline-code">ReservationId</code> of the location where
+        the device is configured. This ID tells the Flex API that the airline
+        has reserved the location where the device is located.
     </li>
 </ul>
 <p>The following is a sample Request Body:</p>
@@ -35,13 +37,14 @@
 <h5
     id="sample-request-body-for-post-sessionv2connections-request-seeking-to-connect-to-a-btp-device"
 >
-    Sample Request Body for POST <code>/session/v2/connections</code> request
-    seeking to connect to a BTP device
+    Sample Request Body for <span class="method post">POST</span>
+    <code class="inline-code">/session/v2/connections</code> request seeking to
+    connect to a BTP device
 </h5>
 <h3 id="response-body-3">Response Body</h3>
 <p>
-    A successful request returns a <code>2xx</code> success status code with the
-    JSON Response Body containing the connection details.
+    A successful request returns a <code class="inline-code">2xx</code> success
+    status code with the JSON Response Body containing the connection details.
 </p>
 <pre><code class="language-JSON">{
     &quot;connectionId&quot;: &quot;a060a6f1-ec5b-43cb-8f0b-bf6f8891ebdf&quot;,
@@ -54,30 +57,33 @@
 <h5
     id="sample-response-body-for-post-sitev2reservation-request-containing-the-connectionid"
 >
-    Sample Response Body for POST <code>/site/v2/reservation</code> request
-    containing the <code>connectionId</code>
+    Sample Response Body for <span class="method post">POST</span>
+    <code class="inline-code">/site/v2/reservation</code> request containing the
+    <code class="inline-code">connectionId</code>
 </h5>
 <p>
-    The returned <code>connectionId</code> is now associated to the
-    <code>subscriptionId</code>, so any messages coming from the device will
-    display on that subscription. The airline backend will now use this
-    <code>connectionId</code> to send commands to the device through Flex.
+    The returned <code class="inline-code">connectionId</code> is now associated
+    to the <code class="inline-code">subscriptionId</code>, so any messages
+    coming from the device will display on that subscription. The airline
+    backend will now use this <code class="inline-code">connectionId</code> to
+    send commands to the device through Flex.
 </p>
 <p>
-    An <code>expiryTime</code> set to <strong>5 minutes</strong> from the time
-    of the request is returned. This indicates when the connection to the device
-    expires.
+    An <code class="inline-code">expiryTime</code> set to
+    <strong>5 minutes</strong> from the time of the request is returned. This
+    indicates when the connection to the device expires.
 </p>
 <blockquote>
     <p>
         <strong>Tip:</strong> If continued access to the device is desired,
-        ensure to send another POST <code>/session/v2/connections</code> request
-        to create a new connection at the time of expiry of the old connection.
+        ensure to send another <span class="method post">POST</span>
+        <code class="inline-code">/session/v2/connections</code> request to
+        create a new connection at the time of expiry of the old connection.
     </p>
 </blockquote>
 <p>
     The API also returns properties passed in the Request Body (for example, the
-    <code>reservationId</code>).
+    <code class="inline-code">reservationId</code>).
 </p>
 <h3 id="best-practices-2">Best Practices</h3>
 <h4 id="deleting-connections">Deleting Connections</h4>
@@ -85,7 +91,7 @@
     If a connection is no longer needed, it is best practice to delete the
     connection to allow other airline backends to connect to the device. This is
     achieved by sending a DEL
-    <code>/session/v2/connections/{connection_id}</code> request, passing in the
-    <code>connection_id</code> of the connection to be deleted as a path
-    parameter.
+    <code class="inline-code">/session/v2/connections/{connection_id}</code>
+    request, passing in the <code class="inline-code">connection_id</code> of
+    the connection to be deleted as a path parameter.
 </p>

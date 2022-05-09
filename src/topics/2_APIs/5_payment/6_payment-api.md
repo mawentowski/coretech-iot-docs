@@ -18,21 +18,21 @@ The only supported device at present is:
 
 The end path for the Print API starts with **POST** `/payment/v2/`, followed by the endpoint (i.e. payment action) for a device to carry out.
 
-### POST `/payment/v2/process`
+### <span class="method post">POST</span> `/payment/v2/process`
 
-Send a POST `/payment/v2/process` request to an PMT device to...
+Send a <span class="method post">POST</span> `/payment/v2/process` request to an PMT device to...
 
-### POST `/payment/v2/receiptprinted`
+### <span class="method post">POST</span> `/payment/v2/receiptprinted`
 
-Send a POST `/payment/v2/receiptprinted` request to an PMT device to...
+Send a <span class="method post">POST</span> `/payment/v2/receiptprinted` request to an PMT device to...
 
-### POST `/payment/v2/signatureverified`
+### <span class="method post">POST</span> `/payment/v2/signatureverified`
 
-Send a POST `/payment/v2/signatureverified` request to an PMT device to...
+Send a <span class="method post">POST</span> `/payment/v2/signatureverified` request to an PMT device to...
 
-### POST `/payment/v2/transactioncompletedresponse`
+### <span class="method post">POST</span> `/payment/v2/transactioncompletedresponse`
 
-Send a POST `/payment/v2/transactioncompletedresponse` request to an PMT device to...
+Send a <span class="method post">POST</span> `/payment/v2/transactioncompletedresponse` request to an PMT device to...
 
 ## Construct a Payment Request
 
@@ -60,7 +60,7 @@ An `access_token` is required in the Authorization Header of requests for authen
 
 All Request Bodies must include the `ConnectionId` of the device the airline backend would like to interact with
 
-#### POST `/payment/v2/process`
+#### <span class="method post">POST</span> `/payment/v2/process`
 
 The following is a sample Request Body for <action> using an PMT device.
 
@@ -74,9 +74,9 @@ The following is a sample Request Body for <action> using an PMT device.
 }
 ```
 
-##### Sample Request Body for POST `/payment/v2/process` request
+##### Sample Request Body for <span class="method post">POST</span> `/payment/v2/process` request
 
-#### POST `/payment/v2/receiptprinted`
+#### <span class="method post">POST</span> `/payment/v2/receiptprinted`
 
 The following is a sample Request Body for <action> using an PMT device.
 
@@ -89,9 +89,9 @@ The following is a sample Request Body for <action> using an PMT device.
 }
 ```
 
-##### Sample Request Body for POST `/payment/v2/receiptprinted`request
+##### Sample Request Body for <span class="method post">POST</span> `/payment/v2/receiptprinted`request
 
-#### POST `/payment/v2/signatureverified`
+#### <span class="method post">POST</span> `/payment/v2/signatureverified`
 
 The following is a sample Request Body for <action> using an PMT device.
 
@@ -105,9 +105,9 @@ The following is a sample Request Body for <action> using an PMT device.
 }
 ```
 
-##### Sample Request Body for POST `/payment/v2/signatureverified` request
+##### Sample Request Body for <span class="method post">POST</span> `/payment/v2/signatureverified` request
 
-#### POST `/payment/v2/transactioncompletedresponse`
+#### <span class="method post">POST</span> `/payment/v2/transactioncompletedresponse`
 
 The following is a sample Request Body for <action> using an PMT device.
 
@@ -119,7 +119,7 @@ The following is a sample Request Body for <action> using an PMT device.
 }
 ```
 
-##### Sample Request Body for POST `/payment/v2/transactioncompletedresponse` request
+##### Sample Request Body for <span class="method post">POST</span> `/payment/v2/transactioncompletedresponse` request
 
 ## Service Bus Messages
 
@@ -159,7 +159,7 @@ If the device's status changes for whatever reason, like the device going `Offli
 
 After sending a request to print to a device, the `PrintResponse` is the primary `MessageType` received on the Service Bus after making a print request. It is virtually identical across devices and print formats. Its sole purpose to indicate if the print was successful and how many documents were printed.
 
-Upon making a POST `/print/v2/` request, the Flex API acknowledges the request with a synchronous message, returning a `2xx` success status code no matter if the print was successful or unsuccessful. It merely indicates the Flex API successfully sent the request.
+Upon making a <span class="method post">POST</span> `/print/v2/` request, the Flex API acknowledges the request with a synchronous message, returning a `2xx` success status code no matter if the print was successful or unsuccessful. It merely indicates the Flex API successfully sent the request.
 
 The API takes the `ConnectionId` and looks up the details associated with the ID, most notably the `DeviceId`. The `DeviceID` is sent to IoT Hub where is it routed to the correct workstation to carry out the command on the peripheral (for example, printing).
 
@@ -216,8 +216,8 @@ You will be interacting with an ATB device (Automated Ticket & Boarding Pass Pri
     - Ensure the `{{location}}` variable corresponds to the VM's machine name as seen in the Peripheral View. For example, a VM with machine name `ZZU1CKB005` as seen in the Peripheral view could correspond to the `location` like `A-ZZU-MZUZUAIRPORT-ZZU1CKB005` in the Postman Environment.
 3. In Postman, perform the following:
     - Send a Get Access token request.
-    - Send a POST `/session/v2/subscriptions` request.
-    - Send a POST `/site/v2/reservations` request.
+    - Send a <span class="method post">POST</span> `/session/v2/subscriptions` request.
+    - Send a <span class="method post">POST</span> `/site/v2/reservations` request.
 
 ### Add an ATB Device
 

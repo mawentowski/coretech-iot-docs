@@ -2,9 +2,10 @@
 <p>
     Send a <strong>Get Access Token</strong> request to exchange your
     credentials for an access token that authorizes your API calls. This token
-    is returned in the JSON response as an <code>access_token</code> but should
-    be included in Authorization Headers of future requests made during this
-    session as <code>bearer_token</code>.
+    is returned in the JSON response as an
+    <code class="inline-code">access_token</code> but should be included in
+    Authorization Headers of future requests made during this session as
+    <code class="inline-code">bearer_token</code>.
 </p>
 <h3 id="request-body">Request Body</h3>
 <p>
@@ -13,13 +14,15 @@
 </p>
 <p>
     In the Request Body, notice your credential values are represented by
-    Postman variables. For example, <code>{{clientid}}</code>. The Postman
-    variables used are defined Postman environment file.
+    Postman variables. For example,
+    <code class="inline-code">{{clientid}}</code>. The Postman variables used
+    are defined Postman environment file.
 </p>
 <h3 id="success-response">Success Response</h3>
 <p>
-    A successful request returns the <code>200 OK</code> status code with a JSON
-    Response Body containing the <code>access_token</code>.
+    A successful request returns the
+    <code class="inline-code">200 OK</code> status code with a JSON Response
+    Body containing the <code class="inline-code">access_token</code>.
 </p>
 <pre><code class="language-JSON">{
     &quot;token_type&quot;: &quot;Bearer&quot;,
@@ -32,15 +35,16 @@
 }
 </code></pre>
 <h5 id="response-body-containing-the-access_token">
-    Response Body containing the <code>access_token</code>
+    Response Body containing the <code class="inline-code">access_token</code>
 </h5>
 <p>
     In Postman, if you check the <strong>Tests</strong> tab, you will notice
-    there is Javascript code that saves the <code>access_token</code> value that
-    was returned to the <code>{{bearer_token}}</code> variable defined in the
+    there is Javascript code that saves the
+    <code class="inline-code">access_token</code> value that was returned to the
+    <code class="inline-code">{{bearer_token}}</code> variable defined in the
     Postman environment. Now, when future requests are made in this session, the
-    <code>bearer_token</code> will be included in the Authorization Header
-    without the need to manually enter it.
+    <code class="inline-code">bearer_token</code> will be included in the
+    Authorization Header without the need to manually enter it.
 </p>
 <h6
     id="warning-the-bearer-token-expires-the-current-expiration-time-is-set-to-3599-seconds-as-indicated-in-the-example-response-body-above-ensure-that-you-refresh-this-access-token-if-continued-access-is-required-otherwise-you-will-receive-a-401-unauthorized-error-the-token-can-be-refreshed-by-requesting-another-access-token"

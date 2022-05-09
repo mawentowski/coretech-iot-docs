@@ -52,23 +52,26 @@
     </li>
     <li>
         In Postman, open the <strong>SITA Flex API Collection</strong> and
-        <strong>Postman environment</strong> <code>.json</code> files. In the
-        Postman environment file:
+        <strong>Postman environment</strong>
+        <code class="inline-code">.json</code> files. In the Postman environment
+        file:
         <ul>
             <li>
-                Ensure your <code>clientid</code> and
-                <code>clientsecret</code> are populated in both the
-                <strong>Initial Value</strong> and
+                Ensure your <code class="inline-code">clientid</code> and
+                <code class="inline-code">clientsecret</code> are populated in
+                both the <strong>Initial Value</strong> and
                 <strong>Current Value</strong> columns.
             </li>
             <li>
-                Ensure the <code>{{location}}</code> variable corresponds to the
-                VM&#39;s machine name as seen in the Peripheral View. For
-                example, a VM with machine name <code>ZZU1CKB005</code> as seen
-                in the Peripheral view could correspond to a
-                <code>location</code> called
-                <code>A-ZZU-MZUZUAIRPORT-ZZU1CKB005</code> in the Postman
-                Environment.
+                Ensure the
+                <code class="inline-code">{{location}}</code> variable
+                corresponds to the VM&#39;s machine name as seen in the
+                Peripheral View. For example, a VM with machine name
+                <code class="inline-code">ZZU1CKB005</code> as seen in the
+                Peripheral view could correspond to a
+                <code class="inline-code">location</code> called
+                <code class="inline-code">A-ZZU-MZUZUAIRPORT-ZZU1CKB005</code>
+                in the Postman Environment.
             </li>
         </ul>
     </li>
@@ -76,8 +79,15 @@
         In Postman, perform the following:
         <ul>
             <li>Send a Get Access token request.</li>
-            <li>Send a POST <code>/session/v2/subscriptions</code> request.</li>
-            <li>Send a POST <code>/site/v2/reservations</code> request.</li>
+            <li>
+                Send a <span class="method post">POST</span>
+                <code class="inline-code">/session/v2/subscriptions</code>
+                request.
+            </li>
+            <li>
+                Send a <span class="method post">POST</span>
+                <code class="inline-code">/site/v2/reservations</code> request.
+            </li>
         </ul>
     </li>
 </ol>
@@ -119,14 +129,17 @@
 <h3 id="connect-to-the-atb">Connect to the ATB</h3>
 <ol>
     <li>
-        In Postman, send a <code>/session/v2/connections</code> request to
+        In Postman, send a
+        <code class="inline-code">/session/v2/connections</code> request to
         connect to the ATB.
         <ul>
             <li>
                 After connecting to a device, a connection
-                <code>expiryTime</code> is returned in the Response Body set to
-                <strong>30 minutes</strong> from the time the
-                <code>session/v2/connections</code> request was made.
+                <code class="inline-code">expiryTime</code> is returned in the
+                Response Body set to <strong>30 minutes</strong> from the time
+                the
+                <code class="inline-code">session/v2/connections</code> request
+                was made.
             </li>
         </ul>
     </li>
@@ -134,14 +147,15 @@
 <blockquote>
     <p>
         <strong>Note:</strong> Notice in the Request Body that the
-        <code>DeviceId</code> will be populated based by the variable
-        <code>{{location}}</code> in the Postman environment.
+        <code class="inline-code">DeviceId</code> will be populated based by the
+        variable <code class="inline-code">{{location}}</code> in the Postman
+        environment.
     </p>
 </blockquote>
 <ol start="2">
     <li>
         Check the Service Bus subscription for a
-        <code>PrintDeviceStatus</code> message:
+        <code class="inline-code">PrintDeviceStatus</code> message:
     </li>
 </ol>
 <pre><code class="language-JSON">{
@@ -151,33 +165,38 @@
 }
 </code></pre>
 <h5 id="printdevicestatus-service-bus-message-indicating-the-device-is-online">
-    <code>PrintDeviceStatus</code> Service Bus Message indicating the device is
-    online
+    <code class="inline-code">PrintDeviceStatus</code> Service Bus Message
+    indicating the device is online
 </h5>
 <p>
-    The message should return a <code>DeviceStatus</code> of
-    <code>Online</code>, with <code>MediaStatus</code> and
-    <code>BinStatus</code> as <code>Ok</code> if there are no issues with the
-    printer. If there are no issues, the device is now available to successfully
-    receive Print requests.
+    The message should return a <code class="inline-code">DeviceStatus</code> of
+    <code class="inline-code">Online</code>, with
+    <code class="inline-code">MediaStatus</code> and
+    <code class="inline-code">BinStatus</code> as
+    <code class="inline-code">Ok</code> if there are no issues with the printer.
+    If there are no issues, the device is now available to successfully receive
+    Print requests.
 </p>
 <blockquote>
     <p>
         <strong>Note</strong>: In the Tests tab of Postman, there is some
-        Javascript that updates the <code>atb_connection_id</code> environmental
+        Javascript that updates the
+        <code class="inline-code">atb_connection_id</code> environmental
         variable after connecting to the ATB. This variable is used so you do
-        not need to manually enter a <code>connectionId</code> in subsequent
-        calls to the Print API.
+        not need to manually enter a
+        <code class="inline-code">connectionId</code> in subsequent calls to the
+        Print API.
     </p>
 </blockquote>
 <h4 id="devicestatus-is-offline">
-    <code>DeviceStatus</code> is <code>Offline</code>
+    <code class="inline-code">DeviceStatus</code> is
+    <code class="inline-code">Offline</code>
 </h4>
 <p>
-    If the <code>DeviceStatus</code> returns as <code>Offline</code>, check to
-    see if the device is running in the Device Simulator. If there is a
-    <strong>Stop</strong> button on the device in Device Simulator, the device
-    is running.
+    If the <code class="inline-code">DeviceStatus</code> returns as
+    <code class="inline-code">Offline</code>, check to see if the device is
+    running in the Device Simulator. If there is a <strong>Stop</strong> button
+    on the device in Device Simulator, the device is running.
 </p>
 <p>
     <em>If <u>it is not</u> running:</em>
@@ -186,7 +205,7 @@
     <li>Click <strong>Run</strong>.</li>
     <li>
         In the Peripheral View, check to see if the ATB
-        <strong>Status</strong> is now <code>Online</code>.
+        <strong>Status</strong> is now <code class="inline-code">Online</code>.
     </li>
 </ol>
 <p>
@@ -197,37 +216,42 @@
     <li>Click <strong>Run</strong>.</li>
     <li>
         In the Peripheral View, check to see if the ATB
-        <strong>Status</strong> is now <code>Online</code>.
+        <strong>Status</strong> is now <code class="inline-code">Online</code>.
     </li>
 </ol>
 <h3 id="print-a-boarding-pass-pdf">Print a Boarding Pass PDF</h3>
 <ol>
     <li>
         <p>
-            In Postman, send a <code>/print/v2/boardingpass/pdf</code> request.
+            In Postman, send a
+            <code class="inline-code">/print/v2/boardingpass/pdf</code> request.
         </p>
         <blockquote>
             <p>
                 <strong>Note:</strong> In the Request Body, notice that PDF
-                <code>printData</code> has been included for you.
+                <code class="inline-code">printData</code> has been included for
+                you.
             </p>
         </blockquote>
     </li>
     <li>
         <p>
-            Check the Service Bus for a new <code>PrintResponse</code> message.
+            Check the Service Bus for a new
+            <code class="inline-code">PrintResponse</code> message.
         </p>
         <ul>
             <li>
                 The Print API acknowledges the request by returning a
-                <code>2xx</code> success status code, as seen in a tool like
-                Postman.
+                <code class="inline-code">2xx</code> success status code, as
+                seen in a tool like Postman.
             </li>
             <li>
-                If <code>IsSuccess</code> is <code>true</code>, then the print
-                was successful. The number of <code>SuccessfulPrints</code> is
-                returned. In this case, the device printed
-                <code>1</code> boarding pass in PDF format.
+                If <code class="inline-code">IsSuccess</code> is
+                <code class="inline-code">true</code>, then the print was
+                successful. The number of
+                <code class="inline-code">SuccessfulPrints</code> is returned.
+                In this case, the device printed
+                <code class="inline-code">1</code> boarding pass in PDF format.
             </li>
         </ul>
     </li>
@@ -239,7 +263,8 @@
 }
 </code></pre>
 <h5 id="printresponse-service-bus-message-indicating-a-successful-print-1">
-    <code>PrintResponse</code> Service Bus Message indicating a successful print
+    <code class="inline-code">PrintResponse</code> Service Bus Message
+    indicating a successful print
 </h5>
 <ol start="3">
     <li>
@@ -265,13 +290,19 @@
 <ol>
     <li>
         In the ATB Simulator, set the <strong>Fault Indicator</strong> to
-        <code>Paper Jam</code>.
+        <code class="inline-code">Paper Jam</code>.
     </li>
 </ol>
 <p><img src="images%5Cprint-bp-pdf-paperjam.png" alt="" /></p>
 <ol start="2">
-    <li>In Postman, send a <code>/print/v2/boardingpass/pdf</code> request.</li>
-    <li>Check the Service Bus for a new <code>PrintResponse</code> message.</li>
+    <li>
+        In Postman, send a
+        <code class="inline-code">/print/v2/boardingpass/pdf</code> request.
+    </li>
+    <li>
+        Check the Service Bus for a new
+        <code class="inline-code">PrintResponse</code> message.
+    </li>
 </ol>
 <pre><code class="language-JSON">{
     &quot;IsSuccess&quot;: false,
@@ -285,14 +316,16 @@
 <h5
     id="printresponse-service-bus-message-indicating-an-unsuccessful-print-with-reason-message"
 >
-    <code>PrintResponse</code> Service Bus Message indicating an unsuccessful
-    print with reason <code>Message</code>
+    <code class="inline-code">PrintResponse</code> Service Bus Message
+    indicating an unsuccessful print with reason
+    <code class="inline-code">Message</code>
 </h5>
 <p>
-    <code>IsSuccess</code> should be <code>false</code>, which indicates the
-    Print was unsuccessful. A general error displays,
-    <code>NotAbleToPrint</code>, followed by an error <code>Message</code> that
-    explains why the print was unsuccessful. In this case, it is because the
-    printer is jammed.
+    <code class="inline-code">IsSuccess</code> should be
+    <code class="inline-code">false</code>, which indicates the Print was
+    unsuccessful. A general error displays,
+    <code class="inline-code">NotAbleToPrint</code>, followed by an error
+    <code class="inline-code">Message</code> that explains why the print was
+    unsuccessful. In this case, it is because the printer is jammed.
 </p>
 <p>The resolution would be to physically locate the printer and unjam it.</p>

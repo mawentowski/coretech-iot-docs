@@ -3,25 +3,27 @@
 <p>
     The GateAccess API does not recognize if a request is being sent to a
     Boarding Gate Reader or a Self-Boarding Gate. From the perspective of the
-    API, these devices are the same. So, any <code>Message</code> can be passed
-    in the Request Body, but whether or not the message displays depends on the
-    device type.
+    API, these devices are the same. So, any
+    <code class="inline-code">Message</code> can be passed in the Request Body,
+    but whether or not the message displays depends on the device type.
 </p>
 <p>
-    The <code>Message</code> passed by the airline in the Request Bodies of the
-    <code>/gateaccess/v2/acceptpassenger</code> and
-    <code>/gateaccess/v2/rejectpassenger</code> requests are meant to be
-    messages for agents during an agent-driven boarding process using a Boarding
-    Gate Reader. Since any boarding process involving a Self-Boarding Gate is a
-    passenger-driven process, any <code>Message</code> passed to a SBG device is
-    ignored.
+    The <code class="inline-code">Message</code> passed by the airline in the
+    Request Bodies of the
+    <code class="inline-code">/gateaccess/v2/acceptpassenger</code> and
+    <code class="inline-code">/gateaccess/v2/rejectpassenger</code> requests are
+    meant to be messages for agents during an agent-driven boarding process
+    using a Boarding Gate Reader. Since any boarding process involving a
+    Self-Boarding Gate is a passenger-driven process, any
+    <code class="inline-code">Message</code> passed to a SBG device is ignored.
 </p>
 <h3 id="receipt-data">Receipt Data</h3>
 <p>
     Most Self-Boarding Gates, and some Boarding Gate Readers, have a receipt
-    printer capable of receiving <code>ReceiptData</code> passed in the Request
-    Body of a <code>/gateaccess/v2/acceptpassenger</code> request. The data must
-    adhere to the AEA format for printing receipts.
+    printer capable of receiving
+    <code class="inline-code">ReceiptData</code> passed in the Request Body of a
+    <code class="inline-code">/gateaccess/v2/acceptpassenger</code> request. The
+    data must adhere to the AEA format for printing receipts.
 </p>
 <p>
     A scenario where this could apply is if a passenger scans their boarding
@@ -31,8 +33,9 @@
 </p>
 <p>
     The following is a sample Request Body of a
-    <code>/gateaccess/v2/acceptpassenger</code> request that passes
-    <code>ReceiptData</code> to be printed for the passenger.
+    <code class="inline-code">/gateaccess/v2/acceptpassenger</code> request that
+    passes <code class="inline-code">ReceiptData</code> to be printed for the
+    passenger.
 </p>
 <pre><code class="language-JSON">{
     &quot;ConnectionId&quot;: &quot;{{bgr_connection_id}}&quot;,
@@ -46,8 +49,10 @@
 <h5
     id="sample-gateaccessv2acceptpassenger-request-body-that-passes-receiptdata-to-be-printed-for-the-passenger-1"
 >
-    Sample <code>/gateaccess/v2/acceptpassenger</code> Request Body that passes
-    <code>ReceiptData</code> to be printed for the passenger
+    Sample
+    <code class="inline-code">/gateaccess/v2/acceptpassenger</code> Request Body
+    that passes <code class="inline-code">ReceiptData</code> to be printed for
+    the passenger
 </h5>
 <p>
     It is important to note that a gate that prints a receipt only opens when

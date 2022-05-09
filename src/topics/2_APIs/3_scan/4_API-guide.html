@@ -51,23 +51,26 @@
     </li>
     <li>
         In Postman, open the <strong>SITA Flex API Collection</strong> and
-        <strong>Postman environment</strong> <code>.json</code> files. In the
-        Postman environment file:
+        <strong>Postman environment</strong>
+        <code class="inline-code">.json</code> files. In the Postman environment
+        file:
         <ul>
             <li>
-                Ensure your <code>clientid</code> and
-                <code>clientsecret</code> are populated in both the
-                <strong>Initial Value</strong> and
+                Ensure your <code class="inline-code">clientid</code> and
+                <code class="inline-code">clientsecret</code> are populated in
+                both the <strong>Initial Value</strong> and
                 <strong>Current Value</strong> columns.
             </li>
             <li>
-                Ensure the <code>{{location}}</code> variable corresponds to the
-                VM&#39;s machine name as seen in the Peripheral View. For
-                example, a VM with machine name <code>ZZU1CKB005</code> as seen
-                in the Peripheral view could correspond to a
-                <code>location</code> called
-                <code>A-ZZU-MZUZUAIRPORT-ZZU1CKB005</code> in the Postman
-                Environment.
+                Ensure the
+                <code class="inline-code">{{location}}</code> variable
+                corresponds to the VM&#39;s machine name as seen in the
+                Peripheral View. For example, a VM with machine name
+                <code class="inline-code">ZZU1CKB005</code> as seen in the
+                Peripheral view could correspond to a
+                <code class="inline-code">location</code> called
+                <code class="inline-code">A-ZZU-MZUZUAIRPORT-ZZU1CKB005</code>
+                in the Postman Environment.
             </li>
         </ul>
     </li>
@@ -75,8 +78,15 @@
         In Postman, perform the following:
         <ul>
             <li>Send a Get Access token request.</li>
-            <li>Send a POST <code>/session/v2/subscriptions</code> request.</li>
-            <li>Send a POST <code>/site/v2/reservations</code> request.</li>
+            <li>
+                Send a <span class="method post">POST</span>
+                <code class="inline-code">/session/v2/subscriptions</code>
+                request.
+            </li>
+            <li>
+                Send a <span class="method post">POST</span>
+                <code class="inline-code">/site/v2/reservations</code> request.
+            </li>
         </ul>
     </li>
 </ol>
@@ -118,14 +128,17 @@
 <h3 id="connect-to-the-ocr">Connect to the OCR</h3>
 <ol>
     <li>
-        In Postman, send a <code>/session/v2/connections</code> request to
+        In Postman, send a
+        <code class="inline-code">/session/v2/connections</code> request to
         connect to the OCR.
         <ul>
             <li>
                 After connecting to a device, a connection
-                <code>expiryTime</code> is returned in the Response Body set to
-                <strong>30 minutes</strong> from the time the
-                <code>session/v2/connections</code> request was made.
+                <code class="inline-code">expiryTime</code> is returned in the
+                Response Body set to <strong>30 minutes</strong> from the time
+                the
+                <code class="inline-code">session/v2/connections</code> request
+                was made.
             </li>
         </ul>
     </li>
@@ -133,14 +146,15 @@
 <blockquote>
     <p>
         <strong>Note:</strong> Notice in the Request Body that the
-        <code>DeviceId</code> will be populated partially based on the variable
-        <code>{{location}}</code> in the Postman environment.
+        <code class="inline-code">DeviceId</code> will be populated partially
+        based on the variable <code class="inline-code">{{location}}</code> in
+        the Postman environment.
     </p>
 </blockquote>
 <ol start="2">
     <li>
         Check the Service Bus subscription for a
-        <code>ScanDeviceStatus</code> message:
+        <code class="inline-code">ScanDeviceStatus</code> message:
     </li>
 </ol>
 <pre><code class="language-JSON">{
@@ -151,34 +165,40 @@
 <h5
     id="scandevicestatus-service-bus-message-body-showing-the-scan-device-is-online-and-not-currently-in-use-1"
 >
-    <code>ScanDeviceStatus</code> Service Bus Message Body showing the scan
-    device is <code>Online</code> and not currently &#39;In Use&#39;
+    <code class="inline-code">ScanDeviceStatus</code> Service Bus Message Body
+    showing the scan device is <code class="inline-code">Online</code> and not
+    currently &#39;In Use&#39;
 </h5>
 <p>
-    The message should return the <code>DeviceStatus</code> as
-    <code>Online</code> and a <code>DeviceInUse</code> property set to
-    <code>false</code>. When a print device is not &#39;in use&#39;, it means
-    the device is not exclusively reserved yet through a
-    <code>/scan/v2/startscanning</code> request, and thus can be reserved by any
-    airline backend that has connected to it.
+    The message should return the
+    <code class="inline-code">DeviceStatus</code> as
+    <code class="inline-code">Online</code> and a
+    <code class="inline-code">DeviceInUse</code> property set to
+    <code class="inline-code">false</code>. When a print device is not &#39;in
+    use&#39;, it means the device is not exclusively reserved yet through a
+    <code class="inline-code">/scan/v2/startscanning</code> request, and thus
+    can be reserved by any airline backend that has connected to it.
 </p>
 <blockquote>
     <p>
         <strong>Note</strong>: In the Tests tab of Postman, there is some
-        Javascript that updates the <code>ocr_connection_id</code> environmental
+        Javascript that updates the
+        <code class="inline-code">ocr_connection_id</code> environmental
         variable after connecting to the OCR. This variable is used so you do
-        not need to manually enter a <code>connectionId</code> in subsequent
-        calls to the Print API.
+        not need to manually enter a
+        <code class="inline-code">connectionId</code> in subsequent calls to the
+        Print API.
     </p>
 </blockquote>
 <h4 id="devicestatus-is-offline-1">
-    <code>DeviceStatus</code> is <code>Offline</code>
+    <code class="inline-code">DeviceStatus</code> is
+    <code class="inline-code">Offline</code>
 </h4>
 <p>
-    If the <code>DeviceStatus</code> returns as <code>Offline</code>, check to
-    see if the device is running in the Device Simulator. If there is a
-    <strong>Stop</strong> button on the device in Device Simulator, the device
-    is running.
+    If the <code class="inline-code">DeviceStatus</code> returns as
+    <code class="inline-code">Offline</code>, check to see if the device is
+    running in the Device Simulator. If there is a <strong>Stop</strong> button
+    on the device in Device Simulator, the device is running.
 </p>
 <p><img src="images%5Cocr-stopped-offline.png" alt="" /></p>
 <p>
@@ -188,11 +208,12 @@
     <li>Click <strong>Run</strong>.</li>
     <li>
         In the Peripheral View, check to see if the OCR
-        <strong>Status</strong> is now <code>Online</code>.
+        <strong>Status</strong> is now <code class="inline-code">Online</code>.
     </li>
     <li>
-        Check the Service Bus for a new <code>ScanDeviceStatus</code> message
-        indicating the SBD is now <code>Online</code>.
+        Check the Service Bus for a new
+        <code class="inline-code">ScanDeviceStatus</code> message indicating the
+        SBD is now <code class="inline-code">Online</code>.
         <ul>
             <li>The issue should now be resolved.</li>
         </ul>
@@ -206,11 +227,12 @@
     <li>Click <strong>Run</strong>.</li>
     <li>
         In the Peripheral View, check to see if the OCR
-        <strong>Status</strong> is now <code>Online</code>.
+        <strong>Status</strong> is now <code class="inline-code">Online</code>.
     </li>
     <li>
-        Check the Service Bus for a new <code>ScanDeviceStatus</code> message
-        indicating the SBD is now <code>Online</code>.
+        Check the Service Bus for a new
+        <code class="inline-code">ScanDeviceStatus</code> message indicating the
+        SBD is now <code class="inline-code">Online</code>.
         <ul>
             <li>The issue should now be resolved.</li>
         </ul>
@@ -223,12 +245,14 @@
 </p>
 <ol>
     <li>
-        In Postman, send a <code>/scan/v2/startscanning</code> request.
+        In Postman, send a
+        <code class="inline-code">/scan/v2/startscanning</code> request.
         <ul>
             <li>
-                If successful, the Scan API returns a <code>2xx</code> success
-                status code with the Response Body containing an
-                <code>accessExpiryTime</code> set to
+                If successful, the Scan API returns a
+                <code class="inline-code">2xx</code> success status code with
+                the Response Body containing an
+                <code class="inline-code">accessExpiryTime</code> set to
                 <strong>5 minutes</strong> in the future.
             </li>
         </ul>
@@ -246,13 +270,15 @@
 </h5>
 <ol start="2">
     <li>
-        Check the Service Bus for a new <code>ScanDeviceStatus</code> message.
+        Check the Service Bus for a new
+        <code class="inline-code">ScanDeviceStatus</code> message.
         <ul>
             <li>
-                The <code>DeviceInUse</code> property should be set to
-                <code>true</code>, indicating that the device is now exclusively
-                reserved and may begin sending messages to the airline backend
-                that made the <code>/scan/v2/startscanning</code> request.
+                The <code class="inline-code">DeviceInUse</code> property should
+                be set to <code class="inline-code">true</code>, indicating that
+                the device is now exclusively reserved and may begin sending
+                messages to the airline backend that made the
+                <code class="inline-code">/scan/v2/startscanning</code> request.
             </li>
         </ul>
     </li>
@@ -265,8 +291,9 @@
 <h5
     id="devicestatus-service-bus-message-body-indicating-the-device-is-online-and-is-exclusively-reserved-by-the-airline-backend"
 >
-    <code>DeviceStatus</code> Service Bus Message Body indicating the device is
-    <code>Online</code> and is exclusively reserved by the airline backend
+    <code class="inline-code">DeviceStatus</code> Service Bus Message Body
+    indicating the device is <code class="inline-code">Online</code> and is
+    exclusively reserved by the airline backend
 </h5>
 <h3 id="simulate-a-passport-scan">Simulate a Passport Scan</h3>
 <p>
@@ -301,9 +328,10 @@
 <p><img src="images%5Cocr-read-mrz.png" alt="" /></p>
 <ol start="3">
     <li>
-        Check the Service Bus for a new <code>TravelDocumentRead</code> message
-        that includes the scanned passport data as <code>MrzData</code> in the
-        Message Body.
+        Check the Service Bus for a new
+        <code class="inline-code">TravelDocumentRead</code> message that
+        includes the scanned passport data as
+        <code class="inline-code">MrzData</code> in the Message Body.
     </li>
 </ol>
 <pre><code class="language-json">{
@@ -313,25 +341,28 @@
 <h5
     id="traveldocumentread-service-bus-message-body-that-returned-passport-mrzdata-scanned-by-the-ocr-device"
 >
-    <code>TravelDocumentRead</code> Service Bus Message Body that returned
-    passport <code>MrzData</code> &#39;scanned&#39; by the OCR device
+    <code class="inline-code">TravelDocumentRead</code> Service Bus Message Body
+    that returned passport
+    <code class="inline-code">MrzData</code> &#39;scanned&#39; by the OCR device
 </h5>
 <h3 id="release-the-ocr">Release the OCR</h3>
 <ol>
     <li>
-        In Postman, send a <code>/scan/v2/stopscanning</code> request to release
-        the device from exclusive access.
+        In Postman, send a
+        <code class="inline-code">/scan/v2/stopscanning</code> request to
+        release the device from exclusive access.
         <ul>
             <li>
                 The Scan API acknowledges the request by returning a
-                <code>2xx</code> success status code, as seen in a tool like
-                Postman.
+                <code class="inline-code">2xx</code> success status code, as
+                seen in a tool like Postman.
             </li>
         </ul>
     </li>
     <li>
-        Check the Service Bus for a <code>ScanDeviceStatus</code> message
-        indicating the device is no longer &#39;in use&#39;.
+        Check the Service Bus for a
+        <code class="inline-code">ScanDeviceStatus</code> message indicating the
+        device is no longer &#39;in use&#39;.
     </li>
 </ol>
 <pre><code class="language-JSON">{
@@ -342,7 +373,7 @@
 <h5
     id="devicestatus-service-bus-message-body-indicating-the-device-is-no-longer-in-use-and-is-available-to-be-reserved-by-another-backend-or-the-same-airline-backend"
 >
-    <code>DeviceStatus</code> Service Bus Message Body indicating the device is
-    no longer &#39;in use&#39; and is available to be reserved by another
-    backend or the same airline backend
+    <code class="inline-code">DeviceStatus</code> Service Bus Message Body
+    indicating the device is no longer &#39;in use&#39; and is available to be
+    reserved by another backend or the same airline backend
 </h5>

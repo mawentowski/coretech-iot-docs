@@ -7,7 +7,7 @@
 <ul>
     <li>
         The agent overseeing the boarding process initiates boarding through a
-        <code>/gateaccess/v2/opengate</code> request.
+        <code class="inline-code">/gateaccess/v2/opengate</code> request.
     </li>
     <li>An agent takes the boarding pass from the passenger and scans it.</li>
     <li>
@@ -18,10 +18,11 @@
         If the passenger is accepted:
         <ul>
             <li>
-                A <code>/gateaccess/v2/acceptpassenger</code> request is sent. A
-                green light displays, along with any <code>Message</code> passed
-                by the airline in the Request Body (e.g., &quot;Passenger Okay
-                to Board&quot;).
+                A
+                <code class="inline-code">/gateaccess/v2/acceptpassenger</code>
+                request is sent. A green light displays, along with any
+                <code class="inline-code">Message</code> passed by the airline
+                in the Request Body (e.g., &quot;Passenger Okay to Board&quot;).
             </li>
             <li>
                 The agent gives the boarding pass back to the passenger, and the
@@ -34,10 +35,11 @@
         If the passenger is rejected:
         <ul>
             <li>
-                A <code>/gateaccess/v2/rejectpassenger</code> request is sent. A
-                red light displays, along with any message sent by the airline
-                in the Request Body (e.g., &quot;Passenger Not Okay to
-                Board&quot;).
+                A
+                <code class="inline-code">/gateaccess/v2/rejectpassenger</code>
+                request is sent. A red light displays, along with any message
+                sent by the airline in the Request Body (e.g., &quot;Passenger
+                Not Okay to Board&quot;).
             </li>
             <li>
                 The message can specifically say the reason why the passenger
@@ -52,8 +54,8 @@
     </li>
     <li>
         Once all passengers are boarding, the agent sends a
-        <code>/gateaccess/v2/closegate</code> request that closes the boarding
-        process.
+        <code class="inline-code">/gateaccess/v2/closegate</code> request that
+        closes the boarding process.
     </li>
 </ul>
 <h3 id="self-boarding-gate-process">Self-Boarding Gate Process</h3>
@@ -64,7 +66,7 @@
 <ul>
     <li>
         The agent overseeing the boarding process initiates boarding through a
-        <code>/gateaccess/v2/opengate</code> request.
+        <code class="inline-code">/gateaccess/v2/opengate</code> request.
     </li>
     <li>
         The gate display turns green to indicate it is ready to process
@@ -76,10 +78,11 @@
         If the passenger is accepted:
         <ul>
             <li>
-                A <code>/gateaccess/v2/acceptpassenger</code> request is sent.
-                The gate opens, and the display shows a green arrow indicating
-                to the passenger they may pass through. The gate then closes
-                behind the passenger.
+                A
+                <code class="inline-code">/gateaccess/v2/acceptpassenger</code>
+                request is sent. The gate opens, and the display shows a green
+                arrow indicating to the passenger they may pass through. The
+                gate then closes behind the passenger.
             </li>
         </ul>
     </li>
@@ -87,9 +90,10 @@
         If the passenger is rejected:
         <ul>
             <li>
-                A <code>/gateaccess/v2/rejectpassenger</code> request is sent. A
-                red &quot;X&quot; displays, along with a message such as
-                &quot;you cannot board, go see an agent&quot;.
+                A
+                <code class="inline-code">/gateaccess/v2/rejectpassenger</code>
+                request is sent. A red &quot;X&quot; displays, along with a
+                message such as &quot;you cannot board, go see an agent&quot;.
             </li>
             <li>
                 Depending on the situation, the passenger may be sent a
@@ -100,7 +104,7 @@
     </li>
     <li>
         Once all passengers are boarding, the agent sends a
-        <code>/gateaccess/v2/closegate</code> request that ends the boarding
-        process.
+        <code class="inline-code">/gateaccess/v2/closegate</code> request that
+        ends the boarding process.
     </li>
 </ul>

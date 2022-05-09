@@ -23,7 +23,7 @@
     boarding pass using the Device Simulator. Since GateAccess API considers all
     Gate devices as the same, the same process you will follow in this
     walkthrough applies to a Self-Boarding Gate as well. The only exception is
-    how <code>Message</code> data are handled.
+    how <code class="inline-code">Message</code> data are handled.
 </p>
 <blockquote>
     <p>
@@ -48,23 +48,26 @@
     </li>
     <li>
         In Postman, open the <strong>SITA Flex API Collection</strong> and
-        <strong>Postman environment</strong> <code>.json</code> files. In the
-        Postman environment file:
+        <strong>Postman environment</strong>
+        <code class="inline-code">.json</code> files. In the Postman environment
+        file:
         <ul>
             <li>
-                Ensure your <code>clientid</code> and
-                <code>clientsecret</code> are populated in both the
-                <strong>Initial Value</strong> and
+                Ensure your <code class="inline-code">clientid</code> and
+                <code class="inline-code">clientsecret</code> are populated in
+                both the <strong>Initial Value</strong> and
                 <strong>Current Value</strong> columns.
             </li>
             <li>
-                Ensure the <code>{{location}}</code> variable corresponds to the
-                VM&#39;s machine name as seen in the Peripheral View. For
-                example, a VM with machine name <code>ZZU1CKB005</code> as seen
-                in the Peripheral view could correspond to a
-                <code>location</code> called
-                <code>A-ZZU-MZUZUAIRPORT-ZZU1CKB005</code> in the Postman
-                Environment.
+                Ensure the
+                <code class="inline-code">{{location}}</code> variable
+                corresponds to the VM&#39;s machine name as seen in the
+                Peripheral View. For example, a VM with machine name
+                <code class="inline-code">ZZU1CKB005</code> as seen in the
+                Peripheral view could correspond to a
+                <code class="inline-code">location</code> called
+                <code class="inline-code">A-ZZU-MZUZUAIRPORT-ZZU1CKB005</code>
+                in the Postman Environment.
             </li>
         </ul>
     </li>
@@ -72,8 +75,15 @@
         In Postman, perform the following:
         <ul>
             <li>Send a Get Access token request.</li>
-            <li>Send a POST <code>/session/v2/subscriptions</code> request.</li>
-            <li>Send a POST <code>/site/v2/reservations</code> request.</li>
+            <li>
+                Send a <span class="method post">POST</span>
+                <code class="inline-code">/session/v2/subscriptions</code>
+                request.
+            </li>
+            <li>
+                Send a <span class="method post">POST</span>
+                <code class="inline-code">/site/v2/reservations</code> request.
+            </li>
         </ul>
     </li>
 </ol>
@@ -115,29 +125,32 @@
     <li>
         <p>
             Notice how the <strong>Display Output</strong> contains the text
-            <code>Not in Use</code>. Once the boarding process is started, the
-            text will change to <code>Ready to Scan</code>.
+            <code class="inline-code">Not in Use</code>. Once the boarding
+            process is started, the text will change to
+            <code class="inline-code">Ready to Scan</code>.
         </p>
     </li>
 </ol>
 <h3 id="connect-to-the-bgr">Connect to the BGR</h3>
 <ol>
     <li>
-        In Postman, send a <code>/session/v2/connections</code> request to
+        In Postman, send a
+        <code class="inline-code">/session/v2/connections</code> request to
         connect to the BGR.
     </li>
 </ol>
 <blockquote>
     <p>
         <strong>Note:</strong> Notice in the Request Body that the
-        <code>DeviceId</code> will be populated partially based on the
-        variable<code>{{location}}</code> in the Postman environment.
+        <code class="inline-code">DeviceId</code> will be populated partially
+        based on the variable <code class="inline-code">{{location}}</code> in
+        the Postman environment.
     </p>
 </blockquote>
 <ol start="2">
     <li>
         Check the Service Bus subscription for a
-        <code>GateDeviceStatus</code> message:
+        <code class="inline-code">GateDeviceStatus</code> message:
     </li>
 </ol>
 <pre><code class="language-JSON">{
@@ -147,30 +160,34 @@
 <h5
     id="gatedevicestatus-service-bus-message-body-showing-the-gate-device-is-online-1"
 >
-    <code>GateDeviceStatus</code> Service Bus Message Body showing the gate
-    device is <code>Online</code>
+    <code class="inline-code">GateDeviceStatus</code> Service Bus Message Body
+    showing the gate device is <code class="inline-code">Online</code>
 </h5>
 <p>
-    The message should return the <code>DeviceStatus</code> as
-    <code>Online</code>.
+    The message should return the
+    <code class="inline-code">DeviceStatus</code> as
+    <code class="inline-code">Online</code>.
 </p>
 <blockquote>
     <p>
         <strong>Note</strong>: In the Tests tab of Postman, there is some
-        Javascript that updates the <code>bgr_connection_id</code> environmental
+        Javascript that updates the
+        <code class="inline-code">bgr_connection_id</code> environmental
         variable after connecting to the BGR. This variable is used so you do
-        not need to manually enter a <code>connectionId</code> in subsequent
-        calls to the GateAccess API.
+        not need to manually enter a
+        <code class="inline-code">connectionId</code> in subsequent calls to the
+        GateAccess API.
     </p>
 </blockquote>
 <h4 id="devicestatus-is-offline-2">
-    <code>DeviceStatus</code> is <code>Offline</code>
+    <code class="inline-code">DeviceStatus</code> is
+    <code class="inline-code">Offline</code>
 </h4>
 <p>
-    If the <code>DeviceStatus</code> returns as <code>Offline</code>, check to
-    see if the device is running in the Device Simulator. If there is a
-    <strong>Stop</strong> button on the device in Device Simulator, the device
-    is running.
+    If the <code class="inline-code">DeviceStatus</code> returns as
+    <code class="inline-code">Offline</code>, check to see if the device is
+    running in the Device Simulator. If there is a <strong>Stop</strong> button
+    on the device in Device Simulator, the device is running.
 </p>
 <p><img src="images%5Cbgr-stop-online.png" alt="" /></p>
 <p>
@@ -180,11 +197,12 @@
     <li>Click <strong>Run</strong>.</li>
     <li>
         In the Peripheral View, check to see if the BGR
-        <strong>Status</strong> is now <code>Online</code>.
+        <strong>Status</strong> is now <code class="inline-code">Online</code>.
     </li>
     <li>
-        Check the Service Bus for a new <code>GateDeviceStatus</code> message
-        indicating the BGR is now <code>Online</code>.
+        Check the Service Bus for a new
+        <code class="inline-code">GateDeviceStatus</code> message indicating the
+        BGR is now <code class="inline-code">Online</code>.
         <ul>
             <li>The issue should now be resolved.</li>
         </ul>
@@ -198,11 +216,12 @@
     <li>Click <strong>Run</strong>.</li>
     <li>
         In the Peripheral View, check to see if the BGR
-        <strong>Status</strong> is now <code>Online</code>.
+        <strong>Status</strong> is now <code class="inline-code">Online</code>.
     </li>
     <li>
-        Check the Service Bus for a new <code>GateDeviceStatus</code> message
-        indicating the BGR is now <code>Online</code>.
+        Check the Service Bus for a new
+        <code class="inline-code">GateDeviceStatus</code> message indicating the
+        BGR is now <code class="inline-code">Online</code>.
         <ul>
             <li>The issue should now be resolved.</li>
         </ul>
@@ -212,19 +231,20 @@
 <p>The next step is to initiate the boarding process:</p>
 <ol>
     <li>
-        In Postman, send a <code>/gateaccess/v2/opengate</code> request.
+        In Postman, send a
+        <code class="inline-code">/gateaccess/v2/opengate</code> request.
         <ul>
             <li>
                 The GateAccess API acknowledges the request by returning a
-                <code>2xx</code> success status code, as seen in a tool like
-                Postman.
+                <code class="inline-code">2xx</code> success status code, as
+                seen in a tool like Postman.
             </li>
         </ul>
     </li>
     <li>
-        Check the Service Bus for a new <code>ScanDeviceStatus</code> message
-        that indicates the request to initiate the boarding process was
-        successful.
+        Check the Service Bus for a new
+        <code class="inline-code">ScanDeviceStatus</code> message that indicates
+        the request to initiate the boarding process was successful.
     </li>
 </ol>
 <pre><code class="language-json">{
@@ -235,8 +255,8 @@
 <h5
     id="opengateresponse-service-bus-message-body-indicating-the-request-to-initiate-the-boarding-process-has-succeeded-1"
 >
-    <code>OpenGateResponse</code> Service Bus Message Body indicating the
-    request to initiate the boarding process has succeeded
+    <code class="inline-code">OpenGateResponse</code> Service Bus Message Body
+    indicating the request to initiate the boarding process has succeeded
 </h5>
 <ol start="3">
     <li>
@@ -279,8 +299,9 @@
 <p><img src="images%5Cocr-read-mrz.png" alt="" /></p>
 <ol start="3">
     <li>
-        Check the Service Bus for a new <code>BoardingPassData</code> message
-        that includes the scanned barcode as a Base64-encoded string.
+        Check the Service Bus for a new
+        <code class="inline-code">BoardingPassData</code> message that includes
+        the scanned barcode as a Base64-encoded string.
     </li>
 </ol>
 <pre><code class="language-JSON">{
@@ -290,15 +311,15 @@
 <h5
     id="boardingpassdata-service-bus-message-body-including-the-scanned-boarding-pass-data"
 >
-    <code>BoardingPassData</code> Service Bus Message Body including the scanned
-    boarding pass data
+    <code class="inline-code">BoardingPassData</code> Service Bus Message Body
+    including the scanned boarding pass data
 </h5>
 <h3 id="timeout-error-1">Timeout Error</h3>
 <p>
-    If you receive an <code>ErrorOccurred</code> Service Bus message mentioning
-    a timeout, this indicates that the time allowed to accept or reject the
-    passenger after the scan has expired and you must tell the API to restart
-    the process.
+    If you receive an <code class="inline-code">ErrorOccurred</code> Service Bus
+    message mentioning a timeout, this indicates that the time allowed to accept
+    or reject the passenger after the scan has expired and you must tell the API
+    to restart the process.
 </p>
 <pre><code class="language-JSON">{
    &quot;Message&quot;:&quot;Timeout has occurred while executing the command &#39;DisplayCommand&#39;!&quot;
@@ -307,21 +328,25 @@
 <h5
     id="erroroccurred-service-bus-message-body-indicating-a-timeout-has-occurred-1"
 >
-    <code>ErrorOccurred</code> Service Bus Message Body indicating a timeout has
-    occurred
+    <code class="inline-code">ErrorOccurred</code> Service Bus Message Body
+    indicating a timeout has occurred
 </h5>
 <p>To resolve:</p>
 <ol>
-    <li>Send a <code>/gateaccess/v2/closegate</code> request</li>
+    <li>
+        Send a <code class="inline-code">/gateaccess/v2/closegate</code> request
+    </li>
     <li>
         Delete the connection to the BGR through a <strong>DEL</strong>
-        <code>/session/v2/connections</code> request.
+        <code class="inline-code">/session/v2/connections</code> request.
     </li>
     <li>
         Create a new connection to the BGR through a <strong>POST</strong>
-        <code>/session/v2/connections</code> request.
+        <code class="inline-code">/session/v2/connections</code> request.
     </li>
-    <li>Send a <code>/gateaccess/v2/opengate</code> request.</li>
+    <li>
+        Send a <code class="inline-code">/gateaccess/v2/opengate</code> request.
+    </li>
     <li>
         In the VM, manually enter barcode data and click <strong>Read</strong>.
     </li>
@@ -329,11 +354,13 @@
 <h3 id="accept-a-passenger">Accept a Passenger</h3>
 <ol>
     <li>
-        In Postman, open the <code>gateaccess/v2/acceptpassenger</code> request.
+        In Postman, open the
+        <code class="inline-code">gateaccess/v2/acceptpassenger</code> request.
     </li>
     <li>
-        In the Request Body, change the <code>Message</code> to say
-        <code>Passenger Okay to Board</code>:
+        In the Request Body, change the
+        <code class="inline-code">Message</code> to say
+        <code class="inline-code">Passenger Okay to Board</code>:
     </li>
 </ol>
 <pre><code class="language-Json">{
@@ -348,24 +375,27 @@
 <h5
     id="sample-gateaccessv2acceptpassenger-request-body-with-message-data-to-display-to-the-agent-that-the-passenger-is-ok-to-board"
 >
-    Sample <code>gateaccess/v2/acceptpassenger</code> Request Body with
-    <code>Message</code> data to display to the agent that the passenger is
-    &#39;Ok&#39; to board
+    Sample
+    <code class="inline-code">gateaccess/v2/acceptpassenger</code> Request Body
+    with <code class="inline-code">Message</code> data to display to the agent
+    that the passenger is &#39;Ok&#39; to board
 </h5>
 <ol start="3">
     <li>
-        Send the <code>gateaccess/v2/acceptpassenger</code> that tells the
-        GateAccess API that the passenger has boarded successfully.
+        Send the
+        <code class="inline-code">gateaccess/v2/acceptpassenger</code> that
+        tells the GateAccess API that the passenger has boarded successfully.
         <ul>
             <li>
                 The GateAccess API acknowledges the request by returning a
-                <code>2xx</code> success status code, as seen in a tool like
-                Postman.
+                <code class="inline-code">2xx</code> success status code, as
+                seen in a tool like Postman.
             </li>
         </ul>
     </li>
     <li>
-        Check the Service Bus for a <code>AcceptPassengerResponse</code> message
+        Check the Service Bus for a
+        <code class="inline-code">AcceptPassengerResponse</code> message
         indicates that the request was made with no errors.
     </li>
 </ol>
@@ -377,14 +407,14 @@
 <h5
     id="acceptpassengerresponse-service-bus-message-body-indicating-that-request-to-accept-the-passenger-was-successful-1"
 >
-    <code>AcceptPassengerResponse</code> Service Bus Message Body indicating
-    that request to accept the passenger was successful
+    <code class="inline-code">AcceptPassengerResponse</code> Service Bus Message
+    Body indicating that request to accept the passenger was successful
 </h5>
 <ol start="5">
     <li>
         In the BGR Device Simulator, notice the that the message
-        <code>Passenger Okay to Board</code> passed in the Request Body is
-        displayed in the <strong>Display Output</strong>.
+        <code class="inline-code">Passenger Okay to Board</code> passed in the
+        Request Body is displayed in the <strong>Display Output</strong>.
     </li>
 </ol>
 <p><img src="images%5Cbgr-pax-accepted.png" alt="" /></p>
@@ -404,11 +434,12 @@
     </li>
     <li>
         In Postman, open the
-        <code>/gateaccess/v2/rejectpassenger</code> request.
+        <code class="inline-code">/gateaccess/v2/rejectpassenger</code> request.
     </li>
     <li>
-        In the Request Body, change the <code>Message</code> to say
-        <code>Passenger Not Okay to Board</code>:
+        In the Request Body, change the
+        <code class="inline-code">Message</code> to say
+        <code class="inline-code">Passenger Not Okay to Board</code>:
     </li>
 </ol>
 <pre><code class="language-Json">{
@@ -421,19 +452,22 @@
 <h5
     id="sample-gateaccessv2rejectpassenger-request-body-with-message-data-to-display-to-the-agent-that-the-passenger-is-not-ok-to-board-1"
 >
-    Sample <code>gateaccess/v2/rejectpassenger</code> Request Body with
-    <code>Message</code> data to display to the agent that the passenger is
-    &#39;Not Ok&#39; to board
+    Sample
+    <code class="inline-code">gateaccess/v2/rejectpassenger</code> Request Body
+    with <code class="inline-code">Message</code> data to display to the agent
+    that the passenger is &#39;Not Ok&#39; to board
 </h5>
 <ol start="4">
     <li>
-        Send the <code>gateaccess/v2/rejectpassenger</code> that tells the
-        GateAccess API that the passenger was rejected and cannot board.
+        Send the
+        <code class="inline-code">gateaccess/v2/rejectpassenger</code> that
+        tells the GateAccess API that the passenger was rejected and cannot
+        board.
         <ul>
             <li>
                 The GateAccess API acknowledges the request by returning a
-                <code>2xx</code> success status code, as seen in a tool like
-                Postman.
+                <code class="inline-code">2xx</code> success status code, as
+                seen in a tool like Postman.
             </li>
         </ul>
     </li>
@@ -449,8 +483,9 @@
 <p><img src="images%5Cbgr-reject-exclam.png" alt="" /></p>
 <ol start="6">
     <li>
-        Check the Service Bus for a <code>RejectPassengerResponse</code> message
-        that indicates that the request was made with no errors.
+        Check the Service Bus for a
+        <code class="inline-code">RejectPassengerResponse</code> message that
+        indicates that the request was made with no errors.
     </li>
 </ol>
 <pre><code class="language-json">{
@@ -461,23 +496,27 @@
 <h5
     id="rejectpassengerresponse-service-bus-message-body-indicating-that-request-to-reject-the-passenger-was-successful-1"
 >
-    <code>RejectPassengerResponse</code> Service Bus Message Body indicating
-    that request to reject the passenger was successful
+    <code class="inline-code">RejectPassengerResponse</code> Service Bus Message
+    Body indicating that request to reject the passenger was successful
 </h5>
 <h3 id="end-the-boarding-process">End the Boarding Process</h3>
 <ol>
     <li>
-        In Postman, send a <code>/gateaccess/v2/closegate</code> request to tell
-        the GateAccess API that the boarding process has ended.
+        In Postman, send a
+        <code class="inline-code">/gateaccess/v2/closegate</code> request to
+        tell the GateAccess API that the boarding process has ended.
         <ul>
             <li>
                 The GateAccess API acknowledges the request by returning a
-                <code>2xx</code> success status code, as seen in a tool like
-                Postman.
+                <code class="inline-code">2xx</code> success status code, as
+                seen in a tool like Postman.
             </li>
         </ul>
     </li>
-    <li>Check the Service Bus for a <code>CloseGateResponse</code> message.</li>
+    <li>
+        Check the Service Bus for a
+        <code class="inline-code">CloseGateResponse</code> message.
+    </li>
 </ol>
 <pre><code class="language-json">{
     &quot;IsSuccess&quot;: true,
@@ -487,14 +526,16 @@
 <h5
     id="closegateresponse-service-bus-message-body-indicating-the-request-to-end-the-boarding-process-has-succeeded-1"
 >
-    <code>CloseGateResponse</code> Service Bus Message Body indicating the
-    request to end the boarding process has succeeded
+    <code class="inline-code">CloseGateResponse</code> Service Bus Message Body
+    indicating the request to end the boarding process has succeeded
 </h5>
 <ol start="3">
     <li>
         In the BGR Device Simulator, notice that the
-        <strong>Display Output</strong> says <code>Not In Use</code> like how it
-        did before sending the <code>/gateaccess/v2/opengate</code> request at
-        the very beginning of this walkthrough.
+        <strong>Display Output</strong> says
+        <code class="inline-code">Not In Use</code> like how it did before
+        sending the
+        <code class="inline-code">/gateaccess/v2/opengate</code> request at the
+        very beginning of this walkthrough.
     </li>
 </ol>

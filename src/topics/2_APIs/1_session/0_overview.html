@@ -10,44 +10,47 @@
         <p>
             <strong>Reserve</strong> a location configured in the SITA Flex
             environment by sending a POST
-            <code>/site/v2/reservations</code> request.
+            <code class="inline-code">/site/v2/reservations</code> request.
         </p>
     </li>
     <li>
         <p>
             <strong>Subscribe</strong> to the Azure Service Bus subscription for
             your airline backend through a POST
-            <code>/session/v2/subscriptions</code> request.
+            <code class="inline-code">/session/v2/subscriptions</code> request.
         </p>
     </li>
     <li>
         <p>
             <strong>Get Location Capabilities</strong> through a POST
-            <code>/site/v2/locations/{locationId}</code> request that returns
-            list of devices at a location and their capabilities.
+            <code class="inline-code">/site/v2/locations/{locationId}</code>
+            request that returns list of devices at a location and their
+            capabilities.
         </p>
     </li>
     <li>
         <p>
             Create a <strong>connection</strong> to Flex devices to receive
             messages on the subscription through a POST
-            <code>/session/v2/connections</code> request.
+            <code class="inline-code">/session/v2/connections</code> request.
         </p>
     </li>
 </ul>
 <blockquote>
     <p>
-        <strong>Note:</strong> The Get Location Capabilities endpoint
-        (<code>/site/v2/locations/{locationId}</code>) is not serviced by the
-        Session API. It is serviced by the Location API. However, it fits
-        logically in the Session API flow at the time this documentation was
-        written.
+        <strong>Note:</strong> The Get Location Capabilities endpoint (
+        <code class="inline-code">/site/v2/locations/{locationId}</code>) is not
+        serviced by the Session API. It is serviced by the Location API.
+        However, it fits logically in the Session API flow at the time this
+        documentation was written.
     </p>
     <p>
-        Also, note that the Reserve (<code>/site/v2/reservations</code>) and Get
-        Location Capabilities endpoints both contain the <code>/site</code> in
-        their end paths. <code>/site</code> is just a way of logically grouping
-        these two endpoints and is not an API.
+        Also, note that the Reserve (
+        <code class="inline-code">/site/v2/reservations</code>) and Get Location
+        Capabilities endpoints both contain the
+        <code class="inline-code">/site</code> in their end paths.
+        <code class="inline-code">/site</code> is just a way of logically
+        grouping these two endpoints and is not an API.
     </p>
 </blockquote>
 <p>Example locations configured in the SITA Flex environment include:</p>
@@ -59,8 +62,8 @@
 <blockquote>
     <p>
         <strong>Note:</strong> When reserving a location, the
-        <code>locationId</code> should not be confused with a workstation with
-        peripherals physically connected to it. Rather, it is a logical entity
-        that has certain capabilities associated with it.
+        <code class="inline-code">locationId</code> should not be confused with
+        a workstation with peripherals physically connected to it. Rather, it is
+        a logical entity that has certain capabilities associated with it.
     </p>
 </blockquote>

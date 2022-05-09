@@ -9,14 +9,16 @@
 <h3 id="invalid-request">Invalid Request</h3>
 <p>
     Flex returns this error code when some part of the Request URL is invalid,
-    excluding a Resource which triggers a <code>404: Resource not found</code>.
-    The <code>error_description</code> indicates which value was incorrect.
+    excluding a Resource which triggers a
+    <code class="inline-code">404: Resource not found</code>. The
+    <code class="inline-code">error_description</code> indicates which value was
+    incorrect.
 </p>
 <p>
     In the example below, Flex returned this error after sending a Get Access
-    token request and the <code>AAD_tenent</code> passed in the Resource URL is
-    invalid. It could be the case that this value was incorrectly spelled, for
-    example.
+    token request and the <code class="inline-code">AAD_tenent</code> passed in
+    the Resource URL is invalid. It could be the case that this value was
+    incorrectly spelled, for example.
 </p>
 <pre><code class="language-JSON">{
     &quot;error&quot;: &quot;invalid_request&quot;,
@@ -31,7 +33,8 @@
 }
 </code></pre>
 <h5 id="response-body-when-aad_tenent-passed-in-resource-url-is-invalid">
-    Response Body when <code>AAD_tenent</code> passed in Resource URL is invalid
+    Response Body when <code class="inline-code">AAD_tenent</code> passed in
+    Resource URL is invalid
 </h5>
 <p>
     The resolution is to simply correct the invalid value in the Resource URL,
@@ -48,8 +51,8 @@
 <ul>
     <li>
         when attempting to connect to, or interact with, a peripheral when a
-        <code>session/v2/subscriptions</code> request was made unsuccessfully
-        during this session:
+        <code class="inline-code">session/v2/subscriptions</code> request was
+        made unsuccessfully during this session:
     </li>
 </ul>
 <pre><code class="language-JSON">{
@@ -109,24 +112,26 @@
     Response Body when attempting to delete a connection when it does not exist
 </h5>
 <p>
-    To determine which scenario applies, check the <code>errors</code> value in
-    the Response Body:
+    To determine which scenario applies, check the
+    <code class="inline-code">errors</code> value in the Response Body:
 </p>
 <ul>
     <li>
-        If the error says <code>SubscriptionId</code>, then no subscription
-        exists. Simply send a <code>session/v2/subscriptions</code> request to
+        If the error says <code class="inline-code">SubscriptionId</code>, then
+        no subscription exists. Simply send a
+        <code class="inline-code">session/v2/subscriptions</code> request to
         create and receive details for a new subscription.
     </li>
     <li>
-        If the error says <code>connectionId</code> with a
-        <code>could not be converted</code> message, then the connection to the
-        device has expired. Simply connect to the device again.
+        If the error says <code class="inline-code">connectionId</code> with a
+        <code class="inline-code">could not be converted</code> message, then
+        the connection to the device has expired. Simply connect to the device
+        again.
     </li>
     <li>
-        If the error says <code>connectionId</code> with a
-        <code>The value &#39;null&#39; is not valid.</code> message, then there
-        is no connection to delete.
+        If the error says <code class="inline-code">connectionId</code> with a
+        <code class="inline-code">The value &#39;null&#39; is not valid.</code>
+        message, then there is no connection to delete.
     </li>
 </ul>
 <h3 id="connection-has-expired">Connection has expired</h3>
@@ -145,13 +150,14 @@
     The connection to the device has expired
 </h5>
 <p>
-    After connecting to a device, a connection <code>expiryTime</code> is
-    returned in the Response Body set to <strong>30 minutes</strong> from the
-    time the <code>session/v2/connections</code> request was made.
+    After connecting to a device, a connection
+    <code class="inline-code">expiryTime</code> is returned in the Response Body
+    set to <strong>30 minutes</strong> from the time the
+    <code class="inline-code">session/v2/connections</code> request was made.
 </p>
 <p>
     The resolution is to simply send another
-    <code>session/v2/connections</code> request.
+    <code class="inline-code">session/v2/connections</code> request.
 </p>
 <h3 id="no-connection-exists">No Connection Exists</h3>
 <p>
@@ -169,13 +175,14 @@
     The connection to the device has expired
 </h5>
 <p>
-    After connecting to a device, a connection <code>expiryTime</code> is
-    returned in the Response Body set to <strong>30 minutes</strong> from the
-    time the <code>session/v2/connections</code> request was made.
+    After connecting to a device, a connection
+    <code class="inline-code">expiryTime</code> is returned in the Response Body
+    set to <strong>30 minutes</strong> from the time the
+    <code class="inline-code">session/v2/connections</code> request was made.
 </p>
 <p>
     The resolution is to simply send another
-    <code>session/v2/connections</code> request.
+    <code class="inline-code">session/v2/connections</code> request.
 </p>
 <h2 id="401-unauthorized">401 Unauthorized</h2>
 <p>
@@ -184,8 +191,9 @@
 </p>
 <h3 id="unauthorized">Unauthorized</h3>
 <p>
-    Flex returns this error when the <code>access_token</code> included in the
-    Authorization Header of a request has expired.
+    Flex returns this error when the
+    <code class="inline-code">access_token</code> included in the Authorization
+    Header of a request has expired.
 </p>
 <pre><code class="language-JSON">{
     &quot;type&quot;: &quot;https://httpstatuses.com/401&quot;,
@@ -195,13 +203,14 @@
 }
 </code></pre>
 <h5 id="response-body-when-access_token-has-expired">
-    Response Body when <code>access_token</code> has expired
+    Response Body when <code class="inline-code">access_token</code> has expired
 </h5>
 <p>
     After requesting a Get Access Token, the returned
-    <code>access_token</code> has an <code>expires_in</code> value of
-    <code>3599</code> seconds, as indicated in the Response Body. This duration
-    of time roughly equals <strong>60 minutes</strong>.
+    <code class="inline-code">access_token</code> has an
+    <code class="inline-code">expires_in</code> value of
+    <code class="inline-code">3599</code> seconds, as indicated in the Response
+    Body. This duration of time roughly equals <strong>60 minutes</strong>.
 </p>
 <p>
     Ensure that you refresh this access token by sending another Get Access

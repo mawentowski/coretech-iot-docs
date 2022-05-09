@@ -1,17 +1,20 @@
 <h2 id="service-bus-messages-2">Service Bus Messages</h2>
 <p>
     The following is not an exhaustive list of all possible Service Bus
-    <code>Message Types</code>. Only the most common ones encountered when
-    sending GateAccess API requests are described.
+    <code class="inline-code">Message Types</code>. Only the most common ones
+    encountered when sending GateAccess API requests are described.
 </p>
 <h3 id="gatedevicestatus">GateDeviceStatus</h3>
 <h4 id="devicestatus-as-online-1">
-    <code>DeviceStatus</code> as <code>Online</code>
+    <code class="inline-code">DeviceStatus</code> as
+    <code class="inline-code">Online</code>
 </h4>
 <p>
-    After you connect a device, a <code>GateDeviceStatus</code> message is
-    displayed on the Service Bus that should indicate the
-    <code>DeviceStatus</code> is <code>Online</code>.
+    After you connect a device, a
+    <code class="inline-code">GateDeviceStatus</code> message is displayed on
+    the Service Bus that should indicate the
+    <code class="inline-code">DeviceStatus</code> is
+    <code class="inline-code">Online</code>.
 </p>
 <pre><code class="language-JSON">{
     &quot;DeviceStatus&quot;: &quot;Online&quot;
@@ -20,20 +23,25 @@
 <h5
     id="gatedevicestatus-service-bus-message-body-showing-the-gate-device-is-online"
 >
-    <code>GateDeviceStatus</code> Service Bus Message Body showing the gate
-    device is <code>Online</code>
+    <code class="inline-code">GateDeviceStatus</code> Service Bus Message Body
+    showing the gate device is <code class="inline-code">Online</code>
 </h5>
-<h4 id="devicestatus-changes-2"><code>DeviceStatus</code> Changes</h4>
+<h4 id="devicestatus-changes-2">
+    <code class="inline-code">DeviceStatus</code> Changes
+</h4>
 <p>
-    If a device status changes from <code>Online</code> to
-    <code>Offline</code> or <code>PoweredOff</code>, a
-    <code>GateDeviceStatus</code> message is sent with an updated
-    <code>DeviceStatus</code>. Another message is sent when the
-    <code>DeviceStatus</code> changes back to <code>Online</code> as well.
+    If a device status changes from <code class="inline-code">Online</code> to
+    <code class="inline-code">Offline</code> or
+    <code class="inline-code">PoweredOff</code>, a
+    <code class="inline-code">GateDeviceStatus</code> message is sent with an
+    updated <code class="inline-code">DeviceStatus</code>. Another message is
+    sent when the <code class="inline-code">DeviceStatus</code> changes back to
+    <code class="inline-code">Online</code> as well.
 </p>
 <p>
     The following sample message is returned when the
-    <code>DeviceStatus</code> changes to <code>PoweredOff</code>.
+    <code class="inline-code">DeviceStatus</code> changes to
+    <code class="inline-code">PoweredOff</code>.
 </p>
 <pre><code class="language-json">{
     &quot;DeviceStatus&quot;: &quot;PoweredOff&quot;
@@ -42,8 +50,8 @@
 <h5
     id="gatedevicestatus-service-bus-message-body-showing-the-gate-device-is-poweredoff"
 >
-    <code>GateDeviceStatus</code> Service Bus Message Body showing the gate
-    device is <code>PoweredOff</code>
+    <code class="inline-code">GateDeviceStatus</code> Service Bus Message Body
+    showing the gate device is <code class="inline-code">PoweredOff</code>
 </h5>
 <h3 id="opengateresponse">OpenGateResponse</h3>
 <p>
@@ -53,30 +61,34 @@
 </p>
 <p>
     The agent starts the boarding process by triggering the
-    <code>/gateaccess/v2/opengate</code> request. For a Self-Boarding Gate, the
-    gate displays green and is now ready to process passengers. When the agent
-    is using a Boarding Gate Reader (BGR) to board passengers (a process not
-    involving a gate), the boarding process is initiated and an agent may begin
-    scanning boarding passes.
+    <code class="inline-code">/gateaccess/v2/opengate</code> request. For a
+    Self-Boarding Gate, the gate displays green and is now ready to process
+    passengers. When the agent is using a Boarding Gate Reader (BGR) to board
+    passengers (a process not involving a gate), the boarding process is
+    initiated and an agent may begin scanning boarding passes.
 </p>
 <blockquote>
     <p>
-        <strong>Note:</strong> The <code>/gateaccess/v2/opengate</code> request
-        is only sent once at the beginning of the process, not each time a
-        passenger needs to pass through it. Once all passengers are processed,
-        the boarding process is ended by sending a
-        <code>/gateaccess/v2/closegate</code> request.
+        <strong>Note:</strong> The
+        <code class="inline-code">/gateaccess/v2/opengate</code> request is only
+        sent once at the beginning of the process, not each time a passenger
+        needs to pass through it. Once all passengers are processed, the
+        boarding process is ended by sending a
+        <code class="inline-code">/gateaccess/v2/closegate</code> request.
     </p>
 </blockquote>
 <p>
-    Upon making a <code>/gateaccess/v2/opengate</code> request, the GateAccess
-    API acknowledges the request with a synchronous message, returning a
-    <code>2xx</code> success status code (as seen in a tool like Postman).
+    Upon making a
+    <code class="inline-code">/gateaccess/v2/opengate</code> request, the
+    GateAccess API acknowledges the request with a synchronous message,
+    returning a <code class="inline-code">2xx</code> success status code (as
+    seen in a tool like Postman).
 </p>
 <p>
-    An <code>OpenGateResponse</code> message displays on the Service Bus, simply
-    indicating that the request to start the boarding process succeeded with
-    <code>IsSuccess</code> set to <code>true</code>.
+    An <code class="inline-code">OpenGateResponse</code> message displays on the
+    Service Bus, simply indicating that the request to start the boarding
+    process succeeded with <code class="inline-code">IsSuccess</code> set to
+    <code class="inline-code">true</code>.
 </p>
 <pre><code class="language-json">{
     &quot;IsSuccess&quot;: true,
@@ -86,8 +98,8 @@
 <h5
     id="opengateresponse-service-bus-message-body-indicating-the-request-to-initiate-the-boarding-process-has-succeeded"
 >
-    <code>OpenGateResponse</code> Service Bus Message Body indicating the
-    request to initiate the boarding process has succeeded
+    <code class="inline-code">OpenGateResponse</code> Service Bus Message Body
+    indicating the request to initiate the boarding process has succeeded
 </h5>
 <h3 id="boardingpassdata">BoardingPassData</h3>
 <p>
@@ -101,8 +113,8 @@
     waits for the airline backend to accept or reject the passenger.
 </p>
 <p>
-    A <code>BoardingPassData</code> message displays on the Service Bus,
-    including the scanned barcode as a Base64-encoded string.
+    A <code class="inline-code">BoardingPassData</code> message displays on the
+    Service Bus, including the scanned barcode as a Base64-encoded string.
 </p>
 <pre><code class="language-JSON">{
    &quot;BarcodeData&quot;:&quot;6M1AZKUR AHMETKUR ERG6ULZ ZRHISTTK 1912 211Y024F0028 150&gt;10B1OO2211BTK 292352404859427 1 020K X&quot;
@@ -111,14 +123,15 @@
 <h5
     id="boardingpassdata-service-bus-message-body-including-scanned-boarding-pass-data"
 >
-    <code>BoardingPassData</code> Service Bus Message Body including scanned
-    boarding pass data
+    <code class="inline-code">BoardingPassData</code> Service Bus Message Body
+    including scanned boarding pass data
 </h5>
 <h3 id="timeout-error">Timeout Error</h3>
 <p>
     If the passenger is not accepted or rejected by the airline backend after a
     certain period, the transaction will timeout and an
-    <code>ErrorOccurred</code> message displays on the Service Bus.
+    <code class="inline-code">ErrorOccurred</code> message displays on the
+    Service Bus.
 </p>
 <pre><code class="language-JSON">{
    &quot;Message&quot;:&quot;Timeout has occurred while executing the command &#39;DisplayCommand&#39;!&quot;
@@ -127,21 +140,25 @@
 <h5
     id="erroroccurred-service-bus-message-body-indicating-a-timeout-has-occurred"
 >
-    <code>ErrorOccurred</code> Service Bus Message Body indicating a timeout has
-    occurred
+    <code class="inline-code">ErrorOccurred</code> Service Bus Message Body
+    indicating a timeout has occurred
 </h5>
 <p>To resolve:</p>
 <ol>
-    <li>Send a <code>/gateaccess/v2/closegate</code> request</li>
+    <li>
+        Send a <code class="inline-code">/gateaccess/v2/closegate</code> request
+    </li>
     <li>
         Delete the connection to the BGR through a <strong>DEL</strong>
-        <code>/session/v2/connections</code> request.
+        <code class="inline-code">/session/v2/connections</code> request.
     </li>
     <li>
         Create a new connection to the BGR through a <strong>POST</strong>
-        <code>/session/v2/connections</code> request.
+        <code class="inline-code">/session/v2/connections</code> request.
     </li>
-    <li>Send a <code>/gateaccess/v2/opengate</code> request.</li>
+    <li>
+        Send a <code class="inline-code">/gateaccess/v2/opengate</code> request.
+    </li>
     <li>
         In the VM, manually enter barcode data and click <strong>Read</strong>.
     </li>
@@ -149,14 +166,15 @@
 <h3 id="acceptpassengerresponse">AcceptPassengerResponse</h3>
 <p>
     The airline backend accepts the passenger by sending a
-    <code>gateaccess/v2/acceptpassenger</code> request which tells the
-    GateAccess API that the passenger has been boarded successfully.
+    <code class="inline-code">gateaccess/v2/acceptpassenger</code> request which
+    tells the GateAccess API that the passenger has been boarded successfully.
 </p>
 <p>
     In the Request Body of the
-    <code>gateaccess/v2/acceptpassenger</code> request, notice that a
-    <code>Message</code> is included to display text on the device for the agent
-    (if the device is a Boarding Gate Reader, not gate).
+    <code class="inline-code">gateaccess/v2/acceptpassenger</code> request,
+    notice that a <code class="inline-code">Message</code> is included to
+    display text on the device for the agent (if the device is a Boarding Gate
+    Reader, not gate).
 </p>
 <pre><code class="language-Json">{
     &quot;ConnectionId&quot;: &quot;{{bgr_connection_id}}&quot;,
@@ -170,16 +188,17 @@
 <h5
     id="sample-gateaccessv2acceptpassenger-request-body-with-message-data-to-display-on-a-bgr-device-that-the-passenger-is-ok-to-board"
 >
-    Sample <code>gateaccess/v2/acceptpassenger</code> Request Body with
-    <code>Message</code> data to display on a BGR device that the passenger is
-    &#39;Ok&#39; to board
+    Sample
+    <code class="inline-code">gateaccess/v2/acceptpassenger</code> Request Body
+    with <code class="inline-code">Message</code> data to display on a BGR
+    device that the passenger is &#39;Ok&#39; to board
 </h5>
 <p>
-    If <code>ReceiptData</code> is passed in the Request Body (as seen in the
-    previous example), and the device is a Self-Boarding Gate, the device
-    printer receives this data and can print the receipt for the passenger.
-    <strong>Important</strong>: the passenger must then take the receipt for the
-    gate to open.
+    If <code class="inline-code">ReceiptData</code> is passed in the Request
+    Body (as seen in the previous example), and the device is a Self-Boarding
+    Gate, the device printer receives this data and can print the receipt for
+    the passenger. <strong>Important</strong>: the passenger must then take the
+    receipt for the gate to open.
 </p>
 <blockquote>
     <p>
@@ -188,14 +207,16 @@
     </p>
 </blockquote>
 <p>
-    Upon making a <code>gateaccess/v2/acceptpassenger</code> request, the
+    Upon making a
+    <code class="inline-code">gateaccess/v2/acceptpassenger</code> request, the
     GateAccess API acknowledges the request with a synchronous message,
-    returning a <code>2xx</code> success status code (as seen in a tool like
-    Postman).
+    returning a <code class="inline-code">2xx</code> success status code (as
+    seen in a tool like Postman).
 </p>
 <p>
-    An <code>AcceptPassengerResponse</code> message displays on the Service Bus
-    simply indicating that the request was made with no errors.
+    An <code class="inline-code">AcceptPassengerResponse</code> message displays
+    on the Service Bus simply indicating that the request was made with no
+    errors.
 </p>
 <pre><code class="language-json">{
     &quot;IsSuccess&quot;: true,
@@ -205,19 +226,20 @@
 <h5
     id="acceptpassengerresponse-service-bus-message-body-indicating-that-request-to-accept-the-passenger-was-successful"
 >
-    <code>AcceptPassengerResponse</code> Service Bus Message Body indicating
-    that request to accept the passenger was successful
+    <code class="inline-code">AcceptPassengerResponse</code> Service Bus Message
+    Body indicating that request to accept the passenger was successful
 </h5>
 <p>
     If the device is Boarding Gate Reader, a green light displays, along with a
-    <code>Message</code> for the airline agent such as
-    <code>Passenger Okay to Board</code>. The passenger is then allowed to pass
-    the agent and board the flight.
+    <code class="inline-code">Message</code> for the airline agent such as
+    <code class="inline-code">Passenger Okay to Board</code>. The passenger is
+    then allowed to pass the agent and board the flight.
 </p>
 <p>
-    If the device is a Self-Boarding Gate, the <code>Message</code> is ignored,
-    and the gate opens with a green arrow that signals to the passenger they may
-    now proceed through the gate.
+    If the device is a Self-Boarding Gate, the
+    <code class="inline-code">Message</code> is ignored, and the gate opens with
+    a green arrow that signals to the passenger they may now proceed through the
+    gate.
 </p>
 <blockquote>
     <p>
@@ -228,16 +250,16 @@
 <h3 id="rejectpassengerresponse">RejectPassengerResponse</h3>
 <p>
     The airline backend rejects the passenger by sending a
-    <code>gateaccess/v2/rejectpassenger</code> request which tells the
-    GateAccess API that the passenger was rejected and cannot board.
+    <code class="inline-code">gateaccess/v2/rejectpassenger</code> request which
+    tells the GateAccess API that the passenger was rejected and cannot board.
 </p>
 <p>
     In the Request Body of the
-    <code>gateaccess/v2/rejectpassenger</code> request, notice that a
-    <code>Message</code> is included to display text on the device for the agent
-    (if the device is a Boarding Gate Reader, not gate). Also, there is an
-    option to trigger an <code>Alarm</code> sound when the passenger is
-    rejected.
+    <code class="inline-code">gateaccess/v2/rejectpassenger</code> request,
+    notice that a <code class="inline-code">Message</code> is included to
+    display text on the device for the agent (if the device is a Boarding Gate
+    Reader, not gate). Also, there is an option to trigger an
+    <code class="inline-code">Alarm</code> sound when the passenger is rejected.
 </p>
 <pre><code class="language-Json">{
     &quot;ConnectionId&quot;: &quot;{{bgr_connection_id}}&quot;,
@@ -249,19 +271,22 @@
 <h5
     id="sample-gateaccessv2rejectpassenger-request-body-with-message-data-to-display-to-the-agent-that-the-passenger-is-not-ok-to-board"
 >
-    Sample <code>gateaccess/v2/rejectpassenger</code> Request Body with
-    <code>Message</code> data to display to the agent that the passenger is
-    &#39;Not Ok&#39; to board
+    Sample
+    <code class="inline-code">gateaccess/v2/rejectpassenger</code> Request Body
+    with <code class="inline-code">Message</code> data to display to the agent
+    that the passenger is &#39;Not Ok&#39; to board
 </h5>
 <p>
-    Upon making a <code>gateaccess/v2/rejectpassenger</code> request, the
+    Upon making a
+    <code class="inline-code">gateaccess/v2/rejectpassenger</code> request, the
     GateAccess API acknowledges the request with a synchronous message,
-    returning a <code>2xx</code> success status code (as seen in a tool like
-    Postman).
+    returning a <code class="inline-code">2xx</code> success status code (as
+    seen in a tool like Postman).
 </p>
 <p>
-    A <code>RejectPassengerResponse</code> message displays on the Service Bus
-    that simply indicates that the request was made with no errors.
+    A <code class="inline-code">RejectPassengerResponse</code> message displays
+    on the Service Bus that simply indicates that the request was made with no
+    errors.
 </p>
 <pre><code class="language-json">{
     &quot;IsSuccess&quot;: true,
@@ -271,20 +296,21 @@
 <h5
     id="rejectpassengerresponse-service-bus-message-body-indicating-that-request-to-reject-the-passenger-was-successful"
 >
-    <code>RejectPassengerResponse</code> Service Bus Message Body indicating
-    that request to reject the passenger was successful
+    <code class="inline-code">RejectPassengerResponse</code> Service Bus Message
+    Body indicating that request to reject the passenger was successful
 </h5>
 <p>
     If the device is Boarding Gate Reader, a red light displays, along with the
-    <code>Message</code> for the airline agent such as
-    <code>Passenger Not Okay to Board</code>. Depending on the situation, the
-    passenger may be sent a different desk for an agent to investigate the
-    situation further.
+    <code class="inline-code">Message</code> for the airline agent such as
+    <code class="inline-code">Passenger Not Okay to Board</code>. Depending on
+    the situation, the passenger may be sent a different desk for an agent to
+    investigate the situation further.
 </p>
 <p>
-    If the device is a Self-Boarding Gate, the <code>Message</code> is ignored,
-    and a red &quot;X&quot; displays to the passenger, along with a message such
-    as &quot;you cannot board, go see an agent&quot;.
+    If the device is a Self-Boarding Gate, the
+    <code class="inline-code">Message</code> is ignored, and a red &quot;X&quot;
+    displays to the passenger, along with a message such as &quot;you cannot
+    board, go see an agent&quot;.
 </p>
 <blockquote>
     <p>
@@ -295,18 +321,21 @@
 <h3 id="closegateresponse">CloseGateResponse</h3>
 <p>
     Once all passengers are boarded, the agent sends a
-    <code>/gateaccess/v2/closegate</code> request that closes the boarding
-    process.
+    <code class="inline-code">/gateaccess/v2/closegate</code> request that
+    closes the boarding process.
 </p>
 <p>
-    Upon making a <code>/gateaccess/v2/closegate</code> request, the GateAccess
-    API acknowledges the request with a synchronous message, returning a
-    <code>2xx</code> success status code (as seen in a tool like Postman).
+    Upon making a
+    <code class="inline-code">/gateaccess/v2/closegate</code> request, the
+    GateAccess API acknowledges the request with a synchronous message,
+    returning a <code class="inline-code">2xx</code> success status code (as
+    seen in a tool like Postman).
 </p>
 <p>
-    A <code>CloseGateResponse</code> message displays on the Service Bus simply
-    indicating that the boarding process has ended, as indicated by the
-    <code>IsSuccess</code> property set to <code>true</code>.
+    A <code class="inline-code">CloseGateResponse</code> message displays on the
+    Service Bus simply indicating that the boarding process has ended, as
+    indicated by the <code class="inline-code">IsSuccess</code> property set to
+    <code class="inline-code">true</code>.
 </p>
 <pre><code class="language-json">{
     &quot;IsSuccess&quot;: true,
@@ -316,6 +345,6 @@
 <h5
     id="closegateresponse-service-bus-message-body-indicating-the-request-to-end-the-boarding-process-has-succeeded"
 >
-    <code>CloseGateResponse</code> Service Bus Message Body indicating the
-    request to end the boarding process has succeeded
+    <code class="inline-code">CloseGateResponse</code> Service Bus Message Body
+    indicating the request to end the boarding process has succeeded
 </h5>

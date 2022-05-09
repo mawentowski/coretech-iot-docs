@@ -92,13 +92,89 @@ table.main-table {
     }
 }
 
-.code-section.no-tabs {
-    .copy-code-btn-container {
-        position: absolute;
-        top: 0;
-        right: 0;
-        z-index: 2;
+#my-body {
+    pre {
+        code.hljs {
+            padding-top: 0;
+        }
     }
+}
+
+.code-section.no-tabs {
+    .code-section-header {
+        display: flex;
+        background-color: #192652;
+
+        .lang-label-container {
+            display: flex;
+
+            // flex-wrap: nowrap;
+            // position: relative;
+
+            // overflow-x: auto;
+            // overflow-y: hidden;
+            border: none;
+            padding-left: 14px;
+
+            // flex-grow: 1;
+
+            /* Style the buttons that are used to open the tab content */
+            .lang-label {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+
+                // cursor: pointer;
+                padding: 8px 9px;
+                color: #7eabf8;
+
+                // transition: 0.3s;
+            }
+
+            // button.active {
+            //     color: #ccc;
+            // }
+        }
+    }
+
+    // .copied-popup {
+    //     position: absolute;
+    //     bottom: 24px;
+    //     right: 12px;
+    //     width: 72px;
+    //     height: 20px;
+
+    //     /* padding: 18px; */
+    //     padding: 0 11px;
+    //     border-radius: 4px;
+    //     color: #a3acb9;
+    //     z-index: 1;
+    //     background-color: #2e4c7e;
+    //     font-size: 13px;
+    //     font-weight: 500;
+    //     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    //         'Helvetica Neue', Ubuntu, sans-serif;
+    // }
+
+    // .copy-code-btn-container {
+    //     position: absolute;
+    //     top: 0;
+    //     right: 0;
+    //     z-index: 2;
+    // }
+
+    // .lang-label-container {
+    //     position: absolute;
+    //     top: 8px;
+    //     left: 26px;
+    //     z-index: 2;
+
+    //     // see next entry
+    //     .lang-label {
+    //         color: #7eabf8;
+    //     }
+    // }
 
     .code-content {
         pre {
@@ -107,6 +183,69 @@ table.main-table {
             }
         }
     }
+}
+
+// Shared style
+// lang-label for no-tabs version
+.tablinks,
+.lang-label {
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgb(163 172 185);
+    background-color: transparent;
+}
+
+// .tab-links {
+//     color: rgb(163 172 185);
+// }
+
+.copy-code-btn-container {
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 36px;
+
+    button.copy-code-btn {
+        border: none;
+        color: white;
+        background-color: transparent;
+        width: 18px;
+        height: 21px;
+        vertical-align: center;
+        position: absolute;
+        top: 5px;
+        right: 12px;
+
+        svg {
+            fill: #a3adb9;
+        }
+
+        svg:hover {
+            fill: #3c4356;
+        }
+    }
+}
+
+.copied-popup {
+    position: absolute;
+    bottom: 24px;
+    right: 12px;
+    width: 72px;
+    height: 20px;
+
+    /* padding: 18px; */
+    padding: 0 11px;
+    border-radius: 4px;
+    color: #a3acb9;
+    z-index: 1;
+    background-color: #2e4c7e;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+        'Helvetica Neue', Ubuntu, sans-serif;
 }
 
 .code-section.with-tabs {
@@ -148,62 +287,7 @@ table.main-table {
             button.active {
                 color: #ccc;
             }
-
-            .tablinks {
-                font-family: inherit;
-                font-size: 12px;
-                font-weight: 500;
-                color: rgb(163 172 185);
-            }
         }
-    }
-
-    .copy-code-btn-container {
-        background-color: transparent;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 35px;
-        height: 36px;
-
-        button.copy-code-btn {
-            border: none;
-            color: white;
-            background-color: transparent;
-            width: 18px;
-            height: 21px;
-            vertical-align: center;
-            position: absolute;
-            top: 5px;
-            right: 12px;
-
-            svg {
-                fill: #a3adb9;
-            }
-
-            svg:hover {
-                fill: #3c4356;
-            }
-        }
-    }
-
-    .copied-popup {
-        position: absolute;
-        bottom: 24px;
-        right: 12px;
-        width: 72px;
-        height: 20px;
-
-        /* padding: 18px; */
-        padding: 0 11px;
-        border-radius: 4px;
-        color: #a3acb9;
-        z-index: 1;
-        background-color: #2e4c7e;
-        font-size: 13px;
-        font-weight: 500;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-            'Helvetica Neue', Ubuntu, sans-serif;
     }
 
     .tabcontent {

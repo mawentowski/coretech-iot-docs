@@ -1,9 +1,15 @@
-<h2 id="v1-to-v2-changes">V1 to V2 Changes</h2>
+<div class="title-box">
+    <h1 class="topic-title">Release Notes: v2.1</h1>
+    <div class="action-statement">
+        View changes implemented for the v2.1 release
+    </div>
+</div>
+
 <p>
-    For customers moving from V1 to V2, this section describes some of the basic
-    changes you should consider for the new version of the APIs.
+    For customers moving from the previous release, this section describes some
+    of the basic changes you should consider for the new version of the APIs.
 </p>
-<h3 id="messages-properties">Messages Properties</h3>
+<h2 id="messages-properties">Messages Properties</h2>
 <p>
     Service bus messages now have a set of Message Properties (some built in,
     some custom) that assist you as the consumer in deserializing the Message
@@ -12,19 +18,49 @@
 <p>
     This is a change from the ‘envelope with payload’ format of the v1 messages
     and is an improvement since you only have to deserialize the body one time
-    based on the <code>MessageType</code> property.
+    based on the <code class="inline-code">MessageType</code> property.
 </p>
-<blockquote>
-    <p>
-        <strong>Note:</strong> A full list of Service Bus Message Types is
-        described in the Messages Reference sections.
-    </p>
-</blockquote>
+
+<div class="info-alert">
+    <div class="">
+        A full list of Service Bus Message Types is described in the
+        <a href="APIs/messages-reference">Messages Reference</a> sections.
+    </div>
+</div>
+
 <p>
     Here’s a brief code snippet that shows the difference between a v1 message
     and a v2 message:
 </p>
-<pre><code class="language-C#">using Microsoft.Azure.ServiceBus;
+
+<div class="code-section no-tabs">
+    <div class="code-section-header">
+        <div class="lang-label-container">
+            <div class="">
+                <div class="lang-label">C#</div>
+            </div>
+        </div>
+        <div class="copy-code-btn-container">
+            <button class="copy-code-btn">
+                <svg
+                    viewBox="0 0 1000 1000"
+                    height="20"
+                    width="20"
+                    xmlns="http://www.w3.org/2000/svg"
+                    role="img"
+                >
+                    <title>Copy to Clipboard</title>
+                    <path
+                        d="M704 896H64V320h640v192h64V192c0-35-29-64-64-64H512C512 57 455 0 384 0S256 57 256 128H64c-35 0-64 29-64 64v704c0 35 29 64 64 64h640c35 0 64-29 64-64V768h-64v128zM192 192h64s64-29 64-64 29-64 64-64 64 29 64 64 32 64 64 64h64s64 29 64 64H128c0-39 28-64 64-64zm-64 512h128v-64H128v64zm448-128V448L320 640l256 192V704h320V576H576zM128 832h192v-64H128v64zm320-448H128v64h320v-64zM256 512H128v64h128v-64z"
+                    />
+                </svg>
+            </button>
+        </div>
+    </div>
+    <div class="copied-popup">Copied!</div>
+    <div class="code-content dark">
+        <pre><code class="">
+using Microsoft.Azure.ServiceBus;
 using Sita.AirportApi.ServiceBusConsole.Core.Model.FlexCore;
 using System.Text;
 
@@ -70,12 +106,14 @@ namespace Sita.AirportApi.ServiceBusConsole.Core.Model
     }
 }
 </code></pre>
-<h5
-    id="code-snippet-showing-the-difference-between-v1-and-v2-service-bus-messages"
->
-    Code Snippet showing the difference between v1 and v2 Service Bus Messages
-</h5>
-<h3 id="flex-apis-reorganization">Flex APIs Reorganization</h3>
+    </div>
+</div>
+
+<p class="caption">
+    Code Snippet showing the difference between v2 and v2.1 Service Bus Messages
+</p>
+
+<h2 id="flex-apis-reorganization">Flex APIs Reorganization</h2>
 <p>
     Many of the endpoints associated with the V1 Locations API have been
     replaced by the <strong>Session API</strong> endpoints, including requests
@@ -93,166 +131,48 @@ namespace Sita.AirportApi.ServiceBusConsole.Core.Model
     </li>
     <li>
         The request to reserve a device is now made to the Session API by
-        sending a POST <code>/session/v2/connections</code> request, and you may
-        use the DEL method to delete the connection (or reservation as referred
-        to in V1).
+        sending a <span class="method post">POST</span>
+        <code class="inline-code">/session/v2/connections</code> request, and
+        you may use the <span class="method del">DEL</span> method to delete the
+        connection (or reservation as referred to in V1).
     </li>
 </ul>
-<h3 id="new-del-methods">New DEL Methods</h3>
+<h2 id="new-del-methods">New <span class="method del">DEL</span> Methods</h2>
 <p>
     To conform with REST API standards, some requests initially categorized as
-    POST methods that involve the deletion of certain entities are now changed
-    to DEL methods. For example:
+    <span class="method post">POST</span> methods that involve the deletion of
+    certain entities are now changed to
+    <span class="method del">DEL</span> methods. For example:
 </p>
 <ul>
     <li>
         <p>
-            Instead of unsubscribing from a Service Bus Subscription with a POST
-            <code>/v1/location/unsubscribe</code> request, you now send a
+            Instead of unsubscribing from a Service Bus Subscription with a
+            <span class="method post">POST</span>
+            <code class="inline-code">/v1/location/unsubscribe</code> request,
+            you now send a
             <strong>DEL</strong>
-            <code>/session/v2/subscriptions/{subscription_id}</code> request.
+            <code class="inline-code"
+                >/session/v2/subscriptions/{subscription_id}</code
+            >
+            request.
         </p>
     </li>
     <li>
         <p>
-            Instead of releasing a peripheral after reserving it (POST
-            <code>/v1/peripheral/release</code>), you send a request to delete
-            the connection <strong>DEL</strong>
-            <code>/session/v2/connections/{connection_id}</code>.
+            Instead of releasing a peripheral after reserving it (<span
+                class="method post"
+                >POST</span
+            >
+            <code class="inline-code">/v1/peripheral/release</code>), you send a
+            request to delete the connection <strong>DEL</strong>
+            <code class="inline-code"
+                >/session/v2/connections/{connection_id}</code
+            >.
         </p>
     </li>
 </ul>
-<p>The GET method will also be incorporated into future releases.</p>
-<h3 id="no-session-token">No Session Token</h3>
 <p>
-    Previously, to use Flex APIs, a
-    <code>/v1/location/getsessiontoken</code> request must be made to acquire a
-    session token that tracks the session and maps all calls made during the
-    session. The Request Body needed to include a <code>LocationID</code> and
-    <code>AirlineCode</code>. The request returned the
-    <code>SessionToken</code> to be included in the Request Body of all future
-    API calls made during the session.
-</p>
-<p>
-    There is no longer a need to request a session token. The
-    <code>access_token</code>, included as the <code>bearer_token</code> in
-    Authorization Headers, now contains the required information to map your API
-    calls during the session. The <code>access_token</code> contains application
-    registration details including the application name that contains the
-    <code>AirlineCode</code>. Certain roles assigned to that
-    <code>AirlineCode</code> govern the allowed interactions with Flex APIs.
-</p>
-<h3 id="subscribe-request-changes">Subscribe Request Changes</h3>
-<p>
-    In V1, the response after sending a
-    <code>/v1/location/subscribe</code> request included a
-    <code>locationCapabilityList</code> with a list of devices at the location
-    and their statues. In V2, the <code>/session/v2/subscriptions</code> request
-    <em>only returns Service Bus details</em> for the new subscription.
-</p>
-<p>
-    The Service Bus details are largely the same, except some of the property
-    names are different.
-</p>
-<ul>
-    <li>
-        There is a new <code>Subscription ID</code> that is Flex-specific and
-        must be included in all requests connecting to and interacting with
-        devices.
-    </li>
-    <li>
-        The <code>serviceBusSharedAccessToken</code> is now contained within the
-        <code>connectionString</code> that holds all information required for
-        Azure to validate you have access to the Azure Service Bus.
-    </li>
-    <li>
-        The property <code>serviceBusTopic</code> has replaced
-        <code>topicName</code> and has a fixed value of
-        <code>airline-messages</code> in all situations.
-    </li>
-    <li>
-        The property <code>subscriptionName</code> has replaced
-        <code>serviceBusSubscription</code> and is a GUID returned per
-        subscription.
-    </li>
-    <li>
-        Both properties <code>serviceBusTopic</code> and
-        <code>subscriptionName</code> are identifiers to tell your application
-        which specific channel it should read Service Bus messages.
-    </li>
-</ul>
-<h3 id="new-reservation-endpoint">New Reservation Endpoint</h3>
-<p>
-    The new POST <code>/site/v2/reservations</code> request limits use of a
-    location to the airline backend with a specific airline code that made the
-    request. The airline backend must reserve the location to make use of its
-    devices.
-</p>
-<h3 id="no-device-status-request">No Device &#39;Status&#39; Request</h3>
-<p>
-    There is a no longer a <code>/v1/location/status/</code> request available
-    to return device statuses at a location. Instead, when you connect to a
-    device, a <code>DeviceStatus</code> message is displayed on the Service Bus
-    that indicates the device status. When the device status changes in some
-    cases, a new message is sent.
-</p>
-<p>
-    The <code>/session/v2/locations/{locationId}</code> returns a list of
-    devices and their capabilities, but not their statuses.
-</p>
-<h3 id="connect-not-reserve">&#39;Connect&#39;, not &#39;Reserve&#39;</h3>
-<p>
-    The V1 POST <code>/v1/peripheral/reserve</code> request should not be
-    confused with the new <code>/site/v2/reservations</code> endpoint, they are
-    unrelated. Previously, the purpose of reserving a device was to
-    &#39;connect&#39; to it. The new <code>/site/v2/reservations</code> endpoint
-    is about reserving a location for exclusive access to its devices.
-</p>
-<p>
-    Instead of &#39;reserving&#39; a device through a POST
-    <code>/v1/peripheral/reserve</code> request, you now &#39;connect&#39; to a
-    device by making a POST <code>/session/v2/connections</code> request. The
-    outcome of the request is the same, to connect to a device to send and
-    receive messages.
-</p>
-<p>
-    Instead of passing a <code>LocatorList</code> value to identify the
-    peripheral, the IoT Hub identifier <code>deviceID</code> is passed.
-</p>
-<h3 id="deviceid-instead-of-locator">
-    &#39;DeviceID&#39; instead of &#39;Locator&#39;
-</h3>
-<p>
-    The IoT Hub identifier <code>deviceID</code> is now used in requests instead
-    of <code>Locator</code>.
-</p>
-<h3 id="no-transactionid-or-requestid">No TransactionID or RequestID</h3>
-<p>
-    In V1, the <code>TransactionId</code> property was required to pair certain
-    kinds of requests with responses on the Service Bus. In addition, certain
-    requests also required a <code>RequestId</code> used by the API to ensure
-    that duplicate messages are not processed.
-</p>
-<p>Both these properties are no longer required.</p>
-<h3 id="no-enable-or-disable-devices">
-    No &#39;Enable&#39; or &#39;Disable&#39; Devices
-</h3>
-<p>
-    Previously, devices needed to be &#39;enabled&#39; to indicate the
-    application is ready to receive data via reading or scanning and
-    &#39;disabled&#39; to stop the flow of information from the device to the
-    application.
-</p>
-<p>
-    You no longer need to Enable or Disable devices, except for scan devices.
-    &#39;Enable&#39; is now POST <code>/scan/v2/startscanning</code> and
-    &#39;Disable&#39; is now POST <code>/scan/v2/stopscanning</code>. The
-    <code>/scan/v2/startscanning</code> request readies the device to start
-    scanning airport documents.
-</p>
-<h3 id="no-aea-command-request">No AEA Command Request</h3>
-<p>
-    While it is possible to send an AEA format print request, there is no longer
-    the ability to send AEA commands to a device to handle the whole device
-    interaction in your application as was possible previously.
+    The <span class="method get">GET</span> method will also be incorporated
+    into future releases.
 </p>
