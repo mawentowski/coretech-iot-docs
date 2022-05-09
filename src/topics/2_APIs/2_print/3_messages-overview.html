@@ -124,14 +124,16 @@
     <code class="inline-code">PrintResponse</code> Service Bus Message
     indicating an unsuccessful print due to paper jam
 </h5>
-<blockquote>
+<div class="info-alert">
+    <div class="">
+        <p>
+            <strong>Note:</strong> The actual text contained in the error
+            <code class="inline-code">Message</code> is determined by the
+            software on the workstation.
+        </p>
+    </div>
     <p>
-        <strong>Note:</strong> The actual text contained in the error
-        <code class="inline-code">Message</code> is determined by the software
-        on the workstation.
+        The resolution would be to physically locate the printer, unjam the
+        paper, then attempt to send another print request.
     </p>
-</blockquote>
-<p>
-    The resolution would be to physically locate the printer, unjam the paper,
-    then attempt to send another print request.
-</p>
+</div>

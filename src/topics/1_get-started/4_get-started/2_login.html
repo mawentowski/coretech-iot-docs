@@ -21,125 +21,136 @@
 <h2 id="optional-set-up-service-bus-console">
     Optional: Set up Service Bus Console
 </h2>
-<blockquote>
+<div class="info-alert">
+    <div class="">
+        <p>
+            <strong>Note:</strong> These instructions assume a
+            <code class="inline-code">ServiceBusConsole.7z</code> file has been
+            given to you. Otherwise, skip this section.
+        </p>
+    </div>
     <p>
-        <strong>Note:</strong> These instructions assume a
-        <code class="inline-code">ServiceBusConsole.7z</code> file has been
-        given to you. Otherwise, skip this section.
+        The Service Bus Console allows you to view Service Bus responses. The
+        Console takes the subscription details returned after a Subscribe call
+        and connects to that subscription. Then, when you connect to and
+        interact with devices, messages related to those events are displayed in
+        the console.
     </p>
-</blockquote>
-<p>
-    The Service Bus Console allows you to view Service Bus responses. The
-    Console takes the subscription details returned after a Subscribe call and
-    connects to that subscription. Then, when you connect to and interact with
-    devices, messages related to those events are displayed in the console.
-</p>
-<p>
-    In reality, a customer would use the Azure Service Bus SDK provided by
-    Microsoft to receive messages on the Service Bus. SITA staff use the console
-    to simulate how a live customer would receive messages without the need of
-    creating an application.
-</p>
-<p>To run the console:</p>
-<ol>
-    <li>
-        <p>Install the following programs, if not already installed:</p>
-        <ul>
-            <li>
-                <a href="https://www.7-zip.org/">Z-zip</a> - to extract the
-                console file package.
-            </li>
-            <li>
-                <a href="https://notepad-plus-plus.org/downloads/v8.1.9/"
-                    >Notepad++</a
-                >
-                - to open the <code class="inline-code">.json</code> file
-            </li>
-            <li>
-                <a
-                    href="https://dotnet.microsoft.com/download/dotnet/5.0/runtime?utm_source=getdotnetcore&amp;utm_medium=referral"
-                    >.NET 5.0 Runtime</a
-                >
-                - required for the console to run.
-            </li>
-        </ul>
-    </li>
-    <li>
-        <p>
-            In File Explorer, right-click
-            <code class="inline-code">ServiceBusConsole.7z</code> file, hover
-            over <strong>7-zip</strong> and select
-            <strong>Extract files</strong>...
-        </p>
-    </li>
-    <li>
-        <p>Leave the default settings as is and click <strong>Okay</strong>.</p>
-        <ul>
-            <li>A new folder displays containing the extracted files.</li>
-        </ul>
-    </li>
-    <li>
-        <p>Open the new <strong>ServiceBusConsole</strong> folder.</p>
-    </li>
-    <li>
-        <p>
-            Right-click
-            <code class="inline-code">ConnectionDetails.json</code> and select
-            <strong>Edit with Notepad++</strong>.
-        </p>
-    </li>
-    <li>
-        <p>
-            In Postman, send a
-            <code class="inline-code">session/v2/subscriptions</code> request.
-        </p>
-    </li>
-    <li>
-        <p>
-            Copy the JSON returned in the Response Body, and paste it into the
-            <code class="inline-code">ConnectionDetails.json</code>, replacing
-            its current contents.
-        </p>
-    </li>
-    <li><p>Save and close the file.</p></li>
-    <li>
-        <p>
-            Back in the extracted folder, double-click the
-            <code class="inline-code">Sita.AirportApi.ServiceBusConsole</code>
-            executable to run the Console.
-        </p>
-        <ul>
-            <li>
-                Look for the file named
+    <p>
+        In reality, a customer would use the Azure Service Bus SDK provided by
+        Microsoft to receive messages on the Service Bus. SITA staff use the
+        console to simulate how a live customer would receive messages without
+        the need of creating an application.
+    </p>
+    <p>To run the console:</p>
+    <ol>
+        <li>
+            <p>Install the following programs, if not already installed:</p>
+            <ul>
+                <li>
+                    <a href="https://www.7-zip.org/">Z-zip</a> - to extract the
+                    console file package.
+                </li>
+                <li>
+                    <a href="https://notepad-plus-plus.org/downloads/v8.1.9/"
+                        >Notepad++</a
+                    >
+                    - to open the <code class="inline-code">.json</code> file
+                </li>
+                <li>
+                    <a
+                        href="https://dotnet.microsoft.com/download/dotnet/5.0/runtime?utm_source=getdotnetcore&amp;utm_medium=referral"
+                        >.NET 5.0 Runtime</a
+                    >
+                    - required for the console to run.
+                </li>
+            </ul>
+        </li>
+        <li>
+            <p>
+                In File Explorer, right-click
+                <code class="inline-code">ServiceBusConsole.7z</code> file,
+                hover over <strong>7-zip</strong> and select
+                <strong>Extract files</strong>...
+            </p>
+        </li>
+        <li>
+            <p>
+                Leave the default settings as is and click
+                <strong>Okay</strong>.
+            </p>
+            <ul>
+                <li>A new folder displays containing the extracted files.</li>
+            </ul>
+        </li>
+        <li>
+            <p>Open the new <strong>ServiceBusConsole</strong> folder.</p>
+        </li>
+        <li>
+            <p>
+                Right-click
+                <code class="inline-code">ConnectionDetails.json</code> and
+                select <strong>Edit with Notepad++</strong>.
+            </p>
+        </li>
+        <li>
+            <p>
+                In Postman, send a
+                <code class="inline-code">session/v2/subscriptions</code>
+                request.
+            </p>
+        </li>
+        <li>
+            <p>
+                Copy the JSON returned in the Response Body, and paste it into
+                the
+                <code class="inline-code">ConnectionDetails.json</code>,
+                replacing its current contents.
+            </p>
+        </li>
+        <li><p>Save and close the file.</p></li>
+        <li>
+            <p>
+                Back in the extracted folder, double-click the
                 <code class="inline-code"
                     >Sita.AirportApi.ServiceBusConsole</code
                 >
-                whose type is <code class="inline-code">Application</code> (as
-                seen in the <strong>Type</strong> column in Windows Explorer).
-            </li>
-            <li>The console displays.</li>
-        </ul>
-    </li>
-    <li>
-        <p>
-            Hit Enter and the console will subscribe to the service bus
-            subscription entered earlier.
-        </p>
-        <ul>
-            <li>
-                Device messages returned on the Service Bus are now displayed in
-                the console in real-time.
-            </li>
-        </ul>
-    </li>
-</ol>
-<p>
-    If you hit Enter twice, you have aborted the connection to the Service Bus
-    and will not receive messages.
-</p>
-<p>To resolve:</p>
-<ol>
-    <li>Close the Terminal.</li>
-    <li>Double-click the file to open another Terminal.</li>
-    <li>Hit Enter (one time).</li>
-</ol>
+                executable to run the Console.
+            </p>
+            <ul>
+                <li>
+                    Look for the file named
+                    <code class="inline-code"
+                        >Sita.AirportApi.ServiceBusConsole</code
+                    >
+                    whose type is
+                    <code class="inline-code">Application</code> (as seen in the
+                    <strong>Type</strong> column in Windows Explorer).
+                </li>
+                <li>The console displays.</li>
+            </ul>
+        </li>
+        <li>
+            <p>
+                Hit Enter and the console will subscribe to the service bus
+                subscription entered earlier.
+            </p>
+            <ul>
+                <li>
+                    Device messages returned on the Service Bus are now
+                    displayed in the console in real-time.
+                </li>
+            </ul>
+        </li>
+    </ol>
+    <p>
+        If you hit Enter twice, you have aborted the connection to the Service
+        Bus and will not receive messages.
+    </p>
+    <p>To resolve:</p>
+    <ol>
+        <li>Close the Terminal.</li>
+        <li>Double-click the file to open another Terminal.</li>
+        <li>Hit Enter (one time).</li>
+    </ol>
+</div>

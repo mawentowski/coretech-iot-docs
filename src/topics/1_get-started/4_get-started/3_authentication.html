@@ -33,34 +33,47 @@
         requested.
     </li>
 </ul>
-<blockquote>
+<div class="info-alert">
+    <div class="">
+        <p>
+            <strong>Note:</strong> The generic
+            <code class="inline-code">resource</code> for the PRX
+            (Pre-Production) environment used for authentication is
+            <code class="inline-code">51583536-28c7-4ea6-8d94-d0a7e91cb1cb</code
+            >.
+        </p>
+    </div>
     <p>
-        <strong>Note:</strong> The generic
-        <code class="inline-code">resource</code> for the PRX (Pre-Production)
-        environment used for authentication is
-        <code class="inline-code">51583536-28c7-4ea6-8d94-d0a7e91cb1cb</code>.
+        Credentials are provided for each airline backend that will be creating
+        a service bus subscription.
     </p>
-</blockquote>
-<p>
-    Credentials are provided for each airline backend that will be creating a
-    service bus subscription.
-</p>
-<p>
-    The <code class="inline-code">access_token</code> provides authentication
-    for clients to securely call Flex APIs protected by Azure, and it must be
-    included in the header of API calls.
-</p>
-<blockquote>
-    <p><strong>Note</strong>: Access tokens are valid for 60 minutes.</p>
-</blockquote>
-<p>The basic grant flow for the Pre-Production Environment is shown below:</p>
-<p><img src="images/grant-flow.png" alt="" /></p>
-<h5 id="grant-flow-for-pre-production-environment">
-    Grant Flow for Pre-Production Environment
-</h5>
-<blockquote>
     <p>
-        <strong>Note:</strong> SITA Flex uses the v1.0 endpoints of the
-        Microsoft Identify Platform (i.e., Azure Active Directory).
+        The <code class="inline-code">access_token</code> provides
+        authentication for clients to securely call Flex APIs protected by
+        Azure, and it must be included in the header of API calls.
     </p>
-</blockquote>
+    <div class="info-alert">
+        <div class="">
+            <p>
+                <strong>Note</strong>: Access tokens are valid for 60 minutes.
+            </p>
+        </div>
+        <p>
+            The basic grant flow for the Pre-Production Environment is shown
+            below:
+        </p>
+        <p><img src="images/grant-flow.png" alt="" /></p>
+        <h5 id="grant-flow-for-pre-production-environment">
+            Grant Flow for Pre-Production Environment
+        </h5>
+        <div class="info-alert">
+            <div class="">
+                <p>
+                    <strong>Note:</strong> SITA Flex uses the v1.0 endpoints of
+                    the Microsoft Identify Platform (i.e., Azure Active
+                    Directory).
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

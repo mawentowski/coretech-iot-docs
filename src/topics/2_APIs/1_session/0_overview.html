@@ -36,34 +36,39 @@
         </p>
     </li>
 </ul>
-<blockquote>
-    <p>
-        <strong>Note:</strong> The Get Location Capabilities endpoint (
-        <code class="inline-code">/site/v2/locations/{locationId}</code>) is not
-        serviced by the Session API. It is serviced by the Location API.
-        However, it fits logically in the Session API flow at the time this
-        documentation was written.
-    </p>
-    <p>
-        Also, note that the Reserve (
-        <code class="inline-code">/site/v2/reservations</code>) and Get Location
-        Capabilities endpoints both contain the
-        <code class="inline-code">/site</code> in their end paths.
-        <code class="inline-code">/site</code> is just a way of logically
-        grouping these two endpoints and is not an API.
-    </p>
-</blockquote>
-<p>Example locations configured in the SITA Flex environment include:</p>
-<ul>
-    <li>Airport CUTE type workstations for check-in and boarding</li>
-    <li>CUSS Type devices like a Self-Service Kiosk</li>
-    <li>Self-Service BagDrop and Self-Service Boarding Gate</li>
-</ul>
-<blockquote>
-    <p>
-        <strong>Note:</strong> When reserving a location, the
-        <code class="inline-code">locationId</code> should not be confused with
-        a workstation with peripherals physically connected to it. Rather, it is
-        a logical entity that has certain capabilities associated with it.
-    </p>
-</blockquote>
+<div class="info-alert">
+    <div class="">
+        <p>
+            <strong>Note:</strong> The Get Location Capabilities endpoint (
+            <code class="inline-code">/site/v2/locations/{locationId}</code>) is
+            not serviced by the Session API. It is serviced by the Location API.
+            However, it fits logically in the Session API flow at the time this
+            documentation was written.
+        </p>
+        <p>
+            Also, note that the Reserve (
+            <code class="inline-code">/site/v2/reservations</code>) and Get
+            Location Capabilities endpoints both contain the
+            <code class="inline-code">/site</code> in their end paths.
+            <code class="inline-code">/site</code> is just a way of logically
+            grouping these two endpoints and is not an API.
+        </p>
+    </div>
+    <p>Example locations configured in the SITA Flex environment include:</p>
+    <ul>
+        <li>Airport CUTE type workstations for check-in and boarding</li>
+        <li>CUSS Type devices like a Self-Service Kiosk</li>
+        <li>Self-Service BagDrop and Self-Service Boarding Gate</li>
+    </ul>
+    <div class="info-alert">
+        <div class="">
+            <p>
+                <strong>Note:</strong> When reserving a location, the
+                <code class="inline-code">locationId</code> should not be
+                confused with a workstation with peripherals physically
+                connected to it. Rather, it is a logical entity that has certain
+                capabilities associated with it.
+            </p>
+        </div>
+    </div>
+</div>

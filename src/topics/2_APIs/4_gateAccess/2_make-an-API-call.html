@@ -20,56 +20,61 @@
         <code class="inline-code">opengate</code>.
     </li>
 </ul>
-<blockquote>
+<div class="info-alert">
+    <div class="">
+        <p>
+            <strong>Note:</strong> No path parameters are required when sending
+            GateAccess API requests.
+        </p>
+    </div>
+    <h3 id="header-parameters-3">Header Parameters</h3>
     <p>
-        <strong>Note:</strong> No path parameters are required when sending
-        GateAccess API requests.
+        A <code class="inline-code">location-id</code> is required in the header
+        of the request. Flex APIs use the Azure API Management service (APIM) to
+        route requests to the correct Azure Region based on the airport code
+        extracted from the <code class="inline-code">LocationId</code>.
     </p>
-</blockquote>
-<h3 id="header-parameters-3">Header Parameters</h3>
-<p>
-    A <code class="inline-code">location-id</code> is required in the header of
-    the request. Flex APIs use the Azure API Management service (APIM) to route
-    requests to the correct Azure Region based on the airport code extracted
-    from the <code class="inline-code">LocationId</code>.
-</p>
-<h3 id="authorization-headers-3">Authorization Headers</h3>
-<p>
-    An <code class="inline-code">access_token</code> is required in the
-    Authorization Header of requests for authentication.
-</p>
-<blockquote>
+    <h3 id="authorization-headers-3">Authorization Headers</h3>
     <p>
-        <strong>Note:</strong> The
-        <code class="inline-code">access_token</code> is displayed as the
-        Postman variable <code class="inline-code">bearer_token</code> in the
-        <strong>Authorization</strong> tab of API requests in the provided
-        Postman collection.
+        An <code class="inline-code">access_token</code> is required in the
+        Authorization Header of requests for authentication.
     </p>
-</blockquote>
-<h3 id="request-bodies-3">Request Bodies</h3>
-<p>
-    All Request Bodies must include the
-    <code class="inline-code">ConnectionId</code> of the device the airline
-    backend is sending the command to.
-</p>
-<ul>
-    <li>
-        When sending a
-        <code class="inline-code">gateaccess/v2/acceptpassenger</code> or
-        <code class="inline-code">/gateaccess/v2/rejectpassenger</code> request,
-        a <code class="inline-code">Message</code> may be included that displays
-        on the device if the device is a Boarding Gate Reader.
-    </li>
-</ul>
-<p>
-    If the device is a Self-Boarding Gate, the message is ignored. Below is an
-    example
-    <code class="inline-code">gateaccess/v2/acceptpassenger</code> request
-    passing in <code class="inline-code">Message</code> data. It is possible to
-    display the message on multiple lines as shown below:
-</p>
-<pre><code class="language-JSON">{
+    <div class="info-alert">
+        <div class="">
+            <p>
+                <strong>Note:</strong> The
+                <code class="inline-code">access_token</code> is displayed as
+                the Postman variable
+                <code class="inline-code">bearer_token</code> in the
+                <strong>Authorization</strong> tab of API requests in the
+                provided Postman collection.
+            </p>
+        </div>
+        <h3 id="request-bodies-3">Request Bodies</h3>
+        <p>
+            All Request Bodies must include the
+            <code class="inline-code">ConnectionId</code> of the device the
+            airline backend is sending the command to.
+        </p>
+        <ul>
+            <li>
+                When sending a
+                <code class="inline-code">gateaccess/v2/acceptpassenger</code>
+                or
+                <code class="inline-code">/gateaccess/v2/rejectpassenger</code>
+                request, a <code class="inline-code">Message</code> may be
+                included that displays on the device if the device is a Boarding
+                Gate Reader.
+            </li>
+        </ul>
+        <p>
+            If the device is a Self-Boarding Gate, the message is ignored. Below
+            is an example
+            <code class="inline-code">gateaccess/v2/acceptpassenger</code>
+            request passing in <code class="inline-code">Message</code> data. It
+            is possible to display the message on multiple lines as shown below:
+        </p>
+        <pre><code class="language-JSON">{
     &quot;ConnectionId&quot;: &quot;{{bgr_connection_id}}&quot;,
     &quot;CorrelationId&quot;: &quot;{{$guid}}&quot;,
     &quot;Message&quot;: [&quot;MSG Line 1&quot;, &quot;MSG Line 2&quot;],
@@ -78,23 +83,23 @@
     }
 }
 </code></pre>
-<h5
-    id="sample-gateaccessv2acceptpassenger-request-including-message-data-to-be-displayed-to-the-agent"
->
-    Sample
-    <code class="inline-code">gateaccess/v2/acceptpassenger</code> request
-    including <code class="inline-code">Message</code> data to be displayed to
-    the agent
-</h5>
-<ul>
-    <li>
-        When sending a
-        <code class="inline-code">gateaccess/v2/acceptpassenger</code> request,
-        <code class="inline-code">ReceiptData</code> may be passed to a device
-        printer to print a receipt for the passenger.
-    </li>
-</ul>
-<pre><code class="language-JSON">{
+        <h5
+            id="sample-gateaccessv2acceptpassenger-request-including-message-data-to-be-displayed-to-the-agent"
+        >
+            Sample
+            <code class="inline-code">gateaccess/v2/acceptpassenger</code>
+            request including <code class="inline-code">Message</code> data to
+            be displayed to the agent
+        </h5>
+        <ul>
+            <li>
+                When sending a
+                <code class="inline-code">gateaccess/v2/acceptpassenger</code>
+                request, <code class="inline-code">ReceiptData</code> may be
+                passed to a device printer to print a receipt for the passenger.
+            </li>
+        </ul>
+        <pre><code class="language-JSON">{
     &quot;ConnectionId&quot;: &quot;{{bgr_connection_id}}&quot;,
     &quot;CorrelationId&quot;: &quot;{{$guid}}&quot;,
     &quot;Message&quot;: [&quot;&quot;],
@@ -103,18 +108,22 @@
     }
 }
 </code></pre>
-<h5
-    id="sample-gateaccessv2acceptpassenger-request-body-that-passes-receiptdata-to-be-printed-for-the-passenger"
->
-    Sample
-    <code class="inline-code">/gateaccess/v2/acceptpassenger</code> Request Body
-    that passes <code class="inline-code">ReceiptData</code> to be printed for
-    the passenger
-</h5>
-<ul>
-    <li>
-        When sending a
-        <code class="inline-code">/gateaccess/v2/rejectpassenger</code>, you may
-        specify if an <code class="inline-code">Alarm</code> sounds.
-    </li>
-</ul>
+        <h5
+            id="sample-gateaccessv2acceptpassenger-request-body-that-passes-receiptdata-to-be-printed-for-the-passenger"
+        >
+            Sample
+            <code class="inline-code">/gateaccess/v2/acceptpassenger</code>
+            Request Body that passes
+            <code class="inline-code">ReceiptData</code> to be printed for the
+            passenger
+        </h5>
+        <ul>
+            <li>
+                When sending a
+                <code class="inline-code">/gateaccess/v2/rejectpassenger</code>,
+                you may specify if an
+                <code class="inline-code">Alarm</code> sounds.
+            </li>
+        </ul>
+    </div>
+</div>

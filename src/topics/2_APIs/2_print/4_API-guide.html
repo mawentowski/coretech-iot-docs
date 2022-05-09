@@ -26,7 +26,8 @@
     SVG, PDF, or AEA. With this knowledge, you can apply the same steps to
     interacting with other print devices.
 </p>
-<blockquote>
+<div class="info-alert">
+    <div class="">
     <p>
         <strong>Note:</strong> This walkthrough provides some basic
         troubleshooting steps. However, if an error displays that is not
@@ -40,7 +41,7 @@
         >
         sections for detailed steps on how to resolve the issue.
     </p>
-</blockquote>
+</div>
 <h3 id="prerequisite-steps">Prerequisite Steps</h3>
 <ol>
     <li>
@@ -92,12 +93,13 @@
     </li>
 </ol>
 <h3 id="add-an-atb-device">Add an ATB Device</h3>
-<blockquote>
+<div class="info-alert">
+    <div class="">
     <p>
         <strong>Note:</strong> If an ATB has already been added, skip this
         section.
     </p>
-</blockquote>
+</div>
 <ol>
     <li>
         In the Device Simulator of the VM, click <strong>Add Device</strong>.
@@ -144,14 +146,15 @@
         </ul>
     </li>
 </ol>
-<blockquote>
+<div class="info-alert">
+    <div class="">
     <p>
         <strong>Note:</strong> Notice in the Request Body that the
         <code class="inline-code">DeviceId</code> will be populated based by the
         variable <code class="inline-code">{{location}}</code> in the Postman
         environment.
     </p>
-</blockquote>
+</div>
 <ol start="2">
     <li>
         Check the Service Bus subscription for a
@@ -177,7 +180,8 @@
     If there are no issues, the device is now available to successfully receive
     Print requests.
 </p>
-<blockquote>
+<div class="info-alert">
+    <div class="">
     <p>
         <strong>Note</strong>: In the Tests tab of Postman, there is some
         Javascript that updates the
@@ -187,7 +191,7 @@
         <code class="inline-code">connectionId</code> in subsequent calls to the
         Print API.
     </p>
-</blockquote>
+</div>
 <h4 id="devicestatus-is-offline">
     <code class="inline-code">DeviceStatus</code> is
     <code class="inline-code">Offline</code>
@@ -226,13 +230,14 @@
             In Postman, send a
             <code class="inline-code">/print/v2/boardingpass/pdf</code> request.
         </p>
-        <blockquote>
+        <div class="info-alert">
+    <div class="">
             <p>
                 <strong>Note:</strong> In the Request Body, notice that PDF
                 <code class="inline-code">printData</code> has been included for
                 you.
             </p>
-        </blockquote>
+        </div>
     </li>
     <li>
         <p>

@@ -20,36 +20,41 @@
         <code class="inline-code">getbag</code>.
     </li>
 </ul>
-<blockquote>
+<div class="info-alert">
+    <div class="">
+        <p>
+            <strong>Note:</strong> No path parameters are required when sending
+            Bagdrop API requests.
+        </p>
+    </div>
+    <h3 id="header-parameters-4">Header Parameters</h3>
     <p>
-        <strong>Note:</strong> No path parameters are required when sending
-        Bagdrop API requests.
+        A <code class="inline-code">location-id</code> is required in the header
+        of requests. Flex APIs use the Azure API Management Service (APIM) to
+        route requests to the correct Azure Region based on the airport code
+        extracted from the <code class="inline-code">LocationId</code>.
     </p>
-</blockquote>
-<h3 id="header-parameters-4">Header Parameters</h3>
-<p>
-    A <code class="inline-code">location-id</code> is required in the header of
-    requests. Flex APIs use the Azure API Management Service (APIM) to route
-    requests to the correct Azure Region based on the airport code extracted
-    from the <code class="inline-code">LocationId</code>.
-</p>
-<h3 id="authorization-headers-4">Authorization Headers</h3>
-<p>
-    An <code class="inline-code">access_token</code> is required in the
-    Authorization Header of requests for authentication.
-</p>
-<blockquote>
+    <h3 id="authorization-headers-4">Authorization Headers</h3>
     <p>
-        <strong>Note:</strong> The
-        <code class="inline-code">access_token</code> is displayed as the
-        Postman variable <code class="inline-code">bearer_token</code> in the
-        <strong>Authorization</strong> tab of API requests in the provided
-        Postman collection.
+        An <code class="inline-code">access_token</code> is required in the
+        Authorization Header of requests for authentication.
     </p>
-</blockquote>
-<h3 id="request-bodies-4">Request Bodies</h3>
-<p>
-    All Request Bodies must include the
-    <code class="inline-code">ConnectionId</code> of the device the airline
-    backend is sending the command to.
-</p>
+    <div class="info-alert">
+        <div class="">
+            <p>
+                <strong>Note:</strong> The
+                <code class="inline-code">access_token</code> is displayed as
+                the Postman variable
+                <code class="inline-code">bearer_token</code> in the
+                <strong>Authorization</strong> tab of API requests in the
+                provided Postman collection.
+            </p>
+        </div>
+        <h3 id="request-bodies-4">Request Bodies</h3>
+        <p>
+            All Request Bodies must include the
+            <code class="inline-code">ConnectionId</code> of the device the
+            airline backend is sending the command to.
+        </p>
+    </div>
+</div>

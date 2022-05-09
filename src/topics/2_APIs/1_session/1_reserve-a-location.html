@@ -6,42 +6,45 @@
     request. The airline backend must reserve the location to make use of its
     devices.
 </p>
-<blockquote>
+<div class="info-alert">
+    <div class="">
+        <p>
+            <strong>Note:</strong> Flex knows the airline code of the requester
+            because it is encoded in the access token.
+        </p>
+    </div>
+    <h3 id="request-body-1">Request Body</h3>
     <p>
-        <strong>Note:</strong> Flex knows the airline code of the requester
-        because it is encoded in the access token.
+        The airline backend sends a <span class="method post">POST</span>
+        <code class="inline-code">/site/v2/reservations</code> request, passing
+        the <code class="inline-code">LocationId</code> in the Request Body it
+        wishes to reserve.
     </p>
-</blockquote>
-<h3 id="request-body-1">Request Body</h3>
-<p>
-    The airline backend sends a <span class="method post">POST</span>
-    <code class="inline-code">/site/v2/reservations</code> request, passing the
-    <code class="inline-code">LocationId</code> in the Request Body it wishes to
-    reserve.
-</p>
-<p>
-    The following is a sample Response Body containing the location to be
-    reserved:
-</p>
-<pre><code class="language-JSON">{
+    <p>
+        The following is a sample Response Body containing the location to be
+        reserved:
+    </p>
+    <pre><code class="language-JSON">{
   &quot;LocationId&quot;: &quot;A-ZZU-MZUZUAIRPORT-ZZU1CKB004&quot;
 }
 </code></pre>
-<h5
-    id="sample-request-body-for-post-sitev2reservation-request-containing-the-locationid-passed-from-the-client-app"
->
-    Sample Request Body for <span class="method post">POST</span>
-    <code class="inline-code">/site/v2/reservation</code> request containing the
-    <code class="inline-code">LocationId</code> passed from the client app
-</h5>
-<h3 id="response-body">Response Body</h3>
-<p>
-    A successful request returns a <code class="inline-code">2xx</code> success
-    status code with the JSON Response Body containing the
-    <code class="inline-code">reservationId</code>. You must include this ID
-    later in connection requests to devices at the reserved location.
-</p>
-<pre><code class="language-JSON">[
+    <h5
+        id="sample-request-body-for-post-sitev2reservation-request-containing-the-locationid-passed-from-the-client-app"
+    >
+        Sample Request Body for <span class="method post">POST</span>
+        <code class="inline-code">/site/v2/reservation</code> request containing
+        the <code class="inline-code">LocationId</code> passed from the client
+        app
+    </h5>
+    <h3 id="response-body">Response Body</h3>
+    <p>
+        A successful request returns a
+        <code class="inline-code">2xx</code> success status code with the JSON
+        Response Body containing the
+        <code class="inline-code">reservationId</code>. You must include this ID
+        later in connection requests to devices at the reserved location.
+    </p>
+    <pre><code class="language-JSON">[
     {
         &quot;reservationId&quot;: &quot;868e5715-2c82-426e-b7da-10e208dd865d&quot;,
         &quot;airlineCode&quot;: &quot;ZZ&quot;,
@@ -50,41 +53,43 @@
     }
 ]
 </code></pre>
-<h5
-    id="sample-response-body-for-post-sitev2reservation-request-containing-the-reservationid"
->
-    Sample Response Body for <span class="method post">POST</span>
-    <code class="inline-code">/site/v2/reservation</code> request containing the
-    <code class="inline-code">reservationId</code>
-</h5>
-<p>
-    The Response Body contains informational properties such as the
-    <code class="inline-code">airlineCode</code> encoded in the access token and
-    <code class="inline-code">locationID</code> passed in the Request Body. The
-    property <code class="inline-code">expiryTime</code> indicates when the
-    reservation is due to expire.
-</p>
-<blockquote>
+    <h5
+        id="sample-response-body-for-post-sitev2reservation-request-containing-the-reservationid"
+    >
+        Sample Response Body for <span class="method post">POST</span>
+        <code class="inline-code">/site/v2/reservation</code> request containing
+        the
+        <code class="inline-code">reservationId</code>
+    </h5>
     <p>
-        <strong>Note:</strong> It is important that airline backends keep track
-        of when a location reservation is about to expire so it can request a
-        new reservation if continued access is desired.
+        The Response Body contains informational properties such as the
+        <code class="inline-code">airlineCode</code> encoded in the access token
+        and <code class="inline-code">locationID</code> passed in the Request
+        Body. The property <code class="inline-code">expiryTime</code> indicates
+        when the reservation is due to expire.
     </p>
-</blockquote>
-<p>
-    Now that the location is reserved by an airline code, any request made by
-    another airline will be rejected. This will occur until the
-    reservation&#39;s <code class="inline-code">expiryTime</code> has been
-    reached or the airline who made the reservation has sent a
-    <span class="method post">DEL</span>
-    <code class="inline-code">/site/v2/reservation</code> to delete the
-    reservation.
-</p>
-<p>
-    The following error displays when attempting to reserve a location that is
-    already reserved:
-</p>
-<pre><code class="language-JSON">{
+    <div class="info-alert">
+        <div class="">
+            <p>
+                <strong>Note:</strong> It is important that airline backends
+                keep track of when a location reservation is about to expire so
+                it can request a new reservation if continued access is desired.
+            </p>
+        </div>
+        <p>
+            Now that the location is reserved by an airline code, any request
+            made by another airline will be rejected. This will occur until the
+            reservation&#39;s <code class="inline-code">expiryTime</code> has
+            been reached or the airline who made the reservation has sent a
+            <span class="method post">DEL</span>
+            <code class="inline-code">/site/v2/reservation</code> to delete the
+            reservation.
+        </p>
+        <p>
+            The following error displays when attempting to reserve a location
+            that is already reserved:
+        </p>
+        <pre><code class="language-JSON">{
     &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc7231#section-6.5.1&quot;,
     &quot;title&quot;: &quot;Bad Request&quot;,
     &quot;status&quot;: 400,
@@ -92,31 +97,42 @@
     &quot;traceId&quot;: &quot;00-25dd79293ba71f479ce30da826eecd09-3aa97e2de755f540-00&quot;
 }
 </code></pre>
-<h5
-    id="sample-400-bad-request-error-message-when-a-location-is-reserved-by-another-airline"
->
-    Sample 400 Bad Request Error Message when a location is reserved by another
-    airline
-</h5>
-<blockquote>
-    <p>
-        <strong>Note:</strong> For a ground handler, there is a concept that any
-        airlines it handles can share a location at the same time.
-    </p>
-</blockquote>
-<p>
-    Sending a <span class="method post">DEL</span>
-    <code class="inline-code">/site/v2/reservations/{reservation_id}</code>
-    request returns a <code class="inline-code">2xx</code> success status code
-    and deletes a reservation if one exists.
-</p>
-<h3 id="best-practices">Best Practices</h3>
-<h4 id="deleting-reservations">Deleting Reservations</h4>
-<p>
-    It is important to delete the reservation once done with a location because
-    an active reservation prevents other airline backends from using the
-    location. This is achieved by sending a DEL
-    <code class="inline-code">/site/v2/reservations/{reservation_id}</code>
-    request, passing in the <code class="inline-code">reservation_id</code> of
-    the reservation to be deleted as a path parameter.
-</p>
+        <h5
+            id="sample-400-bad-request-error-message-when-a-location-is-reserved-by-another-airline"
+        >
+            Sample 400 Bad Request Error Message when a location is reserved by
+            another airline
+        </h5>
+        <div class="info-alert">
+            <div class="">
+                <p>
+                    <strong>Note:</strong> For a ground handler, there is a
+                    concept that any airlines it handles can share a location at
+                    the same time.
+                </p>
+            </div>
+            <p>
+                Sending a <span class="method post">DEL</span>
+                <code class="inline-code"
+                    >/site/v2/reservations/{reservation_id}</code
+                >
+                request returns a <code class="inline-code">2xx</code> success
+                status code and deletes a reservation if one exists.
+            </p>
+            <h3 id="best-practices">Best Practices</h3>
+            <h4 id="deleting-reservations">Deleting Reservations</h4>
+            <p>
+                It is important to delete the reservation once done with a
+                location because an active reservation prevents other airline
+                backends from using the location. This is achieved by sending a
+                DEL
+                <code class="inline-code"
+                    >/site/v2/reservations/{reservation_id}</code
+                >
+                request, passing in the
+                <code class="inline-code">reservation_id</code> of the
+                reservation to be deleted as a path parameter.
+            </p>
+        </div>
+    </div>
+</div>

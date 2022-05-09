@@ -20,38 +20,43 @@
         <code class="inline-code">startscanning</code>.
     </li>
 </ul>
-<blockquote>
+<div class="info-alert">
+    <div class="">
+        <p>
+            <strong>Note:</strong> No path parameters are required when sending
+            Scan API requests.
+        </p>
+    </div>
+    <h3 id="header-parameters-2">Header Parameters</h3>
     <p>
-        <strong>Note:</strong> No path parameters are required when sending Scan
-        API requests.
+        A <code class="inline-code">location-id</code> is required in the header
+        of the request. Flex APIs use the Azure API Management service (APIM) to
+        route requests to the correct Azure Region based on the airport code
+        extracted from the <code class="inline-code">LocationId</code>.
     </p>
-</blockquote>
-<h3 id="header-parameters-2">Header Parameters</h3>
-<p>
-    A <code class="inline-code">location-id</code> is required in the header of
-    the request. Flex APIs use the Azure API Management service (APIM) to route
-    requests to the correct Azure Region based on the airport code extracted
-    from the <code class="inline-code">LocationId</code>.
-</p>
-<h3 id="authorization-headers-2">Authorization Headers</h3>
-<p>
-    An <code class="inline-code">access_token</code> is required in the
-    Authorization Header of requests for authentication.
-</p>
-<blockquote>
+    <h3 id="authorization-headers-2">Authorization Headers</h3>
     <p>
-        <strong>Note:</strong> The
-        <code class="inline-code">access_token</code> is displayed as the
-        Postman variable <code class="inline-code">bearer_token</code> in the
-        <strong>Authorization</strong> tab of API requests in the provided
-        Postman collection.
+        An <code class="inline-code">access_token</code> is required in the
+        Authorization Header of requests for authentication.
     </p>
-</blockquote>
-<h3 id="request-bodies-2">Request Bodies</h3>
-<p>
-    The Request Body for both a
-    <code class="inline-code">/scan/v2/startscanning</code> and
-    <code class="inline-code">/scan/v2/stopscanning</code> request are the same,
-    only providing a <code class="inline-code">connectionId</code> of the
-    device.
-</p>
+    <div class="info-alert">
+        <div class="">
+            <p>
+                <strong>Note:</strong> The
+                <code class="inline-code">access_token</code> is displayed as
+                the Postman variable
+                <code class="inline-code">bearer_token</code> in the
+                <strong>Authorization</strong> tab of API requests in the
+                provided Postman collection.
+            </p>
+        </div>
+        <h3 id="request-bodies-2">Request Bodies</h3>
+        <p>
+            The Request Body for both a
+            <code class="inline-code">/scan/v2/startscanning</code> and
+            <code class="inline-code">/scan/v2/stopscanning</code> request are
+            the same, only providing a
+            <code class="inline-code">connectionId</code> of the device.
+        </p>
+    </div>
+</div>

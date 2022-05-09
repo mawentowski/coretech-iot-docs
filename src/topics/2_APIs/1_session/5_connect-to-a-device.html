@@ -73,25 +73,29 @@
     <strong>5 minutes</strong> from the time of the request is returned. This
     indicates when the connection to the device expires.
 </p>
-<blockquote>
+<div class="info-alert">
+    <div class="">
+        <p>
+            <strong>Tip:</strong> If continued access to the device is desired,
+            ensure to send another <span class="method post">POST</span>
+            <code class="inline-code">/session/v2/connections</code> request to
+            create a new connection at the time of expiry of the old connection.
+        </p>
+    </div>
     <p>
-        <strong>Tip:</strong> If continued access to the device is desired,
-        ensure to send another <span class="method post">POST</span>
-        <code class="inline-code">/session/v2/connections</code> request to
-        create a new connection at the time of expiry of the old connection.
+        The API also returns properties passed in the Request Body (for example,
+        the
+        <code class="inline-code">reservationId</code>).
     </p>
-</blockquote>
-<p>
-    The API also returns properties passed in the Request Body (for example, the
-    <code class="inline-code">reservationId</code>).
-</p>
-<h3 id="best-practices-2">Best Practices</h3>
-<h4 id="deleting-connections">Deleting Connections</h4>
-<p>
-    If a connection is no longer needed, it is best practice to delete the
-    connection to allow other airline backends to connect to the device. This is
-    achieved by sending a DEL
-    <code class="inline-code">/session/v2/connections/{connection_id}</code>
-    request, passing in the <code class="inline-code">connection_id</code> of
-    the connection to be deleted as a path parameter.
-</p>
+    <h3 id="best-practices-2">Best Practices</h3>
+    <h4 id="deleting-connections">Deleting Connections</h4>
+    <p>
+        If a connection is no longer needed, it is best practice to delete the
+        connection to allow other airline backends to connect to the device.
+        This is achieved by sending a DEL
+        <code class="inline-code">/session/v2/connections/{connection_id}</code>
+        request, passing in the
+        <code class="inline-code">connection_id</code> of the connection to be
+        deleted as a path parameter.
+    </p>
+</div>

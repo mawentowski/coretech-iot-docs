@@ -41,63 +41,64 @@
     An <code class="inline-code">access_token</code> is required in the
     Authorization Header of requests for authentication.
 </p>
-<blockquote>
+<div class="info-alert">
+    <div class="">
+        <p>
+            <strong>Note:</strong> The
+            <code class="inline-code">access_token</code> is displayed as the
+            Postman variable <code class="inline-code">bearer_token</code> in
+            the <strong>Authorization</strong> tab of API requests in the
+            provided Postman collection.
+        </p>
+    </div>
+    <h3 id="request-bodies-1">Request Bodies</h3>
     <p>
-        <strong>Note:</strong> The
-        <code class="inline-code">access_token</code> is displayed as the
-        Postman variable <code class="inline-code">bearer_token</code> in the
-        <strong>Authorization</strong> tab of API requests in the provided
-        Postman collection.
+        All Request Bodies must include the
+        <code class="inline-code">ConnectionId</code> of the device the airline
+        backend wishes to interact with and some form of print data depending on
+        the format that defines the print output.
     </p>
-</blockquote>
-<h3 id="request-bodies-1">Request Bodies</h3>
-<p>
-    All Request Bodies must include the
-    <code class="inline-code">ConnectionId</code> of the device the airline
-    backend wishes to interact with and some form of print data depending on the
-    format that defines the print output.
-</p>
-<ul>
-    <li>
-        PDF, SVG, and report data are represented by the property
-        <code class="inline-code">PrintData</code> in the Request Body.
-    </li>
-    <li>
-        AEA print data are represented by the property
-        <code class="inline-code">AeaPrintData</code> in the Request Body.
-    </li>
-    <li>
-        In addition to including <code class="inline-code">PrintData</code> in
-        baggage tag PDF requests, the
-        <code class="inline-code">RfidData</code> property can be included in
-        the Request Body to represent RFID baggage tag data.
-    </li>
-</ul>
-<p>
-    The following is a sample Request Body for printing a boarding pass using an
-    ATB device in either PDF or SVG format. PDF and SVG data are represented by
-    the property <code class="inline-code">printData</code> passed in the
-    Request Body.
-</p>
-<pre><code class="language-JSON">{
+    <ul>
+        <li>
+            PDF, SVG, and report data are represented by the property
+            <code class="inline-code">PrintData</code> in the Request Body.
+        </li>
+        <li>
+            AEA print data are represented by the property
+            <code class="inline-code">AeaPrintData</code> in the Request Body.
+        </li>
+        <li>
+            In addition to including
+            <code class="inline-code">PrintData</code> in baggage tag PDF
+            requests, the <code class="inline-code">RfidData</code> property can
+            be included in the Request Body to represent RFID baggage tag data.
+        </li>
+    </ul>
+    <p>
+        The following is a sample Request Body for printing a boarding pass
+        using an ATB device in either PDF or SVG format. PDF and SVG data are
+        represented by the property
+        <code class="inline-code">printData</code> passed in the Request Body.
+    </p>
+    <pre><code class="language-JSON">{
   &quot;connectionId&quot;: &quot;54624182-10c5-481b-ad9a-b9d1473bdb6f&quot;,
   &quot;correlationId&quot;: &quot;string&quot;,
   &quot;printData&quot;: &quot;JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb25EYXRlKEQ6MjAxODEwM...&quot;
 }
 </code></pre>
-<h5 id="sample-request-body-for-post-printv2boardingpass-request">
-    Sample Request Body for <span class="method post">POST</span>
-    <code class="inline-code">/print/v2/boardingpass/</code> request
-</h5>
-<p>
-    The following is a sample Request Body for printing a bag tag using a BTP
-    device in PDF format. The PDF data are represented by
-    <code class="inline-code">printData</code>, same as when printing a PDF
-    using an ATB. However, there is another data property called
-    <code class="inline-code">rfidData</code> associated with baggage tag data
-    specific to the BTP.
-</p>
-<pre><code class="language-JSON">{
+    <h5 id="sample-request-body-for-post-printv2boardingpass-request">
+        Sample Request Body for <span class="method post">POST</span>
+        <code class="inline-code">/print/v2/boardingpass/</code> request
+    </h5>
+    <p>
+        The following is a sample Request Body for printing a bag tag using a
+        BTP device in PDF format. The PDF data are represented by
+        <code class="inline-code">printData</code>, same as when printing a PDF
+        using an ATB. However, there is another data property called
+        <code class="inline-code">rfidData</code> associated with baggage tag
+        data specific to the BTP.
+    </p>
+    <pre><code class="language-JSON">{
   &quot;connectionId&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;,
   &quot;correlationId&quot;: &quot;347d8924-73cf-4662-ad34-0ebfc28c4fc6&quot;,
   &quot;printData&quot;: &quot;JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb25EYXRlKEQ6MjAxODEwM...&quot;,
@@ -107,17 +108,17 @@
   }
 }
 </code></pre>
-<h5 id="sample-request-body-for-post-printv2baggagetagpdf-request">
-    Sample Request Body for <span class="method post">POST</span>
-    <code class="inline-code">/print/v2/baggagetag/pdf</code> request
-</h5>
-<p>
-    The following is a sample Request Body for printing either a boarding pass
-    or bag tag in AEA format. Notice that
-    <code class="inline-code">aeaPrintData</code> is used instead of
-    <code class="inline-code">printData</code>.
-</p>
-<pre><code class="language-JSON">{
+    <h5 id="sample-request-body-for-post-printv2baggagetagpdf-request">
+        Sample Request Body for <span class="method post">POST</span>
+        <code class="inline-code">/print/v2/baggagetag/pdf</code> request
+    </h5>
+    <p>
+        The following is a sample Request Body for printing either a boarding
+        pass or bag tag in AEA format. Notice that
+        <code class="inline-code">aeaPrintData</code> is used instead of
+        <code class="inline-code">printData</code>.
+    </p>
+    <pre><code class="language-JSON">{
   &quot;connectionId&quot;: &quot;33ed0d5a-3a92-4f08-be97-73535d73fc09&quot;,
   &quot;correlationId&quot;: &quot;10099a59-6880-468d-ac66-8bbda5eb7d02&quot;,
   &quot;aeaPrintData&quot;: {
@@ -129,8 +130,10 @@
   }
 }
 </code></pre>
-<h5
-    id="sample-request-body-for-printing-boarding-passes-or-bag-tags-in-aea-format"
->
-    Sample Request Body for printing boarding passes or bag tags in AEA format
-</h5>
+    <h5
+        id="sample-request-body-for-printing-boarding-passes-or-bag-tags-in-aea-format"
+    >
+        Sample Request Body for printing boarding passes or bag tags in AEA
+        format
+    </h5>
+</div>
