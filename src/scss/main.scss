@@ -223,7 +223,7 @@ body {
                     $svg-dimension: 24px;
 
                     margin-left: $svg-dimension;
-                    margin-left: -4px;
+                    margin-left: 3px;
 
                     .left-nav-section,
                     .left-nav-item {
@@ -481,7 +481,7 @@ body {
 }
 
 .title-box {
-    margin-bottom: 2.2rem;
+    margin-bottom: 1.9rem;
 
     h1.topic-title {
         @extend %bold;
@@ -698,7 +698,7 @@ h2.numbered--h2::before {
     font-weight: 400;
     padding: 12px 20px;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 
     div {
         position: relative;
@@ -885,6 +885,7 @@ h2.continued-reading {
     .continue-link-row {
         display: flex;
         align-items: flex-end;
+        padding-bottom: 10px;
 
         .svg-container {
             width: 3%;
@@ -1121,15 +1122,17 @@ a.continue-link {
     color: #697386;
 }
 
-.inline-code {
-    font-size: inherit;
-    color: #3c4356;
-    font-weight: 500;
-    padding: 1px 2px;
-    background: rgb(247 250 252);
-    border: 1px solid #e3e8ed;
-    border-radius: 4px;
-    font-family: 'Courier New', Courier, monospace;
+#my-body {
+    code.inline-code {
+        font-size: inherit;
+        color: #3c4356;
+        font-weight: 500;
+        padding: 1px 2px;
+        background: rgb(247 250 252);
+        border: 1px solid #e3e8ed;
+        border-radius: 4px;
+        font-family: 'Courier New', Courier, monospace;
+    }
 }
 
 a.api-tag {
@@ -1297,4 +1300,12 @@ a.api-tag::after {
 
     span.search-append-text {
     }
+}
+
+.main-content p {
+    line-height: 26px;
+}
+
+.continued-reading-section {
+    margin: 60px 0 23px;
 }

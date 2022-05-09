@@ -1,63 +1,55 @@
 <div class="title-box">
-    <h1 class="topic-title">Basic Concepts</h1>
-    <div class="action-statement">Review these key concepts.</div>
+    <h1 class="topic-title">Recommended Tools</h1>
+    <div class="action-statement">
+        Learn about the tools we recommended to increase efficiency.
+    </div>
 </div>
 
+<p>The following tools are recommending for interacting with Flex.</p>
+<h2 id="postman">Postman</h2>
 <p>
-    Before understanding Flex APIs, it is important to understand a few key
-    concepts that are referred to throughout this documentation.
+    SITA provides a Postman collection that includes environment variables that
+    store repeated information for efficiency.
 </p>
-<table class="main-table">
-    <thead>
-        <tr>
-            <th>Term</th>
-            <th>Definition</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Flex Platform</td>
-            <td>
-                The collection of APIs that provide authentication,
-                subscription, and device access services at an airport or
-                ancillary location.
-            </td>
-        </tr>
-        <tr>
-            <td>Flex Subscriber</td>
-            <td>
-                A subscriber to the Flex Platform. This can be an airline,
-                ground handler or third-party entity that wants to use the Flex
-                Platform. The subscriber can have multiple Flex Registrations
-                grouped by an Airline Code.
-            </td>
-        </tr>
-        <tr>
-            <td>Flex Registration</td>
-            <td>
-                A Flex Registration is an App Registration in Azure Active
-                Directory with roles assigned to allow access to the APIs of the
-                Flex Service. The Flex Registration is associated with the
-                airline code of the Flex Subscriber.
-            </td>
-        </tr>
-        <tr>
-            <td>Airline Backend</td>
-            <td>Refers to your data center or server interacting with Flex.</td>
-        </tr>
-        <tr>
-            <td>Location</td>
-            <td>
-                A Workstation, Kiosk or touch point where one or more
-                Flex-enabled devices are located.
-            </td>
-        </tr>
-    </tbody>
-</table>
 <p>
-    Other terms and acronyms important to understanding Flex are defined in the
-    <a href="Glossary_1.htm">Glossary</a>.
+    There are several blank variables you must fill in with your specific
+    information. For example, <code class="inline-code">client_id</code> and
+    <code class="inline-code">client_secret</code>. Other variables are included
+    that do not require any changes.
 </p>
+<p>Use Postman to:</p>
+<ul>
+    <li>
+        Validate that your development kit is working as expected and that your
+        code is behaving as expected.
+    </li>
+    <li>
+        Copy code snippets and paste them into your application for testing and
+        validation.
+    </li>
+</ul>
+<p>
+    Download Postman here:
+    <a href="https://www.postman.com/downloads"
+        >https://www.postman.com/downloads</a
+    >.
+</p>
+<h2 id="json-web-tokens">JSON Web Tokens</h2>
+<p>
+    The SITA Flex Platform uses Bearer Tokens in the form of JSON Web Tokens
+    (JWT). This is a standard that is defined in RFC 7519.
+</p>
+<p>
+    Microsoft provides <a href="https://jwt.ms">jwt.ms</a> for free to debug
+    JWTs received from the SITA Flex Platform to ensure you understand and can
+    verify their contents.
+</p>
+<h2 id="base64">Base64</h2>
+<p>
+    <a href="https://base64.guru/">Base64</a> provides a range of encoders and
+    decoders that can be used to translate data to-and-from Base64.
+</p>
+
 <div class="continued-reading-section">
     <h2 class="continued-reading">Next Steps</h2>
     <ul class="continue-link-list">
@@ -105,7 +97,7 @@
                 </svg>
             </div>
             <div>
-                <a href="/get-started/overview/apis-overview">APIs Overview</a>
+                <a href="/get-started/overview/whats-next">What's Next</a>
             </div>
         </div>
     </ul>

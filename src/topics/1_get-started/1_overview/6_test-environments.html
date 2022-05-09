@@ -1,63 +1,38 @@
 <div class="title-box">
-    <h1 class="topic-title">Basic Concepts</h1>
-    <div class="action-statement">Review these key concepts.</div>
+    <h1 class="topic-title">Flex Environments</h1>
+    <div class="action-statement">
+        Learn about the Staging and Production environments.
+    </div>
 </div>
 
-<p>
-    Before understanding Flex APIs, it is important to understand a few key
-    concepts that are referred to throughout this documentation.
-</p>
-<table class="main-table">
-    <thead>
-        <tr>
-            <th>Term</th>
-            <th>Definition</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Flex Platform</td>
-            <td>
-                The collection of APIs that provide authentication,
-                subscription, and device access services at an airport or
-                ancillary location.
-            </td>
-        </tr>
-        <tr>
-            <td>Flex Subscriber</td>
-            <td>
-                A subscriber to the Flex Platform. This can be an airline,
-                ground handler or third-party entity that wants to use the Flex
-                Platform. The subscriber can have multiple Flex Registrations
-                grouped by an Airline Code.
-            </td>
-        </tr>
-        <tr>
-            <td>Flex Registration</td>
-            <td>
-                A Flex Registration is an App Registration in Azure Active
-                Directory with roles assigned to allow access to the APIs of the
-                Flex Service. The Flex Registration is associated with the
-                airline code of the Flex Subscriber.
-            </td>
-        </tr>
-        <tr>
-            <td>Airline Backend</td>
-            <td>Refers to your data center or server interacting with Flex.</td>
-        </tr>
-        <tr>
-            <td>Location</td>
-            <td>
-                A Workstation, Kiosk or touch point where one or more
-                Flex-enabled devices are located.
-            </td>
-        </tr>
-    </tbody>
-</table>
-<p>
-    Other terms and acronyms important to understanding Flex are defined in the
-    <a href="Glossary_1.htm">Glossary</a>.
-</p>
+<p>Flex has two environments available for airlines to use:</p>
+<h2 id="staging">Staging</h2>
+<ul>
+    <li>
+        The staging environment is configured and deployed with the same
+        resources as production and so provides an experience akin to using the
+        production environment.
+    </li>
+    <li>
+        It is the staging environment that most Airline Proof of Concepts (PoCs)
+        will use when connecting to Flex.
+    </li>
+    <li>
+        The virtual test locations and Flex suitcases exist within the staging
+        environment.
+    </li>
+</ul>
+<h2 id="production">Production</h2>
+<ul>
+    <li>
+        This is the production environment for Flex where live airport locations
+        are configured.
+    </li>
+    <li>
+        Airline production software will use the Flex production environment for
+        real-world airport operations.
+    </li>
+</ul>
 <div class="continued-reading-section">
     <h2 class="continued-reading">Next Steps</h2>
     <ul class="continue-link-list">
@@ -105,7 +80,9 @@
                 </svg>
             </div>
             <div>
-                <a href="/get-started/overview/apis-overview">APIs Overview</a>
+                <a href="get-started/overview/recommended-tools"
+                    >Recommended Tools</a
+                >
             </div>
         </div>
     </ul>

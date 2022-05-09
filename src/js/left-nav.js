@@ -163,7 +163,7 @@ async function selectLeftNavItemButton(button) {
     const htmlResponseText = await httpResponse.text();
     const loadEndDate = new Date();
     const dateDiffMillis = loadEndDate - loadStartDate;
-    const minLoadingSpinnerMillis = 500;
+    const minLoadingSpinnerMillis = 0;
     const remainingLoadingSpinnerMillis =
         minLoadingSpinnerMillis - dateDiffMillis;
     globalThis.setTimeout(() => {
