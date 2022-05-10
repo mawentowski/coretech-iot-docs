@@ -1,99 +1,105 @@
 <h2 id="acceptpassengerresponse">AcceptPassengerResponse</h2>
 <p>The response to the AcceptPassenger API call.</p>
 <h3 id="message-properties">Message Properties</h3>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Mandatory/Optional</th>
-<th>Value/Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>MessageNamespace</td>
-<td>string</td>
-<td>M</td>
-<td>gate</td>
-</tr>
-<tr>
-<td>MessageType</td>
-<td>string</td>
-<td>M</td>
-<td>AcceptPassengerResponse</td>
-</tr>
-<tr>
-<td>MessageVersion</td>
-<td>string</td>
-<td>M</td>
-<td>1</td>
-</tr>
-<tr>
-<td>ConnectionId</td>
-<td>string</td>
-<td>M</td>
-<td><em>connectionId</em></td>
-</tr>
-<tr>
-<td>CorrelationId</td>
-<td>string</td>
-<td>O</td>
-<td><em>user_defined_string</em></td>
-</tr>
-<tr>
-<td>DeviceId</td>
-<td>string</td>
-<td>M</td>
-<td><em>deviceId</em></td>
-</tr>
-<tr>
-<td>Timestamp</td>
-<td>DateTime</td>
-<td>M</td>
-<td><em>timestamp</em></td>
-</tr>
-</tbody></table>
+<table class="main-table">
+    <thead>
+        <tr>
+            <th>Field</th>
+            <th>Type</th>
+            <th>Mandatory/Optional</th>
+            <th>Value/Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>MessageNamespace</td>
+            <td>string</td>
+            <td>M</td>
+            <td>gate</td>
+        </tr>
+        <tr>
+            <td>MessageType</td>
+            <td>string</td>
+            <td>M</td>
+            <td>AcceptPassengerResponse</td>
+        </tr>
+        <tr>
+            <td>MessageVersion</td>
+            <td>string</td>
+            <td>M</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>ConnectionId</td>
+            <td>string</td>
+            <td>M</td>
+            <td><em>connectionId</em></td>
+        </tr>
+        <tr>
+            <td>CorrelationId</td>
+            <td>string</td>
+            <td>O</td>
+            <td><em>user_defined_string</em></td>
+        </tr>
+        <tr>
+            <td>DeviceId</td>
+            <td>string</td>
+            <td>M</td>
+            <td><em>deviceId</em></td>
+        </tr>
+        <tr>
+            <td>Timestamp</td>
+            <td>DateTime</td>
+            <td>M</td>
+            <td><em>timestamp</em></td>
+        </tr>
+    </tbody>
+</table>
 <h3 id="message-body">Message Body</h3>
 <h4 id="base-message-body">Base Message Body</h4>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Description/Values</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>IsSuccess</td>
-<td>Boolean</td>
-<td>Indicates whether request was successful</td>
-</tr>
-<tr>
-<td>Error</td>
-<td><a href="#GateError">GateError</a></td>
-<td>Contains the error fields</td>
-</tr>
-</tbody></table>
+<table class="main-table">
+    <thead>
+        <tr>
+            <th>Field</th>
+            <th>Type</th>
+            <th>Description/Values</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>IsSuccess</td>
+            <td>Boolean</td>
+            <td>Indicates whether request was successful</td>
+        </tr>
+        <tr>
+            <td>Error</td>
+            <td><a href="#GateError">GateError</a></td>
+            <td>Contains the error fields</td>
+        </tr>
+    </tbody>
+</table>
 <h5 id="gateerror">GateError</h5>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Description/Values</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ErrorCode</td>
-<td>String</td>
-<td>NotAbleToAcceptPassenger</td>
-</tr>
-<tr>
-<td>Message</td>
-<td>String</td>
-<td>Contains the specific reason why the request failed</td>
-</tr>
-</tbody></table>
+<table class="main-table">
+    <thead>
+        <tr>
+            <th>Field</th>
+            <th>Type</th>
+            <th>Description/Values</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>ErrorCode</td>
+            <td>String</td>
+            <td>NotAbleToAcceptPassenger</td>
+        </tr>
+        <tr>
+            <td>Message</td>
+            <td>String</td>
+            <td>Contains the specific reason why the request failed</td>
+        </tr>
+    </tbody>
+</table>
 <p><strong>Message Body Sample Success JSON</strong></p>
 <pre><code class="language-JSON">{
     &quot;IsSuccess&quot;:true,
@@ -110,83 +116,98 @@
 }
 </code></pre>
 <h6 id="error-messages">Error Messages</h6>
-<table>
-<thead>
-<tr>
-<th>Message</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>BoardingCancelledByPassenger</td>
-<td>Boarding was cancelled by passenger leaving through the gate entrance</td>
-</tr>
-<tr>
-<td>FraudErrorPassengerBoardedThenOnePassengerCrossedFromOppositeSide</td>
-<td>One passenger boarded and one crossed from opposite side</td>
-</tr>
-<tr>
-<td>FraudErrorPassengerBoardedThenReturnedToEntrance</td>
-<td>One passenger boarded but then returned to the entrance</td>
-</tr>
-<tr>
-<td>FraudErrorPassengerBoardedThenTwoPassengerCrossedFromOppositeSide</td>
-<td>One passenger boarded and two crossed from opposite side</td>
-</tr>
-<tr>
-<td>ReceiptPrintFailureBadDataCLFCodeNotFound</td>
-<td>The receipt print command contained an unknown CLF code</td>
-</tr>
-<tr>
-<td>ReceiptPrintFailureBadDataFont</td>
-<td>The receipt print command contained an unknown font</td>
-</tr>
-<tr>
-<td>ReceiptPrintFailureBadDataFontSize</td>
-<td>The receipt print command contained an unsupported font size</td>
-</tr>
-<tr>
-<td>ReceiptPrintFailurePaperJam</td>
-<td>A receipt print was attempted but their was a paper jam</td>
-</tr>
-<tr>
-<td>ReceiptPrintFailurePaperOut</td>
-<td>A receipt print was attempted but the paper is out</td>
-</tr>
-<tr>
-<td>ReceiptPrintFailurePrinterBusy</td>
-<td>Receipt print failed due to technical issue</td>
-</tr>
-<tr>
-<td>ReceiptPrintFailurePrinterMissing</td>
-<td>Receipt print failed due to technical issue</td>
-</tr>
-<tr>
-<td>ReceiptPrintFailurePrinterNotAvailable</td>
-<td>Receipt print failed due to technical issue</td>
-</tr>
-<tr>
-<td>ReceiptPrintFailurePrinterOffline</td>
-<td>Receipt print failed due to technical issue</td>
-</tr>
-<tr>
-<td>TailGateFraudOnePassengerBoarded</td>
-<td>Tail gate fraud, 1 passenger boarded and 1 passenger returned</td>
-</tr>
-<tr>
-<td>TailGateFraudTwoPassengersBoarded</td>
-<td>Tail gate fraud, 2 passengers boarded at same time</td>
-</tr>
-<tr>
-<td>TimedOutPassengerDidNotTakeReceipt</td>
-<td>A receipt was printed but the passenger did not take it in time</td>
-</tr>
-<tr>
-<td>TimedOutPassengerDidNotWalkThroughGate</td>
-<td>The passenger failed to pass through the gate in time</td>
-</tr>
-<tr>
-<td>TimedOutPassengerTookReceiptTooLate</td>
-<td>A receipt was printed but the passenger took it too late</td>
-</tr>
-</tbody></table>
+<table class="main-table">
+    <thead>
+        <tr>
+            <th>Message</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>BoardingCancelledByPassenger</td>
+            <td>
+                Boarding was cancelled by passenger leaving through the gate
+                entrance
+            </td>
+        </tr>
+        <tr>
+            <td>
+                FraudErrorPassengerBoardedThenOnePassengerCrossedFromOppositeSide
+            </td>
+            <td>One passenger boarded and one crossed from opposite side</td>
+        </tr>
+        <tr>
+            <td>FraudErrorPassengerBoardedThenReturnedToEntrance</td>
+            <td>One passenger boarded but then returned to the entrance</td>
+        </tr>
+        <tr>
+            <td>
+                FraudErrorPassengerBoardedThenTwoPassengerCrossedFromOppositeSide
+            </td>
+            <td>One passenger boarded and two crossed from opposite side</td>
+        </tr>
+        <tr>
+            <td>ReceiptPrintFailureBadDataCLFCodeNotFound</td>
+            <td>The receipt print command contained an unknown CLF code</td>
+        </tr>
+        <tr>
+            <td>ReceiptPrintFailureBadDataFont</td>
+            <td>The receipt print command contained an unknown font</td>
+        </tr>
+        <tr>
+            <td>ReceiptPrintFailureBadDataFontSize</td>
+            <td>
+                The receipt print command contained an unsupported font size
+            </td>
+        </tr>
+        <tr>
+            <td>ReceiptPrintFailurePaperJam</td>
+            <td>A receipt print was attempted but their was a paper jam</td>
+        </tr>
+        <tr>
+            <td>ReceiptPrintFailurePaperOut</td>
+            <td>A receipt print was attempted but the paper is out</td>
+        </tr>
+        <tr>
+            <td>ReceiptPrintFailurePrinterBusy</td>
+            <td>Receipt print failed due to technical issue</td>
+        </tr>
+        <tr>
+            <td>ReceiptPrintFailurePrinterMissing</td>
+            <td>Receipt print failed due to technical issue</td>
+        </tr>
+        <tr>
+            <td>ReceiptPrintFailurePrinterNotAvailable</td>
+            <td>Receipt print failed due to technical issue</td>
+        </tr>
+        <tr>
+            <td>ReceiptPrintFailurePrinterOffline</td>
+            <td>Receipt print failed due to technical issue</td>
+        </tr>
+        <tr>
+            <td>TailGateFraudOnePassengerBoarded</td>
+            <td>
+                Tail gate fraud, 1 passenger boarded and 1 passenger returned
+            </td>
+        </tr>
+        <tr>
+            <td>TailGateFraudTwoPassengersBoarded</td>
+            <td>Tail gate fraud, 2 passengers boarded at same time</td>
+        </tr>
+        <tr>
+            <td>TimedOutPassengerDidNotTakeReceipt</td>
+            <td>
+                A receipt was printed but the passenger did not take it in time
+            </td>
+        </tr>
+        <tr>
+            <td>TimedOutPassengerDidNotWalkThroughGate</td>
+            <td>The passenger failed to pass through the gate in time</td>
+        </tr>
+        <tr>
+            <td>TimedOutPassengerTookReceiptTooLate</td>
+            <td>A receipt was printed but the passenger took it too late</td>
+        </tr>
+    </tbody>
+</table>

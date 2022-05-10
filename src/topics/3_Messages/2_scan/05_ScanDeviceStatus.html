@@ -1,78 +1,85 @@
 <h2 id="scandevicestatus">ScanDeviceStatus</h2>
-<p>This message is received on the service bus for the status of a scanning device for a particular connection.</p>
+<p>
+    This message is received on the service bus for the status of a scanning
+    device for a particular connection.
+</p>
 <h3 id="message-properties">Message Properties</h3>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Mandatory/Optional</th>
-<th>Value/Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>MessageNamespace</td>
-<td>string</td>
-<td>M</td>
-<td>scan</td>
-</tr>
-<tr>
-<td>MessageType</td>
-<td>string</td>
-<td>M</td>
-<td>ScanDeviceStatus</td>
-</tr>
-<tr>
-<td>MessageVersion</td>
-<td>string</td>
-<td>M</td>
-<td>1</td>
-</tr>
-<tr>
-<td>ConnectionId</td>
-<td>string</td>
-<td>M</td>
-<td><em>connectionId</em></td>
-</tr>
-<tr>
-<td>CorrelationId</td>
-<td>string</td>
-<td>M</td>
-<td><em>user_defined_string</em></td>
-</tr>
-<tr>
-<td>DeviceId</td>
-<td>string</td>
-<td>M</td>
-<td><em>deviceId</em></td>
-</tr>
-<tr>
-<td>Timestamp</td>
-<td>DateTime</td>
-<td>M</td>
-<td><em>timestamp</em></td>
-</tr>
-</tbody></table>
+<table class="main-table">
+    <thead>
+        <tr>
+            <th>Field</th>
+            <th>Type</th>
+            <th>Mandatory/Optional</th>
+            <th>Value/Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>MessageNamespace</td>
+            <td>string</td>
+            <td>M</td>
+            <td>scan</td>
+        </tr>
+        <tr>
+            <td>MessageType</td>
+            <td>string</td>
+            <td>M</td>
+            <td>ScanDeviceStatus</td>
+        </tr>
+        <tr>
+            <td>MessageVersion</td>
+            <td>string</td>
+            <td>M</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>ConnectionId</td>
+            <td>string</td>
+            <td>M</td>
+            <td><em>connectionId</em></td>
+        </tr>
+        <tr>
+            <td>CorrelationId</td>
+            <td>string</td>
+            <td>M</td>
+            <td><em>user_defined_string</em></td>
+        </tr>
+        <tr>
+            <td>DeviceId</td>
+            <td>string</td>
+            <td>M</td>
+            <td><em>deviceId</em></td>
+        </tr>
+        <tr>
+            <td>Timestamp</td>
+            <td>DateTime</td>
+            <td>M</td>
+            <td><em>timestamp</em></td>
+        </tr>
+    </tbody>
+</table>
 <h3 id="message-body">Message Body</h3>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Description/Values</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>DeviceStatus</td>
-<td>string</td>
-<td>[PoweredOff, Offline, Online]</td>
-</tr>
-<tr>
-<td>DeviceInUse</td>
-<td>boolean</td>
-<td>True, False</td>
-</tr>
-</tbody></table>
+<table class="main-table">
+    <thead>
+        <tr>
+            <th>Field</th>
+            <th>Type</th>
+            <th>Description/Values</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>DeviceStatus</td>
+            <td>string</td>
+            <td>[PoweredOff, Offline, Online]</td>
+        </tr>
+        <tr>
+            <td>DeviceInUse</td>
+            <td>boolean</td>
+            <td>True, False</td>
+        </tr>
+    </tbody>
+</table>
 <p><strong>Message Body Sample Success JSON</strong></p>
 <pre><code class="language-JSON">{ 
     &quot;DeviceStatus&quot;: &quot;Online&quot;,

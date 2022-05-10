@@ -1,75 +1,86 @@
 <h2 id="gatedevicestatus">GateDeviceStatus</h2>
-<p>This message conveys changes to the gate device status, such as power state etc.</p>
+<p>
+    This message conveys changes to the gate device status, such as power state
+    etc.
+</p>
 <h3 id="message-properties">Message Properties</h3>
-<p>User properties are used to aid in the deserialization of the service bus messages.  These properties can be read from the service bus message and used to determine how to deserialize the message body.</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Mandatory/Optional</th>
-<th>Value/Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>MessageNamespace</td>
-<td>string</td>
-<td>M</td>
-<td>gate</td>
-</tr>
-<tr>
-<td>MessageType</td>
-<td>string</td>
-<td>M</td>
-<td>GateDeviceStatus</td>
-</tr>
-<tr>
-<td>MessageVersion</td>
-<td>string</td>
-<td>M</td>
-<td>1</td>
-</tr>
-<tr>
-<td>ConnectionId</td>
-<td>string</td>
-<td>M</td>
-<td><em>connectionId</em></td>
-</tr>
-<tr>
-<td>CorrelationId</td>
-<td>string</td>
-<td>O</td>
-<td><em>user_defined_string</em></td>
-</tr>
-<tr>
-<td>DeviceId</td>
-<td>string</td>
-<td>M</td>
-<td><em>deviceId</em></td>
-</tr>
-<tr>
-<td>Timestamp</td>
-<td>DateTime</td>
-<td>M</td>
-<td><em>timestamp</em></td>
-</tr>
-</tbody></table>
+<p>
+    User properties are used to aid in the deserialization of the service bus
+    messages. These properties can be read from the service bus message and used
+    to determine how to deserialize the message body.
+</p>
+<table class="main-table">
+    <thead>
+        <tr>
+            <th>Field</th>
+            <th>Type</th>
+            <th>Mandatory/Optional</th>
+            <th>Value/Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>MessageNamespace</td>
+            <td>string</td>
+            <td>M</td>
+            <td>gate</td>
+        </tr>
+        <tr>
+            <td>MessageType</td>
+            <td>string</td>
+            <td>M</td>
+            <td>GateDeviceStatus</td>
+        </tr>
+        <tr>
+            <td>MessageVersion</td>
+            <td>string</td>
+            <td>M</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>ConnectionId</td>
+            <td>string</td>
+            <td>M</td>
+            <td><em>connectionId</em></td>
+        </tr>
+        <tr>
+            <td>CorrelationId</td>
+            <td>string</td>
+            <td>O</td>
+            <td><em>user_defined_string</em></td>
+        </tr>
+        <tr>
+            <td>DeviceId</td>
+            <td>string</td>
+            <td>M</td>
+            <td><em>deviceId</em></td>
+        </tr>
+        <tr>
+            <td>Timestamp</td>
+            <td>DateTime</td>
+            <td>M</td>
+            <td><em>timestamp</em></td>
+        </tr>
+    </tbody>
+</table>
 <h3 id="message-body">Message Body</h3>
 <h4 id="base-message-body">Base Message Body</h4>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Description/Values</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>DeviceStatus</td>
-<td>string</td>
-<td>PoweredOff, Offline, Online</td>
-</tr>
-</tbody></table>
+<table class="main-table">
+    <thead>
+        <tr>
+            <th>Field</th>
+            <th>Type</th>
+            <th>Description/Values</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>DeviceStatus</td>
+            <td>string</td>
+            <td>PoweredOff, Offline, Online</td>
+        </tr>
+    </tbody>
+</table>
 <p><strong>Example GateDeviceStatus JSON Message</strong></p>
 <pre><code class="language-JSON">{
     &quot;DeviceStatus&quot;: &quot;PoweredOff&quot;

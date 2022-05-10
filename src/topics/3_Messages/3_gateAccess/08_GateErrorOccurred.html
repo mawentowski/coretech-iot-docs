@@ -1,98 +1,114 @@
 <h2 id="gateerroroccurred">GateErrorOccurred</h2>
 <p>Gate error message as received from the gate device.</p>
 <h3 id="message-properties">Message Properties</h3>
-<p>User properties are used to aid in the deserialization of the service bus messages.  These properties can be read from the service bus message and used to determine how to deserialize the message body.</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Mandatory/Optional</th>
-<th>Value/Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>MessageNamespace</td>
-<td>string</td>
-<td>M</td>
-<td>gate</td>
-</tr>
-<tr>
-<td>MessageType</td>
-<td>string</td>
-<td>M</td>
-<td>GateErrorOccurred</td>
-</tr>
-<tr>
-<td>MessageVersion</td>
-<td>string</td>
-<td>M</td>
-<td>1</td>
-</tr>
-<tr>
-<td>ConnectionId</td>
-<td>string</td>
-<td>M</td>
-<td><em>connectionId</em></td>
-</tr>
-<tr>
-<td>CorrelationId</td>
-<td>string</td>
-<td>O</td>
-<td><em>user_defined_string</em></td>
-</tr>
-<tr>
-<td>DeviceId</td>
-<td>string</td>
-<td>M</td>
-<td><em>deviceId</em></td>
-</tr>
-<tr>
-<td>Timestamp</td>
-<td>DateTime</td>
-<td>M</td>
-<td><em>timestamp</em></td>
-</tr>
-</tbody></table>
+<p>
+    User properties are used to aid in the deserialization of the service bus
+    messages. These properties can be read from the service bus message and used
+    to determine how to deserialize the message body.
+</p>
+<table class="main-table">
+    <thead>
+        <tr>
+            <th>Field</th>
+            <th>Type</th>
+            <th>Mandatory/Optional</th>
+            <th>Value/Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>MessageNamespace</td>
+            <td>string</td>
+            <td>M</td>
+            <td>gate</td>
+        </tr>
+        <tr>
+            <td>MessageType</td>
+            <td>string</td>
+            <td>M</td>
+            <td>GateErrorOccurred</td>
+        </tr>
+        <tr>
+            <td>MessageVersion</td>
+            <td>string</td>
+            <td>M</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>ConnectionId</td>
+            <td>string</td>
+            <td>M</td>
+            <td><em>connectionId</em></td>
+        </tr>
+        <tr>
+            <td>CorrelationId</td>
+            <td>string</td>
+            <td>O</td>
+            <td><em>user_defined_string</em></td>
+        </tr>
+        <tr>
+            <td>DeviceId</td>
+            <td>string</td>
+            <td>M</td>
+            <td><em>deviceId</em></td>
+        </tr>
+        <tr>
+            <td>Timestamp</td>
+            <td>DateTime</td>
+            <td>M</td>
+            <td><em>timestamp</em></td>
+        </tr>
+    </tbody>
+</table>
 <h3 id="message-body">Message Body</h3>
 <h4 id="base-message-body">Base Message Body</h4>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ErrorCode</td>
-<td>string</td>
-<td>Contains the gate technical error code (see below)</td>
-</tr>
-</tbody></table>
+<table class="main-table">
+    <thead>
+        <tr>
+            <th>Field</th>
+            <th>Type</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>ErrorCode</td>
+            <td>string</td>
+            <td>Contains the gate technical error code (see below)</td>
+        </tr>
+    </tbody>
+</table>
 <p><strong>Example GateErrorOccurred JSON Message</strong></p>
 <pre><code class="language-JSON">{
     &quot;ErrorCode&quot;: &quot;GateTechnicalErrorFlapRelated&quot;,
 }
 </code></pre>
 <h5 id="gate-technical-error-codes">Gate Technical Error Codes</h5>
-<table>
-<thead>
-<tr>
-<th>Error Code</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>GateTechnicalErrorFlapRelated</td>
-<td>TEHF = A technical error happened in the “self-boarding unit” which requires technical assistance – flap related</td>
-</tr>
-<tr>
-<td>GateTechnicalErrorSensorRelated</td>
-<td>TEHS = A technical error happened in the “self-boarding unit” which requires technical assistance – sensor related</td>
-</tr>
-<tr>
-<td>GateTechnicalErrorNotSpecified</td>
-<td>UNKN = Other error which is currently not specified</td>
-</tr>
-</tbody></table>
+<table class="main-table">
+    <thead>
+        <tr>
+            <th>Error Code</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>GateTechnicalErrorFlapRelated</td>
+            <td>
+                TEHF = A technical error happened in the “self-boarding unit”
+                which requires technical assistance – flap related
+            </td>
+        </tr>
+        <tr>
+            <td>GateTechnicalErrorSensorRelated</td>
+            <td>
+                TEHS = A technical error happened in the “self-boarding unit”
+                which requires technical assistance – sensor related
+            </td>
+        </tr>
+        <tr>
+            <td>GateTechnicalErrorNotSpecified</td>
+            <td>UNKN = Other error which is currently not specified</td>
+        </tr>
+    </tbody>
+</table>

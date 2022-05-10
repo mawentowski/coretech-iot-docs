@@ -1,121 +1,127 @@
 <h2 id="barcoderead">BarcodeRead</h2>
 <p>This message is received on the service bus for an LSR scan.</p>
 <h3 id="message-properties">Message Properties</h3>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Mandatory/Optional</th>
-<th>Value/Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>MessageNamespace</td>
-<td>string</td>
-<td>M</td>
-<td>scan</td>
-</tr>
-<tr>
-<td>MessageType</td>
-<td>string</td>
-<td>M</td>
-<td>BarcodeRead</td>
-</tr>
-<tr>
-<td>MessageVersion</td>
-<td>string</td>
-<td>M</td>
-<td>1</td>
-</tr>
-<tr>
-<td>ConnectionId</td>
-<td>string</td>
-<td>M</td>
-<td><em>connectionId</em></td>
-</tr>
-<tr>
-<td>CorrelationId</td>
-<td>string</td>
-<td>M</td>
-<td><em>user_defined_string</em></td>
-</tr>
-<tr>
-<td>DeviceId</td>
-<td>string</td>
-<td>M</td>
-<td><em>deviceId</em></td>
-</tr>
-<tr>
-<td>Timestamp</td>
-<td>DateTime</td>
-<td>M</td>
-<td><em>timestamp</em></td>
-</tr>
-</tbody></table>
+<table class="main-table">
+    <thead>
+        <tr>
+            <th>Field</th>
+            <th>Type</th>
+            <th>Mandatory/Optional</th>
+            <th>Value/Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>MessageNamespace</td>
+            <td>string</td>
+            <td>M</td>
+            <td>scan</td>
+        </tr>
+        <tr>
+            <td>MessageType</td>
+            <td>string</td>
+            <td>M</td>
+            <td>BarcodeRead</td>
+        </tr>
+        <tr>
+            <td>MessageVersion</td>
+            <td>string</td>
+            <td>M</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>ConnectionId</td>
+            <td>string</td>
+            <td>M</td>
+            <td><em>connectionId</em></td>
+        </tr>
+        <tr>
+            <td>CorrelationId</td>
+            <td>string</td>
+            <td>M</td>
+            <td><em>user_defined_string</em></td>
+        </tr>
+        <tr>
+            <td>DeviceId</td>
+            <td>string</td>
+            <td>M</td>
+            <td><em>deviceId</em></td>
+        </tr>
+        <tr>
+            <td>Timestamp</td>
+            <td>DateTime</td>
+            <td>M</td>
+            <td><em>timestamp</em></td>
+        </tr>
+    </tbody>
+</table>
 <h3 id="message-body">Message Body</h3>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Description/Values</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>BarCodeData</td>
-<td>string</td>
-<td>A string containing the barcode.</td>
-</tr>
-<tr>
-<td>BarCodeType</td>
-<td>string</td>
-<td>Contains the bar code type(see below)</td>
-</tr>
-</tbody></table>
+<table class="main-table">
+    <thead>
+        <tr>
+            <th>Field</th>
+            <th>Type</th>
+            <th>Description/Values</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>BarCodeData</td>
+            <td>string</td>
+            <td>A string containing the barcode.</td>
+        </tr>
+        <tr>
+            <td>BarCodeType</td>
+            <td>string</td>
+            <td>Contains the bar code type(see below)</td>
+        </tr>
+    </tbody>
+</table>
 <h4 id="bar-code-type">Bar Code Type</h4>
-<table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>1D Code Interleaved 2 of 5</td>
-</tr>
-<tr>
-<td>3</td>
-<td>1D Code 39</td>
-</tr>
-<tr>
-<td>4</td>
-<td>1D Data Matrix</td>
-</tr>
-<tr>
-<td>5</td>
-<td>2D QR</td>
-</tr>
-<tr>
-<td>6</td>
-<td>2D PDF417</td>
-</tr>
-<tr>
-<td>7</td>
-<td>1D Code 128 with check digit</td>
-</tr>
-<tr>
-<td>8</td>
-<td>1D Code 39 with check digit</td>
-</tr>
-<tr>
-<td>0</td>
-<td>1D Interleaved 2 of 5 with check digit</td>
-</tr>
-</tbody></table>
+<table class="main-table">
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>1D Code Interleaved 2 of 5</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>1D Code 39</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>1D Data Matrix</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>2D QR</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>2D PDF417</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>1D Code 128 with check digit</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>1D Code 39 with check digit</td>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td>1D Interleaved 2 of 5 with check digit</td>
+        </tr>
+    </tbody>
+</table>
 <p><strong>Message Body Sample Success JSON</strong></p>
-<p>```JSON 
-{
-    &quot;BarCodeData&quot;: &quot;0000123456789&quot;, 
-    &quot;BarCodeType&quot;: &quot;1&quot;<br>}</p>
+<p>
+    ```JSON { &quot;BarCodeData&quot;: &quot;0000123456789&quot;,
+    &quot;BarCodeType&quot;: &quot;1&quot;<br />}
+</p>
