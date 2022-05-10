@@ -1,4 +1,8 @@
-<h2 id="reserve-a-location">Reserve a Location</h2>
+<div class="title-box">
+    <h1 class="topic-title">Reserve a Location</h1>
+    <div class="action-statement">Learn how to reserve a location to interact with its devices</div>
+</div>
+
 <p>
     The <span class="method post">POST</span>
     <code class="inline-code">/site/v2/reservations</code> request limits use of
@@ -6,14 +10,15 @@
     request. The airline backend must reserve the location to make use of its
     devices.
 </p>
-<div class="info-alert">
+<div class="alert-section info-alert">
     <div class="">
         <p>
-            <strong>Note:</strong> Flex knows the airline code of the requester
-            because it is encoded in the access token.
+            Flex knows the airline code of the requester because it is encoded
+            in the access token.
         </p>
     </div>
-    <h3 id="request-body-1">Request Body</h3>
+</div>
+    <h2 id="request-body-1">Request Body</h2>
     <p>
         The airline backend sends a <span class="method post">POST</span>
         <code class="inline-code">/site/v2/reservations</code> request, passing
@@ -25,7 +30,7 @@
         reserved:
     </p>
     <pre><code class="language-JSON">{
-  &quot;LocationId&quot;: &quot;A-ZZU-MZUZUAIRPORT-ZZU1CKB004&quot;
+  "LocationId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004"
 }
 </code></pre>
     <h5
@@ -36,7 +41,7 @@
         the <code class="inline-code">LocationId</code> passed from the client
         app
     </h5>
-    <h3 id="response-body">Response Body</h3>
+    <h2 id="response-body">Response Body</h2>
     <p>
         A successful request returns a
         <code class="inline-code">2xx</code> success status code with the JSON
@@ -46,10 +51,10 @@
     </p>
     <pre><code class="language-JSON">[
     {
-        &quot;reservationId&quot;: &quot;868e5715-2c82-426e-b7da-10e208dd865d&quot;,
-        &quot;airlineCode&quot;: &quot;ZZ&quot;,
-        &quot;locationId&quot;: &quot;A-ZZU-MZUZUAIRPORT-ZZU1CKB004&quot;,
-        &quot;expiryTime&quot;: &quot;2021-11-24T19:26:30.846778+00:00&quot;
+        "reservationId": "868e5715-2c82-426e-b7da-10e208dd865d",
+        "airlineCode": "ZZ",
+        "locationId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004",
+        "expiryTime": "2021-11-24T19:26:30.846778+00:00"
     }
 ]
 </code></pre>
@@ -68,12 +73,12 @@
         Body. The property <code class="inline-code">expiryTime</code> indicates
         when the reservation is due to expire.
     </p>
-    <div class="info-alert">
+    <div class="alert-section info-alert">
         <div class="">
             <p>
-                <strong>Note:</strong> It is important that airline backends
-                keep track of when a location reservation is about to expire so
-                it can request a new reservation if continued access is desired.
+                It is important that airline backends keep track of when a
+                location reservation is about to expire so it can request a new
+                reservation if continued access is desired.
             </p>
         </div>
         <p>
@@ -90,11 +95,11 @@
             that is already reserved:
         </p>
         <pre><code class="language-JSON">{
-    &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc7231#section-6.5.1&quot;,
-    &quot;title&quot;: &quot;Bad Request&quot;,
-    &quot;status&quot;: 400,
-    &quot;detail&quot;: &quot;Location reserved by other airlines.&quot;,
-    &quot;traceId&quot;: &quot;00-25dd79293ba71f479ce30da826eecd09-3aa97e2de755f540-00&quot;
+    "type": "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+    "title": "Bad Request",
+    "status": 400,
+    "detail": "Location reserved by other airlines.",
+    "traceId": "00-25dd79293ba71f479ce30da826eecd09-3aa97e2de755f540-00"
 }
 </code></pre>
         <h5
@@ -103,12 +108,11 @@
             Sample 400 Bad Request Error Message when a location is reserved by
             another airline
         </h5>
-        <div class="info-alert">
+        <div class="alert-section info-alert">
             <div class="">
                 <p>
-                    <strong>Note:</strong> For a ground handler, there is a
-                    concept that any airlines it handles can share a location at
-                    the same time.
+                    For a ground handler, there is a concept that any airlines
+                    it handles can share a location at the same time.
                 </p>
             </div>
             <p>
@@ -119,7 +123,7 @@
                 request returns a <code class="inline-code">2xx</code> success
                 status code and deletes a reservation if one exists.
             </p>
-            <h3 id="best-practices">Best Practices</h3>
+            <h2 id="best-practices">Best Practices</h2>
             <h4 id="deleting-reservations">Deleting Reservations</h4>
             <p>
                 It is important to delete the reservation once done with a

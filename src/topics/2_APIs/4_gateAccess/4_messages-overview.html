@@ -17,7 +17,7 @@
     <code class="inline-code">Online</code>.
 </p>
 <pre><code class="language-JSON">{
-    &quot;DeviceStatus&quot;: &quot;Online&quot;
+    "DeviceStatus": "Online"
 }
 </code></pre>
 <h5
@@ -44,7 +44,7 @@
     <code class="inline-code">PoweredOff</code>.
 </p>
 <pre><code class="language-json">{
-    &quot;DeviceStatus&quot;: &quot;PoweredOff&quot;
+    "DeviceStatus": "PoweredOff"
 }
 </code></pre>
 <h5
@@ -67,10 +67,10 @@
     passengers (a process not involving a gate), the boarding process is
     initiated and an agent may begin scanning boarding passes.
 </p>
-<div class="info-alert">
+<div class="alert-section info-alert">
     <div class="">
         <p>
-            <strong>Note:</strong> The
+            The
             <code class="inline-code">/gateaccess/v2/opengate</code> request is
             only sent once at the beginning of the process, not each time a
             passenger needs to pass through it. Once all passengers are
@@ -93,8 +93,8 @@
         <code class="inline-code">true</code>.
     </p>
     <pre><code class="language-json">{
-    &quot;IsSuccess&quot;: true,
-    &quot;Error&quot;: null
+    "IsSuccess": true,
+    "Error": null
 }
 </code></pre>
     <h5
@@ -121,7 +121,7 @@
         string.
     </p>
     <pre><code class="language-JSON">{
-   &quot;BarcodeData&quot;:&quot;6M1AZKUR AHMETKUR ERG6ULZ ZRHISTTK 1912 211Y024F0028 150&gt;10B1OO2211BTK 292352404859427 1 020K X&quot;
+   "BarcodeData":"6M1AZKUR AHMETKUR ERG6ULZ ZRHISTTK 1912 211Y024F0028 150&gt;10B1OO2211BTK 292352404859427 1 020K X"
 }
 </code></pre>
     <h5
@@ -138,7 +138,7 @@
         Service Bus.
     </p>
     <pre><code class="language-JSON">{
-   &quot;Message&quot;:&quot;Timeout has occurred while executing the command &#39;DisplayCommand&#39;!&quot;
+   "Message":"Timeout has occurred while executing the command &#39;DisplayCommand&#39;!"
 }
 </code></pre>
     <h5
@@ -185,11 +185,11 @@
         Gate Reader, not gate).
     </p>
     <pre><code class="language-Json">{
-    &quot;ConnectionId&quot;: &quot;{{bgr_connection_id}}&quot;,
-    &quot;CorrelationId&quot;: &quot;{{$guid}}&quot;,
-    &quot;Message&quot;: [&quot;Passenger Okay to Board&quot;],
-    &quot;ReceiptData&quot;: {
-      &quot;Data&quot;: &quot;#NN#RD#FONT1#SIZE7#FREEBOARDING RECEIPT#FONT1#SIZE7#FREECLASS CHANGE#FONT1#SIZE0#FREE#FONT1#SIZE0#FREEYour class has changed - See Below#FONT1#SIZE0#FREE#FONT1#SIZE3#NAMELEE/MAYLIN MDM#FONT1#SIZE3#FREE#FONT1#SIZE3#ALCDMH#FONT1#SIZE3#FLNR0002#FONT1#SIZE3#DATE16JAN#FONT1#SIZE3#BORDKUL#FONT1#SIZE3#DESTLHR#FONT1#SIZE3#SQNR8#FONT1#SIZE7#SEAT1K#FONT1#SIZE7#CLSSF#FONT1#SIZE0#FREE&quot;
+    "ConnectionId": "{{bgr_connection_id}}",
+    "CorrelationId": "{{$guid}}",
+    "Message": ["Passenger Okay to Board"],
+    "ReceiptData": {
+      "Data": "#NN#RD#FONT1#SIZE7#FREEBOARDING RECEIPT#FONT1#SIZE7#FREECLASS CHANGE#FONT1#SIZE0#FREE#FONT1#SIZE0#FREEYour class has changed - See Below#FONT1#SIZE0#FREE#FONT1#SIZE3#NAMELEE/MAYLIN MDM#FONT1#SIZE3#FREE#FONT1#SIZE3#ALCDMH#FONT1#SIZE3#FLNR0002#FONT1#SIZE3#DATE16JAN#FONT1#SIZE3#BORDKUL#FONT1#SIZE3#DESTLHR#FONT1#SIZE3#SQNR8#FONT1#SIZE7#SEAT1K#FONT1#SIZE7#CLSSF#FONT1#SIZE0#FREE"
     }
 }
 </code></pre>
@@ -208,12 +208,11 @@
         the receipt for the passenger. <strong>Important</strong>: the passenger
         must then take the receipt for the gate to open.
     </p>
-    <div class="info-alert">
+    <div class="alert-section info-alert">
         <div class="">
             <p>
-                <strong>Note:</strong> It is also possible, but rarer, for there
-                to be a printer for a Boarding Gate Reader in an agent-driven
-                boarding scenario.
+                It is also possible, but rarer, for there to be a printer for a
+                Boarding Gate Reader in an agent-driven boarding scenario.
             </p>
         </div>
         <p>
@@ -230,8 +229,8 @@
             made with no errors.
         </p>
         <pre><code class="language-json">{
-    &quot;IsSuccess&quot;: true,
-    &quot;Error&quot;: null
+    "IsSuccess": true,
+    "Error": null
 }
 </code></pre>
         <h5
@@ -254,12 +253,11 @@
             opens with a green arrow that signals to the passenger they may now
             proceed through the gate.
         </p>
-        <div class="info-alert">
+        <div class="alert-section info-alert">
             <div class="">
                 <p>
-                    <strong>Note:</strong> In the case of a gate, any messages
-                    displayed to the passenger are not controlled by the
-                    GateAccess API.
+                    In the case of a gate, any messages displayed to the
+                    passenger are not controlled by the GateAccess API.
                 </p>
             </div>
             <h3 id="rejectpassengerresponse">RejectPassengerResponse</h3>
@@ -280,10 +278,10 @@
                 is rejected.
             </p>
             <pre><code class="language-Json">{
-    &quot;ConnectionId&quot;: &quot;{{bgr_connection_id}}&quot;,
-    &quot;CorrelationId&quot;: &quot;{{$guid}}&quot;,
-    &quot;Message&quot;: [ &quot;Passenger Not Ok to Board&quot; ],
-    &quot;Alarm&quot;: true
+    "ConnectionId": "{{bgr_connection_id}}",
+    "CorrelationId": "{{$guid}}",
+    "Message": [ "Passenger Not Ok to Board" ],
+    "Alarm": true
 }
 </code></pre>
             <h5
@@ -310,8 +308,8 @@
                 request was made with no errors.
             </p>
             <pre><code class="language-json">{
-    &quot;IsSuccess&quot;: true,
-    &quot;Error&quot;: null
+    "IsSuccess": true,
+    "Error": null
 }
 </code></pre>
             <h5
@@ -334,15 +332,14 @@
             <p>
                 If the device is a Self-Boarding Gate, the
                 <code class="inline-code">Message</code> is ignored, and a red
-                &quot;X&quot; displays to the passenger, along with a message
-                such as &quot;you cannot board, go see an agent&quot;.
+                "X" displays to the passenger, along with a message such as "you
+                cannot board, go see an agent".
             </p>
-            <div class="info-alert">
+            <div class="alert-section info-alert">
                 <div class="">
                     <p>
-                        <strong>Note:</strong> In the case of a gate, any
-                        messages displayed to the passenger are not controlled
-                        by the GateAccess API.
+                        In the case of a gate, any messages displayed to the
+                        passenger are not controlled by the GateAccess API.
                     </p>
                 </div>
                 <h3 id="closegateresponse">CloseGateResponse</h3>
@@ -367,8 +364,8 @@
                     <code class="inline-code">true</code>.
                 </p>
                 <pre><code class="language-json">{
-    &quot;IsSuccess&quot;: true,
-    &quot;Error&quot;: null
+    "IsSuccess": true,
+    "Error": null
 }
 </code></pre>
                 <h5

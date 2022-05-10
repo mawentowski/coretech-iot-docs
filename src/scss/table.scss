@@ -34,59 +34,6 @@ table.main-table {
     }
 }
 
-.warning-alert {
-    display: flex;
-    border: 0.1px solid #ddd;
-    background-color: #fbf9e9;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: 400;
-    padding: 12px 20px;
-    margin-top: 20px;
-    margin-bottom: 30px;
-
-    div {
-        position: relative;
-        padding-left: 12px;
-    }
-
-    div::before {
-        content: '';
-        position: absolute;
-        width: 12px;
-        height: 12px;
-        left: -10px;
-        top: 8px;
-        background: url(../images/svgs/warning.svg);
-        background-repeat: no-repeat;
-    }
-
-    // div::before {
-    //     content: '';
-    //     position: absolute;
-    //     width: 12px;
-    //     height: 12px;
-    //     left: -10px;
-    //     top: 8px;
-    //     background: url(../images/svgs/warning.svg);
-    //     background-repeat: no-repeat;
-
-    //     svg {
-    //         color: red;
-    //     }
-    // }
-
-    //   .footer-lines {
-    //   }
-
-    i {
-        color: red;
-        font-size: 14px;
-        margin-right: 7px;
-        padding-top: 2px;
-    }
-}
-
 .method-example {
     pre.lang-json {
     }

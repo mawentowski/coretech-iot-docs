@@ -1,0 +1,34 @@
+<h2 id="best-practices">Best Practices</h2>
+<h3 id="supported-devices">Supported Devices</h3>
+<p>The Print API makes use of valid for printer devices only.</p>
+<h3 id="pdf-size-warning">PDF Size Warning</h3>
+<p>
+    It is recommended that your PDF documents are not too large, or else there
+    will be a noticeable delay when printing. This is due to the current CPU
+    processing limitations on the printers themselves, as the peripheral needs
+    to process the PDF data, format it, and make it ready for printing in
+    hardware. Also, at present, PDF data will be sent over a virtual COM port
+    which is rate limited.
+</p>
+<p>
+    One way of reducing the size of your PDF is to reduce the DPI of the PDF
+    document. This will shrink the data payload size but ensures elements such
+    as barcodes are still legible to allow BGR and LSR devices to read them.
+</p>
+<p>
+    You should be targeting PDFs around the 10-20KB size. This should be enough
+    to display the required document details. If you need assistance with this
+    task, please contact
+    <a
+        href="mailto:&#102;&#108;&#x65;&#120;&#46;&#97;&#112;&#105;&#46;&#x73;&#117;&#112;&#x70;&#111;&#114;&#116;&#64;&#115;&#105;&#x74;&#97;&#46;&#x61;&#x65;&#114;&#x6f;"
+        >&#102;&#108;&#x65;&#120;&#46;&#97;&#112;&#105;&#46;&#x73;&#117;&#112;&#x70;&#111;&#114;&#116;&#64;&#115;&#105;&#x74;&#97;&#46;&#x61;&#x65;&#114;&#x6f;</a
+    >.
+</p>
+<h3 id="paper-stock-dimensions-for-pdfssvgs">
+    Paper Stock Dimensions for PDFs/SVGs
+</h3>
+<p>
+    This may seem obvious, but ensure that your PDFs and SVGs match the paper
+    stock dimension for boarding passes and bag tags at the airport you are
+    operating at.
+</p>

@@ -21,12 +21,11 @@
         Your airline backend to receive messages from the Azure Service Bus.
     </li>
 </ul>
-<div class="info-alert">
+<div class="alert-section info-alert">
     <div class="">
         <p>
-            <strong>Note:</strong> This walkthrough provides some basic
-            troubleshooting steps. However, if an error displays that is not
-            covered, refer to the
+            This walkthrough provides some basic troubleshooting steps. However,
+            if an error displays that is not covered, refer to the
             <a href="Troubleshooting Environments_1.htm"
                 >Troubleshooting Environments</a
             >
@@ -91,12 +90,9 @@
         </li>
     </ol>
     <h3 id="add-an-sbd-device">Add an SBD Device</h3>
-    <div class="info-alert">
+    <div class="alert-section info-alert">
         <div class="">
-            <p>
-                <strong>Note:</strong> If an SBD has already been added, skip
-                this section.
-            </p>
+            <p>If an SBD has already been added, skip this section.</p>
         </div>
         <ol>
             <li>
@@ -165,8 +161,7 @@
                 to connect to the SBD.
                 <ul>
                     <li>
-                        <strong>Note:</strong> After connecting to a device, a
-                        connection
+                        After connecting to a device, a connection
                         <code class="inline-code">expiryTime</code> is returned
                         in the Response Body set to
                         <strong>30 minutes</strong> from the time the
@@ -176,10 +171,10 @@
                 </ul>
             </li>
         </ol>
-        <div class="info-alert">
+        <div class="alert-section info-alert">
             <div class="">
                 <p>
-                    <strong>Note:</strong> Notice in the Request Body that the
+                    Notice in the Request Body that the
                     <code class="inline-code">DeviceId</code> will be populated
                     based by the variable
                     <code class="inline-code">{{location}}</code> in the Postman
@@ -194,8 +189,8 @@
                 </li>
             </ol>
             <pre><code class="language-JSON">{
-    &quot;DeviceStatus&quot;: &quot;Online&quot;,
-    &quot;DeviceInUse&quot;: false
+    "DeviceStatus": "Online",
+    "DeviceInUse": false
 }
 </code></pre>
             <h5
@@ -209,12 +204,11 @@
             <p>
                 The message should indicate the SBD is
                 <code class="inline-code">Online</code> and is not exclusively
-                being used (<code
-                    >&quot;DeviceInUse&quot;: &quot;false&quot;</code
-                >). The device is available to successfully receive a
+                being used (<code>"DeviceInUse": "false"</code>). The device is
+                available to successfully receive a
                 <code class="inline-code">/bagdrop/v2/getbag</code> request.
             </p>
-            <div class="info-alert">
+            <div class="alert-section info-alert">
                 <div class="">
                     <p>
                         <strong>Note</strong>: In the Tests tab of Postman,
@@ -294,12 +288,11 @@
                     sending a
                     <code class="inline-code">/bagdrop/v2/getbag</code> request
                 </h5>
-                <div class="info-alert">
+                <div class="alert-section info-alert">
                     <div class="">
                         <p>
-                            <strong>Note:</strong> On a real bag drop, a message
-                            such as &quot;Please place your bag on the
-                            belt&quot; would display.
+                            On a real bag drop, a message such as "Please place
+                            your bag on the belt" would display.
                         </p>
                     </div>
                     <ul>
@@ -311,8 +304,8 @@
                         </li>
                     </ul>
                     <pre><code class="language-JSON">{
-    &quot;DeviceStatus&quot;: &quot;Online&quot;,
-    &quot;DeviceInUse&quot;: true
+    "DeviceStatus": "Online",
+    "DeviceInUse": true
 }
 </code></pre>
                     <h5
@@ -336,18 +329,16 @@
                             message displays on the Service Bus which is an
                             indication the bagdrop process is initiated. The
                             property
-                            <code class="inline-code"
-                                >&quot;Bag&quot;: null</code
-                            >
+                            <code class="inline-code">"Bag": null</code>
                             indicates there is no bag information because, for
                             the purpose of this simulation, the passenger has
                             not yet placed a bag onto the belt.
                         </li>
                     </ul>
                     <pre><code class="language-json">{
-    &quot;Bag&quot;: null,
-    &quot;IsSuccess&quot;: true,
-    &quot;Error&quot;: null
+    "Bag": null,
+    "IsSuccess": true,
+    "Error": null
 }
 </code></pre>
                     <h5
@@ -403,12 +394,12 @@
                             </ul>
                         </li>
                     </ol>
-                    <div class="info-alert">
+                    <div class="alert-section info-alert">
                         <div class="">
                             <p>
-                                <strong>Note:</strong> The bag in its current
-                                state is simulating the passenger holding the
-                                bag prior to placing the bag on the belt.
+                                The bag in its current state is simulating the
+                                passenger holding the bag prior to placing the
+                                bag on the belt.
                             </p>
                         </div>
                         <ol>
@@ -450,16 +441,16 @@
                                 </ul>
                             </li>
                         </ol>
-                        <div class="info-alert">
+                        <div class="alert-section info-alert">
                             <div class="">
                                 <p>
                                     <strong>Note</strong>: If the passenger is
                                     using a mobile app, the app may request
                                     confirmation that the bag has been placed by
-                                    displaying a &quot;I have placed the
-                                    bag&quot; prompt. After tapping the button,
-                                    the passenger is brought to the next step in
-                                    the bagdrop process.
+                                    displaying a "I have placed the bag" prompt.
+                                    After tapping the button, the passenger is
+                                    brought to the next step in the bagdrop
+                                    process.
                                 </p>
                             </div>
                             <h3 id="view-settled-weight">
@@ -538,31 +529,31 @@
                                 settled weight is determined:
                             </p>
                             <pre><code class="language-json">{
-    &quot;Bag&quot;: {
-        &quot;Tags&quot;: [],
-        &quot;Weight&quot;: {
-            &quot;Amount&quot;: 23.8,
-            &quot;Unit&quot;: &quot;Kg&quot;
+    "Bag": {
+        "Tags": [],
+        "Weight": {
+            "Amount": 23.8,
+            "Unit": "Kg"
         },
-        &quot;Position&quot;: &quot;Entry&quot;,
-        &quot;VolumeResult&quot;: {
-            &quot;Width&quot;: {
-                &quot;Amount&quot;: 0.0,
-                &quot;Unit&quot;: &quot;Cm&quot;
+        "Position": "Entry",
+        "VolumeResult": {
+            "Width": {
+                "Amount": 0.0,
+                "Unit": "Cm"
             },
-            &quot;Height&quot;: {
-                &quot;Amount&quot;: 0.0,
-                &quot;Unit&quot;: &quot;Cm&quot;
+            "Height": {
+                "Amount": 0.0,
+                "Unit": "Cm"
             },
-            &quot;Length&quot;: {
-                &quot;Amount&quot;: 0.0,
-                &quot;Unit&quot;: &quot;Cm&quot;
+            "Length": {
+                "Amount": 0.0,
+                "Unit": "Cm"
             },
-            &quot;TubDetection&quot;: &quot;NoTub&quot;
+            "TubDetection": "NoTub"
         }
     },
-    &quot;IsSuccess&quot;: true,
-    &quot;Error&quot;: null
+    "IsSuccess": true,
+    "Error": null
 }
 </code></pre>
                             <h5
@@ -575,18 +566,17 @@
                             <p>
                                 The
                                 <code class="inline-code"
-                                    >&quot;Position&quot;:
-                                    &quot;Entry&quot;</code
+                                    >"Position": "Entry"</code
                                 >
                                 indicates that the bag is currently located on
                                 the
                                 <code class="inline-code">Entry</code> position
                                 of the SBD unit.
                             </p>
-                            <div class="info-alert">
+                            <div class="alert-section info-alert">
                                 <div class="">
                                     <p>
-                                        <strong>Note:</strong> The
+                                        The
                                         <code class="inline-code"
                                             >Position</code
                                         >
@@ -597,7 +587,7 @@
                                 </div>
                                 <p>
                                     <code class="inline-code"
-                                        >&quot;IsSuccess&quot;: true</code
+                                        >"IsSuccess": true</code
                                     >
                                     indicates that a bag has been placed on the
                                     belt, and a settled weight has been
@@ -605,7 +595,7 @@
                                     measurements such as the dimensions of the
                                     bag.
                                 </p>
-                                <div class="info-alert">
+                                <div class="alert-section info-alert">
                                     <div class="">
                                         <p>
                                             <strong>Note</strong>: The SBD
@@ -617,7 +607,7 @@
                                             that includes the baggage
                                             dimensions, returning
                                             <code class="inline-code"
-                                                >&quot;Amount&quot;: 0.0</code
+                                                >"Amount": 0.0</code
                                             >
                                             for the various dimensions. However,
                                             some SBDs have this capability. When
@@ -687,15 +677,14 @@
                                         Device Simulator showing the bag has
                                         moved to the Processing Area
                                     </h5>
-                                    <div class="info-alert">
+                                    <div class="alert-section info-alert">
                                         <div class="">
                                             <p>
-                                                <strong>Note:</strong> On a real
-                                                bag drop, a message such as
-                                                &quot;Processing Bag, please
-                                                wait.&quot; would display and
-                                                the door to the bag drop would
-                                                close (if not already closed).
+                                                On a real bag drop, a message
+                                                such as "Processing Bag, please
+                                                wait." would display and the
+                                                door to the bag drop would close
+                                                (if not already closed).
                                             </p>
                                         </div>
                                         <ul>
@@ -734,11 +723,10 @@
                                                 >.
                                             </li>
                                         </ul>
-                                        <div class="info-alert">
+                                        <div class="alert-section info-alert">
                                             <div class="">
                                                 <p>
-                                                    <strong>Note:</strong> In
-                                                    the simulation, the same
+                                                    In the simulation, the same
                                                     baggage information
                                                     collected from the
                                                     measurement taken in the
@@ -774,8 +762,7 @@
                                                     Service Bus that indicates
                                                     the bag was successfully
                                                     processed (<code
-                                                        >&quot;IsSuccess&quot;:
-                                                        true</code
+                                                        >"IsSuccess": true</code
                                                     >). This message, like the
                                                     <code class="inline-code"
                                                         >Bag Placed</code
@@ -812,11 +799,11 @@
                                                 was made.
                                             </p>
                                             <pre><code class="language-JSON">{
-    &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc7231#section-6.5.1&quot;,
-    &quot;title&quot;: &quot;Bad Request&quot;,
-    &quot;status&quot;: 400,
-    &quot;detail&quot;: &quot;Not enough time remaining on connection.&quot;,
-    &quot;traceId&quot;: &quot;00-baf5325b0757fc408018bca88119a826-65e7e75f65b69c4a-00&quot;
+    "type": "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+    "title": "Bad Request",
+    "status": 400,
+    "detail": "Not enough time remaining on connection.",
+    "traceId": "00-baf5325b0757fc408018bca88119a826-65e7e75f65b69c4a-00"
 }
 </code></pre>
                                             <h5
@@ -883,8 +870,8 @@
                                                 </li>
                                             </ol>
                                             <pre><code class="language-JSON">{
-    &quot;DeviceStatus&quot;:&quot;Offline&quot;,
-    &quot;BagDropStatus&quot;:&quot;BagRemovedUnexpectedly&quot;
+    "DeviceStatus":"Offline",
+    "BagDropStatus":"BagRemovedUnexpectedly"
 }
 </code></pre>
                                             <h5
@@ -897,7 +884,9 @@
                                                 the bag was unexpectedly removed
                                                 from the Processing area
                                             </h5>
-                                            <div class="info-alert">
+                                            <div
+                                                class="alert-section info-alert"
+                                            >
                                                 <div class="">
                                                     <p>
                                                         <strong>Note:</strong>
@@ -951,8 +940,8 @@
                                                     </li>
                                                 </ol>
                                                 <pre><code class="language-JSON">{
-    &quot;DeviceStatus&quot;: &quot;Online&quot;,
-    &quot;DeviceInUse&quot;: false
+    "DeviceStatus": "Online",
+    "DeviceInUse": false
 }
 </code></pre>
                                                 <h5
@@ -1109,7 +1098,7 @@
                                                                 successful (
                                                                 <code
                                                                     class="inline-code"
-                                                                    >&quot;IsSuccess&quot;:true</code
+                                                                    >"IsSuccess":true</code
                                                                 >).
                                                             </li>
                                                         </ul>
@@ -1130,7 +1119,9 @@
                                                     customer can resolve the
                                                     issue
                                                 </h5>
-                                                <div class="info-alert">
+                                                <div
+                                                    class="alert-section info-alert"
+                                                >
                                                     <div class="">
                                                         <p>
                                                             <strong
@@ -1261,7 +1252,9 @@
                                                         Area where the agent can
                                                         resolve the issue
                                                     </h5>
-                                                    <div class="info-alert">
+                                                    <div
+                                                        class="alert-section info-alert"
+                                                    >
                                                         <div class="">
                                                             <p>
                                                                 <strong
@@ -1392,7 +1385,7 @@
                                                                         (
                                                                         <code
                                                                             class="inline-code"
-                                                                            >&quot;IsSuccess&quot;:true</code
+                                                                            >"IsSuccess":true</code
                                                                         >).
                                                                     </li>
                                                                     <li>

@@ -306,66 +306,66 @@
 </table>
 <p><strong>Message Body Sample Success JSON</strong></p>
 <pre><code class="language-JSON">{
-    &quot;Bag&quot;: {
-        &quot;Tags&quot;: [
-             &quot;0123456789&quot;
+    "Bag": {
+        "Tags": [
+             "0123456789"
         ],
-        &quot;Weight&quot;: {
-            &quot;Amount&quot;: 24.5,
-            &quot;Unit&quot;: &quot;Kg&quot;
+        "Weight": {
+            "Amount": 24.5,
+            "Unit": "Kg"
         },
-        &quot;Position&quot;: &quot;Process&quot;,
-        &quot;VolumeResult&quot;: {
-            &quot;Length&quot;: {
-                &quot;Amount&quot;: 0,
-                &quot;Unit&quot;: &quot;Cm&quot;
+        "Position": "Process",
+        "VolumeResult": {
+            "Length": {
+                "Amount": 0,
+                "Unit": "Cm"
             },
-            &quot;Height&quot;: {
-                &quot;Amount&quot;: 0,
-                &quot;Unit&quot;: &quot;Cm&quot;
+            "Height": {
+                "Amount": 0,
+                "Unit": "Cm"
             },
-            &quot;Width&quot;: {
-                &quot;Amount&quot;: 0,
-                &quot;Unit&quot;: &quot;Cm&quot;
+            "Width": {
+                "Amount": 0,
+                "Unit": "Cm"
             },
-            &quot;TubDetection&quot;: &quot;NoTub&quot;
+            "TubDetection": "NoTub"
         }
     },
-    &quot;IsSuccess&quot;: true,
-    &quot;Error&quot;: null
+    "IsSuccess": true,
+    "Error": null
 }
 </code></pre>
 <p><strong>Message Body Sample Failure JSON</strong></p>
 <pre><code class="language-JSON">{
-    &quot;Bag&quot;: {
-        &quot;Tags&quot;: [
-            &quot;0123456789&quot;
+    "Bag": {
+        "Tags": [
+            "0123456789"
         ],
-        &quot;Weight&quot;: {
-            &quot;Amount&quot;: 24.5,
-            &quot;Unit&quot;: &quot;Kg&quot;
+        "Weight": {
+            "Amount": 24.5,
+            "Unit": "Kg"
         },
-        &quot;Position&quot;: &quot;Entry | Process | Hold | WaitForRelease | Release&quot;,
-        &quot;VolumeResult&quot;: {
-           &quot;Length&quot;: {
-                &quot;Amount&quot;: 0,
-                &quot;Unit&quot;: &quot;Cm&quot;
+        "Position": "Entry | Process | Hold | WaitForRelease | Release",
+        "VolumeResult": {
+           "Length": {
+                "Amount": 0,
+                "Unit": "Cm"
            },
-           &quot;Height&quot;: {
-               &quot;Amount&quot;: 0,
-                &quot;Unit&quot;: &quot;Cm&quot;
+           "Height": {
+               "Amount": 0,
+                "Unit": "Cm"
             },
-            &quot;Width&quot;: {
-                &quot;Amount&quot;: 0,
-                &quot;Unit&quot;: &quot;Cm&quot;
+            "Width": {
+                "Amount": 0,
+                "Unit": "Cm"
             },
-            &quot;TubDetection&quot;: &quot;NoTub | TubRequired | TubDetected&quot;
+            "TubDetection": "NoTub | TubRequired | TubDetected"
         }
     },
-    &quot;IsSuccess&quot;: false
-    &quot;Error&quot;: {
-      &quot;ErrorCode&quot;: &quot;&quot;, 
-      &quot;Message&quot;: &quot;&quot;
+    "IsSuccess": false
+    "Error": {
+      "ErrorCode": "", 
+      "Message": ""
     }
 }
 </code></pre>

@@ -20,12 +20,9 @@
         >Azure Service Bus messaging overview - Azure Service Bus</a
     >.
 </p>
-<div class="info-alert">
+<div class="alert-section info-alert">
     <div class="">
-        <p>
-            <strong>Note:</strong> No Request Body is required to create a
-            subscription.
-        </p>
+        <p>No Request Body is required to create a subscription.</p>
     </div>
     <h3 id="response-body-1">Response Body</h3>
     <p>
@@ -35,11 +32,11 @@
         subscription.
     </p>
     <pre><code class="language-JSON">{
-    &quot;subscriptionId&quot;: &quot;4ec343b2-eab5-4fd3-b0c4-3cd5bc30ee5c&quot;,
-    &quot;topicName&quot;: &quot;airline-messages&quot;,
-    &quot;subscriptionName&quot;: &quot;2c73e63e-a3ef-4fcc-b13c-d2a90912bca8c&quot;,
-    &quot;expiryTime&quot;: &quot;2021-10-22T23:54:50.8272178+00:00&quot;,
-    &quot;connectionString&quot;: &quot;Endpoint=sb://flex-pry-eastus-asb.servicebus.windows.net;SharedAccessSignature=SharedAccessSignature sr=https%3A%2F%2Fflex-pry-eastus-asb.servicebus.windows.net%2Fairline-messages%2Fsubscriptions%2F2c73e63e-a3ef-4fcc-b13c-d290912bca8c%2F&amp;sig=dL2mHQJgfnCIc5SZZ8UgmzSPYoAIJkGEqN7hmAgFKz8%3D&amp;se=1634946891&amp;skn=ClientAccessKey&quot;
+    "subscriptionId": "4ec343b2-eab5-4fd3-b0c4-3cd5bc30ee5c",
+    "topicName": "airline-messages",
+    "subscriptionName": "2c73e63e-a3ef-4fcc-b13c-d2a90912bca8c",
+    "expiryTime": "2021-10-22T23:54:50.8272178+00:00",
+    "connectionString": "Endpoint=sb://flex-pry-eastus-asb.servicebus.windows.net;SharedAccessSignature=SharedAccessSignature sr=https%3A%2F%2Fflex-pry-eastus-asb.servicebus.windows.net%2Fairline-messages%2Fsubscriptions%2F2c73e63e-a3ef-4fcc-b13c-d290912bca8c%2F&amp;sig=dL2mHQJgfnCIc5SZZ8UgmzSPYoAIJkGEqN7hmAgFKz8%3D&amp;se=1634946891&amp;skn=ClientAccessKey"
 }
 </code></pre>
     <h5
@@ -50,7 +47,7 @@
         containing details for connecting to the subscription
     </h5>
     <p>
-        <strong>Warning:</strong> Not sending a
+        Not sending a
         <code class="inline-code">/session/v2/subscriptions</code> request
         results in a <strong>400 Bad Request</strong> error, as described in the
         <a href="400 Bad Request_1.htm">400 Bad Request</a> troubleshooting
@@ -85,11 +82,11 @@
         these credentials, you will receive a
         <code class="inline-code">Not Authorized</code> error message.
     </p>
-    <div class="info-alert">
+    <div class="alert-section info-alert">
         <div class="">
             <p>
-                <strong>Note:</strong> To learn more about SAS tokens, consult
-                the Microsoft documentation on
+                To learn more about SAS tokens, consult the Microsoft
+                documentation on
                 <a
                     href="https://docs.microsoft.com/en-us/azure/service-bus-messaging/"
                     >Azure Service Bus Messaging</a
@@ -114,10 +111,10 @@
             the subscription, and thus Flex knows to route any messages coming
             from the device to that specific subscription.
         </p>
-        <div class="info-alert">
+        <div class="alert-section info-alert">
             <div class="">
                 <p>
-                    <strong>Tip:</strong> In Postman, if you click the
+                    In Postman, if you click the
                     <strong>Tests</strong> tab, you will notice there is
                     Javascript code that sets the environmental variable
                     <code class="inline-code">{{subscription_id}}</code> to the
@@ -166,12 +163,11 @@
                 <code class="inline-code">connectionString</code> in the
                 Response Body.
             </p>
-            <div class="info-alert">
+            <div class="alert-section info-alert">
                 <div class="">
                     <p>
-                        <strong>Note:</strong> The SAS token contains the
-                        credentials needed by the airline backend to access the
-                        Azure Service Bus.
+                        The SAS token contains the credentials needed by the
+                        airline backend to access the Azure Service Bus.
                     </p>
                 </div>
                 <p>
@@ -185,14 +181,14 @@
                     <code class="inline-code">session/v2/subscriptions</code>
                     request to create a new subscription.
                 </p>
-                <div class="info-alert">
+                <div class="alert-section info-alert">
                     <div class="">
                         <p>
-                            <strong>Note:</strong> The airline backend will only
-                            ever have one subscription for an Azure Region. So,
-                            if a new subscription is created, it will continue
-                            to use that subscription for all requests from
-                            client applications in that region.
+                            The airline backend will only ever have one
+                            subscription for an Azure Region. So, if a new
+                            subscription is created, it will continue to use
+                            that subscription for all requests from client
+                            applications in that region.
                         </p>
                     </div>
                     <h4 id="avoid-multiple-sas-tokens">
@@ -223,15 +219,15 @@
                         the new one that has an
                         <code class="inline-code">expiryTime</code>.
                     </p>
-                    <div class="info-alert">
+                    <div class="alert-section info-alert">
                         <div class="">
                             <p>
-                                <strong>Note:</strong> In best practice, an
-                                airline backend would never encounter a
-                                situation where it would need to disconnect from
-                                an old SAS token to use the new one. The ideal
-                                scenario would be to allow the old SAS token to
-                                expire then create a new one by sending a
+                                In best practice, an airline backend would never
+                                encounter a situation where it would need to
+                                disconnect from an old SAS token to use the new
+                                one. The ideal scenario would be to allow the
+                                old SAS token to expire then create a new one by
+                                sending a
                                 <code class="inline-code"
                                     >session/v2/subscriptions</code
                                 >

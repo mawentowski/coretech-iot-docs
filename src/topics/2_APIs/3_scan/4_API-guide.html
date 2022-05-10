@@ -25,12 +25,11 @@
     passport in the VM. With this knowledge, you can apply the same steps to
     interacting with other scan devices.
 </p>
-<div class="info-alert">
+<div class="alert-section info-alert">
     <div class="">
         <p>
-            <strong>Note:</strong> This walkthrough provides some basic
-            troubleshooting steps. However, if an error displays that is not
-            covered, refer to the
+            This walkthrough provides some basic troubleshooting steps. However,
+            if an error displays that is not covered, refer to the
             <a href="Troubleshooting Environments_1.htm"
                 >Troubleshooting Environments</a
             >
@@ -95,12 +94,9 @@
         </li>
     </ol>
     <h3 id="add-an-osr-device">Add an OSR Device</h3>
-    <div class="info-alert">
+    <div class="alert-section info-alert">
         <div class="">
-            <p>
-                <strong>Note:</strong> If an OCR has already been added, skip
-                this section.
-            </p>
+            <p>If an OCR has already been added, skip this section.</p>
         </div>
         <ol>
             <li>
@@ -151,10 +147,10 @@
                 </ul>
             </li>
         </ol>
-        <div class="info-alert">
+        <div class="alert-section info-alert">
             <div class="">
                 <p>
-                    <strong>Note:</strong> Notice in the Request Body that the
+                    Notice in the Request Body that the
                     <code class="inline-code">DeviceId</code> will be populated
                     partially based on the variable
                     <code class="inline-code">{{location}}</code> in the Postman
@@ -168,8 +164,8 @@
                 </li>
             </ol>
             <pre><code class="language-JSON">{
-    &quot;DeviceStatus&quot;: &quot;Online&quot;,
-    &quot;DeviceInUse&quot;: &quot;false&quot;
+    "DeviceStatus": "Online",
+    "DeviceInUse": "false"
 }
 </code></pre>
             <h5
@@ -192,7 +188,7 @@
                 and thus can be reserved by any airline backend that has
                 connected to it.
             </p>
-            <div class="info-alert">
+            <div class="alert-section info-alert">
                 <div class="">
                     <p>
                         <strong>Note</strong>: In the Tests tab of Postman,
@@ -282,7 +278,7 @@
                     </li>
                 </ol>
                 <pre><code class="language-json">{
-    &quot;accessExpiryTime&quot;: &quot;2021-09-30T14:50:07.347Z&quot;
+    "accessExpiryTime": "2021-09-30T14:50:07.347Z"
 }
 </code></pre>
                 <h5
@@ -314,8 +310,8 @@
                     </li>
                 </ol>
                 <pre><code class="language-json">{
-    &quot;DeviceStatus&quot;: &quot;Online&quot;,
-    &quot;DeviceInUse&quot;: &quot;true&quot;
+    "DeviceStatus": "Online",
+    "DeviceInUse": "true"
 }
 </code></pre>
                 <h5
@@ -340,14 +336,14 @@
                         <strong>Read</strong> button.
                     </li>
                 </ol>
-                <div class="info-alert">
+                <div class="alert-section info-alert">
                     <div class="">
                         <p>
-                            <strong>Note:</strong> Below is a realistic sample
-                            of MRZ data, but the data you enter is not important
-                            for the purpose of this walkthrough. Also, you can
-                            only manually type information into the text box and
-                            not paste content from outside the VM.
+                            Below is a realistic sample of MRZ data, but the
+                            data you enter is not important for the purpose of
+                            this walkthrough. Also, you can only manually type
+                            information into the text box and not paste content
+                            from outside the VM.
                         </p>
                     </div>
 
@@ -372,7 +368,7 @@
                         </li>
                     </ol>
                     <pre><code class="language-json">{
-    &quot;MrzData&quot;: &quot;P&lt;D&lt;&lt;SCHMIDT&lt;&lt;KARL&lt;HEINZ&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;\r1234567897D&lt;&lt;0102030M0405063&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8&quot;
+    "MrzData": "P&lt;D&lt;&lt;SCHMIDT&lt;&lt;KARL&lt;HEINZ&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;\r1234567897D&lt;&lt;0102030M0405063&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8"
 }
 </code></pre>
                     <h5
@@ -408,8 +404,8 @@
                         </li>
                     </ol>
                     <pre><code class="language-JSON">{
-    &quot;DeviceStatus&quot;: &quot;Online&quot;,
-    &quot;DeviceInUse&quot;: &quot;false&quot;
+    "DeviceStatus": "Online",
+    "DeviceInUse": "false"
 }
 </code></pre>
                     <h5

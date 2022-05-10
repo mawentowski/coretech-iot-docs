@@ -29,9 +29,9 @@
 </ul>
 <p>The following is a sample Request Body:</p>
 <pre><code class="language-JSON">{
-    &quot;SubscriptionId&quot;: &quot;87fd60f9-aea8-466e-9659-43ad928c75f6&quot;,
-    &quot;ReservationId&quot;: &quot;46d2309e-0ec5-4ef9-98f1-e45a54c76688&quot;,
-    &quot;DeviceId&quot;: &quot;A-ZZU-MZUZUAIRPORT-ZZU1CKB005.BTP1&quot;
+    "SubscriptionId": "87fd60f9-aea8-466e-9659-43ad928c75f6",
+    "ReservationId": "46d2309e-0ec5-4ef9-98f1-e45a54c76688",
+    "DeviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB005.BTP1"
 }
 </code></pre>
 <h5
@@ -47,11 +47,11 @@
     status code with the JSON Response Body containing the connection details.
 </p>
 <pre><code class="language-JSON">{
-    &quot;connectionId&quot;: &quot;a060a6f1-ec5b-43cb-8f0b-bf6f8891ebdf&quot;,
-    &quot;reservationId&quot;: &quot;46d2309e-0ec5-4ef9-98f1-e45a54c76688&quot;,
-    &quot;subscriptionId&quot;: &quot;87fd60f9-aea8-466e-9659-43ad928c75f6&quot;,
-    &quot;deviceId&quot;: &quot;A-ZZU-MZUZUAIRPORT-ZZU1CKB005.BTP1&quot;,
-    &quot;expiryTime&quot;: &quot;2021-11-26T09:30:35.9528789+00:00&quot;
+    "connectionId": "a060a6f1-ec5b-43cb-8f0b-bf6f8891ebdf",
+    "reservationId": "46d2309e-0ec5-4ef9-98f1-e45a54c76688",
+    "subscriptionId": "87fd60f9-aea8-466e-9659-43ad928c75f6",
+    "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB005.BTP1",
+    "expiryTime": "2021-11-26T09:30:35.9528789+00:00"
 }
 </code></pre>
 <h5
@@ -73,11 +73,11 @@
     <strong>5 minutes</strong> from the time of the request is returned. This
     indicates when the connection to the device expires.
 </p>
-<div class="info-alert">
+<div class="alert-section info-alert">
     <div class="">
         <p>
-            <strong>Tip:</strong> If continued access to the device is desired,
-            ensure to send another <span class="method post">POST</span>
+            If continued access to the device is desired, ensure to send another
+            <span class="method post">POST</span>
             <code class="inline-code">/session/v2/connections</code> request to
             create a new connection at the time of expiry of the old connection.
         </p>

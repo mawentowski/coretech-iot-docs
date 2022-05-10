@@ -41,10 +41,10 @@
     An <code class="inline-code">access_token</code> is required in the
     Authorization Header of requests for authentication.
 </p>
-<div class="info-alert">
+<div class="alert-section info-alert">
     <div class="">
         <p>
-            <strong>Note:</strong> The
+            The
             <code class="inline-code">access_token</code> is displayed as the
             Postman variable <code class="inline-code">bearer_token</code> in
             the <strong>Authorization</strong> tab of API requests in the
@@ -81,9 +81,9 @@
         <code class="inline-code">printData</code> passed in the Request Body.
     </p>
     <pre><code class="language-JSON">{
-  &quot;connectionId&quot;: &quot;54624182-10c5-481b-ad9a-b9d1473bdb6f&quot;,
-  &quot;correlationId&quot;: &quot;string&quot;,
-  &quot;printData&quot;: &quot;JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb25EYXRlKEQ6MjAxODEwM...&quot;
+  "connectionId": "54624182-10c5-481b-ad9a-b9d1473bdb6f",
+  "correlationId": "string",
+  "printData": "JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb25EYXRlKEQ6MjAxODEwM..."
 }
 </code></pre>
     <h5 id="sample-request-body-for-post-printv2boardingpass-request">
@@ -99,12 +99,12 @@
         data specific to the BTP.
     </p>
     <pre><code class="language-JSON">{
-  &quot;connectionId&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;,
-  &quot;correlationId&quot;: &quot;347d8924-73cf-4662-ad34-0ebfc28c4fc6&quot;,
-  &quot;printData&quot;: &quot;JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb25EYXRlKEQ6MjAxODEwM...&quot;,
-  &quot;rfidData&quot;: {
-    &quot;licensePlateNumber&quot;: &quot;507KLV&quot;,
-    &quot;julianDate&quot;: &quot;21319&quot;
+  "connectionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "correlationId": "347d8924-73cf-4662-ad34-0ebfc28c4fc6",
+  "printData": "JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb25EYXRlKEQ6MjAxODEwM...",
+  "rfidData": {
+    "licensePlateNumber": "507KLV",
+    "julianDate": "21319"
   }
 }
 </code></pre>
@@ -119,14 +119,14 @@
         <code class="inline-code">printData</code>.
     </p>
     <pre><code class="language-JSON">{
-  &quot;connectionId&quot;: &quot;33ed0d5a-3a92-4f08-be97-73535d73fc09&quot;,
-  &quot;correlationId&quot;: &quot;10099a59-6880-468d-ac66-8bbda5eb7d02&quot;,
-  &quot;aeaPrintData&quot;: {
-    &quot;pectab&quot;: &quot;UFQjIz9WMU4jQDsjVElDS1QjQ0hLSU4jQk9BUkQjMDEwMTE...&quot;,
-    &quot;logos&quot;: [
-      &quot;AAAAANH/wfDR/8Hw0f/B8NH/wfDR/8Hw0f/B8NH/wfDR/8H/B8NH//B...&quot;
+  "connectionId": "33ed0d5a-3a92-4f08-be97-73535d73fc09",
+  "correlationId": "10099a59-6880-468d-ac66-8bbda5eb7d02",
+  "aeaPrintData": {
+    "pectab": "UFQjIz9WMU4jQDsjVElDS1QjQ0hLSU4jQk9BUkQjMDEwMTE...",
+    "logos": [
+      "AAAAANH/wfDR/8Hw0f/B8NH/wfDR/8Hw0f/B8NH/wfDR/8H/B8NH//B..."
     ],
-    &quot;printData&quot;: &quot;Q1AjMUMwMSMwMVYjMDJNMVZFUllMT05HRVhDRUVEU1NV...&quot;
+    "printData": "Q1AjMUMwMSMwMVYjMDJNMVZFUllMT05HRVhDRUVEU1NV..."
   }
 }
 </code></pre>

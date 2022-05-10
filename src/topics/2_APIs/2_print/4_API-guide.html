@@ -26,10 +26,10 @@
     SVG, PDF, or AEA. With this knowledge, you can apply the same steps to
     interacting with other print devices.
 </p>
-<div class="info-alert">
+<div class="alert-section info-alert">
     <div class="">
     <p>
-        <strong>Note:</strong> This walkthrough provides some basic
+        This walkthrough provides some basic
         troubleshooting steps. However, if an error displays that is not
         covered, refer to the
         <a href="Troubleshooting Environments_1.htm"
@@ -93,10 +93,10 @@
     </li>
 </ol>
 <h3 id="add-an-atb-device">Add an ATB Device</h3>
-<div class="info-alert">
+<div class="alert-section info-alert">
     <div class="">
     <p>
-        <strong>Note:</strong> If an ATB has already been added, skip this
+        If an ATB has already been added, skip this
         section.
     </p>
 </div>
@@ -146,10 +146,10 @@
         </ul>
     </li>
 </ol>
-<div class="info-alert">
+<div class="alert-section info-alert">
     <div class="">
     <p>
-        <strong>Note:</strong> Notice in the Request Body that the
+        Notice in the Request Body that the
         <code class="inline-code">DeviceId</code> will be populated based by the
         variable <code class="inline-code">{{location}}</code> in the Postman
         environment.
@@ -162,9 +162,9 @@
     </li>
 </ol>
 <pre><code class="language-JSON">{
-    &quot;DeviceStatus&quot;: &quot;Online&quot;,
-    &quot;MediaStatus&quot;: &quot;Ok&quot;,
-    &quot;BinStatus&quot;: &quot;Ok&quot;
+    "DeviceStatus": "Online",
+    "MediaStatus": "Ok",
+    "BinStatus": "Ok"
 }
 </code></pre>
 <h5 id="printdevicestatus-service-bus-message-indicating-the-device-is-online">
@@ -180,7 +180,7 @@
     If there are no issues, the device is now available to successfully receive
     Print requests.
 </p>
-<div class="info-alert">
+<div class="alert-section info-alert">
     <div class="">
     <p>
         <strong>Note</strong>: In the Tests tab of Postman, there is some
@@ -230,10 +230,10 @@
             In Postman, send a
             <code class="inline-code">/print/v2/boardingpass/pdf</code> request.
         </p>
-        <div class="info-alert">
+        <div class="alert-section info-alert">
     <div class="">
             <p>
-                <strong>Note:</strong> In the Request Body, notice that PDF
+                In the Request Body, notice that PDF
                 <code class="inline-code">printData</code> has been included for
                 you.
             </p>
@@ -262,9 +262,9 @@
     </li>
 </ol>
 <pre><code class="language-JSON">{
-    &quot;IsSuccess&quot;: true,
-    &quot;Error&quot;: null,
-    &quot;SuccessfulPrints&quot;: &quot;1&quot;
+    "IsSuccess": true,
+    "Error": null,
+    "SuccessfulPrints": "1"
 }
 </code></pre>
 <h5 id="printresponse-service-bus-message-indicating-a-successful-print-1">
@@ -310,12 +310,12 @@
     </li>
 </ol>
 <pre><code class="language-JSON">{
-    &quot;IsSuccess&quot;: false,
-    &quot;Error&quot;: {
-        &quot;ErrorCode&quot;: &quot;NotAbleToPrint&quot;,
-        &quot;Message&quot;: &quot;PrintNotOk/UnSuccessfulPrint, with Jammed&quot;
+    "IsSuccess": false,
+    "Error": {
+        "ErrorCode": "NotAbleToPrint",
+        "Message": "PrintNotOk/UnSuccessfulPrint, with Jammed"
     },
-    &quot;SuccessfulPrints&quot;: &quot;0&quot;
+    "SuccessfulPrints": "0"
 }
 </code></pre>
 <h5

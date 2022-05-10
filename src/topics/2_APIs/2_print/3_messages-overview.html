@@ -17,9 +17,9 @@
     <code class="inline-code">Online</code>.
 </p>
 <pre><code class="language-JSON">{
-    &quot;DeviceStatus&quot;: &quot;Online&quot;,
-    &quot;MediaStatus&quot;: &quot;Ok&quot;,
-    &quot;BinStatus&quot;: &quot;Ok&quot;
+    "DeviceStatus": "Online",
+    "MediaStatus": "Ok",
+    "BinStatus": "Ok"
 }
 </code></pre>
 <h5
@@ -39,9 +39,9 @@
     <code class="inline-code">PrintResponse</code> message.
 </p>
 <pre><code class="language-json">{
-    &quot;DeviceStatus&quot;: &quot;Online&quot;,
-    &quot;MediaStatus&quot;: &quot;Jammed&quot;,
-    &quot;BinStatus&quot;: &quot;Ok&quot;
+    "DeviceStatus": "Online",
+    "MediaStatus": "Jammed",
+    "BinStatus": "Ok"
 }
 </code></pre>
 <h5
@@ -91,9 +91,9 @@
     successful prints is returned.
 </p>
 <pre><code class="language-JSON">{
-    &quot;IsSuccess&quot;: true,
-    &quot;Error&quot;: null,
-    &quot;SuccessfulPrints&quot;: &quot;1&quot;
+    "IsSuccess": true,
+    "Error": null,
+    "SuccessfulPrints": "1"
 }
 </code></pre>
 <h5 id="printresponse-service-bus-message-indicating-a-successful-print">
@@ -110,12 +110,12 @@
     reason for the failed print request is that the printer is jammed.
 </p>
 <pre><code class="language-JSON">{
-    &quot;IsSuccess&quot;: false,
-    &quot;Error&quot;: {
-        &quot;ErrorCode&quot;: &quot;NotAbleToPrint&quot;,
-        &quot;Message&quot;: &quot;PrintNotOk/UnSuccessfulPrint, with Jammed&quot;
+    "IsSuccess": false,
+    "Error": {
+        "ErrorCode": "NotAbleToPrint",
+        "Message": "PrintNotOk/UnSuccessfulPrint, with Jammed"
     },
-    &quot;SuccessfulPrints&quot;: &quot;0&quot;
+    "SuccessfulPrints": "0"
 }
 </code></pre>
 <h5
@@ -124,10 +124,10 @@
     <code class="inline-code">PrintResponse</code> Service Bus Message
     indicating an unsuccessful print due to paper jam
 </h5>
-<div class="info-alert">
+<div class="alert-section info-alert">
     <div class="">
         <p>
-            <strong>Note:</strong> The actual text contained in the error
+            The actual text contained in the error
             <code class="inline-code">Message</code> is determined by the
             software on the workstation.
         </p>

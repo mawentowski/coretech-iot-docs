@@ -1,0 +1,61 @@
+
+<h2 id="construct-a-payment-request">Construct a Payment Request</h2>
+<h3 id="resource-urls">Resource URLs</h3>
+<p>At present, Payment API Resource URLs are comprised of:</p>
+<ul>
+<li>A REST API standard method preceding the URL for accessing the endpoint. In the case of the Print API, the only method used is POST.</li>
+<li>A Base URL specific to the SITA Flex environment, sometimes displayed as <code>{{baseurl}}</code> in the Resource URL in Postman.</li>
+<li>The end path of the Resource URL is comprised of the API name (<code>payment</code>) followed by the endpoint name. For example, the end path <code>/payment/v2/process</code> contains the API <code>payment</code> followed by the endpoint <code>process</code>.</li>
+</ul>
+<blockquote>
+<p>No path parameters are required when sending Payment API requests.</p>
+</blockquote>
+<h3 id="header-parameters">Header Parameters</h3>
+<p>A <code>location-id</code> is required in the header of the request. Flex APIs use the Azure API Management service (APIM) to route a request to the correct region based on the airport code extracted from the <code>LocationId</code>.</p>
+<h3 id="authorization-headers">Authorization Headers</h3>
+<p>An <code>access_token</code> is required in the Authorization Header of requests for authentication.</p>
+<blockquote>
+<p>The <code>access_token</code> is displayed as the Postman variable <code>bearer_token</code> in the <strong>Authorization</strong> tab of API requests in the provided Postman collection.</p>
+</blockquote>
+<h3 id="request-bodies">Request Bodies</h3>
+<p>All Request Bodies must include the <code>ConnectionId</code> of the device the airline backend would like to interact with</p>
+<h4 id="post-paymentv2process-1"><span class="method post">POST</span> <code>/payment/v2/process</code></h4>
+<p>The following is a sample Request Body for <action> using an PMT device.</p>
+<pre><code class="language-JSON">{
+  "connectionId": "{{pmt_connection_id}}",
+  "correlationId": "correl_paymt",
+  "Amount": 127.30,
+  "CurrencyCode": 978,
+  "OriginatorsTransactionReference":"{{$guid}}"
+}
+</code></pre>
+<h5 id="sample-request-body-for-post-paymentv2process-request">Sample Request Body for <span class="method post">POST</span> <code>/payment/v2/process</code> request</h5>
+<h4 id="post-paymentv2receiptprinted-1"><span class="method post">POST</span> <code>/payment/v2/receiptprinted</code></h4>
+<p>The following is a sample Request Body for <action> using an PMT device.</p>
+<pre><code class="language-JSON">{
+  "connectionId": "{{pmt_connection_id}}",
+  "isError":false,
+  "transactionError": "NO_ERROR",
+  "correlationId" : "correl_paymt"
+}
+</code></pre>
+<h5 id="sample-request-body-for-post-paymentv2receiptprintedrequest">Sample Request Body for <span class="method post">POST</span> <code>/payment/v2/receiptprinted</code>request</h5>
+<h4 id="post-paymentv2signatureverified-1"><span class="method post">POST</span> <code>/payment/v2/signatureverified</code></h4>
+<p>The following is a sample Request Body for <action> using an PMT device.</p>
+<p><code>"verified": true</code> is shared between this and the last one probably combine description.</p>
+<pre><code class="language-JSON">{
+  "connectionId": "{{pmt_connection_id}}",
+  "verified": true,
+  "correlationId" : "correl_paymt"
+}
+</code></pre>
+<h5 id="sample-request-body-for-post-paymentv2signatureverified-request">Sample Request Body for <span class="method post">POST</span> <code>/payment/v2/signatureverified</code> request</h5>
+<h4 id="post-paymentv2transactioncompletedresponse-1"><span class="method post">POST</span> <code>/payment/v2/transactioncompletedresponse</code></h4>
+<p>The following is a sample Request Body for <action> using an PMT device.</p>
+<pre><code class="language-JSON">{
+  "connectionId": "{{pmt_connection_id}}",
+  "verified": true,
+  "correlationId" : "correl_paymt"
+}
+</code></pre>
+<h5 id="sample-request-body-for-post-paymentv2transactioncompletedresponse-request">Sample Request Body for <span class="method post">POST</span> <code>/payment/v2/transactioncompletedresponse</code> request</h5>

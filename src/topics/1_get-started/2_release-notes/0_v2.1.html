@@ -21,7 +21,7 @@
     based on the <code class="inline-code">MessageType</code> property.
 </p>
 
-<div class="info-alert">
+<div class="alert-section info-alert">
     <div class="">
         A full list of Service Bus Message Types is described in the
         <a href="APIs/messages-reference">Messages Reference</a> sections.
@@ -80,7 +80,7 @@ namespace Sita.AirportApi.ServiceBusConsole.Core.Model
         /// &lt;summary&gt;
         /// Create a DisplayMessage object from a Flex Core Platform Message
         /// &lt;/summary&gt;
-        /// &lt;param name=&quot;platformMessage&quot;&gt;&lt;/param&gt;
+        /// &lt;param name="platformMessage"&gt;&lt;/param&gt;
         public DisplayMessage(PlatformMessage platformMessage)
         {
             MessageType = platformMessage.PayloadType;
@@ -91,15 +91,15 @@ namespace Sita.AirportApi.ServiceBusConsole.Core.Model
         /// &lt;summary&gt;
         /// Create a DisplayMessage object from a Session Management V2 Message
         /// &lt;/summary&gt;
-        /// &lt;param name=&quot;platformMessage&quot;&gt;&lt;/param&gt;
+        /// &lt;param name="platformMessage"&gt;&lt;/param&gt;
         public DisplayMessage(Message message)
         {
-            MessageNamespace = message.UserProperties[&quot;MessageNamespace&quot;]?.ToString();
-            MessageType = message.UserProperties[&quot;MessageType&quot;]?.ToString();
-            MessageVersion = message.UserProperties[&quot;MessageVersion&quot;]?.ToString();
-            ConnectionId = message.UserProperties[&quot;ConnectionId&quot;]?.ToString();
-            DeviceId = message.UserProperties[&quot;DeviceId&quot;]?.ToString();
-            Timestamp = message.UserProperties[&quot;Timestamp&quot;]?.ToString();
+            MessageNamespace = message.UserProperties["MessageNamespace"]?.ToString();
+            MessageType = message.UserProperties["MessageType"]?.ToString();
+            MessageVersion = message.UserProperties["MessageVersion"]?.ToString();
+            ConnectionId = message.UserProperties["ConnectionId"]?.ToString();
+            DeviceId = message.UserProperties["DeviceId"]?.ToString();
+            Timestamp = message.UserProperties["Timestamp"]?.ToString();
             CorrelationId = message.CorrelationId;
             MessageBodyJson = Encoding.UTF8.GetString(message.Body);
         }

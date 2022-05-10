@@ -662,10 +662,8 @@ h2 {
     }
 }
 
-.info-alert {
+.alert-section {
     display: flex;
-    border: 0.1px solid #ddd;
-    background-color: #f7fafc;
     border-radius: 5px;
     font-weight: 400;
     padding: 12px 20px;
@@ -684,103 +682,49 @@ h2 {
         height: 12px;
         left: -10px;
         top: 8px;
-        background: url(../images/svgs/info-icon.svg);
         background-repeat: no-repeat;
     }
 
-    //   .footer-lines {
-    //   }
+    &.info-alert {
+        border: 0.1px solid #ddd;
+        background-color: #f7fafc;
 
-    i {
-        color: rgb(135 146 162);
-        font-size: inherit;
-        margin-right: 7px;
-        padding-top: 2px;
+        div::before {
+            background: url(../images/svgs/info-icon.svg);
+        }
+    }
+
+    &.success-alert {
+        border: 0.1px solid #d4edd9;
+        background-color: #efffec;
+
+        div::before {
+            background: url(../images/svgs/square-check-solid.svg);
+        }
+    }
+
+    &.tip-alert {
+        border: 0.1px solid #c5e3ed;
+        background-color: #f5e5ff;
+
+        div::before {
+            background: url(../images/svgs/lightbulb-solid.svg);
+        }
+    }
+
+    &.warning-alert {
+        border: 0.1px solid #ddd;
+        background-color: #fbf9e9;
+
+        div::before {
+            background: url(../images/svgs/warning.svg);
+        }
+    }
+
+    p:nth-last-of-type(1) {
+        margin-bottom: 0;
     }
 }
-
-.success-alert {
-    display: flex;
-    border: 0.1px solid #d4edd9;
-    background-color: #efffec;
-    border-radius: 5px;
-    font-weight: 400;
-    padding: 12px 20px;
-    margin-top: 20px;
-    margin-bottom: 30px;
-
-    div {
-        position: relative;
-        padding-left: 12px;
-    }
-
-    div::before {
-        content: '';
-        position: absolute;
-        width: 12px;
-        height: 12px;
-        left: -10px;
-        top: 8px;
-        background: url(../images/svgs/square-check-solid.svg);
-        background-repeat: no-repeat;
-    }
-
-    //   .footer-lines {
-    //   }
-
-    i {
-        color: rgb(135 146 162);
-        font-size: inherit;
-        margin-right: 7px;
-        padding-top: 2px;
-    }
-}
-
-.tip-alert {
-    display: flex;
-    border: 0.1px solid #c5e3ed;
-    background-color: #f5e5ff;
-    border-radius: 5px;
-    font-weight: 400;
-    padding: 12px 20px;
-    margin-top: 20px;
-    margin-bottom: 30px;
-
-    div {
-        position: relative;
-        padding-left: 12px;
-    }
-
-    div::before {
-        content: '';
-        position: absolute;
-        width: 12px;
-        height: 12px;
-        left: -10px;
-        top: 8px;
-        background: url(../images/svgs/lightbulb-solid.svg);
-        background-repeat: no-repeat;
-    }
-}
-
-// .method-example {
-//     display: flex;
-//     position: relative;
-//     border: 0.1px solid #ddd;
-//     background-color: rgb(247 250 252);
-//     border-radius: 5px;
-//     font-size: 14px;
-//     font-weight: 400;
-//     padding: 12px 20px 3px 12px;
-//     margin-top: 20px;
-//     margin-bottom: 10px;
-//     font-family: Inconsolata, monospace;
-//     font-family: 'Roboto Mono', monospace;
-
-//     pre {
-//         margin-bottom: 0;
-//     }
-// }
 
 .copy-btn-container {
     width: 34px;

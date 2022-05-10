@@ -19,8 +19,8 @@
     <code class="inline-code">false</code>.
 </p>
 <pre><code class="language-JSON">{
-    &quot;DeviceStatus&quot;: &quot;Online&quot;,
-    &quot;DeviceInUse&quot;: &quot;false&quot;
+    "DeviceStatus": "Online",
+    "DeviceInUse": "false"
 }
 </code></pre>
 <h5
@@ -30,13 +30,11 @@
     showing the scan device is <code class="inline-code">Online</code> and not
     currently &#39;In Use&#39;
 </h5>
-<div class="info-alert">
+<div class="alert-section info-alert">
     <div class="">
         <p>
             <strong>Note</strong>:
-            <code class="inline-code"
-                >&quot;DeviceInUse&quot;: &quot;false&quot;</code
-            >
+            <code class="inline-code">"DeviceInUse": "false"</code>
             is the default value when no application instance has reserved the
             device ( <code class="inline-code">/scan/v2/startscanning</code>).
         </p>
@@ -58,8 +56,8 @@
         device changes to <code class="inline-code">PoweredOff</code>.
     </p>
     <pre><code class="language-json">{
-    &quot;DeviceStatus&quot;: &quot;PoweredOff&quot;,
-    &quot;DeviceInUse&quot;: &quot;true&quot;
+    "DeviceStatus": "PoweredOff",
+    "DeviceInUse": "true"
 }
 </code></pre>
     <h5
@@ -92,7 +90,7 @@
         <code class="inline-code">accessExpiryTime</code> in the Response Body.
     </p>
     <pre><code class="language-json">{
-    &quot;accessExpiryTime&quot;: &quot;2021-09-30T14:50:07.347Z&quot;
+    "accessExpiryTime": "2021-09-30T14:50:07.347Z"
 }
 </code></pre>
     <h5
@@ -110,7 +108,7 @@
         <code class="inline-code">/scan/v2/startscanning</code> request was
         made.
     </p>
-    <div class="info-alert">
+    <div class="alert-section info-alert">
         <div class="">
             <p>
                 <strong>Note</strong>: Subsequent calls to
@@ -138,8 +136,8 @@
             <code class="inline-code">/scan/v2/startscanning</code> request.
         </p>
         <pre><code class="language-json">{
-    &quot;DeviceStatus&quot;: &quot;Online&quot;,
-    &quot;DeviceInUse&quot;: &quot;true&quot;
+    "DeviceStatus": "Online",
+    "DeviceInUse": "true"
 }
 </code></pre>
         <h5
@@ -149,10 +147,10 @@
             Body indicating the device is exclusively reserved by the airline
             backend
         </h5>
-        <div class="info-alert">
+        <div class="alert-section info-alert">
             <div class="">
                 <p>
-                    <strong>Note:</strong> The same
+                    The same
                     <code class="inline-code">ScanDeviceStatus</code> message is
                     sent to all subscribers with an active connection to the
                     scan device to indicate the device can no longer be given a
@@ -181,13 +179,13 @@
                 <code class="inline-code">ScanDeviceStatus</code> message is
                 sent to all subscribers with an active connection to the scan
                 device to indicate the device is no longer exclusively being
-                used (<code>&quot;DeviceInUse&quot;: &quot;false&quot;</code>)
-                and is available to successfully receive a
+                used (<code>"DeviceInUse": "false"</code>) and is available to
+                successfully receive a
                 <code class="inline-code">/scan/v2/startscanning</code> request.
             </p>
             <pre><code class="language-JSON">{
-    &quot;DeviceStatus&quot;: &quot;Online&quot;,
-    &quot;DeviceInUse&quot;: &quot;false&quot;
+    "DeviceStatus": "Online",
+    "DeviceInUse": "false"
 }
 </code></pre>
             <h5
@@ -214,8 +212,8 @@
                 The type of barcode can be 1D, 2D, etc.
             </p>
             <pre><code class="language-JSON">{
-    &quot;BarCodeData&quot;:&quot;6M1AZKUR AHMETKUR ERG6ULZ ZRHISTTK 1912 211Y024F0028 150&gt;10B1OO2211BTK 292352404859427 1 020K X\r\n&quot;,
-    &quot;BarCodeType&quot;:&quot;6&quot;
+    "BarCodeData":"6M1AZKUR AHMETKUR ERG6ULZ ZRHISTTK 1912 211Y024F0028 150&gt;10B1OO2211BTK 292352404859427 1 020K X\r\n",
+    "BarCodeType":"6"
 }
 </code></pre>
             <h5
@@ -234,11 +232,11 @@
                 <code class="inline-code">Track</code> data.
             </p>
             <pre><code class="language-JSON">{
-   &quot;CardType&quot;:&quot;OtherCard&quot;,
-   &quot;Track1&quot;:&quot;8102172196=000&quot;,
-   &quot;Track2&quot;:&quot;18102172196=10=31122004=&quot;,
-   &quot;Track3&quot;:&quot;&quot;,
-   &quot;Track4&quot;:&quot;&quot;
+   "CardType":"OtherCard",
+   "Track1":"8102172196=000",
+   "Track2":"18102172196=10=31122004=",
+   "Track3":"",
+   "Track4":""
 }
 </code></pre>
             <h5
@@ -248,12 +246,12 @@
                 Message Body that returned credit card data scanned by an MSR
                 device
             </h5>
-            <div class="info-alert">
+            <div class="alert-section info-alert">
                 <div class="">
                     <p>
-                        <strong>Note:</strong> The magnetic stripe on the back
-                        of a card is separated into 4 tracks/rows of data that
-                        are returned by the Service Bus as multiple lines of
+                        The magnetic stripe on the back of a card is separated
+                        into 4 tracks/rows of data that are returned by the
+                        Service Bus as multiple lines of
                         <code class="inline-code">Track</code> data in the
                         Message Body.
                     </p>
@@ -267,7 +265,7 @@
                     Body.
                 </p>
                 <pre><code class="language-JSON">{
-    &quot;MrzData&quot;: &quot;P&lt;D&lt;&lt;SCHMIDT&lt;&lt;KARL&lt;HEINZ&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;\r1234567897D&lt;&lt;0102030M0405063&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8&quot;,
+    "MrzData": "P&lt;D&lt;&lt;SCHMIDT&lt;&lt;KARL&lt;HEINZ&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;\r1234567897D&lt;&lt;0102030M0405063&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8",
 }
 </code></pre>
                 <h5

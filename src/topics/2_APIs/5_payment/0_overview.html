@@ -1,0 +1,70 @@
+<h1 id="print-api">Print API</h1>
+<p>
+    The Payment API endpoints allow your airline backend to take a payment from
+    a customer using a secure PCI compliant payment solution.
+</p>
+<p>They cover:</p>
+<ul>
+    <li>
+        Specifying the amount, currency, and vendor of a payment transaction.
+    </li>
+    <li>
+        Printing receipts and verifying signatures in the case that this is
+        required.
+    </li>
+    <li>Handling errors when they occur during the payment process.</li>
+</ul>
+<p>The only supported device at present is:</p>
+<table>
+    <thead>
+        <tr>
+            <th>Acronym</th>
+            <th>Definition</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>PMT</td>
+            <td>Payment Device for Chip and Pin transactions.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 id="endpoints">Endpoints</h2>
+<p>
+    The end path for the Print API starts with <strong>POST</strong>
+    <code>/payment/v2/</code>, followed by the endpoint (i.e. payment action)
+    for a device to carry out.
+</p>
+<h3 id="post-paymentv2process">
+    <span class="method post">POST</span> <code>/payment/v2/process</code>
+</h3>
+<p>
+    Send a <span class="method post">POST</span>
+    <code>/payment/v2/process</code> request to an PMT device to...
+</p>
+<h3 id="post-paymentv2receiptprinted">
+    <span class="method post">POST</span>
+    <code>/payment/v2/receiptprinted</code>
+</h3>
+<p>
+    Send a <span class="method post">POST</span>
+    <code>/payment/v2/receiptprinted</code> request to an PMT device to...
+</p>
+<h3 id="post-paymentv2signatureverified">
+    <span class="method post">POST</span>
+    <code>/payment/v2/signatureverified</code>
+</h3>
+<p>
+    Send a <span class="method post">POST</span>
+    <code>/payment/v2/signatureverified</code> request to an PMT device to...
+</p>
+<h3 id="post-paymentv2transactioncompletedresponse">
+    <span class="method post">POST</span>
+    <code>/payment/v2/transactioncompletedresponse</code>
+</h3>
+<p>
+    Send a <span class="method post">POST</span>
+    <code>/payment/v2/transactioncompletedresponse</code> request to an PMT
+    device to...
+</p>
