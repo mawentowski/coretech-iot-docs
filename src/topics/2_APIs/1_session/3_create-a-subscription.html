@@ -1,4 +1,8 @@
-<h2 id="create-a-subscription">Create a Subscription</h2>
+<div class="title-box">
+    <h1 class="topic-title">Create a Subscription</h1>
+    <div class="action-statement">Request a subscription to connect to.</div>
+</div>
+
 <p>
     The <span class="method post">POST</span>
     <code class="inline-code">/session/v2/subscriptions</code> request creates a
@@ -8,285 +12,524 @@
 <p>
     Sending a <span class="method post">POST</span>
     <code class="inline-code">/session/v2/subscriptions</code> request does not
-    &#39;subscribe&#39; to the Service Bus, it only creates a subscription and
-    returns connection details. The application must then connect to the Service
-    Bus connection using the connection details provided.
+    'subscribe' to the Service Bus, it only creates a subscription and returns
+    connection details. The application must then connect to the Service Bus
+    connection using the connection details provided.
 </p>
-<p>
-    The Microsoft Service Bus documentation provides best practices for how
-    applications should be configured to do this for each client library:
-    <a
-        href="https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview#client-libraries"
-        >Azure Service Bus messaging overview - Azure Service Bus</a
-    >.
-</p>
+
+<div class="alert-section tip-alert">
+    <div class="">
+        <p>
+            The Microsoft Service Bus documentation provides best practices for
+            how applications should be configured to do this for each client
+            library:
+            <a
+                href="https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview#client-libraries"
+                >Azure Service Bus messaging overview - Azure Service Bus</a
+            >.
+        </p>
+    </div>
+</div>
+
+<h2>Make an API Call</h2>
+
 <div class="alert-section info-alert">
     <div class="">
         <p>No Request Body is required to create a subscription.</p>
     </div>
-    <h3 id="response-body-1">Response Body</h3>
-    <p>
-        A successful request returns a
-        <code class="inline-code">2xx</code> success status code with the JSON
-        Response Body containing the Service Bus details for the new
-        subscription.
-    </p>
-    <pre><code class="language-JSON">{
+</div>
+
+
+
+<div class="code-section with-tabs">
+    <div class="code-section-header">
+        <div class="code-tabs">
+            <button class="tablinks" onclick="openTab(event, 'bash-create-a-subscription')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby-create-a-subscription')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python-create-a-subscription')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP-create-a-subscription')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java-create-a-subscription')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node-create-a-subscription')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go-create-a-subscription')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET-create-a-subscription')">.NET</button>
+        </div>
+        <div class="copy-code-btn-container">
+            <button class="copy-code-btn">
+                <svg
+                viewBox="0 0 1000 1000"
+                height="20"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+              >
+                <title>Copy to Clipboard</title>
+                <path d="M704 896H64V320h640v192h64V192c0-35-29-64-64-64H512C512 57 455 0 384 0S256 57 256 128H64c-35 0-64 29-64 64v704c0 35 29 64 64 64h640c35 0 64-29 64-64V768h-64v128zM192 192h64s64-29 64-64 29-64 64-64 64 29 64 64 32 64 64 64h64s64 29 64 64H128c0-39 28-64 64-64zm-64 512h128v-64H128v64zm448-128V448L320 640l256 192V704h320V576H576zM128 832h192v-64H128v64zm320-448H128v64h320v-64zM256 512H128v64h128v-64z"
+                />
+              </svg>
+              
+            </button>
+        </div>
+
+    </div>
+    <div class="copied-popup">
+        Copied!
+    </div>
+
+<div id="bash-create-a-subscription" class="tabcontent dark"><pre> <code>
+    curl --location -g --request POST 'https://{{baseurl}}/session/v2/subscriptions' \
+    --header 'location-id: {{locationId}}'
+</code>
+</pre>
+</div>
+
+<div id="Ruby-create-a-subscription" class="tabcontent dark"><pre><code>
+require "uri"
+require "net/http"
+
+url = URI("https://{{baseurl}}/session/v2/subscriptions")
+
+https = Net::HTTP.new(url.host, url.port)
+https.use_ssl = true
+
+request = Net::HTTP::Post.new(url)
+request["location-id"] = "{{locationId}}"
+
+response = https.request(request)
+puts response.read_body      
+</code>
+</pre>
+</div>
+
+<div id="Python-create-a-subscription" class="tabcontent dark"><pre> <code>
+import requests
+
+url = "https://{{baseurl}}/session/v2/subscriptions"
+
+payload={}
+headers = {
+    'location-id': '{{locationId}}'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)    
+</code>
+</pre>
+</div>
+
+<div id="PHP-create-a-subscription" class="tabcontent dark"><pre> <code>
+<?php
+
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/session/v2/subscriptions',
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'POST',
+    CURLOPT_HTTPHEADER => array(
+    'location-id: {{locationId}}'
+    ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;    
+</code>
+</pre>
+</div>
+
+<div id="Java-create-a-subscription" class="tabcontent dark"><pre><code>
+Unirest.setTimeouts(0, 0);
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/session/v2/subscriptions")
+    .header("location-id", "{{locationId}}")
+    .asString();
+</code>
+</pre>
+</div>
+
+<div id="Node-create-a-subscription" class="tabcontent dark"><pre><code>
+var request = require('request');
+var options = {
+    'method': 'POST',
+    'url': 'https://{{baseurl}}/session/v2/subscriptions',
+    'headers': {
+    'location-id': '{{locationId}}'
+    }
+};
+request(options, function (error, response) {
+    if (error) throw new Error(error);
+    console.log(response.body);
+});    
+</code>
+</pre>
+</div>
+
+<div id="Go-create-a-subscription" class="tabcontent dark"><pre><code>
+package main
+
+import (
+    "fmt"
+    "net/http"
+    "io/ioutil"
+)
+
+func main() {
+
+    url := "https://%7B%7Bbaseurl%7D%7D/session/v2/subscriptions"
+    method := "POST"
+
+    client := &http.Client {
+    }
+    req, err := http.NewRequest(method, url, nil)
+
+    if err != nil {
+    fmt.Println(err)
+    return
+    }
+    req.Header.Add("location-id", "{{locationId}}")
+
+    res, err := client.Do(req)
+    if err != nil {
+    fmt.Println(err)
+    return
+    }
+    defer res.Body.Close()
+
+    body, err := ioutil.ReadAll(res.Body)
+    if err != nil {
+    fmt.Println(err)
+    return
+    }
+    fmt.Println(string(body))
+}
+</code>
+</pre>
+</div>
+
+<div id=".NET-create-a-subscription" class="tabcontent dark"><pre><code>
+    var client = new RestClient("https://{{baseurl}}/session/v2/subscriptions");
+    client.Timeout = -1;
+    var request = new RestRequest(Method.POST);
+    request.AddHeader("location-id", "{{locationId}}");
+    IRestResponse response = client.Execute(request);
+    Console.WriteLine(response.Content);
+</code>
+</pre>
+</div>
+
+</div>
+
+<p class="caption">Sample <span class="method post">POST</span>
+    <code class="inline-code">/session/v2/subscriptions</code> request</p>
+
+
+
+
+<h2 id="response-body-1">Response</h2>
+<p>
+    A successful request returns a
+    <code class="inline-code">2xx</code> success status code with the JSON
+    Response Body containing the Service Bus details for the new subscription.
+</p>
+
+<div class="method-example atom-one-light">
+    <div class="method-example-top-bar">Error</div>
+    <pre>
+                <code class="language-json">
+{
     "subscriptionId": "4ec343b2-eab5-4fd3-b0c4-3cd5bc30ee5c",
     "topicName": "airline-messages",
     "subscriptionName": "2c73e63e-a3ef-4fcc-b13c-d2a90912bca8c",
     "expiryTime": "2021-10-22T23:54:50.8272178+00:00",
     "connectionString": "Endpoint=sb://flex-pry-eastus-asb.servicebus.windows.net;SharedAccessSignature=SharedAccessSignature sr=https%3A%2F%2Fflex-pry-eastus-asb.servicebus.windows.net%2Fairline-messages%2Fsubscriptions%2F2c73e63e-a3ef-4fcc-b13c-d290912bca8c%2F&amp;sig=dL2mHQJgfnCIc5SZZ8UgmzSPYoAIJkGEqN7hmAgFKz8%3D&amp;se=1634946891&amp;skn=ClientAccessKey"
 }
-</code></pre>
-    <h5
-        id="sample-response-body-for-post-sessionv2subscriptions-request-containing-details-for-connecting-to-the-subscription"
-    >
-        Sample Response Body for <span class="method post">POST</span>
-        <code class="inline-code">session/v2/subscriptions</code> request
-        containing details for connecting to the subscription
-    </h5>
-    <p>
-        Not sending a
-        <code class="inline-code">/session/v2/subscriptions</code> request
-        results in a <strong>400 Bad Request</strong> error, as described in the
-        <a href="400 Bad Request_1.htm">400 Bad Request</a> troubleshooting
-        section.
-    </p>
-    <h4 id="connectionstring">
-        <code class="inline-code">connectionString</code>
-    </h4>
-    <p>
-        The <code class="inline-code">connectionString</code> returned in the
-        Response Body contains the subscription&#39;s Service Bus endpoint that
-        begins after <code class="inline-code">Endpoint=</code>. In the example
-        Response Body displayed previously, the endpoint is:
-        <code class="inline-code"
-            >sb://flex-pry-eastus-asb.servicebus.windows.net</code
-        >. Notice the endpoint contains the environment. In the example, the
-        Pre-Production environment is named
-        <code class="inline-code">pry</code> and the Azure Region containing the
-        subscription is <code class="inline-code">eastus</code>.
-    </p>
-    <p>
-        The <code class="inline-code">SharedAccessSignature</code>, also known
-        as a SAS token, follows the Service Bus endpoint and contains the
-        airline backend&#39;s credentials for accessing the subscription. The
-        entire value of the SAS token needs to be passed in the Authorization
-        Header of requests made to the Azure Service Bus REST API.
-    </p>
-    <p>
-        It is not necessary to understand the contents of the SAS token. It is
-        important to include the full SAS token value in the HTTP Authorization
-        Headers of requests sent to the Azure Service Bus REST API. Without
-        these credentials, you will receive a
-        <code class="inline-code">Not Authorized</code> error message.
-    </p>
-    <div class="alert-section info-alert">
-        <div class="">
-            <p>
-                To learn more about SAS tokens, consult the Microsoft
-                documentation on
-                <a
-                    href="https://docs.microsoft.com/en-us/azure/service-bus-messaging/"
-                    >Azure Service Bus Messaging</a
-                >.
-            </p>
-        </div>
-        <h4 id="subscriptionid">
-            <code class="inline-code">subscriptionId</code>
-        </h4>
+            </code>
+            </pre>
+</div>
+
+<p class="caption">
+    Sample Response Body for <span class="method post">POST</span>
+    <code class="inline-code">session/v2/subscriptions</code> request containing
+    details for connecting to the subscription
+</p>
+
+<div class="alert-section warning-alert">
+    <div class="">
         <p>
-            The <code class="inline-code">subscriptionId</code> is a
-            Flex-specific ID passed in the Request Body of connection requests
-            to associate a device with a specific Service Bus Subscription.
+            Not sending a
+            <code class="inline-code">/session/v2/subscriptions</code> request
+            results in a <strong>400 Bad Request</strong> error, as described in
+            the
+            <a href="400 Bad Request_1.htm">400 Bad Request</a> troubleshooting
+            section.
         </p>
-        <p>
-            For example, when connecting to an ATB device, the airline backend
-            will send a <span class="method post">POST</span>
-            <code class="inline-code">/session/v2/connections</code> request,
-            including the <code class="inline-code">subscriptionId</code> in the
-            Request Body. The returned
-            <code class="inline-code">connectionID</code> is now associated to
-            the subscription, and thus Flex knows to route any messages coming
-            from the device to that specific subscription.
-        </p>
-        <div class="alert-section info-alert">
-            <div class="">
-                <p>
-                    In Postman, if you click the
-                    <strong>Tests</strong> tab, you will notice there is
-                    Javascript code that sets the environmental variable
-                    <code class="inline-code">{{subscription_id}}</code> to the
-                    <code class="inline-code">subscriptionId</code> returned
-                    after making the request. Now, when future requests are made
-                    in this session, the
-                    <code class="inline-code">subscriptionId</code> is included
-                    in the Response Body without the need to manually enter it.
-                </p>
-            </div>
-            <h4 id="expirytime"><code class="inline-code">expiryTime</code></h4>
-            <p>
-                After sending the request, an
-                <code class="inline-code">expiryTime</code> is returned set to
-                <strong>12 hours</strong> from the time the request was made, at
-                which point the subscription expires.
-            </p>
-            <h4 id="service-bus-properties">Service Bus Properties</h4>
-            <p>
-                The Response Body also contains properties that are Service
-                Bus-specific. These properties are passed in verbatim when you
-                use the Microsoft SDK to connect to the subscription.
-            </p>
-            <p>
-                The <code class="inline-code">topicName</code> and
-                <code class="inline-code">subscriptionName</code> are
-                identifiers to tell your application which specific subscription
-                it should read Service Bus messages. The
-                <code class="inline-code">topicName</code> has a fixed value of
-                <code class="inline-code">airline-messages</code> in all
-                situations, and
-                <code class="inline-code">subscriptionName</code> is a GUID
-                returned per subscription.
-            </p>
-            <h3 id="best-practices-1">Best Practices</h3>
-            <h4 id="how-to-handle-subscriptions">
-                How to Handle Subscriptions
-            </h4>
-            <p>
-                The airline backend can handle subscriptions in several
-                different ways. The first way is to keep a subscription alive
-                through repeated calls to the POST
-                <code class="inline-code">session/v2/subscriptions</code>
-                endpoint to create a new SAS token when the old one expires. The
-                SAS token is contained in the
-                <code class="inline-code">connectionString</code> in the
-                Response Body.
-            </p>
-            <div class="alert-section info-alert">
-                <div class="">
-                    <p>
-                        The SAS token contains the credentials needed by the
-                        airline backend to access the Azure Service Bus.
-                    </p>
-                </div>
-                <p>
-                    The second way is to have an &#39;on-demand&#39; solution
-                    whereby the airline backend determines if there is a
-                    subscription in place for the specified location. If there
-                    is already a subscription for the location, the airline
-                    backend uses that subscription and does not send a request
-                    to create a new one. If there is no subscription in place,
-                    it sends a POST
-                    <code class="inline-code">session/v2/subscriptions</code>
-                    request to create a new subscription.
-                </p>
-                <div class="alert-section info-alert">
-                    <div class="">
-                        <p>
-                            The airline backend will only ever have one
-                            subscription for an Azure Region. So, if a new
-                            subscription is created, it will continue to use
-                            that subscription for all requests from client
-                            applications in that region.
-                        </p>
-                    </div>
-                    <h4 id="avoid-multiple-sas-tokens">
-                        Avoid Multiple SAS Tokens
-                    </h4>
-                    <p>
-                        Making repeated calls to
-                        <span class="method post">POST</span>
-                        <code class="inline-code"
-                            >session/v2/subscriptions</code
-                        >
-                        does not create a new subscription. The same
-                        <code class="inline-code">subscriptionId</code>
-                        associated with the existing subscription is returned in
-                        the Response Body. However, it is important to note that
-                        <u>a new SAS token is generated</u>.
-                    </p>
-                    <p>
-                        If a <span class="method post">POST</span>
-                        <code class="inline-code"
-                            >session/v2/subscriptions</code
-                        >
-                        request is made, and there is an existing SAS token that
-                        has yet to reach its
-                        <code class="inline-code">expiryTime</code>, there are
-                        now two SAS tokens. In this case, the airline backend
-                        should disconnect from the old SAS token and connect to
-                        the new one that has an
-                        <code class="inline-code">expiryTime</code>.
-                    </p>
-                    <div class="alert-section info-alert">
-                        <div class="">
-                            <p>
-                                In best practice, an airline backend would never
-                                encounter a situation where it would need to
-                                disconnect from an old SAS token to use the new
-                                one. The ideal scenario would be to allow the
-                                old SAS token to expire then create a new one by
-                                sending a
-                                <code class="inline-code"
-                                    >session/v2/subscriptions</code
-                                >
-                                request.
-                            </p>
-                        </div>
-                        <p>
-                            If the airline backend drops an active connection
-                            the Azure Service Bus by disconnecting from a SAS
-                            token, no messages are lost. Any messages sent to
-                            the subscription are queued and will display once
-                            another connection is made with a new SAS token.
-                        </p>
-                        <h4 id="protect-subscriptions-details">
-                            Protect Subscriptions Details
-                        </h4>
-                        <p>
-                            Since SITA Flex only expects to be interacting with
-                            the one authenticated system such as your
-                            Application Web Server, it is recommended that the
-                            Azure Service Bus subscription details should not be
-                            shared amongst several parties. They should remain
-                            secret for specific usage in your application at any
-                            given point and should not have several consumers
-                            who subscribe to this Azure Service Bus. It is
-                            recommended that the Web Server backend of your
-                            application subscribes to this Azure Service Bus
-                            subscription and then any clients that need to be
-                            notified are signaled by your backend application
-                            using another technology such as SignalR, or an
-                            equivalent.
-                        </p>
-                        <h4 id="subscription-removal">Subscription Removal</h4>
-                        <p>
-                            If an ill-behaved application does not properly
-                            clean-up its subscription, an auto-delete on idle
-                            takes care of the subscription removal (<code
-                                >AutoDeleteOnIdle</code
-                            >
-                            property in Azure Service Bus). Currently, the time
-                            is controlled by SITA Flex Core services and is set
-                            to <strong>24 hours</strong>.
-                        </p>
-                        <h4 id="deleting-subscriptions">
-                            Deleting Subscriptions
-                        </h4>
-                        <p>
-                            If a subscription is no longer needed, it is best
-                            practice to delete the subscription by sending a DEL
-                            <code class="inline-code"
-                                >/session/v2/subscriptions/{subscription_id}</code
-                            >
-                            request, passing in the
-                            <code class="inline-code">subscription_id</code> of
-                            the subscription to be deleted as a path parameter.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
+</div>
+
+<h3 id="connectionstring">
+    <code class="inline-code">connectionString</code>
+</h3>
+<p>
+    The <code class="inline-code">connectionString</code> returned in the
+    Response Body contains the subscription's Service Bus endpoint that begins
+    after <code class="inline-code">Endpoint=</code>. In the example Response
+    Body displayed previously, the endpoint is:
+    <code class="inline-code"
+        >sb://flex-pry-eastus-asb.servicebus.windows.net</code
+    >. Notice the endpoint contains the environment. In the example, the
+    Pre-Production environment is named <code class="inline-code">pry</code> and
+    the Azure Region containing the subscription is
+    <code class="inline-code">eastus</code>.
+</p>
+<p>
+    The <code class="inline-code">SharedAccessSignature</code>, also known as a
+    SAS token, follows the Service Bus endpoint and contains the airline
+    backend's credentials for accessing the subscription. The entire value of
+    the SAS token needs to be passed in the Authorization Header of requests
+    made to the Azure Service Bus REST API.
+</p>
+<div class="alert-section info-alert">
+    <div class="">
+        <p>
+            It is not necessary to understand the contents of the SAS token. It
+            is important to include the full SAS token value in the HTTP
+            Authorization Headers of requests sent to the Azure Service Bus REST
+            API. Without these credentials, you will receive a
+            <code class="inline-code">Not Authorized</code> error message.
+        </p>
+    </div>
+</div>
+
+<div class="alert-section info-alert">
+    <div class="">
+        <p>
+            To learn more about SAS tokens, consult the Microsoft documentation
+            on
+            <a
+                href="https://docs.microsoft.com/en-us/azure/service-bus-messaging/"
+                >Azure Service Bus Messaging</a
+            >.
+        </p>
+    </div>
+</div>
+<h3 id="subscriptionid">
+    <code class="inline-code">subscriptionId</code>
+</h3>
+<p>
+    The <code class="inline-code">subscriptionId</code> is a Flex-specific ID
+    passed in the Request Body of connection requests to associate a device with
+    a specific Service Bus Subscription.
+</p>
+<p>
+    For example, when connecting to an ATB device, the airline backend will send
+    a <span class="method post">POST</span>
+    <code class="inline-code">/session/v2/connections</code> request, including
+    the <code class="inline-code">subscriptionId</code> in the Request Body. The
+    returned <code class="inline-code">connectionID</code> is now associated to
+    the subscription, and thus Flex knows to route any messages coming from the
+    device to that specific subscription.
+</p>
+<div class="alert-section info-alert">
+    <div class="">
+        <p>
+            In Postman, if you click the
+            <strong>Tests</strong> tab, you will notice there is Javascript code
+            that sets the environmental variable
+            <code class="inline-code">{{subscription_id}}</code> to the
+            <code class="inline-code">subscriptionId</code> returned after
+            making the request. Now, when future requests are made in this
+            session, the <code class="inline-code">subscriptionId</code> is
+            included in the Response Body without the need to manually enter it.
+        </p>
+    </div>
+</div>
+<h3 id="expirytime"><code class="inline-code">expiryTime</code></h3>
+<p>
+    After sending the request, an
+    <code class="inline-code">expiryTime</code> is returned set to
+    <strong>12 hours</strong> from the time the request was made, at which point
+    the subscription expires.
+</p>
+<h3 id="service-bus-properties">Service Bus Properties</h3>
+<p>
+    The Response Body also contains properties that are Service Bus-specific.
+    These properties are passed in verbatim when you use the Microsoft SDK to
+    connect to the subscription.
+</p>
+<p>
+    The <code class="inline-code">topicName</code> and
+    <code class="inline-code">subscriptionName</code> are identifiers to tell
+    your application which specific subscription it should read Service Bus
+    messages. The <code class="inline-code">topicName</code> has a fixed value
+    of <code class="inline-code">airline-messages</code> in all situations, and
+    <code class="inline-code">subscriptionName</code> is a GUID returned per
+    subscription.
+</p>
+<h2 id="best-practices-1">Best Practices</h2>
+<h3>How to handle subscriptions</h3>
+<p>The airline backend can handle subscriptions in several different ways.</p>
+
+<p>
+    The first way is to keep a subscription alive through repeated calls to the
+    POST
+    <code class="inline-code">session/v2/subscriptions</code>
+    endpoint to create a new SAS token when the old one expires. The SAS token
+    is contained in the
+    <code class="inline-code">connectionString</code> in the Response Body.
+</p>
+<div class="alert-section info-alert">
+    <div class="">
+        <p>
+            The SAS token contains the credentials needed by the airline backend
+            to access the Azure Service Bus.
+        </p>
+    </div>
+</div>
+<p>
+    The second way is to have an 'on-demand' solution whereby the airline
+    backend determines if there is a subscription in place for the specified
+    location. If there is already a subscription for the location, the airline
+    backend uses that subscription and does not send a request to create a new
+    one. If there is no subscription in place, it sends a POST
+    <code class="inline-code">session/v2/subscriptions</code>
+    request to create a new subscription.
+</p>
+<div class="alert-section info-alert">
+    <div class="">
+        <p>
+            The airline backend will only ever have one subscription for an
+            Azure Region. So, if a new subscription is created, it will continue
+            to use that subscription for all requests from client applications
+            in that region.
+        </p>
+    </div>
+</div>
+<h3 id="avoid-multiple-sas-tokens">Avoid Multiple SAS Tokens</h3>
+<p>
+    Making repeated calls to
+    <span class="method post">POST</span>
+    <code class="inline-code">session/v2/subscriptions</code>
+    does not create a new subscription. The same
+    <code class="inline-code">subscriptionId</code>
+    associated with the existing subscription is returned in the Response Body.
+    However, it is important to note that
+    <u>a new SAS token is generated</u>.
+</p>
+<p>
+    If a <span class="method post">POST</span>
+    <code class="inline-code">session/v2/subscriptions</code>
+    request is made, and there is an existing SAS token that has yet to reach
+    its
+    <code class="inline-code">expiryTime</code>, there are now two SAS tokens.
+    In this case, the airline backend should disconnect from the old SAS token
+    and connect to the new one that has an
+    <code class="inline-code">expiryTime</code>.
+</p>
+<div class="alert-section info-alert">
+    <div class="">
+        <p>
+            In best practice, an airline backend would never encounter a
+            situation where it would need to disconnect from an old SAS token to
+            use the new one. The ideal scenario would be to allow the old SAS
+            token to expire then create a new one by sending a
+            <code class="inline-code">session/v2/subscriptions</code>
+            request.
+        </p>
+    </div>
+</div>
+<p>
+    If the airline backend drops an active connection the Azure Service Bus by
+    disconnecting from a SAS token, no messages are lost. Any messages sent to
+    the subscription are queued and will display once another connection is made
+    with a new SAS token.
+</p>
+<h3 id="protect-subscriptions-details">Protect Subscriptions Details</h3>
+<p>
+    Since SITA Flex only expects to be interacting with the one authenticated
+    system such as your Application Web Server, it is recommended that the Azure
+    Service Bus subscription details should not be shared amongst several
+    parties. They should remain secret for specific usage in your application at
+    any given point and should not have several consumers who subscribe to this
+    Azure Service Bus. It is recommended that the Web Server backend of your
+    application subscribes to this Azure Service Bus subscription and then any
+    clients that need to be notified are signaled by your backend application
+    using another technology such as SignalR, or an equivalent.
+</p>
+<h3 id="subscription-removal">Subscription Removal</h3>
+<p>
+    If an ill-behaved application does not properly clean-up its subscription,
+    an auto-delete on idle takes care of the subscription removal (<code
+        >AutoDeleteOnIdle</code
+    >
+    property in Azure Service Bus). Currently, the time is controlled by SITA
+    Flex Core services and is set to <strong>24 hours</strong>.
+</p>
+<h3 id="deleting-subscriptions">Deleting Subscriptions</h3>
+<p>
+    If a subscription is no longer needed, it is best practice to delete the
+    subscription by sending a DEL
+    <code class="inline-code">/session/v2/subscriptions/{subscription_id}</code>
+    request, passing in the
+    <code class="inline-code">subscription_id</code> of the subscription to be
+    deleted as a path parameter.
+</p>
+<div class="continued-reading-section">
+    <h2 class="continued-reading">Next Steps</h2>
+    <ul class="continue-link-list">
+        <div class="continue-link-row">
+            <div class="svg-container">
+                <svg
+                    version="1.1"
+                    id="Capa_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    x="0px"
+                    y="0px"
+                    viewBox="0 0 482.204 482.204"
+                    style="enable-background: new 0 0 482.204 482.204"
+                    xml:space="preserve"
+                >
+                    <g>
+                        <path
+                            style="fill: #5469d4"
+                            d="M83.127,344.477c54.602,1.063,101.919,9.228,136.837,23.613c0.596,0.244,1.227,0.366,1.852,0.366
+                    c0.95,0,1.895-0.279,2.706-0.822c1.349-0.902,2.158-2.418,2.158-4.041l0.019-261.017c0-1.992-1.215-3.783-3.066-4.519
+                    L85.019,42.899c-1.496-0.596-3.193-0.411-4.527,0.494c-1.334,0.906-2.133,2.413-2.133,4.025v292.197
+                    C78.359,342.264,80.479,344.425,83.127,344.477z"
+                        />
+                        <path
+                            style="fill: #5469d4"
+                            d="M480.244,89.256c-1.231-0.917-2.824-1.198-4.297-0.759l-49.025,14.657
+                    c-2.06,0.616-3.471,2.51-3.471,4.659v252.151c0,0,0.218,3.978-3.97,3.978c-4.796,0-7.946,0-7.946,0
+                    c-39.549,0-113.045,4.105-160.93,31.6l-9.504,5.442l-9.503-5.442c-47.886-27.494-121.381-31.6-160.93-31.6c0,0-8.099,0-10.142,0
+                    c-1.891,0-1.775-2.272-1.775-2.271V107.813c0-2.149-1.411-4.043-3.47-4.659L6.256,88.497c-1.473-0.439-3.066-0.158-4.298,0.759
+                    S0,91.619,0,93.155v305.069c0,1.372,0.581,2.681,1.597,3.604c1.017,0.921,2.375,1.372,3.741,1.236
+                    c14.571-1.429,37.351-3.131,63.124-3.131c56.606,0,102.097,8.266,131.576,23.913c4.331,2.272,29.441,15.803,41.065,15.803
+                    c11.624,0,36.733-13.53,41.063-15.803c29.48-15.647,74.971-23.913,131.577-23.913c25.771,0,48.553,1.702,63.123,3.131
+                    c1.367,0.136,2.725-0.315,3.742-1.236c1.016-0.923,1.596-2.231,1.596-3.604V93.155C482.203,91.619,481.476,90.173,480.244,89.256z
+                    "
+                        />
+                        <path
+                            style="fill: #5469d4"
+                            d="M257.679,367.634c0.812,0.543,1.757,0.822,2.706,0.822c0.626,0,1.256-0.122,1.853-0.366
+                    c34.917-14.386,82.235-22.551,136.837-23.613c2.648-0.052,4.769-2.213,4.769-4.861V47.418c0-1.613-0.799-3.12-2.133-4.025
+                    c-1.334-0.904-3.031-1.09-4.528-0.494L258.569,98.057c-1.851,0.736-3.065,2.527-3.065,4.519l0.019,261.017
+                    C255.521,365.216,256.331,366.732,257.679,367.634z"
+                        />
+                    </g>
+                </svg>
+            </div>
+            <div>
+                <a href="/APIs/session/location-capabilities"
+                    >Determine Location Capabilities</a
+                >
+            </div>
+        </div>
+    </ul>
 </div>

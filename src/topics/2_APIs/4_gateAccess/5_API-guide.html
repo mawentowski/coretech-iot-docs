@@ -62,7 +62,7 @@
                 <li>
                     Ensure the
                     <code class="inline-code">{{location}}</code> variable
-                    corresponds to the VM&#39;s machine name as seen in the
+                    corresponds to the VM's machine name as seen in the
                     Peripheral View. For example, a VM with machine name
                     <code class="inline-code">ZZU1CKB005</code> as seen in the
                     Peripheral view could correspond to a
@@ -165,13 +165,11 @@
     "DeviceStatus": "Online"
 }
 </code></pre>
-            <h5
-                id="gatedevicestatus-service-bus-message-body-showing-the-gate-device-is-online-1"
-            >
+            <p class="caption">
                 <code class="inline-code">GateDeviceStatus</code> Service Bus
                 Message Body showing the gate device is
                 <code class="inline-code">Online</code>
-            </h5>
+            </p>
             <p>
                 The message should return the
                 <code class="inline-code">DeviceStatus</code> as
@@ -273,13 +271,11 @@
     "Error": null
 }
 </code></pre>
-                <h5
-                    id="opengateresponse-service-bus-message-body-indicating-the-request-to-initiate-the-boarding-process-has-succeeded-1"
-                >
+                <p class="caption">
                     <code class="inline-code">OpenGateResponse</code> Service
                     Bus Message Body indicating the request to initiate the
                     boarding process has succeeded
-                </h5>
+                </p>
                 <ol>
                     <li>
                         Open the BGR Device Simulator, and you will notice the
@@ -318,7 +314,7 @@
 
                     <p class="caption">
                         BGR Device Simulator with Barcode Data entered
-                    </h5>
+                    </p>
                     <ol>
                         <li>
                             Click the <strong>Read</strong> button to simulate
@@ -339,13 +335,11 @@
    "BarcodeData":"6M1AZKUR AHMETKUR ERG6ULZ ZRHISTTK 1912 211Y024F0028 150&gt;10B1OO2211BTK 292352404859427 1 020K X"
 }
 </code></pre>
-                    <h5
-                        id="boardingpassdata-service-bus-message-body-including-the-scanned-boarding-pass-data"
-                    >
+                    <p class="caption">
                         <code class="inline-code">BoardingPassData</code>
                         Service Bus Message Body including the scanned boarding
                         pass data
-                    </h5>
+                    </p>
                     <h3 id="timeout-error-1">Timeout Error</h3>
                     <p>
                         If you receive an
@@ -356,15 +350,13 @@
                         restart the process.
                     </p>
                     <pre><code class="language-JSON">{
-   "Message":"Timeout has occurred while executing the command &#39;DisplayCommand&#39;!"
+   "Message":"Timeout has occurred while executing the command 'DisplayCommand'!"
 }
 </code></pre>
-                    <h5
-                        id="erroroccurred-service-bus-message-body-indicating-a-timeout-has-occurred-1"
-                    >
+                    <p class="caption">
                         <code class="inline-code">ErrorOccurred</code> Service
                         Bus Message Body indicating a timeout has occurred
-                    </h5>
+                    </p>
                     <p>To resolve:</p>
                     <ol>
                         <li>
@@ -428,17 +420,15 @@
     }
 }
 </code></pre>
-                    <h5
-                        id="sample-gateaccessv2acceptpassenger-request-body-with-message-data-to-display-to-the-agent-that-the-passenger-is-ok-to-board"
-                    >
+                    <p class="caption">
                         Sample
                         <code class="inline-code"
                             >gateaccess/v2/acceptpassenger</code
                         >
                         Request Body with
                         <code class="inline-code">Message</code> data to display
-                        to the agent that the passenger is &#39;Ok&#39; to board
-                    </h5>
+                        to the agent that the passenger is 'Ok' to board
+                    </p>
                     <ol>
                         <li>
                             Send the
@@ -470,13 +460,11 @@
     "Error": null
 }
 </code></pre>
-                    <h5
-                        id="acceptpassengerresponse-service-bus-message-body-indicating-that-request-to-accept-the-passenger-was-successful-1"
-                    >
+                    <p class="caption">
                         <code class="inline-code">AcceptPassengerResponse</code>
                         Service Bus Message Body indicating that request to
                         accept the passenger was successful
-                    </h5>
+                    </p>
                     <ol>
                         <li>
                             In the BGR Device Simulator, notice the that the
@@ -496,7 +484,7 @@
                             characters into the
                             <strong>Barcode</strong> text box then
                             <strong>Read</strong> the barcode to the device to
-                            simulate the agent scanning the next passenger&#39;s
+                            simulate the agent scanning the next passenger's
                             barcode.
                             <ul>
                                 <li>
@@ -527,18 +515,15 @@
     "Alarm": true
 }
 </code></pre>
-                    <h5
-                        id="sample-gateaccessv2rejectpassenger-request-body-with-message-data-to-display-to-the-agent-that-the-passenger-is-not-ok-to-board-1"
-                    >
+                    <p class="caption">
                         Sample
                         <code class="inline-code"
                             >gateaccess/v2/rejectpassenger</code
                         >
                         Request Body with
                         <code class="inline-code">Message</code> data to display
-                        to the agent that the passenger is &#39;Not Ok&#39; to
-                        board
-                    </h5>
+                        to the agent that the passenger is 'Not Ok' to board
+                    </p>
                     <ol>
                         <li>
                             Send the
@@ -561,8 +546,8 @@
                             <strong>BGR Device Simulator</strong>, you will
                             notice a red exclamation mark displays in the
                             <strong>Display Icon</strong> window. This indicates
-                            to the agent that the passenger is &#39;Not Ok&#39;
-                            to board. If you did not see it, you can click
+                            to the agent that the passenger is 'Not Ok' to
+                            board. If you did not see it, you can click
                             <strong>Read</strong> and send the request again to
                             trigger the icon.
                         </li>
@@ -583,13 +568,11 @@
     "Error": null
 }
 </code></pre>
-                    <h5
-                        id="rejectpassengerresponse-service-bus-message-body-indicating-that-request-to-reject-the-passenger-was-successful-1"
-                    >
+                    <p class="caption">
                         <code class="inline-code">RejectPassengerResponse</code>
                         Service Bus Message Body indicating that request to
                         reject the passenger was successful
-                    </h5>
+                    </p>
                     <h3 id="end-the-boarding-process">
                         End the Boarding Process
                     </h3>
@@ -621,13 +604,11 @@
     "Error": null
 }
 </code></pre>
-                    <h5
-                        id="closegateresponse-service-bus-message-body-indicating-the-request-to-end-the-boarding-process-has-succeeded-1"
-                    >
+                    <p class="caption">
                         <code class="inline-code">CloseGateResponse</code>
                         Service Bus Message Body indicating the request to end
                         the boarding process has succeeded
-                    </h5>
+                    </p>
                     <ol>
                         <li>
                             In the BGR Device Simulator, notice that the

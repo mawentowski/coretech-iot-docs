@@ -22,20 +22,18 @@
     "BinStatus": "Ok"
 }
 </code></pre>
-<h5
-    id="printdevicestatus-service-bus-message-showing-the-print-device-is-online"
->
+<p class="caption">
     <code class="inline-code">PrintDeviceStatus</code> Service Bus Message
     showing the Print device is <code class="inline-code">Online</code>
-</h5>
+</p>
 <h4 id="devicestatus-changes">
     <code class="inline-code">DeviceStatus</code> Changes
 </h4>
 <p>
-    If the device&#39;s status changes for whatever reason (for example, the
-    device goes <code class="inline-code">Offline</code> or the paper becomes
-    jammed), a <code class="inline-code">DeviceStatus</code> message may display
-    after requesting a print followed by an unsuccessful
+    If the device's status changes for whatever reason (for example, the device
+    goes <code class="inline-code">Offline</code> or the paper becomes jammed),
+    a <code class="inline-code">DeviceStatus</code> message may display after
+    requesting a print followed by an unsuccessful
     <code class="inline-code">PrintResponse</code> message.
 </p>
 <pre><code class="language-json">{
@@ -44,12 +42,10 @@
     "BinStatus": "Ok"
 }
 </code></pre>
-<h5
-    id="devicestatus-service-bus-message-sent-after-requesting-a-print-on-a-printer-with-a-paper-jam"
->
+<p class="caption">
     <code class="inline-code">DeviceStatus</code> Service Bus Message sent after
     requesting a print on a printer with a paper jam
-</h5>
+</p>
 <h3 id="printresponse">PrintResponse</h3>
 <p>
     After sending a request to print to a device, the
@@ -99,7 +95,7 @@
 <p class="caption">
     <code class="inline-code">PrintResponse</code> Service Bus Message
     indicating a successful print
-</h5>
+</p>
 <p>
     For an unsuccessful print, a
     <code class="inline-code">PrintResponse</code> message displays with
@@ -118,12 +114,10 @@
     "SuccessfulPrints": "0"
 }
 </code></pre>
-<h5
-    id="printresponse-service-bus-message-indicating-an-unsuccessful-print-due-to-paper-jam"
->
+<p class="caption">
     <code class="inline-code">PrintResponse</code> Service Bus Message
     indicating an unsuccessful print due to paper jam
-</h5>
+</p>
 <div class="alert-section info-alert">
     <div class="">
         <p>

@@ -62,9 +62,9 @@
             </li>
             <li>
                 Ensure the <code>{{location}}</code> variable corresponds to the
-                VM&#39;s machine name as seen in the Peripheral View. For
-                example, a VM with machine name <code>ZZU1CKB005</code> as seen
-                in the Peripheral view could correspond to the
+                VM's machine name as seen in the Peripheral View. For example, a
+                VM with machine name <code>ZZU1CKB005</code> as seen in the
+                Peripheral view could correspond to the
                 <code>location</code> like
                 <code>A-ZZU-MZUZUAIRPORT-ZZU1CKB005</code> in the Postman
                 Environment.
@@ -155,7 +155,7 @@
 <p class="caption">
     <code>PrintDeviceStatus</code> Service Bus Message indicating the device is
     online
-</h5>
+</p>
 <p>
     The message should return a <code>DeviceStatus</code> of
     <code>Online</code>, with <code>MediaStatus</code> and
@@ -242,7 +242,7 @@
 </code></pre>
 <p class="caption">
     <code>PrintResponse</code> Service Bus Message indicating a successful print
-</h5>
+</p>
 <ol start="3">
     <li>
         Go to the <strong>ATB Simulator</strong> window in the VM.
@@ -260,7 +260,7 @@
 </p>
 <p class="caption">
     ATB Simulator with Boarding Pass displaying in Print Preview
-</h5>
+</p>
 <h3 id="simulate-an-unsuccessful-print">Simulate an Unsuccessful Print</h3>
 <p>
     The ATB Simulator (and simulators for other print devices) allows you to add
@@ -290,12 +290,10 @@
     "SuccessfulPrints": "0"
 }
 </code></pre>
-<h5
-    id="printresponse-service-bus-message-indicating-an-unsuccessful-print-with-reason-message"
->
+<p class="caption">
     <code>PrintResponse</code> Service Bus Message indicating an unsuccessful
     print with reason <code>Message</code>
-</h5>
+</p>
 <p>
     <code>IsSuccess</code> should be <code>false</code>, which indicates the
     Print was unsuccessful. A general error displays,

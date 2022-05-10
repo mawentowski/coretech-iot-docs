@@ -20,12 +20,10 @@
     "DeviceStatus": "Online"
 }
 </code></pre>
-<h5
-    id="gatedevicestatus-service-bus-message-body-showing-the-gate-device-is-online"
->
+<p class="caption">
     <code class="inline-code">GateDeviceStatus</code> Service Bus Message Body
     showing the gate device is <code class="inline-code">Online</code>
-</h5>
+</p>
 <h4 id="devicestatus-changes-2">
     <code class="inline-code">DeviceStatus</code> Changes
 </h4>
@@ -47,17 +45,15 @@
     "DeviceStatus": "PoweredOff"
 }
 </code></pre>
-<h5
-    id="gatedevicestatus-service-bus-message-body-showing-the-gate-device-is-poweredoff"
->
+<p class="caption">
     <code class="inline-code">GateDeviceStatus</code> Service Bus Message Body
     showing the gate device is <code class="inline-code">PoweredOff</code>
-</h5>
+</p>
 <h3 id="opengateresponse">OpenGateResponse</h3>
 <p>
     In an agent-controlled area prior to boarding, the Self-Boarding Gate (SBG)
-    is in a &#39;closed&#39; state where no passenger can scan their boarding
-    pass and proceed through the gate.
+    is in a 'closed' state where no passenger can scan their boarding pass and
+    proceed through the gate.
 </p>
 <p>
     The agent starts the boarding process by triggering the
@@ -97,19 +93,17 @@
     "Error": null
 }
 </code></pre>
-    <h5
-        id="opengateresponse-service-bus-message-body-indicating-the-request-to-initiate-the-boarding-process-has-succeeded"
-    >
+    <p class="caption">
         <code class="inline-code">OpenGateResponse</code> Service Bus Message
         Body indicating the request to initiate the boarding process has
         succeeded
-    </h5>
+    </p>
     <h3 id="boardingpassdata">BoardingPassData</h3>
     <p>
         For a boarding process involving a Self-Boarding Gate (SBG) device, the
         passenger may scan his or her boarding pass. For a boarding process
-        involving a Boarding Gate Reader, the agent may now scan the
-        passenger&#39;s boarding pass.
+        involving a Boarding Gate Reader, the agent may now scan the passenger's
+        boarding pass.
     </p>
     <p>
         When a passenger scans a boarding pass at a gate, the gate locks while
@@ -124,12 +118,10 @@
    "BarcodeData":"6M1AZKUR AHMETKUR ERG6ULZ ZRHISTTK 1912 211Y024F0028 150&gt;10B1OO2211BTK 292352404859427 1 020K X"
 }
 </code></pre>
-    <h5
-        id="boardingpassdata-service-bus-message-body-including-scanned-boarding-pass-data"
-    >
+    <p class="caption">
         <code class="inline-code">BoardingPassData</code> Service Bus Message
         Body including scanned boarding pass data
-    </h5>
+    </p>
     <h3 id="timeout-error">Timeout Error</h3>
     <p>
         If the passenger is not accepted or rejected by the airline backend
@@ -138,15 +130,13 @@
         Service Bus.
     </p>
     <pre><code class="language-JSON">{
-   "Message":"Timeout has occurred while executing the command &#39;DisplayCommand&#39;!"
+   "Message":"Timeout has occurred while executing the command 'DisplayCommand'!"
 }
 </code></pre>
-    <h5
-        id="erroroccurred-service-bus-message-body-indicating-a-timeout-has-occurred"
-    >
+    <p class="caption">
         <code class="inline-code">ErrorOccurred</code> Service Bus Message Body
         indicating a timeout has occurred
-    </h5>
+    </p>
     <p>To resolve:</p>
     <ol>
         <li>
@@ -193,14 +183,12 @@
     }
 }
 </code></pre>
-    <h5
-        id="sample-gateaccessv2acceptpassenger-request-body-with-message-data-to-display-on-a-bgr-device-that-the-passenger-is-ok-to-board"
-    >
+    <p class="caption">
         Sample
         <code class="inline-code">gateaccess/v2/acceptpassenger</code> Request
         Body with <code class="inline-code">Message</code> data to display on a
-        BGR device that the passenger is &#39;Ok&#39; to board
-    </h5>
+        BGR device that the passenger is 'Ok' to board
+    </p>
     <p>
         If <code class="inline-code">ReceiptData</code> is passed in the Request
         Body (as seen in the previous example), and the device is a
@@ -233,13 +221,11 @@
     "Error": null
 }
 </code></pre>
-        <h5
-            id="acceptpassengerresponse-service-bus-message-body-indicating-that-request-to-accept-the-passenger-was-successful"
-        >
+        <p class="caption">
             <code class="inline-code">AcceptPassengerResponse</code> Service Bus
             Message Body indicating that request to accept the passenger was
             successful
-        </h5>
+        </p>
         <p>
             If the device is Boarding Gate Reader, a green light displays, along
             with a
@@ -284,15 +270,12 @@
     "Alarm": true
 }
 </code></pre>
-            <h5
-                id="sample-gateaccessv2rejectpassenger-request-body-with-message-data-to-display-to-the-agent-that-the-passenger-is-not-ok-to-board"
-            >
+            <p class="caption">
                 Sample
                 <code class="inline-code">gateaccess/v2/rejectpassenger</code>
                 Request Body with <code class="inline-code">Message</code> data
-                to display to the agent that the passenger is &#39;Not Ok&#39;
-                to board
-            </h5>
+                to display to the agent that the passenger is 'Not Ok' to board
+            </p>
             <p>
                 Upon making a
                 <code class="inline-code">gateaccess/v2/rejectpassenger</code>
@@ -312,13 +295,11 @@
     "Error": null
 }
 </code></pre>
-            <h5
-                id="rejectpassengerresponse-service-bus-message-body-indicating-that-request-to-reject-the-passenger-was-successful"
-            >
+            <p class="caption">
                 <code class="inline-code">RejectPassengerResponse</code> Service
                 Bus Message Body indicating that request to reject the passenger
                 was successful
-            </h5>
+            </p>
             <p>
                 If the device is Boarding Gate Reader, a red light displays,
                 along with the
@@ -368,13 +349,11 @@
     "Error": null
 }
 </code></pre>
-                <h5
-                    id="closegateresponse-service-bus-message-body-indicating-the-request-to-end-the-boarding-process-has-succeeded"
-                >
+                <p class="caption">
                     <code class="inline-code">CloseGateResponse</code> Service
                     Bus Message Body indicating the request to end the boarding
                     process has succeeded
-                </h5>
+                </p>
             </div>
         </div>
     </div>

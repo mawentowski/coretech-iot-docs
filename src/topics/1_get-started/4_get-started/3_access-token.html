@@ -212,7 +212,8 @@ Console.WriteLine(response.Content);
 
 
 </div>
-<p class="caption">Get Access Token request shown in multiple programming languages</p>
+
+<p class="caption">Sample request to retrieve an access token that contains the client credentials passed in the Request Body.</p>
 
 
 
@@ -226,10 +227,12 @@ Console.WriteLine(response.Content);
     Body containing the <code class="inline-code">access_token</code>.
 </p>
 
+
+
 <div class="method-example atom-one-light">
     <div class="method-example-top-bar">Response</div>
     <pre>
-    <code class="language-json">
+        <code class="language-json">
 {
     "token_type": "Bearer",
     "expires_in": "3599",
@@ -239,9 +242,10 @@ Console.WriteLine(response.Content);
     "resource": "51583536-28c7-4ea6-8d94-d0a7e91cb1cb",
     "access_token": "eyJ0eXAiOiJKV1QiLsf1V6TJUs1P3601"
 }
-</code>
-</pre>
+    </code>
+    </pre>
 </div>
+
 
 <p class="caption">
     Response Body containing the <code class="inline-code">access_token</code>

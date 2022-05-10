@@ -64,7 +64,7 @@
                 <li>
                     Ensure the
                     <code class="inline-code">{{location}}</code> variable
-                    corresponds to the VM&#39;s machine name as seen in the
+                    corresponds to the VM's machine name as seen in the
                     Peripheral View. For example, a VM with machine name
                     <code class="inline-code">ZZU1CKB005</code> as seen in the
                     Peripheral view could correspond to a
@@ -168,22 +168,20 @@
     "DeviceInUse": "false"
 }
 </code></pre>
-            <h5
-                id="scandevicestatus-service-bus-message-body-showing-the-scan-device-is-online-and-not-currently-in-use-1"
-            >
+            <p class="caption">
                 <code class="inline-code">ScanDeviceStatus</code> Service Bus
                 Message Body showing the scan device is
-                <code class="inline-code">Online</code> and not currently
-                &#39;In Use&#39;
-            </h5>
+                <code class="inline-code">Online</code> and not currently 'In
+                Use'
+            </p>
             <p>
                 The message should return the
                 <code class="inline-code">DeviceStatus</code> as
                 <code class="inline-code">Online</code> and a
                 <code class="inline-code">DeviceInUse</code> property set to
                 <code class="inline-code">false</code>. When a print device is
-                not &#39;in use&#39;, it means the device is not exclusively
-                reserved yet through a
+                not 'in use', it means the device is not exclusively reserved
+                yet through a
                 <code class="inline-code">/scan/v2/startscanning</code> request,
                 and thus can be reserved by any airline backend that has
                 connected to it.
@@ -281,12 +279,10 @@
     "accessExpiryTime": "2021-09-30T14:50:07.347Z"
 }
 </code></pre>
-                <h5
-                    id="scan-api-response-body-containing-date-time-when-exclusive-access-to-the-device-expires-1"
-                >
+                <p class="caption">
                     Scan API Response Body containing date-time when exclusive
                     access to the device expires
-                </h5>
+                </p>
                 <ol>
                     <li>
                         Check the Service Bus for a new
@@ -314,14 +310,12 @@
     "DeviceInUse": "true"
 }
 </code></pre>
-                <h5
-                    id="devicestatus-service-bus-message-body-indicating-the-device-is-online-and-is-exclusively-reserved-by-the-airline-backend"
-                >
+                <p class="caption">
                     <code class="inline-code">DeviceStatus</code> Service Bus
                     Message Body indicating the device is
                     <code class="inline-code">Online</code> and is exclusively
                     reserved by the airline backend
-                </h5>
+                </p>
                 <h3 id="simulate-a-passport-scan">Simulate a Passport Scan</h3>
                 <p>
                     Using the VM, you will simulate an OCR scanning a passport
@@ -349,7 +343,7 @@
 
                     <p class="caption">
                         OCR Device Simulator with MRZ Data entered
-                    </h5>
+                    </p>
                     <ol>
                         <li>
                             Click the <strong>Read</strong> button to simulate
@@ -371,14 +365,12 @@
     "MrzData": "P&lt;D&lt;&lt;SCHMIDT&lt;&lt;KARL&lt;HEINZ&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;\r1234567897D&lt;&lt;0102030M0405063&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8"
 }
 </code></pre>
-                    <h5
-                        id="traveldocumentread-service-bus-message-body-that-returned-passport-mrzdata-scanned-by-the-ocr-device"
-                    >
+                    <p class="caption">
                         <code class="inline-code">TravelDocumentRead</code>
                         Service Bus Message Body that returned passport
                         <code class="inline-code">MrzData</code>
-                        &#39;scanned&#39; by the OCR device
-                    </h5>
+                        'scanned' by the OCR device
+                    </p>
                     <h3 id="release-the-ocr">Release the OCR</h3>
                     <ol>
                         <li>
@@ -399,8 +391,7 @@
                         <li>
                             Check the Service Bus for a
                             <code class="inline-code">ScanDeviceStatus</code>
-                            message indicating the device is no longer &#39;in
-                            use&#39;.
+                            message indicating the device is no longer 'in use'.
                         </li>
                     </ol>
                     <pre><code class="language-JSON">{
@@ -408,14 +399,12 @@
     "DeviceInUse": "false"
 }
 </code></pre>
-                    <h5
-                        id="devicestatus-service-bus-message-body-indicating-the-device-is-no-longer-in-use-and-is-available-to-be-reserved-by-another-backend-or-the-same-airline-backend"
-                    >
+                    <p class="caption">
                         <code class="inline-code">DeviceStatus</code> Service
-                        Bus Message Body indicating the device is no longer
-                        &#39;in use&#39; and is available to be reserved by
-                        another backend or the same airline backend
-                    </h5>
+                        Bus Message Body indicating the device is no longer 'in
+                        use' and is available to be reserved by another backend
+                        or the same airline backend
+                    </p>
                 </div>
             </div>
         </div>

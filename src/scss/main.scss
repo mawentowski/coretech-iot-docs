@@ -682,7 +682,6 @@ h2 {
         height: 12px;
         left: -10px;
         top: 8px;
-        background-repeat: no-repeat;
     }
 
     &.info-alert {
@@ -691,6 +690,7 @@ h2 {
 
         div::before {
             background: url(../images/svgs/info-icon.svg);
+            background-repeat: no-repeat;
         }
     }
 
@@ -700,6 +700,7 @@ h2 {
 
         div::before {
             background: url(../images/svgs/square-check-solid.svg);
+            background-repeat: no-repeat;
         }
     }
 
@@ -709,6 +710,7 @@ h2 {
 
         div::before {
             background: url(../images/svgs/lightbulb-solid.svg);
+            background-repeat: no-repeat;
         }
     }
 
@@ -718,6 +720,7 @@ h2 {
 
         div::before {
             background: url(../images/svgs/warning.svg);
+            background-repeat: no-repeat;
         }
     }
 

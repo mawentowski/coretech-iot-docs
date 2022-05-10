@@ -60,7 +60,7 @@
                 <li>
                     Ensure the
                     <code class="inline-code">{{location}}</code> variable
-                    corresponds to the VM&#39;s machine name as seen in the
+                    corresponds to the VM's machine name as seen in the
                     Peripheral View. For example, a VM with machine name
                     <code class="inline-code">ZZU1CKB005</code> as seen in the
                     Peripheral view could correspond to a
@@ -101,9 +101,7 @@
             </li>
         </ol>
 
-        <p class="caption">
-            Add an SBD in Device Simulator
-        </h5>
+        <p class="caption">Add an SBD in Device Simulator</p>
         <ol>
             <li>
                 <p>
@@ -140,7 +138,7 @@
         <p class="caption">
             SBD Bag Door Setting set to
             <code class="inline-code">Door is installed</code>
-        </h5>
+        </p>
         <ol>
             <li>Click <strong>Save and Close</strong>.</li>
             <li>
@@ -193,14 +191,12 @@
     "DeviceInUse": false
 }
 </code></pre>
-            <h5
-                id="bagdropdevicestatus-service-bus-message-indicating-the-device-is-online-and-not-exclusively-reserved"
-            >
+            <p class="caption">
                 <code class="inline-code">BagdropDeviceStatus</code> Service Bus
                 Message indicating the device is
                 <code class="inline-code">Online</code> and not exclusively
                 reserved
-            </h5>
+            </p>
             <p>
                 The message should indicate the SBD is
                 <code class="inline-code">Online</code> and is not exclusively
@@ -281,13 +277,10 @@
                     </li>
                 </ol>
 
-                <h5
-                    id="device-simulator-showing-an-opened-door-after-sending-a-bagdropv2getbag-request"
-                >
-                    Device Simulator showing an &#39;opened door&#39; after
-                    sending a
+                <p class="caption">
+                    Device Simulator showing an 'opened door' after sending a
                     <code class="inline-code">/bagdrop/v2/getbag</code> request
-                </h5>
+                </p>
                 <div class="alert-section info-alert">
                     <div class="">
                         <p>
@@ -300,7 +293,7 @@
                             An updated
                             <code class="inline-code">BagdropDeviceStatus</code>
                             message displays on the Service Bus, indicating the
-                            SBD is now &#39;In Use&#39;.
+                            SBD is now 'In Use'.
                         </li>
                     </ul>
                     <pre><code class="language-JSON">{
@@ -308,13 +301,11 @@
     "DeviceInUse": true
 }
 </code></pre>
-                    <h5
-                        id="bagdropdevicestatus-service-bus-message-indicating-the-device-is-now-exclusively-reserved"
-                    >
+                    <p class="caption">
                         <code class="inline-code">BagdropDeviceStatus</code>
                         Service Bus Message indicating the device is now
                         exclusively reserved
-                    </h5>
+                    </p>
                     <ul>
                         <li>
                             A
@@ -341,13 +332,11 @@
     "Error": null
 }
 </code></pre>
-                    <h5
-                        id="getbagresponse-service-bus-message-indicating-no-baggage-data-has-been-collected"
-                    >
+                    <p class="caption">
                         <code class="inline-code">GetBagResponse</code> Service
                         Bus Message indicating no baggage data has been
                         collected
-                    </h5>
+                    </p>
                     <h4 id="timeout-at-entry-area-1">Timeout at Entry Area</h4>
                     <p>
                         A
@@ -466,7 +455,7 @@
                             <p>
                                 In the previous step, you placed a bag onto the
                                 belt. When this occurred, the belt was
-                                &#39;in-motion&#39; while the weight on the belt
+                                'in-motion' while the weight on the belt
                                 settled, like a real bag drop. The
                                 <strong>Bounce</strong> properties simulate the
                                 fluctuation of weight while the weight of the
@@ -480,14 +469,12 @@
                                 by default) has occurred.
                             </p>
 
-                            <h5
-                                id="sbd-device-simulator-showing-bounce-properties-that-simulate-the-motion-of-the-belt-after-placing-a-bag"
-                            >
+                            <p class="caption">
                                 SBD Device Simulator showing
                                 <code class="inline-code">Bounce</code>
                                 Properties that simulate the motion of the belt
                                 after placing a bag
-                            </h5>
+                            </p>
                             <p>To view the settled weight:</p>
                             <ol>
                                 <li>
@@ -556,13 +543,11 @@
     "Error": null
 }
 </code></pre>
-                            <h5
-                                id="bagplaced-service-bus-message-displaying-properties-of-the-placed-bag-1"
-                            >
+                            <p class="caption">
                                 <code class="inline-code">BagPlaced</code>
                                 Service Bus message displaying properties of the
-                                &#39;placed bag&#39;
-                            </h5>
+                                'placed bag'
+                            </p>
                             <p>
                                 The
                                 <code class="inline-code"
@@ -616,7 +601,7 @@
                                             those measurements will display. How
                                             your airline backend could use this
                                             information is to potentially reject
-                                            a bag if a bag&#39;s
+                                            a bag if a bag's
                                             <code class="inline-code"
                                                 >width</code
                                             >
@@ -671,12 +656,10 @@
                                             alt=""
                                         />
                                     </p>
-                                    <h5
-                                        id="device-simulator-showing-the-bag-has-moved-to-the-processing-area"
-                                    >
+                                    <p class="caption">
                                         Device Simulator showing the bag has
                                         moved to the Processing Area
-                                    </h5>
+                                    </p>
                                     <div class="alert-section info-alert">
                                         <div class="">
                                             <p>
@@ -806,12 +789,10 @@
     "traceId": "00-baf5325b0757fc408018bca88119a826-65e7e75f65b69c4a-00"
 }
 </code></pre>
-                                            <h5
-                                                id="the-connection-to-the-device-is-soon-to-be-expired"
-                                            >
+                                            <p class="caption">
                                                 The connection to the device is
                                                 soon to be expired
-                                            </h5>
+                                            </p>
                                             <p>
                                                 The resolution is to simply send
                                                 another
@@ -874,16 +855,14 @@
     "BagDropStatus":"BagRemovedUnexpectedly"
 }
 </code></pre>
-                                            <h5
-                                                id="statuschanged-service-bus-message-indicating-the-bag-was-unexpectedly-removed-from-the-processing-area"
-                                            >
+                                            <p class="caption">
                                                 <code class="inline-code"
                                                     >StatusChanged</code
                                                 >
                                                 Service Bus message indicating
                                                 the bag was unexpectedly removed
                                                 from the Processing area
-                                            </h5>
+                                            </p>
                                             <div
                                                 class="alert-section info-alert"
                                             >
@@ -944,9 +923,7 @@
     "DeviceInUse": false
 }
 </code></pre>
-                                                <h5
-                                                    id="bagdropdevicestatus-service-bus-message-indicating-the-device-is-now-online"
-                                                >
+                                                <p class="caption">
                                                     <code class="inline-code"
                                                         >BagdropDeviceStatus</code
                                                     >
@@ -955,7 +932,7 @@
                                                     <code class="inline-code"
                                                         >Online</code
                                                     >
-                                                </h5>
+                                                </p>
                                                 <ol>
                                                     <li>
                                                         Send a
@@ -1110,15 +1087,13 @@
                                                         alt=""
                                                     />
                                                 </p>
-                                                <h5
-                                                    id="sbd-device-simulator-showing-the-bag-has-returned-to-the-entry-area-where-the-customer-can-resolve-the-issue"
-                                                >
+                                                <p class="caption">
                                                     SBD Device Simulator showing
                                                     the bag has returned to the
                                                     Entry Area where the
                                                     customer can resolve the
                                                     issue
-                                                </h5>
+                                                </p>
                                                 <div
                                                     class="alert-section info-alert"
                                                 >
@@ -1243,15 +1218,13 @@
                                                             alt=""
                                                         />
                                                     </p>
-                                                    <h5
-                                                        id="sbd-device-simulator-showing-the-bag-has-returned-to-the-entry-area-where-the-agent-can-resolve-the-issue"
-                                                    >
+                                                    <p class="caption">
                                                         SBD Device Simulator
                                                         showing the bag has
                                                         returned to the Entry
                                                         Area where the agent can
                                                         resolve the issue
-                                                    </h5>
+                                                    </p>
                                                     <div
                                                         class="alert-section info-alert"
                                                     >
@@ -1356,7 +1329,7 @@
                                                                         which
                                                                         indicates
                                                                         the
-                                                                        bag&#39;s
+                                                                        bag's
                                                                         position
                                                                         has
                                                                         changed.
@@ -1424,15 +1397,13 @@
                                                                 alt=""
                                                             />
                                                         </p>
-                                                        <h5
-                                                            id="sbd-device-simulator-showing-the-bag-has-been-successfully-released-to-the-bhs-release-area"
-                                                        >
+                                                        <p class="caption">
                                                             SBD Device Simulator
                                                             showing the bag has
                                                             been successfully
                                                             released to the BHS
                                                             Release Area
-                                                        </h5>
+                                                        </p>
                                                         <ul>
                                                             <li>
                                                                 If you wish, you

@@ -34,13 +34,10 @@ table.main-table {
     }
 }
 
-.method-example {
-    pre.lang-json {
-    }
-}
-
 #my-body {
     pre {
+        margin-bottom: 0;
+
         code.hljs {
             padding-top: 0;
         }
