@@ -18,28 +18,40 @@
         </p>
     </div>
 </div>
-    <h2 id="request-body-1">Request Body</h2>
-    <p>
-        The airline backend sends a <span class="method post">POST</span>
-        <code class="inline-code">/site/v2/reservations</code> request, passing
-        the <code class="inline-code">LocationId</code> in the Request Body it
-        wishes to reserve.
-    </p>
-    <p>
-        The following is a sample Response Body containing the location to be
-        reserved:
-    </p>
-    <pre><code class="language-JSON">{
-  "LocationId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004"
+<h2 id="request-body-1">Request Body</h2>
+<p>
+    The airline backend sends a <span class="method post">POST</span>
+    <code class="inline-code">/site/v2/reservations</code> request, passing
+    the <code class="inline-code">LocationId</code> in the Request Body it
+    wishes to reserve.
+</p>
+<p>
+    The following is a sample Response Body containing the location to be
+    reserved:
+</p>
+
+<div class="method-example atom-one-light">
+    <div class="method-example-top-bar">Response</div>
+    <pre>
+    <code class="language-json">
+{
+    "LocationId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004"
 }
-</code></pre>
+</code>
+</pre>
+</div>
+<p class="caption">      Sample Request Body for <span class="method post">POST</span>
+    <code class="inline-code">/site/v2/reservation</code> request containing
+    the <code class="inline-code">LocationId</code> passed from the client
+    app</p>
+
+
+
+
     <h5
         id="sample-request-body-for-post-sitev2reservation-request-containing-the-locationid-passed-from-the-client-app"
     >
-        Sample Request Body for <span class="method post">POST</span>
-        <code class="inline-code">/site/v2/reservation</code> request containing
-        the <code class="inline-code">LocationId</code> passed from the client
-        app
+
     </h5>
     <h2 id="response-body">Response Body</h2>
     <p>
