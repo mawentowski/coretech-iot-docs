@@ -272,6 +272,40 @@ table.main-table {
     }
 }
 
+@media (max-width: 767px) {
+    .endpoints-summary {
+        flex-direction: column;
+    }
+
+    .method-example.curl-custom {
+        flex-basis: 100%;
+    }
+
+    p.endpoints-summary-description {
+        flex-basis: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .endpoints-summary {
+        flex-direction: row;
+    }
+
+    .method-example.curl-custom {
+        flex-basis: 50%;
+        padding-left: 14px;
+    }
+
+    p.endpoints-summary-description {
+        flex-basis: 50%;
+        align-self: center;
+    }
+}
+
+.endpoints-summary {
+    display: flex;
+}
+
 .method-example {
     display: flex;
     flex-direction: column;
@@ -287,6 +321,73 @@ table.main-table {
         letter-spacing: 0.01em;
         text-transform: uppercase;
         border-radius: 10px 10px 0 0;
+    }
+
+    &.curl-custom {
+        // added for float:
+        flex-basis: 50%;
+
+        // For float
+        margin: 0;
+
+        .endpoints-container {
+            padding: 12px 20px;
+
+            // Had to add this, where other one didnt::after
+            background-color: #f7fafc;
+
+            // add this since it is a float
+            // padding-left: 3%;
+
+            // font-family: var(--bs-font-monospace);
+            font-size: 13px;
+
+            .endpoint-row {
+                padding-left: 49px;
+                word-break: break-word;
+
+                .end-path {
+                    position: relative;
+                    color: rgb(105 115 134);
+                    display: flex;
+
+                    a {
+                        color: inherit;
+                    }
+
+                    a:hover {
+                        color: #1a1f36;
+                        text-decoration: none;
+                    }
+                }
+
+                .end-path::before {
+                    position: absolute;
+                    top: 0;
+                    left: -37px;
+                    font-weight: 500px;
+                }
+
+                .end-path.post-method::before {
+                    content: 'POST';
+                    color: #0b825d;
+                }
+
+                .end-path.get-method::before {
+                    content: 'GET';
+                    color: #95bedd;
+                }
+
+                .end-path.put-method::before {
+                    content: 'PUT';
+                }
+
+                .end-path.del-method::before {
+                    content: 'DEL';
+                    color: #e57049;
+                }
+            }
+        }
     }
 }
 
