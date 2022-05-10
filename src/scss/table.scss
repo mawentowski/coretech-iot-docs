@@ -2,7 +2,7 @@ table.main-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 13px;
-    margin: 30px 0;
+    margin: 30px 0 0;
 
     tbody {
         border: 1px solid #e3e8ed;
@@ -96,6 +96,15 @@ table.main-table {
     pre {
         code.hljs {
             padding-top: 0;
+        }
+    }
+
+    .code-section {
+        pre {
+            code.hljs {
+                margin-top: -1.2em;
+                margin-bottom: 1em;
+            }
         }
     }
 }
@@ -322,7 +331,7 @@ table.main-table {
 .method-example {
     display: flex;
     flex-direction: column;
-    margin: 40px 0;
+    margin: 40px 0 0;
     border-radius: 10px 10px 0 0;
 
     .method-example-top-bar {

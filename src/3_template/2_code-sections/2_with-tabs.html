@@ -32,7 +32,7 @@
         Copied!
     </div>
 
-<div id="bash" class="tabcontent dark"><pre> <code class="inline-code">
+<div id="bash" class="tabcontent dark"><pre> <code>
 # Retrieve the subscription:
 curl https://api.stripe.com/v1/subscriptions/sub_49ty4767H20z6a \
 -u sk_test_4eC39HqLyjWDarjtT1zdp7dc:
@@ -48,7 +48,7 @@ curl https://api.stripe.com/v1/subscriptions/sub_49ty4767H20z6a \
 </pre>
 </div>
 
-<div id="Ruby" class="tabcontent dark"><pre><code class="language-ruby">
+<div id="Ruby" class="tabcontent dark"><pre><code>
 # Set your secret key. Remember to switch to your live secret key in production.
 # See your keys here: https://dashboard.stripe.com/apikeys
 Stripe.api_key = 'sk_test_4eC39HqLyjWDarjtT1zdp7dc'
@@ -72,7 +72,7 @@ Stripe::Subscription.update(
 </pre>
 </div>
 
-<div id="Python" class="tabcontent dark"><pre> <code class="inline-code">
+<div id="Python" class="tabcontent dark"><pre> <code>
 # Set your secret key. Remember to switch to your live secret key in production.
 # See your keys here: https://dashboard.stripe.com/apikeys
 stripe.api_key = 'sk_test_4eC39HqLyjWDarjtT1zdp7dc'
@@ -94,7 +94,7 @@ stripe.Subscription.modify(
 </pre>
 </div>
 
-<div id="PHP" class="tabcontent dark"><pre> <code class="inline-code">
+<div id="PHP" class="tabcontent dark"><pre> <code>
 // Set your secret key. Remember to switch to your live secret key in production.
 // See your keys here: https://dashboard.stripe.com/apikeys
 \Stripe\Stripe::setApiKey('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
@@ -115,7 +115,7 @@ $subscription = \Stripe\Subscription::retrieve('sub_49ty4767H20z6a');
 </pre>
 </div>
 
-<div id="Java" class="tabcontent dark"><pre><code class="language-java">
+<div id="Java" class="tabcontent dark"><pre><code>
 // Set your secret key. Remember to switch to your live secret key in production.
 // See your keys here: https://dashboard.stripe.com/apikeys
 Stripe.apiKey = "sk_test_4eC39HqLyjWDarjtT1zdp7dc";
@@ -138,7 +138,7 @@ subscription.update(params);
 </pre>
 </div>
 
-<div id="Node" class="tabcontent dark"><pre><code class="javascript">
+<div id="Node" class="tabcontent dark"><pre><code>
 // Set your secret key. Remember to switch to your live secret key in production.
 // See your keys here: https://dashboard.stripe.com/apikeys
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
@@ -156,7 +156,7 @@ price: 'price_CBb6IXqvTLXp3f',
 </pre>
 </div>
 
-<div id="Go" class="tabcontent dark"><pre><code class="language-go">
+<div id="Go" class="tabcontent dark"><pre><code>
 // Set your secret key. Remember to switch to your live secret key in production.
 // See your keys here: https://dashboard.stripe.com/apikeys
 stripe.Key = "sk_test_4eC39HqLyjWDarjtT1zdp7dc"
@@ -177,7 +177,7 @@ subscription, err = sub.Update("sub_49ty4767H20z6a", params)
 </pre>
 </div>
 
-<div id=".NET" class="tabcontent dark"><pre><code class="language-vbnet">
+<div id=".NET" class="tabcontent dark"><pre><code>
 // Set your secret key. Remember to switch to your live secret key in production.
 // See your keys here: https://dashboard.stripe.com/apikeys
 StripeConfiguration.ApiKey = "sk_test_4eC39HqLyjWDarjtT1zdp7dc";

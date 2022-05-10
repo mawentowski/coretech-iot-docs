@@ -638,9 +638,11 @@ h2 {
 
 .numbered-sections-container {
     counter-reset: section;
+    margin-bottom: 52px;
 
-    :last-child {
+    section.numbered-section:nth-last-of-type(1) {
         border: none;
+        padding-bottom: 0;
     }
 
     // margin-bottom: 32px;
@@ -663,7 +665,7 @@ h2 {
 .info-alert {
     display: flex;
     border: 0.1px solid #ddd;
-    background-color: rgb(247 250 252);
+    background-color: #f7fafc;
     border-radius: 5px;
     font-weight: 400;
     padding: 12px 20px;
@@ -699,7 +701,7 @@ h2 {
 
 .success-alert {
     display: flex;
-    border: 0.1px solid #efffec;
+    border: 0.1px solid #d4edd9;
     background-color: #efffec;
     border-radius: 5px;
     font-weight: 400;
@@ -731,6 +733,33 @@ h2 {
         font-size: inherit;
         margin-right: 7px;
         padding-top: 2px;
+    }
+}
+
+.tip-alert {
+    display: flex;
+    border: 0.1px solid #c5e3ed;
+    background-color: #f5e5ff;
+    border-radius: 5px;
+    font-weight: 400;
+    padding: 12px 20px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+
+    div {
+        position: relative;
+        padding-left: 12px;
+    }
+
+    div::before {
+        content: '';
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        left: -10px;
+        top: 8px;
+        background: url(../images/svgs/lightbulb-solid.svg);
+        background-repeat: no-repeat;
     }
 }
 
@@ -797,6 +826,8 @@ p.caption {
     line-height: 20px;
     font-weight: 400;
     color: rgb(105 115 134);
+
+    // margin-bottom: 2rem;
 }
 
 .aside {
