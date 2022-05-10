@@ -1,0 +1,58 @@
+<h2 id="verifysignature">VerifySignature</h2>
+<p>Message requesting that the customer signature be verified by the agent.</p>
+<h3 id="message-properties">Message Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Mandatory/Optional</th>
+<th>Value/Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MessageNamespace</td>
+<td>string</td>
+<td>M</td>
+<td>payment</td>
+</tr>
+<tr>
+<td>MessageType</td>
+<td>string</td>
+<td>M</td>
+<td>VerifySignature</td>
+</tr>
+<tr>
+<td>MessageVersion</td>
+<td>string</td>
+<td>M</td>
+<td>1</td>
+</tr>
+<tr>
+<td>ConnectionId</td>
+<td>string</td>
+<td>M</td>
+<td><em>{connectionId}</em></td>
+</tr>
+<tr>
+<td>CorrelationId</td>
+<td>string</td>
+<td>M</td>
+<td><em>{user_defined_string}</em></td>
+</tr>
+<tr>
+<td>DeviceId</td>
+<td>string</td>
+<td>M</td>
+<td><em>{deviceId}</em></td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>DateTime</td>
+<td>M</td>
+<td><em>{timestamp}</em></td>
+</tr>
+</tbody></table>
+<h3 id="message-body">Message Body</h3>
+<pre><code>No Message Body
+</code></pre>

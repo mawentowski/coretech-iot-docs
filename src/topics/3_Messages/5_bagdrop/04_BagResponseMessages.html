@@ -1,0 +1,348 @@
+<h2 id="bagresponse-messages">BagResponse Messages</h2>
+<p>Standard format Bag Response messages received at stages of the bagdrop process.</p>
+<h3 id="message-properties">Message Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Mandatory/Optional</th>
+<th>Value/Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MessageNamespace</td>
+<td>string</td>
+<td>M</td>
+<td>bagdrop</td>
+</tr>
+<tr>
+<td>MessageType</td>
+<td>string</td>
+<td>M</td>
+<td><a href="BagResponse Messages_1.htm#BagResponseMessageType">BagResponseMessageType</a></td>
+</tr>
+<tr>
+<td>MessageVersion</td>
+<td>string</td>
+<td>M</td>
+<td>1</td>
+</tr>
+<tr>
+<td>ConnectionId</td>
+<td>string</td>
+<td>M</td>
+<td><em>connectionId</em></td>
+</tr>
+<tr>
+<td>CorrelationId</td>
+<td>string</td>
+<td>M</td>
+<td><em>user_defined_string</em></td>
+</tr>
+<tr>
+<td>DeviceId</td>
+<td>string</td>
+<td>M</td>
+<td><em>deviceId</em></td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>DateTime</td>
+<td>M</td>
+<td><em>timestamp</em></td>
+</tr>
+</tbody></table>
+<h4 id="bagresponsemessagetype">BagResponseMessageType</h4>
+<table>
+<thead>
+<tr>
+<th>MessageType</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BagChanged</td>
+</tr>
+<tr>
+<td>BagPlaced</td>
+</tr>
+<tr>
+<td>BagRemoved</td>
+</tr>
+<tr>
+<td>CancelBagResponse</td>
+</tr>
+<tr>
+<td>GetBagResponse</td>
+</tr>
+<tr>
+<td>ProcessBagResponse</td>
+</tr>
+<tr>
+<td>ReleaseBagResponse</td>
+</tr>
+<tr>
+<td>ReturnBagResponse</td>
+</tr>
+</tbody></table>
+<h3 id="message-body">Message Body</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description/Values</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Bag</td>
+<td><a href="#Bag">Bag</a></td>
+<td>See details below</td>
+</tr>
+<tr>
+<td>IsSuccess</td>
+<td>boolean</td>
+<td>True, False</td>
+</tr>
+<tr>
+<td>Error</td>
+<td><a href="#Error">Error</a></td>
+<td>See details below</td>
+</tr>
+</tbody></table>
+<h4 id="bag">Bag</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description/Values</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Tags</td>
+<td>string[]</td>
+<td>See details below</td>
+</tr>
+<tr>
+<td>Weight</td>
+<td><a href="#Measurement">Measurement</a></td>
+<td>see below</td>
+</tr>
+<tr>
+<td>Position</td>
+<td>string</td>
+<td>Position of the bag</td>
+</tr>
+<tr>
+<td>VolumeResult</td>
+<td><a href="#VolumeResult">VolumeResult</a></td>
+<td>Volume of the bag</td>
+</tr>
+</tbody></table>
+<h5 id="volumeresult">VolumeResult</h5>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Width</td>
+<td><a href="#Measurement">Measurement</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Height</td>
+<td><a href="#Measurement">Measurement</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Length</td>
+<td><a href="#Measurement">Measurement</a></td>
+<td></td>
+</tr>
+<tr>
+<td>TubDetection</td>
+<td>TubDetectionType</td>
+<td>NoTub, TubRequired, TubDetected</td>
+</tr>
+</tbody></table>
+<h6 id="measurement">Measurement</h6>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description/Values</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Amount</td>
+<td>integer/decimal</td>
+<td>Numeric amount of measurement</td>
+</tr>
+<tr>
+<td>Unit</td>
+<td>cm/kg</td>
+<td>Unit of Measurement</td>
+</tr>
+</tbody></table>
+<h4 id="error">Error</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description/Values</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ErrorCode</td>
+<td><a href="#ErrorCode">ErrorCode</a></td>
+<td>See details below</td>
+</tr>
+<tr>
+<td>Message</td>
+<td>string</td>
+<td>Error Message</td>
+</tr>
+</tbody></table>
+<h5 id="errorcode">ErrorCode</h5>
+<table>
+<thead>
+<tr>
+<th>ErrorCodes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NoBagFound</td>
+</tr>
+<tr>
+<td>HoldingAreaFull</td>
+</tr>
+<tr>
+<td>NotAbleToReleaseBag</td>
+</tr>
+<tr>
+<td>NotAbleToProcessBag</td>
+</tr>
+<tr>
+<td>ConveyorBeltInoperable</td>
+</tr>
+<tr>
+<td>UnknownError</td>
+</tr>
+<tr>
+<td>BagIsTooLong</td>
+</tr>
+<tr>
+<td>BagIsTooHigh</td>
+</tr>
+<tr>
+<td>BagIsJammed</td>
+</tr>
+<tr>
+<td>UnexpectedBagDetectedInRear</td>
+</tr>
+<tr>
+<td>BagIsTooFlat</td>
+</tr>
+<tr>
+<td>BagIsTooShort</td>
+</tr>
+<tr>
+<td>BagWeightIsOverBhsUpperLimit</td>
+</tr>
+<tr>
+<td>BagWeightIsUnderBhsLowerLimit</td>
+</tr>
+<tr>
+<td>TooManyBags</td>
+</tr>
+<tr>
+<td>BagIsConstantlyMoving</td>
+</tr>
+<tr>
+<td>BagIsNotConveyable</td>
+</tr>
+<tr>
+<td>BhsOffline</td>
+</tr>
+<tr>
+<td>BhsBusy</td>
+</tr>
+<tr>
+<td>BagInEntryNotRemovedInTime</td>
+</tr>
+<tr>
+<td>BagWeightUnexpectedlyChanged</td>
+</tr>
+</tbody></table>
+<p><strong>Message Body Sample Success JSON</strong></p>
+<pre><code class="language-JSON">{
+    &quot;Bag&quot;: {
+        &quot;Tags&quot;: [
+             &quot;0123456789&quot;
+        ],
+        &quot;Weight&quot;: {
+            &quot;Amount&quot;: 24.5,
+            &quot;Unit&quot;: &quot;Kg&quot;
+        },
+        &quot;Position&quot;: &quot;Process&quot;,
+        &quot;VolumeResult&quot;: {
+            &quot;Length&quot;: {
+                &quot;Amount&quot;: 0,
+                &quot;Unit&quot;: &quot;Cm&quot;
+            },
+            &quot;Height&quot;: {
+                &quot;Amount&quot;: 0,
+                &quot;Unit&quot;: &quot;Cm&quot;
+            },
+            &quot;Width&quot;: {
+                &quot;Amount&quot;: 0,
+                &quot;Unit&quot;: &quot;Cm&quot;
+            },
+            &quot;TubDetection&quot;: &quot;NoTub&quot;
+        }
+    },
+    &quot;IsSuccess&quot;: true,
+    &quot;Error&quot;: null
+}
+</code></pre>
+<p><strong>Message Body Sample Failure JSON</strong></p>
+<pre><code class="language-JSON">{
+    &quot;Bag&quot;: {
+        &quot;Tags&quot;: [
+            &quot;0123456789&quot;
+        ],
+        &quot;Weight&quot;: {
+            &quot;Amount&quot;: 24.5,
+            &quot;Unit&quot;: &quot;Kg&quot;
+        },
+        &quot;Position&quot;: &quot;Entry | Process | Hold | WaitForRelease | Release&quot;,
+        &quot;VolumeResult&quot;: {
+           &quot;Length&quot;: {
+                &quot;Amount&quot;: 0,
+                &quot;Unit&quot;: &quot;Cm&quot;
+           },
+           &quot;Height&quot;: {
+               &quot;Amount&quot;: 0,
+                &quot;Unit&quot;: &quot;Cm&quot;
+            },
+            &quot;Width&quot;: {
+                &quot;Amount&quot;: 0,
+                &quot;Unit&quot;: &quot;Cm&quot;
+            },
+            &quot;TubDetection&quot;: &quot;NoTub | TubRequired | TubDetected&quot;
+        }
+    },
+    &quot;IsSuccess&quot;: false
+    &quot;Error&quot;: {
+      &quot;ErrorCode&quot;: &quot;&quot;, 
+      &quot;Message&quot;: &quot;&quot;
+    }
+}
+</code></pre>
