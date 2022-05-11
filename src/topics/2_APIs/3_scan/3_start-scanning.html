@@ -1,77 +1,36 @@
 <div class="title-box">
-    <h1 class="topic-title">Check for an Existing Subscription</h1>
+    <h1 class="topic-title">Start Scanning</h1>
     <div class="action-statement">
-        Determine whether a subscription exists to reuse
+        Learn how to initiate scanning on a device
     </div>
 </div>
 
-<p>
-    The <span class="method get">GET</span>
-    <code class="inline-code">/session/v2/subscriptions</code> request should be
-    sent prior to connecting to devices at a new location to determine if there
-    is an existing subscription in the same region as that location. 
-    
-
-</p>
-<p>    If there is
-    an existing subscription, that subscription should be used and a
-    <span class="method post">POST</span>
-    <code class="inline-code">/session/v2/subscriptions</code> request
-    <i>should not</i> be made.
-</p>
-
-
-<div class="alert-section warning-alert">
-    <div>
-        <p>
-            Sending a <span class="method post">POST</span>
-            <code class="inline-code">/session/v2/subscriptions</code> request when
-            <i>there is</i> an existing subscription creates a new SAS token, resulting
-            in two SAS tokens available to connect to the same subscription.
-        </p>
-        <p>
-            Maintaining two SAS tokens can be problematic, and therefore should be
-            avoided. The <span class="method get">GET</span>
-            <code class="inline-code">/session/v2/subscriptions</code>
-            request returns the information necessary for the airline backend to
-            determine whether a subscription is already in place to avoid multiple SAS
-            tokens.
-        </p>
-    </div>
-
-</div>
-
-<div class="alert-section tip-alert">
-    <div>
-        For more information on subscriptions and SAS tokens, see
-        <a href="./APIs/session/check-for-subscriptions"
-            >POST /session/v2/subscriptions.</a
-        >
-    </div>
-</div>
-
-
+Send a <span class="method del">POST</span>
+<code class="inline-code">/scan/v2/startscanning</code> request to gain exclusive access to a device so it can start
+reading travel documents.
 
 <h2>Make an API Call</h2>
 
 <div class="alert-section info-alert">
     <div class="">
-        <p>No Request Body is required to check for a subscription.</p>
+        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="apis/scan/API-call-components">API Call Components</a>.
+
     </div>
 </div>
+
 
 
 <div class="code-section with-tabs">
     <div class="code-section-header">
         <div class="code-tabs">
-            <button class="tablinks" onclick="openTab(event, 'bash-check-for-subscription')" id="defaultOpen">curl</button>
-            <button class="tablinks" onclick="openTab(event, 'Ruby-check-for-subscription')">Ruby</button>
-            <button class="tablinks" onclick="openTab(event, 'Python-check-for-subscription')">Python</button>
-            <button class="tablinks" onclick="openTab(event, 'PHP-check-for-subscription')">PHP</button>
-            <button class="tablinks" onclick="openTab(event, 'Java-check-for-subscription')">Java</button>
-            <button class="tablinks" onclick="openTab(event, 'Node-check-for-subscription')">Node</button>
-            <button class="tablinks" onclick="openTab(event, 'Go-check-for-subscription')">Go</button>
-            <button class="tablinks" onclick="openTab(event, '.NET-check-for-subscription')">.NET</button>
+            <button class="tablinks" onclick="openTab(event, 'bash-start-scanning')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby-start-scanning')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python-start-scanning')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP-start-scanning')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java-start-scanning')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node-start-scanning')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go-start-scanning')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET-start-scanning')">.NET</button>
         </div>
         <div class="copy-code-btn-container">
             <button class="copy-code-btn">
@@ -95,64 +54,81 @@
         Copied!
     </div>
 
-<div id="bash-check-for-subscription" class="tabcontent dark"><pre> <code>
-curl --location -g --request GET 'https://{{baseurl}}/session/v2/subscriptions' \
---header 'location-id: {{locationId}}'
+<div id="bash-start-scanning" class="tabcontent dark"><pre> <code>
+curl --location -g --request POST 'https://{{baseurl}}/scan/v2/startscanning' \
+--header 'location-id: {{locationId}}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "connectionId": ""
+}'
 </code>
 </pre>
 </div>
 
-<div id="Ruby-check-for-subscription" class="tabcontent dark"><pre><code>
+<div id="Ruby-start-scanning" class="tabcontent dark"><pre><code>
 require "uri"
+require "json"
 require "net/http"
 
-url = URI("https://{{baseurl}}/session/v2/subscriptions")
+url = URI("https://{{baseurl}}/scan/v2/startscanning")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
 
-request = Net::HTTP::Get.new(url)
+request = Net::HTTP::Post.new(url)
 request["location-id"] = "{{locationId}}"
+request["Content-Type"] = "application/json"
+request.body = JSON.dump({
+    "connectionId": ""
+})
 
 response = https.request(request)
-puts response.read_body
+puts response.read_body     
 </code>
 </pre>
 </div>
 
-<div id="Python-check-for-subscription" class="tabcontent dark"><pre> <code>
+<div id="Python-start-scanning" class="tabcontent dark"><pre> <code>
 import requests
+import json
 
-url = "https://{{baseurl}}/session/v2/subscriptions"
+url = "https://{{baseurl}}/scan/v2/startscanning"
 
-payload={}
+payload = json.dumps({
+    "connectionId": ""
+})
 headers = {
-    'location-id': '{{locationId}}'
+    'location-id': '{{locationId}}',
+    'Content-Type': 'application/json'
 }
 
-response = requests.request("GET", url, headers=headers, data=payload)
+response = requests.request("POST", url, headers=headers, data=payload)
 
 print(response.text)    
 </code>
 </pre>
 </div>
 
-<div id="PHP-check-for-subscription" class="tabcontent dark"><pre> <code>
+<div id="PHP-start-scanning" class="tabcontent dark"><pre> <code>
 <?php
 
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/session/v2/subscriptions',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/scan/v2/startscanning',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
     CURLOPT_TIMEOUT => 0,
     CURLOPT_FOLLOWLOCATION => true,
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    CURLOPT_CUSTOMREQUEST => 'GET',
+    CURLOPT_CUSTOMREQUEST => 'POST',
+    CURLOPT_POSTFIELDS =>'{
+    "connectionId": ""
+}',
     CURLOPT_HTTPHEADER => array(
-    'location-id: {{locationId}}'
+    'location-id: {{locationId}}',
+    'Content-Type: application/json'
     ),
 ));
 
@@ -164,23 +140,30 @@ echo $response;
 </pre>
 </div>
 
-<div id="Java-check-for-subscription" class="tabcontent dark"><pre><code>
+<div id="Java-start-scanning" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.get("https://{{baseurl}}/session/v2/subscriptions")
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/scan/v2/startscanning")
     .header("location-id", "{{locationId}}")
-    .asString();    
+    .header("Content-Type", "application/json")
+    .body("{\r\n    \"connectionId\": \"\"\r\n}")
+    .asString();      
 </code>
 </pre>
 </div>
 
-<div id="Node-check-for-subscription" class="tabcontent dark"><pre><code>
+<div id="Node-start-scanning" class="tabcontent dark"><pre><code>
 var request = require('request');
 var options = {
-    'method': 'GET',
-    'url': 'https://{{baseurl}}/session/v2/subscriptions',
+    'method': 'POST',
+    'url': 'https://{{baseurl}}/scan/v2/startscanning',
     'headers': {
-    'location-id': '{{locationId}}'
-    }
+    'location-id': '{{locationId}}',
+    'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+    "connectionId": ""
+    })
+
 };
 request(options, function (error, response) {
     if (error) throw new Error(error);
@@ -190,53 +173,68 @@ request(options, function (error, response) {
 </pre>
 </div>
 
-<div id="Go-check-for-subscription" class="tabcontent dark"><pre><code>
-package main
+<div id="Go-start-scanning" class="tabcontent dark"><pre><code>
+ppackage main
 
 import (
-    "fmt"
-    "net/http"
-    "io/ioutil"
+  "fmt"
+  "strings"
+  "net/http"
+  "io/ioutil"
 )
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/session/v2/subscriptions"
-    method := "GET"
+  url := "https://%7B%7Bbaseurl%7D%7D/scan/v2/startscanning"
+  method := "POST"
 
-    client := &http.Client {
-    }
-    req, err := http.NewRequest(method, url, nil)
+  payload := strings.NewReader(`{`+"
+"+`
+    "connectionId": ""`+"
+"+`
+}`)
 
-    if err != nil {
+  client := &http.Client {
+  }
+  req, err := http.NewRequest(method, url, payload)
+
+  if err != nil {
     fmt.Println(err)
     return
-    }
-    req.Header.Add("location-id", "{{locationId}}")
+  }
+  req.Header.Add("location-id", "{{locationId}}")
+  req.Header.Add("Content-Type", "application/json")
 
-    res, err := client.Do(req)
-    if err != nil {
+  res, err := client.Do(req)
+  if err != nil {
     fmt.Println(err)
     return
-    }
-    defer res.Body.Close()
+  }
+  defer res.Body.Close()
 
-    body, err := ioutil.ReadAll(res.Body)
-    if err != nil {
+  body, err := ioutil.ReadAll(res.Body)
+  if err != nil {
     fmt.Println(err)
     return
-    }
-    fmt.Println(string(body))
+  }
+  fmt.Println(string(body))
 }
 </code>
 </pre>
 </div>
 
-<div id=".NET-check-for-subscription" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/session/v2/subscriptions");
+<div id=".NET-start-scanning" class="tabcontent dark"><pre><code>
+var client = new RestClient("https://{{baseurl}}/scan/v2/startscanning");
 client.Timeout = -1;
-var request = new RestRequest(Method.GET);
+var request = new RestRequest(Method.POST);
 request.AddHeader("location-id", "{{locationId}}");
+request.AddHeader("Content-Type", "application/json");
+var body = @"{
+" + "\n" +
+@"    ""connectionId"": """"
+" + "\n" +
+@"}";
+request.AddParameter("application/json", body,  ParameterType.RequestBody);
 IRestResponse response = client.Execute(request);
 Console.WriteLine(response.Content);
 </code>
@@ -245,111 +243,91 @@ Console.WriteLine(response.Content);
 
 </div>
 
-<p class="caption">Sample <span class="method get">GET</span>
-    <code class="inline-code">/session/v2/subscriptions</code> request.</p>
+<p class="caption">
+    Sample <span class="method post">POST</span>
+    <code class="inline-code">/scan/v2/startscanning</code> request to reserve an OCR device for exclusive access so it can start scanning passports</p>
 
+<h2>Request Body</h4>
 
-
-
-
-<h2 id="response-body-1">Response</h2>
-<h3>Subscription in Region Exists</h3>
 <p>
-    If <i>there is</i> an existing subscription that relates to the
-    <code class="inline-code">location-id</code> passed in the Request Header, a
-    successful
-    <span class="method get">GET</span>
-    <code class="inline-code">/session/v2/subscriptions</code> request returns a
-    <code class="inline-code">2xx</code> success status code with the JSON
-    Response Body containing the Service Bus details of the existing
-    subscription.
+    To successfully make the request, you must include the <code class="inline-code">connectionId</code> of the device you wish to reserve and start scanning.
 </p>
 
 
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Error</div>
+    <div class="method-example-top-bar">Request Body</div>
     <pre>
             <code class="language-json">
-{ 
-    "subscriptionId": "4ec343b2-eab5-4fd3-b0c4-3cd5bc30ee5c",
-    "topicName": "airline-messages", 
-    "subscriptionName": "2c73e63e-a3ef-4fcc-b13c-d2a90912bca8c", 
-    "expiryTime": "2021-10-22T23:54:50.8272178+00:00" 
+{
+    "connectionId": "{{ocr_connection_id}}"
 }
         </code>
         </pre>
 </div>
 
-
-
 <p class="caption">
-    Sample Response Body for a <span class="method get">GET</span>
-    <code class="inline-code">session/v2/subscriptions</code> request containing
-    Service Bus details for the existing subscription.
+    Sample Request Body for <span class="method post">POST</span>
+    <code class="inline-code">/scan/v2/startscanning</code> request that provides a <code class="inline-code">connectionId</code> of the device you wish to gain access to
 </p>
+
+
+<h2>Response</h2>
+
+
 
 <p>
-    The airline backend would then pass the
-    <code class="inline-code">subscriptionId</code> of the existing subscription
-    in requests to connect to devices at the location.
+    Upon making a
+    <code class="inline-code">/scan/v2/startscanning</code> request, the Scan
+    API acknowledges the request with a synchronous message, returning a
+    <code class="inline-code">2xx</code> success status code (as seen in a tool
+    like Postman) and an <code class="inline-code">accessExpiryTime</code> in
+    the Response Body.
 </p>
 
+<div class="method-example atom-one-light">
+    <div class="method-example-top-bar">Response</div>
+    <pre>
+            <code class="language-json">
+{
+    "accessExpiryTime": "2021-09-30T14:50:07.347Z"
+}
+        </code>
+        </pre>
+</div>
+
+<p class="caption">
+    Scan API Response Body containing date-time when exclusive access to the
+    device expires
+</p>
+<p>
+    Unless explicitly released through a
+    <code class="inline-code">/scan/v2/stopscanning</code> request, exclusive
+    access to the device will automatically release once the
+    <code class="inline-code">accessExpiryTime</code> has been reached. This
+    date-time is <strong>5 minutes</strong> from the time the
+    <code class="inline-code">/scan/v2/startscanning</code> request was made.
+</p>
 <div class="alert-section info-alert">
     <div class="">
-        See the
-        <a href="../Session API/Create a Subscription.htm"
-            >POST /session/v2/subscriptions</a
-        > endpoint section
-        for a full description of the returned properties. The only property not
-        returned by this <span class="method get">GET</span> request (that is
-        returned by the POST request) is the
-        <code class="inline-code">connectionString</code> since this request is
-        informational only and does not provide connection details.
+        <p>
+            <strong>Note</strong>: Subsequent calls to
+            <code class="inline-code">/scan/v2/startscanning</code> will extend
+            the <code class="inline-code">accessExpiryTime</code> by five
+            minutes from the time of the request. Repeated requests can be used
+            to maintain exclusive access for a longer period.
+        </p>
     </div>
 </div>
-<h3>Subscription in Region Does Not Exist</h3>
-<p>
-    If <i>there is</i> an existing subscription that relates to the
-    <code class="inline-code">location-id</code> passed in the Request Header, a
-    successful
-    <span class="method get">GET</span>
-    <code class="inline-code">/session/v2/subscriptions</code> request returns a
-    <code class="inline-code">404</code> <b>Not Found</b> status code with an
-    empty JSON Response Body.
-</p>
 
 
-<div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Error</div>
-    <pre>
-            <code class="language-json">
-{ 
-    "type": "https://tools.ietf.org/html/rfc7231#section-6.5.4", 
-    "title": "Not Found", 
-    "status": 404, 
-    "detail": "No subscription exists.",
-    "traceId": "00-712743294f9fab00462e9394d267a105-b74f52e0fef41979-00"
-}
-        </code>
-        </pre>
-</div>
 
 
-<p class="caption">
-    Sample Response Body for a <span class="method get">GET</span>
-    <code class="inline-code">session/v2/subscriptions</code> request indicating
-    that no subscription exists.
-</p>
-<p>
-    This response indicates a subscription does not exist the airline backend
-    should
-    <a href="APIs/session/create-a-subscription">create a subscription</a>
-    that can be used with the location.
-</p>
+
+
 
 <div class="continued-reading-section">
-    <h2 class="continued-reading">Next Steps</h2>
+    <h2 class="continued-reading">See Also</h2>
     <ul class="continue-link-list">
         <div class="continue-link-row">
             <div class="svg-container">
@@ -395,8 +373,8 @@ Console.WriteLine(response.Content);
                 </svg>
             </div>
             <div>
-                <a href="/APIs/session/create-a-subscription"
-                    >Create a Subscription (if one does not exist)</a
+                <a href="/get-started/test-environments/overview"
+                    >Print Bag Tag</a
                 >
             </div>
         </div>
@@ -444,8 +422,8 @@ Console.WriteLine(response.Content);
                 </svg>
             </div>
             <div>
-                <a href="/APIs/session/location-capabilities"
-                    >Determine Location Capabilities</a
+                <a href="/APIs/scan-temp/stop-scanning"
+                    >Stop Scanning</a
                 >
             </div>
         </div>

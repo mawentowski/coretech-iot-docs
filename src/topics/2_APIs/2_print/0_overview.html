@@ -11,13 +11,50 @@
     airport devices to print airport documents like boarding passes, bag tags,
     and reports.
 </p>
-<p>
-    A variety of print formats are supported, including PDF, SVGs, AEA Pectabs,
-    Logos, Templates, and Print Data. AEA is a legacy format, while SVG and PDF
-    provide more richness of detail that modern applications require. However,
-    there may be use cases where AEA format is required, so the option is
-    provided.
-</p>
+
+<div class="endpoints-summary">
+    <p class="endpoints-summary-description">
+      
+            A variety of print formats are supported, including PDF, SVGs, AEA Pectabs,
+            Logos, Templates, and Print Data. AEA is a legacy format, while SVG and PDF
+            provide more richness of detail that modern applications require. However,
+            there may be use cases where AEA format is required, so the option is
+            provided.
+   
+    </p>
+    <div class="method-example atom-one-light curl-custom two-col-width">
+        <div class="method-example-top-bar">Endpoints</div>
+        <div class="endpoints-container">
+            <div class="endpoint-row">
+                <div class="end-path post-method">
+                    <a href="/APIs/print/print-boarding-pass#print-a-pdf-or-svg">/print/v2/boardingpass/{type}</a>
+                </div>
+            </div>
+            <div class="endpoint-row">
+                <div class="end-path post-method">
+                    <a href="/APIs/print/print-boarding-pass#print-aea-format">/print/v2/boardingpass/aea</a>
+                    
+                </div>
+            </div>
+            <div class="endpoint-row">
+                <div class="end-path post-method">
+                    <a href="/APIs/print/print-bag-tag#print-a-pdf">/print/v2/baggagetag/pdf</a>
+                    
+                </div>
+            </div>
+            <div class="endpoint-row">
+                <div class="end-path post-method">
+                    <a href="/APIs/print/print-bag-tag#print-in-aea-format">/print/v2/baggagetag/aea</a>
+            
+                </div>
+            </div>
+            <!-- <div class="endpoint-row">
+                <div class="end-path post-method">/print/v2/report</div>
+            </div> -->
+        </div>
+    </div>
+</div>
+
 <div class="alert-section info-alert">
     <div class="">
         <p>
@@ -110,8 +147,8 @@
                 </svg>
             </div>
             <div>
-                <a href="/APIs/print/endpoints"
-                    >Print API Endpoints</a
+                <a href="/APIs/print/API-call-anatomy"
+                    >API Call Components</a
                 >
             </div>
         </div>

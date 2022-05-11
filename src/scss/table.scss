@@ -50,6 +50,14 @@ table.main-table {
                 margin-bottom: 1em;
             }
         }
+
+        &.no-tabs {
+            pre {
+                code.hljs {
+                    margin-bottom: 0;
+                }
+            }
+        }
     }
 }
 
@@ -277,7 +285,7 @@ table.main-table {
         flex-direction: column;
     }
 
-    .method-example.curl-custom {
+    .method-example.curl-custom.two-col-width {
         flex-basis: 100%;
     }
 
@@ -291,9 +299,9 @@ table.main-table {
         flex-direction: row;
     }
 
-    .method-example.curl-custom {
+    .method-example.curl-custom.two-col-width {
         flex-basis: 50%;
-        padding-left: 14px;
+        padding-left: 44px;
     }
 
     p.endpoints-summary-description {
@@ -325,7 +333,7 @@ table.main-table {
 
     &.curl-custom {
         // added for float:
-        flex-basis: 50%;
+        // flex-basis: 50%;
 
         // For float
         margin: 0;
@@ -425,4 +433,8 @@ table.main-table {
     .more-tabs {
         display: none;
     }
+}
+
+.title-box + h2 {
+    padding-top: 0;
 }

@@ -1,0 +1,838 @@
+<div class="title-box">
+    <h1 class="topic-title">Print a Boarding Pass</h1>
+    <div class="action-statement">
+        Learn how to command a device to print a boarding pass in the different formats.
+    </div>
+</div>
+
+<h2>Make an API Call</h2>
+
+
+<div class="alert-section info-alert">
+    <div class="">
+        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="/APIs/print/">API Call Components</a>.
+
+    </div>
+</div>
+
+
+
+
+<h3>Print a PDF or SVG</h3>
+<p>
+    Send a <span class="method post">POST</span>
+    <code class="inline-code">/print/v2/boardingpass/{type}</code> request to an
+    ATB device to print a boarding pass in the specified format
+    <code class="inline-code">{type}</code>. Using this endpoint, boarding
+    passes may be printed in either <code class="inline-code">pdf</code> or
+    <code class="inline-code">svg</code> format. In the example below, PDF format is requested.
+</p>
+
+<div class="code-section with-tabs">
+    <div class="code-section-header">
+        <div class="code-tabs">
+            <button class="tablinks" onclick="openTab(event, 'bash-print-boarding-pass-pdf')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby-print-boarding-pass-pdf')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python-print-boarding-pass-pdf')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP-print-boarding-pass-pdf')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java-print-boarding-pass-pdf')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node-print-boarding-pass-pdf')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go-print-boarding-pass-pdf')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET-print-boarding-pass-pdf')">.NET</button>
+        </div>
+        <div class="copy-code-btn-container">
+            <button class="copy-code-btn">
+                <svg
+                viewBox="0 0 1000 1000"
+                height="20"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+              >
+                <title>Copy to Clipboard</title>
+                <path d="M704 896H64V320h640v192h64V192c0-35-29-64-64-64H512C512 57 455 0 384 0S256 57 256 128H64c-35 0-64 29-64 64v704c0 35 29 64 64 64h640c35 0 64-29 64-64V768h-64v128zM192 192h64s64-29 64-64 29-64 64-64 64 29 64 64 32 64 64 64h64s64 29 64 64H128c0-39 28-64 64-64zm-64 512h128v-64H128v64zm448-128V448L320 640l256 192V704h320V576H576zM128 832h192v-64H128v64zm320-448H128v64h320v-64zM256 512H128v64h128v-64z"
+                />
+              </svg>
+              
+            </button>
+        </div>
+
+    </div>
+    <div class="copied-popup hidden">
+        Copied!
+    </div>
+
+<div id="bash-print-boarding-pass-pdf" class="tabcontent dark"><pre> <code>
+curl --location -g --request POST 'https://{{baseurl}}/print/v2/boardingpass/pdf' \
+--header 'location-id: {{locationId}}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "connectionId": "",
+    "correlationId": "postman-ftr-2f7a446c-ad5b-423d-883f-2f2920b978f7",
+    "printData": "JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb2"
+}'
+</code>
+</pre>
+</div>
+
+<div id="Ruby-print-boarding-pass-pdf" class="tabcontent dark"><pre><code>
+require "uri"
+require "json"
+require "net/http"
+
+url = URI("https://{{baseurl}}/print/v2/boardingpass/pdf")
+
+https = Net::HTTP.new(url.host, url.port)
+https.use_ssl = true
+
+request = Net::HTTP::Post.new(url)
+request["location-id"] = "{{locationId}}"
+request["Content-Type"] = "application/json"
+request.body = JSON.dump({
+    "connectionId": "",
+    "correlationId": "postman-ftr-29f063b3-6f32-464f-8d59-350c2430ab23",
+    "printData": "JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb2"
+})
+
+response = https.request(request)
+puts response.read_body    
+</code>
+</pre>
+</div>
+
+<div id="Python-print-boarding-pass-pdf" class="tabcontent dark"><pre> <code>
+import http.client
+import json
+
+conn = http.client.HTTPSConnection("{{baseurl}}")
+payload = json.dumps({
+    "connectionId": "",
+    "correlationId": "postman-ftr-7cb0e14f-b200-4124-b3e1-83d24823ff30",
+    "printData": "JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb2"
+})
+headers = {
+    'location-id': '{{locationId}}',
+    'Content-Type': 'application/json'
+}
+conn.request("POST", "/print/v2/boardingpass/pdf", payload, headers)
+res = conn.getresponse()
+data = res.read()
+print(data.decode("utf-8"))
+</code>
+</pre>
+</div>
+
+<div id="PHP-print-boarding-pass-pdf" class="tabcontent dark"><pre> <code>
+<?php
+
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/print/v2/boardingpass/pdf',
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'POST',
+    CURLOPT_POSTFIELDS =>'{
+    "connectionId": "",
+    "correlationId": "postman-ftr-ce1e2096-9d0d-41e5-8939-ee4e2bf14271",
+    "printData": "JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb2"
+}',
+    CURLOPT_HTTPHEADER => array(
+    'location-id: {{locationId}}',
+    'Content-Type: application/json'
+    ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;    
+</code>
+</pre>
+</div>
+
+<div id="Java-print-boarding-pass-pdf" class="tabcontent dark"><pre><code>
+Unirest.setTimeouts(0, 0);
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/print/v2/boardingpass/pdf")
+    .header("location-id", "{{locationId}}")
+    .header("Content-Type", "application/json")
+    .body("{\r\n  \"connectionId\": \"\",\r\n  \"correlationId\": \"postman-ftr-30ad1141-bc89-4463-ad57-f14741d7a692\",\r\n  \"printData\": \"JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb2\"\r\n}")
+    .asString();    
+</code>
+</pre>
+</div>
+
+<div id="Node-print-boarding-pass-pdf" class="tabcontent dark"><pre><code>
+var request = require('request');
+var options = {
+    'method': 'POST',
+    'url': 'https://{{baseurl}}/print/v2/boardingpass/pdf',
+    'headers': {
+    'location-id': '{{locationId}}',
+    'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+    "connectionId": "",
+    "correlationId": "postman-ftr-06da91c7-5135-41f7-825f-fe8bef0ec8cd",
+    "printData": "JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb2"
+    })
+
+};
+request(options, function (error, response) {
+    if (error) throw new Error(error);
+    console.log(response.body);
+});
+</code>
+</pre>
+</div>
+
+<div id="Go-print-boarding-pass-pdf" class="tabcontent dark"><pre><code>
+package main
+
+import (
+    "fmt"
+    "strings"
+    "net/http"
+    "io/ioutil"
+)
+
+func main() {
+
+    url := "https://%7B%7Bbaseurl%7D%7D/print/v2/boardingpass/pdf"
+    method := "POST"
+
+    payload := strings.NewReader(`{`+"
+"+`
+    "connectionId": "",`+"
+"+`
+    "correlationId": "postman-ftr-743316c2-e586-437b-9ef1-d03f2d3b10d8",`+"
+"+`
+    "printData": "JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb2"`+"
+"+`
+}`)
+
+    client := &http.Client {
+    }
+    req, err := http.NewRequest(method, url, payload)
+
+    if err != nil {
+    fmt.Println(err)
+    return
+    }
+    req.Header.Add("location-id", "{{locationId}}")
+    req.Header.Add("Content-Type", "application/json")
+
+    res, err := client.Do(req)
+    if err != nil {
+    fmt.Println(err)
+    return
+    }
+    defer res.Body.Close()
+
+    body, err := ioutil.ReadAll(res.Body)
+    if err != nil {
+    fmt.Println(err)
+    return
+    }
+    fmt.Println(string(body))
+}
+</code>
+</pre>
+</div>
+
+<div id=".NET-print-boarding-pass-pdf" class="tabcontent dark"><pre><code>
+var client = new RestClient("https://{{baseurl}}/print/v2/boardingpass/pdf");
+client.Timeout = -1;
+var request = new RestRequest(Method.POST);
+request.AddHeader("location-id", "{{locationId}}");
+request.AddHeader("Content-Type", "application/json");
+var body = @"{
+" + "\n" +
+@"  ""connectionId"": """",
+" + "\n" +
+@"  ""correlationId"": ""postman-ftr-4032de44-3392-4790-a01c-89d491c0b451"",
+" + "\n" +
+@"  ""printData"": ""JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb2""
+" + "\n" +
+@"}";
+request.AddParameter("application/json", body,  ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
+Console.WriteLine(response.Content);
+</code>
+</pre>
+</div>
+
+</div>
+
+<p class="caption">
+    Sample <span class="method post">POST</span>
+    <code class="inline-code">/print/v2/boardingpass/{type}</code> requesting a
+    device print a boarding pass in PDF format.
+</p>
+
+<h4>Request Body</h4>
+
+<p>
+    The following is a sample Request Body for printing a boarding pass using an
+    ATB device in either PDF or SVG format. PDF and SVG data are represented by
+    the property
+    <code class="inline-code">printData</code> passed in the Request Body.
+</p>
+
+<div class="method-example atom-one-light">
+    <div class="method-example-top-bar">Request Body</div>
+    <pre>
+            <code class="language-json">
+{
+    "connectionId": "54624182-10c5-481b-ad9a-b9d1473bdb6f",
+    "correlationId": "string",
+    "printData": "JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb25EYXRlKEQ6MjAxODEwM..."
+}
+        </code>
+        </pre>
+</div>
+
+<p class="caption">
+    Sample Request Body for <span class="method post">POST</span>
+    <code class="inline-code">/print/v2/boardingpass/</code> request
+</p>
+
+
+<h3>Print in AEA Format</h3>
+<p>
+    Send a <span class="method post">POST</span>
+    <code class="inline-code">/print/v2/boardingpass/aea</code> request to an
+    ATB device to print a boarding pass in <span class="method post">aea</span> format. 
+</p>
+
+<div class="code-section with-tabs">
+    <div class="code-section-header">
+        <div class="code-tabs">
+            <button class="tablinks" onclick="openTab(event, 'bash-print-boarding-pass-aea')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby-print-boarding-pass-aea')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python-print-boarding-pass-aea')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP-print-boarding-pass-aea')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java-print-boarding-pass-aea')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node-print-boarding-pass-aea')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go-print-boarding-pass-aea')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET-print-boarding-pass-aea')">.NET</button>
+        </div>
+        <div class="copy-code-btn-container">
+            <button class="copy-code-btn">
+                <svg
+                viewBox="0 0 1000 1000"
+                height="20"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+              >
+                <title>Copy to Clipboard</title>
+                <path d="M704 896H64V320h640v192h64V192c0-35-29-64-64-64H512C512 57 455 0 384 0S256 57 256 128H64c-35 0-64 29-64 64v704c0 35 29 64 64 64h640c35 0 64-29 64-64V768h-64v128zM192 192h64s64-29 64-64 29-64 64-64 64 29 64 64 32 64 64 64h64s64 29 64 64H128c0-39 28-64 64-64zm-64 512h128v-64H128v64zm448-128V448L320 640l256 192V704h320V576H576zM128 832h192v-64H128v64zm320-448H128v64h320v-64zM256 512H128v64h128v-64z"
+                />
+              </svg>
+              
+            </button>
+        </div>
+
+    </div>
+    <div class="copied-popup hidden">
+        Copied!
+    </div>
+
+<div id="bash-print-boarding-pass-aea" class="tabcontent dark"><pre> <code>
+curl --location -g --request POST 'https://{{baseurl}}/print/v2/boardingpass/aea' \
+--header 'location-id: {{locationId}}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "connectionId": "",
+    "correlationId": "postman-ftr-6b58cb56-f2a7-48d7-bd16-237a1f1933fc",
+    "aeaPrintData": {
+    "pectab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",
+    "templates": [
+        "VFQwM18wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD",
+        "VFQwNF8wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD"
+    ],
+    "Logos":[],
+    "printData": "Q1AjMUMwMSMwMUojMDZBWktVUiAgICBBSE1FVE"
+    }
+}'
+</code>
+</pre>
+</div>
+
+<div id="Ruby-print-boarding-pass-aea" class="tabcontent dark"><pre><code>
+require "uri"
+require "json"
+require "net/http"
+
+url = URI("https://{{baseurl}}/print/v2/boardingpass/aea")
+
+https = Net::HTTP.new(url.host, url.port)
+https.use_ssl = true
+
+request = Net::HTTP::Post.new(url)
+request["location-id"] = "{{locationId}}"
+request["Content-Type"] = "application/json"
+request.body = JSON.dump({
+    "connectionId": "",
+    "correlationId": "postman-ftr-5608720d-9139-47ad-8014-af1260417300",
+    "aeaPrintData": {
+    "pectab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",
+    "templates": [
+        "VFQwM18wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD",
+        "VFQwNF8wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD"
+    ],
+    "Logos": [],
+    "printData": "Q1AjMUMwMSMwMUojMDZBWktVUiAgICBBSE1FVE"
+    }
+})
+
+response = https.request(request)
+puts response.read_body    
+</code>
+</pre>
+</div>
+
+<div id="Python-print-boarding-pass-aea" class="tabcontent dark"><pre> <code>
+import requests
+import json
+
+url = "https://{{baseurl}}/print/v2/boardingpass/aea"
+
+payload = json.dumps({
+    "connectionId": "",
+    "correlationId": "postman-ftr-a0381506-464e-428a-8daf-81a8fdd719d2",
+    "aeaPrintData": {
+    "pectab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",
+    "templates": [
+        "VFQwM18wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD",
+        "VFQwNF8wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD"
+    ],
+    "Logos": [],
+    "printData": "Q1AjMUMwMSMwMUojMDZBWktVUiAgICBBSE1FVE"
+    }
+})
+headers = {
+    'location-id': '{{locationId}}',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)    
+</code>
+</pre>
+</div>
+
+<div id="PHP-print-boarding-pass-aea" class="tabcontent dark"><pre> <code>
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/print/v2/boardingpass/aea',
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'POST',
+    CURLOPT_POSTFIELDS =>'{
+    "connectionId": "",
+    "correlationId": "postman-ftr-625d341d-ea2d-4f4f-a61f-f1362774f83d",
+    "aeaPrintData": {
+    "pectab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",
+    "templates": [
+        "VFQwM18wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD",
+        "VFQwNF8wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD"
+    ],
+    "Logos":[],
+    "printData": "Q1AjMUMwMSMwMUojMDZBWktVUiAgICBBSE1FVE"
+    }
+}',
+    CURLOPT_HTTPHEADER => array(
+    'location-id: {{locationId}}',
+    'Content-Type: application/json'
+    ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;    
+</code>
+</pre>
+</div>
+
+<div id="Java-print-boarding-pass-aea" class="tabcontent dark"><pre><code>
+Unirest.setTimeouts(0, 0);
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/print/v2/boardingpass/aea")
+    .header("location-id", "{{locationId}}")
+    .header("Content-Type", "application/json")
+    .body("{\r\n  \"connectionId\": \"\",\r\n  \"correlationId\": \"postman-ftr-f1c53caf-81c1-4de7-bfe6-12e83811ff59\",\r\n  \"aeaPrintData\": {\r\n    \"pectab\": \"UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv\",\r\n    \"templates\": [\r\n        \"VFQwM18wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD\",\r\n        \"VFQwNF8wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD\"\r\n    ],\r\n    \"Logos\":[],\r\n    \"printData\": \"Q1AjMUMwMSMwMUojMDZBWktVUiAgICBBSE1FVE\"\r\n  }\r\n}")
+    .asString();    
+</code>
+</pre>
+</div>
+
+<div id="Node-print-boarding-pass-aea" class="tabcontent dark"><pre><code>
+var request = require('request');
+var options = {
+    'method': 'POST',
+    'url': 'https://{{baseurl}}/print/v2/boardingpass/aea',
+    'headers': {
+    'location-id': '{{locationId}}',
+    'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+    "connectionId": "",
+    "correlationId": "postman-ftr-d0294bc7-d5b0-4e73-8206-84eab0ade3b5",
+    "aeaPrintData": {
+        "pectab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",
+        "templates": [
+        "VFQwM18wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD",
+        "VFQwNF8wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD"
+        ],
+        "Logos": [],
+        "printData": "Q1AjMUMwMSMwMUojMDZBWktVUiAgICBBSE1FVE"
+    }
+    })
+
+};
+request(options, function (error, response) {
+    if (error) throw new Error(error);
+    console.log(response.body);
+});
+</code>
+</pre>
+</div>
+
+<div id="Go-print-boarding-pass-aea" class="tabcontent dark"><pre><code>
+package main
+
+import (
+    "fmt"
+    "strings"
+    "net/http"
+    "io/ioutil"
+)
+
+func main() {
+
+    url := "https://%7B%7Bbaseurl%7D%7D/print/v2/boardingpass/aea"
+    method := "POST"
+
+    payload := strings.NewReader(`{`+"
+"+`
+    "connectionId": "",`+"
+"+`
+    "correlationId": "postman-ftr-8865857f-b20b-49b5-b1ee-bb4c5e713c54",`+"
+"+`
+    "aeaPrintData": {`+"
+"+`
+    "pectab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",`+"
+"+`
+    "templates": [`+"
+"+`
+        "VFQwM18wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD",`+"
+"+`
+        "VFQwNF8wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD"`+"
+"+`
+    ],`+"
+"+`
+    "Logos":[],`+"
+"+`
+    "printData": "Q1AjMUMwMSMwMUojMDZBWktVUiAgICBBSE1FVE"`+"
+"+`
+    }`+"
+"+`
+}`)
+
+    client := &http.Client {
+    }
+    req, err := http.NewRequest(method, url, payload)
+
+    if err != nil {
+    fmt.Println(err)
+    return
+    }
+    req.Header.Add("location-id", "{{locationId}}")
+    req.Header.Add("Content-Type", "application/json")
+
+    res, err := client.Do(req)
+    if err != nil {
+    fmt.Println(err)
+    return
+    }
+    defer res.Body.Close()
+
+    body, err := ioutil.ReadAll(res.Body)
+    if err != nil {
+    fmt.Println(err)
+    return
+    }
+    fmt.Println(string(body))
+}
+</code>
+</pre>
+</div>
+
+<div id=".NET-print-boarding-pass-aea" class="tabcontent dark"><pre><code>
+var client = new RestClient("https://{{baseurl}}/print/v2/boardingpass/aea");
+client.Timeout = -1;
+var request = new RestRequest(Method.POST);
+request.AddHeader("location-id", "{{locationId}}");
+request.AddHeader("Content-Type", "application/json");
+var body = @"{
+" + "\n" +
+@"  ""connectionId"": """",
+" + "\n" +
+@"  ""correlationId"": ""postman-ftr-010d4303-34ef-411e-b8eb-77c4232af0cb"",
+" + "\n" +
+@"  ""aeaPrintData"": {
+" + "\n" +
+@"    ""pectab"": ""UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv"",
+" + "\n" +
+@"    ""templates"": [
+" + "\n" +
+@"        ""VFQwM18wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD"",
+" + "\n" +
+@"        ""VFQwNF8wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD""
+" + "\n" +
+@"    ],
+" + "\n" +
+@"    ""Logos"":[],
+" + "\n" +
+@"    ""printData"": ""Q1AjMUMwMSMwMUojMDZBWktVUiAgICBBSE1FVE""
+" + "\n" +
+@"  }
+" + "\n" +
+@"}";
+request.AddParameter("application/json", body,  ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
+Console.WriteLine(response.Content);
+</code>
+</pre>
+</div>
+
+</div>
+
+<p class="caption">
+    Sample <span class="method post">POST</span>
+    <code class="inline-code">/print/v2/boardingpass/{type}</code> requesting a
+    device print a boarding pass in AEA format.
+</p>
+
+
+<h4>Request Body</h4>
+
+<p>
+    The following is a sample Request Body for printing a boarding pass in AEA
+    format. Notice that
+    <code class="inline-code">aeaPrintData</code> is used instead of
+    <code class="inline-code">printData</code>.
+</p>
+
+<div class="method-example atom-one-light">
+    <div class="method-example-top-bar">Request Body</div>
+    <pre>
+            <code class="language-json">
+{
+    "connectionId": "33ed0d5a-3a92-4f08-be97-73535d73fc09",
+    "correlationId": "10099a59-6880-468d-ac66-8bbda5eb7d02",
+    "aeaPrintData": {
+        "pectab": "UFQjIz9WMU4jQDsjVElDS1QjQ0hLSU4jQk9BUkQjMDEwMTE...",
+        "logos": [
+        "AAAAANH/wfDR/8Hw0f/B8NH/wfDR/8Hw0f/B8NH/wfDR/8H/B8NH//B..."
+        ],
+        "printData": "Q1AjMUMwMSMwMVYjMDJNMVZFUllMT05HRVhDRUVEU1NV..."
+    }
+}
+        </code>
+        </pre>
+</div>
+
+<p class="caption">
+    Sample Request Body for printing a boarding pass in AEA format.
+</p>
+
+<h2>Response</h2>
+<h3>Successful Print</h3>
+<p>
+    A successful print returns a
+    <code class="inline-code">PrintResponse</code> message with
+    <code class="inline-code">IsSuccess</code> set to
+    <code class="inline-code">true</code>, in which case the number of
+    successful prints is returned.
+</p>
+
+<div class="method-example atom-one-light">
+    <div class="method-example-top-bar">Service Bus Response</div>
+    <pre>
+            <code class="language-json">
+{
+    "IsSuccess": true,
+    "Error": null,
+    "SuccessfulPrints": "1"
+}
+        </code>
+        </pre>
+</div>
+
+<p class="caption">
+    <code class="inline-code">PrintResponse</code> Service Bus Message
+    indicating a successful print
+</p>
+
+<h3>Unsuccessful Print</h3>
+<p>
+    For an unsuccessful print, a
+    <code class="inline-code">PrintResponse</code> message displays with
+    <code class="inline-code">IsSuccess</code> set to
+    <code class="inline-code">false</code> in the Message Body. An
+    <code class="inline-code">ErrorCode</code> and
+    <code class="inline-code">Message</code> are returned. In this case, the
+    reason for the failed print request is that the printer is jammed.
+</p>
+
+<div class="method-example atom-one-light">
+    <div class="method-example-top-bar">Service Bus Response</div>
+    <pre>
+            <code class="language-json">
+{
+    "IsSuccess": false,
+    "Error": {
+        "ErrorCode": "NotAbleToPrint",
+        "Message": "PrintNotOk/UnSuccessfulPrint, with Jammed"
+    },
+    "SuccessfulPrints": "0"
+}
+        </code>
+        </pre>
+</div>
+
+<p class="caption">
+    <code class="inline-code">PrintResponse</code> Service Bus Message
+    indicating an unsuccessful print due to paper jam
+</p>
+<div class="alert-section info-alert">
+    <div class="">
+        <p>
+            The actual text contained in the error
+            <code class="inline-code">Message</code> is determined by the
+            software on the workstation.
+        </p>
+    </div>
+</div>
+<p>
+    The resolution would be to physically locate the printer, unjam the paper,
+    then attempt to send another print request.
+</p>
+
+
+<div class="continued-reading-section">
+    <h2 class="continued-reading">See Also</h2>
+    <ul class="continue-link-list">
+        <div class="continue-link-row">
+            <div class="svg-container">
+                <svg
+                    version="1.1"
+                    id="Capa_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    x="0px"
+                    y="0px"
+                    viewBox="0 0 482.204 482.204"
+                    style="enable-background: new 0 0 482.204 482.204"
+                    xml:space="preserve"
+                >
+                    <g>
+                        <path
+                            style="fill: #5469d4"
+                            d="M83.127,344.477c54.602,1.063,101.919,9.228,136.837,23.613c0.596,0.244,1.227,0.366,1.852,0.366
+                    c0.95,0,1.895-0.279,2.706-0.822c1.349-0.902,2.158-2.418,2.158-4.041l0.019-261.017c0-1.992-1.215-3.783-3.066-4.519
+                    L85.019,42.899c-1.496-0.596-3.193-0.411-4.527,0.494c-1.334,0.906-2.133,2.413-2.133,4.025v292.197
+                    C78.359,342.264,80.479,344.425,83.127,344.477z"
+                        />
+                        <path
+                            style="fill: #5469d4"
+                            d="M480.244,89.256c-1.231-0.917-2.824-1.198-4.297-0.759l-49.025,14.657
+                    c-2.06,0.616-3.471,2.51-3.471,4.659v252.151c0,0,0.218,3.978-3.97,3.978c-4.796,0-7.946,0-7.946,0
+                    c-39.549,0-113.045,4.105-160.93,31.6l-9.504,5.442l-9.503-5.442c-47.886-27.494-121.381-31.6-160.93-31.6c0,0-8.099,0-10.142,0
+                    c-1.891,0-1.775-2.272-1.775-2.271V107.813c0-2.149-1.411-4.043-3.47-4.659L6.256,88.497c-1.473-0.439-3.066-0.158-4.298,0.759
+                    S0,91.619,0,93.155v305.069c0,1.372,0.581,2.681,1.597,3.604c1.017,0.921,2.375,1.372,3.741,1.236
+                    c14.571-1.429,37.351-3.131,63.124-3.131c56.606,0,102.097,8.266,131.576,23.913c4.331,2.272,29.441,15.803,41.065,15.803
+                    c11.624,0,36.733-13.53,41.063-15.803c29.48-15.647,74.971-23.913,131.577-23.913c25.771,0,48.553,1.702,63.123,3.131
+                    c1.367,0.136,2.725-0.315,3.742-1.236c1.016-0.923,1.596-2.231,1.596-3.604V93.155C482.203,91.619,481.476,90.173,480.244,89.256z
+                    "
+                        />
+                        <path
+                            style="fill: #5469d4"
+                            d="M257.679,367.634c0.812,0.543,1.757,0.822,2.706,0.822c0.626,0,1.256-0.122,1.853-0.366
+                    c34.917-14.386,82.235-22.551,136.837-23.613c2.648-0.052,4.769-2.213,4.769-4.861V47.418c0-1.613-0.799-3.12-2.133-4.025
+                    c-1.334-0.904-3.031-1.09-4.528-0.494L258.569,98.057c-1.851,0.736-3.065,2.527-3.065,4.519l0.019,261.017
+                    C255.521,365.216,256.331,366.732,257.679,367.634z"
+                        />
+                    </g>
+                </svg>
+            </div>
+            <div>
+                <a href="/get-started/test-environments/overview"
+                    >Print Bag Tag</a
+                >
+            </div>
+        </div>
+        <div class="continue-link-row">
+            <div class="svg-container">
+                <svg
+                    version="1.1"
+                    id="Capa_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    x="0px"
+                    y="0px"
+                    viewBox="0 0 482.204 482.204"
+                    style="enable-background: new 0 0 482.204 482.204"
+                    xml:space="preserve"
+                >
+                    <g>
+                        <path
+                            style="fill: #5469d4"
+                            d="M83.127,344.477c54.602,1.063,101.919,9.228,136.837,23.613c0.596,0.244,1.227,0.366,1.852,0.366
+                    c0.95,0,1.895-0.279,2.706-0.822c1.349-0.902,2.158-2.418,2.158-4.041l0.019-261.017c0-1.992-1.215-3.783-3.066-4.519
+                    L85.019,42.899c-1.496-0.596-3.193-0.411-4.527,0.494c-1.334,0.906-2.133,2.413-2.133,4.025v292.197
+                    C78.359,342.264,80.479,344.425,83.127,344.477z"
+                        />
+                        <path
+                            style="fill: #5469d4"
+                            d="M480.244,89.256c-1.231-0.917-2.824-1.198-4.297-0.759l-49.025,14.657
+                    c-2.06,0.616-3.471,2.51-3.471,4.659v252.151c0,0,0.218,3.978-3.97,3.978c-4.796,0-7.946,0-7.946,0
+                    c-39.549,0-113.045,4.105-160.93,31.6l-9.504,5.442l-9.503-5.442c-47.886-27.494-121.381-31.6-160.93-31.6c0,0-8.099,0-10.142,0
+                    c-1.891,0-1.775-2.272-1.775-2.271V107.813c0-2.149-1.411-4.043-3.47-4.659L6.256,88.497c-1.473-0.439-3.066-0.158-4.298,0.759
+                    S0,91.619,0,93.155v305.069c0,1.372,0.581,2.681,1.597,3.604c1.017,0.921,2.375,1.372,3.741,1.236
+                    c14.571-1.429,37.351-3.131,63.124-3.131c56.606,0,102.097,8.266,131.576,23.913c4.331,2.272,29.441,15.803,41.065,15.803
+                    c11.624,0,36.733-13.53,41.063-15.803c29.48-15.647,74.971-23.913,131.577-23.913c25.771,0,48.553,1.702,63.123,3.131
+                    c1.367,0.136,2.725-0.315,3.742-1.236c1.016-0.923,1.596-2.231,1.596-3.604V93.155C482.203,91.619,481.476,90.173,480.244,89.256z
+                    "
+                        />
+                        <path
+                            style="fill: #5469d4"
+                            d="M257.679,367.634c0.812,0.543,1.757,0.822,2.706,0.822c0.626,0,1.256-0.122,1.853-0.366
+                    c34.917-14.386,82.235-22.551,136.837-23.613c2.648-0.052,4.769-2.213,4.769-4.861V47.418c0-1.613-0.799-3.12-2.133-4.025
+                    c-1.334-0.904-3.031-1.09-4.528-0.494L258.569,98.057c-1.851,0.736-3.065,2.527-3.065,4.519l0.019,261.017
+                    C255.521,365.216,256.331,366.732,257.679,367.634z"
+                        />
+                    </g>
+                </svg>
+            </div>
+            <div>
+                <a href="/APIs/print/API-tutorial"
+                    >Print API Tutorial</a
+                >
+            </div>
+        </div>
+    </ul>
+</div>

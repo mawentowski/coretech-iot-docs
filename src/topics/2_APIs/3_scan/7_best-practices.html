@@ -1,0 +1,38 @@
+<div class="title-box">
+    <h1 class="topic-title">Print API Best Practices</h1>
+    <div class="action-statement">
+        Follow these practices to effectively use Flex APIs.
+    </div>
+</div>
+
+<h2 id="supported-devices">Supported Devices</h2>
+<p>The Print API makes use of valid for printer devices only.</p>
+<h2 id="pdf-size-warning">PDF Size Warning</h2>
+<p>
+    It is recommended that your PDF documents are not too large, or else there
+    will be a noticeable delay when printing. This is due to the current CPU
+    processing limitations on the printers themselves, as the peripheral needs
+    to process the PDF data, format it, and make it ready for printing in
+    hardware. Also, at present, PDF data will be sent over a virtual COM port
+    which is rate limited.
+</p>
+<p>
+    One way of reducing the size of your PDF is to reduce the DPI of the PDF
+    document. This will shrink the data payload size but ensures elements such
+    as barcodes are still legible to allow BGR and LSR devices to read them.
+</p>
+<p>
+    You should be targeting PDFs around the 10-20KB size. This should be enough
+    to display the required document details. If you need assistance with this
+    task, please contact
+    <a href="mailto:mark.wentowski@techwritex.com">techsupport@techwritex.com</a
+    >.
+</p>
+<h2 id="paper-stock-dimensions-for-pdfssvgs">
+    Paper Stock Dimensions for PDFs/SVGs
+</h2>
+<p>
+    This may seem obvious but please ensure that your PDFs and SVGs match the
+    paper stock dimension for boarding passes and bag tags at the airport you
+    are operating at.
+</p>
