@@ -81,7 +81,7 @@
         </tr>
     </tbody>
 </table>
-<p class="caption">Receipt</p>
+<h3>Receipt</h3>
 <table class="main-table">
     <thead>
         <tr>
@@ -146,94 +146,98 @@
     </tbody>
 </table>
 <p><strong>Message Body Sample Success JSON</strong></p>
-<pre><code class="inline-code">{
-   "MerchantReceipt":{
-      "ReceiptHeader":[
-         {
+
+<div class="method-example atom-one-light">
+    <div class="method-example-top-bar">Request Body</div>
+    <pre>
+            <code class="language-json">
+"MerchantReceipt":{
+    "ReceiptHeader":[
+        {
             "Format":"NORMAL",
             "Name":"Copy",
             "Abbreviation":"Copy",
             "Value":"MERCHANT COPY",
             "NameRequired":"true"
-         },
-         {
+        },
+        {
             "Format":"NORMAL",
             "Name":"",
             "Abbreviation":"",
             "Value":"",
             "NameRequired":"false"
-         }
-      ],
-      "ReceiptContent":[
-         {
+        }
+    ],
+    "ReceiptContent":[
+        {
             "Format":"NORMAL",
             "Name":"Card data source",
             "Abbreviation":"Card data source",
             "Value":"ICC",
             "NameRequired":"false"
-         },
-         {
+        },
+        {
             "Format":"EMPHASIS",
             "Name":"Card scheme",
             "Abbreviation":"Card scheme",
             "Value":"MasterCard",
             "NameRequired":"false"
-         }
-      ],
-      "ReceiptFooter":[
-         
-      ]
-   },
-   "CardholderReceipt":{
-      "ReceiptHeader":[
-         {
+        }
+    ],
+    "ReceiptFooter":[
+        
+    ]
+    },
+    "CardholderReceipt":{
+    "ReceiptHeader":[
+        {
             "Format":"NORMAL",
             "Name":"Copy",
             "Abbreviation":"Copy",
             "Value":"CARDHOLDER COPY",
             "NameRequired":"true"
-         },
-         {
+        },
+        {
             "Format":"NORMAL",
             "Name":"",
             "Abbreviation":"",
             "Value":"",
             "NameRequired":"false"
-         }
-      ],
-      "ReceiptContent":[
-         {
+        }
+    ],
+    "ReceiptContent":[
+        {
             "Format":"NORMAL",
             "Name":"Card data source",
             "Abbreviation":"Card data source",
             "Value":"ICC",
             "NameRequired":"false"
-         },
-         {
+        },
+        {
             "Format":"EMPHASIS",
             "Name":"Card scheme",
             "Abbreviation":"Card scheme",
             "Value":"MasterCard",
             "NameRequired":"false"
-         }
-      ],
-      "ReceiptFooter":[
-         {
+        }
+    ],
+    "ReceiptFooter":[
+        {
             "Format":"NORMAL",
             "Name":"VAT number",
             "Abbreviation":"VAT",
             "Value":"VAT: 012345678901234",
             "NameRequired":"false"
-         },
-         {
+        },
+        {
             "Format":"NORMAL",
             "Name":"",
             "Abbreviation":"",
             "Value":"Please retain for your records",
             "NameRequired":"false"
-         }
-      ]
-   }
+        }
+    ]
+    }
 }
         </code>
         </pre>
