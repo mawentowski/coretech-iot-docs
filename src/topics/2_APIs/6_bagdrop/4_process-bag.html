@@ -1,0 +1,382 @@
+<div class="title-box">
+    <h1 class="topic-title">Process Bag</h1>
+    <div class="action-statement">
+        Learn how to process a bag so it continues the bagdrop process
+    </div>
+</div>
+
+<p>
+    After the passenger places a bag on the belt, the bag's measurements are
+    taken, and a settled weight is calculated. Send a POST
+    <code class="inline-code">/bagdrop/v2/processbag</code> request to close the
+    door and move the bag from the
+    <code class="inline-code">Entry</code> position to the
+    <code class="inline-code">Process</code> position.
+</p>
+
+<h2>Make an API Call</h2>
+
+<div class="alert-section info-alert">
+    <div class="">
+        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="apis/bagdrop/API-call-components">API Call Components</a>.
+
+    </div>
+</div>
+
+
+
+<div class="code-section with-tabs">
+    <div class="code-section-header">
+        <div class="code-tabs">
+            <button class="tablinks" onclick="openTab(event, 'bash-process-bag')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby-process-bag')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python-process-bag')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP-process-bag')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java-process-bag')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node-process-bag')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go-process-bag')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET-process-bag')">.NET</button>
+        </div>
+        <div class="copy-code-btn-container">
+            <button class="copy-code-btn">
+                <svg
+                viewBox="0 0 1000 1000"
+                height="20"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+              >
+                <title>Copy to Clipboard</title>
+                <path d="M704 896H64V320h640v192h64V192c0-35-29-64-64-64H512C512 57 455 0 384 0S256 57 256 128H64c-35 0-64 29-64 64v704c0 35 29 64 64 64h640c35 0 64-29 64-64V768h-64v128zM192 192h64s64-29 64-64 29-64 64-64 64 29 64 64 32 64 64 64h64s64 29 64 64H128c0-39 28-64 64-64zm-64 512h128v-64H128v64zm448-128V448L320 640l256 192V704h320V576H576zM128 832h192v-64H128v64zm320-448H128v64h320v-64zM256 512H128v64h128v-64z"
+                />
+              </svg>
+              
+            </button>
+        </div>
+
+    </div>
+    <div class="copied-popup hidden">
+        Copied!
+    </div>
+
+<div id="bash-process-bag" class="tabcontent dark"><pre> <code>
+curl --location -g --request POST 'https://{{baseurl}}/bagdrop/v2/processbag' \
+--header 'location-id: {{locationId}}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "connectionId": "{{sbd_connection_id}}",
+    "correlationId": "postman-ftr-735e0ba1-ce78-458a-a66d-0237b7f62ad1"
+}'
+</code>
+</pre>
+</div>
+
+<div id="Ruby-process-bag" class="tabcontent dark"><pre><code>
+require "uri"
+require "json"
+require "net/http"
+
+url = URI("https://{{baseurl}}/bagdrop/v2/processbag")
+
+https = Net::HTTP.new(url.host, url.port)
+https.use_ssl = true
+
+request = Net::HTTP::Post.new(url)
+request["location-id"] = "{{locationId}}"
+request["Content-Type"] = "application/json"
+request.body = JSON.dump({
+    "connectionId": "{{sbd_connection_id}}",
+    "correlationId": "postman-ftr-db0adfe3-a385-42ac-b6c0-a882c4c0d660"
+})
+
+response = https.request(request)
+puts response.read_body      
+</code>
+</pre>
+</div>
+
+<div id="Python-process-bag" class="tabcontent dark"><pre> <code>
+import requests
+import json
+
+url = "https://{{baseurl}}/bagdrop/v2/processbag"
+
+payload = json.dumps({
+    "connectionId": "{{sbd_connection_id}}",
+    "correlationId": "postman-ftr-cab7557e-9521-4c59-afbf-621e6263b96a"
+})
+headers = {
+    'location-id': '{{locationId}}',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)       
+</code>
+</pre>
+</div>
+
+<div id="PHP-process-bag" class="tabcontent dark"><pre> <code>
+<?php
+
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/bagdrop/v2/processbag',
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'POST',
+    CURLOPT_POSTFIELDS =>'{
+    "connectionId": "{{sbd_connection_id}}",
+    "correlationId": "postman-ftr-c13a9922-481f-42d5-b71d-641deecde450"
+}',
+    CURLOPT_HTTPHEADER => array(
+    'location-id: {{locationId}}',
+    'Content-Type: application/json'
+    ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;    
+</code>
+</pre>
+</div>
+
+<div id="Java-process-bag" class="tabcontent dark"><pre><code>
+Unirest.setTimeouts(0, 0);
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/bagdrop/v2/processbag")
+    .header("location-id", "{{locationId}}")
+    .header("Content-Type", "application/json")
+    .body("{\r\n  \"connectionId\": \"{{sbd_connection_id}}\",\r\n  \"correlationId\": \"postman-ftr-54083030-a0f7-4a5d-a095-8e7bfcea9e5e\"\r\n}")
+    .asString();               
+</code>
+</pre>
+</div>
+
+<div id="Node-process-bag" class="tabcontent dark"><pre><code>
+var request = require('request');
+var options = {
+    'method': 'POST',
+    'url': 'https://{{baseurl}}/bagdrop/v2/processbag',
+    'headers': {
+    'location-id': '{{locationId}}',
+    'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+    "connectionId": "{{sbd_connection_id}}",
+    "correlationId": "postman-ftr-e32ffdbe-90a9-476c-8252-2a6b8c404c23"
+    })
+
+};
+request(options, function (error, response) {
+    if (error) throw new Error(error);
+    console.log(response.body);
+});    
+</code>
+</pre>
+</div>
+
+<div id="Go-process-bag" class="tabcontent dark"><pre><code>
+package main
+
+import (
+    "fmt"
+    "strings"
+    "net/http"
+    "io/ioutil"
+)
+
+func main() {
+
+    url := "https://%7B%7Bbaseurl%7D%7D/bagdrop/v2/processbag"
+    method := "POST"
+
+    payload := strings.NewReader(`{`+"
+"+`
+    "connectionId": "{{sbd_connection_id}}",`+"
+"+`
+    "correlationId": "postman-ftr-7f3cbdfa-7253-4d57-bae8-16ca52ec3e15"`+"
+"+`
+}`)
+
+    client := &http.Client {
+    }
+    req, err := http.NewRequest(method, url, payload)
+
+    if err != nil {
+    fmt.Println(err)
+    return
+    }
+    req.Header.Add("location-id", "{{locationId}}")
+    req.Header.Add("Content-Type", "application/json")
+
+    res, err := client.Do(req)
+    if err != nil {
+    fmt.Println(err)
+    return
+    }
+    defer res.Body.Close()
+
+    body, err := ioutil.ReadAll(res.Body)
+    if err != nil {
+    fmt.Println(err)
+    return
+    }
+    fmt.Println(string(body))
+}
+</code>
+</pre>
+</div>
+
+<div id=".NET-process-bag" class="tabcontent dark"><pre><code>
+var client = new RestClient("https://{{baseurl}}/bagdrop/v2/processbag");
+client.Timeout = -1;
+var request = new RestRequest(Method.POST);
+request.AddHeader("location-id", "{{locationId}}");
+request.AddHeader("Content-Type", "application/json");
+var body = @"{
+" + "\n" +
+@"  ""connectionId"": ""{{sbd_connection_id}}"",
+" + "\n" +
+@"  ""correlationId"": ""postman-ftr-64002187-d26b-4ee4-afab-03420e0b8217""
+" + "\n" +
+@"}";
+request.AddParameter("application/json", body,  ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
+Console.WriteLine(response.Content);
+</code>
+</pre>
+</div>
+
+</div>
+
+<p class="caption">
+
+        <code class="inline-code">/bagdrop/v2/processbag</code> request to close the
+        door and move the bag along the belt.
+    </p>
+
+    
+
+
+<h2>Request Body</h2>
+
+<p>
+    To successfully make the request, you must include the <code class="inline-code">connectionId</code> of the bagdrop device.
+</p>
+
+
+
+<div class="method-example atom-one-light">
+    <div class="method-example-top-bar">Request Body</div>
+    <pre>
+            <code class="language-json">
+{
+    "connectionId": "{{sbd_connection_id}}",
+    "correlationId": "postman-ftr-{{$guid}}"
+}
+        </code>
+        </pre>
+</div>
+
+<p class="caption">
+
+        Sample Request Body for a <span class="method post">POST</span>
+        <code class="inline-code">/bagdrop/v2/processbag</code> request that provides a <code class="inline-code">connectionId</code> of the bagdrop device
+    </p>
+
+
+
+
+
+
+<h2>Response</h2>
+
+<p>
+    Upon making a
+    <span class="method post">POST</span>
+        <code class="inline-code">/bagdrop/v2/process</code> request, the Bagdrop API acknowledges the request with a synchronous
+    message returns a
+    <code class="inline-code">2xx</code> success status code (as seen in a tool
+    like Postman).
+</p>
+
+<p> 
+    A <code class="inline-code">ProcessBagResponse</code> message displays on the Service Bus, acknowledging that the request to process the bag was received.
+
+</p>
+
+<p>
+    A <code class="inline-code">BagChanged</code> message displays on the Service Bus and is identical to the
+    <code class="inline-code">BagPlaced</code> message and displays baggage
+    information collected through a measurement. The property
+    <code class="inline-code">Position</code> changes from
+    <code class="inline-code">Entry</code> to
+    <code class="inline-code">Process</code>.
+</p>
+
+
+
+
+
+<div class="continued-reading-section">
+    <h2 class="continued-reading">See Also</h2>
+    <ul class="continue-link-list">
+        <div class="continue-link-row">
+            <div class="svg-container">
+                <svg
+                    version="1.1"
+                    id="Capa_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    x="0px"
+                    y="0px"
+                    viewBox="0 0 482.204 482.204"
+                    style="enable-background: new 0 0 482.204 482.204"
+                    xml:space="preserve"
+                >
+                    <g>
+                        <path
+                            style="fill: #5469d4"
+                            d="M83.127,344.477c54.602,1.063,101.919,9.228,136.837,23.613c0.596,0.244,1.227,0.366,1.852,0.366
+                    c0.95,0,1.895-0.279,2.706-0.822c1.349-0.902,2.158-2.418,2.158-4.041l0.019-261.017c0-1.992-1.215-3.783-3.066-4.519
+                    L85.019,42.899c-1.496-0.596-3.193-0.411-4.527,0.494c-1.334,0.906-2.133,2.413-2.133,4.025v292.197
+                    C78.359,342.264,80.479,344.425,83.127,344.477z"
+                        />
+                        <path
+                            style="fill: #5469d4"
+                            d="M480.244,89.256c-1.231-0.917-2.824-1.198-4.297-0.759l-49.025,14.657
+                    c-2.06,0.616-3.471,2.51-3.471,4.659v252.151c0,0,0.218,3.978-3.97,3.978c-4.796,0-7.946,0-7.946,0
+                    c-39.549,0-113.045,4.105-160.93,31.6l-9.504,5.442l-9.503-5.442c-47.886-27.494-121.381-31.6-160.93-31.6c0,0-8.099,0-10.142,0
+                    c-1.891,0-1.775-2.272-1.775-2.271V107.813c0-2.149-1.411-4.043-3.47-4.659L6.256,88.497c-1.473-0.439-3.066-0.158-4.298,0.759
+                    S0,91.619,0,93.155v305.069c0,1.372,0.581,2.681,1.597,3.604c1.017,0.921,2.375,1.372,3.741,1.236
+                    c14.571-1.429,37.351-3.131,63.124-3.131c56.606,0,102.097,8.266,131.576,23.913c4.331,2.272,29.441,15.803,41.065,15.803
+                    c11.624,0,36.733-13.53,41.063-15.803c29.48-15.647,74.971-23.913,131.577-23.913c25.771,0,48.553,1.702,63.123,3.131
+                    c1.367,0.136,2.725-0.315,3.742-1.236c1.016-0.923,1.596-2.231,1.596-3.604V93.155C482.203,91.619,481.476,90.173,480.244,89.256z
+                    "
+                        />
+                        <path
+                            style="fill: #5469d4"
+                            d="M257.679,367.634c0.812,0.543,1.757,0.822,2.706,0.822c0.626,0,1.256-0.122,1.853-0.366
+                    c34.917-14.386,82.235-22.551,136.837-23.613c2.648-0.052,4.769-2.213,4.769-4.861V47.418c0-1.613-0.799-3.12-2.133-4.025
+                    c-1.334-0.904-3.031-1.09-4.528-0.494L258.569,98.057c-1.851,0.736-3.065,2.527-3.065,4.519l0.019,261.017
+                    C255.521,365.216,256.331,366.732,257.679,367.634z"
+                        />
+                    </g>
+                </svg>
+            </div>
+            <div>
+                <a href="/APIs/gateAccess/accept-passenger"
+                    >Accept Passenger</a
+                >
+            </div>
+        </div>
+    </ul>
+</div>
