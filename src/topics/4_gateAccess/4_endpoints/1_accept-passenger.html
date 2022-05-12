@@ -1,0 +1,468 @@
+
+
+<div class="title-box">
+    <h1 class="topic-title">Accept Passenger</h1>
+    <div class="action-statement">
+        Learn how to confirm a passenger has been verified to board.
+    </div>
+</div>
+
+<p>
+    Send a <span class="method del">POST</span>
+    <code class="inline-code">gateaccess/v2/acceptpassenger</code> request to
+    tell the GateAccess API that a passenger has boarded successfully. Send this
+    request each time a passenger is processed successfully.
+</p>
+
+
+
+
+<h2>Make an API Call</h2>
+
+<div class="alert-section info-alert">
+    <div class="">
+        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="apis/gateaccess/API-call-components">API Call Components</a>.
+
+    </div>
+</div>
+
+
+
+<div class="code-section with-tabs">
+    <div class="code-section-header">
+        <div class="code-tabs">
+            <button class="tablinks" onclick="openTab(event, 'bash-accept-passenger')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby-accept-passenger')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python-accept-passenger')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP-accept-passenger')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java-accept-passenger')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node-accept-passenger')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go-accept-passenger')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET-accept-passenger')">.NET</button>
+        </div>
+        <div class="copy-code-btn-container">
+            <button class="copy-code-btn">
+                <svg
+                viewBox="0 0 1000 1000"
+                height="20"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+              >
+                <title>Copy to Clipboard</title>
+                <path d="M704 896H64V320h640v192h64V192c0-35-29-64-64-64H512C512 57 455 0 384 0S256 57 256 128H64c-35 0-64 29-64 64v704c0 35 29 64 64 64h640c35 0 64-29 64-64V768h-64v128zM192 192h64s64-29 64-64 29-64 64-64 64 29 64 64 32 64 64 64h64s64 29 64 64H128c0-39 28-64 64-64zm-64 512h128v-64H128v64zm448-128V448L320 640l256 192V704h320V576H576zM128 832h192v-64H128v64zm320-448H128v64h320v-64zM256 512H128v64h128v-64z"
+                />
+              </svg>
+              
+            </button>
+        </div>
+
+    </div>
+    <div class="copied-popup hidden">
+        Copied!
+    </div>
+
+<div id="bash-accept-passenger" class="tabcontent dark"><pre> <code>
+curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/acceptpassenger' \
+--header 'location-id: {{locationId}}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "connectionId": "{{bgr_connection_id}}",
+    "correlationId": "postman-ftr-bf20f851-b098-4c2e-a2e4-357c832f360c",
+    "message": ["MSG Line 1", "MSG Line 2"],
+    "receiptData": {
+        "data": "#NN#RD#FONT1#SIZE7#FREEBOARDING RECEIPT#FONT1#SIZE7#FREECLASS CHANGE#FONT1#SIZE0#FREE#FONT1#SIZE"
+    }
+}'
+</code>
+</pre>
+</div>
+
+<div id="Ruby-accept-passenger" class="tabcontent dark"><pre><code>
+require "uri"
+require "json"
+require "net/http"
+
+url = URI("https://{{baseurl}}/gateaccess/v2/acceptpassenger")
+
+https = Net::HTTP.new(url.host, url.port)
+https.use_ssl = true
+
+request = Net::HTTP::Post.new(url)
+request["location-id"] = "{{locationId}}"
+request["Content-Type"] = "application/json"
+request.body = JSON.dump({
+    "connectionId": "{{bgr_connection_id}}",
+    "correlationId": "postman-ftr-02982da0-52d0-4250-bbcd-0757650490de",
+    "message": [
+    "MSG Line 1",
+    "MSG Line 2"
+    ],
+    "receiptData": {
+    "data": "#NN#RD#FONT1#SIZE7#FREEBOARDING RECEIPT#FONT1#SIZE7#FREECLASS CHANGE#FONT1#SIZE0#FREE#FONT1#SIZE0#FREEYour class has changed - See Below#FONT1#SIZE0#FREE#FONT1#SIZE3#NAMELEE/MAYLIN MDM#FONT1#SIZE3#FREE#FONT1#SIZE3#ALCDMH#FONT1#SIZE3#FLNR0002#FONT1#SIZE3#DATE16JAN#FONT1#SIZE3#BORDKUL#FONT1#SIZE3#DESTLHR#FONT1#SIZE3#SQNR8#FONT1#SIZE7#SEAT1K#FONT1#SIZE7#CLSSF#FONT1#SIZE0#FREE"
+    }
+})
+
+response = https.request(request)
+puts response.read_body         
+</code>
+</pre>
+</div>
+
+<div id="Python-accept-passenger" class="tabcontent dark"><pre> <code>
+import requests
+import json
+
+url = "https://{{baseurl}}/gateaccess/v2/acceptpassenger"
+
+payload = json.dumps({
+    "connectionId": "{{bgr_connection_id}}",
+    "correlationId": "postman-ftr-24413429-2d13-4d17-ab65-5efa3086c1ea",
+    "message": [
+    "MSG Line 1",
+    "MSG Line 2"
+    ],
+    "receiptData": {
+    "data": "#NN#RD#FONT1#SIZE7#FREEBOARDING RECEIPT#FONT1#SIZE7#FREECLASS CHANGE#FONT1#SIZE0#FREE#FONT1#SIZE0#FREEYour class has changed - See Below#FONT1#SIZE0#FREE#FONT1#SIZE3#NAMELEE/MAYLIN MDM#FONT1#SIZE3#FREE#FONT1#SIZE3#ALCDMH#FONT1#SIZE3#FLNR0002#FONT1#SIZE3#DATE16JAN#FONT1#SIZE3#BORDKUL#FONT1#SIZE3#DESTLHR#FONT1#SIZE3#SQNR8#FONT1#SIZE7#SEAT1K#FONT1#SIZE7#CLSSF#FONT1#SIZE0#FREE"
+    }
+})
+headers = {
+    'location-id': '{{locationId}}',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)        
+</code>
+</pre>
+</div>
+
+<div id="PHP-accept-passenger" class="tabcontent dark"><pre> <code>
+<?php
+
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/gateaccess/v2/acceptpassenger',
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'POST',
+    CURLOPT_POSTFIELDS =>'{
+    "connectionId": "{{bgr_connection_id}}",
+    "correlationId": "postman-ftr-57377a49-604f-4866-82d0-defb611b655d",
+    "message": ["MSG Line 1", "MSG Line 2"],
+    "receiptData": {
+        "data": "#NN#RD#FONT1#SIZE7#FREEBOARDING RECEIPT#FONT1#SIZE7#FREECLASS CHANGE#FONT1#SIZE0#FREE#FONT1#SIZE0#FREEYour class has changed - See Below#FONT1#SIZE0#FREE#FONT1#SIZE3#NAMELEE/MAYLIN MDM#FONT1#SIZE3#FREE#FONT1#SIZE3#ALCDMH#FONT1#SIZE3#FLNR0002#FONT1#SIZE3#DATE16JAN#FONT1#SIZE3#BORDKUL#FONT1#SIZE3#DESTLHR#FONT1#SIZE3#SQNR8#FONT1#SIZE7#SEAT1K#FONT1#SIZE7#CLSSF#FONT1#SIZE0#FREE"
+    }
+}',
+    CURLOPT_HTTPHEADER => array(
+    'location-id: {{locationId}}',
+    'Content-Type: application/json'
+    ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;           
+</code>
+</pre>
+</div>
+
+<div id="Java-accept-passenger" class="tabcontent dark"><pre><code>
+Unirest.setTimeouts(0, 0);
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/gateaccess/v2/acceptpassenger")
+    .header("location-id", "{{locationId}}")
+    .header("Content-Type", "application/json")
+    .body("{\r\n    \"connectionId\": \"{{bgr_connection_id}}\",\r\n    \"correlationId\": \"postman-ftr-b1c7ce13-2b9f-4426-acd3-ed5bf06f8831\",\r\n    \"message\": [\"MSG Line 1\", \"MSG Line 2\"],\r\n    \"receiptData\": {\r\n      \"data\": \"#NN#RD#FONT1#SIZE7#FREEBOARDING RECEIPT#FONT1#SIZE7#FREECLASS CHANGE#FONT1#SIZE0#FREE#FONT1#SIZE0#FREEYour class has changed - See Below#FONT1#SIZE0#FREE#FONT1#SIZE3#NAMELEE/MAYLIN MDM#FONT1#SIZE3#FREE#FONT1#SIZE3#ALCDMH#FONT1#SIZE3#FLNR0002#FONT1#SIZE3#DATE16JAN#FONT1#SIZE3#BORDKUL#FONT1#SIZE3#DESTLHR#FONT1#SIZE3#SQNR8#FONT1#SIZE7#SEAT1K#FONT1#SIZE7#CLSSF#FONT1#SIZE0#FREE\"\r\n    }\r\n}")
+    .asString();         
+</code>
+</pre>
+</div>
+
+<div id="Node-accept-passenger" class="tabcontent dark"><pre><code>
+var request = require('request');
+var options = {
+    'method': 'POST',
+    'url': 'https://{{baseurl}}/gateaccess/v2/acceptpassenger',
+    'headers': {
+    'location-id': '{{locationId}}',
+    'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+    "connectionId": "{{bgr_connection_id}}",
+    "correlationId": "postman-ftr-02fa0fce-04a0-4a69-aa1f-25d0dbf77d78",
+    "message": [
+        "MSG Line 1",
+        "MSG Line 2"
+    ],
+    "receiptData": {
+        "data": "#NN#RD#FONT1#SIZE7#FREEBOARDING RECEIPT#FONT1#SIZE7#FREECLASS CHANGE#FONT1#SIZE0#FREE#FONT1#SIZE0#FREEYour class has changed - See Below#FONT1#SIZE0#FREE#FONT1#SIZE3#NAMELEE/MAYLIN MDM#FONT1#SIZE3#FREE#FONT1#SIZE3#ALCDMH#FONT1#SIZE3#FLNR0002#FONT1#SIZE3#DATE16JAN#FONT1#SIZE3#BORDKUL#FONT1#SIZE3#DESTLHR#FONT1#SIZE3#SQNR8#FONT1#SIZE7#SEAT1K#FONT1#SIZE7#CLSSF#FONT1#SIZE0#FREE"
+    }
+    })
+
+};
+request(options, function (error, response) {
+    if (error) throw new Error(error);
+    console.log(response.body);
+});    
+</code>
+</pre>
+</div>
+
+<div id="Go-accept-passenger" class="tabcontent dark"><pre><code>
+package main
+
+import (
+    "fmt"
+    "strings"
+    "net/http"
+    "io/ioutil"
+)
+
+func main() {
+
+    url := "https://%7B%7Bbaseurl%7D%7D/gateaccess/v2/acceptpassenger"
+    method := "POST"
+
+    payload := strings.NewReader(`{`+"
+"+`
+    "connectionId": "{{bgr_connection_id}}",`+"
+"+`
+    "correlationId": "postman-ftr-54ca5304-8d32-40dc-9b75-013abbdbae73",`+"
+"+`
+    "message": ["MSG Line 1", "MSG Line 2"],`+"
+"+`
+    "receiptData": {`+"
+"+`
+        "data": "#NN#RD#FONT1#SIZE7#FREEBOARDING RECEIPT#FONT1#SIZE7#FREECLASS CHANGE#FONT1#SIZE0#FREE#FONT1#SIZE0#FREEYour class has changed - See Below#FONT1#SIZE0#FREE#FONT1#SIZE3#NAMELEE/MAYLIN MDM#FONT1#SIZE3#FREE#FONT1#SIZE3#ALCDMH#FONT1#SIZE3#FLNR0002#FONT1#SIZE3#DATE16JAN#FONT1#SIZE3#BORDKUL#FONT1#SIZE3#DESTLHR#FONT1#SIZE3#SQNR8#FONT1#SIZE7#SEAT1K#FONT1#SIZE7#CLSSF#FONT1#SIZE0#FREE"`+"
+"+`
+    }`+"
+"+`
+}`)
+
+    client := &http.Client {
+    }
+    req, err := http.NewRequest(method, url, payload)
+
+    if err != nil {
+    fmt.Println(err)
+    return
+    }
+    req.Header.Add("location-id", "{{locationId}}")
+    req.Header.Add("Content-Type", "application/json")
+
+    res, err := client.Do(req)
+    if err != nil {
+    fmt.Println(err)
+    return
+    }
+    defer res.Body.Close()
+
+    body, err := ioutil.ReadAll(res.Body)
+    if err != nil {
+    fmt.Println(err)
+    return
+    }
+    fmt.Println(string(body))
+}
+</code>
+</pre>
+</div>
+
+<div id=".NET-accept-passenger" class="tabcontent dark"><pre><code>
+var client = new RestClient("https://{{baseurl}}/gateaccess/v2/acceptpassenger");
+client.Timeout = -1;
+var request = new RestRequest(Method.POST);
+request.AddHeader("location-id", "{{locationId}}");
+request.AddHeader("Content-Type", "application/json");
+var body = @"{
+" + "\n" +
+@"    ""connectionId"": ""{{bgr_connection_id}}"",
+" + "\n" +
+@"    ""correlationId"": ""postman-ftr-65afe0b7-8ddd-43bf-8c9e-29d58b4b1a8b"",
+" + "\n" +
+@"    ""message"": [""MSG Line 1"", ""MSG Line 2""],
+" + "\n" +
+@"    ""receiptData"": {
+" + "\n" +
+@"      ""data"": ""#NN#RD#FONT1#SIZE7#FREEBOARDING RECEIPT#FONT1#SIZE7#FREECLASS CHANGE#FONT1#SIZE0#FREE#FONT1#SIZE0#FREEYour class has changed - See Below#FONT1#SIZE0#FREE#FONT1#SIZE3#NAMELEE/MAYLIN MDM#FONT1#SIZE3#FREE#FONT1#SIZE3#ALCDMH#FONT1#SIZE3#FLNR0002#FONT1#SIZE3#DATE16JAN#FONT1#SIZE3#BORDKUL#FONT1#SIZE3#DESTLHR#FONT1#SIZE3#SQNR8#FONT1#SIZE7#SEAT1K#FONT1#SIZE7#CLSSF#FONT1#SIZE0#FREE""
+" + "\n" +
+@"    }
+" + "\n" +
+@"}";
+request.AddParameter("application/json", body,  ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
+Console.WriteLine(response.Content);
+</code>
+</pre>
+</div>
+
+</div>
+
+<p class="caption">
+    Sample <span class="method post">POST</span>
+    gateaccess/v2/acceptpassenger</code> request which
+    tells the GateAccess API that the passenger has been boarded successfully.</p>
+
+<h2>Request Body</h2>
+
+<p>
+    In the Request Body of the
+    <code class="inline-code">gateaccess/v2/acceptpassenger</code> request,
+    notice that a <code class="inline-code">Message</code> is included to
+    display text on the device for the agent (if the device is a Boarding Gate
+    Reader, not gate).
+</p>
+
+<div class="method-example atom-one-light">
+    <div class="method-example-top-bar">Service Bus Message</div>
+    <pre>
+            <code class="language-json">
+{
+    "ConnectionId": "{{bgr_connection_id}}",
+    "CorrelationId": "{{$guid}}",
+    "Message": ["Passenger Okay to Board"],
+    "ReceiptData": {
+        "Data": "#NN#RD#FONT1#SIZE7#FREEBOARDING RECEIPT#FONT1#SIZE7#FREECLASS CHANGE#FONT1#SIZE0#FREE#FONT1#SIZE0#FREEYour class has changed - See Below#FONT1#SIZE0#FREE#FONT1#SIZE3#NAMELEE/MAYLIN MDM#FONT1#SIZE3#FREE#FONT1#SIZE3#ALCDMH#FONT1#SIZE3#FLNR0002#FONT1#SIZE3#DATE16JAN#FONT1#SIZE3#BORDKUL#FONT1#SIZE3#DESTLHR#FONT1#SIZE3#SQNR8#FONT1#SIZE7#SEAT1K#FONT1#SIZE7#CLSSF#FONT1#SIZE0#FREE"
+    }
+}
+        </code>
+        </pre>
+</div>
+
+<p class="caption">
+    Sample
+    <code class="inline-code">gateaccess/v2/acceptpassenger</code> Request Body
+    with <code class="inline-code">Message</code> data to display on a BGR
+    device that the passenger is 'Ok' to board
+</p>
+<p>
+    If <code class="inline-code">ReceiptData</code> is passed in the Request
+    Body (as seen in the previous example), and the device is a Self-Boarding
+    Gate, the device printer receives this data and can print the receipt for
+    the passenger. <strong>Important</strong>: the passenger must then take the
+    receipt for the gate to open.
+</p>
+
+
+
+
+<h2>Response</h2>
+
+<p>
+    Upon making a
+    <code class="inline-code">gateaccess/v2/acceptpassenger</code>
+    request, the GateAccess API acknowledges the request with a synchronous
+    message, returning a
+    <code class="inline-code">2xx</code> success status code (as seen in a tool
+    like Postman).
+</p>
+<p>
+    An <code class="inline-code">AcceptPassengerResponse</code> message displays
+    on the Service Bus simply indicating that the request was made with no
+    errors.
+</p>
+
+<div class="method-example atom-one-light">
+    <div class="method-example-top-bar">Service Bus Message</div>
+    <pre>
+            <code class="language-json">
+{ 
+    "subscriptionId": "4ec343b2-eab5-4fd3-b0c4-3cd5bc30ee5c",
+    "topicName": "airline-messages", 
+    "subscriptionName": "2c73e63e-a3ef-4fcc-b13c-d2a90912bca8c", 
+    "expiryTime": "2021-10-22T23:54:50.8272178+00:00" 
+}
+        </code>
+        </pre>
+</div>
+
+<p class="caption">
+    <code class="inline-code">AcceptPassengerResponse</code> Service Bus Message
+    Body indicating that request to accept the passenger was successful
+</p>
+<p>
+    If the device is Boarding Gate Reader, a green light displays, along with a
+    <code class="inline-code">Message</code> for the airline agent such as
+    <code class="inline-code">Passenger Okay to Board</code>. The passenger is
+    then allowed to pass the agent and board the flight.
+</p>
+<p>
+    If the device is a Self-Boarding Gate, the
+    <code class="inline-code">Message</code> is ignored, and the gate opens with
+    a green arrow that signals to the passenger they may now proceed through the
+    gate.
+</p>
+<div class="alert-section info-alert">
+    <div class="">
+        <p>
+            In the case of a gate, any messages displayed to the passenger are
+            not controlled by the GateAccess API.
+        </p>
+    </div>
+</div>
+
+
+
+
+<div class="continued-reading-section">
+    <h2 class="continued-reading">See Also</h2>
+    <ul class="continue-link-list">
+
+        <div class="continue-link-row">
+            <div class="svg-container">
+                <svg
+                    version="1.1"
+                    id="Capa_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    x="0px"
+                    y="0px"
+                    viewBox="0 0 482.204 482.204"
+                    style="enable-background: new 0 0 482.204 482.204"
+                    xml:space="preserve"
+                >
+                    <g>
+                        <path
+                            style="fill: #5469d4"
+                            d="M83.127,344.477c54.602,1.063,101.919,9.228,136.837,23.613c0.596,0.244,1.227,0.366,1.852,0.366
+                    c0.95,0,1.895-0.279,2.706-0.822c1.349-0.902,2.158-2.418,2.158-4.041l0.019-261.017c0-1.992-1.215-3.783-3.066-4.519
+                    L85.019,42.899c-1.496-0.596-3.193-0.411-4.527,0.494c-1.334,0.906-2.133,2.413-2.133,4.025v292.197
+                    C78.359,342.264,80.479,344.425,83.127,344.477z"
+                        />
+                        <path
+                            style="fill: #5469d4"
+                            d="M480.244,89.256c-1.231-0.917-2.824-1.198-4.297-0.759l-49.025,14.657
+                    c-2.06,0.616-3.471,2.51-3.471,4.659v252.151c0,0,0.218,3.978-3.97,3.978c-4.796,0-7.946,0-7.946,0
+                    c-39.549,0-113.045,4.105-160.93,31.6l-9.504,5.442l-9.503-5.442c-47.886-27.494-121.381-31.6-160.93-31.6c0,0-8.099,0-10.142,0
+                    c-1.891,0-1.775-2.272-1.775-2.271V107.813c0-2.149-1.411-4.043-3.47-4.659L6.256,88.497c-1.473-0.439-3.066-0.158-4.298,0.759
+                    S0,91.619,0,93.155v305.069c0,1.372,0.581,2.681,1.597,3.604c1.017,0.921,2.375,1.372,3.741,1.236
+                    c14.571-1.429,37.351-3.131,63.124-3.131c56.606,0,102.097,8.266,131.576,23.913c4.331,2.272,29.441,15.803,41.065,15.803
+                    c11.624,0,36.733-13.53,41.063-15.803c29.48-15.647,74.971-23.913,131.577-23.913c25.771,0,48.553,1.702,63.123,3.131
+                    c1.367,0.136,2.725-0.315,3.742-1.236c1.016-0.923,1.596-2.231,1.596-3.604V93.155C482.203,91.619,481.476,90.173,480.244,89.256z
+                    "
+                        />
+                        <path
+                            style="fill: #5469d4"
+                            d="M257.679,367.634c0.812,0.543,1.757,0.822,2.706,0.822c0.626,0,1.256-0.122,1.853-0.366
+                    c34.917-14.386,82.235-22.551,136.837-23.613c2.648-0.052,4.769-2.213,4.769-4.861V47.418c0-1.613-0.799-3.12-2.133-4.025
+                    c-1.334-0.904-3.031-1.09-4.528-0.494L258.569,98.057c-1.851,0.736-3.065,2.527-3.065,4.519l0.019,261.017
+                    C255.521,365.216,256.331,366.732,257.679,367.634z"
+                        />
+                    </g>
+                </svg>
+            </div>
+            <div>
+                <a href="/APIs/gateAccess/reject-passenger"
+                    >Reject Passenger</a
+                >
+            </div>
+        </div>
+    </ul>
+</div>

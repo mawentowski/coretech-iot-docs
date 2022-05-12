@@ -1,0 +1,278 @@
+<div class="title-box">
+    <h1 class="topic-title">Print API Messages Overview</h1>
+    <div class="action-statement">
+        Learn the most common messages and how your app should use them.
+    </div>
+</div>
+
+<p>
+    The following is not an exhaustive list of all possible Service Bus
+    <code class="inline-code">Message Types</code>. Only the most common ones
+    encountered when sending Print API requests are described.
+</p>
+
+<h2 id="printdevicestatus">PrintDeviceStatus</h2>
+<h3 id="devicestatus-is-online">
+    <code class="inline-code">DeviceStatus</code> is
+    <code class="inline-code">Online</code>
+</h3>
+<p>
+    After you connect to a print device, a
+    <code class="inline-code">PrintDeviceStatus</code> message is displayed on
+    the Service Bus that should indicate the
+    <code class="inline-code">DeviceStatus</code> is
+    <code class="inline-code">Online</code>.
+</p>
+
+<div class="method-example atom-one-light">
+    <div class="method-example-top-bar">Service Bus Response</div>
+    <pre>
+            <code class="language-json">
+{
+    "DeviceStatus": "Online",
+    "MediaStatus": "Ok",
+    "BinStatus": "Ok"
+}
+        </code>
+        </pre>
+</div>
+
+<p class="caption">
+    <code class="inline-code">PrintDeviceStatus</code> Service Bus Message
+    showing the Print device is <code class="inline-code">Online</code>
+</p>
+<h3 id="devicestatus-changes">
+    <code class="inline-code">DeviceStatus</code> Changes
+</h3>
+<p>
+    If the device's status changes for whatever reason (for example, the device
+    goes <code class="inline-code">Offline</code> or the paper becomes jammed),
+    a <code class="inline-code">DeviceStatus</code> message may display after
+    requesting a print followed by an unsuccessful
+    <code class="inline-code">PrintResponse</code> message.
+</p>
+
+<div class="method-example atom-one-light">
+    <div class="method-example-top-bar">Service Bus Response</div>
+    <pre>
+            <code class="language-json">
+{
+    "DeviceStatus": "Online",
+    "MediaStatus": "Jammed",
+    "BinStatus": "Ok"
+}
+        </code>
+        </pre>
+</div>
+
+<p class="caption">
+    <code class="inline-code">DeviceStatus</code> Service Bus Message sent after
+    requesting a print on a printer with a paper jam
+</p>
+<h2 id="printresponse">PrintResponse</h2>
+<p>
+    After sending a request to print to a device, the
+    <code class="inline-code">PrintResponse</code> is the primary
+    <code class="inline-code">MessageType</code> received on the Service Bus
+    after making a print request. It is virtually identical across devices and
+    print formats. Its sole purpose to indicate if the print was successful and
+    how many documents were printed.
+</p>
+<p>
+    Upon making a <span class="method post">POST</span>
+    <code class="inline-code">/print/v2/</code> request, the Print API
+    acknowledges the request with a synchronous message, returning a
+    <code class="inline-code">2xx</code> success status code no matter if the
+    print was successful or unsuccessful. It merely indicates the Print API
+    successfully sent the request.
+</p>
+<p>
+    The API takes the <code class="inline-code">ConnectionId</code> and looks up
+    the details associated with the ID, most notably the
+    <code class="inline-code">DeviceId</code>. The
+    <code class="inline-code">DeviceID</code> is sent to IoT Hub where is it
+    routed to the correct workstation to carry out the command on the peripheral
+    (for example, printing).
+</p>
+<p>
+    The Print API then routes the messages to the Service Bus topic for sending
+    messages to airlines ( <code class="inline-code">airline-messages</code>),
+    returned as <code class="inline-code">MessageData</code> in the
+    <strong>Message Body</strong>.
+    <code class="inline-code">MessageData</code> indicates if the request was
+    successful.
+</p>
+
+<h3>Successful Print</h3>
+<p>
+    A successful print returns a
+    <code class="inline-code">PrintResponse</code> message with
+    <code class="inline-code">IsSuccess</code> set to
+    <code class="inline-code">true</code>, in which case the number of
+    successful prints is returned.
+</p>
+
+<div class="method-example atom-one-light">
+    <div class="method-example-top-bar">Service Bus Response</div>
+    <pre>
+            <code class="language-json">
+{
+    "IsSuccess": true,
+    "Error": null,
+    "SuccessfulPrints": "1"
+}
+        </code>
+        </pre>
+</div>
+
+<p class="caption">
+    <code class="inline-code">PrintResponse</code> Service Bus Message
+    indicating a successful print
+</p>
+
+<h3>Unsuccessful Print</h3>
+<p>
+    For an unsuccessful print, a
+    <code class="inline-code">PrintResponse</code> message displays with
+    <code class="inline-code">IsSuccess</code> set to
+    <code class="inline-code">false</code> in the Message Body. An
+    <code class="inline-code">ErrorCode</code> and
+    <code class="inline-code">Message</code> are returned. In this case, the
+    reason for the failed print request is that the printer is jammed.
+</p>
+
+<div class="method-example atom-one-light">
+    <div class="method-example-top-bar">Service Bus Response</div>
+    <pre>
+            <code class="language-json">
+{
+    "IsSuccess": false,
+    "Error": {
+        "ErrorCode": "NotAbleToPrint",
+        "Message": "PrintNotOk/UnSuccessfulPrint, with Jammed"
+    },
+    "SuccessfulPrints": "0"
+}
+        </code>
+        </pre>
+</div>
+
+<p class="caption">
+    <code class="inline-code">PrintResponse</code> Service Bus Message
+    indicating an unsuccessful print due to paper jam
+</p>
+<div class="alert-section info-alert">
+    <div class="">
+        <p>
+            The actual text contained in the error
+            <code class="inline-code">Message</code> is determined by the
+            software on the workstation.
+        </p>
+    </div>
+</div>
+<p>
+    The resolution would be to physically locate the printer, unjam the paper,
+    then attempt to send another print request.
+</p>
+
+<div class="continued-reading-section">
+    <h2 class="continued-reading">See Also</h2>
+    <ul class="continue-link-list">
+        <div class="continue-link-row">
+            <div class="svg-container">
+                <svg
+                    version="1.1"
+                    id="Capa_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    x="0px"
+                    y="0px"
+                    viewBox="0 0 482.204 482.204"
+                    style="enable-background: new 0 0 482.204 482.204"
+                    xml:space="preserve"
+                >
+                    <g>
+                        <path
+                            style="fill: #5469d4"
+                            d="M83.127,344.477c54.602,1.063,101.919,9.228,136.837,23.613c0.596,0.244,1.227,0.366,1.852,0.366
+                    c0.95,0,1.895-0.279,2.706-0.822c1.349-0.902,2.158-2.418,2.158-4.041l0.019-261.017c0-1.992-1.215-3.783-3.066-4.519
+                    L85.019,42.899c-1.496-0.596-3.193-0.411-4.527,0.494c-1.334,0.906-2.133,2.413-2.133,4.025v292.197
+                    C78.359,342.264,80.479,344.425,83.127,344.477z"
+                        />
+                        <path
+                            style="fill: #5469d4"
+                            d="M480.244,89.256c-1.231-0.917-2.824-1.198-4.297-0.759l-49.025,14.657
+                    c-2.06,0.616-3.471,2.51-3.471,4.659v252.151c0,0,0.218,3.978-3.97,3.978c-4.796,0-7.946,0-7.946,0
+                    c-39.549,0-113.045,4.105-160.93,31.6l-9.504,5.442l-9.503-5.442c-47.886-27.494-121.381-31.6-160.93-31.6c0,0-8.099,0-10.142,0
+                    c-1.891,0-1.775-2.272-1.775-2.271V107.813c0-2.149-1.411-4.043-3.47-4.659L6.256,88.497c-1.473-0.439-3.066-0.158-4.298,0.759
+                    S0,91.619,0,93.155v305.069c0,1.372,0.581,2.681,1.597,3.604c1.017,0.921,2.375,1.372,3.741,1.236
+                    c14.571-1.429,37.351-3.131,63.124-3.131c56.606,0,102.097,8.266,131.576,23.913c4.331,2.272,29.441,15.803,41.065,15.803
+                    c11.624,0,36.733-13.53,41.063-15.803c29.48-15.647,74.971-23.913,131.577-23.913c25.771,0,48.553,1.702,63.123,3.131
+                    c1.367,0.136,2.725-0.315,3.742-1.236c1.016-0.923,1.596-2.231,1.596-3.604V93.155C482.203,91.619,481.476,90.173,480.244,89.256z
+                    "
+                        />
+                        <path
+                            style="fill: #5469d4"
+                            d="M257.679,367.634c0.812,0.543,1.757,0.822,2.706,0.822c0.626,0,1.256-0.122,1.853-0.366
+                    c34.917-14.386,82.235-22.551,136.837-23.613c2.648-0.052,4.769-2.213,4.769-4.861V47.418c0-1.613-0.799-3.12-2.133-4.025
+                    c-1.334-0.904-3.031-1.09-4.528-0.494L258.569,98.057c-1.851,0.736-3.065,2.527-3.065,4.519l0.019,261.017
+                    C255.521,365.216,256.331,366.732,257.679,367.634z"
+                        />
+                    </g>
+                </svg>
+            </div>
+            <div>
+                <a href="/APIs/print/print-boarding-pass"
+                    >Print Boarding Pass</a
+                >
+            </div>
+        </div>
+        <div class="continue-link-row">
+            <div class="svg-container">
+                <svg
+                    version="1.1"
+                    id="Capa_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    x="0px"
+                    y="0px"
+                    viewBox="0 0 482.204 482.204"
+                    style="enable-background: new 0 0 482.204 482.204"
+                    xml:space="preserve"
+                >
+                    <g>
+                        <path
+                            style="fill: #5469d4"
+                            d="M83.127,344.477c54.602,1.063,101.919,9.228,136.837,23.613c0.596,0.244,1.227,0.366,1.852,0.366
+                    c0.95,0,1.895-0.279,2.706-0.822c1.349-0.902,2.158-2.418,2.158-4.041l0.019-261.017c0-1.992-1.215-3.783-3.066-4.519
+                    L85.019,42.899c-1.496-0.596-3.193-0.411-4.527,0.494c-1.334,0.906-2.133,2.413-2.133,4.025v292.197
+                    C78.359,342.264,80.479,344.425,83.127,344.477z"
+                        />
+                        <path
+                            style="fill: #5469d4"
+                            d="M480.244,89.256c-1.231-0.917-2.824-1.198-4.297-0.759l-49.025,14.657
+                    c-2.06,0.616-3.471,2.51-3.471,4.659v252.151c0,0,0.218,3.978-3.97,3.978c-4.796,0-7.946,0-7.946,0
+                    c-39.549,0-113.045,4.105-160.93,31.6l-9.504,5.442l-9.503-5.442c-47.886-27.494-121.381-31.6-160.93-31.6c0,0-8.099,0-10.142,0
+                    c-1.891,0-1.775-2.272-1.775-2.271V107.813c0-2.149-1.411-4.043-3.47-4.659L6.256,88.497c-1.473-0.439-3.066-0.158-4.298,0.759
+                    S0,91.619,0,93.155v305.069c0,1.372,0.581,2.681,1.597,3.604c1.017,0.921,2.375,1.372,3.741,1.236
+                    c14.571-1.429,37.351-3.131,63.124-3.131c56.606,0,102.097,8.266,131.576,23.913c4.331,2.272,29.441,15.803,41.065,15.803
+                    c11.624,0,36.733-13.53,41.063-15.803c29.48-15.647,74.971-23.913,131.577-23.913c25.771,0,48.553,1.702,63.123,3.131
+                    c1.367,0.136,2.725-0.315,3.742-1.236c1.016-0.923,1.596-2.231,1.596-3.604V93.155C482.203,91.619,481.476,90.173,480.244,89.256z
+                    "
+                        />
+                        <path
+                            style="fill: #5469d4"
+                            d="M257.679,367.634c0.812,0.543,1.757,0.822,2.706,0.822c0.626,0,1.256-0.122,1.853-0.366
+                    c34.917-14.386,82.235-22.551,136.837-23.613c2.648-0.052,4.769-2.213,4.769-4.861V47.418c0-1.613-0.799-3.12-2.133-4.025
+                    c-1.334-0.904-3.031-1.09-4.528-0.494L258.569,98.057c-1.851,0.736-3.065,2.527-3.065,4.519l0.019,261.017
+                    C255.521,365.216,256.331,366.732,257.679,367.634z"
+                        />
+                    </g>
+                </svg>
+            </div>
+            <div>
+                <a href="/APIs/print/print-bag-tag">Print Bag Tag</a>
+            </div>
+        </div>
+    </ul>
+</div>
