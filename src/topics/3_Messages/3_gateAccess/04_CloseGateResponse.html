@@ -78,7 +78,7 @@
         </tr>
     </tbody>
 </table>
-<p class="caption">GateError</p>
+<h3>GateError</h3>
 <table class="main-table">
     <thead>
         <tr>
@@ -101,17 +101,31 @@
     </tbody>
 </table>
 <p><strong>Message Body Sample Success JSON</strong></p>
-<pre><code class="language-JSON">{
+<div class="method-example atom-one-light">
+    <div class="method-example-top-bar">Service Bus Message</div>
+    <pre>
+        <code class="language-json">
+{
     "IsSuccess":true,
     "Error": null
 }
-</code></pre>
-<p><strong>Message Body Sample Failure JSON</strong></p>
-<pre><code class="language-JSON">{
+        </code>
+        </pre>
+</div>
+    <p><strong>Message Body Sample Failure JSON</strong></p>
+<div class="method-example atom-one-light">
+        <div class="method-example-top-bar">Service Bus Message</div>
+        <pre>
+        <code class="language-json">
+{
     "IsSuccess":false,
     "Error": {
         "ErrorCode": "NotAbleToCloseGate",
         "Message": "Contains error message"
     }
 }
-</code></pre>
+        </code>
+        </pre>
+</div>
+    </div>
+</div>

@@ -82,50 +82,59 @@
     </tbody>
 </table>
 <p><strong>Example FraudDetected JSON Message</strong></p>
-<pre><code class="language-JSON">{
+<div class="method-example atom-one-light">
+    <div class="method-example-top-bar">Service Bus Message</div>
+    <pre>
+        <code class="language-json">
+{
     "ErrorCode": "PassengerBoardingSidewise",
 }
-</code></pre>
-<p class="caption">Fraud Error Codes</p>
-<table class="main-table">
-    <thead>
-        <tr>
-            <th>Error Code</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>PassengerBoardingSidewise</td>
-            <td>
-                FRXS = Passenger boarded without boarding authorisation sidewise
-            </td>
-        </tr>
-        <tr>
-            <td>PassengerBoardedWithoutAuthorization</td>
-            <td>FRXX = Passenger boarded without boarding authorisation</td>
-        </tr>
-        <tr>
-            <td>PassengerCrawledUnderGate</td>
-            <td>
-                FRXU = Passenger boarded without boarding authorisation crawling
-                under
-            </td>
-        </tr>
-        <tr>
-            <td>PassengerEnteredOppositeSide</td>
-            <td>
-                FRXJ = Passenger entered from opposite side without boarding
-                authorization and passing to the entrance side (jumping over)
-            </td>
-        </tr>
-        <tr>
-            <td>PassengerJumpedOverGateParameter</td>
-            <td>FRXO = Other person jumped over from opposite side</td>
-        </tr>
-        <tr>
-            <td>UnknownFraudDetected</td>
-            <td>An unknown error was received</td>
-        </tr>
-    </tbody>
-</table>
+        </code>
+        </pre>
+</div>
+    <p class="caption">Fraud Error Codes</p>
+    <table class="main-table">
+        <thead>
+            <tr>
+                <th>Error Code</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>PassengerBoardingSidewise</td>
+                <td>
+                    FRXS = Passenger boarded without boarding authorisation
+                    sidewise
+                </td>
+            </tr>
+            <tr>
+                <td>PassengerBoardedWithoutAuthorization</td>
+                <td>FRXX = Passenger boarded without boarding authorisation</td>
+            </tr>
+            <tr>
+                <td>PassengerCrawledUnderGate</td>
+                <td>
+                    FRXU = Passenger boarded without boarding authorisation
+                    crawling under
+                </td>
+            </tr>
+            <tr>
+                <td>PassengerEnteredOppositeSide</td>
+                <td>
+                    FRXJ = Passenger entered from opposite side without boarding
+                    authorization and passing to the entrance side (jumping
+                    over)
+                </td>
+            </tr>
+            <tr>
+                <td>PassengerJumpedOverGateParameter</td>
+                <td>FRXO = Other person jumped over from opposite side</td>
+            </tr>
+            <tr>
+                <td>UnknownFraudDetected</td>
+                <td>An unknown error was received</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -101,113 +101,144 @@
     </tbody>
 </table>
 <p><strong>Message Body Sample Success JSON</strong></p>
-<pre><code class="language-JSON">{
+<div class="method-example atom-one-light">
+    <div class="method-example-top-bar">Service Bus Message</div>
+    <pre>
+        <code class="language-json">
+{
     "IsSuccess":true,
     "Error": null
 }
-</code></pre>
-<p><strong>Message Body Sample Failure JSON</strong></p>
-<pre><code class="language-JSON">{
+        </code>
+        </pre>
+</div>
+    <p><strong>Message Body Sample Failure JSON</strong></p>
+<div class="method-example atom-one-light">
+        <div class="method-example-top-bar">Service Bus Message</div>
+        <pre>
+        <code class="language-json">
+{
     "IsSuccess":false,
     "Error": {
         "ErrorCode": "NotAbleToAcceptPassenger",
         "Message": "BoardingCancelledByPassenger"
     }
 }
-</code></pre>
-<h6 id="error-messages">Error Messages</h6>
-<table class="main-table">
-    <thead>
-        <tr>
-            <th>Message</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>BoardingCancelledByPassenger</td>
-            <td>
-                Boarding was cancelled by passenger leaving through the gate
-                entrance
-            </td>
-        </tr>
-        <tr>
-            <td>
-                FraudErrorPassengerBoardedThenOnePassengerCrossedFromOppositeSide
-            </td>
-            <td>One passenger boarded and one crossed from opposite side</td>
-        </tr>
-        <tr>
-            <td>FraudErrorPassengerBoardedThenReturnedToEntrance</td>
-            <td>One passenger boarded but then returned to the entrance</td>
-        </tr>
-        <tr>
-            <td>
-                FraudErrorPassengerBoardedThenTwoPassengerCrossedFromOppositeSide
-            </td>
-            <td>One passenger boarded and two crossed from opposite side</td>
-        </tr>
-        <tr>
-            <td>ReceiptPrintFailureBadDataCLFCodeNotFound</td>
-            <td>The receipt print command contained an unknown CLF code</td>
-        </tr>
-        <tr>
-            <td>ReceiptPrintFailureBadDataFont</td>
-            <td>The receipt print command contained an unknown font</td>
-        </tr>
-        <tr>
-            <td>ReceiptPrintFailureBadDataFontSize</td>
-            <td>
-                The receipt print command contained an unsupported font size
-            </td>
-        </tr>
-        <tr>
-            <td>ReceiptPrintFailurePaperJam</td>
-            <td>A receipt print was attempted but their was a paper jam</td>
-        </tr>
-        <tr>
-            <td>ReceiptPrintFailurePaperOut</td>
-            <td>A receipt print was attempted but the paper is out</td>
-        </tr>
-        <tr>
-            <td>ReceiptPrintFailurePrinterBusy</td>
-            <td>Receipt print failed due to technical issue</td>
-        </tr>
-        <tr>
-            <td>ReceiptPrintFailurePrinterMissing</td>
-            <td>Receipt print failed due to technical issue</td>
-        </tr>
-        <tr>
-            <td>ReceiptPrintFailurePrinterNotAvailable</td>
-            <td>Receipt print failed due to technical issue</td>
-        </tr>
-        <tr>
-            <td>ReceiptPrintFailurePrinterOffline</td>
-            <td>Receipt print failed due to technical issue</td>
-        </tr>
-        <tr>
-            <td>TailGateFraudOnePassengerBoarded</td>
-            <td>
-                Tail gate fraud, 1 passenger boarded and 1 passenger returned
-            </td>
-        </tr>
-        <tr>
-            <td>TailGateFraudTwoPassengersBoarded</td>
-            <td>Tail gate fraud, 2 passengers boarded at same time</td>
-        </tr>
-        <tr>
-            <td>TimedOutPassengerDidNotTakeReceipt</td>
-            <td>
-                A receipt was printed but the passenger did not take it in time
-            </td>
-        </tr>
-        <tr>
-            <td>TimedOutPassengerDidNotWalkThroughGate</td>
-            <td>The passenger failed to pass through the gate in time</td>
-        </tr>
-        <tr>
-            <td>TimedOutPassengerTookReceiptTooLate</td>
-            <td>A receipt was printed but the passenger took it too late</td>
-        </tr>
-    </tbody>
-</table>
+        </code>
+        </pre>
+</div>
+        <h6 id="error-messages">Error Messages</h6>
+        <table class="main-table">
+            <thead>
+                <tr>
+                    <th>Message</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>BoardingCancelledByPassenger</td>
+                    <td>
+                        Boarding was cancelled by passenger leaving through the
+                        gate entrance
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        FraudErrorPassengerBoardedThenOnePassengerCrossedFromOppositeSide
+                    </td>
+                    <td>
+                        One passenger boarded and one crossed from opposite side
+                    </td>
+                </tr>
+                <tr>
+                    <td>FraudErrorPassengerBoardedThenReturnedToEntrance</td>
+                    <td>
+                        One passenger boarded but then returned to the entrance
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        FraudErrorPassengerBoardedThenTwoPassengerCrossedFromOppositeSide
+                    </td>
+                    <td>
+                        One passenger boarded and two crossed from opposite side
+                    </td>
+                </tr>
+                <tr>
+                    <td>ReceiptPrintFailureBadDataCLFCodeNotFound</td>
+                    <td>
+                        The receipt print command contained an unknown CLF code
+                    </td>
+                </tr>
+                <tr>
+                    <td>ReceiptPrintFailureBadDataFont</td>
+                    <td>The receipt print command contained an unknown font</td>
+                </tr>
+                <tr>
+                    <td>ReceiptPrintFailureBadDataFontSize</td>
+                    <td>
+                        The receipt print command contained an unsupported font
+                        size
+                    </td>
+                </tr>
+                <tr>
+                    <td>ReceiptPrintFailurePaperJam</td>
+                    <td>
+                        A receipt print was attempted but their was a paper jam
+                    </td>
+                </tr>
+                <tr>
+                    <td>ReceiptPrintFailurePaperOut</td>
+                    <td>A receipt print was attempted but the paper is out</td>
+                </tr>
+                <tr>
+                    <td>ReceiptPrintFailurePrinterBusy</td>
+                    <td>Receipt print failed due to technical issue</td>
+                </tr>
+                <tr>
+                    <td>ReceiptPrintFailurePrinterMissing</td>
+                    <td>Receipt print failed due to technical issue</td>
+                </tr>
+                <tr>
+                    <td>ReceiptPrintFailurePrinterNotAvailable</td>
+                    <td>Receipt print failed due to technical issue</td>
+                </tr>
+                <tr>
+                    <td>ReceiptPrintFailurePrinterOffline</td>
+                    <td>Receipt print failed due to technical issue</td>
+                </tr>
+                <tr>
+                    <td>TailGateFraudOnePassengerBoarded</td>
+                    <td>
+                        Tail gate fraud, 1 passenger boarded and 1 passenger
+                        returned
+                    </td>
+                </tr>
+                <tr>
+                    <td>TailGateFraudTwoPassengersBoarded</td>
+                    <td>Tail gate fraud, 2 passengers boarded at same time</td>
+                </tr>
+                <tr>
+                    <td>TimedOutPassengerDidNotTakeReceipt</td>
+                    <td>
+                        A receipt was printed but the passenger did not take it
+                        in time
+                    </td>
+                </tr>
+                <tr>
+                    <td>TimedOutPassengerDidNotWalkThroughGate</td>
+                    <td>
+                        The passenger failed to pass through the gate in time
+                    </td>
+                </tr>
+                <tr>
+                    <td>TimedOutPassengerTookReceiptTooLate</td>
+                    <td>
+                        A receipt was printed but the passenger took it too late
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
