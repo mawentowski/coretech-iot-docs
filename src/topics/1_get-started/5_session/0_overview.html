@@ -1,78 +1,84 @@
 <div class="title-box">
-    <h1 class="topic-title">Scan API</h1>
+    <h1 class="topic-title">Session API</h1>
     <div class="action-statement">
-        Learn how to interact with a scan device to scan different kinds of
-        documents.
+        Read a brief overview of the Session API endpoints
     </div>
 </div>
 
-<!-- <p>
-    The <strong>Scan API</strong> endpoints allow your airline backend to use
-    airport devices to read travel documents like boarding passes, bag tags, and
-    passports.
-</p> -->
-<div class="endpoints-summary">
-    <p class="endpoints-summary-description">
-    The <strong>Scan API</strong> endpoints allow your airline backend to use
-    airport devices to read travel documents like boarding passes, bag tags, and
-    passports.
-   
-    </p>
-    <div class="method-example atom-one-light curl-custom two-col-width">
-        <div class="method-example-top-bar">Endpoints</div>
-        <div class="endpoints-container">
-            <div class="endpoint-row">
-                <div class="end-path post-method">
-                    <a href="/print/print-boarding-pass#print-a-pdf-or-svg">/scan/v2/startscanning</a>
-                </div>
-            </div>
-            <div class="endpoint-row">
-                <div class="end-path post-method">
-                    <a href="/print/print-boarding-pass#print-aea-format">/scan/v2/stopscanning</a>
-                    
-                </div>
-            </div>
-        </div>
+<p>
+    The <strong>Session API</strong> endpoints allow airline backends to connect
+    to devices configured in a SITA Flex environment and to receive those
+    messages on an Azure Service Bus subscription.
+</p>
+<p>The flow of the API is to:</p>
+<ul>
+    <li>
+        <p>
+            <strong>Reserve</strong> a location configured in the SITA Flex
+            environment by sending a POST
+            <code class="inline-code">/site/v2/reservations</code> request.
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>Subscribe</strong> to the Azure Service Bus subscription for
+            your airline backend through a POST
+            <code class="inline-code">/session/v2/subscriptions</code> request.
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>Get Location Capabilities</strong> through a POST
+            <code class="inline-code">/site/v2/locations/{locationId}</code>
+            request that returns list of devices at a location and their
+            capabilities.
+        </p>
+    </li>
+    <li>
+        <p>
+            Create a <strong>connection</strong> to Flex devices to receive
+            messages on the subscription through a POST
+            <code class="inline-code">/session/v2/connections</code> request.
+        </p>
+    </li>
+</ul>
+<div class="alert-section info-alert">
+    <div class="">
+        <p>
+            The Get Location Capabilities endpoint (
+            <code class="inline-code">/site/v2/locations/{locationId}</code>) is
+            not serviced by the Session API. It is serviced by the Location API.
+            However, it fits logically in the Session API flow at the time this
+            documentation was written.
+        </p>
+
+        <p>
+            Also, note that the Reserve (
+            <code class="inline-code">/site/v2/reservations</code>) and Get
+            Location Capabilities endpoints both contain the
+            <code class="inline-code">/site</code> in their end paths.
+            <code class="inline-code">/site</code> is just a way of logically
+            grouping these two endpoints and is not an API.
+        </p>
     </div>
 </div>
-
-
-
-<p>The supported devices at present are the following:</p>
-<table class="main-table">
-    <thead>
-        <tr>
-            <th>Device Acronym</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>LSR</td>
-            <td>
-                Laser Sensor Reader that reads
-                <code class="inline-code">BarCodeData</code> from barcodes.
-            </td>
-        </tr>
-        <tr>
-            <td>MSR</td>
-            <td>
-                Magnetic Stripe Reader that reads card payments, returning
-                <code class="inline-code">CardType</code> and
-                <code class="inline-code">Track</code> data.
-            </td>
-        </tr>
-        <tr>
-            <td>OCR</td>
-            <td>
-                Optical Character Recognition device that reads
-                <code class="inline-code">MrzData</code> from passports.
-            </td>
-        </tr>
-    </tbody>
-</table>
+<p>Example locations configured in the SITA Flex environment include:</p>
+<ul>
+    <li>Airport CUTE type workstations for check-in and boarding</li>
+    <li>CUSS Type devices like a Self-Service Kiosk</li>
+    <li>Self-Service BagDrop and Self-Service Boarding Gate</li>
+</ul>
+<div class="alert-section info-alert">
+    <div class="">
+        <p>
+            When reserving a location, the
+            <code class="inline-code">locationId</code> should not be confused
+            with a workstation with peripherals physically connected to it.
+            Rather, it is a logical entity that has certain capabilities
+            associated with it.
+        </p>
+    </div>
 </div>
-
 <div class="continued-reading-section">
     <h2 class="continued-reading">Next Steps</h2>
     <ul class="continue-link-list">
@@ -120,8 +126,8 @@
                 </svg>
             </div>
             <div>
-                <a href="/scan/API-call-components"
-                    >API Call Components</a
+                <a href="/APIs/session/reserve-a-location"
+                    >Reserve a Location</a
                 >
             </div>
         </div>

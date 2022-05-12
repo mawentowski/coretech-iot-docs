@@ -1,40 +1,46 @@
 <div class="title-box">
-    <h1 class="topic-title">Get Bag</h1>
+    <h1 class="topic-title">Reserve a Location</h1>
     <div class="action-statement">
-        Learn how to initiate a bagdrop process
+        Learn how to reserve a location to interact with its devices
     </div>
 </div>
 
-
 <p>
-    Send a <span class="method post">POST</span>
-    <code class="inline-code">/bagdrop/v2/getbag</code> request to initiate a
-    bagdrop process and open the door (if there is a door) of the SBD so the
-    passenger can place their bag on the belt.
+    The <span class="method post">POST</span>
+    <code class="inline-code">/site/v2/reservations</code> request limits use of
+    a location to the airline backend with a specific airline code that made the
+    request. The airline backend must reserve the location to make use of its
+    devices.
 </p>
+<div class="alert-section info-alert">
+    <div class="">
+        <p>
+            Flex knows the airline code of the requester because it is encoded
+            in the access token.
+        </p>
+    </div>
+</div>
 
 <h2>Make an API Call</h2>
 
-<div class="alert-section info-alert">
-    <div class="">
-        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="apis/bagdrop/API-call-components">API Call Components</a>.
-
-    </div>
-</div>
-
+<p>
+    To successfully make the request, you must pass the
+    <code class="inline-code">LocationId</code> in the Request Body of the
+    location you wish to reserve.
+</p>
 
 
 <div class="code-section with-tabs">
     <div class="code-section-header">
         <div class="code-tabs">
-            <button class="tablinks" onclick="openTab(event, 'bash-get-bag')" id="defaultOpen">curl</button>
-            <button class="tablinks" onclick="openTab(event, 'Ruby-get-bag')">Ruby</button>
-            <button class="tablinks" onclick="openTab(event, 'Python-get-bag')">Python</button>
-            <button class="tablinks" onclick="openTab(event, 'PHP-get-bag')">PHP</button>
-            <button class="tablinks" onclick="openTab(event, 'Java-get-bag')">Java</button>
-            <button class="tablinks" onclick="openTab(event, 'Node-get-bag')">Node</button>
-            <button class="tablinks" onclick="openTab(event, 'Go-get-bag')">Go</button>
-            <button class="tablinks" onclick="openTab(event, '.NET-get-bag')">.NET</button>
+            <button class="tablinks" onclick="openTab(event, 'bash-reserve-a-location')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby-reserve-a-location')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python-reserve-a-location')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP-reserve-a-location')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java-reserve-a-location')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node-reserve-a-location')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go-reserve-a-location')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET-reserve-a-location')">.NET</button>
         </div>
         <div class="copy-code-btn-container">
             <button class="copy-code-btn">
@@ -58,24 +64,23 @@
         Copied!
     </div>
 
-<div id="bash-get-bag" class="tabcontent dark"><pre> <code>
-curl --location -g --request POST 'https://{{baseurl}}/bagdrop/v2/getbag' \
+<div id="bash-reserve-a-location" class="tabcontent dark"><pre> <code>
+curl --location -g --request POST 'https://{{baseurl}}/site/v2/reservations' \
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "connectionId": "{{sbd_connection_id}}",
-    "correlationId": "postman-ftr-99a73858-31ab-4f9f-8603-492619122e38"
+    "LocationId": "{{locationId}}"
 }'
 </code>
 </pre>
 </div>
 
-<div id="Ruby-get-bag" class="tabcontent dark"><pre><code>
+<div id="Ruby-reserve-a-location" class="tabcontent dark"><pre><code>
 require "uri"
 require "json"
 require "net/http"
 
-url = URI("https://{{baseurl}}/bagdrop/v2/getbag")
+url = URI("https://{{baseurl}}/site/v2/reservations")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -84,25 +89,23 @@ request = Net::HTTP::Post.new(url)
 request["location-id"] = "{{locationId}}"
 request["Content-Type"] = "application/json"
 request.body = JSON.dump({
-    "connectionId": "{{sbd_connection_id}}",
-    "correlationId": "postman-ftr-6e46a6eb-cfb7-4f1c-9255-4cd6edd7ee93"
+    "LocationId": "{{locationId}}"
 })
 
 response = https.request(request)
-puts response.read_body    
+puts response.read_body
 </code>
 </pre>
 </div>
 
-<div id="Python-get-bag" class="tabcontent dark"><pre> <code>
+<div id="Python-reserve-a-location" class="tabcontent dark"><pre> <code>
 import requests
 import json
 
-url = "https://{{baseurl}}/bagdrop/v2/getbag"
+url = "https://{{baseurl}}/site/v2/reservations"
 
 payload = json.dumps({
-    "connectionId": "{{sbd_connection_id}}",
-    "correlationId": "postman-ftr-787c1878-4a9c-45dc-8a5d-eb368c9c576a"
+    "LocationId": "{{locationId}}"
 })
 headers = {
     'location-id': '{{locationId}}',
@@ -111,18 +114,18 @@ headers = {
 
 response = requests.request("POST", url, headers=headers, data=payload)
 
-print(response.text)      
+print(response.text)   
 </code>
 </pre>
 </div>
 
-<div id="PHP-get-bag" class="tabcontent dark"><pre> <code>
+<div id="PHP-reserve-a-location" class="tabcontent dark"><pre> <code>
 <?php
 
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/bagdrop/v2/getbag',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/site/v2/reservations',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -131,8 +134,7 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'POST',
     CURLOPT_POSTFIELDS =>'{
-    "connectionId": "{{sbd_connection_id}}",
-    "correlationId": "postman-ftr-88ea89b0-0d30-44a4-968f-26a942029ae6"
+    "LocationId": "{{locationId}}"
 }',
     CURLOPT_HTTPHEADER => array(
     'location-id: {{locationId}}',
@@ -148,29 +150,28 @@ echo $response;
 </pre>
 </div>
 
-<div id="Java-get-bag" class="tabcontent dark"><pre><code>
+<div id="Java-reserve-a-location" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("https://{{baseurl}}/bagdrop/v2/getbag")
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/site/v2/reservations")
     .header("location-id", "{{locationId}}")
     .header("Content-Type", "application/json")
-    .body("{\r\n  \"connectionId\": \"{{sbd_connection_id}}\",\r\n  \"correlationId\": \"postman-ftr-4aba285b-eba1-4dab-930d-b1e55f2d3c6b\"\r\n}")
-    .asString();              
+    .body("{\r\n    \"LocationId\": \"{{locationId}}\"\r\n}")
+    .asString();    
 </code>
 </pre>
 </div>
 
-<div id="Node-get-bag" class="tabcontent dark"><pre><code>
+<div id="Node-reserve-a-location" class="tabcontent dark"><pre><code>
 var request = require('request');
 var options = {
     'method': 'POST',
-    'url': 'https://{{baseurl}}/bagdrop/v2/getbag',
+    'url': 'https://{{baseurl}}/site/v2/reservations',
     'headers': {
     'location-id': '{{locationId}}',
     'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-    "connectionId": "{{sbd_connection_id}}",
-    "correlationId": "postman-ftr-24d8edb9-7d9e-41e7-b1e8-959cc907f24c"
+    "LocationId": "{{locationId}}"
     })
 
 };
@@ -182,7 +183,7 @@ request(options, function (error, response) {
 </pre>
 </div>
 
-<div id="Go-get-bag" class="tabcontent dark"><pre><code>
+<div id="Go-reserve-a-location" class="tabcontent dark"><pre><code>
 package main
 
 import (
@@ -194,14 +195,12 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/bagdrop/v2/getbag"
+    url := "https://%7B%7Bbaseurl%7D%7D/site/v2/reservations"
     method := "POST"
 
     payload := strings.NewReader(`{`+"
 "+`
-    "connectionId": "{{sbd_connection_id}}",`+"
-"+`
-    "correlationId": "postman-ftr-be627565-6249-49aa-a49f-98fd9352376c"`+"
+    "LocationId": "{{locationId}}"`+"
 "+`
 }`)
 
@@ -234,17 +233,15 @@ func main() {
 </pre>
 </div>
 
-<div id=".NET-get-bag" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/bagdrop/v2/getbag");
+<div id=".NET-reserve-a-location" class="tabcontent dark"><pre><code>
+var client = new RestClient("https://{{baseurl}}/site/v2/reservations");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
 request.AddHeader("location-id", "{{locationId}}");
 request.AddHeader("Content-Type", "application/json");
 var body = @"{
 " + "\n" +
-@"  ""connectionId"": ""{{sbd_connection_id}}"",
-" + "\n" +
-@"  ""correlationId"": ""postman-ftr-6f28d9ba-7aeb-4d52-9413-d789abeb87fb""
+@"    ""LocationId"": ""{{locationId}}""
 " + "\n" +
 @"}";
 request.AddParameter("application/json", body,  ParameterType.RequestBody);
@@ -256,112 +253,114 @@ Console.WriteLine(response.Content);
 
 </div>
 
-<p class="caption">
-    Sample <span class="method post">POST</span>
-    <code class="inline-code">/bagdrop/v2/getbag</code> request to initiate a
-    bagdrop process.
+
+<p class="caption">Sample <span class="method post">POST</span>
+    <code class="inline-code">/site/v2/reservation</code> request containing the
+    <code class="inline-code">LocationId</code> passed from the client app.</p>
 
 
-    </p>
 
-    
-
-<h2>Request Body</h2>
-
+<h2 id="response-body">Response</h2>
 <p>
-    To successfully make the request, you must include the <code class="inline-code">connectionId</code> of the bagdrop device.
+    A successful request returns a
+    <code class="inline-code">2xx</code> success status code with the JSON
+    Response Body containing the <code class="inline-code">reservationId</code>.
+    You must include this ID later in connection requests to devices at the
+    reserved location.
 </p>
 
+<div class="method-example atom-one-light">
+    <div class="method-example-top-bar">Response</div>
+    <pre>
+        <code class="language-json">
+[
+    {
+        "reservationId": "868e5715-2c82-426e-b7da-10e208dd865d",
+        "airlineCode": "ZZ",
+        "locationId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004",
+        "expiryTime": "2021-11-24T19:26:30.846778+00:00"
+    }
+]
+    </code>
+    </pre>
+</div>
+<p class="caption">
+    Sample Response Body for <span class="method post">POST</span>
+    <code class="inline-code">/site/v2/reservation</code> request containing the
+    <code class="inline-code">reservationId</code>
+</p>
 
+<p>
+    The Response Body contains informational properties such as the
+    <code class="inline-code">airlineCode</code> encoded in the access token and
+    <code class="inline-code">locationID</code> passed in the Request Body. The
+    property <code class="inline-code">expiryTime</code> indicates when the
+    reservation is due to expire.
+</p>
+<div class="alert-section tip-alert">
+    <div class="">
+        <p>
+            It is important that airline backends keep track of when a location
+            reservation is about to expire so it can request a new reservation
+            if continued access is desired.
+        </p>
+    </div>
+</div>
+
+<h2>Reservation Error</h2>
+<p>
+    Now that the location is reserved by an airline code, any request made by
+    another airline will be rejected. This will occur until the
+    reservation's <code class="inline-code">expiryTime</code> has been
+    reached or the airline who made the reservation has sent a
+    <span class="method del">DEL</span>
+    <code class="inline-code">/site/v2/reservation</code> to delete the
+    reservation.
+</p>
+<p>
+    The following error displays when attempting to reserve a location that is
+    already reserved:
+</p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Request Body</div>
+    <div class="method-example-top-bar">Error</div>
     <pre>
             <code class="language-json">
 {
-    "connectionId": "{{sbd_connection_id}}",
-    "correlationId": "postman-ftr-{{$guid}}"
+    "type": "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+    "title": "Bad Request",
+    "status": 400,
+    "detail": "Location reserved by other airlines.",
+    "traceId": "00-25dd79293ba71f479ce30da826eecd09-3aa97e2de755f540-00"
 }
         </code>
         </pre>
 </div>
-
 <p class="caption">
-
-        Sample Request Body for a <span class="method post">POST</span>
-        <code class="inline-code">/bagdrop/v2/getbag</code> request that provides a <code class="inline-code">connectionId</code> of the bagdrop device
-    </p>
-
-
-
-
-
-
-<h2>Response</h2>
+    Sample 400 Bad Request Error Message when a location is reserved by another
+    airline
+</p>
 
 <p>
-    Upon making a
-    <span class="method post">POST</span>
-        <code class="inline-code">/bagdrop/v2/getbag</code> request, the Bagdrop API acknowledges the request with a synchronous
-    message returns a
-    <code class="inline-code">2xx</code> success status code (as seen in a tool
-    like Postman).
+    Sending a <span class="method post">DEL</span>
+    <code class="inline-code">/site/v2/reservations/{reservation_id}</code>
+    request returns a <code class="inline-code">2xx</code> success status code
+    and deletes a reservation if one exists.
 </p>
+<h2 id="best-practices">Deleting Reservations</h2>
 <p>
-    The bagdrop process is initiated, and the door to the SBD opens (if there is a
-    door) so the passenger can place the bag on the belt. 
-    
-    <p>
-         A <code class="inline-code">GetBagResponse</code> message displays on the Service Bus, acknowledging that the request to initiate a bagdrop process was received
-    </p>
-    
-    Baggage information
-    may be collected by the SBD and displayed in a
-    <code class="inline-code">BagPlaced</code> message on the Service Bus.
+    It is important to delete the reservation once done with a location because
+    an active reservation prevents other airline backends from using the
+    location. This is achieved by sending a <span class="method del">DEL</span>
+    <code class="inline-code">/site/v2/reservations/{reservation_id}</code>
+    request, passing in the
+    <code class="inline-code">reservation_id</code> of the reservation to be
+    deleted as a path parameter.
 </p>
-<div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Request Body</div>
-    <pre>
-                    <code class="language-json">
-"Bag": {
-    "Tags": [],
-    "Weight": {
-        "Amount": 23.8,
-        "Unit": "Kg"
-    },
-    "Position": "Entry",
-    "VolumeResult": {
-        "Width": {
-            "Amount": 0.0,
-            "Unit": "Cm"
-        },
-        "Height": {
-            "Amount": 0.0,
-            "Unit": "Cm"
-        },
-        "Length": {
-            "Amount": 0.0,
-            "Unit": "Cm"
-        },
-        "TubDetection": "NoTub"
-    }
-},
-"IsSuccess": true,
-"Error": null
-}
-                </code>
-                </pre>
-</div>
-
-<p class="caption">
-    <code class="inline-code">BagPlaced</code> Service Bus message displaying
-    properties of the 'placed' bag
-</p>
-
 
 
 <div class="continued-reading-section">
-    <h2 class="continued-reading">See Also</h2>
+    <h2 class="continued-reading">Next Steps</h2>
     <ul class="continue-link-list">
         <div class="continue-link-row">
             <div class="svg-container">
@@ -407,8 +406,8 @@ Console.WriteLine(response.Content);
                 </svg>
             </div>
             <div>
-                <a href="/gateAccess/accept-passenger"
-                    >Accept Passenger</a
+                <a href="/APIs/session/check-for-subscriptions"
+                    >Check for an existing subscription</a
                 >
             </div>
         </div>
