@@ -3,13 +3,12 @@
 <div class="title-box">
     <h1 class="topic-title">Release Bag</h1>
     <div class="action-statement">
-        Learn how to complete the bagdrop process and dispatch the bag
+        Complete the bagdrop process and dispatch the bag
     </div>
 </div>
  
 <p>
-    Once the bag has been processed, send a POST
-    <code class="inline-code">/bagdrop/v2/releasebag</code> request to move the
+    Once the bag has been processed, send a <span class="method post">POST </span><code class="inline-code">/bagdrop/v2/releasebag</code> request to move the
     bag to the Baggage Handling System (BHS Area) and complete the bagdrop
     process.
 </p>
@@ -17,7 +16,7 @@
 
 <div class="alert-section info-alert">
     <div class="">
-        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="apis/bagdrop/API-call-components">API Call Components</a>.
+        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="/bagdrop/API-call-components">API Call Components</a>.
 
     </div>
 </div>
@@ -258,8 +257,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
 
-    Sample POST
-    <code class="inline-code">/bagdrop/v2/releasebag</code> request to complete the bagdrop
+    Sample <span class="method post">POST </span><code class="inline-code">/bagdrop/v2/releasebag</code> request to complete the bagdrop
     process.
     </p>
 
@@ -323,11 +321,8 @@ Console.WriteLine(response.Content);
 </p>
 
 
-
-
-
 <div class="continued-reading-section">
-    <h2 class="continued-reading">See Also</h2>
+    <h2 class="continued-reading">Next Steps</h2>
     <ul class="continue-link-list">
         <div class="continue-link-row">
             <div class="svg-container">
@@ -373,10 +368,13 @@ Console.WriteLine(response.Content);
                 </svg>
             </div>
             <div>
-                <a href="/gateAccess/accept-passenger"
-                    >Accept Passenger</a
+                <a href="/bagdrop/API-tutorial"
+                    >Bagdrop API Tutorial</a
                 >
             </div>
-        </div>
+        </div> 
     </ul>
 </div>
+
+
+

@@ -54,6 +54,10 @@ curl --location -g --request POST 'https://{{baseurl}}/print/v2/boardingpass/pdf
 </code></pre>
     </div>
 </div>
+<p class="caption">
+    Sample API call containing the required components to successfully make a
+    call
+</p>
 
 <h2>Components of an API Call</h2>
 <h3 id="resource-urls">Resource URLs</h3>
@@ -61,7 +65,9 @@ curl --location -g --request POST 'https://{{baseurl}}/print/v2/boardingpass/pdf
 <ul>
     <li>
         A REST API standard method preceding the URL for accessing the endpoint,
-        either POST, <span class="method get">GET</span> , or DEL.
+        either <span class="method post">POST</span>,
+        <span class="method get">GET</span>, or
+        <span class="method del">DEL</span>.
     </li>
     <li>
         A Base URL specific to the SITA Flex environment, sometimes displayed as
@@ -108,14 +114,14 @@ curl --location -g --request POST 'https://{{baseurl}}/print/v2/boardingpass/pdf
 <div class="method-example atom-one-light">
     <div class="method-example-top-bar">Request Body</div>
     <pre>
-    <code class="language-json">
+            <code class="language-json">
 {
     "connectionId": "{{atb_connection_id}}",
     "correlationId": "postman-ftr-{{$guid}}",
     "printData": "JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb2"
-}
-</code>
-</pre>
+}  
+        </code>
+        </pre>
 </div>
 
 <p class="caption">
@@ -123,7 +129,7 @@ curl --location -g --request POST 'https://{{baseurl}}/print/v2/boardingpass/pdf
     the Print API
 </p>
 
-<div class="success-alert">
+<div class="alert-section success-alert">
     <div class="">
         Now that you have an <code class="inline-code">access_token</code> that
         authorizes your requests, and you understand the components that make up

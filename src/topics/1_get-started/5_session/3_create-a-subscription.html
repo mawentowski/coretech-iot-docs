@@ -1,6 +1,6 @@
 <div class="title-box">
     <h1 class="topic-title">Create a Subscription</h1>
-    <div class="action-statement">Request a subscription to connect to.</div>
+    <div class="action-statement">Request a subscription to connect your airline backend to the Service Bus</div>
 </div>
 
 <p>
@@ -226,9 +226,7 @@ func main() {
 </div>
 
 <p class="caption">Sample <span class="method post">POST</span>
-    <code class="inline-code">/session/v2/subscriptions</code> request</p>
-
-
+    <code class="inline-code">/session/v2/subscriptions</code> request</p>, passing the <code class="inline-code">locationId</code> of the location that needs a new subscription.</p>
 
 
 <h2 id="response-body-1">Response</h2>
@@ -239,7 +237,7 @@ func main() {
 </p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Error</div>
+    <div class="method-example-top-bar">Response</div>
     <pre>
                 <code class="language-json">
 {
@@ -266,7 +264,7 @@ func main() {
             <code class="inline-code">/session/v2/subscriptions</code> request
             results in a <strong>400 Bad Request</strong> error, as described in
             the
-            <a href="400 Bad Request_1.htm">400 Bad Request</a> troubleshooting
+            <a href="/get-started/troubleshooting/error-codes#400-bad-request">400 Bad Request</a> troubleshooting
             section.
         </p>
     </div>
@@ -294,7 +292,7 @@ func main() {
     the SAS token needs to be passed in the Authorization Header of requests
     made to the Azure Service Bus REST API.
 </p>
-<div class="alert-section info-alert">
+<div class="alert-section tip-alert">
     <div class="">
         <p>
             It is not necessary to understand the contents of the SAS token. It
@@ -377,8 +375,7 @@ func main() {
 
 <p>
     The first way is to keep a subscription alive through repeated calls to the
-    POST
-    <code class="inline-code">session/v2/subscriptions</code>
+    <span class="method post">POST </span><code class="inline-code">session/v2/subscriptions</code>
     endpoint to create a new SAS token when the old one expires. The SAS token
     is contained in the
     <code class="inline-code">connectionString</code> in the Response Body.
@@ -396,8 +393,7 @@ func main() {
     backend determines if there is a subscription in place for the specified
     location. If there is already a subscription for the location, the airline
     backend uses that subscription and does not send a request to create a new
-    one. If there is no subscription in place, it sends a POST
-    <code class="inline-code">session/v2/subscriptions</code>
+    one. If there is no subscription in place, it sends a <span class="method post">POST </span><code class="inline-code">session/v2/subscriptions</code>
     request to create a new subscription.
 </p>
 <div class="alert-section info-alert">
@@ -464,7 +460,7 @@ func main() {
 <h3 id="subscription-removal">Subscription Removal</h3>
 <p>
     If an ill-behaved application does not properly clean-up its subscription,
-    an auto-delete on idle takes care of the subscription removal (<code
+    an auto-delete on idle takes care of the subscription removal (<code class="inline-code"
         >AutoDeleteOnIdle</code
     >
     property in Azure Service Bus). Currently, the time is controlled by SITA
@@ -526,7 +522,7 @@ func main() {
                 </svg>
             </div>
             <div>
-                <a href="/APIs/session/location-capabilities"
+                <a href="/get-started/session/location-capabilities"
                     >Determine Location Capabilities</a
                 >
             </div>

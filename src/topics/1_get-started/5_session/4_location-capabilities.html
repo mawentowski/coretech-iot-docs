@@ -212,7 +212,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">Sample <span class="method post">POST</span>
     <code class="inline-code">/site/v2/reservation</code> request containing the
-    <code class="inline-code">LocationId</code> passed from the client app.</p>
+    <code class="inline-code">LocationId</code> passed from the client app</p>
 
 
 <h2 id="response-body-2">Response</h2>
@@ -228,55 +228,55 @@ Console.WriteLine(response.Content);
     <pre>
                 <code class="language-json">
 [
-{
-    "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.ATB1",
-    "capabilities": [
-        "PrintBoardingPass"
-    ]
-},
-{
-    "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.BTP1",
-    "capabilities": [
-        "PrintBagTag"
-    ]
-},
-{
-    "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.LSR1",
-    "capabilities": [
-        "ReadBarcode"
-    ]
-},
-{
-    "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.LSR2",
-    "capabilities": [
-        "ReadBarcode"
-    ]
-},
-{
-    "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.OCR1",
-    "capabilities": [
-        "ReadTravelDocument",
-        "ReadBarcode"
-    ]
-},
-{
-    "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.PMT1",
-    "capabilities": [
-        "ProcessPayment"
-    ]
-},
-{
-    "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.SBD1",
-    "capabilities": [
-        "BagDrop"
-    ]
-},
-{
-    "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.BGR1",
-    "capabilities": [
-        "Gate"
-    ]
-}
+    {
+        "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.ATB1",
+        "capabilities": [
+            "PrintBoardingPass"
+        ]
+    },
+    {
+        "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.BTP1",
+        "capabilities": [
+            "PrintBagTag"
+        ]
+    },
+    {
+        "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.LSR1",
+        "capabilities": [
+            "ReadBarcode"
+        ]
+    },
+    {
+        "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.LSR2",
+        "capabilities": [
+            "ReadBarcode"
+        ]
+    },
+    {
+        "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.OCR1",
+        "capabilities": [
+            "ReadTravelDocument",
+            "ReadBarcode"
+        ]
+    },
+    {
+        "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.PMT1",
+        "capabilities": [
+            "ProcessPayment"
+        ]
+    },
+    {
+        "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.SBD1",
+        "capabilities": [
+            "BagDrop"
+        ]
+    },
+    {
+        "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.BGR1",
+        "capabilities": [
+            "Gate"
+        ]
+    }
 ]
             </code>
             </pre>
@@ -305,8 +305,7 @@ Console.WriteLine(response.Content);
 </p>
 <p>
     The airline backend then uses these IDs to connect to devices at the
-    location. For example, to connect to an ATB through a POST
-    <code class="inline-code">/session/v2/connections</code> request, you must
+    location. For example, to connect to an ATB through a <span class="method post">POST</span> <code class="inline-code">/session/v2/connections</code> request, you must
     pass the <code class="inline-code">DeviceId</code> in the Request Body.
 </p>
 <h3 id="capabilities"><code class="inline-code">capabilities</code></h3>
@@ -321,7 +320,7 @@ Console.WriteLine(response.Content);
 </p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Response</div>
+    <div class="method-example-top-bar">Object</div>
     <pre>
                 <code class="language-json">
 {
@@ -335,7 +334,7 @@ Console.WriteLine(response.Content);
 </div>
 
 <p class="caption">
-    Sample ATB Device whose only capability is to print a boarding pass
+    Sample ATB Device that only has the capability is to print a boarding pass
 </p>
 <p>
     However, some devices have multiple capabilities. For example, a General
@@ -399,7 +398,7 @@ Console.WriteLine(response.Content);
                 </svg>
             </div>
             <div>
-                <a href="/APIs/session/connect-to-a-device"
+                <a href="/get-started/session/connect-to-a-device"
                     >Connect to a device</a
                 >
             </div>

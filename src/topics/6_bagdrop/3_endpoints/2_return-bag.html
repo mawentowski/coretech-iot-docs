@@ -1,15 +1,14 @@
 <div class="title-box">
     <h1 class="topic-title">Return Bag</h1>
     <div class="action-statement">
-        Learn how to interrupt the bag drop process and return the bag to the customer to resolve the issue.
+        Return the bag to the customer to resolve the issue 
     </div>
 </div>
  
 <p>
     If an issue arises when the bag is in the
     <code class="inline-code">Process</code> position, and the customer
-    <em>can resolve the issue</em>, send a POST
-    <code class="inline-code">/bagdrop/v2/returnbag</code> request to open the
+    <em>can resolve the issue</em>, send a <span class="method post">POST </span><code class="inline-code">/bagdrop/v2/returnbag</code> request to open the
     door and return the bag to the
     <code class="inline-code">Entry</code> position where the customer to
     resolve the issue.
@@ -19,7 +18,7 @@
 
 <div class="alert-section info-alert">
     <div class="">
-        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="apis/bagdrop/API-call-components">API Call Components</a>.
+        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="/bagdrop/API-call-components">API Call Components</a>.
 
     </div>
 </div>
@@ -256,8 +255,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
 
-   Sample POST
-        <code class="inline-code">/bagdrop/v2/returnbag</code> request to return the bag to the
+   Sample <span class="method post">POST </span><code class="inline-code">/bagdrop/v2/returnbag</code> request to return the bag to the
         <code class="inline-code">Entry</code> position.
     </p>
 
@@ -324,7 +322,7 @@ Console.WriteLine(response.Content);
 
 
 <div class="continued-reading-section">
-    <h2 class="continued-reading">See Also</h2>
+    <h2 class="continued-reading">Next Steps</h2>
     <ul class="continue-link-list">
         <div class="continue-link-row">
             <div class="svg-container">
@@ -370,8 +368,8 @@ Console.WriteLine(response.Content);
                 </svg>
             </div>
             <div>
-                <a href="/gateAccess/accept-passenger"
-                    >Accept Passenger</a
+                <a href="/bagdrop/endpoints/cancel-bag"
+                    >Cancel Bag</a
                 >
             </div>
         </div>

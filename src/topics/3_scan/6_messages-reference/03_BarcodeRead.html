@@ -1,0 +1,140 @@
+<h1 id="barcoderead">BarcodeRead</h1>
+<p>This message is received on the service bus for an LSR scan.</p>
+<h2 id="message-properties">Message Properties</h2>
+<table class="main-table">
+    <thead>
+        <tr>
+            <th>Field</th>
+            <th>Type</th>
+            <th>Mandatory/Optional</th>
+            <th>Value/Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>MessageNamespace</td>
+            <td>string</td>
+            <td>M</td>
+            <td>scan</td>
+        </tr>
+        <tr>
+            <td>MessageType</td>
+            <td>string</td>
+            <td>M</td>
+            <td>BarcodeRead</td>
+        </tr>
+        <tr>
+            <td>MessageVersion</td>
+            <td>string</td>
+            <td>M</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>ConnectionId</td>
+            <td>string</td>
+            <td>M</td>
+            <td><em>connectionId</em></td>
+        </tr>
+        <tr>
+            <td>CorrelationId</td>
+            <td>string</td>
+            <td>M</td>
+            <td><em>user_defined_string</em></td>
+        </tr>
+        <tr>
+            <td>DeviceId</td>
+            <td>string</td>
+            <td>M</td>
+            <td><em>deviceId</em></td>
+        </tr>
+        <tr>
+            <td>Timestamp</td>
+            <td>DateTime</td>
+            <td>M</td>
+            <td><em>timestamp</em></td>
+        </tr>
+    </tbody>
+</table>
+<h2 id="message-body">Message Body</h2>
+<table class="main-table">
+    <thead>
+        <tr>
+            <th>Field</th>
+            <th>Type</th>
+            <th>Description/Values</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>BarCodeData</td>
+            <td>string</td>
+            <td>A string containing the barcode.</td>
+        </tr>
+        <tr>
+            <td>BarCodeType</td>
+            <td>string</td>
+            <td>
+                Contains the
+                <a href="/scan/messages-reference/BarcodeRead#bar-code-type"
+                    >bar code type</a
+                >
+            </td>
+        </tr>
+    </tbody>
+</table>
+<h3 id="bar-code-type">Bar Code Type</h3>
+<table class="main-table">
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>1D Code Interleaved 2 of 5</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>1D Code 39</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>1D Data Matrix</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>2D QR</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>2D PDF417</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>1D Code 128 with check digit</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>1D Code 39 with check digit</td>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td>1D Interleaved 2 of 5 with check digit</td>
+        </tr>
+    </tbody>
+</table>
+<p><strong>Message Body Sample Success JSON</strong></p>
+
+<div class="method-example atom-one-light">
+    <div class="method-example-top-bar">Service Bus Message</div>
+    <pre>
+            <code class="language-json">
+{ 
+    "BarCodeData": "0000123456789", 
+    "BarCodeType": "1"
+}          
+        </code>
+        </pre>
+</div>

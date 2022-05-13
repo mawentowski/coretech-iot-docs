@@ -1,15 +1,14 @@
 <div class="title-box">
     <h1 class="topic-title">Cancel Bag</h1>
     <div class="action-statement">
-        Learn how to cancel a bagdrop process so an agent can attempt to resolve an issue with the bag
+        Cancel a bagdrop process so an agent can attempt to resolve an issue with the bag
     </div>
 </div>
  
 <p>
     If an issue arises when the bag is in the
     <code class="inline-code">Process</code> position, and the customer
-    <em>cannot to resolve the issue</em>, send a POST
-    <code class="inline-code">/bagdrop/v2/cancelbag</code> request to open the
+    <em>cannot to resolve the issue</em>, send a <span class="method post">POST </span><code class="inline-code">/bagdrop/v2/cancelbag</code> request to open the
     door and return the bag to the
     <code class="inline-code">Entry</code> position where the agent can resolve
     the issue.
@@ -18,7 +17,7 @@
 
 <div class="alert-section info-alert">
     <div class="">
-        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="apis/bagdrop/API-call-components">API Call Components</a>.
+        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="/bagdrop/API-call-components">API Call Components</a>.
 
     </div>
 </div>
@@ -325,7 +324,7 @@ Console.WriteLine(response.Content);
 
 
 <div class="continued-reading-section">
-    <h2 class="continued-reading">See Also</h2>
+    <h2 class="continued-reading">Next Steps</h2>
     <ul class="continue-link-list">
         <div class="continue-link-row">
             <div class="svg-container">
@@ -371,8 +370,8 @@ Console.WriteLine(response.Content);
                 </svg>
             </div>
             <div>
-                <a href="/gateAccess/accept-passenger"
-                    >Accept Passenger</a
+                <a href="/bagdrop/endpoints/release-bag"
+                    >Release Bag</a
                 >
             </div>
         </div>

@@ -218,7 +218,7 @@ table.main-table {
 }
 
 .code-section {
-    margin: 23px 0;
+    margin: 23px 0 10px;
     background-color: transparent;
     position: relative;
 
@@ -289,6 +289,13 @@ table.main-table {
 
     .method-example.curl-custom.two-col-width {
         flex-basis: 100%;
+        margin: 9px 0 30px;
+
+        .end-path {
+            a {
+                white-space: normal;
+            }
+        }
     }
 
     p.endpoints-summary-description {
@@ -304,6 +311,13 @@ table.main-table {
     .method-example.curl-custom.two-col-width {
         flex-basis: 50%;
         padding-left: 44px;
+        margin: 0;
+
+        .end-path {
+            a {
+                white-space: nowrap;
+            }
+        }
     }
 
     p.endpoints-summary-description {

@@ -6,11 +6,6 @@
 </div>
 
 <p>
-    Below is a sample API call to the Print API that requests a device print a
-    document.
-</p>
-
-<p>
     Below is a sample <span class="method post">POST</span>
     <code class="inline-code">/print/v2/boardingpass/pdf</code> call to the Scan
     API that contains the required components:
@@ -60,8 +55,7 @@ curl --location -g --request POST 'https://{{baseurl}}/print/v2/boardingpass/pdf
     </div>
 </div>
 <p class="caption">
-    Sample Print API request containing the required components for Scan API
-    call.
+    Sample Print API call containing the required components to successfully make the call
 </p>
 
 <h2 id="resource-urls-1">Resource URLs</h2>
@@ -69,7 +63,7 @@ curl --location -g --request POST 'https://{{baseurl}}/print/v2/boardingpass/pdf
 <ul>
     <li>
         A REST API standard method preceding the URL for accessing the endpoint.
-        In the case of the Print API, the only method used is POST.
+        In the case of the Print API, the only method used is <span class="method post">POST</span>.
     </li>
     <li>
         A Base URL specific to the SITA Flex environment, sometimes displayed as
@@ -86,12 +80,10 @@ curl --location -g --request POST 'https://{{baseurl}}/print/v2/boardingpass/pdf
     </li>
     <li>
         Path parameters, which may or may not be required depending on the
-        endpoint. For example, when sending a POST
-        <code class="inline-code">/print/v2/boardingpass/</code> request, you
+        endpoint. For example, when sending a <span class="method post">POST </span><code class="inline-code">/print/v2/boardingpass/</code> request, you
         must append the path parameter
         <code class="inline-code">{type}</code> to the end path to indicate the
-        requested print format for the boarding pass: POST
-        <code class="inline-code">/print/v2/boardingpass/pdf</code>.
+        requested print format for the boarding pass: <span class="method post">POST </span><code class="inline-code">/print/v2/boardingpass/pdf</code>.
     </li>
 </ul>
 <h2 id="header-parameters-1">Header Parameters</h2>

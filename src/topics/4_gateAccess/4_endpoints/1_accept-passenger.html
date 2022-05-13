@@ -3,12 +3,12 @@
 <div class="title-box">
     <h1 class="topic-title">Accept Passenger</h1>
     <div class="action-statement">
-        Learn how to confirm a passenger has been verified to board.
+       Confirm a passenger has been verified to board
     </div>
 </div>
 
 <p>
-    Send a <span class="method del">POST</span>
+    Send a <span class="method post">POST</span>
     <code class="inline-code">gateaccess/v2/acceptpassenger</code> request to
     tell the GateAccess API that a passenger has boarded successfully. Send this
     request each time a passenger is processed successfully.
@@ -21,7 +21,7 @@
 
 <div class="alert-section info-alert">
     <div class="">
-        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="apis/gateaccess/API-call-components">API Call Components</a>.
+        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="/gateaccess/API-call-components">API Call Components</a>.
 
     </div>
 </div>
@@ -346,11 +346,18 @@ Console.WriteLine(response.Content);
     If <code class="inline-code">ReceiptData</code> is passed in the Request
     Body (as seen in the previous example), and the device is a Self-Boarding
     Gate, the device printer receives this data and can print the receipt for
-    the passenger. <strong>Important</strong>: the passenger must then take the
-    receipt for the gate to open.
+    the passenger. 
 </p>
 
 
+<div class="alert-section warning-alert">
+    <div class="">
+        <p>
+            The passenger must then take the receipt for the gate to open.
+        </p>
+        
+    </div>
+</div>
 
 
 <h2>Response</h2>
@@ -412,7 +419,7 @@ Console.WriteLine(response.Content);
 
 
 <div class="continued-reading-section">
-    <h2 class="continued-reading">See Also</h2>
+    <h2 class="continued-reading">Next Steps</h2>
     <ul class="continue-link-list">
 
         <div class="continue-link-row">

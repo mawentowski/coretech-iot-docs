@@ -1,7 +1,7 @@
 <div class="title-box">
     <h1 class="topic-title">Service Bus Messages</h1>
     <div class="action-statement">
-        Learn the most common messages and how your app should use them
+        Learn about the most common messages and how your app should use them
     </div>
 </div>
 
@@ -92,8 +92,8 @@
     When a <span class="method post">POST</span>
     <code class="inline-code">/payment/v2/process</code> request is sent, a
     payment transaction is initiated and a
-    <code class="inline-code">Process PaymentResponse</code> message is
-    displayed on the Service Bus.
+    <code class="inline-code">ProcessPaymentResponse</code> message is displayed
+    on the Service Bus.
 </p>
 <p>
     In the Request Body, a
@@ -144,7 +144,7 @@
     Once a payment transaction has completed, a
     <code class="inline-code">TransactionCompleted</code> message displays on
     the Service Bus. A <span class="method post">POST</span>
-    <code class="inline-code">/payment/v2/transactioncompletedresponse</code>
+    <code class="inline-code">/payment/v2/completetransaction</code>
     must be made to acknowledge that the transaction has completed.
 </p>
 <h2>PaymentTransactionTimeout</h2>
@@ -170,7 +170,7 @@
 </div>
 
 <div class="continued-reading-section">
-    <h2 class="continued-reading">See Also</h2>
+    <h2 class="continued-reading">Next Steps</h2>
     <ul class="continue-link-list">
         <div class="continue-link-row">
             <div class="svg-container">
@@ -216,7 +216,9 @@
                 </svg>
             </div>
             <div>
-                <a href="/payment/start-payment-process">Device Processes</a>
+                <a href="/payment/start-payment-process"
+                    >Start a Payment Process</a
+                >
             </div>
         </div>
     </ul>

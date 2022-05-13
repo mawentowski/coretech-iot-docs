@@ -654,7 +654,7 @@ h2 {
 
     h2.numbered-h2::before {
         color: #8c98a5;
-        padding-right: 5px;
+        padding-right: 10px;
         counter-increment: section; /* Increment the value of section counter by 1 */
         content: counter(
             section
@@ -1309,4 +1309,45 @@ a.api-tag::after {
 
 .continued-reading-section {
     margin: 43px 0 0;
+}
+
+table + p {
+    padding-top: 32px;
+}
+
+.title-box + p {
+    margin-bottom: 0;
+}
+
+li p {
+    margin-bottom: 0;
+}
+
+// ul,
+// ol > p {
+//     padding-left: 13px;
+// }
+
+p + p {
+    margin-top: 1rem;
+}
+
+li + .method-example {
+    margin-top: 24px;
+}
+
+h2 + .alert-section {
+    margin-top: 6px;
+}
+
+// .end-path {
+//     a {
+//         white-space: nowrap;
+//     }
+// }
+
+.main-table {
+    th:nth-last-of-type(1) {
+        width: 60%;
+    }
 }

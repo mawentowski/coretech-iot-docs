@@ -44,7 +44,7 @@
 <div class="alert-section tip-alert">
     <div>
         For more information on subscriptions and SAS tokens, see
-        <a href="./APIs/session/check-for-subscriptions"
+        <a href="./get-started/session/check-for-subscriptions"
             >POST /session/v2/subscriptions.</a
         >
     </div>
@@ -56,7 +56,7 @@
 
 <div class="alert-section info-alert">
     <div class="">
-        <p>No Request Body is required to check for a subscription.</p>
+        <p>No Request Body is required to check for a existing subscription.</p>
     </div>
 </div>
 
@@ -246,7 +246,7 @@ Console.WriteLine(response.Content);
 </div>
 
 <p class="caption">Sample <span class="method get">GET</span>
-    <code class="inline-code">/session/v2/subscriptions</code> request.</p>
+    <code class="inline-code">/session/v2/subscriptions</code> request, passing the <code class="inline-code">locationId</code> of the location to check for an existing subscription</p>
 
 
 
@@ -268,7 +268,7 @@ Console.WriteLine(response.Content);
 
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Error</div>
+    <div class="method-example-top-bar">Response</div>
     <pre>
             <code class="language-json">
 { 
@@ -286,7 +286,7 @@ Console.WriteLine(response.Content);
 <p class="caption">
     Sample Response Body for a <span class="method get">GET</span>
     <code class="inline-code">session/v2/subscriptions</code> request containing
-    Service Bus details for the existing subscription.
+    Service Bus details for an existing subscription
 </p>
 
 <p>
@@ -295,17 +295,18 @@ Console.WriteLine(response.Content);
     in requests to connect to devices at the location.
 </p>
 
-<div class="alert-section info-alert">
+<div class="alert-section tip-alert">
     <div class="">
-        See the
-        <a href="../Session API/Create a Subscription.htm"
-            >POST /session/v2/subscriptions</a
-        > endpoint section
-        for a full description of the returned properties. The only property not
-        returned by this <span class="method get">GET</span> request (that is
-        returned by the POST request) is the
-        <code class="inline-code">connectionString</code> since this request is
-        informational only and does not provide connection details.
+        <p>        See 
+            <a href="/get-started/session/create-a-subscription"
+                >Create a Subscription</a
+            > endpoint section
+            for a full description of the returned properties. The only property not
+            returned by this <span class="method get">GET</span> request (that is
+            returned by the POST request) is the
+            <code class="inline-code">connectionString</code> since this request is
+            informational only and does not provide connection details.</p>
+
     </div>
 </div>
 <h3>Subscription in Region Does Not Exist</h3>
@@ -339,12 +340,12 @@ Console.WriteLine(response.Content);
 <p class="caption">
     Sample Response Body for a <span class="method get">GET</span>
     <code class="inline-code">session/v2/subscriptions</code> request indicating
-    that no subscription exists.
+    that no subscription exists
 </p>
 <p>
     This response indicates a subscription does not exist the airline backend
     should
-    <a href="APIs/session/create-a-subscription">create a subscription</a>
+    <a href="/get-started/session/create-a-subscription">create a subscription</a>
     that can be used with the location.
 </p>
 
@@ -395,7 +396,7 @@ Console.WriteLine(response.Content);
                 </svg>
             </div>
             <div>
-                <a href="/APIs/session/create-a-subscription"
+                <a href="/get-started/session/create-a-subscription"
                     >Create a Subscription (if one does not exist)</a
                 >
             </div>
@@ -444,7 +445,7 @@ Console.WriteLine(response.Content);
                 </svg>
             </div>
             <div>
-                <a href="/APIs/session/location-capabilities"
+                <a href="/get-started/session/location-capabilities"
                     >Determine Location Capabilities</a
                 >
             </div>
