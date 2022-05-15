@@ -3,6 +3,7 @@ import {
     SASS_FOLDER,
     SRC_DIRECTORY,
     getFilenameWithoutExtension,
+    removeFolder,
 } from './shared.js';
 import fs from 'fs';
 import sass from 'sass';
@@ -12,7 +13,7 @@ const sassDirectory = `${SRC_DIRECTORY}/${SASS_FOLDER}`;
 const cssDirectory = `${DIST_DIRECTORY}/${cssExtension}`;
 
 export function compileSass() {
-    fs.rmdirSync(cssDirectory, { recursive: true });
+    removeFolder(cssDirectory);
     fs.mkdirSync(cssDirectory);
     fs.readdirSync(sassDirectory).forEach((filename) => {
         globalThis.console.log('sass filename', filename);
