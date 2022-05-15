@@ -203,7 +203,7 @@ function insertLeftNavOptionIntoDistIndexHtml(
         let topicHtmlFileRelativeUrl = `${parentFolderPath}/${filename}`;
         if (config.isRelease)
             topicHtmlFileRelativeUrl =
-                BASE_HREF.slice(0, BASE_HREF.length - 2) +
+                BASE_HREF.slice(0, BASE_HREF.lastIndexOf('/')) +
                 topicHtmlFileRelativeUrl;
         global.console.log(
             'Topic HTML file relative URL',
