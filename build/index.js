@@ -12,6 +12,8 @@ import fse from 'fs-extra';
 
 const buildTopicsPath = `${DIST_DIRECTORY}/${TOPICS_FOLDER_NAME}`;
 
+removeFolder(DIST_DIRECTORY);
+fs.mkdirSync(DIST_DIRECTORY);
 // Replace build folder and contents with fresh copy of src folder.
 fse.copySync(SRC_DIRECTORY, DIST_DIRECTORY, { overwrite: true });
 // Remove copies of topic markdown files.
