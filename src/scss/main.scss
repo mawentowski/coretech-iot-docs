@@ -440,7 +440,12 @@ body {
     }
 }
 
+// #breadcrumb-hidden.topic-breadcrumb {
+//     display: none;
+// }
+
 .topic-breadcrumb {
+    // display: none;
     margin-bottom: 0.7rem;
 
     img.stype-icon {
@@ -1343,11 +1348,183 @@ h2 + .alert-section {
 // .end-path {
 //     a {
 //         white-space: nowrap;
-//     }
+//     }f
 // }
 
 .main-table {
     th:nth-last-of-type(1) {
         width: 60%;
+    }
+}
+
+// @media screen and (max-width: 32em) {
+//     .card-grids-section {
+//         grid-template-areas:
+//             'one'
+//             'two'
+//             'three'
+//             'four';
+//     }
+// }
+
+@media (min-width: 768px) {
+    .card-grids-section {
+        grid-template-areas:
+            'one two'
+            'three two'
+            'four five';
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .card-grids-section {
+        grid-template-areas:
+            'one'
+            'two'
+            'three'
+            'four'
+            'five';
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .card-grids-section {
+        grid-template-areas:
+            'one two three'
+            'four two five';
+    }
+}
+
+// @media screen and (min-width: 38em) {
+//     .card-grids-section {
+//         grid-template-areas:
+//             'one one'
+//             'two five'
+//             'three five';
+//     }
+// }
+
+// @media screen and (min-width: 54em) {
+//     .card-grids-section {
+//         grid-template-areas:
+//             'one one two'
+//             'five five five'
+//             'three four four';
+//     }
+// }
+
+// @media screen and (min-width: 75em) {
+//     .card-grids-section {
+//         grid-template-areas:
+//             'one one two five'
+//             'three four four five';
+//     }
+// }
+
+#my-body {
+    .card-grids-section {
+        margin-top: 89px;
+        display: grid;
+        gap: 1.5rem;
+        grid-auto-columns: 1fr;
+
+        // grid-template-areas:
+        //     'one'
+        //     'two'
+        //     'three'
+        //     'four'
+        //     'five';
+        padding-block: 2rem;
+        width: min(95%, 70rem);
+        margin-inline: auto;
+
+        #about.card-grid {
+            grid-area: one;
+        }
+
+        #get-started.card-grid {
+            grid-area: two;
+        }
+
+        #tutorials.card-grid {
+            grid-area: three;
+        }
+
+        #resources.card-grid {
+            grid-area: four;
+        }
+
+        #service-bus.card-grid {
+            grid-area: five;
+        }
+
+        .card-grid {
+            padding: 1.25rem;
+            margin: 0.5rem;
+            border: 0.2px solid #ddd;
+            box-shadow: 3px 3px 8px #ddd;
+
+            .card-grid-header {
+                // font-size: 18px;
+                h2 {
+                    padding: 0;
+                }
+            }
+
+            .card-grid-section:nth-last-of-type(1) {
+                margin-bottom: 0;
+            }
+
+            .card-grid-section {
+                border-top: 1px solid #ddd;
+                margin-bottom: 29px;
+                margin-top: 19px;
+
+                .card-grid-section-header {
+                    position: relative;
+                    padding: 19px 0 4px;
+
+                    h3 {
+                        position: relative;
+                        padding: 0;
+                        padding-left: 38px;
+                    }
+
+                    h3::before {
+                        content: '';
+                        position: absolute;
+                        width: 20px;
+                        height: 20px;
+                    }
+
+                    h3#overview::before {
+                        left: 5px;
+                        top: 0;
+                        background: url(../images/svgs/open-book.svg);
+                        background-repeat: no-repeat;
+                    }
+
+                    h3#concept::before {
+                        left: 5px;
+                        top: 0;
+                        background: url(../images/svgs/open-book.svg);
+                        background-repeat: no-repeat;
+                    }
+
+                    // h3 {
+
+                    // }
+                    // font-size: 14px;
+                }
+
+                .card-grid-link {
+                    padding: 7px 0;
+
+                    a {
+                        // font-size: 14px;
+                    }
+                }
+            }
+        }
     }
 }

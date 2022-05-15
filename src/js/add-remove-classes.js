@@ -24,9 +24,11 @@ export function addRemoveClasses() {
         $('.main-content').removeClass('flex-basis-75');
         $('.right-nav-col').addClass('hidden');
         $('.right-nav-col').removeClass('display-flex');
+        $('.document-footer').removeClass('flex-basis-75');
     } else {
         addClassToHtmlElementBySelector('.topic-breadcrumb', 'display-flex');
         removeClassFromHtmlElementBySelector('.topic-breadcrumb', 'hidden');
+        $('.document-footer').addClass('flex-basis-75');
     }
 
     const viewportWidth = globalThis.document.body.clientWidth;
