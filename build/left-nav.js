@@ -7,6 +7,7 @@ import {
 import fs from 'fs';
 import fse from 'fs-extra';
 import { marked } from 'marked';
+import { config } from './conf.js';
 
 const srcTopicsPath = `${SRC_DIRECTORY}/${TOPICS_FOLDER_NAME}`;
 const indexFilename = 'index.html';
@@ -115,7 +116,13 @@ function deriveLabelFromItemName(itemName) {
 }
 
 function getDistIndexHtmlContent() {
-    return fs.readFileSync(`${DIST_DIRECTORY}/${indexFilename}`, textEncoding);
+    const html = fs.readFileSync(
+        `${DIST_DIRECTORY}/${indexFilename}`,
+        textEncoding
+    );
+    return config.isRelease
+        ? html.replace(/base href=".*"/, 'base href="/docs/"')
+        : html;
 }
 
 function insertLeftNavOptionIntoDistIndexHtml(
