@@ -1,13 +1,14 @@
 import {
+    BASE_HREF,
     DIST_DIRECTORY,
     SRC_DIRECTORY,
     TOPICS_FOLDER_NAME,
     getFilenameWithoutExtension,
 } from './shared.js';
+import { config } from './config.js';
 import fs from 'fs';
 import fse from 'fs-extra';
 import { marked } from 'marked';
-import { config } from './conf.js';
 
 const srcTopicsPath = `${SRC_DIRECTORY}/${TOPICS_FOLDER_NAME}`;
 const indexFilename = 'index.html';
@@ -121,7 +122,7 @@ function getDistIndexHtmlContent() {
         textEncoding
     );
     return config.isRelease
-        ? html.replace(/base href=".*"/, 'base href="/docs/"')
+        ? html.replace(/base href=".*"/, `base href="${BASE_HREF}/"`)
         : html;
 }
 
@@ -183,7 +184,9 @@ function insertLeftNavOptionIntoDistIndexHtml(
             getFilenameWithoutExtension(
                 srcItemPath.slice(srcItemPath.lastIndexOf('/') + 1)
             ) + '.html';
-        const topicHtmlFileRelativeUrl = `${parentFolderPath}/${filename}`;
+        let topicHtmlFileRelativeUrl = `${parentFolderPath}/${filename}`;
+        if (config.isRelease)
+            topicHtmlFileRelativeUrl = BASE_HREF + topicHtmlFileRelativeUrl;
         global.console.log(
             'Topic HTML file relative URL',
             topicHtmlFileRelativeUrl
