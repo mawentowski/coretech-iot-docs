@@ -12,7 +12,6 @@ const sassDirectory = `${SRC_DIRECTORY}/${SASS_FOLDER}`;
 const cssDirectory = `${DIST_DIRECTORY}/${cssExtension}`;
 
 export function compileSass() {
-    fs.rmdirSync(cssDirectory, { recursive: true });
     fs.mkdirSync(cssDirectory);
     fs.readdirSync(sassDirectory).forEach((filename) => {
         globalThis.console.log('sass filename', filename);

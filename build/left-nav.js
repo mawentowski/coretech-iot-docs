@@ -1,9 +1,11 @@
 import {
+    BASE_HREF,
     DIST_DIRECTORY,
     SRC_DIRECTORY,
     TOPICS_FOLDER_NAME,
     getFilenameWithoutExtension,
 } from './shared.js';
+import { config } from './config.js';
 import fs from 'fs';
 import fse from 'fs-extra';
 import { marked } from 'marked';
@@ -80,19 +82,13 @@ function createHtmlFromSrc(srcFilePath) {
         );
     global.console.log('createHtmlFromSrc distHtmlPath', distHtmlFolder);
     const isSrcHtml = srcFilePath.endsWith('.html');
-    if (isSrcHtml)
-        fse.copySync(srcFilePath, `${distHtmlFolder}/${fileName}`, {
-            overwrite: true,
-        });
-    else {
-        const fileContent = fs.readFileSync(srcFilePath, textEncoding);
-        const html = marked.parse(fileContent);
-        const filenameWithoutExtension = getFilenameWithoutExtension(fileName);
-        fs.writeFileSync(
-            `${distHtmlFolder}/${filenameWithoutExtension}.html`,
-            html
-        );
-    }
+    const filenameWithoutExtension = getFilenameWithoutExtension(fileName);
+    const fileContent = fs.readFileSync(srcFilePath, textEncoding);
+    const html = isSrcHtml ? fileContent : marked.parse(fileContent);
+    fs.writeFileSync(
+        `${distHtmlFolder}/${filenameWithoutExtension}.html`,
+        html
+    );
 }
 
 function deriveLabelFromItemName(itemName) {
@@ -115,7 +111,13 @@ function deriveLabelFromItemName(itemName) {
 }
 
 function getDistIndexHtmlContent() {
-    return fs.readFileSync(`${DIST_DIRECTORY}/${indexFilename}`, textEncoding);
+    const html = fs.readFileSync(
+        `${DIST_DIRECTORY}/${indexFilename}`,
+        textEncoding
+    );
+    return config.isRelease
+        ? html.replace(/base href=".*"/, `base href="${BASE_HREF}"`)
+        : html;
 }
 
 function insertLeftNavOptionIntoDistIndexHtml(
@@ -176,7 +178,11 @@ function insertLeftNavOptionIntoDistIndexHtml(
             getFilenameWithoutExtension(
                 srcItemPath.slice(srcItemPath.lastIndexOf('/') + 1)
             ) + '.html';
-        const topicHtmlFileRelativeUrl = `${parentFolderPath}/${filename}`;
+        let topicHtmlFileRelativeUrl = `${parentFolderPath}/${filename}`;
+        if (config.isRelease)
+            topicHtmlFileRelativeUrl =
+                BASE_HREF.slice(0, BASE_HREF.lastIndexOf('/')) +
+                topicHtmlFileRelativeUrl;
         global.console.log(
             'Topic HTML file relative URL',
             topicHtmlFileRelativeUrl
