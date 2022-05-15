@@ -1,7 +1,7 @@
 import { config } from './config.js';
 import fs from 'fs';
 
-export const BASE_HREF = config.isRelease ? '/docs' : '/';
+export const BASE_HREF = config.isRelease ? '/docs/' : '/';
 export const DIST_DIRECTORY = 'dist';
 export const SASS_FOLDER = 'scss';
 export const SRC_DIRECTORY = 'src';

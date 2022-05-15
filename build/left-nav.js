@@ -81,20 +81,36 @@ function createHtmlFromSrc(srcFilePath) {
             srcFilePath.lastIndexOf('/') + 1
         );
     global.console.log('createHtmlFromSrc distHtmlPath', distHtmlFolder);
+
+    let html = `
+        <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <base href="${BASE_HREF}" />
+            </head>`;
     const isSrcHtml = srcFilePath.endsWith('.html');
-    if (isSrcHtml)
-        fse.copySync(srcFilePath, `${distHtmlFolder}/${fileName}`, {
-            overwrite: true,
-        });
-    else {
-        const fileContent = fs.readFileSync(srcFilePath, textEncoding);
-        const html = marked.parse(fileContent);
-        const filenameWithoutExtension = getFilenameWithoutExtension(fileName);
-        fs.writeFileSync(
-            `${distHtmlFolder}/${filenameWithoutExtension}.html`,
-            html
-        );
-    }
+    const filenameWithoutExtension = getFilenameWithoutExtension(fileName);
+    const fileContent = fs.readFileSync(srcFilePath, textEncoding);
+
+    html += isSrcHtml ? fileContent : marked.parse(fileContent);
+    fs.writeFileSync(
+        `${distHtmlFolder}/${filenameWithoutExtension}.html`,
+        html
+    );
+
+    // if (isSrcHtml)
+    //     fse.copySync(srcFilePath, `${distHtmlFolder}/${fileName}`, {
+    //         overwrite: true,
+    //     });
+    // else {
+    //     const fileContent = fs.readFileSync(srcFilePath, textEncoding);
+    //     const html = marked.parse(fileContent);
+    //     const filenameWithoutExtension = getFilenameWithoutExtension(fileName);
+    //     fs.writeFileSync(
+    //         `${distHtmlFolder}/${filenameWithoutExtension}.html`,
+    //         html
+    //     );
+    // }
 }
 
 function deriveLabelFromItemName(itemName) {
@@ -122,7 +138,7 @@ function getDistIndexHtmlContent() {
         textEncoding
     );
     return config.isRelease
-        ? html.replace(/base href=".*"/, `base href="${BASE_HREF}/"`)
+        ? html.replace(/base href=".*"/, `base href="${BASE_HREF}"`)
         : html;
 }
 
@@ -186,7 +202,9 @@ function insertLeftNavOptionIntoDistIndexHtml(
             ) + '.html';
         let topicHtmlFileRelativeUrl = `${parentFolderPath}/${filename}`;
         if (config.isRelease)
-            topicHtmlFileRelativeUrl = BASE_HREF + topicHtmlFileRelativeUrl;
+            topicHtmlFileRelativeUrl =
+                BASE_HREF.slice(0, BASE_HREF.length - 2) +
+                topicHtmlFileRelativeUrl;
         global.console.log(
             'Topic HTML file relative URL',
             topicHtmlFileRelativeUrl
