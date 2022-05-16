@@ -1,77 +1,89 @@
 <div class="title-box">
-    <h1 class="topic-title">Scan API</h1>
+    <h1 class="topic-title">GateAccess API</h1>
     <div class="action-statement">
-        Learn how to interact with a scan device to scan different kinds of
-        documents
+        Learn how to interact with a gate device to perform boarding processes
     </div>
 </div>
 
-<!-- <p>
-    The <strong>Scan API</strong> endpoints allow your airline backend to use
-    airport devices to read travel documents like boarding passes, bag tags, and
-    passports.
-</p> -->
 <div class="endpoints-summary">
     <p class="endpoints-summary-description">
-    The <strong>Scan API</strong> endpoints allow your airline backend to use
-    airport devices to read travel documents like boarding passes, bag tags, and
-    passports.
-   
+        The <strong>GateAccess API</strong> endpoints allow your airline backend
+        to interact with Boarding Gate Readers (BGR/BCR) and Self-Boarding Gates
+        (SBG).
     </p>
     <div class="method-example atom-one-light curl-custom two-col-width">
         <div class="method-example-top-bar">Endpoints</div>
         <div class="endpoints-container">
             <div class="endpoint-row">
                 <div class="end-path post-method">
-                    <a href="/print/print-boarding-pass#print-a-pdf-or-svg">/scan/v2/startscanning</a>
+                    <a href="/gateAccess/open-gate">/gateaccess/v2/opengate</a>
                 </div>
             </div>
             <div class="endpoint-row">
                 <div class="end-path post-method">
-                    <a href="/print/print-boarding-pass#print-aea-format">/scan/v2/stopscanning</a>
-                    
+                    <a href="/gateAccess/accept-passenger"
+                        >gateaccess/v2/acceptpassenger</a
+                    >
+                </div>
+            </div>
+            <div class="endpoint-row">
+                <div class="end-path post-method">
+                    <a href="/gateAccess/reject-passenger"
+                        >/gateaccess/v2/rejectpassenger</a
+                    >
+                </div>
+            </div>
+            <div class="endpoint-row">
+                <div class="end-path post-method">
+                    <a href="/gateAccess/close-gate"
+                        >/gateaccess/v2/closegate</a
+                    >
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-
-
 <p>The supported devices at present are the following:</p>
 <table class="main-table">
     <thead>
         <tr>
-            <th>Device Acronym</th>
+            <th>Acronym</th>
+            <th>Definition</th>
             <th>Description</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>LSR</td>
+            <td>BGR</td>
+            <td>Boarding Gate Reader</td>
             <td>
-                Laser Sensor Reader that reads
-                <code class="inline-code">BarCodeData</code> from barcodes.
+                Considered part of an <strong>agent-driven</strong> boarding
+                process not involving a gate whereby the agent scans a
+                passenger's boarding pass. If accepted, the passenger may move
+                past the agent and board the flight.
             </td>
         </tr>
         <tr>
-            <td>MSR</td>
+            <td>BCR</td>
+            <td>Boarding Card Reader</td>
             <td>
-                Magnetic Stripe Reader that reads card payments, returning
-                <code class="inline-code">CardType</code> and
-                <code class="inline-code">Track</code> data.
+                Functions the same as a BGR. For this documentation, the use of
+                the acronym BCR is synonymous with BGR.
             </td>
         </tr>
         <tr>
-            <td>OCR</td>
+            <td>SBG</td>
+            <td>Self-Boarding Gate</td>
             <td>
-                Optical Character Recognition device that reads
-                <code class="inline-code">MrzData</code> from passports.
+                Considered part of a <strong>passenger-driven</strong> boarding
+                process involving a gate whereby the passenger scans his or her
+                boarding pass at a gate. If accepted, the gate opens, and the
+                passenger can pass through the gate.
             </td>
         </tr>
     </tbody>
 </table>
-</div>
 
 <div class="continued-reading-section">
     <h2 class="continued-reading">Next Steps</h2>
@@ -120,7 +132,7 @@
                 </svg>
             </div>
             <div>
-                <a href="/scan/API-call-components"
+                <a href="/gateAccess/gateAccess-API-call-components"
                     >API Call Components</a
                 >
             </div>

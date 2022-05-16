@@ -1,18 +1,18 @@
 <div class="title-box">
-    <h1 class="topic-title">Scan API Tutorial</h1>
+    <h1 class="topic-title">Print API Tutorial</h1>
     <div class="action-statement">
         Follow these step-by-step instructions to complete an interaction with a
-        scan device.
+        print device
     </div>
 </div>
 
 <p>
-    Follow along with this walkthrough to experience the Scan API, including
-    connecting to a device, issuing a scan command, then reading the response.
+    Follow along with this walkthrough to experience the Print API, including
+    connecting to a device, issuing a print command, then reading the response.
     The following tools are used to demonstrate the Print API:
 </p>
 <ul>
-    <li>
+    <li class="future-release">
         The
         <a href="/get-started/test-environments/set-up-VM"
             >Citrix Virtualized SITA Flex Environment</a
@@ -28,32 +28,37 @@
     </li>
 </ul>
 <p>
-    You will be interacting with an OCR device and simulating the scanning of a
-    passport in the VM. With this knowledge, you can apply the same steps to
-    interacting with other scan devices.
+    You will be interacting with an ATB device (Automated Ticket &amp; Boarding
+    Pass Printer) since it supports the most print format possibilities like
+    SVG, PDF, or AEA. With this knowledge, you can apply the same steps to
+    interacting with other print devices.
 </p>
 <div class="alert-section info-alert">
     <div class="">
         <p>
             This walkthrough provides some basic troubleshooting steps. However,
             if an error displays that is not covered, refer to the
-            <a href="/get-started/troubleshooting/environments"
+            Troubleshooting
+            <a
+                class="future-release"
+                href="/get-started/troubleshooting/environments"
                 >Troubleshooting Environments</a
             >
-            or
-            <a href="get-started/troubleshooting/error-codes"
+            <a href="/get-started/error-codes/environments"
                 >Troubleshooting Error Codes</a
             >
             sections for detailed steps on how to resolve the issue.
         </p>
     </div>
 </div>
-<h2 id="prerequisite-steps-1">Prerequisite Steps</h2>
+<h2 id="prerequisite-steps">Prerequisite Steps</h2>
 <ol>
     <li>
         Login to the
-        <a href="/get-started/test-environments/set-up-VM"
-            >Citrix Virtualized SITA Flex Environment</a
+        <a
+            class="future-release"
+            href="/get-started/test-environments/set-up-VM"
+            >Citrix Virtualized SITA Flex Environment</a
         >
         you set up previously.
     </li>
@@ -93,8 +98,7 @@
             </li>
             <li>
                 Send a <span class="method post">POST</span>
-                <code class="inline-code">/site/v2/reservations</code>
-                request.
+                <code class="inline-code">/site/v2/reservations</code> request.
             </li>
         </ul>
     </li>
@@ -103,12 +107,12 @@
 <div class="numbered-sections-container">
     <div class="section numbered-section">
         <div class="section-header">
-            <h2 id="heading-2" class="numbered-h2">Add an OSR Device</h2>
-            <span class="tag">Scan API</span>
+            <h2 id="heading-2" class="numbered-h2">Add an ATB Device</h2>
+            <span class="tag">Print API</span>
         </div>
         <div class="alert-section info-alert">
             <div class="">
-                <p>If an OCR has already been added, skip this section.</p>
+                <p>If an ATB has already been added, skip this section.</p>
             </div>
         </div>
         <ol>
@@ -117,15 +121,15 @@
                 <strong>Add Device</strong>.
             </li>
             <li>
-                Select <strong>OCR</strong> from the
+                Select <strong>ATBStandard</strong> from the
                 <strong>Device Type</strong> drop-down.
             </li>
-            <li>Leave the other settings as is.</li>
+            <li>Leave the other setting as is.</li>
             <li>
                 Click <strong>Add Device</strong>.
                 <ul>
                     <li>
-                        The OCR device is now available in the Device Simulator.
+                        The ATB device is now available in the Device Simulator.
                     </li>
                 </ul>
             </li>
@@ -133,7 +137,7 @@
                 On the device, click <strong>Run</strong>.
                 <ul>
                     <li>
-                        An OCR Device Simulator screen displays. You may keep it
+                        An ATB Device Simulator screen displays. You may keep it
                         open for later use.
                     </li>
                 </ul>
@@ -142,14 +146,15 @@
     </div>
     <div class="section numbered-section">
         <div class="section-header">
-            <h2 id="heading-2" class="numbered-h2">Connect to the OCR</h2>
-            <span class="tag">Scan API</span>
+            <h2 id="heading-2" class="numbered-h2">Connect to the ATB</h2>
+            <span class="tag">Print API</span>
         </div>
+
         <ol>
             <li>
                 In Postman, send a
                 <code class="inline-code">/session/v2/connections</code> request
-                to connect to the OCR.
+                to connect to the ATB.
                 <ul>
                     <li>
                         After connecting to a device, a connection
@@ -166,7 +171,7 @@
                     <p>
                         Notice in the Request Body that the
                         <code class="inline-code">DeviceId</code> will be
-                        populated partially based on the variable
+                        populated based by the variable
                         <code class="inline-code">{{location}}</code> in the
                         Postman environment.
                     </p>
@@ -174,52 +179,48 @@
             </div>
             <li>
                 Check the Service Bus subscription for a
-                <code class="inline-code">ScanDeviceStatus</code> message:
+                <code class="inline-code">PrintDeviceStatus</code> message:
             </li>
             <div class="method-example atom-one-light">
                 <div class="method-example-top-bar">Service Bus Message</div>
                 <pre>
-                        <code class="language-json">
+                <code class="language-json">
 {
     "DeviceStatus": "Online",
-    "DeviceInUse": "false"
+    "MediaStatus": "Ok",
+    "BinStatus": "Ok"
 }
-                    </code>
-                    </pre>
+            </code>
+            </pre>
+                <p class="caption">
+                    <code class="inline-code">PrintDeviceStatus</code> Service
+                    Bus Message indicating the device is online
+                </p>
             </div>
-
-            <p class="caption">
-                <code class="inline-code">ScanDeviceStatus</code> Service Bus
-                Message Body showing the scan device is
-                <code class="inline-code">Online</code> and not currently 'In
-                Use'
-            </p>
             <p>
-                The message should return the
-                <code class="inline-code">DeviceStatus</code> as
-                <code class="inline-code">Online</code> and a
-                <code class="inline-code">DeviceInUse</code> property set to
-                <code class="inline-code">false</code>. When a print device is
-                not 'in use', it means the device is not exclusively reserved
-                yet through a
-                <code class="inline-code">/scan/v2/startscanning</code> request,
-                and thus can be reserved by any airline backend that has
-                connected to it.
+                The message should return a
+                <code class="inline-code">DeviceStatus</code> of
+                <code class="inline-code">Online</code>, with
+                <code class="inline-code">MediaStatus</code> and
+                <code class="inline-code">BinStatus</code> as
+                <code class="inline-code">Ok</code> if there are no issues with
+                the printer. If there are no issues, the device is now available
+                to successfully receive Print requests.
             </p>
             <div class="alert-section info-alert">
                 <div class="">
                     <p>
                         In the Tests tab of Postman, there is some Javascript
                         that updates the
-                        <code class="inline-code">ocr_connection_id</code>
-                        environmental variable after connecting to the OCR. This
+                        <code class="inline-code">atb_connection_id</code>
+                        environmental variable after connecting to the ATB. This
                         variable is used so you do not need to manually enter a
                         <code class="inline-code">connectionId</code> in
                         subsequent calls to the Print API.
                     </p>
                 </div>
             </div>
-            <h3 id="devicestatus-is-offline-1">
+            <h3 id="devicestatus-is-offline">
                 <code class="inline-code">DeviceStatus</code> is
                 <code class="inline-code">Offline</code>
             </h3>
@@ -230,25 +231,15 @@
                 <strong>Stop</strong> button on the device in Device Simulator,
                 the device is running.
             </p>
-
             <p>
                 <em>If <u>it is not</u> running:</em>
             </p>
             <ol>
                 <li>Click <strong>Run</strong>.</li>
                 <li>
-                    In the Peripheral View, check to see if the OCR
+                    In the Peripheral View, check to see if the ATB
                     <strong>Status</strong> is now
                     <code class="inline-code">Online</code>.
-                </li>
-                <li>
-                    Check the Service Bus for a new
-                    <code class="inline-code">ScanDeviceStatus</code>
-                    message indicating the SBD is now
-                    <code class="inline-code">Online</code>.
-                    <ul>
-                        <li>The issue should now be resolved.</li>
-                    </ul>
                 </li>
             </ol>
             <p>
@@ -259,199 +250,152 @@
                 <li>Click <strong>Stop</strong>.</li>
                 <li>Click <strong>Run</strong>.</li>
                 <li>
-                    In the Peripheral View, check to see if the OCR
+                    In the Peripheral View, check to see if the ATB
                     <strong>Status</strong> is now
                     <code class="inline-code">Online</code>.
-                </li>
-                <li>
-                    Check the Service Bus for a new
-                    <code class="inline-code">ScanDeviceStatus</code>
-                    message indicating the SBD is now
-                    <code class="inline-code">Online</code>.
-                    <ul>
-                        <li>The issue should now be resolved.</li>
-                    </ul>
                 </li>
             </ol>
         </ol>
     </div>
     <div class="section numbered-section">
         <div class="section-header">
-            <h2 id="heading-2" class="numbered-h2">Reserve the OCR</h2>
-            <span class="tag">Scan API</span>
+            <h2 id="heading-2" class="numbered-h2">
+                Print a Boarding Pass PDF
+            </h2>
+            <span class="tag">Print API</span>
         </div>
-        <p>
-            The next step is to reserve the OCR to give the airline backend
-            exclusive access to interact with it.
-        </p>
         <ol>
             <li>
-                In Postman, send a
-                <code class="inline-code">/scan/v2/startscanning</code>
-                request.
-                <ul>
-                    <li>
-                        If successful, the Scan API returns a
-                        <code class="inline-code">2xx</code> success status code
-                        with the Response Body containing an
-                        <code class="inline-code">accessExpiryTime</code>
-                        set to <strong>5 minutes</strong> in the future.
-                    </li>
-                </ul>
-            </li>
-            <div class="method-example atom-one-light">
-                <div class="method-example-top-bar">Response</div>
-                <pre>
-                        <code class="language-json">
-{
-    "accessExpiryTime": "2021-09-30T14:50:07.347Z"
-}
-                    </code>
-                    </pre>
-            </div>
-            <p class="caption">
-                Scan API Response Body containing the date-time when exclusive
-                access to the device expires
-            </p>
-            <li>
-                Check the Service Bus for a new
-                <code class="inline-code">ScanDeviceStatus</code>
-                message.
-                <ul>
-                    <li>
-                        The
-                        <code class="inline-code">DeviceInUse</code>
-                        property should be set to
-                        <code class="inline-code">true</code>, indicating that
-                        the device is now exclusively reserved and may begin
-                        sending messages to the airline backend that made the
-                        <code class="inline-code">/scan/v2/startscanning</code>
-                        request.
-                    </li>
-                </ul>
-            </li>
-            <div class="method-example atom-one-light">
-                <div class="method-example-top-bar">Service Bus Message</div>
-                <pre>
-                        <code class="language-json">
-{
-    "DeviceStatus": "Online",
-    "DeviceInUse": "true"
-}
-                    </code>
-                    </pre>
-            </div>
-            <p class="caption">
-                <code class="inline-code">DeviceStatus</code> Service Bus
-                Message Body indicating the device is
-                <code class="inline-code">Online</code> and is exclusively
-                reserved by the airline backend
-            </p>
-        </ol>
-    </div>
-
-    <div class="section numbered-section">
-        <div class="section-header">
-            <h2 id="heading-2" class="numbered-h2">Simulate a Passport Scan</h2>
-            <span class="tag">Scan API</span>
-        </div>
-        <p>
-            Using the VM, you will simulate an OCR scanning a passport by
-            manually entering MRZ data then reading that data to the device.
-        </p>
-        <ol>
-            <li>
-                With the OCR Simulator in the VM, manually enter some data in
-                the
-                <strong>MRZ Data</strong> text box, then click the
-                <strong>Read</strong> button.
-            </li>
-            <div class="alert-section info-alert">
-                <div class="">
-                    <p>
-                        Below is a realistic sample of MRZ data, but the data
-                        you enter is not important for the purpose of this
-                        walkthrough. Also, you can only manually type
-                        information into the text box and not paste content from
-                        outside the VM.
-                    </p>
+                <p>
+                    In Postman, send a
+                    <code class="inline-code">/print/v2/boardingpass/pdf</code>
+                    request.
+                </p>
+                <div class="alert-section info-alert">
+                    <div class="">
+                        <p>
+                            In the Request Body, notice that PDF
+                            <code class="inline-code">printData</code> has been
+                            included for you.
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <p class="caption">OCR Device Simulator with MRZ Data entered</p>
-            <li>
-                Click the <strong>Read</strong> button to simulate the OCR
-                executing a scan and collecting the MRZ data.
             </li>
             <li>
-                Check the Service Bus for a new
-                <code class="inline-code">TravelDocumentRead</code>
-                message that includes the scanned passport data as
-                <code class="inline-code">MrzData</code> in the Message Body.
-            </li>
-            <div class="method-example atom-one-light">
-                <div class="method-example-top-bar">Service Bus Message</div>
-                <pre>
-                        <code class="language-json">
-{
-    "MrzData": "P&lt;D&lt;&lt;SCHMIDT&lt;&lt;KARL&lt;HEINZ&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;\r1234567897D&lt;&lt;0102030M0405063&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8"
-}
-                    </code>
-                    </pre>
-            </div>
-            <p class="caption">
-                <code class="inline-code">TravelDocumentRead</code>
-                Service Bus Message Body that returned passport
-                <code class="inline-code">MrzData</code>
-                'scanned' by the OCR device
-            </p>
-        </ol>
-    </div>
-    <div class="section numbered-section">
-        <div class="section-header">
-            <h2 id="heading-2" class="numbered-h2">Release the OCR</h2>
-            <span class="tag">Scan API</span>
-        </div>
-        <ol>
-            <li>
-                In Postman, send a
-                <code class="inline-code">/scan/v2/stopscanning</code>
-                request to release the device from exclusive access.
+                <p>
+                    Check the Service Bus for a new
+                    <code class="inline-code">PrintResponse</code> message.
+                </p>
                 <ul>
                     <li>
-                        The Scan API acknowledges the request by returning a
+                        The Print API acknowledges the request by returning a
                         <code class="inline-code">2xx</code> success status
                         code, as seen in a tool like Postman.
                     </li>
+                    <li>
+                        If <code class="inline-code">IsSuccess</code> is
+                        <code class="inline-code">true</code>, then the print
+                        was successful. The number of
+                        <code class="inline-code">SuccessfulPrints</code> is
+                        returned. In this case, the device printed
+                        <code class="inline-code">1</code> boarding pass in PDF
+                        format.
+                    </li>
                 </ul>
             </li>
-            <li>
-                Check the Service Bus for a
-                <code class="inline-code">ScanDeviceStatus</code>
-                message indicating the device is no longer 'in use'.
-            </li>
-
             <div class="method-example atom-one-light">
                 <div class="method-example-top-bar">Service Bus Message</div>
                 <pre>
                         <code class="language-json">
-{
-    "DeviceStatus": "Online",
-    "DeviceInUse": "false"
-}
+        {
+            "IsSuccess": true,
+            "Error": null,
+            "SuccessfulPrints": "1"
+        }
                     </code>
                     </pre>
             </div>
             <p class="caption">
-                <code class="inline-code">DeviceStatus</code> Service Bus
-                Message Body indicating the device is no longer 'in use' and is
-                available to be reserved by another backend or the same airline
-                backend
+                <code class="inline-code">PrintResponse</code> Service Bus
+                Message indicating a successful print
             </p>
+            <li>
+                Go to the <strong>ATB Simulator</strong> window in the VM.
+                <ul>
+                    <li>
+                        The printed boarding pass should be visible in the
+                        <strong>Print Preview</strong>.
+                    </li>
+                </ul>
+            </li>
         </ol>
     </div>
+    <div class="section numbered-section">
+        <div class="section-header">
+            <h2 id="heading-2" class="numbered-h2">
+                Simulate an Unsuccessful Print
+            </h2>
+            <span class="tag">Print API</span>
+        </div>
+        <p>
+            The ATB Simulator (and simulators for other print devices) allows
+            you to add a <strong>Fault Indicator</strong> (for example, a paper
+            jam) to simulate a failed print scenario.
+        </p>
+        <ol>
+            <li>
+                In the ATB Simulator, set the
+                <strong>Fault Indicator</strong> to
+                <code class="inline-code">Paper Jam</code>.
+            </li>
+            <li>
+                In Postman, send a
+                <code class="inline-code">/print/v2/boardingpass/pdf</code>
+                request.
+            </li>
+            <li>
+                Check the Service Bus for a new
+                <code class="inline-code">PrintResponse</code> message.
+            </li>
+            <div class="method-example atom-one-light">
+                <div class="method-example-top-bar">Service Bus Message</div>
+                <pre>
+                        <code class="language-json">
+        {
+            "IsSuccess": false,
+            "Error": {
+                "ErrorCode": "NotAbleToPrint",
+                "Message": "PrintNotOk/UnSuccessfulPrint, with Jammed"
+            },
+            "SuccessfulPrints": "0"
+        }
+                    </code>
+                    </pre>
+            </div>
+        </ol>
 
-    <div class="continued-reading-section">
-        <h2 class="continued-reading">Next Steps</h2>
+        <p class="caption">
+            <code class="inline-code">PrintResponse</code> Service Bus Message
+            indicating an unsuccessful print with reason
+            <code class="inline-code">Message</code>
+        </p>
+        <p>
+            <code class="inline-code">IsSuccess</code> should be
+            <code class="inline-code">false</code>, which indicates the Print
+            was unsuccessful. A general error displays,
+            <code class="inline-code">NotAbleToPrint</code>, followed by an
+            error <code class="inline-code">Message</code> that explains why the
+            print was unsuccessful. In this case, it is because the printer is
+            jammed.
+        </p>
+        <p>
+            The resolution would be to physically locate the printer and unjam
+            it.
+        </p>
+    </div>
+
+    <div class="continued-reading-section future-release">
+        <h2 class="continued-reading">See Also</h2>
         <ul class="continue-link-list">
             <div class="continue-link-row">
                 <div class="svg-container">
@@ -497,7 +441,7 @@
                     </svg>
                 </div>
                 <div>
-                    <a href="/scan/best-practices">Best Practices</a>
+                    <a href="/print/print-best-practices">Best Practices</a>
                 </div>
             </div>
         </ul>

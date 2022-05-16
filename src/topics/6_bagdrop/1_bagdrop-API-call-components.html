@@ -1,13 +1,13 @@
 <div class="title-box">
-    <h1 class="topic-title">Scan API Call Components</h1>
+    <h1 class="topic-title">Bagdrop API Call Components</h1>
     <div class="action-statement">
-        Learn about the required components of a Scan API call
+        Learn about the required components of a Bagdrop API call
     </div>
 </div>
 
 <p>
     Below is a sample <span class="method post">POST</span>
-    <code class="inline-code">/scan/v2/startscanning</code> call to the Scan API
+    <code class="inline-code">/bagdrop/v2/getbag</code> call to the Bagdrop API
     that contains the required components:
     <ul>
         <li>Resource URL <code class=inline-code>https://</code></li>
@@ -43,25 +43,29 @@
     <div class="copied-popup hidden">Copied!</div>
     <div class="code-content dark">
         <pre><code class="language-bash">
-curl --location -g --request POST 'https://{{baseurl}}/scan/v2/startscanning' \
+curl --location -g --request POST 'https://{{baseurl}}/bagdrop/v2/getbag' \
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "connectionId": ""
+    "connectionId": "{{sbd_connection_id}}",
+    "correlationId": "postman-ftr-904743f7-4c95-42f2-92d8-74b78f43f774"
 }'
 </code></pre>
     </div>
 </div>
 <p class="caption">
-    Sample Scan API call containing the required components to successfully make the call
+    Sample Bagdrop API call containing the required components to successfully make the call
 
 </p>
-<h2>Resource URLs</h2>
-<p>At present, Scan API Resource URLs are comprised of:</p>
+
+
+
+<h2 id="resource-urls-4">Resource URLs</h2>
+<p>At present, Bagdrop API Resource URLs are comprised of:</p>
 <ul>
     <li>
         A REST API standard method preceding the URL for accessing the endpoint.
-        In the case of the Scan API, the only method used is <span class="method post">POST</span>.
+        In the case of the Bagdrop API, the only method used is <span class="method post">POST</span>.
     </li>
     <li>
         A Base URL specific to the SITA Flex environment, sometimes displayed as
@@ -70,49 +74,51 @@ curl --location -g --request POST 'https://{{baseurl}}/scan/v2/startscanning' \
     </li>
     <li>
         The end path of the Resource URL is comprised of the API name (
-        <code class="inline-code">scan</code>) followed by the endpoint name.
+        <code class="inline-code">bagdrop</code>) followed by the endpoint name.
         For example, the end path
-        <code class="inline-code">startscanning</code> contains the API
-        <code class="inline-code">scan</code> followed by the endpoint
-        <code class="inline-code">startscanning</code>.
+        <code class="inline-code">/bagdrop/v2/getbag</code> contains the API
+        <code class="inline-code">bagdrop</code> followed by the endpoint
+        <code class="inline-code">getbag</code>.
     </li>
 </ul>
 <div class="alert-section info-alert">
     <div class="">
-        <p>No path parameters are required when sending Scan API requests.</p>
-    </div>
-</div>
-<h2 id="header-parameters-2">Header Parameters</h2>
-<p>
-    A <code class="inline-code">location-id</code> is required in the header of
-    the request. Flex APIs use the Azure API Management service (APIM) to route
-    requests to the correct Azure Region based on the airport code extracted
-    from the <code class="inline-code">LocationId</code>.
-</p>
-<h2 id="authorization-headers-2">Authorization Headers</h2>
-<p>
-    An <code class="inline-code">access_token</code> is required in the
-    Authorization Header of requests for authentication.
-</p>
-<div class="alert-section info-alert">
-    <div class="">
         <p>
-            The
-            <code class="inline-code">access_token</code> is displayed as the
-            Postman variable <code class="inline-code">bearer_token</code> in
-            the <strong>Authorization</strong> tab of API requests in the
-            provided Postman collection.
+            No path parameters are required when sending Bagdrop API requests.
         </p>
     </div>
 </div>
-<h2 id="request-bodies-2">Request Bodies</h2>
-<p>
-    The Request Body for both a
-    <code class="inline-code">/scan/v2/startscanning</code> and
-    <code class="inline-code">/scan/v2/stopscanning</code> request are the same,
-    only providing a <code class="inline-code">connectionId</code> of the
-    device.
-</p>
+    <h2 id="header-parameters-4">Header Parameters</h2>
+    <p>
+        A <code class="inline-code">location-id</code> is required in the header
+        of requests. Flex APIs use the Azure API Management Service (APIM) to
+        route requests to the correct Azure Region based on the airport code
+        extracted from the <code class="inline-code">LocationId</code>.
+    </p>
+    <h2 id="authorization-headers-4">Authorization Headers</h2>
+    <p>
+        An <code class="inline-code">access_token</code> is required in the
+        Authorization Header of requests for authentication.
+    </p>
+    <div class="alert-section info-alert">
+        <div class="">
+            <p>
+                The
+                <code class="inline-code">access_token</code> is displayed as
+                the Postman variable
+                <code class="inline-code">bearer_token</code> in the
+                <strong>Authorization</strong> tab of API requests in the
+                provided Postman collection.
+            </p>
+        </div>
+    </div>
+        <h2 id="request-bodies-4">Request Bodies</h2>
+        <p>
+            All Request Bodies must include the
+            <code class="inline-code">ConnectionId</code> of the device the
+            airline backend is sending the command to.
+        </p>
+
 
 <div class="continued-reading-section">
     <h2 class="continued-reading">Next Steps</h2>
@@ -162,7 +168,7 @@ curl --location -g --request POST 'https://{{baseurl}}/scan/v2/startscanning' \
                 </svg>
             </div>
             <div>
-                <a href="/scan/messages-overview">Messages Overview</a>
+                <a href="/bagdrop/bagdrop-messages-overview">Messages Overview</a>
             </div>
         </div>
     </ul>
