@@ -24,11 +24,12 @@ export function addRemoveClasses() {
         $('.main-content').removeClass('flex-basis-75');
         $('.right-nav-col').addClass('hidden');
         $('.right-nav-col').removeClass('display-flex');
+        $('.document-footer').addClass('flex-basis-100');
+        $('.document-footer').addClass('flex-basis-100');
         $('.document-footer').removeClass('flex-basis-75');
     } else {
         addClassToHtmlElementBySelector('.topic-breadcrumb', 'display-flex');
         removeClassFromHtmlElementBySelector('.topic-breadcrumb', 'hidden');
-        $('.document-footer').addClass('flex-basis-75');
     }
 
     const viewportWidth = globalThis.document.body.clientWidth;
@@ -39,25 +40,16 @@ export function addRemoveClasses() {
     if (viewportWidth <= VIEWPORT_WIDTH_RANGE_COLLECTION.medium.end) {
         addClassToHtmlElementBySelector('.content', 'flex-basis-100');
         removeClassFromHtmlElementBySelector('.content', 'flex-basis-80');
+
+        $('.document-footer').addClass('flex-basis-100');
+        $('.document-footer').removeClass('flex-basis-80');
+
         addClassToHtmlElementBySelector('.header-narrow-viewport', 'hidden');
         // addClassToHtmlElementBySelector('.toc-header', 'display-flex');
         removeClassFromHtmlElementBySelector(
             '.header-narrow-viewport',
             'hidden'
         );
-        // if (isHomeTabSelected) {
-        //     addClassToHtmlElementBySelector('.header-narrow-viewport', 'hidden');
-        //     addClassToHtmlElementBySelector('.toc-header', 'hidden');
-        // } else {
-        //     addClassToHtmlElementBySelector('.header-narrow-viewport', 'hidden');
-        //     addClassToHtmlElementBySelector('.toc-header', 'display-flex');
-        //     removeClassFromHtmlElementBySelector('.header-narrow-viewport', 'hidden');
-        // }
-
-        // addClassToHtmlElementBySelector('.header', 'hidden-if-sm, hidden-if-home');
-
-        // go into HTML, add class to everything that needs to be added to everything.
-
         $('.header').addClass('hidden');
         $('.left-nav-col').addClass('hidden');
         $('.left-nav-col').removeClass('display-flex');
@@ -120,12 +112,14 @@ export function addRemoveClasses() {
         !isHomeTabSelected
     ) {
         $('.main-content').removeClass('flex-basis-75');
+        $('.document-footer').removeClass('flex-basis-75');
     }
     if (
         viewportWidth >= VIEWPORT_WIDTH_RANGE_COLLECTION.extraWide.start &&
         !isHomeTabSelected
     ) {
         $('.main-content').addClass('flex-basis-75');
+        $('.document-footer').addClass('flex-basis-75');
         $('.right-nav-col').removeClass('hidden');
         //   ignore if Home tab is loaded by default or selected.
         $('.right-nav-col').addClass('display-flex');
