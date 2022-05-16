@@ -1344,11 +1344,11 @@ h2 + .alert-section {
 //     }f
 // }
 
-.main-table {
-    th:nth-last-of-type(1) {
-        width: 60%;
-    }
-}
+// .main-table {
+//     th:nth-last-of-type(1) {
+//         width: 60%;
+//     }
+// }
 
 // @media screen and (max-width: 32em) {
 //     .card-grids-section {
@@ -1554,4 +1554,12 @@ h2 + .alert-section {
 
 .future-release {
     display: none;
+}
+
+table + h3 {
+    margin-top: 24px;
+}
+
+span.no-break {
+    word-break: none;
 }
