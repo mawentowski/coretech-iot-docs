@@ -53,13 +53,6 @@ body {
                 flex-basis: 60%;
                 display: flex;
                 align-items: center;
-
-                .logo-holder {
-                    svg:nth-of-type(2) {
-                        box-sizing: content-box;
-                        padding: 3.3px 0 3.3px 2px;
-                    }
-                }
             }
         }
     }
@@ -1527,4 +1520,38 @@ h2 + .alert-section {
             }
         }
     }
+}
+
+.logo-holder {
+    flex-basis: 15%;
+}
+
+.company-name {
+    font-family: Signika, sans-serif;
+    position: relative;
+    font-size: 20px;
+    color: #4f576a;
+}
+
+.company-name::after {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: 39px;
+    top: 1.7;
+
+    /* top: 32.24px; */
+    bottom: 2.5px;
+    font-family: Questrial, sans-serif;
+    color: #4cb7e7;
+    font-size: 19px;
+    content: 'Docs';
+}
+
+#hidden-breadcrumb.topic-breadcrumb {
+    display: none;
+}
+
+#hidden-breadcrumb.topic-breadcrumb {
+    display: none;
 }
