@@ -5,13 +5,13 @@
 
 <p>
     The <span class="method post">POST</span>
-    <code class="inline-code">/session/v2/subscriptions</code> request creates a
+    <code class="inline-code">/sync/v2/subscriptions</code> request creates a
     subscription on the Azure Service Bus and returns a Service Bus endpoint and
     SAS token for the application backend to connect to the subscription.
 </p>
 <p>
     Sending a <span class="method post">POST</span>
-    <code class="inline-code">/session/v2/subscriptions</code> request does not
+    <code class="inline-code">/sync/v2/subscriptions</code> request does not
     'subscribe' to the Service Bus, it only creates a subscription and returns
     attachment details. The application must then connect to the Service Bus
     attachment using the attachment details provided.
@@ -76,7 +76,7 @@
     </div>
 
 <div id="bash-create-a-subscription" class="tabcontent dark"><pre> <code>
-    curl --area -g --request POST 'https://{{baseurl}}/session/v2/subscriptions' \
+    curl --area -g --request POST 'https://{{baseurl}}/sync/v2/subscriptions' \
     --header 'area-id: {{areaId}}'
 </code>
 </pre>
@@ -86,7 +86,7 @@
 require "uri"
 require "net/http"
 
-url = URI("https://{{baseurl}}/session/v2/subscriptions")
+url = URI("https://{{baseurl}}/sync/v2/subscriptions")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -103,7 +103,7 @@ puts response.read_body
 <div id="Python-create-a-subscription" class="tabcontent dark"><pre> <code>
 import requests
 
-url = "https://{{baseurl}}/session/v2/subscriptions"
+url = "https://{{baseurl}}/sync/v2/subscriptions"
 
 payload={}
 headers = {
@@ -123,7 +123,7 @@ print(response.text)
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/session/v2/subscriptions',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/sync/v2/subscriptions',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -146,7 +146,7 @@ echo $response;
 
 <div id="Java-create-a-subscription" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("https://{{baseurl}}/session/v2/subscriptions")
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/sync/v2/subscriptions")
     .header("area-id", "{{areaId}}")
     .asString();
 </code>
@@ -157,7 +157,7 @@ HttpResponse<String> response = Unirest.post("https://{{baseurl}}/session/v2/sub
 var request = require('request');
 var options = {
     'method': 'POST',
-    'url': 'https://{{baseurl}}/session/v2/subscriptions',
+    'url': 'https://{{baseurl}}/sync/v2/subscriptions',
     'headers': {
     'area-id': '{{areaId}}'
     }
@@ -181,7 +181,7 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/session/v2/subscriptions"
+    url := "https://%7B%7Bbaseurl%7D%7D/sync/v2/subscriptions"
     method := "POST"
 
     client := &http.Client {
@@ -213,7 +213,7 @@ func main() {
 </div>
 
 <div id=".NET-create-a-subscription" class="tabcontent dark"><pre><code>
-    var client = new RestClient("https://{{baseurl}}/session/v2/subscriptions");
+    var client = new RestClient("https://{{baseurl}}/sync/v2/subscriptions");
     client.Timeout = -1;
     var request = new RestRequest(Method.POST);
     request.AddHeader("area-id", "{{areaId}}");
@@ -226,7 +226,7 @@ func main() {
 </div>
 
 <p class="caption">Sample <span class="method post">POST</span>
-    <code class="inline-code">/session/v2/subscriptions</code> request</p>, passing the <code class="inline-code">areaId</code> of the area that needs a new subscription.</p>
+    <code class="inline-code">/sync/v2/subscriptions</code> request</p>, passing the <code class="inline-code">areaId</code> of the area that needs a new subscription.</p>
 
 
 <h2 id="response-body-1">Response</h2>
@@ -253,7 +253,7 @@ func main() {
 
 <p class="caption">
     Sample Response Body for <span class="method post">POST</span>
-    <code class="inline-code">session/v2/subscriptions</code> request containing
+    <code class="inline-code">sync/v2/subscriptions</code> request containing
     details for connecting to the subscription
 </p>
 
@@ -261,7 +261,7 @@ func main() {
     <div class="">
         <p>
             Not sending a
-            <code class="inline-code">/session/v2/subscriptions</code> request
+            <code class="inline-code">/sync/v2/subscriptions</code> request
             results in a <strong>400 Bad Request</strong>.
             
             <span class="future-release">
@@ -333,7 +333,7 @@ func main() {
 <p>
     For example, when connecting to an MFP device, the application backend will send
     a <span class="method post">POST</span>
-    <code class="inline-code">/session/v2/attachments</code> request, including
+    <code class="inline-code">/sync/v2/attachments</code> request, including
     the <code class="inline-code">subscriptionId</code> in the Request Body. The
     returned <code class="inline-code">attachmentID</code> is now associated to
     the subscription, and thus CoreTech APIs know to route any messages coming from the
@@ -381,7 +381,7 @@ func main() {
 
 <p>
     The first way is to keep a subscription alive through repeated calls to the
-    <span class="method post">POST </span><code class="inline-code">session/v2/subscriptions</code>
+    <span class="method post">POST </span><code class="inline-code">sync/v2/subscriptions</code>
     endpoint to create a new SAS token when the old one expires. The SAS token
     is contained in the
     <code class="inline-code">attachmentstring</code> in the Response Body.
@@ -399,7 +399,7 @@ func main() {
     backend determines if there is a subscription in place for the specified
     area. If there is already a subscription for the area, the airline
     backend uses that subscription and does not send a request to create a new
-    one. If there is no subscription in place, it sends a <span class="method post">POST </span><code class="inline-code">session/v2/subscriptions</code>
+    one. If there is no subscription in place, it sends a <span class="method post">POST </span><code class="inline-code">sync/v2/subscriptions</code>
     request to create a new subscription.
 </p>
 <div class="alert-section info-alert">
@@ -416,7 +416,7 @@ func main() {
 <p>
     Making repeated calls to
     <span class="method post">POST</span>
-    <code class="inline-code">session/v2/subscriptions</code>
+    <code class="inline-code">sync/v2/subscriptions</code>
     does not create a new subscription. The same
     <code class="inline-code">subscriptionId</code>
     associated with the existing subscription is returned in the Response Body.
@@ -425,7 +425,7 @@ func main() {
 </p>
 <p>
     If a <span class="method post">POST</span>
-    <code class="inline-code">session/v2/subscriptions</code>
+    <code class="inline-code">sync/v2/subscriptions</code>
     request is made, and there is an existing SAS token that has yet to reach
     its
     <code class="inline-code">expiryTime</code>, there are now two SAS tokens.
@@ -440,7 +440,7 @@ func main() {
             situation where it would need to disconnect from an old SAS token to
             use the new one. The ideal scenario would be to allow the old SAS
             token to expire then create a new one by sending a
-            <code class="inline-code">session/v2/subscriptions</code>
+            <code class="inline-code">sync/v2/subscriptions</code>
             request.
         </p>
     </div>
@@ -475,7 +475,7 @@ func main() {
 <p>
     If a subscription is no longer needed, it is best practice to delete the
     subscription by sending a DEL
-    <code class="inline-code">/session/v2/subscriptions/{subscription_id}</code>
+    <code class="inline-code">/sync/v2/subscriptions/{subscription_id}</code>
     request, passing in the
     <code class="inline-code">subscription_id</code> of the subscription to be
     deleted as a path parameter.
@@ -494,7 +494,7 @@ func main() {
                     y="0px"
                     viewBox="0 0 482.204 482.204"
                     style="enable-background: new 0 0 482.204 482.204"
-                    xml:space="pclaim"
+                    xml:space="preserve"
                 >
                     <g>
                         <path
@@ -527,7 +527,7 @@ func main() {
                 </svg>
             </div>
             <div>
-                <a href="/get-started/session/area-capabilities"
+                <a href="/get-started/sync/area-capabilities"
                     >Determine Area Capabilities</a
                 >
             </div>

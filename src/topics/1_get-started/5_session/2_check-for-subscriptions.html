@@ -7,7 +7,7 @@
 
 <p>
     The <span class="method get">GET</span>
-    <code class="inline-code">/session/v2/subscriptions</code> request should be
+    <code class="inline-code">/sync/v2/subscriptions</code> request should be
     sent prior to connecting to devices at a new area to determine if there
     is an existing subscription in the same region as that area. 
     
@@ -16,7 +16,7 @@
 <p>    If there is
     an existing subscription, that subscription should be used and a
     <span class="method post">POST</span>
-    <code class="inline-code">/session/v2/subscriptions</code> request
+    <code class="inline-code">/sync/v2/subscriptions</code> request
     <i>should not</i> be made.
 </p>
 
@@ -25,14 +25,14 @@
     <div>
         <p>
             Sending a <span class="method post">POST</span>
-            <code class="inline-code">/session/v2/subscriptions</code> request when
+            <code class="inline-code">/sync/v2/subscriptions</code> request when
             <i>there is</i> an existing subscription creates a new SAS token, resulting
             in two SAS tokens available to connect to the same subscription.
         </p>
         <p>
             Maintaining two SAS tokens can be problematic, and therefore should be
             avoided. The <span class="method get">GET</span>
-            <code class="inline-code">/session/v2/subscriptions</code>
+            <code class="inline-code">/sync/v2/subscriptions</code>
             request returns the information necessary for the application backend to
             determine whether a subscription is already in place to avoid multiple SAS
             tokens.
@@ -48,8 +48,8 @@
          
 
 
-        <a href="/get-started/session/create-a-subscription"
-            >/session/v2/subscriptions</a
+        <a href="/get-started/sync/create-a-subscription"
+            >/sync/v2/subscriptions</a
         >.
     </div>
 </div>
@@ -100,7 +100,7 @@
     </div>
 
 <div id="bash-check-for-subscription" class="tabcontent dark"><pre> <code>
-curl --area -g --request GET 'https://{{baseurl}}/session/v2/subscriptions' \
+curl --area -g --request GET 'https://{{baseurl}}/sync/v2/subscriptions' \
 --header 'area-id: {{areaId}}'
 </code>
 </pre>
@@ -110,7 +110,7 @@ curl --area -g --request GET 'https://{{baseurl}}/session/v2/subscriptions' \
 require "uri"
 require "net/http"
 
-url = URI("https://{{baseurl}}/session/v2/subscriptions")
+url = URI("https://{{baseurl}}/sync/v2/subscriptions")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -127,7 +127,7 @@ puts response.read_body
 <div id="Python-check-for-subscription" class="tabcontent dark"><pre> <code>
 import requests
 
-url = "https://{{baseurl}}/session/v2/subscriptions"
+url = "https://{{baseurl}}/sync/v2/subscriptions"
 
 payload={}
 headers = {
@@ -147,7 +147,7 @@ print(response.text)
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/session/v2/subscriptions',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/sync/v2/subscriptions',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -170,7 +170,7 @@ echo $response;
 
 <div id="Java-check-for-subscription" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.get("https://{{baseurl}}/session/v2/subscriptions")
+HttpResponse<String> response = Unirest.get("https://{{baseurl}}/sync/v2/subscriptions")
     .header("area-id", "{{areaId}}")
     .asString();    
 </code>
@@ -181,7 +181,7 @@ HttpResponse<String> response = Unirest.get("https://{{baseurl}}/session/v2/subs
 var request = require('request');
 var options = {
     'method': 'GET',
-    'url': 'https://{{baseurl}}/session/v2/subscriptions',
+    'url': 'https://{{baseurl}}/sync/v2/subscriptions',
     'headers': {
     'area-id': '{{areaId}}'
     }
@@ -205,7 +205,7 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/session/v2/subscriptions"
+    url := "https://%7B%7Bbaseurl%7D%7D/sync/v2/subscriptions"
     method := "GET"
 
     client := &http.Client {
@@ -237,7 +237,7 @@ func main() {
 </div>
 
 <div id=".NET-check-for-subscription" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/session/v2/subscriptions");
+var client = new RestClient("https://{{baseurl}}/sync/v2/subscriptions");
 client.Timeout = -1;
 var request = new RestRequest(Method.GET);
 request.AddHeader("area-id", "{{areaId}}");
@@ -250,7 +250,7 @@ Console.WriteLine(response.Content);
 </div>
 
 <p class="caption">Sample <span class="method get">GET</span>
-    <code class="inline-code">/session/v2/subscriptions</code> request, passing the <code class="inline-code">areaId</code> of the area to check for an existing subscription</p>
+    <code class="inline-code">/sync/v2/subscriptions</code> request, passing the <code class="inline-code">areaId</code> of the area to check for an existing subscription</p>
 
 
 
@@ -263,7 +263,7 @@ Console.WriteLine(response.Content);
     <code class="inline-code">area-id</code> passed in the Request Header, a
     successful
     <span class="method get">GET</span>
-    <code class="inline-code">/session/v2/subscriptions</code> request returns a
+    <code class="inline-code">/sync/v2/subscriptions</code> request returns a
     <code class="inline-code">2xx</code> success status code with the JSON
     Response Body containing the Service Bus details of the existing
     subscription.
@@ -289,7 +289,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample Response Body for a <span class="method get">GET</span>
-    <code class="inline-code">session/v2/subscriptions</code> request containing
+    <code class="inline-code">sync/v2/subscriptions</code> request containing
     Service Bus details for an existing subscription
 </p>
 
@@ -302,7 +302,7 @@ Console.WriteLine(response.Content);
 <div class="alert-section tip-alert">
     <div class="">
         <p>        See 
-            <a href="/get-started/session/create-a-subscription"
+            <a href="/get-started/sync/create-a-subscription"
                 >Create a Subscription</a
             > endpoint section
             for a full description of the returned properties. The only property not
@@ -319,7 +319,7 @@ Console.WriteLine(response.Content);
     <code class="inline-code">area-id</code> passed in the Request Header, a
     successful
     <span class="method get">GET</span>
-    <code class="inline-code">/session/v2/subscriptions</code> request returns a
+    <code class="inline-code">/sync/v2/subscriptions</code> request returns a
     <code class="inline-code">404</code> <b>Not Found</b> status code with an
     empty JSON Response Body.
 </p>
@@ -343,13 +343,13 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample Response Body for a <span class="method get">GET</span>
-    <code class="inline-code">session/v2/subscriptions</code> request indicating
+    <code class="inline-code">sync/v2/subscriptions</code> request indicating
     that no subscription exists
 </p>
 <p>
     This response indicates a subscription does not exist the application backend
     should
-    <a href="/get-started/session/create-a-subscription">create a subscription</a>
+    <a href="/get-started/sync/create-a-subscription">create a subscription</a>
     that can be used with the area.
 </p>
 
@@ -367,7 +367,7 @@ Console.WriteLine(response.Content);
                     y="0px"
                     viewBox="0 0 482.204 482.204"
                     style="enable-background: new 0 0 482.204 482.204"
-                    xml:space="pclaim"
+                    xml:space="preserve"
                 >
                     <g>
                         <path
@@ -400,7 +400,7 @@ Console.WriteLine(response.Content);
                 </svg>
             </div>
             <div>
-                <a href="/get-started/session/create-a-subscription"
+                <a href="/get-started/sync/create-a-subscription"
                     >Create a Subscription (if one does not exist)</a
                 >
             </div>
@@ -416,7 +416,7 @@ Console.WriteLine(response.Content);
                     y="0px"
                     viewBox="0 0 482.204 482.204"
                     style="enable-background: new 0 0 482.204 482.204"
-                    xml:space="pclaim"
+                    xml:space="preserve"
                 >
                     <g>
                         <path
@@ -449,7 +449,7 @@ Console.WriteLine(response.Content);
                 </svg>
             </div>
             <div>
-                <a href="/get-started/session/area-capabilities"
+                <a href="/get-started/sync/area-capabilities"
                     >Determine Area Capabilities</a
                 >
             </div>

@@ -7,7 +7,7 @@
 
 <p>
     Below is a sample <span class="method post">POST</span>
-    <code class="inline-code">/scan/v2/startscanning</code> call to the Scan API
+    <code class="inline-code">/read/v2/startreading</code> call to the Scan API
     that contains the required components:
     <ul>
         <li>Resource URL <code class=inline-code>https://</code></li>
@@ -43,7 +43,7 @@
     <div class="copied-popup hidden">Copied!</div>
     <div class="code-content dark">
         <pre><code class="language-bash">
-curl --area -g --request POST 'https://{{baseurl}}/scan/v2/startscanning' \
+curl --area -g --request POST 'https://{{baseurl}}/read/v2/startreading' \
 --header 'area-id: {{areaId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -70,11 +70,11 @@ curl --area -g --request POST 'https://{{baseurl}}/scan/v2/startscanning' \
     </li>
     <li>
         The end path of the Resource URL is comprised of the API name (
-        <code class="inline-code">scan</code>) followed by the endpoint name.
+        <code class="inline-code">read</code>) followed by the endpoint name.
         For example, the end path
-        <code class="inline-code">startscanning</code> contains the API
-        <code class="inline-code">scan</code> followed by the endpoint
-        <code class="inline-code">startscanning</code>.
+        <code class="inline-code">startreading</code> contains the API
+        <code class="inline-code">read</code> followed by the endpoint
+        <code class="inline-code">startreading</code>.
     </li>
 </ul>
 <div class="alert-section info-alert">
@@ -108,8 +108,8 @@ curl --area -g --request POST 'https://{{baseurl}}/scan/v2/startscanning' \
 <h2 id="request-bodies-2">Request Bodies</h2>
 <p>
     The Request Body for both a
-    <code class="inline-code">/scan/v2/startscanning</code> and
-    <code class="inline-code">/scan/v2/stopscanning</code> request are the same,
+    <code class="inline-code">/read/v2/startreading</code> and
+    <code class="inline-code">/read/v2/stopreading</code> request are the same,
     only providing a <code class="inline-code">attachmentId</code> of the
     device.
 </p>
@@ -129,7 +129,7 @@ curl --area -g --request POST 'https://{{baseurl}}/scan/v2/startscanning' \
                     y="0px"
                     viewBox="0 0 482.204 482.204"
                     style="enable-background: new 0 0 482.204 482.204"
-                    xml:space="pclaim"
+                    xml:space="preserve"
                 >
                     <g>
                         <path
@@ -162,7 +162,7 @@ curl --area -g --request POST 'https://{{baseurl}}/scan/v2/startscanning' \
                 </svg>
             </div>
             <div>
-                <a href="/scan/scan-messages-overview">Messages Overview</a>
+                <a href="/read/read-messages-overview">Messages Overview</a>
             </div>
         </div>
     </ul>

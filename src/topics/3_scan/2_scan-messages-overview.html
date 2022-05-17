@@ -10,7 +10,7 @@
     <code class="inline-code">Message Types</code>. Only the most common ones
     encountered when sending Scan API requests are described.
 </p>
-<h2 id="scandevicestatus">ScanDeviceStatus</h2>
+<h2 id="readdevicestatus">ScanDeviceStatus</h2>
 <h3 id="devicestatus-as-online">
     <code class="inline-code">DeviceStatus</code> as
     <code class="inline-code">Online</code>
@@ -39,7 +39,7 @@
 
 <p class="caption">
     <code class="inline-code">ScanDeviceStatus</code> Service Bus Message Body
-    showing the scan device is <code class="inline-code">Online</code> and not
+    showing the read device is <code class="inline-code">Online</code> and not
     currently 'In Use'
 </p>
 <div class="alert-section info-alert">
@@ -48,7 +48,7 @@
             <strong>Note</strong>:
             <code class="inline-code">"DeviceInUse": "false"</code>
             is the default value when no application instance has claimed the
-            device ( <code class="inline-code">/scan/v2/startscanning</code>).
+            device ( <code class="inline-code">/read/v2/startreading</code>).
         </p>
     </div>
 </div>
@@ -83,7 +83,7 @@
 
 <p class="caption">
     <code class="inline-code">ScanDeviceStatus</code> Service Bus Message Body
-    showing the scan device is
+    showing the read device is
     <code class="inline-code">PoweredOff</code>
 </p>
 <h3 id="deviceinuse-as-true">
@@ -91,24 +91,24 @@
     <code class="inline-code">True</code>
 </h3>
 <p>
-    A attachment to a scan device (
-    <code class="inline-code">/session/v2/attachments</code>) is not enough to
-    receive unsolicited scan data from that device. The application backend
-    needs to tell the device it wants to receive scan data 'exclusively' by
-    sending a <code class="inline-code">/scan/v2/startscanning</code> request.
+    A attachment to a read device (
+    <code class="inline-code">/sync/v2/attachments</code>) is not enough to
+    receive unsolicited read data from that device. The application backend
+    needs to tell the device it wants to receive read data 'exclusively' by
+    sending a <code class="inline-code">/read/v2/startreading</code> request.
 </p>
 
 <div class="alert-section info-alert">
     <div class="">
-        'Exclusively' using a device means it is locked and will only send scan
+        'Exclusively' using a device means it is locked and will only send read
         data to application backend that made the request.
     </div>
 </div>
 
 <p>
     Upon making a
-    <code class="inline-code">/scan/v2/startscanning</code> request, the Scan
-    API acknowledges the request with a synchronous message, returning a
+    <code class="inline-code">/read/v2/startreading</code> request, the Scan API
+    acknowledges the request with a synchronous message, returning a
     <code class="inline-code">2xx</code> success status code (as seen in a tool
     like Postman) and an <code class="inline-code">accessExpiryTime</code> in
     the Response Body.
@@ -131,17 +131,17 @@
 </p>
 <p>
     Unless explicitly released through a
-    <code class="inline-code">/scan/v2/stopscanning</code> request, exclusive
+    <code class="inline-code">/read/v2/stopreading</code> request, exclusive
     access to the device will automatically release once the
     <code class="inline-code">accessExpiryTime</code> has been reached. This
     date-time is <strong>5 minutes</strong> from the time the
-    <code class="inline-code">/scan/v2/startscanning</code> request was made.
+    <code class="inline-code">/read/v2/startreading</code> request was made.
 </p>
 <div class="alert-section info-alert">
     <div class="">
         <p>
             Subsequent calls to
-            <code class="inline-code">/scan/v2/startscanning</code> will extend
+            <code class="inline-code">/read/v2/startreading</code> will extend
             the <code class="inline-code">accessExpiryTime</code> by five
             minutes from the time of the request. Repeated requests can be used
             to maintain exclusive access for a longer period.
@@ -162,7 +162,7 @@
     <code class="inline-code">true</code> which indicates that the device is now
     exclusively claimed and now may begin sending messages to the airline
     backend that made the
-    <code class="inline-code">/scan/v2/startscanning</code> request.
+    <code class="inline-code">/read/v2/startreading</code> request.
 </p>
 
 <div class="method-example atom-one-light">
@@ -186,9 +186,9 @@
         <p>
             The same
             <code class="inline-code">ScanDeviceStatus</code> message is sent to
-            all subscribers with an active attachment to the scan device to
+            all subscribers with an active attachment to the read device to
             indicate the device can no longer be given a
-            <code class="inline-code">/scan/v2/startscanning</code>
+            <code class="inline-code">/read/v2/startreading</code>
             request.
         </p>
     </div>
@@ -199,7 +199,7 @@
 </h3>
 <p>
     When input from the device is no longer needed, make a
-    <code class="inline-code">/scan/v2/stopscanning</code> request to release
+    <code class="inline-code">/read/v2/stopreading</code> request to release
     exclusive access to the device so it can be used by other application
     backends.
 </p>
@@ -212,11 +212,11 @@
 <p>
     An asynchronous
     <code class="inline-code">ScanDeviceStatus</code> message is sent to all
-    subscribers with an active attachment to the scan device to indicate the
+    subscribers with an active attachment to the read device to indicate the
     device is no longer exclusively being used (<code class="inline-code"
         >"DeviceInUse": "false"</code
     >) and is available to successfully receive a
-    <code class="inline-code">/scan/v2/startscanning</code> request.
+    <code class="inline-code">/read/v2/startreading</code> request.
 </p>
 
 <div class="method-example atom-one-light">
@@ -237,14 +237,14 @@
 </p>
 <h2 id="barcoderead">BarcodeRead</h2>
 <p>
-    When the device executes a scan, a message is sent to the Service Bus
-    containing data in the Message Body determined by the type of scan. The type
+    When the device executes a read, a message is sent to the Service Bus
+    containing data in the Message Body determined by the type of read. The type
     of device determines the
     <code class="inline-code">MessageType</code>, as well as the type of data
     returned.
 </p>
 <p>
-    For example, an FIS device that scans a barcode returns a
+    For example, an FIS device that reads a barcode returns a
     <code class="inline-code">BarcodeRead</code> message on the Service Bus,
     providing the string that contains the barcode (
     <code class="inline-code">ScanCodeData</code>) as well as the type of
@@ -266,11 +266,11 @@
 
 <p class="caption">
     <code class="inline-code">BarcodeRead</code> Service Bus Message Body that
-    returned barcode data scanned by an FIS device
+    returned barcode data readned by an FIS device
 </p>
 <h2 id="magneticcardread">MagneticCardRead</h2>
 <p>
-    An FBS device that scans the magnetic strip on the back of a payment card
+    An FBS device that reads the magnetic strip on the back of a payment card
     returns a
     <code class="inline-code">MagneticCardRead</code> message on the Service
     Bus, providing the <code class="inline-code">CardType</code> and
@@ -294,7 +294,7 @@
 
 <p class="caption">
     <code class="inline-code">MagneticCardRead</code> Service Bus Message Body
-    that returned credit card data scanned by an FBS device
+    that returned credit card data readned by an FBS device
 </p>
 <div class="alert-section info-alert">
     <div class="">
@@ -308,9 +308,9 @@
 </div>
 <h2 id="traveldocumentread">TravelDocumentRead</h2>
 <p>
-    An HHS device that scans a passport returns a
+    An HHS device that reads a passport returns a
     <code class="inline-code">TravelDocumentRead</code> message on the Service
-    Bus, providing the scanned passport data as
+    Bus, providing the readned passport data as
     <code class="inline-code">ScanData</code> in the Message Body.
 </p>
 
@@ -328,7 +328,7 @@
 
 <p class="caption">
     <code class="inline-code">TravelDocumentRead</code> Service Bus Message Body
-    that returned passport <code class="inline-code">ScanData</code> scanned by
+    that returned passport <code class="inline-code">ScanData</code> readned by
     an HHS device
 </p>
 
@@ -346,7 +346,7 @@
                     y="0px"
                     viewBox="0 0 482.204 482.204"
                     style="enable-background: new 0 0 482.204 482.204"
-                    xml:space="pclaim"
+                    xml:space="preserve"
                 >
                     <g>
                         <path
@@ -379,7 +379,7 @@
                 </svg>
             </div>
             <div>
-                <a href="/scan/start-scanning">Start Scanning</a>
+                <a href="/read/start-reading">Start Scanning</a>
             </div>
         </div>
     </ul>

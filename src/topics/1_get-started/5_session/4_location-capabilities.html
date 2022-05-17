@@ -7,7 +7,7 @@
 
 <p>
     The <span class="method post">POST</span>
-    <code class="inline-code">/site/v2/areas/{areaId}</code> request
+    <code class="inline-code">/environment/v2/areas/{areaId}</code> request
     provides a way for application backends to determine what devices are configured
     at a area and their capabilities.
 </p>
@@ -61,7 +61,7 @@
     </div>
 
 <div id="bash-get-area-capabilities" class="tabcontent dark"><pre> <code>
-curl --area -g --request GET 'https://{{baseurl}}/site/v2/areas/{{areaId}}' \
+curl --area -g --request GET 'https://{{baseurl}}/environment/v2/areas/{{areaId}}' \
 --header 'area-id: {{areaId}}'
 </code>
 </pre>
@@ -71,7 +71,7 @@ curl --area -g --request GET 'https://{{baseurl}}/site/v2/areas/{{areaId}}' \
 require "uri"
 require "net/http"
 
-url = URI("https://{{baseurl}}/site/v2/areas/{{areaId}}")
+url = URI("https://{{baseurl}}/environment/v2/areas/{{areaId}}")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -88,7 +88,7 @@ puts response.read_body
 <div id="Python-get-area-capabilities" class="tabcontent dark"><pre> <code>
 import requests
 
-url = "https://{{baseurl}}/site/v2/areas/{{areaId}}"
+url = "https://{{baseurl}}/environment/v2/areas/{{areaId}}"
 
 payload={}
 headers = {
@@ -108,7 +108,7 @@ print(response.text)
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/site/v2/areas/%7B%7BareaId%7D%7D',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/environment/v2/areas/%7B%7BareaId%7D%7D',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -131,7 +131,7 @@ echo $response;
 
 <div id="Java-get-area-capabilities" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.get("https://{{baseurl}}/site/v2/areas/{{areaId}}")
+HttpResponse<String> response = Unirest.get("https://{{baseurl}}/environment/v2/areas/{{areaId}}")
     .header("area-id", "{{areaId}}")
     .asString();
 </code>
@@ -142,7 +142,7 @@ HttpResponse<String> response = Unirest.get("https://{{baseurl}}/site/v2/areas/{
 var request = require('request');
 var options = {
     'method': 'GET',
-    'url': 'https://{{baseurl}}/site/v2/areas/{{areaId}}',
+    'url': 'https://{{baseurl}}/environment/v2/areas/{{areaId}}',
     'headers': {
     'area-id': '{{areaId}}'
     }
@@ -166,7 +166,7 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/site/v2/areas/%7B%7BareaId%7D%7D"
+    url := "https://%7B%7Bbaseurl%7D%7D/environment/v2/areas/%7B%7BareaId%7D%7D"
     method := "GET"
 
     client := &http.Client {
@@ -198,7 +198,7 @@ func main() {
 </div>
 
 <div id=".NET-get-area-capabilities" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/site/v2/areas/{{areaId}}");
+var client = new RestClient("https://{{baseurl}}/environment/v2/areas/{{areaId}}");
 client.Timeout = -1;
 var request = new RestRequest(Method.GET);
 request.AddHeader("area-id", "{{areaId}}");
@@ -211,7 +211,7 @@ Console.WriteLine(response.Content);
 </div>
 
 <p class="caption">Sample <span class="method post">POST</span>
-    <code class="inline-code">/site/v2/reservation</code> request containing the
+    <code class="inline-code">/environment/v2/reservation</code> request containing the
     <code class="inline-code">AreaId</code> passed from the client app</p>
 
 
@@ -284,7 +284,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample Response Body for <span class="method post">POST</span>
-    <code class="inline-code">/site/v2/areas/{areaId}</code> request.
+    <code class="inline-code">/environment/v2/areas/{areaId}</code> request.
 </p>
 
 
@@ -305,7 +305,7 @@ Console.WriteLine(response.Content);
 </p>
 <p>
     The application backend then uses these IDs to connect to devices at the
-    area. For example, to connect to an MFP through a <span class="method post">POST</span> <code class="inline-code">/session/v2/attachments</code> request, you must
+    area. For example, to connect to an MFP through a <span class="method post">POST</span> <code class="inline-code">/sync/v2/attachments</code> request, you must
     pass the <code class="inline-code">DeviceId</code> in the Request Body.
 </p>
 <h3 id="capabilities"><code class="inline-code">capabilities</code></h3>
@@ -365,7 +365,7 @@ Console.WriteLine(response.Content);
                     y="0px"
                     viewBox="0 0 482.204 482.204"
                     style="enable-background: new 0 0 482.204 482.204"
-                    xml:space="pclaim"
+                    xml:space="preserve"
                 >
                     <g>
                         <path
@@ -398,7 +398,7 @@ Console.WriteLine(response.Content);
                 </svg>
             </div>
             <div>
-                <a href="/get-started/session/connect-to-a-device"
+                <a href="/get-started/sync/connect-to-a-device"
                     >Connect to a device</a
                 >
             </div>

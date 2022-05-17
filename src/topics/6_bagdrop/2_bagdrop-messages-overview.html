@@ -28,12 +28,12 @@
     <li>
         after a
         <code class="inline-code">/dispatchitem/v2/getitem</code> request is
-        sent, which initiates the dispatch process and claims the GRC for
+        sent, which initiates the dispatch process and reserves the GRC for
         exclusive access by the application backend. The
         <code class="inline-code">DeviceInUse</code> property changes from
         <code class="inline-code">false</code> (the value displayed after
         sending the <span class="method post">POST</span
-        ><code class="inline-code"> /session/v2/attachments</code> request) to
+        ><code class="inline-code"> /sync/v2/attachments</code> request) to
         <code class="inline-code">true</code>.
     </li>
 </ul>
@@ -275,7 +275,7 @@
     </li>
     <li>
         <p>
-            A <code class="inline-code">ReturnBagResponse</code> is received
+            A <code class="inline-code">AdjustItemResponse</code> is received
             after a
             <code class="inline-code">/dispatchitem/v2/returnitem</code>
             request is sent to return the item to the
@@ -322,7 +322,7 @@
     "IsSuccess":false,
     "Error":{
         "ErrorCode":"UnknownError",
-        "Message":"ReturnBag failed, device status: . Bag cannot be Returned."
+        "Message":"AdjustItem failed, device status: . Bag cannot be Returned."
     }
 }
                     </code>
@@ -331,7 +331,7 @@
 
 <p class="caption">
     Sample
-    <code class="inline-code">ReturnBagResponse</code> Message indicating the
+    <code class="inline-code">AdjustItemResponse</code> Message indicating the
     reason the request failed
 </p>
 <h2 id="dispatchitemtransactiontimeout">ConveyorTransactionTimeout</h2>
@@ -391,7 +391,7 @@
                     y="0px"
                     viewBox="0 0 482.204 482.204"
                     style="enable-background: new 0 0 482.204 482.204"
-                    xml:space="pclaim"
+                    xml:space="preserve"
                 >
                     <g>
                         <path

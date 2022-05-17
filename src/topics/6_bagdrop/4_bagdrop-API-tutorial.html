@@ -87,12 +87,12 @@
             <li>Send a Get Access token request.</li>
             <li>
                 Send a <span class="method post">POST</span>
-                <code class="inline-code">/session/v2/subscriptions</code>
+                <code class="inline-code">/sync/v2/subscriptions</code>
                 request.
             </li>
             <li>
                 Send a <span class="method post">POST</span>
-                <code class="inline-code">/site/v2/claims</code>
+                <code class="inline-code">/environment/v2/claims</code>
                 request.
             </li>
         </ul>
@@ -175,15 +175,15 @@
         <ol>
             <li>
                 In Postman, send a
-                <code class="inline-code">/session/v2/attachments</code> request
-                to connect to the GRC.
+                <code class="inline-code">/sync/v2/attachments</code> request to
+                connect to the GRC.
                 <ul>
                     <li>
                         After connecting to a device, an attachment
                         <code class="inline-code">expiryTime</code> is returned
                         in the Response Body set to
                         <strong>30 minutes</strong> from the time the
-                        <code class="inline-code">session/v2/attachments</code>
+                        <code class="inline-code">sync/v2/attachments</code>
                         request was made.
                     </li>
                 </ul>
@@ -730,7 +730,7 @@
             its 30-minute
             <code class="inline-code">expiryTime</code>
             set after the <span class="method post">POST</span
-            ><code class="inline-code"> /session/v2/attachments</code>
+            ><code class="inline-code"> /sync/v2/attachments</code>
             was made.
         </p>
 
@@ -754,7 +754,7 @@
         </p>
         <p>
             The resolution is to simply send another
-            <code class="inline-code">session/v2/attachments</code>
+            <code class="inline-code">sync/v2/attachments</code>
             request to create a new attachment and receive a new
             <code class="inline-code">expiryTime</code>.
         </p>
@@ -916,7 +916,7 @@
                     </li>
                     <li>
                         A
-                        <code class="inline-code">ReturnBagResponse</code>
+                        <code class="inline-code">AdjustItemResponse</code>
                         message displays on the Service Bus which indicates the
                         request to return the item to the
                         <code class="inline-code">Entry</code>
@@ -1097,7 +1097,7 @@
                     y="0px"
                     viewBox="0 0 482.204 482.204"
                     style="enable-background: new 0 0 482.204 482.204"
-                    xml:space="pclaim"
+                    xml:space="preserve"
                 >
                     <g>
                         <path
@@ -1144,7 +1144,7 @@
                     y="0px"
                     viewBox="0 0 482.204 482.204"
                     style="enable-background: new 0 0 482.204 482.204"
-                    xml:space="pclaim"
+                    xml:space="preserve"
                 >
                     <g>
                         <path
@@ -1177,7 +1177,7 @@
                 </svg>
             </div>
             <div>
-                <a href="/scan/scan-overview">Scan API</a>
+                <a href="/read/read-overview">Scan API</a>
             </div>
         </div>
 
@@ -1192,7 +1192,7 @@
                     y="0px"
                     viewBox="0 0 482.204 482.204"
                     style="enable-background: new 0 0 482.204 482.204"
-                    xml:space="pclaim"
+                    xml:space="preserve"
                 >
                     <g>
                         <path
@@ -1239,7 +1239,7 @@
                     y="0px"
                     viewBox="0 0 482.204 482.204"
                     style="enable-background: new 0 0 482.204 482.204"
-                    xml:space="pclaim"
+                    xml:space="preserve"
                 >
                     <g>
                         <path

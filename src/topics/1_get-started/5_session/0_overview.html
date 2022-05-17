@@ -1,12 +1,12 @@
 <div class="title-box">
-    <h1 class="topic-title">Session API</h1>
+    <h1 class="topic-title">Sync API</h1>
     <div class="action-statement">
-        Read a brief overview of the Session API endpoints
+        Read a brief overview of the Sync API endpoints
     </div>
 </div>
 
 <p>
-    The <strong>Session API</strong> endpoints allow application backends to
+    The <strong>Sync API</strong> endpoints allow application backends to
     connect to devices configured in a CoreTech IoT environment and to receive
     those messages on an Azure Service Bus subscription.
 </p>
@@ -16,20 +16,20 @@
         <p>
             <strong>Reserve</strong> a area configured in the CoreTech IoT
             environment by sending a POST
-            <code class="inline-code">/site/v2/claims</code> request.
+            <code class="inline-code">/environment/v2/claims</code> request.
         </p>
     </li>
     <li>
         <p>
             <strong>Subscribe</strong> to the Azure Service Bus subscription for
             your application backend through a POST
-            <code class="inline-code">/session/v2/subscriptions</code> request.
+            <code class="inline-code">/sync/v2/subscriptions</code> request.
         </p>
     </li>
     <li>
         <p>
             <strong>Get Area Capabilities</strong> through a POST
-            <code class="inline-code">/site/v2/areas/{areaId}</code>
+            <code class="inline-code">/environment/v2/areas/{areaId}</code>
             request that returns list of devices at a area and their
             capabilities.
         </p>
@@ -38,7 +38,7 @@
         <p>
             Create an attachment to IoT devices to receive messages on the
             subscription through a POST
-            <code class="inline-code">/session/v2/attachments</code> request.
+            <code class="inline-code">/sync/v2/attachments</code> request.
         </p>
     </li>
 </ul>
@@ -46,19 +46,19 @@
     <div class="">
         <p>
             The Get Area Capabilities endpoint (
-            <code class="inline-code">/site/v2/areas/{areaId}</code>) is not
-            serviced by the Session API. It is serviced by the Area API.
-            However, it fits logically in the Session API flow at the time this
+            <code class="inline-code">/environment/v2/areas/{areaId}</code>) is
+            not serviced by the Sync API. It is serviced by the Area API.
+            However, it fits logically in the Sync API flow at the time this
             documentation was written.
         </p>
 
         <p>
             Also, note that the Reserve (
-            <code class="inline-code">/site/v2/claims</code>) and Get Area
-            Capabilities endpoints both contain the
-            <code class="inline-code">/site</code> in their end paths.
-            <code class="inline-code">/site</code> is just a way of logically
-            grouping these two endpoints and is not an API.
+            <code class="inline-code">/environment/v2/claims</code>) and Get
+            Area Capabilities endpoints both contain the
+            <code class="inline-code">/environment</code> in their end paths.
+            <code class="inline-code">/environment</code> is just a way of
+            logically grouping these two endpoints and is not an API.
         </p>
     </div>
 </div>
@@ -94,7 +94,7 @@
                     y="0px"
                     viewBox="0 0 482.204 482.204"
                     style="enable-background: new 0 0 482.204 482.204"
-                    xml:space="pclaim"
+                    xml:space="preserve"
                 >
                     <g>
                         <path
@@ -127,7 +127,7 @@
                 </svg>
             </div>
             <div>
-                <a href="/get-started/session/claim-a-area">Reserve a Area</a>
+                <a href="/get-started/sync/claim-a-area">Reserve a Area</a>
             </div>
         </div>
     </ul>

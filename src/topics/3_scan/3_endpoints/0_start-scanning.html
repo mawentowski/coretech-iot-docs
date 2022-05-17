@@ -1,19 +1,19 @@
 <div class="title-box">
     <h1 class="topic-title">Start Scanning</h1>
     <div class="action-statement">
-        Initiate scanning on a device
+        Initiate reading on a device
     </div>
 </div>
 
 Send a <span class="method post">POST</span>
-<code class="inline-code">/scan/v2/startscanning</code> request to gain exclusive access to a device so it can start
+<code class="inline-code">/read/v2/startreading</code> request to gain exclusive access to a device so it can start
 reading travel documents.
 
 <h2>Make an API Call</h2>
 
 <div class="alert-section info-alert">
     <div class="">
-        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="/scan/scan-api-call-components">API Call Components</a>.
+        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="/read/read-api-call-components">API Call Components</a>.
 
     </div>
 </div>
@@ -23,14 +23,14 @@ reading travel documents.
 <div class="code-section with-tabs">
     <div class="code-section-header">
         <div class="code-tabs">
-            <button class="tablinks" onclick="openTab(event, 'bash-start-scanning')" id="defaultOpen">curl</button>
-            <button class="tablinks" onclick="openTab(event, 'Ruby-start-scanning')">Ruby</button>
-            <button class="tablinks" onclick="openTab(event, 'Python-start-scanning')">Python</button>
-            <button class="tablinks" onclick="openTab(event, 'PHP-start-scanning')">PHP</button>
-            <button class="tablinks" onclick="openTab(event, 'Java-start-scanning')">Java</button>
-            <button class="tablinks" onclick="openTab(event, 'Node-start-scanning')">Node</button>
-            <button class="tablinks" onclick="openTab(event, 'Go-start-scanning')">Go</button>
-            <button class="tablinks" onclick="openTab(event, '.NET-start-scanning')">.NET</button>
+            <button class="tablinks" onclick="openTab(event, 'bash-start-reading')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby-start-reading')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python-start-reading')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP-start-reading')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java-start-reading')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node-start-reading')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go-start-reading')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET-start-reading')">.NET</button>
         </div>
         <div class="copy-code-btn-container">
             <button class="copy-code-btn">
@@ -54,8 +54,8 @@ reading travel documents.
         Copied!
     </div>
 
-<div id="bash-start-scanning" class="tabcontent dark"><pre> <code>
-curl --area -g --request POST 'https://{{baseurl}}/scan/v2/startscanning' \
+<div id="bash-start-reading" class="tabcontent dark"><pre> <code>
+curl --area -g --request POST 'https://{{baseurl}}/read/v2/startreading' \
 --header 'area-id: {{areaId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -65,12 +65,12 @@ curl --area -g --request POST 'https://{{baseurl}}/scan/v2/startscanning' \
 </pre>
 </div>
 
-<div id="Ruby-start-scanning" class="tabcontent dark"><pre><code>
+<div id="Ruby-start-reading" class="tabcontent dark"><pre><code>
 require "uri"
 require "json"
 require "net/http"
 
-url = URI("https://{{baseurl}}/scan/v2/startscanning")
+url = URI("https://{{baseurl}}/read/v2/startreading")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -88,11 +88,11 @@ puts response.read_body
 </pre>
 </div>
 
-<div id="Python-start-scanning" class="tabcontent dark"><pre> <code>
+<div id="Python-start-reading" class="tabcontent dark"><pre> <code>
 import requests
 import json
 
-url = "https://{{baseurl}}/scan/v2/startscanning"
+url = "https://{{baseurl}}/read/v2/startreading"
 
 payload = json.dumps({
     "attachmentId": ""
@@ -109,13 +109,13 @@ print(response.text)
 </pre>
 </div>
 
-<div id="PHP-start-scanning" class="tabcontent dark"><pre> <code>
+<div id="PHP-start-reading" class="tabcontent dark"><pre> <code>
 <?php
 
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/scan/v2/startscanning',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/read/v2/startreading',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -140,9 +140,9 @@ echo $response;
 </pre>
 </div>
 
-<div id="Java-start-scanning" class="tabcontent dark"><pre><code>
+<div id="Java-start-reading" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("https://{{baseurl}}/scan/v2/startscanning")
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/read/v2/startreading")
     .header("area-id", "{{areaId}}")
     .header("Content-Type", "application/json")
     .body("{\r\n    \"attachmentId\": \"\"\r\n}")
@@ -151,11 +151,11 @@ HttpResponse<String> response = Unirest.post("https://{{baseurl}}/scan/v2/starts
 </pre>
 </div>
 
-<div id="Node-start-scanning" class="tabcontent dark"><pre><code>
+<div id="Node-start-reading" class="tabcontent dark"><pre><code>
 var request = require('request');
 var options = {
     'method': 'POST',
-    'url': 'https://{{baseurl}}/scan/v2/startscanning',
+    'url': 'https://{{baseurl}}/read/v2/startreading',
     'headers': {
     'area-id': '{{areaId}}',
     'Content-Type': 'application/json'
@@ -173,7 +173,7 @@ request(options, function (error, response) {
 </pre>
 </div>
 
-<div id="Go-start-scanning" class="tabcontent dark"><pre><code>
+<div id="Go-start-reading" class="tabcontent dark"><pre><code>
 ppackage main
 
 import (
@@ -185,7 +185,7 @@ import (
 
 func main() {
 
-  url := "https://%7B%7Bbaseurl%7D%7D/scan/v2/startscanning"
+  url := "https://%7B%7Bbaseurl%7D%7D/read/v2/startreading"
   method := "POST"
 
   payload := strings.NewReader(`{`+"
@@ -223,8 +223,8 @@ func main() {
 </pre>
 </div>
 
-<div id=".NET-start-scanning" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/scan/v2/startscanning");
+<div id=".NET-start-reading" class="tabcontent dark"><pre><code>
+var client = new RestClient("https://{{baseurl}}/read/v2/startreading");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
 request.AddHeader("area-id", "{{areaId}}");
@@ -245,12 +245,12 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample <span class="method post">POST</span>
-    <code class="inline-code">/scan/v2/startscanning</code> request to claim an HHS device for exclusive access so it can start scanning ID cards</p>
+    <code class="inline-code">/read/v2/startreading</code> request to reserve an HHS device for exclusive access so it can start reading ID cards</p>
 
 <h2>Request Body</h4>
 
 <p>
-    To successfully make the request, you must include the <code class="inline-code">attachmentId</code> of the device you wish to claim and start scanning.
+    To successfully make the request, you must include the <code class="inline-code">attachmentId</code> of the device you wish to reserve and start reading.
 </p>
 
 
@@ -268,7 +268,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample Request Body for <span class="method post">POST</span>
-    <code class="inline-code">/scan/v2/startscanning</code> request that provides a <code class="inline-code">attachmentId</code> of the device you wish to gain access to
+    <code class="inline-code">/read/v2/startreading</code> request that provides a <code class="inline-code">attachmentId</code> of the device you wish to gain access to
 </p>
 
 
@@ -278,7 +278,7 @@ Console.WriteLine(response.Content);
 
 <p>
     Upon making a
-    <code class="inline-code">/scan/v2/startscanning</code> request, the Scan
+    <code class="inline-code">/read/v2/startreading</code> request, the Scan
     API acknowledges the request with a synchronous message, returning a
     <code class="inline-code">2xx</code> success status code (as seen in a tool
     like Postman) and an <code class="inline-code">accessExpiryTime</code> in
@@ -302,17 +302,17 @@ Console.WriteLine(response.Content);
 </p>
 <p>
     Unless explicitly released through a
-    <code class="inline-code">/scan/v2/stopscanning</code> request, exclusive
+    <code class="inline-code">/read/v2/stopreading</code> request, exclusive
     access to the device will automatically release once the
     <code class="inline-code">accessExpiryTime</code> has been reached. This
     date-time is <strong>5 minutes</strong> from the time the
-    <code class="inline-code">/scan/v2/startscanning</code> request was made.
+    <code class="inline-code">/read/v2/startreading</code> request was made.
 </p>
 <div class="alert-section info-alert">
     <div class="">
         <p>
             Subsequent calls to
-            <code class="inline-code">/scan/v2/startscanning</code> will extend
+            <code class="inline-code">/read/v2/startreading</code> will extend
             the <code class="inline-code">accessExpiryTime</code> by five
             minutes from the time of the request. Repeated requests can be used
             to maintain exclusive access for a longer period.
@@ -341,7 +341,7 @@ Console.WriteLine(response.Content);
                     y="0px"
                     viewBox="0 0 482.204 482.204"
                     style="enable-background: new 0 0 482.204 482.204"
-                    xml:space="pclaim"
+                    xml:space="preserve"
                 >
                     <g>
                         <path
@@ -374,7 +374,7 @@ Console.WriteLine(response.Content);
                 </svg>
             </div>
             <div>
-                <a href="/scan/stop-scanning"
+                <a href="/read/stop-reading"
                     >Stop Scanning</a
                 >
             </div>

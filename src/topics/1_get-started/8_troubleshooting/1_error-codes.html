@@ -66,8 +66,8 @@
 <ul>
     <li>
         when attempting to connect to, or interact with, a device when a
-        <code class="inline-code">session/v2/subscriptions</code> request was
-        made unsuccessfully during this session:
+        <code class="inline-code">sync/v2/subscriptions</code> request was made
+        unsuccessfully during this session:
     </li>
 </ul>
 <div class="method-example atom-one-light">
@@ -151,8 +151,8 @@
     <li>
         If the error says <code class="inline-code">SubscriptionId</code>, then
         no subscription exists. Simply send a
-        <code class="inline-code">session/v2/subscriptions</code> request to
-        create and receive details for a new subscription.
+        <code class="inline-code">sync/v2/subscriptions</code> request to create
+        and receive details for a new subscription.
     </li>
     <li>
         If the error says <code class="inline-code">attachmentId</code> with a
@@ -194,11 +194,11 @@
     After connecting to a device, an attachment
     <code class="inline-code">expiryTime</code> is returned in the Response Body
     set to <strong>30 minutes</strong> from the time the
-    <code class="inline-code">session/v2/attachments</code> request was made.
+    <code class="inline-code">sync/v2/attachments</code> request was made.
 </p>
 <p>
     The resolution is to simply send another
-    <code class="inline-code">session/v2/attachments</code> request.
+    <code class="inline-code">sync/v2/attachments</code> request.
 </p>
 <h3 id="no-attachment-exists">No Connection Exists</h3>
 <p>
@@ -228,11 +228,11 @@
     After connecting to a device, an attachment
     <code class="inline-code">expiryTime</code> is returned in the Response Body
     set to <strong>30 minutes</strong> from the time the
-    <code class="inline-code">session/v2/attachments</code> request was made.
+    <code class="inline-code">sync/v2/attachments</code> request was made.
 </p>
 <p>
     The resolution is to simply send another
-    <code class="inline-code">session/v2/attachments</code> request.
+    <code class="inline-code">sync/v2/attachments</code> request.
 </p>
 <h2 id="401-unauthorized">401 Unauthorized</h2>
 <p>
@@ -393,7 +393,7 @@
                     y="0px"
                     viewBox="0 0 482.204 482.204"
                     style="enable-background: new 0 0 482.204 482.204"
-                    xml:space="pclaim"
+                    xml:space="preserve"
                 >
                     <g>
                         <path

@@ -115,7 +115,7 @@ namespace CoreTech.IoTApi.ServiceBusConsole.Core.Model
 <h2 id="flex-apis-reorganization">CoreTech APIs Reorganization</h2>
 <p>
     Many of the endpoints associated with the V1 Areas API have been replaced by
-    the <strong>Session API</strong> endpoints, including requests to create
+    the <strong>Sync API</strong> endpoints, including requests to create
     Service Bus Subscriptions and connect to devices.
 </p>
 <p>
@@ -125,14 +125,14 @@ namespace CoreTech.IoTApi.ServiceBusConsole.Core.Model
 </p>
 <ul>
     <li>
-        For example, printing and scanning devices are now controlled by
+        For example, printing and reading devices are now controlled by
         <strong>Print API</strong> and <strong>Scan API</strong>, respectively.
     </li>
     <li>
-        The request to claim a device is now made to the Session API by sending
-        a <span class="method post">POST</span>
-        <code class="inline-code">/session/v2/attachments</code> request, and
-        you may use the <span class="method del">DEL</span> method to delete the
+        The request to claim a device is now made to the Sync API by sending a
+        <span class="method post">POST</span>
+        <code class="inline-code">/sync/v2/attachments</code> request, and you
+        may use the <span class="method del">DEL</span> method to delete the
         attachment (or reservation as referred to in V1).
     </li>
 </ul>
@@ -152,7 +152,7 @@ namespace CoreTech.IoTApi.ServiceBusConsole.Core.Model
             now send a
             <strong>DEL</strong>
             <code class="inline-code"
-                >/session/v2/subscriptions/{subscription_id}</code
+                >/sync/v2/subscriptions/{subscription_id}</code
             >
             request.
         </p>
@@ -165,8 +165,7 @@ namespace CoreTech.IoTApi.ServiceBusConsole.Core.Model
             >
             <code class="inline-code">/v1/device/release</code>), you send a
             request to delete the attachment <strong>DEL</strong>
-            <code class="inline-code"
-                >/session/v2/attachments/{attachment_id}</code
+            <code class="inline-code">/sync/v2/attachments/{attachment_id}</code
             >.
         </p>
     </li>
