@@ -1,13 +1,13 @@
 <div class="title-box">
-    <h1 class="topic-title">GateAccess API Call Components</h1>
+    <h1 class="topic-title">Access API Call Components</h1>
     <div class="action-statement">
-        Learn about the required components of a GateAccess API call
+        Learn about the required components of a Access API call
     </div>
 </div>
 
 <p>
     Below is a sample <span class="method post">POST</span>
-    <code class="inline-code">/gateaccess/v2/opengate</code> call to the GateAccess API
+    <code class="inline-code">/access/v2/openaccesspoint</code> call to the Access API
     that contains the required components:
     <ul>
         <li>Resource URL <code class=inline-code>https://</code></li>
@@ -43,7 +43,7 @@
     <div class="copied-popup hidden">Copied!</div>
     <div class="code-content dark">
         <pre><code class="language-bash">
-curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/opengate' \
+curl --location -g --request POST 'https://{{baseurl}}/access/v2/openaccesspoint' \
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -54,7 +54,7 @@ curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/opengate' \
     </div>
 </div>
 <p class="caption">
-    Sample GateAccess API call containing the required components to successfully make the call
+    Sample Access API call containing the required components to successfully make the call
 
 </p>
 <!-- <h2>Resource URLs</h2>
@@ -62,13 +62,13 @@ curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/opengate' \
 
 
 
-<h2 id="construct-a-gateaccess-request">Construct a GateAccess Request</h2> -->
+<h2 id="construct-a-access-request">Construct a Access Request</h2> -->
 <h2 id="resource-urls-3">Resource URLs</h2>
-<p>At present, GateAccess API Resource URLs are comprised of:</p>
+<p>At present, Access API Resource URLs are comprised of:</p>
 <ul>
     <li>
         A REST API standard method preceding the URL for accessing the endpoint.
-        In the case of the GateAccess API, the only method used is <span class="method post">POST</span>.
+        In the case of the Access API, the only method used is <span class="method post">POST</span>.
     </li>
     <li>
         A Base URL specific to the CoreTech IoT environment, sometimes displayed as
@@ -77,17 +77,17 @@ curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/opengate' \
     </li>
     <li>
         The end path of the Resource URL is comprised of the API name (
-        <code class="inline-code">gateaccess</code>) followed by the endpoint
+        <code class="inline-code">access</code>) followed by the endpoint
         name. For example, the end path
-        <code class="inline-code">gateaccess/v2/opengate</code> contains the API
-        <code class="inline-code">gateaccess</code> followed by the endpoint
-        <code class="inline-code">opengate</code>.
+        <code class="inline-code">access/v2/openaccesspoint</code> contains the API
+        <code class="inline-code">access</code> followed by the endpoint
+        <code class="inline-code">openaccesspoint</code>.
     </li>
 </ul>
 <div class="alert-section info-alert">
     <div class="">
         <p>
-            No path parameters are required when sending GateAccess API
+            No path parameters are required when sending Access API
             requests.
         </p>
     </div>
@@ -125,9 +125,9 @@ curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/opengate' \
         <ul>
             <li>
                 When sending a
-                <code class="inline-code">gateaccess/v2/acceptconsumer</code>
+                <code class="inline-code">access/v2/acceptconsumer</code>
                 or
-                <code class="inline-code">/gateaccess/v2/rejectpassenger</code>
+                <code class="inline-code">/access/v2/rejectpassenger</code>
                 request, a <code class="inline-code">Message</code> may be
                 included that displays on the device if the device is a Boarding
                 Gate Reader.
@@ -136,7 +136,7 @@ curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/opengate' \
         <p>
             If the device is a Multi-Technology Reader, the message is ignored. Below
             is an example
-            <code class="inline-code">gateaccess/v2/acceptconsumer</code>
+            <code class="inline-code">access/v2/acceptconsumer</code>
             request passing in <code class="inline-code">Message</code> data. It
             is possible to display the message on multiple lines as shown below:
         </p>
@@ -160,14 +160,14 @@ curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/opengate' \
         
         <p class="caption">
             Sample
-            <code class="inline-code">gateaccess/v2/acceptconsumer</code>
+            <code class="inline-code">access/v2/acceptconsumer</code>
             request including <code class="inline-code">Message</code> data to
             be displayed to the attendant
         </p>
         <ul>
             <li>
                 When sending a
-                <code class="inline-code">gateaccess/v2/acceptconsumer</code>
+                <code class="inline-code">access/v2/acceptconsumer</code>
                 request, <code class="inline-code">ReceiptData</code> may be
                 passed to a device printer to print a receipt for the passenger.
             </li>
@@ -195,7 +195,7 @@ curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/opengate' \
 
         <p class="caption">
             Sample
-            <code class="inline-code">/gateaccess/v2/acceptconsumer</code>
+            <code class="inline-code">/access/v2/acceptconsumer</code>
             Request Body that passes
             <code class="inline-code">ReceiptData</code> to be printed for the
             passenger
@@ -203,7 +203,7 @@ curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/opengate' \
         <ul>
             <li>
                 When sending a
-                <code class="inline-code">/gateaccess/v2/rejectpassenger</code>,
+                <code class="inline-code">/access/v2/rejectpassenger</code>,
                 you may specify if an
                 <code class="inline-code">Alarm</code> sounds.
             </li>
@@ -256,7 +256,7 @@ curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/opengate' \
                         </svg>
                     </div>
                     <div>
-                        <a href="/gateAccess/gateAccess-messages-overview">Service Bus Messages Overview</a>
+                        <a href="/access/access-messages-overview">Service Bus Messages Overview</a>
                     </div>
                 </div>
             </ul>

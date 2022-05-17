@@ -1,20 +1,20 @@
 <div class="title-box">
     <h1 class="topic-title">Device Processes</h1>
     <div class="action-statement">
-        Learn about the different scenarios of a boarding gate process
+        Learn about the different scenarios of a clearing personnel at an access
+        point.
     </div>
 </div>
 
-<h2 id="boarding-gate-reader-process">Magstripe Reader Process</h2>
+<h2 id="reader-process">Magstripe Reader Process</h2>
 <p>
-    The following is a summary of the boarding process when an attendant uses a
-    Magstripe Reader (MSR/BCR) to board passengers:
+    The following is a summary of the access process when an attendant uses a
+    Magstripe Reader (MSR/KPR) to board passengers:
 </p>
 <ul>
     <li>
-        The attendant overseeing the boarding process initiates boarding through
-        a
-        <code class="inline-code">/gateaccess/v2/opengate</code> request.
+        The attendant overseeing the access process initiates boarding through a
+        <code class="inline-code">/access/v2/openaccess</code> request.
     </li>
     <li>An attendant takes the entry pass from the passenger and scans it.</li>
     <li>
@@ -26,7 +26,7 @@
         <ul>
             <li>
                 A
-                <code class="inline-code">/gateaccess/v2/acceptconsumer</code>
+                <code class="inline-code">/access/v2/acceptconsumer</code>
                 request is sent. A green light displays, along with any
                 <code class="inline-code">Message</code> passed by the airline
                 in the Request Body (e.g., "Passenger Okay to Board").
@@ -43,7 +43,7 @@
         <ul>
             <li>
                 A
-                <code class="inline-code">/gateaccess/v2/rejectpassenger</code>
+                <code class="inline-code">/access/v2/rejectpassenger</code>
                 request is sent. A red light displays, along with any message
                 sent by the airline in the Request Body (e.g., "Passenger Not
                 Okay to Board").
@@ -61,23 +61,22 @@
     </li>
     <li>
         Once all passengers are boarding, the attendant sends a
-        <code class="inline-code">/gateaccess/v2/closeaccesspoint</code> request
-        that closes the boarding process.
+        <code class="inline-code">/access/v2/closeaccesspoint</code> request
+        that closes the access process.
     </li>
 </ul>
-<h2 id="self-boarding-gate-process">Multi-Technology Reader Process</h2>
+<h2 id="access-process">Multi-Technology Reader Process</h2>
 <p>
-    The following is a summary of the boarding process when the passenger scans
+    The following is a summary of the access process when the passenger scans
     his or her entry pass using at a Multi-Technology Reader.
 </p>
 <ul>
     <li>
-        The attendant overseeing the boarding process initiates boarding through
-        a
-        <code class="inline-code">/gateaccess/v2/opengate</code> request.
+        The attendant overseeing the access process initiates boarding through a
+        <code class="inline-code">/access/v2/openaccess</code> request.
     </li>
     <li>
-        The gate display turns green to indicate it is ready to process
+        The access display turns green to indicate it is ready to process
         passengers.
     </li>
     <li>The passenger scans his or her entry pass at the MTR.</li>
@@ -89,10 +88,10 @@
         <ul>
             <li>
                 A
-                <code class="inline-code">/gateaccess/v2/acceptconsumer</code>
-                request is sent. The gate opens, and the display shows a green
+                <code class="inline-code">/access/v2/acceptconsumer</code>
+                request is sent. The access opens, and the display shows a green
                 arrow indicating to the passenger they may pass through. The
-                gate then closes behind the passenger.
+                access point barrier then closes behind the passenger.
             </li>
         </ul>
     </li>
@@ -101,7 +100,7 @@
         <ul>
             <li>
                 A
-                <code class="inline-code">/gateaccess/v2/rejectpassenger</code>
+                <code class="inline-code">/access/v2/rejectpassenger</code>
                 request is sent. A red "X" displays, along with a message such
                 as "you cannot board, go see an attendant".
             </li>
@@ -114,8 +113,8 @@
     </li>
     <li>
         Once all passengers are boarding, the attendant sends a
-        <code class="inline-code">/gateaccess/v2/closeaccesspoint</code> request
-        that ends the boarding process.
+        <code class="inline-code">/access/v2/closeaccesspoint</code> request
+        that ends the access process.
     </li>
 </ul>
 <div class="continued-reading-section">
@@ -165,8 +164,8 @@
                 </svg>
             </div>
             <div>
-                <a href="/gateAccess/gateAccess-device-processes/open-gate"
-                    >Open Gate</a
+                <a href="/access/access-device-processes/open-access"
+                    >Open Access Barrier</a
                 >
             </div>
         </div>

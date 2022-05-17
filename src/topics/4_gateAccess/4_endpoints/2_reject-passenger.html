@@ -7,8 +7,8 @@
 
 <p>
     Send a
-    <span class="method post">POST</span> <code class="inline-code">/gateaccess/v2/rejectpassenger</code> request to
-    tell the GateAccess API that a passenger is not allowed to board and must
+    <span class="method post">POST</span> <code class="inline-code">/access/v2/rejectpassenger</code> request to
+    tell the Access API that a passenger is not allowed to board and must
     see an attendant. Send this request each time a passenger is processed
     unsuccessfully.
 </p>
@@ -19,7 +19,7 @@
 
 <div class="alert-section info-alert">
     <div class="">
-        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="/gateAccess/gateAccess-api-call-components">API Call Components</a>.
+        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="/access/access-api-call-components">API Call Components</a>.
 
     </div>
 </div>
@@ -61,7 +61,7 @@
     </div>
 
 <div id="bash-reject-passenger" class="tabcontent dark"><pre> <code>
-curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/rejectpassenger' \
+curl --location -g --request POST 'https://{{baseurl}}/access/v2/rejectpassenger' \
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -79,7 +79,7 @@ require "uri"
 require "json"
 require "net/http"
 
-url = URI("https://{{baseurl}}/gateaccess/v2/rejectpassenger")
+url = URI("https://{{baseurl}}/access/v2/rejectpassenger")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -107,7 +107,7 @@ puts response.read_body
 import requests
 import json
 
-url = "https://{{baseurl}}/gateaccess/v2/rejectpassenger"
+url = "https://{{baseurl}}/access/v2/rejectpassenger"
 
 payload = json.dumps({
     "attachmentId": "{{msr_attachment_id}}",
@@ -136,7 +136,7 @@ print(response.text)
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/gateaccess/v2/rejectpassenger',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/access/v2/rejectpassenger',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -166,7 +166,7 @@ echo $response;
 
 <div id="Java-reject-passenger" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("https://{{baseurl}}/gateaccess/v2/rejectpassenger")
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/access/v2/rejectpassenger")
     .header("location-id", "{{locationId}}")
     .header("Content-Type", "application/json")
     .body("{\r\n    \"attachmentId\": \"{{msr_attachment_id}}\",\r\n    \"relationId\": \"postman-ftr-de1f8b06-de0a-48c5-b53f-e7de12f97b1c\",\r\n    \"message\": [ \"MSG Line 1\", \"MSG Line 2\" ],\r\n    \"alarm\": true\r\n}")
@@ -177,7 +177,7 @@ HttpResponse<String> response = Unirest.post("https://{{baseurl}}/gateaccess/v2/
 
 <div id="Node-reject-passenger" class="tabcontent dark"><pre><code>
 var unirest = require('unirest');
-var req = unirest('POST', 'https://{{baseurl}}/gateaccess/v2/rejectpassenger')
+var req = unirest('POST', 'https://{{baseurl}}/access/v2/rejectpassenger')
     .headers({
     'location-id': '{{locationId}}',
     'Content-Type': 'application/json'
@@ -211,7 +211,7 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/gateaccess/v2/rejectpassenger"
+    url := "https://%7B%7Bbaseurl%7D%7D/access/v2/rejectpassenger"
     method := "POST"
 
     payload := strings.NewReader(`{`+"
@@ -256,7 +256,7 @@ func main() {
 </div>
 
 <div id=".NET-reject-passenger" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/gateaccess/v2/rejectpassenger");
+var client = new RestClient("https://{{baseurl}}/access/v2/rejectpassenger");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
 request.AddHeader("location-id", "{{locationId}}");
@@ -283,7 +283,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample <span class="method post">POST</span>
-    gateaccess/v2/acceptconsumer</code> request that tells the API the passenger should not be boarded.</p>
+    access/v2/acceptconsumer</code> request that tells the API the passenger should not be boarded.</p>
 
 
 
@@ -291,10 +291,10 @@ Console.WriteLine(response.Content);
 
 <p>
     In the Request Body of the
-    <code class="inline-code">gateaccess/v2/rejectpassenger</code>
+    <code class="inline-code">access/v2/rejectpassenger</code>
     request, notice that a
     <code class="inline-code">Message</code> is included to display text on the
-    device for the attendant (if the device is a Magstripe Reader, not gate).
+    device for the attendant.
     Also, there is an option to trigger an
     <code class="inline-code">Alarm</code> sound when the passenger is rejected.
 </p>
@@ -315,7 +315,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample
-    <code class="inline-code">gateaccess/v2/rejectpassenger</code>
+    <code class="inline-code">access/v2/rejectpassenger</code>
     Request Body with <code class="inline-code">Message</code> data to display
     to the attendant that the passenger is 'Not Ok' to board
 </p>
@@ -326,8 +326,8 @@ Console.WriteLine(response.Content);
 
 <p>
     Upon making a
-    <code class="inline-code">gateaccess/v2/rejectpassenger</code>
-    request, the GateAccess API acknowledges the request with a synchronous
+    <code class="inline-code">access/v2/rejectpassenger</code>
+    request, the Access API acknowledges the request with a synchronous
     message, returning a
     <code class="inline-code">2xx</code> success status code (as seen in a tool
     like Postman).
@@ -368,11 +368,11 @@ Console.WriteLine(response.Content);
     to the passenger, along with a message such as "you cannot board, go see an
     attendant".
 </p>
-<div class="alert-section info-alert">
+<div class="alert-section info-alert redacted">
     <div class="">
         <p>
             In the case of a gate, any messages displayed to the passenger are
-            not controlled by the GateAccess API.
+            not controlled by the Access API.
         </p>
     </div>
 </div>
@@ -426,7 +426,7 @@ Console.WriteLine(response.Content);
                 </svg>
             </div>
             <div>
-                <a href="/gateAccess/close-gate"
+                <a href="/access/close-access"
                     >Close Gate</a
                 >
             </div>

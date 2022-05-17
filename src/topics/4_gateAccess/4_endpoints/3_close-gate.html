@@ -2,19 +2,18 @@
 <div class="title-box">
     <h1 class="topic-title">Close Gate</h1>
     <div class="action-statement">
-        Disconnect from the gate device and end the boarding process
+        Disconnect from the access device and end the access process
     </div>
 </div>
 
 
 
 <p>
-    Send a <span class="method post">POST</span><code class="inline-code">/gateaccess/v2/closeaccesspoint</code> request to
-    end the boarding process. For a Multi-Technology Reader, this triggers the gate
-    to close. For Magstripe Readers, this indicates the boarding process has
+    Send a <span class="method post">POST</span><code class="inline-code">/access/v2/closeaccesspoint</code> request to
+    end the access process. For a Multi-Technology Reader, this triggers the access point barrier to close. For Magstripe Readers, this indicates the access process has
     ended and the attendant scanning entry passes will no longer do so unless the
-    boarding process is initiated over again (
-    <code class="inline-code">/gateaccess/v2/opengate</code>).
+    access process is initiated over again (
+    <code class="inline-code">/access/v2/openaccess</code>).
 </p>
 
 
@@ -25,7 +24,7 @@
 
 <div class="alert-section info-alert">
     <div class="">
-        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="/gateAccess/gateAccess-api-call-components">API Call Components</a>.
+        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="/access/access-api-call-components">API Call Components</a>.
 
     </div>
 </div>
@@ -35,14 +34,14 @@
 <div class="code-section with-tabs">
     <div class="code-section-header">
         <div class="code-tabs">
-            <button class="tablinks" onclick="openTab(event, 'bash-close-gate')" id="defaultOpen">curl</button>
-            <button class="tablinks" onclick="openTab(event, 'Ruby-close-gate')">Ruby</button>
-            <button class="tablinks" onclick="openTab(event, 'Python-close-gate')">Python</button>
-            <button class="tablinks" onclick="openTab(event, 'PHP-close-gate')">PHP</button>
-            <button class="tablinks" onclick="openTab(event, 'Java-close-gate')">Java</button>
-            <button class="tablinks" onclick="openTab(event, 'Node-close-gate')">Node</button>
-            <button class="tablinks" onclick="openTab(event, 'Go-close-gate')">Go</button>
-            <button class="tablinks" onclick="openTab(event, '.NET-close-gate')">.NET</button>
+            <button class="tablinks" onclick="openTab(event, 'bash-close-access')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby-close-access')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python-close-access')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP-close-access')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java-close-access')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node-close-access')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go-close-access')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET-close-access')">.NET</button>
         </div>
         <div class="copy-code-btn-container">
             <button class="copy-code-btn">
@@ -66,8 +65,8 @@
         Copied!
     </div>
 
-<div id="bash-close-gate" class="tabcontent dark"><pre> <code>
-curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/closeaccesspoint' \
+<div id="bash-close-access" class="tabcontent dark"><pre> <code>
+curl --location -g --request POST 'https://{{baseurl}}/access/v2/closeaccesspoint' \
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -78,12 +77,12 @@ curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/closeaccess
 </pre>
 </div>
 
-<div id="Ruby-close-gate" class="tabcontent dark"><pre><code>
+<div id="Ruby-close-access" class="tabcontent dark"><pre><code>
 require "uri"
 require "json"
 require "net/http"
 
-url = URI("https://{{baseurl}}/gateaccess/v2/closeaccesspoint")
+url = URI("https://{{baseurl}}/access/v2/closeaccesspoint")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -102,11 +101,11 @@ puts response.read_body
 </pre>
 </div>
 
-<div id="Python-close-gate" class="tabcontent dark"><pre> <code>
+<div id="Python-close-access" class="tabcontent dark"><pre> <code>
 import requests
 import json
 
-url = "https://{{baseurl}}/gateaccess/v2/closeaccesspoint"
+url = "https://{{baseurl}}/access/v2/closeaccesspoint"
 
 payload = json.dumps({
     "attachmentId": "{{msr_attachment_id}}",
@@ -124,13 +123,13 @@ print(response.text)
 </pre>
 </div>
 
-<div id="PHP-close-gate" class="tabcontent dark"><pre> <code>
+<div id="PHP-close-access" class="tabcontent dark"><pre> <code>
 <?php
 
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/gateaccess/v2/closeaccesspoint',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/access/v2/closeaccesspoint',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -156,9 +155,9 @@ echo $response;
 </pre>
 </div>
 
-<div id="Java-close-gate" class="tabcontent dark"><pre><code>
+<div id="Java-close-access" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("https://{{baseurl}}/gateaccess/v2/closeaccesspoint")
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/access/v2/closeaccesspoint")
     .header("location-id", "{{locationId}}")
     .header("Content-Type", "application/json")
     .body("{\r\n    \"attachmentId\": \"{{msr_attachment_id}}\",\r\n    \"relationId\": \"postman-ftr-d1b83c2c-f6fb-4c7d-bf9e-8a6f1de9748c\"\r\n}")
@@ -167,11 +166,11 @@ HttpResponse<String> response = Unirest.post("https://{{baseurl}}/gateaccess/v2/
 </pre>
 </div>
 
-<div id="Node-close-gate" class="tabcontent dark"><pre><code>
+<div id="Node-close-access" class="tabcontent dark"><pre><code>
 var request = require('request');
 var options = {
     'method': 'POST',
-    'url': 'https://{{baseurl}}/gateaccess/v2/closeaccesspoint',
+    'url': 'https://{{baseurl}}/access/v2/closeaccesspoint',
     'headers': {
     'location-id': '{{locationId}}',
     'Content-Type': 'application/json'
@@ -190,7 +189,7 @@ request(options, function (error, response) {
 </pre>
 </div>
 
-<div id="Go-close-gate" class="tabcontent dark"><pre><code>
+<div id="Go-close-access" class="tabcontent dark"><pre><code>
 package main
 
 import (
@@ -202,7 +201,7 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/gateaccess/v2/closeaccesspoint"
+    url := "https://%7B%7Bbaseurl%7D%7D/access/v2/closeaccesspoint"
     method := "POST"
 
     payload := strings.NewReader(`{`+"
@@ -242,8 +241,8 @@ func main() {
 </pre>
 </div>
 
-<div id=".NET-close-gate" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/gateaccess/v2/closeaccesspoint");
+<div id=".NET-close-access" class="tabcontent dark"><pre><code>
+var client = new RestClient("https://{{baseurl}}/access/v2/closeaccesspoint");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
 request.AddHeader("location-id", "{{locationId}}");
@@ -266,7 +265,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample <span class="method post">POST</span>
-    gateaccess/v2/acceptconsumer</code> request that tells the API to end the boarding process.</p>
+    access/v2/acceptconsumer</code> request that tells the API to end the access process.</p>
 
 
 
@@ -277,7 +276,7 @@ Console.WriteLine(response.Content);
 
 
 <p>
-    To successfully make the request, you must include the <code class="inline-code">attachmentId</code> of the gate device.
+    To successfully make the request, you must include the <code class="inline-code">attachmentId</code> of the access device.
 </p>
 
 
@@ -299,15 +298,15 @@ Console.WriteLine(response.Content);
 <h2>Response</h2>
 <p>
     Upon making a
-    <code class="inline-code">/gateaccess/v2/closeaccesspoint</code>
-    request, the GateAccess API acknowledges the request with a synchronous
+    <code class="inline-code">/access/v2/closeaccesspoint</code>
+    request, the Access API acknowledges the request with a synchronous
     message, returning a
     <code class="inline-code">2xx</code> success status code (as seen in a tool
     like Postman).
 </p>
 <p>
     A <code class="inline-code">CloseAccessPointResponse</code> message displays on the
-    Service Bus simply indicating that the boarding process has ended, as
+    Service Bus simply indicating that the access process has ended, as
     indicated by the <code class="inline-code">IsSuccess</code> property set to
     <code class="inline-code">true</code>.
 </p>
@@ -326,7 +325,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     <code class="inline-code">CloseAccessPointResponse</code> Service Bus Message Body
-    indicating the request to end the boarding process has succeeded
+    indicating the request to end the access process has succeeded
 </p>
 
 

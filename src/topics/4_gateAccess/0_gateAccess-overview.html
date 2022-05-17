@@ -1,42 +1,45 @@
 <div class="title-box">
-    <h1 class="topic-title">GateAccess API</h1>
+    <h1 class="topic-title">Access API</h1>
     <div class="action-statement">
-        Learn how to interact with a gate device to perform boarding processes
+        Learn how to interact with a access device to grant personnel access to
+        restricted areas
     </div>
 </div>
 
 <div class="endpoints-summary">
     <p class="endpoints-summary-description">
-        The <strong>GateAccess API</strong> endpoints allow your application
-        backend to interact with Magstripe Readers (MSR/BCR) and Self-Boarding
-        Gates (MTR).
+        The <strong>Access API</strong> endpoints allow your application backend
+        to interact with Magstripe Readers (MSR/KPR) and Multi-Technology
+        Readers (MTR).
     </p>
     <div class="method-example atom-one-light curl-custom two-col-width">
         <div class="method-example-top-bar">Endpoints</div>
         <div class="endpoints-container">
             <div class="endpoint-row">
                 <div class="end-path post-method">
-                    <a href="/gateAccess/open-gate">/gateaccess/v2/opengate</a>
-                </div>
-            </div>
-            <div class="endpoint-row">
-                <div class="end-path post-method">
-                    <a href="/gateAccess/accept-passenger"
-                        >gateaccess/v2/acceptconsumer</a
+                    <a href="/access/open-accesspoint"
+                        >/access/v2/openaccesspoint</a
                     >
                 </div>
             </div>
             <div class="endpoint-row">
                 <div class="end-path post-method">
-                    <a href="/gateAccess/reject-passenger"
-                        >/gateaccess/v2/rejectpassenger</a
+                    <a href="/access/accept-passenger"
+                        >access/v2/acceptconsumer</a
                     >
                 </div>
             </div>
             <div class="endpoint-row">
                 <div class="end-path post-method">
-                    <a href="/gateAccess/close-gate"
-                        >/gateaccess/v2/closeaccesspoint</a
+                    <a href="/access/reject-passenger"
+                        >/access/v2/rejectpassenger</a
+                    >
+                </div>
+            </div>
+            <div class="endpoint-row">
+                <div class="end-path post-method">
+                    <a href="/access/close-accesspoint"
+                        >/access/v2/closeaccesspoint</a
                     >
                 </div>
             </div>
@@ -59,17 +62,17 @@
             <td>Magstripe Reader</td>
             <td>
                 Considered part of an <strong>attendant-driven</strong> boarding
-                process not involving a gate whereby the attendant scans a
-                passenger's entry pass. If accepted, the passenger may move past
-                the attendant and enter the restricted area.
+                process not involving a accesspoint whereby the attendant scans
+                a passenger's entry pass. If accepted, the passenger may move
+                past the attendant and enter the restricted area.
             </td>
         </tr>
-        <tr>
-            <td>BCR</td>
+        <tr class="redacted">
+            <td>KPR</td>
             <td>Keypad Reader</td>
             <td>
                 Functions the same as a MSR. For this documentation, the use of
-                the acronym BCR is synonymous with MSR.
+                the acronym KPR is synonymous with MSR.
             </td>
         </tr>
         <tr>
@@ -77,9 +80,9 @@
             <td>Multi-Technology Reader</td>
             <td>
                 Considered part of a <strong>passenger-driven</strong> boarding
-                process involving a gate whereby the passenger scans his or her
-                entry pass at a gate. If accepted, the gate opens, and the
-                passenger can pass through the gate.
+                process involving a accesspoint whereby the passenger scans his
+                or her entry pass at a accesspoint. If accepted, the accesspoint
+                opens, and the passenger can pass through the accesspoint.
             </td>
         </tr>
     </tbody>
@@ -132,7 +135,7 @@
                 </svg>
             </div>
             <div>
-                <a href="/gateAccess/gateAccess-API-call-components"
+                <a href="/access/access-API-call-components"
                     >API Call Components</a
                 >
             </div>

@@ -1,5 +1,5 @@
-<h1 id="gateerroroccurred">GateErrorOccurred</h1>
-<p>Gate error message as received from the gate device.</p>
+<h1 id="accesserroroccurred">GateErrorOccurred</h1>
+<p>Gate error message as received from the access device.</p>
 <h2 id="message-properties">Message Properties</h2>
 <p>
     User properties are used to aid in the deserialization of the service bus
@@ -20,7 +20,7 @@
             <td>MessageNamespace</td>
             <td>string</td>
             <td>M</td>
-            <td>gate</td>
+            <td>access</td>
         </tr>
         <tr>
             <td>MessageType</td>
@@ -74,7 +74,7 @@
         <tr>
             <td>ErrorCode</td>
             <td>string</td>
-            <td>Contains the gate <a href="/gateAccess/messages-reference/GateErrorOccurred#technical-error-code">technical error code</a>.</td>
+            <td>Contains the access <a href="/access/messages-reference/GateErrorOccurred#technical-error-code">technical error code</a>.</td>
         </tr>
     </tbody>
 </table>
@@ -98,14 +98,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr class="redacted">
                 <td>GateTechnicalErrorFlapRelated</td>
                 <td>
                     TEHF = A technical error happened in the “self-boarding
                     unit” which requires technical assistance – flap related
                 </td>
             </tr>
-            <tr>
+            <tr class="redacted">
                 <td>GateTechnicalErrorSensorRelated</td>
                 <td>
                     TEHS = A technical error happened in the “self-boarding

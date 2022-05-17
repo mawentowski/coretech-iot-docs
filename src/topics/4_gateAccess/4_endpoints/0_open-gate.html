@@ -1,14 +1,14 @@
 <div class="title-box">
     <h1 class="topic-title">Open Gate</h1>
     <div class="action-statement">
-        Initiate a boarding process on a gate device
+        Initiate a access process on a access device
     </div>
 </div>
 
 <p>
     Send a <span class="method post">POST</span>
-    <code class="inline-code">/gateaccess/v2/opengate</code> request to
-    initiate the boarding process. For a Multi-Technology Reader, the passenger is
+    <code class="inline-code">/access/v2/openaccess</code> request to
+    initiate the access process. For a Multi-Technology Reader, the passenger is
     now allowed to proceed to scan their entry pass. For Boarding Gate
     Readers, the attendant scanning entry passes is now ready to receive
     passengers in the queue.
@@ -20,7 +20,7 @@
 
 <div class="alert-section info-alert">
     <div class="">
-        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="/gateAccess/gateAccess-api-call-components">API Call Components</a>.
+        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="/access/access-api-call-components">API Call Components</a>.
 
     </div>
 </div>
@@ -30,14 +30,14 @@
 <div class="code-section with-tabs">
     <div class="code-section-header">
         <div class="code-tabs">
-            <button class="tablinks" onclick="openTab(event, 'bash -open-gate')" id="defaultOpen">curl</button>
-            <button class="tablinks" onclick="openTab(event, 'Ruby -open-gate')">Ruby</button>
-            <button class="tablinks" onclick="openTab(event, 'Python -open-gate')">Python</button>
-            <button class="tablinks" onclick="openTab(event, 'PHP -open-gate')">PHP</button>
-            <button class="tablinks" onclick="openTab(event, 'Java -open-gate')">Java</button>
-            <button class="tablinks" onclick="openTab(event, 'Node -open-gate')">Node</button>
-            <button class="tablinks" onclick="openTab(event, 'Go -open-gate')">Go</button>
-            <button class="tablinks" onclick="openTab(event, '.NET -open-gate')">.NET</button>
+            <button class="tablinks" onclick="openTab(event, 'bash -open-access')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby -open-access')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python -open-access')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP -open-access')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java -open-access')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node -open-access')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go -open-access')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET -open-access')">.NET</button>
         </div>
         <div class="copy-code-btn-container">
             <button class="copy-code-btn">
@@ -61,8 +61,8 @@
         Copied!
     </div>
 
-<div id="bash -open-gate" class="tabcontent dark"><pre> <code>
-curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/opengate' \
+<div id="bash -open-access" class="tabcontent dark"><pre> <code>
+curl --location -g --request POST 'https://{{baseurl}}/access/v2/openaccess' \
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -73,12 +73,12 @@ curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/opengate' \
 </pre>
 </div>
 
-<div id="Ruby -open-gate" class="tabcontent dark"><pre><code>
+<div id="Ruby -open-access" class="tabcontent dark"><pre><code>
 require "uri"
 require "json"
 require "net/http"
 
-url = URI("https://{{baseurl}}/gateaccess/v2/opengate")
+url = URI("https://{{baseurl}}/access/v2/openaccess")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -97,11 +97,11 @@ puts response.read_body
 </pre>
 </div>
 
-<div id="Python -open-gate" class="tabcontent dark"><pre> <code>
+<div id="Python -open-access" class="tabcontent dark"><pre> <code>
 import requests
 import json
 
-url = "https://{{baseurl}}/gateaccess/v2/opengate"
+url = "https://{{baseurl}}/access/v2/openaccess"
 
 payload = json.dumps({
     "attachmentId": "{{msr_attachment_id}}",
@@ -119,13 +119,13 @@ print(response.text)
 </pre>
 </div>
 
-<div id="PHP -open-gate" class="tabcontent dark"><pre> <code>
+<div id="PHP -open-access" class="tabcontent dark"><pre> <code>
 <?php
 
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/gateaccess/v2/opengate',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/access/v2/openaccess',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -151,9 +151,9 @@ echo $response;
 </pre>
 </div>
 
-<div id="Java -open-gate" class="tabcontent dark"><pre><code>
+<div id="Java -open-access" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("https://{{baseurl}}/gateaccess/v2/opengate")
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/access/v2/openaccess")
     .header("location-id", "{{locationId}}")
     .header("Content-Type", "application/json")
     .body("{\r\n    \"attachmentId\": \"{{msr_attachment_id}}\",\r\n    \"relationId\": \"postman-ftr-3298c851-60d1-41b5-8c8d-d40f3ce4788e\"\r\n}")
@@ -162,11 +162,11 @@ HttpResponse<String> response = Unirest.post("https://{{baseurl}}/gateaccess/v2/
 </pre>
 </div>
 
-<div id="Node -open-gate" class="tabcontent dark"><pre><code>
+<div id="Node -open-access" class="tabcontent dark"><pre><code>
 var request = require('request');
 var options = {
     'method': 'POST',
-    'url': 'https://{{baseurl}}/gateaccess/v2/opengate',
+    'url': 'https://{{baseurl}}/access/v2/openaccess',
     'headers': {
     'location-id': '{{locationId}}',
     'Content-Type': 'application/json'
@@ -185,7 +185,7 @@ request(options, function (error, response) {
 </pre>
 </div>
 
-<div id="Go -open-gate" class="tabcontent dark"><pre><code>
+<div id="Go -open-access" class="tabcontent dark"><pre><code>
 package main
 
 import (
@@ -197,7 +197,7 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/gateaccess/v2/opengate"
+    url := "https://%7B%7Bbaseurl%7D%7D/access/v2/openaccess"
     method := "POST"
 
     payload := strings.NewReader(`{`+"
@@ -237,8 +237,8 @@ func main() {
 </pre>
 </div>
 
-<div id=".NET -open-gate" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/gateaccess/v2/opengate");
+<div id=".NET -open-access" class="tabcontent dark"><pre><code>
+var client = new RestClient("https://{{baseurl}}/access/v2/openaccess");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
 request.AddHeader("location-id", "{{locationId}}");
@@ -261,12 +261,12 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample <span class="method post">POST</span>
-    <code class="inline-code">gateaccess/v2/opengate</code> request to initiate the boarding process on a gate device</p>
+    <code class="inline-code">access/v2/openaccess</code> request to initiate the access process on a access device</p>
 
 <h2>Request Body</h2>
 
 <p>
-    To successfully make the request, you must include the <code class="inline-code">attachmentId</code> of the gate device.
+    To successfully make the request, you must include the <code class="inline-code">attachmentId</code> of the access device.
 </p>
 
 
@@ -285,7 +285,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample Request Body for <span class="method post">POST</span>
-    <code class="inline-code">/gateaccess/v2/opengate</code> request that provides a <code class="inline-code">attachmentId</code> of the gate device
+    <code class="inline-code">/access/v2/openaccess</code> request that provides a <code class="inline-code">attachmentId</code> of the access device
 </p>
 
 
@@ -293,8 +293,8 @@ Console.WriteLine(response.Content);
 
 <p>
     Upon making a
-    <code class="inline-code">/gateaccess/v2/opengate</code> request, the
-    GateAccess API acknowledges the request with a synchronous message,
+    <code class="inline-code">/access/v2/openaccess</code> request, the
+    Access API acknowledges the request with a synchronous message,
     returning a <code class="inline-code">2xx</code> success status code (as
     seen in a tool like Postman).
 </p>
@@ -319,17 +319,17 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     <code class="inline-code">OpenGateResponse</code> Service Bus Message Body
-    indicating the request to initiate the boarding process has succeeded
+    indicating the request to initiate the access process has succeeded
 </p>
 <div class="alert-section info-alert">
     <div class="">
         <p>
             The
-            <code class="inline-code">/gateaccess/v2/opengate</code> request is
+            <code class="inline-code">/access/v2/openaccess</code> request is
             only sent once at the beginning of the process, not each time a
             passenger needs to pass through it. Once all passengers are
-            processed, the boarding process is ended by sending a
-            <code class="inline-code">/gateaccess/v2/closeaccesspoint</code> request.
+            processed, the access process is ended by sending a
+            <code class="inline-code">/access/v2/closeaccesspoint</code> request.
         </p>
     </div>
 </div>
@@ -385,7 +385,7 @@ Console.WriteLine(response.Content);
                 </svg>
             </div>
             <div>
-                <a href="/gateAccess/accept-passenger"
+                <a href="/access/accept-passenger"
                     >Accept Passenger</a
                 >
             </div>
