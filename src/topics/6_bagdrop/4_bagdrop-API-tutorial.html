@@ -9,7 +9,7 @@
 <h2 id="dispatchitem-api-walkthrough">Dispatch API Tutorial</h2>
 <p>
     Follow along with this walkthrough to experience the Dispatch API, including
-    connecting to an GRC and completing an entire dispatchitem process that ends
+    connecting to an GRC and completing an entire dispatch process that ends
     with releasing the item to the Item Handling System.
 </p>
 <p>The following tools are used to demonstrate the Print API:</p>
@@ -92,7 +92,7 @@
             </li>
             <li>
                 Send a <span class="method post">POST</span>
-                <code class="inline-code">/site/v2/reservations</code>
+                <code class="inline-code">/site/v2/claims</code>
                 request.
             </li>
         </ul>
@@ -221,7 +221,7 @@
                 <code class="inline-code">ConveyorDeviceStatus</code> Service
                 Bus Message indicating the device is
                 <code class="inline-code">Online</code> and not exclusively
-                reserved
+                claimed
             </p>
             <p>
                 The message should indicate the GRC is
@@ -305,7 +305,7 @@
                         If you added a door to the GRC earlier, notice that the
                         door icon disappeared in the GRC Device Simulator. This
                         simulates the door opening on a real dispatchitem after
-                        a dispatchitem process was initiated.
+                        a dispatch process was initiated.
                     </li>
                 </ul>
             </li>
@@ -341,7 +341,7 @@
             <p class="caption">
                 <code class="inline-code">ConveyorDeviceStatus</code>
                 Service Bus Message indicating the device is now exclusively
-                reserved
+                claimed
             </p>
 
             <li>
@@ -352,9 +352,9 @@
             </li>
             <li>
                 A
-                <code class="inline-code">GetBagResponse</code>
+                <code class="inline-code">GetItemResponse</code>
                 message displays on the Service Bus which is an indication the
-                dispatchitem process is initiated. The property
+                dispatch process is initiated. The property
                 <code class="inline-code">"Bag": null</code>
                 indicates there is no item information because, for the purpose
                 of this simulation, the consumer has not yet placed a item onto
@@ -374,7 +374,7 @@
             </div>
 
             <p class="caption">
-                <code class="inline-code">GetBagResponse</code> Service Bus
+                <code class="inline-code">GetItemResponse</code> Service Bus
                 Message indicating no item data has been collected
             </p>
         </ul>
@@ -388,8 +388,7 @@
             <code class="inline-code">/dispatchitem/v2/getitem</code>
             request was made. Another
             <code class="inline-code">/dispatchitem/v2/getitem</code>
-            request must be made to restart the dispatchitem process. If you
-            send a
+            request must be made to restart the dispatch process. If you send a
             <code class="inline-code">/dispatchitem/v2/processitem</code>
             request when a timeout has occurred, and you have not sent the
             <code class="inline-code">/dispatchitem/v2/getitem</code>
@@ -596,8 +595,8 @@
                         The
                         <code class="inline-code">Position</code>
                         will update when new measurements are made as the
-                        dispatchitem process progresses and the position of the
-                        item changes.
+                        dispatch process progresses and the position of the item
+                        changes.
                     </p>
                 </div>
             </div>
@@ -709,7 +708,7 @@
             <ul>
                 <li>
                     A
-                    <code class="inline-code">ProcessBagResponse</code>
+                    <code class="inline-code">CheckItemResponse</code>
                     message displays on the Service Bus that indicates the item
                     was successfully processed (<code>"IsSuccess": true</code>).
                     This message, like the
@@ -861,7 +860,7 @@
                         If successful, the Dispatch API returns a
                         <code class="inline-code">2xx</code>
                         status code returns a successful
-                        <code class="inline-code">GetBagResponse</code>
+                        <code class="inline-code">GetItemResponse</code>
                         message on the Service Bus.
                     </li>
                 </ul>
@@ -1051,7 +1050,7 @@
                     </li>
                     <li>
                         A
-                        <code class="inline-code">ReleaseBagResponse</code>
+                        <code class="inline-code">dispatchitemResponse</code>
                         message displays on the Service Bus which indicates the
                         request to release the item to the Item Handling System
                         was successful (<code class="inline-code"
@@ -1098,7 +1097,7 @@
                     y="0px"
                     viewBox="0 0 482.204 482.204"
                     style="enable-background: new 0 0 482.204 482.204"
-                    xml:space="preserve"
+                    xml:space="pclaim"
                 >
                     <g>
                         <path
@@ -1145,7 +1144,7 @@
                     y="0px"
                     viewBox="0 0 482.204 482.204"
                     style="enable-background: new 0 0 482.204 482.204"
-                    xml:space="preserve"
+                    xml:space="pclaim"
                 >
                     <g>
                         <path
@@ -1193,7 +1192,7 @@
                     y="0px"
                     viewBox="0 0 482.204 482.204"
                     style="enable-background: new 0 0 482.204 482.204"
-                    xml:space="preserve"
+                    xml:space="pclaim"
                 >
                     <g>
                         <path
@@ -1240,7 +1239,7 @@
                     y="0px"
                     viewBox="0 0 482.204 482.204"
                     style="enable-background: new 0 0 482.204 482.204"
-                    xml:space="preserve"
+                    xml:space="pclaim"
                 >
                     <g>
                         <path

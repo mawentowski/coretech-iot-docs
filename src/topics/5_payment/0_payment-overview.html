@@ -17,15 +17,13 @@
             <div class="endpoint-row">
                 <div class="end-path post-method">
                     <a href="/payment/start-payment-process"
-                        >/payment/v2/process</a
+                        >/payment/v2/starttransaction</a
                     >
                 </div>
             </div>
             <div class="endpoint-row">
                 <div class="end-path post-method">
-                    <a href="/payment/print-receipt"
-                        >/payment/v2/receiptprinted</a
-                    >
+                    <a href="/payment/print-receipt">/payment/v2/billprinted</a>
                 </div>
             </div>
             <div class="endpoint-row">
@@ -80,19 +78,19 @@
     for a device to carry out.
 </p>
 <h3 id="post-paymentv2process">
-    <span class="method post">POST</span> <code class="inline-code">/payment/v2/process</code>
+    <span class="method post">POST</span> <code class="inline-code">/payment/v2/starttransaction</code>
 </h3>
 <p>
     Send a <span class="method post">POST</span>
-    <code class="inline-code">/payment/v2/process</code> request to an PMC device to...
+    <code class="inline-code">/payment/v2/starttransaction</code> request to an PMC device to...
 </p>
-<h3 id="post-paymentv2receiptprinted">
+<h3 id="post-paymentv2billprinted">
     <span class="method post">POST</span>
-    <code class="inline-code">/payment/v2/receiptprinted</code>
+    <code class="inline-code">/payment/v2/billprinted</code>
 </h3>
 <p>
     Send a <span class="method post">POST</span>
-    <code class="inline-code">/payment/v2/receiptprinted</code> request to an PMC device to...
+    <code class="inline-code">/payment/v2/billprinted</code> request to an PMC device to...
 </p>
 <h3 id="post-paymentv2signatureverified">
     <span class="method post">POST</span>
@@ -126,7 +124,7 @@
                     y="0px"
                     viewBox="0 0 482.204 482.204"
                     style="enable-background: new 0 0 482.204 482.204"
-                    xml:space="preserve"
+                    xml:space="pclaim"
                 >
                     <g>
                         <path

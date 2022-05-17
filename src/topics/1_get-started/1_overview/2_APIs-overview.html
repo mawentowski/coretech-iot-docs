@@ -27,8 +27,8 @@
 </p>
 <p>
     When using this API, you must <strong>subscribe</strong> to the Azure
-    Service Bus, <strong>reserve</strong> a area for exclusive access, then
-    create an attachment to IoT devices to receive messages on the subscription.
+    Service Bus, <strong>claim</strong> a area for exclusive access, then create
+    an attachment to IoT devices to receive messages on the subscription.
 </p>
 <p class="redacted">
     Example areas configured in the CoreTech IoT environment include:
@@ -42,7 +42,7 @@
 <p>
     The <a href="/print/print-overview">Print API</a> endpoints allow your
     application backend to use devices to print documents such as boarding
-    passes, item tags, and reports.
+    passes, item tags, and records.
 </p>
 <p>The supported devices at present are the following:</p>
 <table class="main-table">
@@ -78,7 +78,7 @@
 <p>
     The <a href="/scan/scan-overview">Scan API</a> endpoints allow your airline
     backend to use devices to read travel documents like entry passes, item
-    tags, and passports.
+    tags, and ID cards.
 </p>
 <p>The supported devices at present are the following:</p>
 <table class="main-table">
@@ -176,9 +176,7 @@
     allow your application backend to control a conveyor unit to:
 </p>
 <ul>
-    <li>
-        move the item between the various parts of the dispatchitem process.
-    </li>
+    <li>move the item between the various parts of the dispatch process.</li>
     <li>
         retrieve information about the item that is currently being processed by
         the unit.
@@ -213,7 +211,7 @@
                     y="0px"
                     viewBox="0 0 482.204 482.204"
                     style="enable-background: new 0 0 482.204 482.204"
-                    xml:space="preserve"
+                    xml:space="pclaim"
                 >
                     <g>
                         <path

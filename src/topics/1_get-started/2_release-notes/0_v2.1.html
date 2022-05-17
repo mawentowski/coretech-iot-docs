@@ -119,7 +119,7 @@ namespace CoreTech.IoTApi.ServiceBusConsole.Core.Model
     Service Bus Subscriptions and connect to devices.
 </p>
 <p>
-    There is <strong>no longer a Device API</strong> that lets you reserve and
+    There is <strong>no longer a Device API</strong> that lets you claim and
     release devices, it has been broken out into separate APIs that deal with
     the different device functions.
 </p>
@@ -129,8 +129,8 @@ namespace CoreTech.IoTApi.ServiceBusConsole.Core.Model
         <strong>Print API</strong> and <strong>Scan API</strong>, respectively.
     </li>
     <li>
-        The request to reserve a device is now made to the Session API by
-        sending a <span class="method post">POST</span>
+        The request to claim a device is now made to the Session API by sending
+        a <span class="method post">POST</span>
         <code class="inline-code">/session/v2/attachments</code> request, and
         you may use the <span class="method del">DEL</span> method to delete the
         attachment (or reservation as referred to in V1).

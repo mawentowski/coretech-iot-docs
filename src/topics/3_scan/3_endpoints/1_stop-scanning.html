@@ -8,7 +8,7 @@
 Send a <span class="method post">POST</span>
 <code class="inline-code">/scan/v2/stopscanning</code> 
 request to release a device from exclusive access so other airline
-backends can reserve the device and use it to read travel documents.
+backends can claim the device and use it to read travel documents.
 
 <h2>Make an API Call</h2>
 
@@ -306,7 +306,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     <code class="inline-code">DeviceStatus</code> Service Bus Message Body
-    indicating the device is no longer 'in use' and is available to be reserved
+    indicating the device is no longer 'in use' and is available to be claimed
 </p>
 
 
@@ -325,7 +325,7 @@ Console.WriteLine(response.Content);
                     y="0px"
                     viewBox="0 0 482.204 482.204"
                     style="enable-background: new 0 0 482.204 482.204"
-                    xml:space="preserve"
+                    xml:space="pclaim"
                 >
                     <g>
                         <path

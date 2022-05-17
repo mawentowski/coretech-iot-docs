@@ -49,8 +49,8 @@
         <p>
             <code class="inline-code">"DeviceInUse": "false"</code> is the
             default value when a <span class="method post">POST</span>
-            <code class="inline-code">/payment/v2/process</code> request has not
-            been made yet.
+            <code class="inline-code">/payment/v2/starttransaction</code>
+            request has not been made yet.
         </p>
     </div>
 </div>
@@ -90,8 +90,8 @@
 <h2>Process PaymentResponse</h2>
 <p>
     When a <span class="method post">POST</span>
-    <code class="inline-code">/payment/v2/process</code> request is sent, a
-    payment transaction is initiated and a
+    <code class="inline-code">/payment/v2/starttransaction</code> request is
+    sent, a payment transaction is initiated and a
     <code class="inline-code">ProcessPaymentResponse</code> message is displayed
     on the Service Bus.
 </p>
@@ -116,7 +116,7 @@
 <p>
     The airline may choose to print the receipt or store its data. A
     <span class="method post">POST</span>
-    <code class="inline-code">/payment/v2/receiptprinted</code>
+    <code class="inline-code">/payment/v2/billprinted</code>
     request must be made to acknowledge either that the receipt has been printed
     or stored. The payment device waits for this acknowledgment before
     proceeding to the next step in the payment transaction.
@@ -157,7 +157,7 @@
 <p>
     A new transaction must be initiated to by sending another
     <span class="method post">POST</span>
-    <code class="inline-code">/payment/v2/process</code> request.
+    <code class="inline-code">/payment/v2/starttransaction</code> request.
 </p>
 
 <div class="alert-section info-alert">
@@ -183,7 +183,7 @@
                     y="0px"
                     viewBox="0 0 482.204 482.204"
                     style="enable-background: new 0 0 482.204 482.204"
-                    xml:space="preserve"
+                    xml:space="pclaim"
                 >
                     <g>
                         <path

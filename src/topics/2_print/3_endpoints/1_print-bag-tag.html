@@ -357,7 +357,7 @@ curl --area -g --request POST 'https://{{baseurl}}/print/v2/itemtag/legacyprint'
     "attachmentId": "",
     "relationId": "postman-ftr-6b58cb56-f2a7-48d7-bd16-237a1f1933fc",
     "legacyPrintData": {
-    "pectab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",
+    "printtab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",
     "templates": [
         "VFQwM18wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD",
         "VFQwNF8wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD"
@@ -387,7 +387,7 @@ request.body = JSON.dump({
     "attachmentId": "",
     "relationId": "postman-ftr-5608720d-9139-47ad-8014-af1260417300",
     "legacyPrintData": {
-    "pectab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",
+    "printtab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",
     "templates": [
         "VFQwM18wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD",
         "VFQwNF8wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD"
@@ -413,7 +413,7 @@ payload = json.dumps({
     "attachmentId": "",
     "relationId": "postman-ftr-a0381506-464e-428a-8daf-81a8fdd719d2",
     "legacyPrintData": {
-    "pectab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",
+    "printtab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",
     "templates": [
         "VFQwM18wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD",
         "VFQwNF8wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD"
@@ -450,7 +450,7 @@ curl_setopt_array($curl, array(
     "attachmentId": "",
     "relationId": "postman-ftr-625d341d-ea2d-4f4f-a61f-f1362774f83d",
     "legacyPrintData": {
-    "pectab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",
+    "printtab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",
     "templates": [
         "VFQwM18wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD",
         "VFQwNF8wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD"
@@ -478,7 +478,7 @@ Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("https://{{baseurl}}/print/v2/itemtag/legacyprint")
     .header("area-id", "{{areaId}}")
     .header("Content-Type", "application/json")
-    .body("{\r\n  \"attachmentId\": \"\",\r\n  \"relationId\": \"postman-ftr-f1c53caf-81c1-4de7-bfe6-12e83811ff59\",\r\n  \"legacyPrintData\": {\r\n    \"pectab\": \"UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv\",\r\n    \"templates\": [\r\n        \"VFQwM18wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD\",\r\n        \"VFQwNF8wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD\"\r\n    ],\r\n    \"Logos\":[],\r\n    \"printData\": \"Q1AjMUMwMSMwMUojMDZBWktVUiAgICBBSE1FVE\"\r\n  }\r\n}")
+    .body("{\r\n  \"attachmentId\": \"\",\r\n  \"relationId\": \"postman-ftr-f1c53caf-81c1-4de7-bfe6-12e83811ff59\",\r\n  \"legacyPrintData\": {\r\n    \"printtab\": \"UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv\",\r\n    \"templates\": [\r\n        \"VFQwM18wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD\",\r\n        \"VFQwNF8wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD\"\r\n    ],\r\n    \"Logos\":[],\r\n    \"printData\": \"Q1AjMUMwMSMwMUojMDZBWktVUiAgICBBSE1FVE\"\r\n  }\r\n}")
     .asString();    
 </code>
 </pre>
@@ -497,7 +497,7 @@ var options = {
     "attachmentId": "",
     "relationId": "postman-ftr-d0294bc7-d5b0-4e73-8206-84eab0ade3b5",
     "legacyPrintData": {
-        "pectab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",
+        "printtab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",
         "templates": [
         "VFQwM18wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD",
         "VFQwNF8wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD"
@@ -539,7 +539,7 @@ func main() {
 "+`
     "legacyPrintData": {`+"
 "+`
-    "pectab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",`+"
+    "printtab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",`+"
 "+`
     "templates": [`+"
 "+`
@@ -600,7 +600,7 @@ var body = @"{
 " + "\n" +
 @"  ""legacyPrintData"": {
 " + "\n" +
-@"    ""pectab"": ""UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv"",
+@"    ""printtab"": ""UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv"",
 " + "\n" +
 @"    ""templates"": [
 " + "\n" +
@@ -649,7 +649,7 @@ Console.WriteLine(response.Content);
     "attachmentId": "33ed0d5a-3a92-4f08-be97-73535d73fc09",
     "relationId": "10099a59-6880-468d-ac66-8bbda5eb7d02",
     "legacyPrintData": {
-        "pectab": "UFQjIz9WMU4jQDsjVElDS1QjQ0hLSU4jQk9BUkQjMDEwMTE...",
+        "printtab": "UFQjIz9WMU4jQDsjVElDS1QjQ0hLSU4jQk9BUkQjMDEwMTE...",
         "icons": [
         "AAAAANH/wfDR/8Hw0f/B8NH/wfDR/8Hw0f/B8NH/wfDR/8H/B8NH//B..."
         ],
@@ -752,7 +752,7 @@ Console.WriteLine(response.Content);
                     y="0px"
                     viewBox="0 0 482.204 482.204"
                     style="enable-background: new 0 0 482.204 482.204"
-                    xml:space="preserve"
+                    xml:space="pclaim"
                 >
                     <g>
                         <path
@@ -801,7 +801,7 @@ Console.WriteLine(response.Content);
                     y="0px"
                     viewBox="0 0 482.204 482.204"
                     style="enable-background: new 0 0 482.204 482.204"
-                    xml:space="preserve"
+                    xml:space="pclaim"
                 >
                     <g>
                         <path

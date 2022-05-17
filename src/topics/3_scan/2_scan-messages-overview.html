@@ -47,7 +47,7 @@
         <p>
             <strong>Note</strong>:
             <code class="inline-code">"DeviceInUse": "false"</code>
-            is the default value when no application instance has reserved the
+            is the default value when no application instance has claimed the
             device ( <code class="inline-code">/scan/v2/startscanning</code>).
         </p>
     </div>
@@ -65,7 +65,7 @@
 </p>
 <p>
     The following sample message is returned when the
-    <code class="inline-code">DeviceStatus</code> of an exclusively reserved
+    <code class="inline-code">DeviceStatus</code> of an exclusively claimed
     device changes to <code class="inline-code">PoweredOff</code>.
 </p>
 
@@ -160,7 +160,7 @@
     In the Message Body, the
     <code class="inline-code">DeviceInUse</code> property is set to
     <code class="inline-code">true</code> which indicates that the device is now
-    exclusively reserved and now may begin sending messages to the airline
+    exclusively claimed and now may begin sending messages to the airline
     backend that made the
     <code class="inline-code">/scan/v2/startscanning</code> request.
 </p>
@@ -179,7 +179,7 @@
 
 <p class="caption">
     <code class="inline-code">DeviceStatus</code> Service Bus Message Body
-    indicating the device is exclusively reserved by the application backend
+    indicating the device is exclusively claimed by the application backend
 </p>
 <div class="alert-section info-alert">
     <div class="">
@@ -233,7 +233,7 @@
 
 <p class="caption">
     <code class="inline-code">DeviceStatus</code> Service Bus Message Body
-    indicating the device is no longer 'in use' and is available to be reserved
+    indicating the device is no longer 'in use' and is available to be claimed
 </p>
 <h2 id="barcoderead">BarcodeRead</h2>
 <p>
@@ -346,7 +346,7 @@
                     y="0px"
                     viewBox="0 0 482.204 482.204"
                     style="enable-background: new 0 0 482.204 482.204"
-                    xml:space="preserve"
+                    xml:space="pclaim"
                 >
                     <g>
                         <path

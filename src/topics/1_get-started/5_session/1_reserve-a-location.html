@@ -1,15 +1,15 @@
 <div class="title-box">
     <h1 class="topic-title">Reserve a Area</h1>
     <div class="action-statement">
-        Learn how to reserve a area to interact with its devices
+        Learn how to claim a area to interact with its devices
     </div>
 </div>
 
 <p>
     The <span class="method post">POST</span>
-    <code class="inline-code">/site/v2/reservations</code> request limits use of
+    <code class="inline-code">/site/v2/claims</code> request limits use of
     a area to the application backend with a specific customer code that made the
-    request. The application backend must reserve the area to make use of its
+    request. The application backend must claim the area to make use of its
     devices.
 </p>
 <div class="alert-section info-alert">
@@ -26,21 +26,21 @@
 <p>
     To successfully make the request, you must pass the
     <code class="inline-code">AreaId</code> in the Request Body of the
-    area you wish to reserve.
+    area you wish to claim.
 </p>
 
 
 <div class="code-section with-tabs">
     <div class="code-section-header">
         <div class="code-tabs">
-            <button class="tablinks" onclick="openTab(event, 'bash-reserve-a-area')" id="defaultOpen">curl</button>
-            <button class="tablinks" onclick="openTab(event, 'Ruby-reserve-a-area')">Ruby</button>
-            <button class="tablinks" onclick="openTab(event, 'Python-reserve-a-area')">Python</button>
-            <button class="tablinks" onclick="openTab(event, 'PHP-reserve-a-area')">PHP</button>
-            <button class="tablinks" onclick="openTab(event, 'Java-reserve-a-area')">Java</button>
-            <button class="tablinks" onclick="openTab(event, 'Node-reserve-a-area')">Node</button>
-            <button class="tablinks" onclick="openTab(event, 'Go-reserve-a-area')">Go</button>
-            <button class="tablinks" onclick="openTab(event, '.NET-reserve-a-area')">.NET</button>
+            <button class="tablinks" onclick="openTab(event, 'bash-claim-a-area')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby-claim-a-area')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python-claim-a-area')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP-claim-a-area')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java-claim-a-area')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node-claim-a-area')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go-claim-a-area')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET-claim-a-area')">.NET</button>
         </div>
         <div class="copy-code-btn-container">
             <button class="copy-code-btn">
@@ -64,8 +64,8 @@
         Copied!
     </div>
 
-<div id="bash-reserve-a-area" class="tabcontent dark"><pre> <code>
-curl --area -g --request POST 'https://{{baseurl}}/site/v2/reservations' \
+<div id="bash-claim-a-area" class="tabcontent dark"><pre> <code>
+curl --area -g --request POST 'https://{{baseurl}}/site/v2/claims' \
 --header 'area-id: {{areaId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -75,12 +75,12 @@ curl --area -g --request POST 'https://{{baseurl}}/site/v2/reservations' \
 </pre>
 </div>
 
-<div id="Ruby-reserve-a-area" class="tabcontent dark"><pre><code>
+<div id="Ruby-claim-a-area" class="tabcontent dark"><pre><code>
 require "uri"
 require "json"
 require "net/http"
 
-url = URI("https://{{baseurl}}/site/v2/reservations")
+url = URI("https://{{baseurl}}/site/v2/claims")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -98,11 +98,11 @@ puts response.read_body
 </pre>
 </div>
 
-<div id="Python-reserve-a-area" class="tabcontent dark"><pre> <code>
+<div id="Python-claim-a-area" class="tabcontent dark"><pre> <code>
 import requests
 import json
 
-url = "https://{{baseurl}}/site/v2/reservations"
+url = "https://{{baseurl}}/site/v2/claims"
 
 payload = json.dumps({
     "AreaId": "{{areaId}}"
@@ -119,13 +119,13 @@ print(response.text)
 </pre>
 </div>
 
-<div id="PHP-reserve-a-area" class="tabcontent dark"><pre> <code>
+<div id="PHP-claim-a-area" class="tabcontent dark"><pre> <code>
 <?php
 
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/site/v2/reservations',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/site/v2/claims',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -150,9 +150,9 @@ echo $response;
 </pre>
 </div>
 
-<div id="Java-reserve-a-area" class="tabcontent dark"><pre><code>
+<div id="Java-claim-a-area" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("https://{{baseurl}}/site/v2/reservations")
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/site/v2/claims")
     .header("area-id", "{{areaId}}")
     .header("Content-Type", "application/json")
     .body("{\r\n    \"AreaId\": \"{{areaId}}\"\r\n}")
@@ -161,11 +161,11 @@ HttpResponse<String> response = Unirest.post("https://{{baseurl}}/site/v2/reserv
 </pre>
 </div>
 
-<div id="Node-reserve-a-area" class="tabcontent dark"><pre><code>
+<div id="Node-claim-a-area" class="tabcontent dark"><pre><code>
 var request = require('request');
 var options = {
     'method': 'POST',
-    'url': 'https://{{baseurl}}/site/v2/reservations',
+    'url': 'https://{{baseurl}}/site/v2/claims',
     'headers': {
     'area-id': '{{areaId}}',
     'Content-Type': 'application/json'
@@ -183,7 +183,7 @@ request(options, function (error, response) {
 </pre>
 </div>
 
-<div id="Go-reserve-a-area" class="tabcontent dark"><pre><code>
+<div id="Go-claim-a-area" class="tabcontent dark"><pre><code>
 package main
 
 import (
@@ -195,7 +195,7 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/site/v2/reservations"
+    url := "https://%7B%7Bbaseurl%7D%7D/site/v2/claims"
     method := "POST"
 
     payload := strings.NewReader(`{`+"
@@ -233,8 +233,8 @@ func main() {
 </pre>
 </div>
 
-<div id=".NET-reserve-a-area" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/site/v2/reservations");
+<div id=".NET-claim-a-area" class="tabcontent dark"><pre><code>
+var client = new RestClient("https://{{baseurl}}/site/v2/claims");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
 request.AddHeader("area-id", "{{areaId}}");
@@ -266,7 +266,7 @@ Console.WriteLine(response.Content);
     <code class="inline-code">2xx</code> success status code with the JSON
     Response Body containing the <code class="inline-code">reservationId</code>.
     You must include this ID later in attachment requests to devices at the
-    reserved area.
+    claimed area.
 </p>
 
 <div class="method-example atom-one-light">
@@ -309,7 +309,7 @@ Console.WriteLine(response.Content);
 
 <h2>Reservation Error</h2>
 <p>
-    Now that the area is reserved by an customer code, any request made by
+    Now that the area is claimed by an customer code, any request made by
     another airline will be rejected. This will occur until the
     reservation's <code class="inline-code">expiryTime</code> has been
     reached or the airline who made the reservation has sent a
@@ -318,8 +318,8 @@ Console.WriteLine(response.Content);
     reservation.
 </p>
 <p>
-    The following error displays when attempting to reserve a area that is
-    already reserved:
+    The following error displays when attempting to claim a area that is
+    already claimed:
 </p>
 
 <div class="method-example atom-one-light">
@@ -330,29 +330,29 @@ Console.WriteLine(response.Content);
     "type": "https://tools.ietf.org/html/rfc7231#section-6.5.1",
     "title": "Bad Request",
     "status": 400,
-    "detail": "Area reserved by other clients.",
+    "detail": "Area claimed by other clients.",
     "traceId": "00-25dd79293ba71f479ce30da826eecd09-3aa97e2de755f540-00"
 }
         </code>
         </pre>
 </div>
 <p class="caption">
-    Sample 400 Bad Request Error Message when a area is reserved by another
+    Sample 400 Bad Request Error Message when a area is claimed by another
     airline
 </p>
 
 <p>
     Sending a <span class="method post">DEL</span>
-    <code class="inline-code">/site/v2/reservations/{reservation_id}</code>
+    <code class="inline-code">/site/v2/claims/{reservation_id}</code>
     request returns a <code class="inline-code">2xx</code> success status code
     and deletes a reservation if one exists.
 </p>
-<h2 id="best-practices">Deleting Reservations</h2>
+<h2 id="best-practices">Deleting Claims</h2>
 <p>
     It is important to delete the reservation once done with a area because
     an active reservation prevents other application backends from using the
     area. This is achieved by sending a <span class="method del">DEL</span>
-    <code class="inline-code">/site/v2/reservations/{reservation_id}</code>
+    <code class="inline-code">/site/v2/claims/{reservation_id}</code>
     request, passing in the
     <code class="inline-code">reservation_id</code> of the reservation to be
     deleted as a path parameter.

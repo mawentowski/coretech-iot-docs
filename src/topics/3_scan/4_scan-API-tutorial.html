@@ -94,7 +94,7 @@
             </li>
             <li>
                 Send a <span class="method post">POST</span>
-                <code class="inline-code">/site/v2/reservations</code>
+                <code class="inline-code">/site/v2/claims</code>
                 request.
             </li>
         </ul>
@@ -201,10 +201,10 @@
                 <code class="inline-code">Online</code> and a
                 <code class="inline-code">DeviceInUse</code> property set to
                 <code class="inline-code">false</code>. When a print device is
-                not 'in use', it means the device is not exclusively reserved
-                yet through a
+                not 'in use', it means the device is not exclusively claimed yet
+                through a
                 <code class="inline-code">/scan/v2/startscanning</code> request,
-                and thus can be reserved by any application backend that has
+                and thus can be claimed by any application backend that has
                 connected to it.
             </p>
             <div class="alert-section info-alert">
@@ -282,7 +282,7 @@
             <span class="tag">Scan API</span>
         </div>
         <p>
-            The next step is to reserve the HHS to give the application backend
+            The next step is to claim the HHS to give the application backend
             exclusive access to interact with it.
         </p>
         <ol>
@@ -324,7 +324,7 @@
                         <code class="inline-code">DeviceInUse</code>
                         property should be set to
                         <code class="inline-code">true</code>, indicating that
-                        the device is now exclusively reserved and may begin
+                        the device is now exclusively claimed and may begin
                         sending messages to the application backend that made
                         the
                         <code class="inline-code">/scan/v2/startscanning</code>
@@ -347,7 +347,7 @@
                 <code class="inline-code">DeviceStatus</code> Service Bus
                 Message Body indicating the device is
                 <code class="inline-code">Online</code> and is exclusively
-                reserved by the application backend
+                claimed by the application backend
             </p>
         </ol>
     </div>
@@ -446,7 +446,7 @@
             <p class="caption">
                 <code class="inline-code">DeviceStatus</code> Service Bus
                 Message Body indicating the device is no longer 'in use' and is
-                available to be reserved by another backend or the same airline
+                available to be claimed by another backend or the same airline
                 backend
             </p>
         </ol>
@@ -466,7 +466,7 @@
                         y="0px"
                         viewBox="0 0 482.204 482.204"
                         style="enable-background: new 0 0 482.204 482.204"
-                        xml:space="preserve"
+                        xml:space="pclaim"
                     >
                         <g>
                             <path
@@ -514,7 +514,7 @@
                         y="0px"
                         viewBox="0 0 482.204 482.204"
                         style="enable-background: new 0 0 482.204 482.204"
-                        xml:space="preserve"
+                        xml:space="pclaim"
                     >
                         <g>
                             <path
@@ -561,7 +561,7 @@
                         y="0px"
                         viewBox="0 0 482.204 482.204"
                         style="enable-background: new 0 0 482.204 482.204"
-                        xml:space="preserve"
+                        xml:space="pclaim"
                     >
                         <g>
                             <path
@@ -608,7 +608,7 @@
                         y="0px"
                         viewBox="0 0 482.204 482.204"
                         style="enable-background: new 0 0 482.204 482.204"
-                        xml:space="preserve"
+                        xml:space="pclaim"
                     >
                         <g>
                             <path
