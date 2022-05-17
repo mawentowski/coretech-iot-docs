@@ -22,7 +22,7 @@
 <p>
     Send a <span class="method post">POST</span>
     <code class="inline-code">/print/v2/boardingpass/{type}</code> request to an
-    ATB device to print a boarding pass in the specified format
+    MFP device to print a boarding pass in the specified format
     <code class="inline-code">{type}</code>. Using this endpoint, boarding
     passes may be printed in either <code class="inline-code">pdf</code> or
     <code class="inline-code">svg</code> format. In the example below, PDF format is requested.
@@ -278,7 +278,7 @@ Console.WriteLine(response.Content);
 
 <p>
     The following is a sample Request Body for printing a boarding pass using an
-    ATB device in either PDF or SVG format. PDF and SVG data are represented by
+    MFP device in either PDF or SVG format. PDF and SVG data are represented by
     the property
     <code class="inline-code">printData</code> passed in the Request Body.
 </p>
@@ -306,7 +306,7 @@ Console.WriteLine(response.Content);
 <p>
     Send a <span class="method post">POST</span>
     <code class="inline-code">/print/v2/boardingpass/legacyprint</code> request to an
-    ATB device to print a boarding pass in <span class="method post">Legacy Print</span> format. 
+    MFP device to print a boarding pass in <span class="method post">Legacy Print</span> format. 
 </p>
 
 <div class="code-section with-tabs">

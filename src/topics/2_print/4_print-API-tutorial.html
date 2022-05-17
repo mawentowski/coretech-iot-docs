@@ -28,7 +28,7 @@
     </li>
 </ul>
 <p>
-    You will be interacting with an ATB device (Automated Ticket &amp; Boarding
+    You will be interacting with an MFP device (Automated Ticket &amp; Boarding
     Pass Printer) since it supports the most print format possibilities like
     SVG, PDF, or Legacy Print. With this knowledge, you can apply the same steps
     to interacting with other print devices.
@@ -104,12 +104,12 @@
 <div class="numbered-sections-container">
     <div class="section numbered-section">
         <div class="section-header">
-            <h2 id="heading-2" class="numbered-h2">Add an ATB Device</h2>
+            <h2 id="heading-2" class="numbered-h2">Add an MFP Device</h2>
             <span class="tag">Print API</span>
         </div>
         <div class="alert-section info-alert">
             <div class="">
-                <p>If an ATB has already been added, skip this section.</p>
+                <p>If an MFP has already been added, skip this section.</p>
             </div>
         </div>
         <ol>
@@ -118,7 +118,7 @@
                 <strong>Add Device</strong>.
             </li>
             <li>
-                Select <strong>ATBStandard</strong> from the
+                Select <strong>MFPStandard</strong> from the
                 <strong>Device Type</strong> drop-down.
             </li>
             <li>Leave the other setting as is.</li>
@@ -126,7 +126,7 @@
                 Click <strong>Add Device</strong>.
                 <ul>
                     <li>
-                        The ATB device is now available in the Device Simulator.
+                        The MFP device is now available in the Device Simulator.
                     </li>
                 </ul>
             </li>
@@ -134,7 +134,7 @@
                 On the device, click <strong>Run</strong>.
                 <ul>
                     <li>
-                        An ATB Device Simulator screen displays. You may keep it
+                        An MFP Device Simulator screen displays. You may keep it
                         open for later use.
                     </li>
                 </ul>
@@ -143,7 +143,7 @@
     </div>
     <div class="section numbered-section">
         <div class="section-header">
-            <h2 id="heading-2" class="numbered-h2">Connect to the ATB</h2>
+            <h2 id="heading-2" class="numbered-h2">Connect to the MFP</h2>
             <span class="tag">Print API</span>
         </div>
 
@@ -151,7 +151,7 @@
             <li>
                 In Postman, send a
                 <code class="inline-code">/session/v2/connections</code> request
-                to connect to the ATB.
+                to connect to the MFP.
                 <ul>
                     <li>
                         After connecting to a device, a connection
@@ -209,8 +209,8 @@
                     <p>
                         In the Tests tab of Postman, there is some Javascript
                         that updates the
-                        <code class="inline-code">atb_connection_id</code>
-                        environmental variable after connecting to the ATB. This
+                        <code class="inline-code">MFP_connection_id</code>
+                        environmental variable after connecting to the MFP. This
                         variable is used so you do not need to manually enter a
                         <code class="inline-code">connectionId</code> in
                         subsequent calls to the Print API.
@@ -234,7 +234,7 @@
             <ol>
                 <li>Click <strong>Run</strong>.</li>
                 <li>
-                    In the Device View, check to see if the ATB
+                    In the Device View, check to see if the MFP
                     <strong>Status</strong> is now
                     <code class="inline-code">Online</code>.
                 </li>
@@ -247,7 +247,7 @@
                 <li>Click <strong>Stop</strong>.</li>
                 <li>Click <strong>Run</strong>.</li>
                 <li>
-                    In the Device View, check to see if the ATB
+                    In the Device View, check to see if the MFP
                     <strong>Status</strong> is now
                     <code class="inline-code">Online</code>.
                 </li>
@@ -317,7 +317,7 @@
                 Message indicating a successful print
             </p>
             <li>
-                Go to the <strong>ATB Simulator</strong> window in the VM.
+                Go to the <strong>MFP Simulator</strong> window in the VM.
                 <ul>
                     <li>
                         The printed boarding pass should be visible in the
@@ -335,13 +335,13 @@
             <span class="tag">Print API</span>
         </div>
         <p>
-            The ATB Simulator (and simulators for other print devices) allows
+            The MFP Simulator (and simulators for other print devices) allows
             you to add a <strong>Fault Indicator</strong> (for example, a paper
             jam) to simulate a failed print scenario.
         </p>
         <ol>
             <li>
-                In the ATB Simulator, set the
+                In the MFP Simulator, set the
                 <strong>Fault Indicator</strong> to
                 <code class="inline-code">Paper Jam</code>.
             </li>

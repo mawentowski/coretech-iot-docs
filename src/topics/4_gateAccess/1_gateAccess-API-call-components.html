@@ -47,7 +47,7 @@ curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/opengate' \
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "connectionId": "{{bgr_connection_id}}",
+    "connectionId": "{{msr_connection_id}}",
     "correlationId": "postman-ftr-00d7a884-e061-4d01-bd26-a526344373b9"
 }'
 </code></pre>
@@ -134,7 +134,7 @@ curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/opengate' \
             </li>
         </ul>
         <p>
-            If the device is a Self-Boarding Gate, the message is ignored. Below
+            If the device is a Multi-Technology Reader, the message is ignored. Below
             is an example
             <code class="inline-code">gateaccess/v2/acceptconsumer</code>
             request passing in <code class="inline-code">Message</code> data. It
@@ -146,7 +146,7 @@ curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/opengate' \
             <pre>
                     <code class="language-json">
 {
-    "ConnectionId": "{{bgr_connection_id}}",
+    "ConnectionId": "{{msr_connection_id}}",
     "CorrelationId": "{{$guid}}",
     "Message": ["MSG Line 1", "MSG Line 2"],
     "ReceiptData": {
@@ -179,7 +179,7 @@ curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/opengate' \
             <pre>
                     <code class="language-json">
 {
-    "ConnectionId": "{{bgr_connection_id}}",
+    "ConnectionId": "{{msr_connection_id}}",
     "CorrelationId": "{{$guid}}",
     "Message": [""],
     "ReceiptData": {

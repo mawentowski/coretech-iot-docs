@@ -229,38 +229,38 @@ Console.WriteLine(response.Content);
                 <code class="language-json">
 [
     {
-        "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.ATB1",
+        "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.MFP1",
         "capabilities": [
             "PrintBoardingPass"
         ]
     },
     {
-        "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.BTP1",
+        "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.IJP1",
         "capabilities": [
             "PrintBagTag"
         ]
     },
     {
-        "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.LSR1",
+        "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.FIS1",
         "capabilities": [
             "ReadBarcode"
         ]
     },
     {
-        "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.LSR2",
+        "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.FIS2",
         "capabilities": [
             "ReadBarcode"
         ]
     },
     {
-        "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.OCR1",
+        "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.HHS1",
         "capabilities": [
             "ReadTravelDocument",
             "ReadBarcode"
         ]
     },
     {
-        "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.PMT1",
+        "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.PMC1",
         "capabilities": [
             "ProcessPayment"
         ]
@@ -272,7 +272,7 @@ Console.WriteLine(response.Content);
         ]
     },
     {
-        "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.BGR1",
+        "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.MSR1",
         "capabilities": [
             "Gate"
         ]
@@ -301,21 +301,21 @@ Console.WriteLine(response.Content);
     (for example,
     <code class="inline-code">A-ZZU-MZUZUAIRPORT-ZZU1CKB004</code>), followed by
     the name of the device (for example,
-    <code class="inline-code">.BGR1</code>).
+    <code class="inline-code">.MSR1</code>).
 </p>
 <p>
     The application backend then uses these IDs to connect to devices at the
-    location. For example, to connect to an ATB through a <span class="method post">POST</span> <code class="inline-code">/session/v2/connections</code> request, you must
+    location. For example, to connect to an MFP through a <span class="method post">POST</span> <code class="inline-code">/session/v2/connections</code> request, you must
     pass the <code class="inline-code">DeviceId</code> in the Request Body.
 </p>
 <h3 id="capabilities"><code class="inline-code">capabilities</code></h3>
 <p>
     Many times, you can determine the capabilities of a device by simply looking
     at the <code class="inline-code">deviceId</code>. For example, the
-    <code class="inline-code">ATB</code> device only has the capability to print
+    <code class="inline-code">MFP</code> device only has the capability to print
     a boarding pass. So, when a
     <code class="inline-code">deviceId</code> contains
-    <code class="inline-code">.ATB</code>, it is assumed that device only has
+    <code class="inline-code">.MFP</code>, it is assumed that device only has
     the <code class="inline-code">PrintBoardingPass</code> capability.
 </p>
 
@@ -324,7 +324,7 @@ Console.WriteLine(response.Content);
     <pre>
                 <code class="language-json">
 {
-    "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.ATB1",
+    "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.MFP1",
     "capabilities": [
         "PrintBoardingPass"
     ]
@@ -334,11 +334,11 @@ Console.WriteLine(response.Content);
 </div>
 
 <p class="caption">
-    Sample ATB Device that only has the capability is to print a boarding pass
+    Sample MFP Device that only has the capability is to print a boarding pass
 </p>
 <p>
     However, some devices have multiple capabilities. For example, a General
-    Purpose Printer (GPP) may have both the capabilities
+    Purpose Printer (3DP) may have both the capabilities
     <code class="inline-code">PrintBoardingPass</code> and
     <code class="inline-code">PrintBagTag</code>.
 </p>

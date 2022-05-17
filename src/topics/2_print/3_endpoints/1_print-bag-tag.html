@@ -22,7 +22,7 @@
 <p>
     Send a <span class="method post">POST</span>
     <code class="inline-code">/print/v2/baggagetag/pdf</code> request to an
-    BTP device to print a bag tag in PDF format. 
+    IJP device to print a bag tag in PDF format. 
 </p>
 
 
@@ -277,11 +277,11 @@ Console.WriteLine(response.Content);
 
 <p>
     The following is a sample Request Body for printing a bag tag using a
-    BTP device in PDF format. The PDF data are represented by
+    IJP device in PDF format. The PDF data are represented by
     <code class="inline-code">printData</code> (same as when printing a PDF
-    using an ATB). However, there is another data property called
+    using an MFP). However, there is another data property called
     <code class="inline-code">rfidData</code> associated with baggage tag
-    data that is specific to the BTP.
+    data that is specific to the IJP.
 </p>
 
 <div class="method-example atom-one-light">
@@ -311,7 +311,7 @@ Console.WriteLine(response.Content);
 <p>
     Send a <span class="method post">POST</span>
     <code class="inline-code">/print/v2/bagtag/legacyprint</code> request to an
-   BTP device to print a bag tag in <span class="method post">legacyprint</span> format. 
+   IJP device to print a bag tag in <span class="method post">legacyprint</span> format. 
 </p>
 
 <div class="code-section with-tabs">

@@ -244,7 +244,7 @@
     returned.
 </p>
 <p>
-    For example, an LSR device that scans a barcode returns a
+    For example, an FIS device that scans a barcode returns a
     <code class="inline-code">BarcodeRead</code> message on the Service Bus,
     providing the string that contains the barcode (
     <code class="inline-code">BarCodeData</code>) as well as the type of barcode
@@ -266,11 +266,11 @@
 
 <p class="caption">
     <code class="inline-code">BarcodeRead</code> Service Bus Message Body that
-    returned barcode data scanned by an LSR device
+    returned barcode data scanned by an FIS device
 </p>
 <h2 id="magneticcardread">MagneticCardRead</h2>
 <p>
-    An MSR device that scans the magnetic strip on the back of a payment card
+    An FBS device that scans the magnetic strip on the back of a payment card
     returns a
     <code class="inline-code">MagneticCardRead</code> message on the Service
     Bus, providing the <code class="inline-code">CardType</code> and
@@ -294,7 +294,7 @@
 
 <p class="caption">
     <code class="inline-code">MagneticCardRead</code> Service Bus Message Body
-    that returned credit card data scanned by an MSR device
+    that returned credit card data scanned by an FBS device
 </p>
 <div class="alert-section info-alert">
     <div class="">
@@ -308,7 +308,7 @@
 </div>
 <h2 id="traveldocumentread">TravelDocumentRead</h2>
 <p>
-    An OCR device that scans a passport returns a
+    An HHS device that scans a passport returns a
     <code class="inline-code">TravelDocumentRead</code> message on the Service
     Bus, providing the scanned passport data as
     <code class="inline-code">MrzData</code> in the Message Body.
@@ -329,7 +329,7 @@
 <p class="caption">
     <code class="inline-code">TravelDocumentRead</code> Service Bus Message Body
     that returned passport <code class="inline-code">MrzData</code> scanned by
-    an OCR device
+    an HHS device
 </p>
 
 <div class="continued-reading-section">

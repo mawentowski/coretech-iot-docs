@@ -73,15 +73,15 @@
 </p>
 <h2 id="opengateresponse">OpenGateResponse</h2>
 <p>
-    In an attendant-controlled area prior to boarding, the Self-Boarding Gate
-    (SBG) is in a 'closed' state where no passenger can scan their boarding pass
-    and proceed through the gate.
+    In an attendant-controlled area prior to boarding, the Multi-Technology
+    Reader (MTR) is in a 'closed' state where no passenger can scan their
+    boarding pass and proceed through the gate.
 </p>
 <p>
     The attendant starts the boarding process by triggering the
     <code class="inline-code">/gateaccess/v2/opengate</code> request. For a
-    Self-Boarding Gate, the gate displays green and is now ready to process
-    passengers. When the attendant is using a Magstripe Reader (BGR) to board
+    Multi-Technology Reader, the gate displays green and is now ready to process
+    passengers. When the attendant is using a Magstripe Reader (MSR) to board
     passengers (a process not involving a gate), the boarding process is
     initiated and an attendant may begin scanning boarding passes.
 </p>
@@ -129,7 +129,7 @@
 </p>
 <h2 id="boardingpassdata">BoardingPassData</h2>
 <p>
-    For a boarding process involving a Self-Boarding Gate (SBG) device, the
+    For a boarding process involving a Multi-Technology Reader (MTR) device, the
     passenger may scan his or her boarding pass. For a boarding process
     involving a Magstripe Reader, the attendant may now scan the passenger's
     boarding pass.
@@ -188,11 +188,11 @@
         <code class="inline-code">/gateaccess/v2/closegate</code> request
     </li>
     <li>
-        Delete the connection to the BGR through a <strong>DEL</strong>
+        Delete the connection to the MSR through a <strong>DEL</strong>
         <code class="inline-code">/session/v2/connections</code> request.
     </li>
     <li>
-        Create a new connection to the BGR through a <strong>POST</strong>
+        Create a new connection to the MSR through a <strong>POST</strong>
         <code class="inline-code">/session/v2/connections</code> request.
     </li>
     <li>
@@ -223,7 +223,7 @@
     <pre>
             <code class="language-json">
 {
-    "ConnectionId": "{{bgr_connection_id}}",
+    "ConnectionId": "{{msr_connection_id}}",
     "CorrelationId": "{{$guid}}",
     "Message": ["Passenger Okay to Board"],
     "ReceiptData": {
@@ -237,7 +237,7 @@
 <p class="caption">
     Sample
     <code class="inline-code">gateaccess/v2/acceptconsumer</code> Request Body
-    with <code class="inline-code">Message</code> data to display on a BGR
+    with <code class="inline-code">Message</code> data to display on a MSR
     device that the passenger is 'Ok' to board
 </p>
 <p>
@@ -300,7 +300,7 @@
     then allowed to pass the attendant and board the flight.
 </p>
 <p>
-    If the device is a Self-Boarding Gate, the
+    If the device is a Multi-Technology Reader, the
     <code class="inline-code">Message</code> is ignored, and the gate opens with
     a green arrow that signals to the passenger they may now proceed through the
     gate.
@@ -335,7 +335,7 @@
     <pre>
             <code class="language-json">
 {
-    "ConnectionId": "{{bgr_connection_id}}",
+    "ConnectionId": "{{msr_connection_id}}",
     "CorrelationId": "{{$guid}}",
     "Message": [ "Passenger Not Ok to Board" ],
     "Alarm": true
@@ -389,7 +389,7 @@
     to investigate the situation further.
 </p>
 <p>
-    If the device is a Self-Boarding Gate, the
+    If the device is a Multi-Technology Reader, the
     <code class="inline-code">Message</code> is ignored, and a red "X" displays
     to the passenger, along with a message such as "you cannot board, go see an
     attendant".

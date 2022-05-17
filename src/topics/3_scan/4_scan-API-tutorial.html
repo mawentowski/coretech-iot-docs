@@ -27,7 +27,7 @@
     </li>
 </ul>
 <p>
-    You will be interacting with an OCR device and simulating the scanning of a
+    You will be interacting with an HHS device and simulating the scanning of a
     passport in the VM. With this knowledge, you can apply the same steps to
     interacting with other scan devices.
 </p>
@@ -108,7 +108,7 @@
         </div>
         <div class="alert-section info-alert">
             <div class="">
-                <p>If an OCR has already been added, skip this section.</p>
+                <p>If an HHS has already been added, skip this section.</p>
             </div>
         </div>
         <ol>
@@ -117,7 +117,7 @@
                 <strong>Add Device</strong>.
             </li>
             <li>
-                Select <strong>OCR</strong> from the
+                Select <strong>HHS</strong> from the
                 <strong>Device Type</strong> drop-down.
             </li>
             <li>Leave the other settings as is.</li>
@@ -125,7 +125,7 @@
                 Click <strong>Add Device</strong>.
                 <ul>
                     <li>
-                        The OCR device is now available in the Device Simulator.
+                        The HHS device is now available in the Device Simulator.
                     </li>
                 </ul>
             </li>
@@ -133,7 +133,7 @@
                 On the device, click <strong>Run</strong>.
                 <ul>
                     <li>
-                        An OCR Device Simulator screen displays. You may keep it
+                        An HHS Device Simulator screen displays. You may keep it
                         open for later use.
                     </li>
                 </ul>
@@ -142,14 +142,14 @@
     </div>
     <div class="section numbered-section">
         <div class="section-header">
-            <h2 id="heading-2" class="numbered-h2">Connect to the OCR</h2>
+            <h2 id="heading-2" class="numbered-h2">Connect to the HHS</h2>
             <span class="tag">Scan API</span>
         </div>
         <ol>
             <li>
                 In Postman, send a
                 <code class="inline-code">/session/v2/connections</code> request
-                to connect to the OCR.
+                to connect to the HHS.
                 <ul>
                     <li>
                         After connecting to a device, a connection
@@ -211,8 +211,8 @@
                     <p>
                         In the Tests tab of Postman, there is some Javascript
                         that updates the
-                        <code class="inline-code">ocr_connection_id</code>
-                        environmental variable after connecting to the OCR. This
+                        <code class="inline-code">hhs_connection_id</code>
+                        environmental variable after connecting to the HHS. This
                         variable is used so you do not need to manually enter a
                         <code class="inline-code">connectionId</code> in
                         subsequent calls to the Print API.
@@ -237,7 +237,7 @@
             <ol>
                 <li>Click <strong>Run</strong>.</li>
                 <li>
-                    In the Device View, check to see if the OCR
+                    In the Device View, check to see if the HHS
                     <strong>Status</strong> is now
                     <code class="inline-code">Online</code>.
                 </li>
@@ -259,7 +259,7 @@
                 <li>Click <strong>Stop</strong>.</li>
                 <li>Click <strong>Run</strong>.</li>
                 <li>
-                    In the Device View, check to see if the OCR
+                    In the Device View, check to see if the HHS
                     <strong>Status</strong> is now
                     <code class="inline-code">Online</code>.
                 </li>
@@ -277,11 +277,11 @@
     </div>
     <div class="section numbered-section">
         <div class="section-header">
-            <h2 id="heading-2" class="numbered-h2">Reserve the OCR</h2>
+            <h2 id="heading-2" class="numbered-h2">Reserve the HHS</h2>
             <span class="tag">Scan API</span>
         </div>
         <p>
-            The next step is to reserve the OCR to give the application backend
+            The next step is to reserve the HHS to give the application backend
             exclusive access to interact with it.
         </p>
         <ol>
@@ -357,12 +357,12 @@
             <span class="tag">Scan API</span>
         </div>
         <p>
-            Using the VM, you will simulate an OCR scanning a passport by
+            Using the VM, you will simulate an HHS scanning a passport by
             manually entering MRZ data then reading that data to the device.
         </p>
         <ol>
             <li>
-                With the OCR Simulator in the VM, manually enter some data in
+                With the HHS Simulator in the VM, manually enter some data in
                 the
                 <strong>MRZ Data</strong> text box, then click the
                 <strong>Read</strong> button.
@@ -378,9 +378,9 @@
                     </p>
                 </div>
             </div>
-            <p class="caption">OCR Device Simulator with MRZ Data entered</p>
+            <p class="caption">HHS Device Simulator with MRZ Data entered</p>
             <li>
-                Click the <strong>Read</strong> button to simulate the OCR
+                Click the <strong>Read</strong> button to simulate the HHS
                 executing a scan and collecting the MRZ data.
             </li>
             <li>
@@ -403,13 +403,13 @@
                 <code class="inline-code">TravelDocumentRead</code>
                 Service Bus Message Body that returned passport
                 <code class="inline-code">MrzData</code>
-                'scanned' by the OCR device
+                'scanned' by the HHS device
             </p>
         </ol>
     </div>
     <div class="section numbered-section">
         <div class="section-header">
-            <h2 id="heading-2" class="numbered-h2">Release the OCR</h2>
+            <h2 id="heading-2" class="numbered-h2">Release the HHS</h2>
             <span class="tag">Scan API</span>
         </div>
         <ol>

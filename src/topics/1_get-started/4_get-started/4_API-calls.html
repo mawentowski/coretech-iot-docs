@@ -106,7 +106,7 @@ curl --location -g --request POST 'https://{{baseurl}}/print/v2/boardingpass/pdf
 <h3 id="request-bodies">Request Bodies</h3>
 <p>
     A Request Body may or may not be required depending on the endpoint. For
-    example, to send a request to an ATB device to print a boarding in PDF
+    example, to send a request to an MFP device to print a boarding in PDF
     format, you must pass <code class="inline-code">printData</code> in the
     Request Body that includes the PDF data.
 </p>
@@ -116,7 +116,7 @@ curl --location -g --request POST 'https://{{baseurl}}/print/v2/boardingpass/pdf
     <pre>
             <code class="language-json">
 {
-    "connectionId": "{{atb_connection_id}}",
+    "connectionId": "{{MFP_connection_id}}",
     "correlationId": "postman-ftr-{{$guid}}",
     "printData": "JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb2"
 }  

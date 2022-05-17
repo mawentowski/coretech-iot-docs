@@ -63,7 +63,7 @@
 curl --location -g --request POST 'https://{{baseurl}}/payment/v2/receiptprinted' \
 --header 'Content-Type: application/json' \
 --data-raw '{   
-    "connectionId": "{{pmt_connection_id}}",
+    "connectionId": "{{pmc_connection_id}}",
     "isError":false,
     "transactionError": "NO_ERROR",
     "correlationId" : "correl_paymt"
@@ -85,7 +85,7 @@ https.use_ssl = true
 request = Net::HTTP::Post.new(url)
 request["Content-Type"] = "application/json"
 request.body = JSON.dump({
-    "connectionId": "{{pmt_connection_id}}",
+    "connectionId": "{{pmc_connection_id}}",
     "isError": false,
     "transactionError": "NO_ERROR",
     "correlationId": "correl_paymt"
@@ -104,7 +104,7 @@ import json
 url = "https://{{baseurl}}/payment/v2/receiptprinted"
 
 payload = json.dumps({
-    "connectionId": "{{pmt_connection_id}}",
+    "connectionId": "{{pmc_connection_id}}",
     "isError": False,
     "transactionError": "NO_ERROR",
     "correlationId": "correl_paymt"
@@ -135,7 +135,7 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'POST',
     CURLOPT_POSTFIELDS =>'{   
-    "connectionId": "{{pmt_connection_id}}",
+    "connectionId": "{{pmc_connection_id}}",
     "isError":false,
     "transactionError": "NO_ERROR",
     "correlationId" : "correl_paymt"
@@ -157,7 +157,7 @@ echo $response;
 Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("https://{{baseurl}}/payment/v2/receiptprinted")
     .header("Content-Type", "application/json")
-    .body("{   \r\n  \"connectionId\": \"{{pmt_connection_id}}\",\r\n  \"isError\":false,\r\n  \"transactionError\": \"NO_ERROR\",\r\n  \"correlationId\" : \"correl_paymt\"\r\n}")
+    .body("{   \r\n  \"connectionId\": \"{{pmc_connection_id}}\",\r\n  \"isError\":false,\r\n  \"transactionError\": \"NO_ERROR\",\r\n  \"correlationId\" : \"correl_paymt\"\r\n}")
     .asString();
 </code>
 </pre>
@@ -172,7 +172,7 @@ var options = {
     'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-    "connectionId": "{{pmt_connection_id}}",
+    "connectionId": "{{pmc_connection_id}}",
     "isError": false,
     "transactionError": "NO_ERROR",
     "correlationId": "correl_paymt"
@@ -204,7 +204,7 @@ func main() {
 
     payload := strings.NewReader(`{   `+"
 "+`
-    "connectionId": "{{pmt_connection_id}}",`+"
+    "connectionId": "{{pmc_connection_id}}",`+"
 "+`
     "isError":false,`+"
 "+`
@@ -249,7 +249,7 @@ var request = new RestRequest(Method.POST);
 request.AddHeader("Content-Type", "application/json");
 var body = @"{   
 " + "\n" +
-@"  ""connectionId"": ""{{pmt_connection_id}}"",
+@"  ""connectionId"": ""{{pmc_connection_id}}"",
 " + "\n" +
 @"  ""isError"":false,
 " + "\n" +
@@ -276,14 +276,14 @@ Console.WriteLine(response.Content);
     
 
 <h2>Request Body</h2>
-<p>The following is a sample Request Body for using an PMT device.</p>
+<p>The following is a sample Request Body for using an PMC device.</p>
 
     <div class="method-example atom-one-light">
         <div class="method-example-top-bar">Request Body</div>
         <pre>
                 <code class="language-json">
 {
-    "connectionId": "{{pmt_connection_id}}",
+    "connectionId": "{{pmc_connection_id}}",
     "isError":false,
     "transactionError": "NO_ERROR",
     "correlationId" : "correl_paymt"
