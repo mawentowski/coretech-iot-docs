@@ -35,14 +35,14 @@
         </tr>
         <tr>
             <td><code class="inline-code">subscriptionId</code></td>
-            <td>        A Flex-specific
+            <td>An CoreTech API-specific
                 ID of the Service Bus subscription the
                 <code class="inline-code">DeviceId</code> will be associated to.</td>
         </tr>
         <tr>
             <td><code class="inline-code">ReservationId</code></td>
             <td>       The ID of the location where
-                the device is configured. This ID tells the Flex API that the airline
+                the device is configured. This ID tells the CoreTech API that the airline
                 has reserved the location where the device is located.</td>
         </tr>
 
@@ -339,7 +339,7 @@ Console.WriteLine(response.Content);
     to the <code class="inline-code">subscriptionId</code>, so any messages
     coming from the device will display on that subscription. The airline
     backend will now use this <code class="inline-code">attachmentId</code> to
-    send commands to the device through Flex.
+    send commands to the device through CoreTech APIs.
 </p>
 <p>
     An <code class="inline-code">expiryTime</code> set to
@@ -380,7 +380,7 @@ Console.WriteLine(response.Content);
     <h2 id="interact-with-a-device">Interact with a Device</h2>
 <p>
     After having successfully completed the Session API flow, you are now ready
-    to explore all of the Flex APIs. There are dedicated sections for each API,
+    to explore all of the CoreTech APIs. There are dedicated sections for each API,
     each providing an overview of how the API works and a step-by-step
     walkthrough that uses Postman, a VM, and a Service Bus attachment to
     interact with the API.

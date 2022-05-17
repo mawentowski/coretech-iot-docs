@@ -326,7 +326,7 @@ func main() {
     <code class="inline-code">subscriptionId</code>
 </h3>
 <p>
-    The <code class="inline-code">subscriptionId</code> is a Flex-specific ID
+    The <code class="inline-code">subscriptionId</code> is a CoreTech API-specific ID
     passed in the Request Body of attachment requests to associate a device with
     a specific Service Bus Subscription.
 </p>
@@ -336,7 +336,7 @@ func main() {
     <code class="inline-code">/session/v2/attachments</code> request, including
     the <code class="inline-code">subscriptionId</code> in the Request Body. The
     returned <code class="inline-code">attachmentID</code> is now associated to
-    the subscription, and thus Flex knows to route any messages coming from the
+    the subscription, and thus CoreTech APIs know to route any messages coming from the
     device to that specific subscription.
 </p>
 <div class="alert-section info-alert">
@@ -453,7 +453,7 @@ func main() {
 </p>
 <h3 id="protect-subscriptions-details">Protect Subscriptions Details</h3>
 <p>
-    Since SITA Flex only expects to be interacting with the one authenticated
+    Since CoreTech IoT only expects to be interacting with the one authenticated
     system such as your Application Web Server, it is recommended that the Azure
     Service Bus subscription details should not be shared amongst several
     parties. They should remain secret for specific usage in your application at
@@ -469,8 +469,7 @@ func main() {
     an auto-delete on idle takes care of the subscription removal (<code class="inline-code"
         >AutoDeleteOnIdle</code
     >
-    property in Azure Service Bus). Currently, the time is controlled by SITA
-    Flex Core services and is set to <strong>24 hours</strong>.
+    property in Azure Service Bus). Currently, the time is controlled by CoreTech services and is set to <strong>24 hours</strong>.
 </p>
 <h3 id="deleting-subscriptions">Deleting Subscriptions</h3>
 <p>

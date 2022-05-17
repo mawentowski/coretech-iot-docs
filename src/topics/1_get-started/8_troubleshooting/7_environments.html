@@ -7,7 +7,8 @@
 
 <p>
     The following are common behaviors/issues that may arise on devices or
-    software in SITA Flex environments, along with recommended resolution steps.
+    software in CoreTech IoT environments, along with recommended resolution
+    steps.
 </p>
 <p>
     If any of the following suggested resolutions do not work, especially in the
@@ -25,11 +26,12 @@
         Do one of the following, based on your situation:
         <ul>
             <li>
-                If you are using your own <strong>SITA Flex Suitcase</strong>,
-                provide the log files for the
-                <strong>SITA Flex Adapter Service</strong> (FAS). These can be
-                found in <code class="inline-code">C:\SITA\Logs\FAS</code>.
-                Copy, zip, and send these logs along with your support request.
+                If you are using your own
+                <strong>CoreTech IoT Suitcase</strong>, provide the log files
+                for the <strong>CoreTech IoT Adapter Service</strong> (FAS).
+                These can be found in
+                <code class="inline-code">C:\CoreTech\Logs\FAS</code>. Copy,
+                zip, and send these logs along with your support request.
             </li>
             <li>
                 If you were using a <strong>VM</strong>, provide the VM you were
@@ -46,7 +48,7 @@
     In the <strong>Device View</strong>, it is possible devices statuses display
     as <code class="inline-code">Unknown</code> or
     <code class="inline-code">Unreachable</code>. If this is the case, it is
-    necessary to start or restart <strong>SITA Flex Adapter Service</strong>.
+    necessary to start or restart <strong>CoreTech IoT Adapter Service</strong>.
 </p>
 <p>To resolve the issue:</p>
 <ol>
@@ -54,7 +56,7 @@
         <p>
             Send <span class="method post">DEL</span>
             <code class="inline-code">/session/v2/subscriptions</code> request
-            to unsubscribe from your current Flex API session.
+            to unsubscribe from your current CoreTech API session.
         </p>
     </li>
     <li>
@@ -66,8 +68,8 @@
                 devices and exiting the application.
             </li>
             <li>
-                If you are using the <strong>SITA Flex Suitcase</strong>, power
-                off then power on the affected device.
+                If you are using the <strong>CoreTech IoT Suitcase</strong>,
+                power off then power on the affected device.
             </li>
         </ul>
     </li>
@@ -80,20 +82,21 @@
     </li>
     <li>
         <p>
-            Locate the <strong>SITA Flex Adapter Service</strong> in the list of
-            services.
+            Locate the <strong>CoreTech IoT Adapter Service</strong> in the list
+            of services.
         </p>
     </li>
     <li>
         <p>Perform one of the following, depending on the situation:</p>
         <ul>
             <li>
-                If <strong>SITA Flex Adapter Service</strong> <em>is not</em>
-                <code class="inline-code">Running</code>, then right-click it
-                and select <strong>Start</strong> to start the service.
+                If <strong>CoreTech IoT Adapter Service</strong>
+                <em>is not</em> <code class="inline-code">Running</code>, then
+                right-click it and select <strong>Start</strong> to start the
+                service.
             </li>
             <li>
-                If <strong>SITA Flex Adapter Service</strong> <em>is</em>
+                If <strong>CoreTech IoT Adapter Service</strong> <em>is</em>
                 <code class="inline-code">Running</code>, then right-click it
                 and select <strong>Restart</strong> to restart the service.
             </li>

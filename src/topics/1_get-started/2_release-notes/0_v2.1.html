@@ -60,10 +60,10 @@
     <div class="code-content dark">
         <pre><code class="">
 using Microsoft.Azure.ServiceBus;
-using TechFront.IoTApi.ServiceBusConsole.Core.Model.FlexCore;
+using TechFront.IoTApi.ServiceBusConsole.Core.Model.CoreTech;
 using System.Text;
 
-namespace Sita.IoTApi.ServiceBusConsole.Core.Model
+namespace CoreTech.IoTApi.ServiceBusConsole.Core.Model
 {
     public class DisplayMessage
     {
@@ -77,7 +77,7 @@ namespace Sita.IoTApi.ServiceBusConsole.Core.Model
         public string MessageBodyJson { get; set; }
 
         /// &lt;summary&gt;
-        /// Create a DisplayMessage object from a Flex Core Platform Message
+        /// Create a DisplayMessage object from a CoreTech Platform Message
         /// &lt;/summary&gt;
         /// &lt;param name="platformMessage"&gt;&lt;/param&gt;
         public DisplayMessage(PlatformMessage platformMessage)
@@ -112,7 +112,7 @@ namespace Sita.IoTApi.ServiceBusConsole.Core.Model
     Code Snippet showing the difference between v2 and v2.1 Service Bus Messages
 </p>
 
-<h2 id="flex-apis-reorganization">Flex APIs Reorganization</h2>
+<h2 id="flex-apis-reorganization">CoreTech APIs Reorganization</h2>
 <p>
     Many of the endpoints associated with the V1 Locations API have been
     replaced by the <strong>Session API</strong> endpoints, including requests

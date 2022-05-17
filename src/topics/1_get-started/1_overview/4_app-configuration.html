@@ -2,21 +2,21 @@
     <h1 class="topic-title">Application Configuration</h1>
     <div class="action-statement">
         Determine the best approach for how your app should be configured to use
-        Flex APIs
+        CoreTech APIs
     </div>
 </div>
 
 <p>
     Customers have a certain degree of freedom when it comes to setting up their
-    applications to use Flex APIs.
+    applications to use CoreTech APIs.
 </p>
-<h2 id="airline-backends">Airline Backends</h2>
+<h2 id="airline-backends">Backends</h2>
 <p>
     An application backend is the server/data center that communicates with
-    Flex. An airline may choose to have a single backend that services multiple
-    applications, or multiple backends to service multiple applications. For
-    example, an airline may have an application backend for a passenger-facing
-    mobile app and another for a desktop app for attendants.
+    CoreTech APIs. An airline may choose to have a single backend that services
+    multiple applications, or multiple backends to service multiple
+    applications. For example, an airline may have an application backend for a
+    passenger-facing mobile app and another for a desktop app for attendants.
 </p>
 
 <div class="alert-section info-alert">
@@ -48,11 +48,11 @@
 
 <h2 id="client-applications">Client Applications</h2>
 <p>
-    Airline backends should be designed to service thousands of clients. Flex
-    does not interact with any client applications, only the application
-    backends that service those clients. If a client application requests to
-    print a entry pass, it is the responsibility of the backend to send the
-    response back to the device that made the request (e.g.,
+    Backends should be designed to service thousands of clients. CoreTech APIs
+    doe not interact with any client applications, only the application backends
+    that service those clients. If a client application requests to print a
+    entry pass, it is the responsibility of the backend to send the response
+    back to the device that made the request (e.g.,
     <code class="inline-code">Print Successful</code>).
 </p>
 

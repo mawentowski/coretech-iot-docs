@@ -1,26 +1,28 @@
 <div class="title-box">
     <h1 class="topic-title">Azure Service Bus</h1>
     <div class="action-statement">
-        Learn about how Flex routes device messages to your application backend.
+        Learn about how CoreTech APIs routes device messages to your application
+        backend.
     </div>
 </div>
 
 <p>
-    To use the SITA Flex APIs properly, having a firm understanding of the
+    To use the CoreTech APIs properly, having a firm understanding of the
     Service Bus is required.
 </p>
 <p>
-    The Azure Service Bus is a message broker Flex uses to send messages to an
-    application backend. The Service Bus subscription provides a back channel
-    for asynchronous and unsolicited messages from the platform and devices.
+    The Azure Service Bus is a message broker CoreTech APIs use to send messages
+    to an application backend. The Service Bus subscription provides a back
+    channel for asynchronous and unsolicited messages from the platform and
+    devices.
 </p>
 
 <div class="alert-section info-alert">
     <div class="">
         <p>
             A full description of the Service Bus is out of scope for this
-            documentation, but this section seeks to explain how Flex interacts
-            with it on a high level. See the
+            documentation, but this section seeks to explain how CoreTech APIs
+            interact with it on a high level. See the
             <a
                 href="https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview"
                 >Microsoft Docs</a
@@ -35,8 +37,8 @@
     <li><p>Each application backend needs its own subscription.</p></li>
     <li>
         <p>
-            Flex customers and their Flex locations will be configured in a
-            specific Azure Region.
+            CoreTech API customers and their CoreTech API locations will be
+            configured in a specific Azure Region.
         </p>
     </li>
     <li>
@@ -59,18 +61,18 @@
             correct client applications.
         </p>
     </li>
-    <li><p>Flex communications are both synchronous and asynchronous.</p></li>
+    <li><p>Communications are both synchronous and asynchronous.</p></li>
 </ul>
 <h2 id="flex-api-http-responses-and-service-bus-messages">
-    Flex API HTTP Responses and Service Bus Messages
+    CoreTech API HTTP Responses and Service Bus Messages
 </h2>
 <p>
-    It is important to know that after sending Flex API HTTP requests, the HTTP
+    It is important to know that after sending API HTTP requests, the HTTP
     responses are oftentimes not the primary source of information airline
     backends will act upon.
 </p>
 <p>
-    Instead, whenever a Flex API request is sent to a device, an action is
+    Instead, whenever a CoreTech API request is sent to a device, an action is
     carried out of the device and a 'response' Service Bus message is sent to
     the Azure Service Bus subscription the application backend is 'subscribed
     to'. The
@@ -78,11 +80,11 @@
     information returned.
 </p>
 <p>
-    Hence, the HTTP response returned by Flex is synchronous and only
+    Hence, the HTTP response returned by an API is synchronous and only
     acknowledges a request has been made. The Service Bus message returned on
-    the Service Bus Subscription after sending an HTTP request to Flex is an
-    asynchronous response and can be considered the 'true' response to the API
-    request.
+    the Service Bus Subscription after sending an HTTP request to the CoreTech
+    API is an asynchronous response and can be considered the 'true' response to
+    the API request.
 </p>
 <h2 id="download-azure-client-library">Download Azure Client Library</h2>
 <p>

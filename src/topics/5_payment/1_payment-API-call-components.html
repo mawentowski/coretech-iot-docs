@@ -68,7 +68,7 @@ curl --location -g --request POST 'https://{{baseurl}}/payment/v2/process' \
 <p>At present, Payment API Resource URLs are comprised of:</p>
 <ul>
 <li>A REST API standard method preceding the URL for accessing the endpoint. In the case of the Print API, the only method used is <span class="method post">POST</span>.</li>
-<li>A Base URL specific to the SITA Flex environment, sometimes displayed as <code class="inline-code">{{baseurl}}</code> in the Resource URL in Postman.</li>
+<li>A Base URL specific to the CoreTech IoT environment, sometimes displayed as <code class="inline-code">{{baseurl}}</code> in the Resource URL in Postman.</li>
 <li>The end path of the Resource URL is comprised of the API name (<code class="inline-code">payment</code>) followed by the endpoint name. For example, the end path <code class="inline-code">/payment/v2/process</code> contains the API <code class="inline-code">payment</code> followed by the endpoint <code class="inline-code">process</code>.</li>
 </ul>
 
@@ -81,7 +81,7 @@ curl --location -g --request POST 'https://{{baseurl}}/payment/v2/process' \
 
 
 <h2 id="header-parameters">Header Parameters</h2>
-<p>A <code class="inline-code">location-id</code> is required in the header of the request. Flex APIs use the Azure API Management service (APIM) to route a request to the correct region based on the customer code extracted from the <code class="inline-code">LocationId</code>.</p>
+<p>A <code class="inline-code">location-id</code> is required in the header of the request. CoreTech APIs use the Azure API Management service (APIM) to route a request to the correct region based on the customer code extracted from the <code class="inline-code">LocationId</code>.</p>
 <h2 id="authorization-headers">Authorization Headers</h2>
 <p>An <code class="inline-code">access_token</code> is required in the Authorization Header of requests for authentication.</p>
 

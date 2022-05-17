@@ -11,7 +11,7 @@
 </p>
 <h2 id="no-session-token">No Session Token</h2>
 <p>
-    Previously, to use Flex APIs, a
+    Previously, to use CoreTech APIs, a
     <code class="inline-code">/v1/location/getsessiontoken</code> request must
     be made to acquire a session token that tracks the session and maps all
     calls made during the session. The Request Body needed to include a
@@ -29,7 +29,7 @@
     registration details including the application name that contains the
     <code class="inline-code">CustomerCode</code>. Certain roles assigned to
     that <code class="inline-code">CustomerCode</code> govern the allowed
-    interactions with Flex APIs.
+    interactions with CoreTech APIs.
 </p>
 <h2 id="subscribe-request-changes">Subscribe Request Changes</h2>
 <p>
@@ -47,7 +47,7 @@
 <ul>
     <li>
         There is a new <code class="inline-code">Subscription ID</code> that is
-        Flex-specific and must be included in all requests connecting to and
+        CoreTech-specific and must be included in all requests connecting to and
         interacting with devices.
     </li>
     <li>
@@ -135,16 +135,17 @@
     duplicate messages are not processed.
 </p>
 <p>Both these properties are no longer required.</p>
-<h2 id="no-enable-or-disable-devices">No Enable or Disable Devices</h2>
+<h2 id="no-enable-or-deactivate-devices">No Activate or Deactivate Devices</h2>
 <p>
     Previously, devices needed to be enabled to indicate the application is
-    ready to receive data via reading or scanning and disabled to stop the flow
-    of information from the device to the application.
+    ready to receive data via reading or scanning and deactivated to stop the
+    flow of information from the device to the application.
 </p>
 <p>
-    You no longer need to Enable or Disable devices, except for scan devices.
-    Enable is now <span class="method post">POST</span>
-    <code class="inline-code">/scan/v2/startscanning</code> and Disable is now
+    You no longer need to Activate or Deactivate devices, except for scan
+    devices. Activate is now <span class="method post">POST</span>
+    <code class="inline-code">/scan/v2/startscanning</code> and Deactivate is
+    now
     <span class="method post">POST</span>
     <code class="inline-code">/scan/v2/stopscanning</code>. The
     <code class="inline-code">/scan/v2/startscanning</code> request readies the
