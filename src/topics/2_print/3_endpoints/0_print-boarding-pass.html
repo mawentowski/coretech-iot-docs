@@ -302,24 +302,24 @@ Console.WriteLine(response.Content);
 </p>
 
 
-<h3>Print in AEA Format</h3>
+<h3>Print in Legacy format</h3>
 <p>
     Send a <span class="method post">POST</span>
-    <code class="inline-code">/print/v2/boardingpass/aea</code> request to an
-    ATB device to print a boarding pass in <span class="method post">aea</span> format. 
+    <code class="inline-code">/print/v2/boardingpass/legacyprint</code> request to an
+    ATB device to print a boarding pass in <span class="method post">Legacy Print</span> format. 
 </p>
 
 <div class="code-section with-tabs">
     <div class="code-section-header">
         <div class="code-tabs">
-            <button class="tablinks" onclick="openTab(event, 'bash-print-boarding-pass-aea')" id="defaultOpen">curl</button>
-            <button class="tablinks" onclick="openTab(event, 'Ruby-print-boarding-pass-aea')">Ruby</button>
-            <button class="tablinks" onclick="openTab(event, 'Python-print-boarding-pass-aea')">Python</button>
-            <button class="tablinks" onclick="openTab(event, 'PHP-print-boarding-pass-aea')">PHP</button>
-            <button class="tablinks" onclick="openTab(event, 'Java-print-boarding-pass-aea')">Java</button>
-            <button class="tablinks" onclick="openTab(event, 'Node-print-boarding-pass-aea')">Node</button>
-            <button class="tablinks" onclick="openTab(event, 'Go-print-boarding-pass-aea')">Go</button>
-            <button class="tablinks" onclick="openTab(event, '.NET-print-boarding-pass-aea')">.NET</button>
+            <button class="tablinks" onclick="openTab(event, 'bash-print-boarding-pass-legacyprint')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby-print-boarding-pass-legacyprint')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python-print-boarding-pass-legacyprint')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP-print-boarding-pass-legacyprint')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java-print-boarding-pass-legacyprint')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node-print-boarding-pass-legacyprint')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go-print-boarding-pass-legacyprint')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET-print-boarding-pass-legacyprint')">.NET</button>
         </div>
         <div class="copy-code-btn-container">
             <button class="copy-code-btn">
@@ -343,14 +343,14 @@ Console.WriteLine(response.Content);
         Copied!
     </div>
 
-<div id="bash-print-boarding-pass-aea" class="tabcontent dark"><pre> <code>
-curl --location -g --request POST 'https://{{baseurl}}/print/v2/boardingpass/aea' \
+<div id="bash-print-boarding-pass-legacyprint" class="tabcontent dark"><pre> <code>
+curl --location -g --request POST 'https://{{baseurl}}/print/v2/boardingpass/legacyprint' \
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "connectionId": "",
     "correlationId": "postman-ftr-6b58cb56-f2a7-48d7-bd16-237a1f1933fc",
-    "aeaPrintData": {
+    "legacyPrintData": {
     "pectab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",
     "templates": [
         "VFQwM18wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD",
@@ -364,12 +364,12 @@ curl --location -g --request POST 'https://{{baseurl}}/print/v2/boardingpass/aea
 </pre>
 </div>
 
-<div id="Ruby-print-boarding-pass-aea" class="tabcontent dark"><pre><code>
+<div id="Ruby-print-boarding-pass-legacyprint" class="tabcontent dark"><pre><code>
 require "uri"
 require "json"
 require "net/http"
 
-url = URI("https://{{baseurl}}/print/v2/boardingpass/aea")
+url = URI("https://{{baseurl}}/print/v2/boardingpass/legacyprint")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -380,7 +380,7 @@ request["Content-Type"] = "application/json"
 request.body = JSON.dump({
     "connectionId": "",
     "correlationId": "postman-ftr-5608720d-9139-47ad-8014-af1260417300",
-    "aeaPrintData": {
+    "legacyPrintData": {
     "pectab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",
     "templates": [
         "VFQwM18wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD",
@@ -397,16 +397,16 @@ puts response.read_body
 </pre>
 </div>
 
-<div id="Python-print-boarding-pass-aea" class="tabcontent dark"><pre> <code>
+<div id="Python-print-boarding-pass-legacyprint" class="tabcontent dark"><pre> <code>
 import requests
 import json
 
-url = "https://{{baseurl}}/print/v2/boardingpass/aea"
+url = "https://{{baseurl}}/print/v2/boardingpass/legacyprint"
 
 payload = json.dumps({
     "connectionId": "",
     "correlationId": "postman-ftr-a0381506-464e-428a-8daf-81a8fdd719d2",
-    "aeaPrintData": {
+    "legacyPrintData": {
     "pectab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",
     "templates": [
         "VFQwM18wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD",
@@ -428,11 +428,11 @@ print(response.text)
 </pre>
 </div>
 
-<div id="PHP-print-boarding-pass-aea" class="tabcontent dark"><pre> <code>
+<div id="PHP-print-boarding-pass-legacyprint" class="tabcontent dark"><pre> <code>
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/print/v2/boardingpass/aea',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/print/v2/boardingpass/legacyprint',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -443,7 +443,7 @@ curl_setopt_array($curl, array(
     CURLOPT_POSTFIELDS =>'{
     "connectionId": "",
     "correlationId": "postman-ftr-625d341d-ea2d-4f4f-a61f-f1362774f83d",
-    "aeaPrintData": {
+    "legacyPrintData": {
     "pectab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",
     "templates": [
         "VFQwM18wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD",
@@ -467,22 +467,22 @@ echo $response;
 </pre>
 </div>
 
-<div id="Java-print-boarding-pass-aea" class="tabcontent dark"><pre><code>
+<div id="Java-print-boarding-pass-legacyprint" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("https://{{baseurl}}/print/v2/boardingpass/aea")
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/print/v2/boardingpass/legacyprint")
     .header("location-id", "{{locationId}}")
     .header("Content-Type", "application/json")
-    .body("{\r\n  \"connectionId\": \"\",\r\n  \"correlationId\": \"postman-ftr-f1c53caf-81c1-4de7-bfe6-12e83811ff59\",\r\n  \"aeaPrintData\": {\r\n    \"pectab\": \"UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv\",\r\n    \"templates\": [\r\n        \"VFQwM18wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD\",\r\n        \"VFQwNF8wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD\"\r\n    ],\r\n    \"Logos\":[],\r\n    \"printData\": \"Q1AjMUMwMSMwMUojMDZBWktVUiAgICBBSE1FVE\"\r\n  }\r\n}")
+    .body("{\r\n  \"connectionId\": \"\",\r\n  \"correlationId\": \"postman-ftr-f1c53caf-81c1-4de7-bfe6-12e83811ff59\",\r\n  \"legacyPrintData\": {\r\n    \"pectab\": \"UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv\",\r\n    \"templates\": [\r\n        \"VFQwM18wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD\",\r\n        \"VFQwNF8wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD\"\r\n    ],\r\n    \"Logos\":[],\r\n    \"printData\": \"Q1AjMUMwMSMwMUojMDZBWktVUiAgICBBSE1FVE\"\r\n  }\r\n}")
     .asString();    
 </code>
 </pre>
 </div>
 
-<div id="Node-print-boarding-pass-aea" class="tabcontent dark"><pre><code>
+<div id="Node-print-boarding-pass-legacyprint" class="tabcontent dark"><pre><code>
 var request = require('request');
 var options = {
     'method': 'POST',
-    'url': 'https://{{baseurl}}/print/v2/boardingpass/aea',
+    'url': 'https://{{baseurl}}/print/v2/boardingpass/legacyprint',
     'headers': {
     'location-id': '{{locationId}}',
     'Content-Type': 'application/json'
@@ -490,7 +490,7 @@ var options = {
     body: JSON.stringify({
     "connectionId": "",
     "correlationId": "postman-ftr-d0294bc7-d5b0-4e73-8206-84eab0ade3b5",
-    "aeaPrintData": {
+    "legacyPrintData": {
         "pectab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",
         "templates": [
         "VFQwM18wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD",
@@ -510,7 +510,7 @@ request(options, function (error, response) {
 </pre>
 </div>
 
-<div id="Go-print-boarding-pass-aea" class="tabcontent dark"><pre><code>
+<div id="Go-print-boarding-pass-legacyprint" class="tabcontent dark"><pre><code>
 package main
 
 import (
@@ -522,7 +522,7 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/print/v2/boardingpass/aea"
+    url := "https://%7B%7Bbaseurl%7D%7D/print/v2/boardingpass/legacyprint"
     method := "POST"
 
     payload := strings.NewReader(`{`+"
@@ -531,7 +531,7 @@ func main() {
 "+`
     "correlationId": "postman-ftr-8865857f-b20b-49b5-b1ee-bb4c5e713c54",`+"
 "+`
-    "aeaPrintData": {`+"
+    "legacyPrintData": {`+"
 "+`
     "pectab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",`+"
 "+`
@@ -580,8 +580,8 @@ func main() {
 </pre>
 </div>
 
-<div id=".NET-print-boarding-pass-aea" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/print/v2/boardingpass/aea");
+<div id=".NET-print-boarding-pass-legacyprint" class="tabcontent dark"><pre><code>
+var client = new RestClient("https://{{baseurl}}/print/v2/boardingpass/legacyprint");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
 request.AddHeader("location-id", "{{locationId}}");
@@ -592,7 +592,7 @@ var body = @"{
 " + "\n" +
 @"  ""correlationId"": ""postman-ftr-010d4303-34ef-411e-b8eb-77c4232af0cb"",
 " + "\n" +
-@"  ""aeaPrintData"": {
+@"  ""legacyPrintData"": {
 " + "\n" +
 @"    ""pectab"": ""UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv"",
 " + "\n" +
@@ -623,7 +623,7 @@ Console.WriteLine(response.Content);
 <p class="caption">
     Sample <span class="method post">POST</span>
     <code class="inline-code">/print/v2/boardingpass/{type}</code> API call that requests a
-    device print a boarding pass in AEA format.
+    device print a boarding pass in Legacy format.
 </p>
 
 
@@ -632,7 +632,7 @@ Console.WriteLine(response.Content);
 <p>
     The following is a sample Request Body for printing a boarding pass in AEA
     format. Notice that
-    <code class="inline-code">aeaPrintData</code> is used instead of
+    <code class="inline-code">legacyPrintData</code> is used instead of
     <code class="inline-code">printData</code>.
 </p>
 
@@ -643,7 +643,7 @@ Console.WriteLine(response.Content);
 {
     "connectionId": "33ed0d5a-3a92-4f08-be97-73535d73fc09",
     "correlationId": "10099a59-6880-468d-ac66-8bbda5eb7d02",
-    "aeaPrintData": {
+    "legacyPrintData": {
         "pectab": "UFQjIz9WMU4jQDsjVElDS1QjQ0hLSU4jQk9BUkQjMDEwMTE...",
         "logos": [
         "AAAAANH/wfDR/8Hw0f/B8NH/wfDR/8Hw0f/B8NH/wfDR/8H/B8NH//B..."
@@ -656,7 +656,7 @@ Console.WriteLine(response.Content);
 </div>
 
 <p class="caption">
-    Sample Request Body for printing a boarding pass in AEA format.
+    Sample Request Body for printing a boarding pass in Legacy format.
 </p>
 
 <h2>Response</h2>

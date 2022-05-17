@@ -125,7 +125,7 @@ curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/opengate' \
         <ul>
             <li>
                 When sending a
-                <code class="inline-code">gateaccess/v2/acceptpassenger</code>
+                <code class="inline-code">gateaccess/v2/acceptconsumer</code>
                 or
                 <code class="inline-code">/gateaccess/v2/rejectpassenger</code>
                 request, a <code class="inline-code">Message</code> may be
@@ -136,7 +136,7 @@ curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/opengate' \
         <p>
             If the device is a Self-Boarding Gate, the message is ignored. Below
             is an example
-            <code class="inline-code">gateaccess/v2/acceptpassenger</code>
+            <code class="inline-code">gateaccess/v2/acceptconsumer</code>
             request passing in <code class="inline-code">Message</code> data. It
             is possible to display the message on multiple lines as shown below:
         </p>
@@ -160,14 +160,14 @@ curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/opengate' \
         
         <p class="caption">
             Sample
-            <code class="inline-code">gateaccess/v2/acceptpassenger</code>
+            <code class="inline-code">gateaccess/v2/acceptconsumer</code>
             request including <code class="inline-code">Message</code> data to
             be displayed to the agent
         </p>
         <ul>
             <li>
                 When sending a
-                <code class="inline-code">gateaccess/v2/acceptpassenger</code>
+                <code class="inline-code">gateaccess/v2/acceptconsumer</code>
                 request, <code class="inline-code">ReceiptData</code> may be
                 passed to a device printer to print a receipt for the passenger.
             </li>
@@ -195,7 +195,7 @@ curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/opengate' \
 
         <p class="caption">
             Sample
-            <code class="inline-code">/gateaccess/v2/acceptpassenger</code>
+            <code class="inline-code">/gateaccess/v2/acceptconsumer</code>
             Request Body that passes
             <code class="inline-code">ReceiptData</code> to be printed for the
             passenger

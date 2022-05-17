@@ -119,9 +119,9 @@ namespace Sita.AirportApi.ServiceBusConsole.Core.Model
     to create Service Bus Subscriptions and connect to devices.
 </p>
 <p>
-    There is <strong>no longer a Peripheral API</strong> that lets you reserve
-    and release devices, it has been broken out into separate APIs that deal
-    with the different device functions.
+    There is <strong>no longer a Device API</strong> that lets you reserve and
+    release devices, it has been broken out into separate APIs that deal with
+    the different device functions.
 </p>
 <ul>
     <li>
@@ -159,11 +159,11 @@ namespace Sita.AirportApi.ServiceBusConsole.Core.Model
     </li>
     <li>
         <p>
-            Instead of releasing a peripheral after reserving it (<span
+            Instead of releasing a device after reserving it (<span
                 class="method post"
                 >POST</span
             >
-            <code class="inline-code">/v1/peripheral/release</code>), you send a
+            <code class="inline-code">/v1/device/release</code>), you send a
             request to delete the connection <strong>DEL</strong>
             <code class="inline-code"
                 >/session/v2/connections/{connection_id}</code
