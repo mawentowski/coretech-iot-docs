@@ -12,9 +12,8 @@
 </p>
 <p>
     The Azure Service Bus is a message broker CoreTech APIs use to send messages
-    to an application backend. The Service Bus subscription provides a back
-    channel for asynchronous and unsolicited messages from the platform and
-    devices.
+    to an application backend. The Service Bus linkage provides a back channel
+    for asynchronous and unsolicited messages from the platform and devices.
 </p>
 
 <div class="alert-section info-alert">
@@ -34,7 +33,7 @@
 
 <p>A few key takeaways:</p>
 <ul>
-    <li><p>Each application backend needs its own subscription.</p></li>
+    <li><p>Each application backend needs its own linkage.</p></li>
     <li>
         <p>
             CoreTech API customers and their CoreTech API areas will be
@@ -43,22 +42,22 @@
     </li>
     <li>
         <p>
-            Subscriptions are specific to an Azure Region and so your backend
-            may need several subscriptions to receive messages from all the
-            areas you operate at.
+            Linkages are specific to an Azure Region and so your backend may
+            need several linkages to receive messages from all the areas you
+            operate at.
         </p>
     </li>
     <li>
         <p>
-            The subscription is intended to be long lived; you should ensure
-            that you refresh the subscription when it expires.
+            The linkage is intended to be long lived; you should ensure that you
+            refresh the linkage when it expires.
         </p>
     </li>
     <li>
         <p>
             It is the responsibility of the application backend system to
-            correctly route the messages received on a subscription to the
-            correct client applications.
+            correctly route the messages received on a linkage to the correct
+            client applications.
         </p>
     </li>
     <li><p>Communications are both synchronous and asynchronous.</p></li>
@@ -74,17 +73,17 @@
 <p>
     Instead, whenever a CoreTech API request is sent to a device, an action is
     carried out of the device and a 'response' Service Bus message is sent to
-    the Azure Service Bus subscription the application backend is 'subscribed
-    to'. The
+    the Azure Service Bus linkage the application backend is 'linked to'.
+    The
     <code class="inline-code">MessageType</code> determines the type of
     information returned.
 </p>
 <p>
     Hence, the HTTP response returned by an API is synchronous and only
     acknowledges a request has been made. The Service Bus message returned on
-    the Service Bus Subscription after sending an HTTP request to the CoreTech
-    API is an asynchronous response and can be considered the 'true' response to
-    the API request.
+    the Service Bus Linkage after sending an HTTP request to the CoreTech API is
+    an asynchronous response and can be considered the 'true' response to the
+    API request.
 </p>
 <h2 id="download-azure-client-library">Download Azure Client Library</h2>
 <p>

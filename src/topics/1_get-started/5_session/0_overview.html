@@ -8,7 +8,7 @@
 <p>
     The <strong>Sync API</strong> endpoints allow application backends to
     connect to devices configured in a CoreTech IoT environment and to receive
-    those messages on an Azure Service Bus subscription.
+    those messages on an Azure Service Bus linkage.
 </p>
 <p>The flow of the API is to:</p>
 <ul>
@@ -21,9 +21,9 @@
     </li>
     <li>
         <p>
-            <strong>Subscribe</strong> to the Azure Service Bus subscription for
-            your application backend through a POST
-            <code class="inline-code">/sync/v2/subscriptions</code> request.
+            <strong>Link</strong> to the Azure Service Bus linkage for your
+            application backend through a POST
+            <code class="inline-code">/sync/v2/linkages</code> request.
         </p>
     </li>
     <li>
@@ -37,7 +37,7 @@
     <li>
         <p>
             Create an attachment to IoT devices to receive messages on the
-            subscription through a POST
+            linkage through a POST
             <code class="inline-code">/sync/v2/attachments</code> request.
         </p>
     </li>
@@ -66,7 +66,7 @@
     Example areas configured in the CoreTech IoT environment include:
 </p>
 <ul class="redacted">
-    <li>Airport CUTE type workstations for check-in and boarding</li>
+    <li>Airport CUTE type servers for check-in and boarding</li>
     <li>CUSS Type devices like a Self-Service Kiosk</li>
     <li>Self-Service conveyor unit and Self-Service Boarding Gate</li>
 </ul>
@@ -75,8 +75,8 @@
         <p>
             When reserving a area, the
             <code class="inline-code">areaId</code> should not be confused with
-            a workstation with devices physically connected to it. Rather, it is
-            a logical entity that has certain capabilities associated with it.
+            a server with devices physically connected to it. Rather, it is a
+            logical entity that has certain capabilities associated with it.
         </p>
     </div>
 </div>

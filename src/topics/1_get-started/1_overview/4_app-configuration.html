@@ -30,19 +30,19 @@
     Once again, whether an application backend manages one or multiple
     applications, each application has its own set of credentials.
 </p>
-<h2 id="subscriptions">Subscriptions</h2>
+<h2 id="linkages">Linkages</h2>
 <p>
     Because the Service Bus is Azure Region-specific, each application backend
-    must maintain one subscription <u>for each Azure Region</u>. For any one
-    Azure Region, all messages sent from devices in that region display on that
-    region's subscription.
+    must maintain one linkage <u>for each Azure Region</u>. For any one Azure
+    Region, all messages sent from devices in that region display on that
+    region's linkage.
 </p>
 
 <div class="alert-section info-alert">
     <div class="">
-        A subscription is created when an application backend sends a
+        A linkage is created when an application backend sends a
         <span class="method post">POST</span
-        ><code class="inline-code"> sync/v2/subscriptions</code> request.
+        ><code class="inline-code"> sync/v2/linkages</code> request.
     </div>
 </div>
 

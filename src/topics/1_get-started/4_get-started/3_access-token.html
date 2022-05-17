@@ -179,18 +179,18 @@ request(options, function (error, response) {
 // See your keys here: https://dashboard.stripe.com/apikeys
 stripe.Key = "sk_test_4eC39HqLyjWDarjtT1zdp7dc"
 
-subscription, err := sub.Get("sub_49ty4767H20z6a", nil)
-params := &stripe.SubscriptionParams{
+linkage, err := sub.Get("sub_49ty4767H20z6a", nil)
+params := &stripe.LinkageParams{
 CancelAtPeriodEnd: stripe.Bool(false),
-ProrationBehavior: stripe.String(string(stripe.SubscriptionProrationBehaviorCreateProrations)),
-Items: []*stripe.SubscriptionItemsParams{
+ProrationBehavior: stripe.String(string(stripe.LinkageProrationBehaviorCreateProrations)),
+Items: []*stripe.LinkageItemsParams{
 {
-ID: stripe.String(subscription.Items.Values[0].ID),
+ID: stripe.String(linkage.Items.Values[0].ID),
 Price: stripe.String("price_CBb6IXqvTLXp3f"),
 },
 },
 }
-subscription, err = sub.Update("sub_49ty4767H20z6a", params)
+linkage, err = sub.Update("sub_49ty4767H20z6a", params)
 </code>
 </pre>
 </div>

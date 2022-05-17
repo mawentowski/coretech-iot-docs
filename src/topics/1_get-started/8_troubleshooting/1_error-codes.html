@@ -66,7 +66,7 @@
 <ul>
     <li>
         when attempting to connect to, or interact with, a device when a
-        <code class="inline-code">sync/v2/subscriptions</code> request was made
+        <code class="inline-code">sync/v2/linkages</code> request was made
         unsuccessfully during this session:
     </li>
 </ul>
@@ -80,8 +80,8 @@
     "status": 400,
     "traceId": "00-68e38c2ba0ec8840a4005dadea0d81c0-32fa28d00f6b3340-00",
     "errors": {
-        "$.SubscriptionId": [
-            "The JSON value could not be converted to System.Guid. Path: $.SubscriptionId | LineNumber: 1 | BytePositionInLine: 24."
+        "$.LinkageId": [
+            "The JSON value could not be converted to System.Guid. Path: $.LinkageId | LineNumber: 1 | BytePositionInLine: 24."
         ]
     }
 }
@@ -89,7 +89,7 @@
         </pre>
 </div>
 
-<p class="caption">Response Body when no subscription exists</p>
+<p class="caption">Response Body when no linkage exists</p>
 <ul>
     <li>when the attachment to a device has expired:</li>
 </ul>
@@ -149,10 +149,10 @@
 </p>
 <ul>
     <li>
-        If the error says <code class="inline-code">SubscriptionId</code>, then
-        no subscription exists. Simply send a
-        <code class="inline-code">sync/v2/subscriptions</code> request to create
-        and receive details for a new subscription.
+        If the error says <code class="inline-code">LinkageId</code>, then no
+        linkage exists. Simply send a
+        <code class="inline-code">sync/v2/linkages</code> request to create and
+        receive details for a new linkage.
     </li>
     <li>
         If the error says <code class="inline-code">attachmentId</code> with a

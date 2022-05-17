@@ -1,18 +1,18 @@
 <div class="title-box">
-    <h1 class="topic-title">Create a Subscription</h1>
-    <div class="action-statement">Request a subscription to connect your application backend to the Service Bus</div>
+    <h1 class="topic-title">Create a Linkage</h1>
+    <div class="action-statement">Request a linkage to connect your application backend to the Service Bus</div>
 </div>
 
 <p>
     The <span class="method post">POST</span>
-    <code class="inline-code">/sync/v2/subscriptions</code> request creates a
-    subscription on the Azure Service Bus and returns a Service Bus endpoint and
-    SAS token for the application backend to connect to the subscription.
+    <code class="inline-code">/sync/v2/linkages</code> request creates a
+    linkage on the Azure Service Bus and returns a Service Bus endpoint and
+    SAS token for the application backend to connect to the linkage.
 </p>
 <p>
     Sending a <span class="method post">POST</span>
-    <code class="inline-code">/sync/v2/subscriptions</code> request does not
-    'subscribe' to the Service Bus, it only creates a subscription and returns
+    <code class="inline-code">/sync/v2/linkages</code> request does not
+    'link' to the Service Bus, it only creates a linkage and returns
     attachment details. The application must then connect to the Service Bus
     attachment using the attachment details provided.
 </p>
@@ -35,7 +35,7 @@
 
 <div class="alert-section info-alert">
     <div class="">
-        <p>No Request Body is required to create a subscription.</p>
+        <p>No Request Body is required to create a linkage.</p>
     </div>
 </div>
 
@@ -44,14 +44,14 @@
 <div class="code-section with-tabs">
     <div class="code-section-header">
         <div class="code-tabs">
-            <button class="tablinks" onclick="openTab(event, 'bash-create-a-subscription')" id="defaultOpen">curl</button>
-            <button class="tablinks" onclick="openTab(event, 'Ruby-create-a-subscription')">Ruby</button>
-            <button class="tablinks" onclick="openTab(event, 'Python-create-a-subscription')">Python</button>
-            <button class="tablinks" onclick="openTab(event, 'PHP-create-a-subscription')">PHP</button>
-            <button class="tablinks" onclick="openTab(event, 'Java-create-a-subscription')">Java</button>
-            <button class="tablinks" onclick="openTab(event, 'Node-create-a-subscription')">Node</button>
-            <button class="tablinks" onclick="openTab(event, 'Go-create-a-subscription')">Go</button>
-            <button class="tablinks" onclick="openTab(event, '.NET-create-a-subscription')">.NET</button>
+            <button class="tablinks" onclick="openTab(event, 'bash-create-a-linkage')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby-create-a-linkage')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python-create-a-linkage')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP-create-a-linkage')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java-create-a-linkage')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node-create-a-linkage')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go-create-a-linkage')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET-create-a-linkage')">.NET</button>
         </div>
         <div class="copy-code-btn-container">
             <button class="copy-code-btn">
@@ -75,18 +75,18 @@
         Copied!
     </div>
 
-<div id="bash-create-a-subscription" class="tabcontent dark"><pre> <code>
-    curl --area -g --request POST 'https://{{baseurl}}/sync/v2/subscriptions' \
+<div id="bash-create-a-linkage" class="tabcontent dark"><pre> <code>
+    curl --area -g --request POST 'https://{{baseurl}}/sync/v2/linkages' \
     --header 'area-id: {{areaId}}'
 </code>
 </pre>
 </div>
 
-<div id="Ruby-create-a-subscription" class="tabcontent dark"><pre><code>
+<div id="Ruby-create-a-linkage" class="tabcontent dark"><pre><code>
 require "uri"
 require "net/http"
 
-url = URI("https://{{baseurl}}/sync/v2/subscriptions")
+url = URI("https://{{baseurl}}/sync/v2/linkages")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -100,10 +100,10 @@ puts response.read_body
 </pre>
 </div>
 
-<div id="Python-create-a-subscription" class="tabcontent dark"><pre> <code>
+<div id="Python-create-a-linkage" class="tabcontent dark"><pre> <code>
 import requests
 
-url = "https://{{baseurl}}/sync/v2/subscriptions"
+url = "https://{{baseurl}}/sync/v2/linkages"
 
 payload={}
 headers = {
@@ -117,13 +117,13 @@ print(response.text)
 </pre>
 </div>
 
-<div id="PHP-create-a-subscription" class="tabcontent dark"><pre> <code>
+<div id="PHP-create-a-linkage" class="tabcontent dark"><pre> <code>
 <?php
 
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/sync/v2/subscriptions',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/sync/v2/linkages',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -144,20 +144,20 @@ echo $response;
 </pre>
 </div>
 
-<div id="Java-create-a-subscription" class="tabcontent dark"><pre><code>
+<div id="Java-create-a-linkage" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("https://{{baseurl}}/sync/v2/subscriptions")
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/sync/v2/linkages")
     .header("area-id", "{{areaId}}")
     .asString();
 </code>
 </pre>
 </div>
 
-<div id="Node-create-a-subscription" class="tabcontent dark"><pre><code>
+<div id="Node-create-a-linkage" class="tabcontent dark"><pre><code>
 var request = require('request');
 var options = {
     'method': 'POST',
-    'url': 'https://{{baseurl}}/sync/v2/subscriptions',
+    'url': 'https://{{baseurl}}/sync/v2/linkages',
     'headers': {
     'area-id': '{{areaId}}'
     }
@@ -170,7 +170,7 @@ request(options, function (error, response) {
 </pre>
 </div>
 
-<div id="Go-create-a-subscription" class="tabcontent dark"><pre><code>
+<div id="Go-create-a-linkage" class="tabcontent dark"><pre><code>
 package main
 
 import (
@@ -181,7 +181,7 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/sync/v2/subscriptions"
+    url := "https://%7B%7Bbaseurl%7D%7D/sync/v2/linkages"
     method := "POST"
 
     client := &http.Client {
@@ -212,8 +212,8 @@ func main() {
 </pre>
 </div>
 
-<div id=".NET-create-a-subscription" class="tabcontent dark"><pre><code>
-    var client = new RestClient("https://{{baseurl}}/sync/v2/subscriptions");
+<div id=".NET-create-a-linkage" class="tabcontent dark"><pre><code>
+    var client = new RestClient("https://{{baseurl}}/sync/v2/linkages");
     client.Timeout = -1;
     var request = new RestRequest(Method.POST);
     request.AddHeader("area-id", "{{areaId}}");
@@ -226,14 +226,14 @@ func main() {
 </div>
 
 <p class="caption">Sample <span class="method post">POST</span>
-    <code class="inline-code">/sync/v2/subscriptions</code> request</p>, passing the <code class="inline-code">areaId</code> of the area that needs a new subscription.</p>
+    <code class="inline-code">/sync/v2/linkages</code> request</p>, passing the <code class="inline-code">areaId</code> of the area that needs a new linkage.</p>
 
 
 <h2 id="response-body-1">Response</h2>
 <p>
     A successful request returns a
     <code class="inline-code">2xx</code> success status code with the JSON
-    Response Body containing the Service Bus details for the new subscription.
+    Response Body containing the Service Bus details for the new linkage.
 </p>
 
 <div class="method-example atom-one-light">
@@ -241,11 +241,11 @@ func main() {
     <pre>
                 <code class="language-json">
 {
-    "subscriptionId": "4ec343b2-eab5-4fd3-b0c4-3cd5bc30ee5c",
+    "linkageId": "4ec343b2-eab5-4fd3-b0c4-3cd5bc30ee5c",
     "topicName": "airline-messages",
-    "subscriptionName": "2c73e63e-a3ef-4fcc-b13c-d2a90912bca8c",
+    "linkageName": "2c73e63e-a3ef-4fcc-b13c-d2a90912bca8c",
     "expiryTime": "2021-10-22T23:54:50.8272178+00:00",
-    "attachmentstring": "Endpoint=sb://flex-pry-eastus-asb.servicebus.windows.net;SharedAccessSignature=SharedAccessSignature sr=https%3A%2F%2Fflex-pry-eastus-asb.servicebus.windows.net%2Fairline-messages%2Fsubscriptions%2F2c73e63e-a3ef-4fcc-b13c-d290912bca8c%2F&amp;sig=dL2mHQJgfnCIc5SZZ8UgmzSPYoAIJkGEqN7hmAgFKz8%3D&amp;se=1634946891&amp;skn=ClientAccessKey"
+    "attachmentstring": "Endpoint=sb://flex-pry-eastus-asb.servicebus.windows.net;SharedAccessSignature=SharedAccessSignature sr=https%3A%2F%2Fflex-pry-eastus-asb.servicebus.windows.net%2Fairline-messages%2Flinkages%2F2c73e63e-a3ef-4fcc-b13c-d290912bca8c%2F&amp;sig=dL2mHQJgfnCIc5SZZ8UgmzSPYoAIJkGEqN7hmAgFKz8%3D&amp;se=1634946891&amp;skn=ClientAccessKey"
 }
             </code>
             </pre>
@@ -253,15 +253,15 @@ func main() {
 
 <p class="caption">
     Sample Response Body for <span class="method post">POST</span>
-    <code class="inline-code">sync/v2/subscriptions</code> request containing
-    details for connecting to the subscription
+    <code class="inline-code">sync/v2/linkages</code> request containing
+    details for connecting to the linkage
 </p>
 
 <div class="alert-section warning-alert">
     <div class="">
         <p>
             Not sending a
-            <code class="inline-code">/sync/v2/subscriptions</code> request
+            <code class="inline-code">/sync/v2/linkages</code> request
             results in a <strong>400 Bad Request</strong>.
             
             <span class="future-release">
@@ -281,20 +281,20 @@ func main() {
 </h3>
 <p>
     The <code class="inline-code">attachmentstring</code> returned in the
-    Response Body contains the subscription's Service Bus endpoint that begins
+    Response Body contains the linkage's Service Bus endpoint that begins
     after <code class="inline-code">Endpoint=</code>. In the example Response
     Body displayed previously, the endpoint is:
     <code class="inline-code"
         >sb://flex-pry-eastus-asb.servicebus.windows.net</code
     >. Notice the endpoint contains the environment. In the example, the
     Pre-Production environment is named <code class="inline-code">pry</code> and
-    the Azure Region containing the subscription is
+    the Azure Region containing the linkage is
     <code class="inline-code">eastus</code>.
 </p>
 <p>
     The <code class="inline-code">SharedAccessSignature</code>, also known as a
     SAS token, follows the Service Bus endpoint and contains the airline
-    backend's credentials for accessing the subscription. The entire value of
+    backend's credentials for accessing the linkage. The entire value of
     the SAS token needs to be passed in the Authorization Header of requests
     made to the Azure Service Bus REST API.
 </p>
@@ -322,22 +322,22 @@ func main() {
         </p>
     </div>
 </div>
-<h3 id="subscriptionid">
-    <code class="inline-code">subscriptionId</code>
+<h3 id="linkageid">
+    <code class="inline-code">linkageId</code>
 </h3>
 <p>
-    The <code class="inline-code">subscriptionId</code> is a CoreTech API-specific ID
+    The <code class="inline-code">linkageId</code> is a CoreTech API-specific ID
     passed in the Request Body of attachment requests to associate a device with
-    a specific Service Bus Subscription.
+    a specific Service Bus Linkage.
 </p>
 <p>
     For example, when connecting to an MFP device, the application backend will send
     a <span class="method post">POST</span>
     <code class="inline-code">/sync/v2/attachments</code> request, including
-    the <code class="inline-code">subscriptionId</code> in the Request Body. The
+    the <code class="inline-code">linkageId</code> in the Request Body. The
     returned <code class="inline-code">attachmentID</code> is now associated to
-    the subscription, and thus CoreTech APIs know to route any messages coming from the
-    device to that specific subscription.
+    the linkage, and thus CoreTech APIs know to route any messages coming from the
+    device to that specific linkage.
 </p>
 <div class="alert-section info-alert">
     <div class="">
@@ -345,10 +345,10 @@ func main() {
             In Postman, if you click the
             <strong>Tests</strong> tab, you will notice there is Javascript code
             that sets the environmental variable
-            <code class="inline-code">{{subscription_id}}</code> to the
-            <code class="inline-code">subscriptionId</code> returned after
+            <code class="inline-code">{{linkage_id}}</code> to the
+            <code class="inline-code">linkageId</code> returned after
             making the request. Now, when future requests are made in this
-            session, the <code class="inline-code">subscriptionId</code> is
+            session, the <code class="inline-code">linkageId</code> is
             included in the Response Body without the need to manually enter it.
         </p>
     </div>
@@ -358,30 +358,30 @@ func main() {
     After sending the request, an
     <code class="inline-code">expiryTime</code> is returned set to
     <strong>12 hours</strong> from the time the request was made, at which point
-    the subscription expires.
+    the linkage expires.
 </p>
 <h3 id="service-bus-properties">Service Bus Properties</h3>
 <p>
     The Response Body also contains properties that are Service Bus-specific.
     These properties are passed in verbatim when you use the Microsoft SDK to
-    connect to the subscription.
+    connect to the linkage.
 </p>
 <p>
     The <code class="inline-code">topicName</code> and
-    <code class="inline-code">subscriptionName</code> are identifiers to tell
-    your application which specific subscription it should read Service Bus
+    <code class="inline-code">linkageName</code> are identifiers to tell
+    your application which specific linkage it should read Service Bus
     messages. The <code class="inline-code">topicName</code> has a fixed value
     of <code class="inline-code">airline-messages</code> in all situations, and
-    <code class="inline-code">subscriptionName</code> is a GUID returned per
-    subscription.
+    <code class="inline-code">linkageName</code> is a GUID returned per
+    linkage.
 </p>
 <h2 id="best-practices-1">Best Practices</h2>
-<h3>How to handle subscriptions</h3>
-<p>The application backend can handle subscriptions in several different ways.</p>
+<h3>How to handle linkages</h3>
+<p>The application backend can handle linkages in several different ways.</p>
 
 <p>
-    The first way is to keep a subscription alive through repeated calls to the
-    <span class="method post">POST </span><code class="inline-code">sync/v2/subscriptions</code>
+    The first way is to keep a linkage alive through repeated calls to the
+    <span class="method post">POST </span><code class="inline-code">sync/v2/linkages</code>
     endpoint to create a new SAS token when the old one expires. The SAS token
     is contained in the
     <code class="inline-code">attachmentstring</code> in the Response Body.
@@ -396,18 +396,18 @@ func main() {
 </div>
 <p>
     The second way is to have an 'on-demand' solution whereby the airline
-    backend determines if there is a subscription in place for the specified
-    area. If there is already a subscription for the area, the airline
-    backend uses that subscription and does not send a request to create a new
-    one. If there is no subscription in place, it sends a <span class="method post">POST </span><code class="inline-code">sync/v2/subscriptions</code>
-    request to create a new subscription.
+    backend determines if there is a linkage in place for the specified
+    area. If there is already a linkage for the area, the airline
+    backend uses that linkage and does not send a request to create a new
+    one. If there is no linkage in place, it sends a <span class="method post">POST </span><code class="inline-code">sync/v2/linkages</code>
+    request to create a new linkage.
 </p>
 <div class="alert-section info-alert">
     <div class="">
         <p>
-            The application backend will only ever have one subscription for an
-            Azure Region. So, if a new subscription is created, it will continue
-            to use that subscription for all requests from client applications
+            The application backend will only ever have one linkage for an
+            Azure Region. So, if a new linkage is created, it will continue
+            to use that linkage for all requests from client applications
             in that region.
         </p>
     </div>
@@ -416,16 +416,16 @@ func main() {
 <p>
     Making repeated calls to
     <span class="method post">POST</span>
-    <code class="inline-code">sync/v2/subscriptions</code>
-    does not create a new subscription. The same
-    <code class="inline-code">subscriptionId</code>
-    associated with the existing subscription is returned in the Response Body.
+    <code class="inline-code">sync/v2/linkages</code>
+    does not create a new linkage. The same
+    <code class="inline-code">linkageId</code>
+    associated with the existing linkage is returned in the Response Body.
     However, it is important to note that
     <u>a new SAS token is generated</u>.
 </p>
 <p>
     If a <span class="method post">POST</span>
-    <code class="inline-code">sync/v2/subscriptions</code>
+    <code class="inline-code">sync/v2/linkages</code>
     request is made, and there is an existing SAS token that has yet to reach
     its
     <code class="inline-code">expiryTime</code>, there are now two SAS tokens.
@@ -440,7 +440,7 @@ func main() {
             situation where it would need to disconnect from an old SAS token to
             use the new one. The ideal scenario would be to allow the old SAS
             token to expire then create a new one by sending a
-            <code class="inline-code">sync/v2/subscriptions</code>
+            <code class="inline-code">sync/v2/linkages</code>
             request.
         </p>
     </div>
@@ -448,36 +448,36 @@ func main() {
 <p>
     If the application backend drops an active attachment the Azure Service Bus by
     disconnecting from a SAS token, no messages are lost. Any messages sent to
-    the subscription are queued and will display once another attachment is made
+    the linkage are queued and will display once another attachment is made
     with a new SAS token.
 </p>
-<h3 id="protect-subscriptions-details">Protect Subscriptions Details</h3>
+<h3 id="protect-linkages-details">Protect Linkages Details</h3>
 <p>
     Since CoreTech IoT only expects to be interacting with the one authenticated
     system such as your Application Web Server, it is recommended that the Azure
-    Service Bus subscription details should not be shared amongst several
+    Service Bus linkage details should not be shared amongst several
     parties. They should remain secret for specific usage in your application at
-    any given point and should not have several consumers who subscribe to this
+    any given point and should not have several consumers who link to this
     Azure Service Bus. It is recommended that the Web Server backend of your
-    application subscribes to this Azure Service Bus subscription and then any
+    application links to this Azure Service Bus linkage and then any
     clients that need to be notified are signaled by your backend application
     using another technology such as SignalR, or an equivalent.
 </p>
-<h3 id="subscription-removal">Subscription Removal</h3>
+<h3 id="linkage-removal">Linkage Removal</h3>
 <p>
-    If an ill-behaved application does not properly clean-up its subscription,
-    an auto-delete on idle takes care of the subscription removal (<code class="inline-code"
+    If an ill-behaved application does not properly clean-up its linkage,
+    an auto-delete on idle takes care of the linkage removal (<code class="inline-code"
         >AutoDeleteOnIdle</code
     >
     property in Azure Service Bus). Currently, the time is controlled by CoreTech services and is set to <strong>24 hours</strong>.
 </p>
-<h3 id="deleting-subscriptions">Deleting Subscriptions</h3>
+<h3 id="deleting-linkages">Deleting Linkages</h3>
 <p>
-    If a subscription is no longer needed, it is best practice to delete the
-    subscription by sending a DEL
-    <code class="inline-code">/sync/v2/subscriptions/{subscription_id}</code>
+    If a linkage is no longer needed, it is best practice to delete the
+    linkage by sending a DEL
+    <code class="inline-code">/sync/v2/linkages/{linkage_id}</code>
     request, passing in the
-    <code class="inline-code">subscription_id</code> of the subscription to be
+    <code class="inline-code">linkage_id</code> of the linkage to be
     deleted as a path parameter.
 </p>
 <div class="continued-reading-section">

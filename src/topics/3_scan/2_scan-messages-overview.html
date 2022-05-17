@@ -151,10 +151,9 @@
 <p>
     Now that the request has been successfully made, the Scan API sends the
     <code class="inline-code">DeviceID</code> of the device to the IoT Hub where
-    it is then routed to the correct workstation and device. After carrying out
-    the command, another
-    <code class="inline-code">ScanDeviceStatus</code> message is routed to the
-    Service Bus subscription.
+    it is then routed to the correct server and device. After carrying out the
+    command, another <code class="inline-code">ScanDeviceStatus</code> message
+    is routed to the Service Bus linkage.
 </p>
 <p>
     In the Message Body, the
@@ -186,7 +185,7 @@
         <p>
             The same
             <code class="inline-code">ScanDeviceStatus</code> message is sent to
-            all subscribers with an active attachment to the read device to
+            all developers with an active attachment to the read device to
             indicate the device can no longer be given a
             <code class="inline-code">/read/v2/startreading</code>
             request.
@@ -212,7 +211,7 @@
 <p>
     An asynchronous
     <code class="inline-code">ScanDeviceStatus</code> message is sent to all
-    subscribers with an active attachment to the read device to indicate the
+    developers with an active attachment to the read device to indicate the
     device is no longer exclusively being used (<code class="inline-code"
         >"DeviceInUse": "false"</code
     >) and is available to successfully receive a

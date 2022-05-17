@@ -31,14 +31,14 @@
     that <code class="inline-code">CustomerCode</code> govern the allowed
     interactions with CoreTech APIs.
 </p>
-<h2 id="subscribe-request-changes">Subscribe Request Changes</h2>
+<h2 id="link-request-changes">Link Request Changes</h2>
 <p>
     In V1, the response after sending a
-    <code class="inline-code">/v1/area/subscribe</code> request included a
+    <code class="inline-code">/v1/area/link</code> request included a
     <code class="inline-code">areaCapabilityList</code> with a list of devices
     at the area and their statues. In V2, the
-    <code class="inline-code">/sync/v2/subscriptions</code> request
-    <em>only returns Service Bus details</em> for the new subscription.
+    <code class="inline-code">/sync/v2/linkages</code> request
+    <em>only returns Service Bus details</em> for the new linkage.
 </p>
 <p>
     The Service Bus details are largely the same, except some of the property
@@ -46,7 +46,7 @@
 </p>
 <ul>
     <li>
-        There is a new <code class="inline-code">Subscription ID</code> that is
+        There is a new <code class="inline-code">Linkage ID</code> that is
         CoreTech-specific and must be included in all requests connecting to and
         interacting with devices.
     </li>
@@ -64,14 +64,14 @@
         situations.
     </li>
     <li>
-        The property <code class="inline-code">subscriptionName</code> has
-        replaced <code class="inline-code">serviceBusSubscription</code> and is
-        a GUID returned per subscription.
+        The property <code class="inline-code">linkageName</code> has replaced
+        <code class="inline-code">serviceBusLinkage</code> and is a GUID
+        returned per linkage.
     </li>
     <li>
         Both properties <code class="inline-code">serviceBusTopic</code> and
-        <code class="inline-code">subscriptionName</code> are identifiers to
-        tell your application which specific channel it should read Service Bus
+        <code class="inline-code">linkageName</code> are identifiers to tell
+        your application which specific channel it should read Service Bus
         messages.
     </li>
 </ul>

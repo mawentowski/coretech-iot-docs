@@ -1,22 +1,22 @@
 <div class="title-box">
-    <h1 class="topic-title">Check for an Existing Subscription</h1>
+    <h1 class="topic-title">Check for an Existing Linkage</h1>
     <div class="action-statement">
-        Determine whether a subscription exists to reuse
+        Determine whether a linkage exists to reuse
     </div>
 </div>
 
 <p>
     The <span class="method get">GET</span>
-    <code class="inline-code">/sync/v2/subscriptions</code> request should be
+    <code class="inline-code">/sync/v2/linkages</code> request should be
     sent prior to connecting to devices at a new area to determine if there
-    is an existing subscription in the same region as that area. 
+    is an existing linkage in the same region as that area. 
     
 
 </p>
 <p>    If there is
-    an existing subscription, that subscription should be used and a
+    an existing linkage, that linkage should be used and a
     <span class="method post">POST</span>
-    <code class="inline-code">/sync/v2/subscriptions</code> request
+    <code class="inline-code">/sync/v2/linkages</code> request
     <i>should not</i> be made.
 </p>
 
@@ -25,16 +25,16 @@
     <div>
         <p>
             Sending a <span class="method post">POST</span>
-            <code class="inline-code">/sync/v2/subscriptions</code> request when
-            <i>there is</i> an existing subscription creates a new SAS token, resulting
-            in two SAS tokens available to connect to the same subscription.
+            <code class="inline-code">/sync/v2/linkages</code> request when
+            <i>there is</i> an existing linkage creates a new SAS token, resulting
+            in two SAS tokens available to connect to the same linkage.
         </p>
         <p>
             Maintaining two SAS tokens can be problematic, and therefore should be
             avoided. The <span class="method get">GET</span>
-            <code class="inline-code">/sync/v2/subscriptions</code>
+            <code class="inline-code">/sync/v2/linkages</code>
             request returns the information necessary for the application backend to
-            determine whether a subscription is already in place to avoid multiple SAS
+            determine whether a linkage is already in place to avoid multiple SAS
             tokens.
         </p>
     </div>
@@ -43,13 +43,13 @@
 
 <div class="alert-section tip-alert">
     <div>
-        For more information on subscriptions and SAS tokens, see <span class="method post">
+        For more information on linkages and SAS tokens, see <span class="method post">
     POST </span>
          
 
 
-        <a href="/get-started/sync/create-a-subscription"
-            >/sync/v2/subscriptions</a
+        <a href="/get-started/sync/create-a-linkage"
+            >/sync/v2/linkages</a
         >.
     </div>
 </div>
@@ -60,7 +60,7 @@
 
 <div class="alert-section info-alert">
     <div class="">
-        <p>No Request Body is required to check for a existing subscription.</p>
+        <p>No Request Body is required to check for a existing linkage.</p>
     </div>
 </div>
 
@@ -68,14 +68,14 @@
 <div class="code-section with-tabs">
     <div class="code-section-header">
         <div class="code-tabs">
-            <button class="tablinks" onclick="openTab(event, 'bash-check-for-subscription')" id="defaultOpen">curl</button>
-            <button class="tablinks" onclick="openTab(event, 'Ruby-check-for-subscription')">Ruby</button>
-            <button class="tablinks" onclick="openTab(event, 'Python-check-for-subscription')">Python</button>
-            <button class="tablinks" onclick="openTab(event, 'PHP-check-for-subscription')">PHP</button>
-            <button class="tablinks" onclick="openTab(event, 'Java-check-for-subscription')">Java</button>
-            <button class="tablinks" onclick="openTab(event, 'Node-check-for-subscription')">Node</button>
-            <button class="tablinks" onclick="openTab(event, 'Go-check-for-subscription')">Go</button>
-            <button class="tablinks" onclick="openTab(event, '.NET-check-for-subscription')">.NET</button>
+            <button class="tablinks" onclick="openTab(event, 'bash-check-for-linkage')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby-check-for-linkage')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python-check-for-linkage')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP-check-for-linkage')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java-check-for-linkage')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node-check-for-linkage')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go-check-for-linkage')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET-check-for-linkage')">.NET</button>
         </div>
         <div class="copy-code-btn-container">
             <button class="copy-code-btn">
@@ -99,18 +99,18 @@
         Copied!
     </div>
 
-<div id="bash-check-for-subscription" class="tabcontent dark"><pre> <code>
-curl --area -g --request GET 'https://{{baseurl}}/sync/v2/subscriptions' \
+<div id="bash-check-for-linkage" class="tabcontent dark"><pre> <code>
+curl --area -g --request GET 'https://{{baseurl}}/sync/v2/linkages' \
 --header 'area-id: {{areaId}}'
 </code>
 </pre>
 </div>
 
-<div id="Ruby-check-for-subscription" class="tabcontent dark"><pre><code>
+<div id="Ruby-check-for-linkage" class="tabcontent dark"><pre><code>
 require "uri"
 require "net/http"
 
-url = URI("https://{{baseurl}}/sync/v2/subscriptions")
+url = URI("https://{{baseurl}}/sync/v2/linkages")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -124,10 +124,10 @@ puts response.read_body
 </pre>
 </div>
 
-<div id="Python-check-for-subscription" class="tabcontent dark"><pre> <code>
+<div id="Python-check-for-linkage" class="tabcontent dark"><pre> <code>
 import requests
 
-url = "https://{{baseurl}}/sync/v2/subscriptions"
+url = "https://{{baseurl}}/sync/v2/linkages"
 
 payload={}
 headers = {
@@ -141,13 +141,13 @@ print(response.text)
 </pre>
 </div>
 
-<div id="PHP-check-for-subscription" class="tabcontent dark"><pre> <code>
+<div id="PHP-check-for-linkage" class="tabcontent dark"><pre> <code>
 <?php
 
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/sync/v2/subscriptions',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/sync/v2/linkages',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -168,20 +168,20 @@ echo $response;
 </pre>
 </div>
 
-<div id="Java-check-for-subscription" class="tabcontent dark"><pre><code>
+<div id="Java-check-for-linkage" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.get("https://{{baseurl}}/sync/v2/subscriptions")
+HttpResponse<String> response = Unirest.get("https://{{baseurl}}/sync/v2/linkages")
     .header("area-id", "{{areaId}}")
     .asString();    
 </code>
 </pre>
 </div>
 
-<div id="Node-check-for-subscription" class="tabcontent dark"><pre><code>
+<div id="Node-check-for-linkage" class="tabcontent dark"><pre><code>
 var request = require('request');
 var options = {
     'method': 'GET',
-    'url': 'https://{{baseurl}}/sync/v2/subscriptions',
+    'url': 'https://{{baseurl}}/sync/v2/linkages',
     'headers': {
     'area-id': '{{areaId}}'
     }
@@ -194,7 +194,7 @@ request(options, function (error, response) {
 </pre>
 </div>
 
-<div id="Go-check-for-subscription" class="tabcontent dark"><pre><code>
+<div id="Go-check-for-linkage" class="tabcontent dark"><pre><code>
 package main
 
 import (
@@ -205,7 +205,7 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/sync/v2/subscriptions"
+    url := "https://%7B%7Bbaseurl%7D%7D/sync/v2/linkages"
     method := "GET"
 
     client := &http.Client {
@@ -236,8 +236,8 @@ func main() {
 </pre>
 </div>
 
-<div id=".NET-check-for-subscription" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/sync/v2/subscriptions");
+<div id=".NET-check-for-linkage" class="tabcontent dark"><pre><code>
+var client = new RestClient("https://{{baseurl}}/sync/v2/linkages");
 client.Timeout = -1;
 var request = new RestRequest(Method.GET);
 request.AddHeader("area-id", "{{areaId}}");
@@ -250,23 +250,23 @@ Console.WriteLine(response.Content);
 </div>
 
 <p class="caption">Sample <span class="method get">GET</span>
-    <code class="inline-code">/sync/v2/subscriptions</code> request, passing the <code class="inline-code">areaId</code> of the area to check for an existing subscription</p>
+    <code class="inline-code">/sync/v2/linkages</code> request, passing the <code class="inline-code">areaId</code> of the area to check for an existing linkage</p>
 
 
 
 
 
 <h2 id="response-body-1">Response</h2>
-<h3>Subscription in Region Exists</h3>
+<h3>Linkage in Region Exists</h3>
 <p>
-    If <i>there is</i> an existing subscription that relates to the
+    If <i>there is</i> an existing linkage that relates to the
     <code class="inline-code">area-id</code> passed in the Request Header, a
     successful
     <span class="method get">GET</span>
-    <code class="inline-code">/sync/v2/subscriptions</code> request returns a
+    <code class="inline-code">/sync/v2/linkages</code> request returns a
     <code class="inline-code">2xx</code> success status code with the JSON
     Response Body containing the Service Bus details of the existing
-    subscription.
+    linkage.
 </p>
 
 
@@ -276,9 +276,9 @@ Console.WriteLine(response.Content);
     <pre>
             <code class="language-json">
 { 
-    "subscriptionId": "4ec343b2-eab5-4fd3-b0c4-3cd5bc30ee5c",
+    "linkageId": "4ec343b2-eab5-4fd3-b0c4-3cd5bc30ee5c",
     "topicName": "airline-messages", 
-    "subscriptionName": "2c73e63e-a3ef-4fcc-b13c-d2a90912bca8c", 
+    "linkageName": "2c73e63e-a3ef-4fcc-b13c-d2a90912bca8c", 
     "expiryTime": "2021-10-22T23:54:50.8272178+00:00" 
 }
         </code>
@@ -289,21 +289,21 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample Response Body for a <span class="method get">GET</span>
-    <code class="inline-code">sync/v2/subscriptions</code> request containing
-    Service Bus details for an existing subscription
+    <code class="inline-code">sync/v2/linkages</code> request containing
+    Service Bus details for an existing linkage
 </p>
 
 <p>
     The application backend would then pass the
-    <code class="inline-code">subscriptionId</code> of the existing subscription
+    <code class="inline-code">linkageId</code> of the existing linkage
     in requests to connect to devices at the area.
 </p>
 
 <div class="alert-section tip-alert">
     <div class="">
         <p>        See 
-            <a href="/get-started/sync/create-a-subscription"
-                >Create a Subscription</a
+            <a href="/get-started/sync/create-a-linkage"
+                >Create a Linkage</a
             > endpoint section
             for a full description of the returned properties. The only property not
             returned by this <span class="method get">GET</span> request (that is
@@ -313,13 +313,13 @@ Console.WriteLine(response.Content);
 
     </div>
 </div>
-<h3>Subscription in Region Does Not Exist</h3>
+<h3>Linkage in Region Does Not Exist</h3>
 <p>
-    If <i>there is</i> an existing subscription that relates to the
+    If <i>there is</i> an existing linkage that relates to the
     <code class="inline-code">area-id</code> passed in the Request Header, a
     successful
     <span class="method get">GET</span>
-    <code class="inline-code">/sync/v2/subscriptions</code> request returns a
+    <code class="inline-code">/sync/v2/linkages</code> request returns a
     <code class="inline-code">404</code> <b>Not Found</b> status code with an
     empty JSON Response Body.
 </p>
@@ -333,7 +333,7 @@ Console.WriteLine(response.Content);
     "type": "https://tools.ietf.org/html/rfc7231#section-6.5.4", 
     "title": "Not Found", 
     "status": 404, 
-    "detail": "No subscription exists.",
+    "detail": "No linkage exists.",
     "traceId": "00-712743294f9fab00462e9394d267a105-b74f52e0fef41979-00"
 }
         </code>
@@ -343,13 +343,13 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample Response Body for a <span class="method get">GET</span>
-    <code class="inline-code">sync/v2/subscriptions</code> request indicating
-    that no subscription exists
+    <code class="inline-code">sync/v2/linkages</code> request indicating
+    that no linkage exists
 </p>
 <p>
-    This response indicates a subscription does not exist the application backend
+    This response indicates a linkage does not exist the application backend
     should
-    <a href="/get-started/sync/create-a-subscription">create a subscription</a>
+    <a href="/get-started/sync/create-a-linkage">create a linkage</a>
     that can be used with the area.
 </p>
 
@@ -400,8 +400,8 @@ Console.WriteLine(response.Content);
                 </svg>
             </div>
             <div>
-                <a href="/get-started/sync/create-a-subscription"
-                    >Create a Subscription (if one does not exist)</a
+                <a href="/get-started/sync/create-a-linkage"
+                    >Create a Linkage (if one does not exist)</a
                 >
             </div>
         </div>

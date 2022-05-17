@@ -8,7 +8,7 @@
 Send a <span class="method post">POST</span>
 <code class="inline-code">/read/v2/stopreading</code> 
 request to release a device from exclusive access so other airline
-backends can reserve the device and use it to read travel documents.
+backends can reserve the device and use it to read documents.
 
 <h2>Make an API Call</h2>
 
@@ -285,7 +285,7 @@ Console.WriteLine(response.Content);
 <p>
     An asynchronous
     <code class="inline-code">ScanDeviceStatus</code> message is sent to all
-    subscribers with an active attachment to the read device to indicate the
+    developers with an active attachment to the read device to indicate the
     device is no longer exclusively being used (<code class="inline-code"
         >"DeviceInUse": "false"</code
     >) and is available to successfully receive a

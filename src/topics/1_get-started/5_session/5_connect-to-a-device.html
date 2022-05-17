@@ -9,7 +9,7 @@
     The <span class="method post">POST</span>
     <code class="inline-code">/sync/v2/attachments</code> request creates a
     attachment to a device at specific area and associates that device to a
-    subscription where it can send messages for the application backend to consume.
+    linkage where it can send messages for the application backend to consume.
 </p>
 <h2 id="request-body-2">Make an API Call</h2>
 <p>
@@ -34,9 +34,9 @@
                 that listed devices configured at a site.</td>
         </tr>
         <tr>
-            <td><code class="inline-code">subscriptionId</code></td>
+            <td><code class="inline-code">linkageId</code></td>
             <td>An CoreTech API-specific
-                ID of the Service Bus subscription the
+                ID of the Service Bus linkage the
                 <code class="inline-code">DeviceId</code> will be associated to.</td>
         </tr>
         <tr>
@@ -93,7 +93,7 @@ curl --area -g --request POST 'https://{{baseurl}}/sync/v2/attachments' \
 --header 'area-id: {{areaId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "SubscriptionId": "",
+    "LinkageId": "",
     "ReservationId": "{{reservation_id}}",
     "DeviceId": "{{areaId}}.MFP1"
 }'
@@ -115,7 +115,7 @@ request = Net::HTTP::Post.new(url)
 request["area-id"] = "{{areaId}}"
 request["Content-Type"] = "application/json"
 request.body = JSON.dump({
-    "SubscriptionId": "",
+    "LinkageId": "",
     "ReservationId": "{{reservation_id}}",
     "DeviceId": "{{areaId}}.MFP1"
 })
@@ -133,7 +133,7 @@ import json
 url = "https://{{baseurl}}/sync/v2/attachments"
 
 payload = json.dumps({
-    "SubscriptionId": "",
+    "LinkageId": "",
     "ReservationId": "{{reservation_id}}",
     "DeviceId": "{{areaId}}.MFP1"
 })
@@ -164,7 +164,7 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'POST',
     CURLOPT_POSTFIELDS =>'{
-    "SubscriptionId": "",
+    "LinkageId": "",
     "ReservationId": "{{reservation_id}}",
     "DeviceId": "{{areaId}}.MFP1"
 }',
@@ -187,7 +187,7 @@ Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("https://{{baseurl}}/sync/v2/attachments")
     .header("area-id", "{{areaId}}")
     .header("Content-Type", "application/json")
-    .body("{\r\n    \"SubscriptionId\": \"\",\r\n    \"ReservationId\": \"{{reservation_id}}\",\r\n    \"DeviceId\": \"{{areaId}}.MFP1\"\r\n}")
+    .body("{\r\n    \"LinkageId\": \"\",\r\n    \"ReservationId\": \"{{reservation_id}}\",\r\n    \"DeviceId\": \"{{areaId}}.MFP1\"\r\n}")
     .asString();    
 </code>
 </pre>
@@ -203,7 +203,7 @@ var options = {
     'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-    "SubscriptionId": "",
+    "LinkageId": "",
     "ReservationId": "{{reservation_id}}",
     "DeviceId": "{{areaId}}.MFP1"
     })
@@ -234,7 +234,7 @@ func main() {
 
     payload := strings.NewReader(`{`+"
 "+`
-    "SubscriptionId": "",`+"
+    "LinkageId": "",`+"
 "+`
     "ReservationId": "{{reservation_id}}",`+"
 "+`
@@ -279,7 +279,7 @@ request.AddHeader("area-id", "{{areaId}}");
 request.AddHeader("Content-Type", "application/json");
 var body = @"{
 " + "\n" +
-@"    ""SubscriptionId"": """",
+@"    ""LinkageId"": """",
 " + "\n" +
 @"    ""ReservationId"": ""{{reservation_id}}"",
 " + "\n" +
@@ -316,7 +316,7 @@ Console.WriteLine(response.Content);
 {
     "attachmentId": "a060a6f1-ec5b-43cb-8f0b-bf6f8891ebdf",
     "reservationId": "46d2309e-0ec5-4ef9-98f1-e45a54c76688",
-    "subscriptionId": "87fd60f9-nft8-466e-9659-43ad928c75f6",
+    "linkageId": "87fd60f9-nft8-466e-9659-43ad928c75f6",
     "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB005.IJP1",
     "expiryTime": "2021-11-26T09:30:35.9528789+00:00"
 }
@@ -336,8 +336,8 @@ Console.WriteLine(response.Content);
 
 <p>
     The returned <code class="inline-code">attachmentId</code> is now associated
-    to the <code class="inline-code">subscriptionId</code>, so any messages
-    coming from the device will display on that subscription. The airline
+    to the <code class="inline-code">linkageId</code>, so any messages
+    coming from the device will display on that linkage. The airline
     backend will now use this <code class="inline-code">attachmentId</code> to
     send commands to the device through CoreTech APIs.
 </p>

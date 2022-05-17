@@ -116,7 +116,7 @@ namespace CoreTech.IoTApi.ServiceBusConsole.Core.Model
 <p>
     Many of the endpoints associated with the V1 Areas API have been replaced by
     the <strong>Sync API</strong> endpoints, including requests to create
-    Service Bus Subscriptions and connect to devices.
+    Service Bus Linkages and connect to devices.
 </p>
 <p>
     There is <strong>no longer a Device API</strong> that lets you claim and
@@ -146,14 +146,12 @@ namespace CoreTech.IoTApi.ServiceBusConsole.Core.Model
 <ul>
     <li>
         <p>
-            Instead of unsubscribing from a Service Bus Subscription with a
+            Instead of unsubscribing from a Service Bus Linkage with a
             <span class="method post">POST</span>
-            <code class="inline-code">/v1/area/unsubscribe</code> request, you
-            now send a
+            <code class="inline-code">/v1/area/unlink</code> request, you now
+            send a
             <strong>DEL</strong>
-            <code class="inline-code"
-                >/sync/v2/subscriptions/{subscription_id}</code
-            >
+            <code class="inline-code">/sync/v2/linkages/{linkage_id}</code>
             request.
         </p>
     </li>
