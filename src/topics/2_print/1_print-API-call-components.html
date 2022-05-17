@@ -1,13 +1,13 @@
 <div class="title-box">
-    <h1 class="topic-title">Print API Call Components</h1>
+    <h1 class="topic-title">Render API Call Components</h1>
     <div class="action-statement">
-        Learn about the required components of a Print API call
+        Learn about the required components of a Render API call
     </div>
 </div>
 
 <p>
     Below is a sample <span class="method post">POST</span>
-    <code class="inline-code">/print/v2/entrypass/pdf</code> call to the Scan
+    <code class="inline-code">/render/v2/entrypass/pdf</code> call to the Scan
     API that contains the required components:
     <ul>
         <li>Resource URL <code class=inline-code>https://</code></li>
@@ -43,7 +43,7 @@
     <div class="copied-popup hidden">Copied!</div>
     <div class="code-content dark">
         <pre><code class="language-bash">
-curl --area -g --request POST 'https://{{baseurl}}/print/v2/entrypass/pdf' \
+curl --area -g --request POST 'https://{{baseurl}}/render/v2/entrypass/pdf' \
 --header 'area-id: {{areaId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -55,15 +55,15 @@ curl --area -g --request POST 'https://{{baseurl}}/print/v2/entrypass/pdf' \
     </div>
 </div>
 <p class="caption">
-    Sample Print API call containing the required components to successfully make the call
+    Sample Render API call containing the required components to successfully make the call
 </p>
 
 <h2 id="resource-urls-1">Resource URLs</h2>
-<p>At present, Print API Resource URLs are comprised of:</p>
+<p>At present, Render API Resource URLs are comprised of:</p>
 <ul>
     <li>
         A REST API standard method preceding the URL for accessing the endpoint.
-        In the case of the Print API, the only method used is <span class="method post">POST</span>.
+        In the case of the Render API, the only method used is <span class="method post">POST</span>.
     </li>
     <li>
         A Base URL specific to the CoreTech IoT environment, sometimes displayed as
@@ -74,16 +74,16 @@ curl --area -g --request POST 'https://{{baseurl}}/print/v2/entrypass/pdf' \
         The end path of the Resource URL is comprised of the API name (
         <code class="inline-code">print</code>) followed by the endpoint name.
         For example, the end path
-        <code class="inline-code">/print/v2/entrypass/</code> contains the
+        <code class="inline-code">/render/v2/entrypass/</code> contains the
         API <code class="inline-code">print</code> followed by the endpoint
         <code class="inline-code">entrypass</code>.
     </li>
     <li>
         Path parameters, which may or may not be required depending on the
-        endpoint. For example, when sending a <span class="method post">POST </span><code class="inline-code">/print/v2/entrypass/</code> request, you
+        endpoint. For example, when sending a <span class="method post">POST </span><code class="inline-code">/render/v2/entrypass/</code> request, you
         must append the path parameter
         <code class="inline-code">{type}</code> to the end path to indicate the
-        requested print format for the entry pass: <span class="method post">POST </span><code class="inline-code">/print/v2/entrypass/pdf</code>.
+        requested print format for the entry pass: <span class="method post">POST </span><code class="inline-code">/render/v2/entrypass/pdf</code>.
     </li>
 </ul>
 <h2 id="header-parameters-1">Header Parameters</h2>
@@ -180,7 +180,7 @@ curl --area -g --request POST 'https://{{baseurl}}/print/v2/entrypass/pdf' \
                 </svg>
             </div>
             <div>
-                <a href="/print/print-messages-overview"
+                <a href="/render/render-messages-overview"
                     >Service Bus Messages Overview</a
                 >
             </div>

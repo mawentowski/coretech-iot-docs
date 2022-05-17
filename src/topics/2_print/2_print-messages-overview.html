@@ -1,5 +1,5 @@
 <div class="title-box">
-    <h1 class="topic-title">Print API Messages Overview</h1>
+    <h1 class="topic-title">Render API Messages Overview</h1>
     <div class="action-statement">
         Learn about the most common messages and how your app should use them
     </div>
@@ -8,7 +8,7 @@
 <p>
     The following is not an exhaustive list of all possible Service Bus
     <code class="inline-code">Message Types</code>. Only the most common ones
-    encountered when sending Print API requests are described.
+    encountered when sending Render API requests are described.
 </p>
 
 <h2 id="printdevicestatus">PrintDeviceStatus</h2>
@@ -80,10 +80,10 @@
 </p>
 <p>
     Upon making a <span class="method post">POST</span>
-    <code class="inline-code">/print/v2/</code> request, the Print API
+    <code class="inline-code">/render/v2/</code> request, the Render API
     acknowledges the request with a synchronous message, returning a
     <code class="inline-code">2xx</code> success status code no matter if the
-    print was successful or unsuccessful. It merely indicates the Print API
+    print was successful or unsuccessful. It merely indicates the Render API
     successfully sent the request.
 </p>
 <p>
@@ -95,7 +95,7 @@
     example, printing).
 </p>
 <p>
-    The Print API then routes the messages to the Service Bus topic for sending
+    The Render API then routes the messages to the Service Bus topic for sending
     messages to clients (<code class="inline-code">airline-messages</code>),
     returned as <code class="inline-code">MessageData</code> in the
     <strong>Message Body</strong>.
@@ -222,7 +222,7 @@
                 </svg>
             </div>
             <div>
-                <a href="/print/print-entry-pass">Print Entry Pass</a>
+                <a href="/render/render-entry-pass">Print Entry Pass</a>
             </div>
         </div>
         <div class="continue-link-row">
@@ -269,7 +269,7 @@
                 </svg>
             </div>
             <div>
-                <a href="/print/print-item-tag">Print Item Tag</a>
+                <a href="/render/render-item-tag">Print Item Tag</a>
             </div>
         </div>
     </ul>

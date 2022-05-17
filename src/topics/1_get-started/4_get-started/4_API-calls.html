@@ -12,7 +12,7 @@
 
 <h2>Sample API Call</h2>
 <p>
-    Below is a sample API call to the Print API that requests a device print a
+    Below is a sample API call to the Render API that requests a device print a
     document. The request is comprised of a Resource URL, Header Parameters, an
     Authorization Header, and a Request Body.
 </p>
@@ -43,7 +43,7 @@
     <div class="copied-popup hidden">Copied!</div>
     <div class="code-content dark">
         <pre><code class="language-bash">
-curl --area -g --request POST 'https://{{baseurl}}/print/v2/entrypass/pdf' \
+curl --area -g --request POST 'https://{{baseurl}}/render/v2/entrypass/pdf' \
 --header 'area-id: {{areaId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -127,7 +127,7 @@ curl --area -g --request POST 'https://{{baseurl}}/print/v2/entrypass/pdf' \
 
 <p class="caption">
     Sample Request Body submitting <code class="inline-code">printData</code> to
-    the Print API
+    the Render API
 </p>
 
 <div class="alert-section success-alert">

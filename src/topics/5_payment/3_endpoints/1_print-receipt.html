@@ -27,14 +27,14 @@
 <div class="code-section with-tabs">
     <div class="code-section-header">
         <div class="code-tabs">
-            <button class="tablinks" onclick="openTab(event, 'bash-print-receipt')" id="defaultOpen">curl</button>
-            <button class="tablinks" onclick="openTab(event, 'Ruby-print-receipt')">Ruby</button>
-            <button class="tablinks" onclick="openTab(event, 'Python-print-receipt')">Python</button>
-            <button class="tablinks" onclick="openTab(event, 'PHP-print-receipt')">PHP</button>
-            <button class="tablinks" onclick="openTab(event, 'Java-print-receipt')">Java</button>
-            <button class="tablinks" onclick="openTab(event, 'Node-print-receipt')">Node</button>
-            <button class="tablinks" onclick="openTab(event, 'Go-print-receipt')">Go</button>
-            <button class="tablinks" onclick="openTab(event, '.NET-print-receipt')">.NET</button>
+            <button class="tablinks" onclick="openTab(event, 'bash-render-receipt')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby-render-receipt')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python-render-receipt')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP-render-receipt')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java-render-receipt')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node-render-receipt')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go-render-receipt')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET-render-receipt')">.NET</button>
         </div>
         <div class="copy-code-btn-container">
             <button class="copy-code-btn">
@@ -59,7 +59,7 @@
     </div>
 
 
-<div id="bash-print-receipt" class="tabcontent dark"><pre> <code>
+<div id="bash-render-receipt" class="tabcontent dark"><pre> <code>
 curl --area -g --request POST 'https://{{baseurl}}/remit/v2billprinted' \
 --header 'Content-Type: application/json' \
 --data-raw '{   
@@ -72,7 +72,7 @@ curl --area -g --request POST 'https://{{baseurl}}/remit/v2billprinted' \
 </pre>
 </div>
 
-<div id="Ruby-print-receipt" class="tabcontent dark"><pre><code>
+<div id="Ruby-render-receipt" class="tabcontent dark"><pre><code>
 require "uri"
 require "json"
 require "net/http"
@@ -97,7 +97,7 @@ puts response.read_body
 </pre>
 </div>
 
-<div id="Python-print-receipt" class="tabcontent dark"><pre> <code>
+<div id="Python-render-receipt" class="tabcontent dark"><pre> <code>
 import requests
 import json
 
@@ -120,7 +120,7 @@ print(response.text)
 </pre>
 </div>
 
-<div id="PHP-print-receipt" class="tabcontent dark"><pre> <code>
+<div id="PHP-render-receipt" class="tabcontent dark"><pre> <code>
 <?php
 
 $curl = curl_init();
@@ -153,7 +153,7 @@ echo $response;
 </pre>
 </div>
 
-<div id="Java-print-receipt" class="tabcontent dark"><pre><code>
+<div id="Java-render-receipt" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("https://{{baseurl}}/remit/v2billprinted")
     .header("Content-Type", "application/json")
@@ -163,7 +163,7 @@ HttpResponse<String> response = Unirest.post("https://{{baseurl}}/remit/v2billpr
 </pre>
 </div>
 
-<div id="Node-print-receipt" class="tabcontent dark"><pre><code>
+<div id="Node-render-receipt" class="tabcontent dark"><pre><code>
 var request = require('request');
 var options = {
     'method': 'POST',
@@ -187,7 +187,7 @@ request(options, function (error, response) {
 </pre>
 </div>
 
-<div id="Go-print-receipt" class="tabcontent dark"><pre><code>
+<div id="Go-render-receipt" class="tabcontent dark"><pre><code>
 package main
 
 import (
@@ -242,7 +242,7 @@ func main() {
 </pre>
 </div>
 
-<div id=".NET-print-receipt" class="tabcontent dark"><pre><code>
+<div id=".NET-render-receipt" class="tabcontent dark"><pre><code>
 var client = new RestClient("https://{{baseurl}}/remit/v2billprinted");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);

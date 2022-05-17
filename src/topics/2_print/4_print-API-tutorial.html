@@ -1,5 +1,5 @@
 <div class="title-box">
-    <h1 class="topic-title">Print API Tutorial</h1>
+    <h1 class="topic-title">Render API Tutorial</h1>
     <div class="action-statement">
         Follow these step-by-step instructions to complete an interaction with a
         print device
@@ -7,9 +7,9 @@
 </div>
 
 <p>
-    Follow along with this walkthrough to experience the Print API, including
+    Follow along with this walkthrough to experience the Render API, including
     connecting to a device, issuing a print command, then reading the response.
-    The following tools are used to demonstrate the Print API:
+    The following tools are used to demonstrate the Render API:
 </p>
 <ul>
     <li class="">
@@ -106,7 +106,7 @@
     <div class="section numbered-section">
         <div class="section-header">
             <h2 id="heading-2" class="numbered-h2">Add an MFP Device</h2>
-            <span class="tag">Print API</span>
+            <span class="tag">Render API</span>
         </div>
         <div class="alert-section info-alert">
             <div class="">
@@ -145,7 +145,7 @@
     <div class="section numbered-section">
         <div class="section-header">
             <h2 id="heading-2" class="numbered-h2">Connect to the MFP</h2>
-            <span class="tag">Print API</span>
+            <span class="tag">Render API</span>
         </div>
 
         <ol>
@@ -214,7 +214,7 @@
                         environmental variable after connecting to the MFP. This
                         variable is used so you do not need to manually enter a
                         <code class="inline-code">attachmentId</code> in
-                        subsequent calls to the Print API.
+                        subsequent calls to the Render API.
                     </p>
                 </div>
             </div>
@@ -258,13 +258,13 @@
     <div class="section numbered-section">
         <div class="section-header">
             <h2 id="heading-2" class="numbered-h2">Print a Entry Pass PDF</h2>
-            <span class="tag">Print API</span>
+            <span class="tag">Render API</span>
         </div>
         <ol>
             <li>
                 <p>
                     In Postman, send a
-                    <code class="inline-code">/print/v2/entrypass/pdf</code>
+                    <code class="inline-code">/render/v2/entrypass/pdf</code>
                     request.
                 </p>
                 <div class="alert-section info-alert">
@@ -284,7 +284,7 @@
                 </p>
                 <ul>
                     <li>
-                        The Print API acknowledges the request by returning a
+                        The Render API acknowledges the request by returning a
                         <code class="inline-code">2xx</code> success status
                         code, as seen in a tool like Postman.
                     </li>
@@ -331,7 +331,7 @@
             <h2 id="heading-2" class="numbered-h2">
                 Simulate an Unsuccessful Print
             </h2>
-            <span class="tag">Print API</span>
+            <span class="tag">Render API</span>
         </div>
         <p>
             The MFP Simulator (and simulators for other print devices) allows
@@ -346,7 +346,7 @@
             </li>
             <li>
                 In Postman, send a
-                <code class="inline-code">/print/v2/entrypass/pdf</code>
+                <code class="inline-code">/render/v2/entrypass/pdf</code>
                 request.
             </li>
             <li>
