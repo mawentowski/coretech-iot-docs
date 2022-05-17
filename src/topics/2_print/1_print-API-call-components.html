@@ -7,7 +7,7 @@
 
 <p>
     Below is a sample <span class="method post">POST</span>
-    <code class="inline-code">/print/v2/boardingpass/pdf</code> call to the Scan
+    <code class="inline-code">/print/v2/entrypass/pdf</code> call to the Scan
     API that contains the required components:
     <ul>
         <li>Resource URL <code class=inline-code>https://</code></li>
@@ -43,7 +43,7 @@
     <div class="copied-popup hidden">Copied!</div>
     <div class="code-content dark">
         <pre><code class="language-bash">
-curl --area -g --request POST 'https://{{baseurl}}/print/v2/boardingpass/pdf' \
+curl --area -g --request POST 'https://{{baseurl}}/print/v2/entrypass/pdf' \
 --header 'area-id: {{areaId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -74,16 +74,16 @@ curl --area -g --request POST 'https://{{baseurl}}/print/v2/boardingpass/pdf' \
         The end path of the Resource URL is comprised of the API name (
         <code class="inline-code">print</code>) followed by the endpoint name.
         For example, the end path
-        <code class="inline-code">/print/v2/boardingpass/</code> contains the
+        <code class="inline-code">/print/v2/entrypass/</code> contains the
         API <code class="inline-code">print</code> followed by the endpoint
-        <code class="inline-code">boardingpass</code>.
+        <code class="inline-code">entrypass</code>.
     </li>
     <li>
         Path parameters, which may or may not be required depending on the
-        endpoint. For example, when sending a <span class="method post">POST </span><code class="inline-code">/print/v2/boardingpass/</code> request, you
+        endpoint. For example, when sending a <span class="method post">POST </span><code class="inline-code">/print/v2/entrypass/</code> request, you
         must append the path parameter
         <code class="inline-code">{type}</code> to the end path to indicate the
-        requested print format for the entry pass: <span class="method post">POST </span><code class="inline-code">/print/v2/boardingpass/pdf</code>.
+        requested print format for the entry pass: <span class="method post">POST </span><code class="inline-code">/print/v2/entrypass/pdf</code>.
     </li>
 </ul>
 <h2 id="header-parameters-1">Header Parameters</h2>

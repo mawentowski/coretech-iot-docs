@@ -231,7 +231,7 @@ Console.WriteLine(response.Content);
     {
         "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.MFP1",
         "capabilities": [
-            "PrintBoardingPass"
+            "PrintEntryPass"
         ]
     },
     {
@@ -316,7 +316,7 @@ Console.WriteLine(response.Content);
     a entry pass. So, when a
     <code class="inline-code">deviceId</code> contains
     <code class="inline-code">.MFP</code>, it is assumed that device only has
-    the <code class="inline-code">PrintBoardingPass</code> capability.
+    the <code class="inline-code">PrintEntryPass</code> capability.
 </p>
 
 <div class="method-example atom-one-light">
@@ -326,7 +326,7 @@ Console.WriteLine(response.Content);
 {
     "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.MFP1",
     "capabilities": [
-        "PrintBoardingPass"
+        "PrintEntryPass"
     ]
 },
             </code>
@@ -339,7 +339,7 @@ Console.WriteLine(response.Content);
 <p>
     However, some devices have multiple capabilities. For example, a General
     Purpose Printer (3DP) may have both the capabilities
-    <code class="inline-code">PrintBoardingPass</code> and
+    <code class="inline-code">PrintEntryPass</code> and
     <code class="inline-code">PrintItemTag</code>.
 </p>
 

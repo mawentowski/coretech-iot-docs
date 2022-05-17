@@ -1,5 +1,5 @@
 <div class="title-box">
-    <h1 class="topic-title">Print a Boarding Pass</h1>
+    <h1 class="topic-title">Print a Entry Pass</h1>
     <div class="action-statement">
         Command a device to print a entry pass in the different formats
     </div>
@@ -21,7 +21,7 @@
 <h3 id="print-a-pdf-or-svg">Print a PDF or SVG</h3>
 <p>
     Send a <span class="method post">POST</span>
-    <code class="inline-code">/print/v2/boardingpass/{type}</code> request to an
+    <code class="inline-code">/print/v2/entrypass/{type}</code> request to an
     MFP device to print a entry pass in the specified format
     <code class="inline-code">{type}</code>. Using this endpoint, boarding
     passes may be printed in either <code class="inline-code">pdf</code> or
@@ -31,14 +31,14 @@
 <div class="code-section with-tabs">
     <div class="code-section-header">
         <div class="code-tabs">
-            <button class="tablinks" onclick="openTab(event, 'bash-print-boarding-pass-pdf')" id="defaultOpen">curl</button>
-            <button class="tablinks" onclick="openTab(event, 'Ruby-print-boarding-pass-pdf')">Ruby</button>
-            <button class="tablinks" onclick="openTab(event, 'Python-print-boarding-pass-pdf')">Python</button>
-            <button class="tablinks" onclick="openTab(event, 'PHP-print-boarding-pass-pdf')">PHP</button>
-            <button class="tablinks" onclick="openTab(event, 'Java-print-boarding-pass-pdf')">Java</button>
-            <button class="tablinks" onclick="openTab(event, 'Node-print-boarding-pass-pdf')">Node</button>
-            <button class="tablinks" onclick="openTab(event, 'Go-print-boarding-pass-pdf')">Go</button>
-            <button class="tablinks" onclick="openTab(event, '.NET-print-boarding-pass-pdf')">.NET</button>
+            <button class="tablinks" onclick="openTab(event, 'bash-print-entry-pass-pdf')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby-print-entry-pass-pdf')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python-print-entry-pass-pdf')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP-print-entry-pass-pdf')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java-print-entry-pass-pdf')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node-print-entry-pass-pdf')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go-print-entry-pass-pdf')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET-print-entry-pass-pdf')">.NET</button>
         </div>
         <div class="copy-code-btn-container">
             <button class="copy-code-btn">
@@ -62,8 +62,8 @@
         Copied!
     </div>
 
-<div id="bash-print-boarding-pass-pdf" class="tabcontent dark"><pre> <code>
-curl --area -g --request POST 'https://{{baseurl}}/print/v2/boardingpass/pdf' \
+<div id="bash-print-entry-pass-pdf" class="tabcontent dark"><pre> <code>
+curl --area -g --request POST 'https://{{baseurl}}/print/v2/entrypass/pdf' \
 --header 'area-id: {{areaId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -75,12 +75,12 @@ curl --area -g --request POST 'https://{{baseurl}}/print/v2/boardingpass/pdf' \
 </pre>
 </div>
 
-<div id="Ruby-print-boarding-pass-pdf" class="tabcontent dark"><pre><code>
+<div id="Ruby-print-entry-pass-pdf" class="tabcontent dark"><pre><code>
 require "uri"
 require "json"
 require "net/http"
 
-url = URI("https://{{baseurl}}/print/v2/boardingpass/pdf")
+url = URI("https://{{baseurl}}/print/v2/entrypass/pdf")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -100,7 +100,7 @@ puts response.read_body
 </pre>
 </div>
 
-<div id="Python-print-boarding-pass-pdf" class="tabcontent dark"><pre> <code>
+<div id="Python-print-entry-pass-pdf" class="tabcontent dark"><pre> <code>
 import http.client
 import json
 
@@ -114,7 +114,7 @@ headers = {
     'area-id': '{{areaId}}',
     'Content-Type': 'application/json'
 }
-conn.request("POST", "/print/v2/boardingpass/pdf", payload, headers)
+conn.request("POST", "/print/v2/entrypass/pdf", payload, headers)
 res = conn.getresponse()
 data = res.read()
 print(data.decode("utf-8"))
@@ -122,13 +122,13 @@ print(data.decode("utf-8"))
 </pre>
 </div>
 
-<div id="PHP-print-boarding-pass-pdf" class="tabcontent dark"><pre> <code>
+<div id="PHP-print-entry-pass-pdf" class="tabcontent dark"><pre> <code>
 <?php
 
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/print/v2/boardingpass/pdf',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/print/v2/entrypass/pdf',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -155,9 +155,9 @@ echo $response;
 </pre>
 </div>
 
-<div id="Java-print-boarding-pass-pdf" class="tabcontent dark"><pre><code>
+<div id="Java-print-entry-pass-pdf" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("https://{{baseurl}}/print/v2/boardingpass/pdf")
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/print/v2/entrypass/pdf")
     .header("area-id", "{{areaId}}")
     .header("Content-Type", "application/json")
     .body("{\r\n  \"attachmentId\": \"\",\r\n  \"relationId\": \"postman-ftr-30ad1141-bc89-4463-ad57-f14741d7a692\",\r\n  \"printData\": \"JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb2\"\r\n}")
@@ -166,11 +166,11 @@ HttpResponse<String> response = Unirest.post("https://{{baseurl}}/print/v2/board
 </pre>
 </div>
 
-<div id="Node-print-boarding-pass-pdf" class="tabcontent dark"><pre><code>
+<div id="Node-print-entry-pass-pdf" class="tabcontent dark"><pre><code>
 var request = require('request');
 var options = {
     'method': 'POST',
-    'url': 'https://{{baseurl}}/print/v2/boardingpass/pdf',
+    'url': 'https://{{baseurl}}/print/v2/entrypass/pdf',
     'headers': {
     'area-id': '{{areaId}}',
     'Content-Type': 'application/json'
@@ -190,7 +190,7 @@ request(options, function (error, response) {
 </pre>
 </div>
 
-<div id="Go-print-boarding-pass-pdf" class="tabcontent dark"><pre><code>
+<div id="Go-print-entry-pass-pdf" class="tabcontent dark"><pre><code>
 package main
 
 import (
@@ -202,7 +202,7 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/print/v2/boardingpass/pdf"
+    url := "https://%7B%7Bbaseurl%7D%7D/print/v2/entrypass/pdf"
     method := "POST"
 
     payload := strings.NewReader(`{`+"
@@ -244,8 +244,8 @@ func main() {
 </pre>
 </div>
 
-<div id=".NET-print-boarding-pass-pdf" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/print/v2/boardingpass/pdf");
+<div id=".NET-print-entry-pass-pdf" class="tabcontent dark"><pre><code>
+var client = new RestClient("https://{{baseurl}}/print/v2/entrypass/pdf");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
 request.AddHeader("area-id", "{{areaId}}");
@@ -270,7 +270,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample <span class="method post">POST</span>
-    <code class="inline-code">/print/v2/boardingpass/{type}</code> API call that requests a
+    <code class="inline-code">/print/v2/entrypass/{type}</code> API call that requests a
     device print a entry pass in PDF format
 </p>
 
@@ -298,28 +298,28 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample Request Body for <span class="method post">POST</span>
-    <code class="inline-code">/print/v2/boardingpass/</code> request
+    <code class="inline-code">/print/v2/entrypass/</code> request
 </p>
 
 
 <h3>Print in Legacy format</h3>
 <p>
     Send a <span class="method post">POST</span>
-    <code class="inline-code">/print/v2/boardingpass/legacyprint</code> request to an
+    <code class="inline-code">/print/v2/entrypass/legacyprint</code> request to an
     MFP device to print a entry pass in <span class="method post">Legacy Print</span> format. 
 </p>
 
 <div class="code-section with-tabs">
     <div class="code-section-header">
         <div class="code-tabs">
-            <button class="tablinks" onclick="openTab(event, 'bash-print-boarding-pass-legacyprint')" id="defaultOpen">curl</button>
-            <button class="tablinks" onclick="openTab(event, 'Ruby-print-boarding-pass-legacyprint')">Ruby</button>
-            <button class="tablinks" onclick="openTab(event, 'Python-print-boarding-pass-legacyprint')">Python</button>
-            <button class="tablinks" onclick="openTab(event, 'PHP-print-boarding-pass-legacyprint')">PHP</button>
-            <button class="tablinks" onclick="openTab(event, 'Java-print-boarding-pass-legacyprint')">Java</button>
-            <button class="tablinks" onclick="openTab(event, 'Node-print-boarding-pass-legacyprint')">Node</button>
-            <button class="tablinks" onclick="openTab(event, 'Go-print-boarding-pass-legacyprint')">Go</button>
-            <button class="tablinks" onclick="openTab(event, '.NET-print-boarding-pass-legacyprint')">.NET</button>
+            <button class="tablinks" onclick="openTab(event, 'bash-print-entry-pass-legacyprint')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby-print-entry-pass-legacyprint')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python-print-entry-pass-legacyprint')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP-print-entry-pass-legacyprint')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java-print-entry-pass-legacyprint')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node-print-entry-pass-legacyprint')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go-print-entry-pass-legacyprint')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET-print-entry-pass-legacyprint')">.NET</button>
         </div>
         <div class="copy-code-btn-container">
             <button class="copy-code-btn">
@@ -343,8 +343,8 @@ Console.WriteLine(response.Content);
         Copied!
     </div>
 
-<div id="bash-print-boarding-pass-legacyprint" class="tabcontent dark"><pre> <code>
-curl --area -g --request POST 'https://{{baseurl}}/print/v2/boardingpass/legacyprint' \
+<div id="bash-print-entry-pass-legacyprint" class="tabcontent dark"><pre> <code>
+curl --area -g --request POST 'https://{{baseurl}}/print/v2/entrypass/legacyprint' \
 --header 'area-id: {{areaId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -364,12 +364,12 @@ curl --area -g --request POST 'https://{{baseurl}}/print/v2/boardingpass/legacyp
 </pre>
 </div>
 
-<div id="Ruby-print-boarding-pass-legacyprint" class="tabcontent dark"><pre><code>
+<div id="Ruby-print-entry-pass-legacyprint" class="tabcontent dark"><pre><code>
 require "uri"
 require "json"
 require "net/http"
 
-url = URI("https://{{baseurl}}/print/v2/boardingpass/legacyprint")
+url = URI("https://{{baseurl}}/print/v2/entrypass/legacyprint")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -397,11 +397,11 @@ puts response.read_body
 </pre>
 </div>
 
-<div id="Python-print-boarding-pass-legacyprint" class="tabcontent dark"><pre> <code>
+<div id="Python-print-entry-pass-legacyprint" class="tabcontent dark"><pre> <code>
 import requests
 import json
 
-url = "https://{{baseurl}}/print/v2/boardingpass/legacyprint"
+url = "https://{{baseurl}}/print/v2/entrypass/legacyprint"
 
 payload = json.dumps({
     "attachmentId": "",
@@ -428,11 +428,11 @@ print(response.text)
 </pre>
 </div>
 
-<div id="PHP-print-boarding-pass-legacyprint" class="tabcontent dark"><pre> <code>
+<div id="PHP-print-entry-pass-legacyprint" class="tabcontent dark"><pre> <code>
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/print/v2/boardingpass/legacyprint',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/print/v2/entrypass/legacyprint',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -467,9 +467,9 @@ echo $response;
 </pre>
 </div>
 
-<div id="Java-print-boarding-pass-legacyprint" class="tabcontent dark"><pre><code>
+<div id="Java-print-entry-pass-legacyprint" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("https://{{baseurl}}/print/v2/boardingpass/legacyprint")
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/print/v2/entrypass/legacyprint")
     .header("area-id", "{{areaId}}")
     .header("Content-Type", "application/json")
     .body("{\r\n  \"attachmentId\": \"\",\r\n  \"relationId\": \"postman-ftr-f1c53caf-81c1-4de7-bfe6-12e83811ff59\",\r\n  \"legacyPrintData\": {\r\n    \"printtab\": \"UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv\",\r\n    \"templates\": [\r\n        \"VFQwM18wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD\",\r\n        \"VFQwNF8wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD\"\r\n    ],\r\n    \"Logos\":[],\r\n    \"printData\": \"Q1AjMUMwMSMwMUojMDZBWktVUiAgICBBSE1FVE\"\r\n  }\r\n}")
@@ -478,11 +478,11 @@ HttpResponse<String> response = Unirest.post("https://{{baseurl}}/print/v2/board
 </pre>
 </div>
 
-<div id="Node-print-boarding-pass-legacyprint" class="tabcontent dark"><pre><code>
+<div id="Node-print-entry-pass-legacyprint" class="tabcontent dark"><pre><code>
 var request = require('request');
 var options = {
     'method': 'POST',
-    'url': 'https://{{baseurl}}/print/v2/boardingpass/legacyprint',
+    'url': 'https://{{baseurl}}/print/v2/entrypass/legacyprint',
     'headers': {
     'area-id': '{{areaId}}',
     'Content-Type': 'application/json'
@@ -510,7 +510,7 @@ request(options, function (error, response) {
 </pre>
 </div>
 
-<div id="Go-print-boarding-pass-legacyprint" class="tabcontent dark"><pre><code>
+<div id="Go-print-entry-pass-legacyprint" class="tabcontent dark"><pre><code>
 package main
 
 import (
@@ -522,7 +522,7 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/print/v2/boardingpass/legacyprint"
+    url := "https://%7B%7Bbaseurl%7D%7D/print/v2/entrypass/legacyprint"
     method := "POST"
 
     payload := strings.NewReader(`{`+"
@@ -580,8 +580,8 @@ func main() {
 </pre>
 </div>
 
-<div id=".NET-print-boarding-pass-legacyprint" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/print/v2/boardingpass/legacyprint");
+<div id=".NET-print-entry-pass-legacyprint" class="tabcontent dark"><pre><code>
+var client = new RestClient("https://{{baseurl}}/print/v2/entrypass/legacyprint");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
 request.AddHeader("area-id", "{{areaId}}");
@@ -622,7 +622,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample <span class="method post">POST</span>
-    <code class="inline-code">/print/v2/boardingpass/{type}</code> API call that requests a
+    <code class="inline-code">/print/v2/entrypass/{type}</code> API call that requests a
     device print a entry pass in Legacy format.
 </p>
 
