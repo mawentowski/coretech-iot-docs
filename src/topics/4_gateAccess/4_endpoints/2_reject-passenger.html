@@ -294,7 +294,7 @@ Console.WriteLine(response.Content);
     <code class="inline-code">gateaccess/v2/rejectpassenger</code>
     request, notice that a
     <code class="inline-code">Message</code> is included to display text on the
-    device for the agent (if the device is a Boarding Gate Reader, not gate).
+    device for the agent (if the device is a Magstripe Reader, not gate).
     Also, there is an option to trigger an
     <code class="inline-code">Alarm</code> sound when the passenger is rejected.
 </p>
@@ -356,7 +356,7 @@ Console.WriteLine(response.Content);
     Body indicating that request to reject the passenger was successful
 </p>
 <p>
-    If the device is Boarding Gate Reader, a red light displays, along with the
+    If the device is Magstripe Reader, a red light displays, along with the
     <code class="inline-code">Message</code> for the airline agent such as
     <code class="inline-code">Passenger Not Okay to Board</code>. Depending on
     the situation, the passenger may be sent a different desk for an agent to

@@ -8,27 +8,27 @@
 <p>
     The following is not an exhaustive list of all possible Service Bus
     <code class="inline-code">Message Types</code>. Only the most common ones
-    encountered when sending Bagdrop API requests are described.
+    encountered when sending Dispatch API requests are described.
 </p>
-<h2 id="bagdropdevicestatus">BagdropDeviceStatus</h2>
+<h2 id="dispatchitemdevicestatus">ConveyorDeviceStatus</h2>
 <p>
-    A <code class="inline-code">BagdropDeviceStatus</code> message displays on
+    A <code class="inline-code">ConveyorDeviceStatus</code> message displays on
     the Service Bus:
 </p>
 <ul>
     <li>
         when the <code class="inline-code">DeviceStatus</code> changes. For
-        example, when the SBD goes from
+        example, when the GRC goes from
         <code class="inline-code">Online</code> to
-        <code class="inline-code">Offline</code>, or vice versa. An SBD may go
+        <code class="inline-code">Offline</code>, or vice versa. An GRC may go
         <code class="inline-code">Offline</code> due to an issue with the
         device, or when a
-        <code class="inline-code">BagDropTransactionTimeout</code> occurs.
+        <code class="inline-code">ConveyorTransactionTimeout</code> occurs.
     </li>
     <li>
-        after a <code class="inline-code">/bagdrop/v2/getbag</code> request is
-        sent, which initiates the bagdrop process and reserves the SBD for
-        exclusive access by the airline backend. The
+        after a <code class="inline-code">/dispatchitem/v2/getbag</code> request
+        is sent, which initiates the dispatchitem process and reserves the GRC
+        for exclusive access by the airline backend. The
         <code class="inline-code">DeviceInUse</code> property changes from
         <code class="inline-code">false</code> (the value displayed after
         sending the <span class="method post">POST</span
@@ -50,14 +50,14 @@
 </div>
 
 <p class="caption">
-    Example <code class="inline-code">BagdropDeviceStatus</code> Service Bus
+    Example <code class="inline-code">ConveyorDeviceStatus</code> Service Bus
     Message indicating the device is online and exclusively reserved
 </p>
 <h2 id="dooropening-and-doorclosing">DoorOpening and DoorClosing</h2>
 <div class="alert-section info-alert">
     <div class="">
         <p>
-            These messages only display if the SBD is configured to have a door.
+            These messages only display if the GRC is configured to have a door.
         </p>
     </div>
 </div>
@@ -67,15 +67,15 @@
 </p>
 <ul>
     <li>
-        When a <code class="inline-code">/bagdrop/v2/getbag</code> request is
-        sent that opens the door to the SBD so the passenger can place her bag
-        on the belt.
+        When a <code class="inline-code">/dispatchitem/v2/getbag</code> request
+        is sent that opens the door to the GRC so the passenger can place her
+        bag on the belt.
     </li>
     <li>
         When an issue has occurred and either a
-        <code class="inline-code">/bagdrop/v2/returnbag</code> or
-        <code class="inline-code">/bagdrop/v2/cancelbag</code> request was sent
-        to open the door and return the bag to the
+        <code class="inline-code">/dispatchitem/v2/returnbag</code> or
+        <code class="inline-code">/dispatchitem/v2/cancelbag</code> request was
+        sent to open the door and return the bag to the
         <code class="inline-code">Entry</code> position so the issue can be
         resolved by the customer or an agent.
     </li>
@@ -87,8 +87,8 @@
 <ul>
     <li>
         after a
-        <code class="inline-code">/bagdrop/v2/processbag</code> request is sent.
-        The door to the SBD closes and the bag moves from the
+        <code class="inline-code">/dispatchitem/v2/processbag</code> request is
+        sent. The door to the GRC closes and the bag moves from the
         <code class="inline-code">Entry</code> position to the
         <code class="inline-code">Process</code> position.
     </li>
@@ -100,10 +100,10 @@
 </div>
 <h2 id="bagplaced">BagPlaced</h2>
 <p>
-    After a <code class="inline-code">/bagdrop/v2/getbag</code> request
-    initiates the bagdrop process, the door to the SBD opens (if there is a
+    After a <code class="inline-code">/dispatchitem/v2/getbag</code> request
+    initiates the dispatchitem process, the door to the GRC opens (if there is a
     door) so the passenger can place the bag on the belt. Baggage information
-    may be collected by the SBD and displayed in a
+    may be collected by the GRC and displayed in a
     <code class="inline-code">BagPlaced</code> message on the Service Bus.
 </p>
 <div class="method-example atom-one-light">
@@ -148,7 +148,7 @@
     The
     <code class="inline-code">"Position": "Entry"</code>
     indicates that the bag is currently located on the
-    <code class="inline-code">Entry</code> position of the SBD unit.
+    <code class="inline-code">Entry</code> position of the GRC unit.
 </p>
 <p>
     <code class="inline-code">"IsSuccess": true</code>
@@ -180,7 +180,7 @@
 </p>
 <p>
     Regarding the baggage information, the following scenarios are possible,
-    depending on the configuration of the SBD:
+    depending on the configuration of the GRC:
 </p>
 <ul>
     <li>
@@ -210,18 +210,18 @@
             since they all simply confirm the success or failure of a request.
             In actuality, the <code class="inline-code">MessageTypes</code> will
             be specific to the type of request that was sent. For example, after
-            a <code class="inline-code">/bagdrop/v2/getbag</code> request is
-            sent, a <code class="inline-code">GetBagResponse</code> response
+            a <code class="inline-code">/dispatchitem/v2/getbag</code> request
+            is sent, a <code class="inline-code">GetBagResponse</code> response
             displays on the Service Bus.
         </p>
     </div>
 </div>
 <p>
     <code class="inline-code">BagResponse</code> messages display on the Service
-    Bus after sending requests to the BagDrop API at different stages of a
-    bagdrop process and are often sent in conjunction with other types of
+    Bus after sending requests to the Dispatch API at different stages of a
+    dispatchitem process and are often sent in conjunction with other types of
     messages such as a <code class="inline-code">BagChanged</code> and
-    <code class="inline-code">BagdropDeviceStatus</code> message.
+    <code class="inline-code">ConveyorDeviceStatus</code> message.
 </p>
 <p>
     The only purpose of a
@@ -241,20 +241,21 @@
 <ul>
     <li>
         A <code class="inline-code">GetBagResponse</code> is received after a
-        <code class="inline-code">/bagdrop/v2/getbag</code> request is sent to
-        initiate the bag drop process and open the SBD door if there is one.
+        <code class="inline-code">/dispatchitem/v2/getbag</code> request is sent
+        to initiate the dispatch process and open the GRC door if there is one.
     </li>
     <p>
-        If the SBD has a door, the property
+        If the GRC has a door, the property
         <code class="inline-code">"Bag": null</code> is returned which indicates
         no baggage information was collected because a bag has not been placed
         on the belt yet.
     </p>
     <p>
-        If the SBD does not have a door, the
+        If the GRC does not have a door, the
         <code class="inline-code">GetBagResponse</code> message includes the
         baggage information collected from the bag placed on the belt at the
-        time the <code class="inline-code">/bagdrop/v2/getbag</code> request was
+        time the
+        <code class="inline-code">/dispatchitem/v2/getbag</code> request was
         sent.
     </p>
 </ul>
@@ -264,7 +265,7 @@
         <p>
             A <code class="inline-code">ProcessBagResponse</code> is received
             after a
-            <code class="inline-code">/bagdrop/v2/processbag</code>
+            <code class="inline-code">/dispatchitem/v2/processbag</code>
             request is sent to move the bag from the
             <code class="inline-code">Entry</code> position to the
             <code class="inline-code">Process</code> position where the bag can
@@ -275,7 +276,7 @@
         <p>
             A <code class="inline-code">ReturnBagResponse</code> is received
             after a
-            <code class="inline-code">/bagdrop/v2/returnbag</code>
+            <code class="inline-code">/dispatchitem/v2/returnbag</code>
             request is sent to return the bag to the
             <code class="inline-code">Entry</code> position
             <em>where the passenger</em> can resolve an issue.
@@ -285,7 +286,7 @@
         <p>
             A <code class="inline-code">CancelBagResponse</code> is received
             after a
-            <code class="inline-code">/bagdrop/v2/cancelbag</code>
+            <code class="inline-code">/dispatchitem/v2/cancelbag</code>
             request is sent to return the bag to the
             <code class="inline-code">Entry</code> position
             <em>where the agent</em> can resolve an issue.
@@ -295,7 +296,7 @@
         <p>
             A <code class="inline-code">ReleaseBagResponse</code> is received
             after a
-            <code class="inline-code">/bagdrop/v2/releasebag</code>
+            <code class="inline-code">/dispatchitem/v2/releasebag</code>
             request is sent to release the bag to the Baggage Handling System
             (BHS Area).
         </p>
@@ -308,8 +309,8 @@
     <code class="inline-code">ErrorCode</code> and
     <code class="inline-code">Message</code> describing why the request failed.
     A possible cause is there was a
-    <code class="inline-code">BagDropTransactionTimeout</code> that prevents
-    sending any further requests to the SBD.
+    <code class="inline-code">ConveyorTransactionTimeout</code> that prevents
+    sending any further requests to the GRC.
 </p>
 
 <div class="method-example atom-one-light">
@@ -333,29 +334,29 @@
     <code class="inline-code">ReturnBagResponse</code> Message indicating the
     reason the request failed
 </p>
-<h2 id="bagdroptransactiontimeout">BagDropTransactionTimeout</h2>
+<h2 id="dispatchitemtransactiontimeout">ConveyorTransactionTimeout</h2>
 <p>
     A
-    <code class="inline-code">BagDropTransactionTimeout</code>
+    <code class="inline-code">ConveyorTransactionTimeout</code>
     message displays on the Service Bus with an empty Message Body when too much
-    time has elapsed since the last Bagdrop API request was made.
+    time has elapsed since the last Dispatch API request was made.
 </p>
 <h3 id="timeout-at-entry-area">Timeout at Entry Area</h3>
 <p>
     If this error occurs when the bag is in the
     <code class="inline-code">Entry</code> position, another
-    <code class="inline-code">/bagdrop/v2/getbag</code> request must be made to
-    restart the bagdrop process. If you send a
-    <code class="inline-code">/bagdrop/v2/processbag</code> request when a
+    <code class="inline-code">/dispatchitem/v2/getbag</code> request must be
+    made to restart the dispatchitem process. If you send a
+    <code class="inline-code">/dispatchitem/v2/processbag</code> request when a
     timeout has occurred, and you have not sent the
-    <code class="inline-code">/bagdrop/v2/getbag</code> request, you will
+    <code class="inline-code">/dispatchitem/v2/getbag</code> request, you will
     receive an error status code.
 </p>
 <h3 id="timeout-at-process-area">Timeout at Process Area</h3>
 <p>
     If this error occurs when the bag is in the
     <code class="inline-code">Process</code> position, a
-    <code class="inline-code">BagdropDeviceStatus</code> message also displays
+    <code class="inline-code">ConveyorDeviceStatus</code> message also displays
     on the Service Bus indicating the device is no longer 'in use' (<code
         class="inline-code"
         >"DeviceInUse": false</code
@@ -364,15 +365,16 @@
 <p>
     You will receive an error status code when sending any further requests. For
     example, if you attempt to send a
-    <code class="inline-code">/bagdrop/v2/releasebag</code> request to continue
-    to the next phase in the bagdrop process, you will receive an error.
+    <code class="inline-code">/dispatchitem/v2/releasebag</code> request to
+    continue to the next phase in the dispatchitem process, you will receive an
+    error.
 </p>
 <p>
     At this stage, sending another
-    <code class="inline-code">/bagdrop/v2/getbag</code> request to restart the
-    bag drop process will not resolve the issue because there is a bag located
-    in the <code class="inline-code">Process</code> position that requires
-    action. The process cannot be restarted until the bag is removed.
+    <code class="inline-code">/dispatchitem/v2/getbag</code> request to restart
+    the conveyor process will not resolve the issue because there is a bag
+    located in the <code class="inline-code">Process</code> position that
+    requires action. The process cannot be restarted until the bag is removed.
 </p>
 
 <div class="continued-reading-section">
@@ -422,7 +424,7 @@
                 </svg>
             </div>
             <div>
-                <a href="/bagdrop/endpoints/get-bag">Get Bag</a>
+                <a href="/dispatchitem/endpoints/get-bag">Get Bag</a>
             </div>
         </div>
     </ul>

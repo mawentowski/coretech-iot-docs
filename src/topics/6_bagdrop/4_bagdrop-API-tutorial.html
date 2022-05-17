@@ -1,16 +1,16 @@
 <div class="title-box">
-    <h1 class="topic-title">Bagdrop API Tutorial</h1>
+    <h1 class="topic-title">Dispatch API Tutorial</h1>
     <div class="action-statement">
         Follow these step-by-step instructions to complete an interaction with a
-        bagdrop device.
+        dispatchitem device.
     </div>
 </div>
 
-<h2 id="bagdrop-api-walkthrough">Bagdrop API Tutorial</h2>
+<h2 id="dispatchitem-api-walkthrough">Dispatch API Tutorial</h2>
 <p>
-    Follow along with this walkthrough to experience the Bagdrop API, including
-    connecting to an SBD and completing an entire bagdrop process that ends with
-    releasing the bag to the Baggage Handling System (BHS).
+    Follow along with this walkthrough to experience the Dispatch API, including
+    connecting to an GRC and completing an entire dispatchitem process that ends
+    with releasing the bag to the Baggage Handling System (BHS).
 </p>
 <p>The following tools are used to demonstrate the Print API:</p>
 <ul>
@@ -101,16 +101,16 @@
 <div class="numbered-sections-container">
     <div class="section numbered-section">
         <div class="section-header">
-            <h2 id="heading-2" class="numbered-h2">Add an SBD Device</h2>
-            <span class="tag">Bagdrop API</span>
+            <h2 id="heading-2" class="numbered-h2">Add an GRC Device</h2>
+            <span class="tag">Dispatch API</span>
         </div>
         <div class="alert-section info-alert">
             <div class="">
-                <p>If an SBD has already been added, skip this section.</p>
+                <p>If an GRC has already been added, skip this section.</p>
             </div>
         </div>
         <!-- 
-        <p class="caption">Add an SBD in Device Simulator</p> -->
+        <p class="caption">Add an GRC in Device Simulator</p> -->
 
         <ol>
             <li>
@@ -119,7 +119,7 @@
             </li>
             <li>
                 <p>
-                    Select <strong>SBD</strong> from the
+                    Select <strong>GRC</strong> from the
                     <strong>Device Type</strong> drop-down.
                 </p>
             </li>
@@ -127,11 +127,11 @@
             <li>
                 <p>Click <strong>Add Device</strong>.</p>
                 <ul>
-                    <li>The SBD is now available in the Device Simulator.</li>
+                    <li>The GRC is now available in the Device Simulator.</li>
                     <li>
-                        By default, the SBD does not have a door. To trigger
+                        By default, the GRC does not have a door. To trigger
                         door-related Service Bus messages, you will add a door
-                        to the SBD in the following steps.
+                        to the GRC in the following steps.
                     </li>
                 </ul>
             </li>
@@ -143,13 +143,13 @@
             </li>
             <li>
                 <p>
-                    Click the <strong>SBD Bag Door</strong> drop-down and select
+                    Click the <strong>GRC Bag Door</strong> drop-down and select
                     <strong>(1) Door is installed</strong>.
                 </p>
             </li>
 
             <!-- <p class="caption">
-            SBD Bag Door Setting set to
+            GRC Bag Door Setting set to
             <code class="inline-code">Door is installed</code>
         </p> -->
 
@@ -158,7 +158,7 @@
                 On the device, click <strong>Run</strong>.
                 <ul>
                     <li>
-                        An SBD Device Simulator screen displays. You may keep it
+                        An GRC Device Simulator screen displays. You may keep it
                         open for later use.
                     </li>
                 </ul>
@@ -168,14 +168,14 @@
 
     <div class="section numbered-section">
         <div class="section-header">
-            <h2 id="heading-2" class="numbered-h2">Connect to the SBD</h2>
-            <span class="tag">Bagdrop API</span>
+            <h2 id="heading-2" class="numbered-h2">Connect to the GRC</h2>
+            <span class="tag">Dispatch API</span>
         </div>
         <ol>
             <li>
                 In Postman, send a
                 <code class="inline-code">/session/v2/connections</code> request
-                to connect to the SBD.
+                to connect to the GRC.
                 <ul>
                     <li>
                         After connecting to a device, a connection
@@ -202,7 +202,7 @@
 
             <li>
                 Check the Service Bus subscription for a
-                <code class="inline-code">BagdropDeviceStatus</code> message
+                <code class="inline-code">ConveyorDeviceStatus</code> message
                 shown below.
             </li>
             <div class="method-example atom-one-light">
@@ -217,29 +217,30 @@
                     </pre>
             </div>
             <p class="caption">
-                <code class="inline-code">BagdropDeviceStatus</code> Service Bus
-                Message indicating the device is
+                <code class="inline-code">ConveyorDeviceStatus</code> Service
+                Bus Message indicating the device is
                 <code class="inline-code">Online</code> and not exclusively
                 reserved
             </p>
             <p>
-                The message should indicate the SBD is
+                The message should indicate the GRC is
                 <code class="inline-code">Online</code> and is not exclusively
                 being used (<code class="inline-code"
                     >"DeviceInUse": "false"</code
                 >). The device is available to successfully receive a
-                <code class="inline-code">/bagdrop/v2/getbag</code> request.
+                <code class="inline-code">/dispatchitem/v2/getbag</code>
+                request.
             </p>
             <div class="alert-section info-alert">
                 <div class="">
                     <p>
                         In the Tests tab of Postman, there is a Javascript
                         function that updates the
-                        <code class="inline-code">sbd_connection_id</code>
-                        environmental variable after connecting to the SBD. This
+                        <code class="inline-code">grc_connection_id</code>
+                        environmental variable after connecting to the GRC. This
                         variable makes it so you do not need to manually enter a
                         <code class="inline-code">connectionId</code> in
-                        subsequent calls to the bagdrop API.
+                        subsequent calls to the dispatchitem API.
                     </p>
                 </div>
             </div>
@@ -260,7 +261,7 @@
             <ol>
                 <li>Click <strong>Run</strong>.</li>
                 <li>
-                    In the Peripheral View, check to see if the SBD
+                    In the Peripheral View, check to see if the GRC
                     <strong>Status</strong> is now
                     <code class="inline-code">Online</code>.
                 </li>
@@ -273,7 +274,7 @@
                 <li>Click <strong>Stop</strong>.</li>
                 <li>Click <strong>Run</strong>.</li>
                 <li>
-                    In the Peripheral View, check to see if the SBD
+                    In the Peripheral View, check to see if the GRC
                     <strong>Status</strong> is now
                     <code class="inline-code">Online</code>.
                 </li>
@@ -284,33 +285,33 @@
     <div class="section numbered-section">
         <div class="section-header">
             <h2 id="heading-2" class="numbered-h2">
-                Initiate a Bag Drop Process
+                Initiate a Dispatch Process
             </h2>
-            <span class="tag">Bagdrop API</span>
+            <span class="tag">Dispatch API</span>
         </div>
         <ol>
             <li>
                 In Postman, send a
-                <code class="inline-code">/bagdrop/v2/getbag</code>
+                <code class="inline-code">/dispatchitem/v2/getbag</code>
                 request.
                 <ul>
                     <li>
-                        The Bagdrop API acknowledges the request by returning a
+                        The Dispatch API acknowledges the request by returning a
                         <code class="inline-code">2xx</code> success status
                         code, as seen in a tool like Postman.
                     </li>
                     <li>
-                        If you added a door to the SBD earlier, notice that the
-                        door icon disappeared in the SBD Device Simulator. This
-                        simulates the door opening on a real bagdrop after a
-                        bagdrop process was initiated.
+                        If you added a door to the GRC earlier, notice that the
+                        door icon disappeared in the GRC Device Simulator. This
+                        simulates the door opening on a real dispatchitem after
+                        a dispatchitem process was initiated.
                     </li>
                 </ul>
             </li>
             <div class="alert-section info-alert">
                 <div class="">
                     <p>
-                        On a real bag drop, a message such as "Please place your
+                        On a real conveyor, a message such as "Please place your
                         bag on the belt" would display.
                     </p>
                 </div>
@@ -320,8 +321,8 @@
         <ul>
             <li>
                 An updated
-                <code class="inline-code">BagdropDeviceStatus</code>
-                message displays on the Service Bus, indicating the SBD is now
+                <code class="inline-code">ConveyorDeviceStatus</code>
+                message displays on the Service Bus, indicating the GRC is now
                 'In Use'.
             </li>
             <div class="method-example atom-one-light">
@@ -337,7 +338,7 @@
             </div>
 
             <p class="caption">
-                <code class="inline-code">BagdropDeviceStatus</code>
+                <code class="inline-code">ConveyorDeviceStatus</code>
                 Service Bus Message indicating the device is now exclusively
                 reserved
             </p>
@@ -346,13 +347,13 @@
                 A
                 <code class="inline-code">DoorOpening</code> message displays on
                 the Service Bus with an empty Message Body. This simply
-                indicates the door of the SBD has opened.
+                indicates the door of the GRC has opened.
             </li>
             <li>
                 A
                 <code class="inline-code">GetBagResponse</code>
                 message displays on the Service Bus which is an indication the
-                bagdrop process is initiated. The property
+                dispatchitem process is initiated. The property
                 <code class="inline-code">"Bag": null</code>
                 indicates there is no bag information because, for the purpose
                 of this simulation, the passenger has not yet placed a bag onto
@@ -380,16 +381,17 @@
         <h3 id="timeout-at-entry-area-1">Timeout at Entry Area</h3>
         <p>
             A
-            <code class="inline-code">BagDropTransactionTimeout</code>
+            <code class="inline-code">ConveyorTransactionTimeout</code>
             message displays on the service bus with an empty Message Body when
             too much time has elapsed since the
-            <code class="inline-code">/bagdrop/v2/getbag</code>
+            <code class="inline-code">/dispatchitem/v2/getbag</code>
             request was made. Another
-            <code class="inline-code">/bagdrop/v2/getbag</code>
-            request must be made to restart the bagdrop process. If you send a
-            <code class="inline-code">/bagdrop/v2/processbag</code>
+            <code class="inline-code">/dispatchitem/v2/getbag</code>
+            request must be made to restart the dispatchitem process. If you
+            send a
+            <code class="inline-code">/dispatchitem/v2/processbag</code>
             request when a timeout has occurred, and you have not sent the
-            <code class="inline-code">/bagdrop/v2/getbag</code>
+            <code class="inline-code">/dispatchitem/v2/getbag</code>
             request, you will receive an error status code.
         </p>
     </div>
@@ -397,12 +399,12 @@
     <div class="section numbered-section">
         <div class="section-header">
             <h2 id="heading-2" class="numbered-h2">Place a Bag on the Belt</h2>
-            <span class="tag">Bagdrop API</span>
+            <span class="tag">Dispatch API</span>
         </div>
         <ol>
             <li>
                 <p>
-                    With the SBD Device Simulator open, click
+                    With the GRC Device Simulator open, click
                     <strong>New Bag</strong>.
                 </p>
 
@@ -433,7 +435,7 @@
                     <li>
                         If the door has turned red (door is closed), send
                         another
-                        <code class="inline-code">/bagdrop/v2/getbag</code>
+                        <code class="inline-code">/dispatchitem/v2/getbag</code>
                         request to open it.
                     </li>
                 </ul>
@@ -443,10 +445,10 @@
                 button you clicked earlier.
                 <ul>
                     <li>
-                        The bag (in green) displays in the SBD image in the
+                        The bag (in green) displays in the GRC image in the
                         <strong>Entry Area</strong> like when a real bag is
                         placed by a passenger in the
-                        <strong>Entry Area</strong> of an SBD.
+                        <strong>Entry Area</strong> of an GRC.
                     </li>
                     <li>
                         The
@@ -466,7 +468,7 @@
                     If the passenger is using a mobile app, the app may request
                     confirmation that the bag has been placed by displaying a "I
                     have placed the bag" prompt. After tapping the button, the
-                    passenger is brought to the next step in the bagdrop
+                    passenger is brought to the next step in the dispatchitem
                     process.
                 </p>
             </div>
@@ -476,10 +478,10 @@
     <div class="section numbered-section">
         <div class="section-header">
             <h2 id="heading-2" class="numbered-h2">View Settled Weight</h2>
-            <span class="tag">Bagdrop API</span>
+            <span class="tag">Dispatch API</span>
         </div>
         <p>
-            In the SBD Device Simulator, notice above the
+            In the GRC Device Simulator, notice above the
             <strong>New Bag</strong> and
             <strong>Place Selected Bag</strong> buttons is a field with two
             properties called <strong>Bounce</strong>.
@@ -487,7 +489,7 @@
         <p>
             In the previous step, you placed a bag onto the belt. When this
             occurred, the belt was 'in-motion' while the weight on the belt
-            settled, like a real bag drop. The
+            settled, like a real conveyor. The
             <strong>Bounce</strong> properties simulate the fluctuation of
             weight while the weight of the bag settles.
         </p>
@@ -498,7 +500,7 @@
         </p>
 
         <!-- <p class="caption">
-            SBD Device Simulator showing
+            GRC Device Simulator showing
             <code class="inline-code">Bounce</code>
             Properties that simulate the motion of the belt after placing a bag
         </p> -->
@@ -583,7 +585,7 @@
                 The
                 <code class="inline-code">"Position": "Entry"</code>
                 indicates that the bag is currently located on the
-                <code class="inline-code">Entry</code> position of the SBD unit.
+                <code class="inline-code">Entry</code> position of the GRC unit.
             </p>
             <div class="alert-section info-alert">
                 <div class="">
@@ -591,8 +593,8 @@
                         The
                         <code class="inline-code">Position</code>
                         will update when new measurements are made as the
-                        bagdrop process progresses and the position of the bag
-                        changes.
+                        dispatchitem process progresses and the position of the
+                        bag changes.
                     </p>
                 </div>
             </div>
@@ -605,13 +607,13 @@
             <div class="alert-section info-alert">
                 <div class="">
                     <p>
-                        The SBD device in the SBD Device Simulator is not
+                        The GRC device in the GRC Device Simulator is not
                         capable of providing a the
                         <code class="inline-code">VolumeResult</code>
                         that includes the baggage dimensions, returning
                         <code class="inline-code">"Amount": 0.0</code>
-                        for the various dimensions. However, some SBDs have this
-                        capability. When interacting with an actual SBD with the
+                        for the various dimensions. However, some GRCs have this
+                        capability. When interacting with an actual GRC with the
                         capability to take measurements, those measurements will
                         display. How your airline backend could use this
                         information is to potentially reject a bag if a bag's
@@ -626,21 +628,21 @@
     <div class="section numbered-section">
         <div class="section-header">
             <h2 id="heading-2" class="numbered-h2">Process the Bag</h2>
-            <span class="tag">Bagdrop API</span>
+            <span class="tag">Dispatch API</span>
         </div>
         <ol>
             <li>
                 In Postman, send a
-                <code class="inline-code">/bagdrop/v2/processbag</code>
+                <code class="inline-code">/dispatchitem/v2/processbag</code>
                 request.
                 <ul>
                     <li>
-                        The Bagdrop API acknowledges the request by returning a
+                        The Dispatch API acknowledges the request by returning a
                         <code class="inline-code">2xx</code>
                         success status code, as seen in a tool such as Postman.
                     </li>
                     <li>
-                        In the SBD Device Simulator, notice that the door has
+                        In the GRC Device Simulator, notice that the door has
                         closed, and the bag has now moved from the
                         <code class="inline-code">Entry</code>
                         position to the
@@ -656,8 +658,8 @@
             <div class="alert-section info-alert">
                 <div class="">
                     <p>
-                        On a real bag drop, a message such as "Processing Bag,
-                        please wait." would display and the door to the bag drop
+                        On a real conveyor, a message such as "Processing Bag,
+                        please wait." would display and the door to the conveyor
                         would close (if not already closed).
                     </p>
                 </div>
@@ -690,9 +692,9 @@
                         <strong>Entry Area</strong>
                         is displayed in the
                         <code class="inline-code">BagChanged</code>
-                        message. However, on a real bagdrop, it is possible the
-                        baggage information may change. For example, the SBD may
-                        be configured to take a measurement in the
+                        message. However, on a real dispatchitem, it is possible
+                        the baggage information may change. For example, the GRC
+                        may be configured to take a measurement in the
                         <strong>Processing Area</strong>
                         rather than
                         <strong>Entry Area</strong>. Or another measurement may
@@ -720,7 +722,7 @@
             Not enough time remaining on connection
         </h3>
         <p>
-            A Bagdrop API returns a
+            A Dispatch API returns a
             <code class="inline-code">400 Bad Request</code>
             error status code when the connection to a device is soon to reach
             its 30-minute
@@ -757,17 +759,17 @@
         <h3 id="timeout-at-process-area-1">Timeout at Process Area</h3>
         <p>
             A
-            <code class="inline-code">BagDropTransactionTimeout</code>
+            <code class="inline-code">ConveyorTransactionTimeout</code>
             message displays on the Service Bus with an empty Message Body when
             too much time has elapsed since the
-            <code class="inline-code">/bagdrop/v2/process</code>
+            <code class="inline-code">/dispatchitem/v2/process</code>
             request was made.
         </p>
         <p>To resolve the issue:</p>
         <ol>
             <li>
                 <p>
-                    Right-click the bag in the SBD Device Simulator and select
+                    Right-click the bag in the GRC Device Simulator and select
                     <strong>Remove</strong>.
                 </p>
             </li>
@@ -787,7 +789,7 @@
                         <code class="language-json">
 {
     "DeviceStatus":"Offline",
-    "BagDropStatus":"BagRemovedUnexpectedly"
+    "ConveyorStatus":"BagRemovedUnexpectedly"
 }                   
                     </code>
                     </pre>
@@ -802,27 +804,27 @@
                 <div class="">
                     <p>
                         <strong>Note:</strong>
-                        In a bag drop process with a real SBD, unexpectedly
+                        In a dispatch process with a real GRC, unexpectedly
                         removing the bag from the belt displays the same
-                        <code class="inline-code">BagDropStatus</code>.
+                        <code class="inline-code">ConveyorStatus</code>.
                     </p>
                 </div>
             </div>
 
             <li>
-                <p>Close the SBD Device Simulator Window.</p>
+                <p>Close the GRC Device Simulator Window.</p>
             </li>
             <li>
                 <p>
-                    On the SBD Device in Device Simulator, click
+                    On the GRC Device in Device Simulator, click
                     <strong>Run</strong>.
                 </p>
                 <ul>
-                    <li>A new SBD Device Simulator opens.</li>
+                    <li>A new GRC Device Simulator opens.</li>
                     <li>
                         An updated
-                        <code class="inline-code">BagdropDeviceStatus</code>
-                        message displays on the Service Bus, indicating the SBD
+                        <code class="inline-code">ConveyorDeviceStatus</code>
+                        message displays on the Service Bus, indicating the GRC
                         is now
                         <code class="inline-code">Online</code>.
                     </li>
@@ -842,18 +844,18 @@
             </div>
 
             <p class="caption">
-                <code class="inline-code">BagdropDeviceStatus</code>
+                <code class="inline-code">ConveyorDeviceStatus</code>
                 Service Bus Message indicating the device is now
                 <code class="inline-code">Online</code>
             </p>
 
             <li>
                 Send a
-                <code class="inline-code">/bagdrop/v2/getbag</code>
+                <code class="inline-code">/dispatchitem/v2/getbag</code>
                 request.
                 <ul>
                     <li>
-                        If successful, the Bagdrop API returns a
+                        If successful, the Dispatch API returns a
                         <code class="inline-code">2xx</code>
                         status code returns a successful
                         <code class="inline-code">GetBagResponse</code>
@@ -869,13 +871,13 @@
             <h2 id="heading-2" class="numbered-h2">
                 Simulate a Customer Resolving an Issue
             </h2>
-            <span class="tag">Bagdrop API</span>
+            <span class="tag">Dispatch API</span>
         </div>
         <ol>
             <li>
                 With the bag in the Process Area, send a
-                <code class="inline-code">/bagdrop/v2/returnbag</code>
-                to simulate the SBD returning the bag to the customer to resolve
+                <code class="inline-code">/dispatchitem/v2/returnbag</code>
+                to simulate the GRC returning the bag to the customer to resolve
                 an issue.
                 <ul>
                     <li>
@@ -885,14 +887,16 @@
                         <strong>Entry Area</strong>
                         and the door opens for a short period. If the door
                         closes, sending another
-                        <code class="inline-code">/bagdrop/v2/returnbag</code>
+                        <code class="inline-code"
+                            >/dispatchitem/v2/returnbag</code
+                        >
                         request will open the door again.
                     </li>
                     <li>
                         A
                         <code class="inline-code">DoorOpening</code>
                         message displays on the Service Bus with an empty
-                        Message Body. This simply indicates the door of the SBD
+                        Message Body. This simply indicates the door of the GRC
                         has opened so the bag can be accessible to the passenger
                         to resolve the issue.
                     </li>
@@ -921,7 +925,7 @@
             </li>
 
             <!-- <p class="caption">
-                SBD Device Simulator showing the bag has returned to the Entry Area
+                GRC Device Simulator showing the bag has returned to the Entry Area
                 where the customer can resolve the issue
             </p> -->
             <div class="alert-section info-alert">
@@ -936,7 +940,7 @@
 
             <li>
                 To simulate the customer having resolved the issue, send another
-                <code class="inline-code">/bagdrop/v2/processbag</code>
+                <code class="inline-code">/dispatchitem/v2/processbag</code>
                 request to close the door and move the bag back the
                 <strong>Processing Area</strong>.
             </li>
@@ -948,13 +952,13 @@
             <h2 id="heading-2" class="numbered-h2">
                 Simulate an Agent Intervening to Resolve an Issue
             </h2>
-            <span class="tag">Bagdrop API</span>
+            <span class="tag">Dispatch API</span>
         </div>
         <ol>
             <li>
                 With the bag in the Process Area, send a
-                <code class="inline-code">/bagdrop/v2/cancelbag</code>
-                request to simulate the bagdrop returning the bag due to an
+                <code class="inline-code">/dispatchitem/v2/cancelbag</code>
+                request to simulate the dispatchitem returning the bag due to an
                 issue that requires agent assistance and cannot be resolved by
                 the customer.
                 <ul>
@@ -970,9 +974,13 @@
                     <li>
                         The same messages received on the Service Bus after
                         sending a
-                        <code class="inline-code">/bagdrop/v2/returnbag</code>
+                        <code class="inline-code"
+                            >/dispatchitem/v2/returnbag</code
+                        >
                         request are received after sending a
-                        <code class="inline-code">/bagdrop/v2/cancelbag</code>
+                        <code class="inline-code"
+                            >/dispatchitem/v2/cancelbag</code
+                        >
                         request. They indicate the bag has returned to the
                         <strong>Entry</strong>
                         <strong>Area</strong>.
@@ -981,7 +989,7 @@
             </li>
             <!-- 
             <p class="caption">
-                SBD Device Simulator showing the bag has returned to the Entry Area
+                GRC Device Simulator showing the bag has returned to the Entry Area
                 where the agent can resolve the issue
             </p> -->
             <div class="alert-section info-alert">
@@ -989,14 +997,14 @@
                     <p>
                         <strong>Note:</strong>
                         In a real-life scenario, the agent would be alerted to
-                        resolve the issue at the SBD.
+                        resolve the issue at the GRC.
                     </p>
                 </div>
             </div>
 
             <li>
                 To simulate the agent having resolved the issue, send another
-                <code class="inline-code">/bagdrop/v2/processbag</code>
+                <code class="inline-code">/dispatchitem/v2/processbag</code>
                 request to close the door and move the bag back the
                 <strong>Processing Area</strong>.
             </li>
@@ -1008,7 +1016,7 @@
             <h2 id="heading-2" class="numbered-h2">
                 Release the Bag to the BHS
             </h2>
-            <span class="tag">Bagdrop API</span>
+            <span class="tag">Dispatch API</span>
         </div>
         <ol>
             <li>
@@ -1016,9 +1024,9 @@
                     With the bag in the
                     <strong>Process</strong>
                     Area, send a
-                    <code class="inline-code">/bagdrop/v2/releasebag</code>
-                    request to simulate the completion of the bagdrop process
-                    with the SBD unit releasing the bag.
+                    <code class="inline-code">/dispatchitem/v2/releasebag</code>
+                    request to simulate the completion of the dispatchitem
+                    process with the GRC unit releasing the bag.
                 </p>
                 <ul>
                     <li>
@@ -1042,18 +1050,18 @@
                         (<code class="inline-code">"IsSuccess":true</code>).
                     </li>
                     <li>
-                        You can start a new bag drop process at this point by
+                        You can start a new dispatch process at this point by
                         adding a new bag, sending a
-                        <code class="inline-code">/bagdrop/v2/getbag</code>
+                        <code class="inline-code">/dispatchitem/v2/getbag</code>
                         request, then placing the new bag on the belt
                         (performing the same process again).
                     </li>
                 </ul>
             </li>
             <p>
-                If you wish, you can start a new bag drop process at this point
+                If you wish, you can start a new dispatch process at this point
                 by adding a new bag, sending a
-                <code class="inline-code">/bagdrop/v2/getbag</code>
+                <code class="inline-code">/dispatchitem/v2/getbag</code>
                 request, then placing the new bag on the belt.
             </p>
         </ol>
@@ -1061,7 +1069,7 @@
 </div>
 
 <!-- <p class="caption">
-    SBD Device Simulator showing the bag has been successfully released to the
+    GRC Device Simulator showing the bag has been successfully released to the
     BHS Release Area
 </p> -->
 

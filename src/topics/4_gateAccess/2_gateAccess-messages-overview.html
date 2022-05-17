@@ -81,7 +81,7 @@
     The agent starts the boarding process by triggering the
     <code class="inline-code">/gateaccess/v2/opengate</code> request. For a
     Self-Boarding Gate, the gate displays green and is now ready to process
-    passengers. When the agent is using a Boarding Gate Reader (BGR) to board
+    passengers. When the agent is using a Magstripe Reader (BGR) to board
     passengers (a process not involving a gate), the boarding process is
     initiated and an agent may begin scanning boarding passes.
 </p>
@@ -131,7 +131,7 @@
 <p>
     For a boarding process involving a Self-Boarding Gate (SBG) device, the
     passenger may scan his or her boarding pass. For a boarding process
-    involving a Boarding Gate Reader, the agent may now scan the passenger's
+    involving a Magstripe Reader, the agent may now scan the passenger's
     boarding pass.
 </p>
 <p>
@@ -257,7 +257,7 @@
     <div class="">
         <p>
             It is also possible, but rarer, for there to be a printer for a
-            Boarding Gate Reader in an agent-driven boarding scenario.
+            Magstripe Reader in an agent-driven boarding scenario.
         </p>
     </div>
 </div>
@@ -294,7 +294,7 @@
     Body indicating that request to accept the passenger was successful
 </p>
 <p>
-    If the device is Boarding Gate Reader, a green light displays, along with a
+    If the device is Magstripe Reader, a green light displays, along with a
     <code class="inline-code">Message</code> for the airline agent such as
     <code class="inline-code">Passenger Okay to Board</code>. The passenger is
     then allowed to pass the agent and board the flight.
@@ -325,8 +325,8 @@
     <code class="inline-code">gateaccess/v2/rejectpassenger</code>
     request, notice that a
     <code class="inline-code">Message</code> is included to display text on the
-    device for the agent (if the device is a Boarding Gate Reader, not gate).
-    Also, there is an option to trigger an
+    device for the agent (if the device is a Magstripe Reader, not gate). Also,
+    there is an option to trigger an
     <code class="inline-code">Alarm</code> sound when the passenger is rejected.
 </p>
 
@@ -382,7 +382,7 @@
     Body indicating that request to reject the passenger was successful
 </p>
 <p>
-    If the device is Boarding Gate Reader, a red light displays, along with the
+    If the device is Magstripe Reader, a red light displays, along with the
     <code class="inline-code">Message</code> for the airline agent such as
     <code class="inline-code">Passenger Not Okay to Board</code>. Depending on
     the situation, the passenger may be sent a different desk for an agent to

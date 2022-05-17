@@ -1,15 +1,15 @@
 <div class="title-box">
     <h1 class="topic-title">Get Bag</h1>
     <div class="action-statement">
-        Initiate a bagdrop process
+        Initiate a dispatchitem process
     </div>
 </div>
 
 
 <p>
     Send a <span class="method post">POST</span>
-    <code class="inline-code">/bagdrop/v2/getbag</code> request to initiate a
-    bagdrop process and open the door (if there is a door) of the SBD so the
+    <code class="inline-code">/dispatchitem/v2/getbag</code> request to initiate a
+    dispatchitem process and open the door (if there is a door) of the GRC so the
     passenger can place their bag on the belt.
 </p>
 
@@ -17,7 +17,7 @@
 
 <div class="alert-section info-alert">
     <div class="">
-        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="/bagdrop/bagdrop-api-call-components">API Call Components</a>.
+        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="/dispatchitem/dispatchitem-api-call-components">API Call Components</a>.
 
     </div>
 </div>
@@ -59,11 +59,11 @@
     </div>
 
 <div id="bash-get-bag" class="tabcontent dark"><pre> <code>
-curl --location -g --request POST 'https://{{baseurl}}/bagdrop/v2/getbag' \
+curl --location -g --request POST 'https://{{baseurl}}/dispatchitem/v2/getbag' \
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "connectionId": "{{sbd_connection_id}}",
+    "connectionId": "{{grc_connection_id}}",
     "correlationId": "postman-ftr-99a73858-31ab-4f9f-8603-492619122e38"
 }'
 </code>
@@ -75,7 +75,7 @@ require "uri"
 require "json"
 require "net/http"
 
-url = URI("https://{{baseurl}}/bagdrop/v2/getbag")
+url = URI("https://{{baseurl}}/dispatchitem/v2/getbag")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -84,7 +84,7 @@ request = Net::HTTP::Post.new(url)
 request["location-id"] = "{{locationId}}"
 request["Content-Type"] = "application/json"
 request.body = JSON.dump({
-    "connectionId": "{{sbd_connection_id}}",
+    "connectionId": "{{grc_connection_id}}",
     "correlationId": "postman-ftr-6e46a6eb-cfb7-4f1c-9255-4cd6edd7ee93"
 })
 
@@ -98,10 +98,10 @@ puts response.read_body
 import requests
 import json
 
-url = "https://{{baseurl}}/bagdrop/v2/getbag"
+url = "https://{{baseurl}}/dispatchitem/v2/getbag"
 
 payload = json.dumps({
-    "connectionId": "{{sbd_connection_id}}",
+    "connectionId": "{{grc_connection_id}}",
     "correlationId": "postman-ftr-787c1878-4a9c-45dc-8a5d-eb368c9c576a"
 })
 headers = {
@@ -122,7 +122,7 @@ print(response.text)
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/bagdrop/v2/getbag',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/dispatchitem/v2/getbag',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -131,7 +131,7 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'POST',
     CURLOPT_POSTFIELDS =>'{
-    "connectionId": "{{sbd_connection_id}}",
+    "connectionId": "{{grc_connection_id}}",
     "correlationId": "postman-ftr-88ea89b0-0d30-44a4-968f-26a942029ae6"
 }',
     CURLOPT_HTTPHEADER => array(
@@ -150,10 +150,10 @@ echo $response;
 
 <div id="Java-get-bag" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("https://{{baseurl}}/bagdrop/v2/getbag")
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/dispatchitem/v2/getbag")
     .header("location-id", "{{locationId}}")
     .header("Content-Type", "application/json")
-    .body("{\r\n  \"connectionId\": \"{{sbd_connection_id}}\",\r\n  \"correlationId\": \"postman-ftr-4aba285b-eba1-4dab-930d-b1e55f2d3c6b\"\r\n}")
+    .body("{\r\n  \"connectionId\": \"{{grc_connection_id}}\",\r\n  \"correlationId\": \"postman-ftr-4aba285b-eba1-4dab-930d-b1e55f2d3c6b\"\r\n}")
     .asString();              
 </code>
 </pre>
@@ -163,13 +163,13 @@ HttpResponse<String> response = Unirest.post("https://{{baseurl}}/bagdrop/v2/get
 var request = require('request');
 var options = {
     'method': 'POST',
-    'url': 'https://{{baseurl}}/bagdrop/v2/getbag',
+    'url': 'https://{{baseurl}}/dispatchitem/v2/getbag',
     'headers': {
     'location-id': '{{locationId}}',
     'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-    "connectionId": "{{sbd_connection_id}}",
+    "connectionId": "{{grc_connection_id}}",
     "correlationId": "postman-ftr-24d8edb9-7d9e-41e7-b1e8-959cc907f24c"
     })
 
@@ -194,12 +194,12 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/bagdrop/v2/getbag"
+    url := "https://%7B%7Bbaseurl%7D%7D/dispatchitem/v2/getbag"
     method := "POST"
 
     payload := strings.NewReader(`{`+"
 "+`
-    "connectionId": "{{sbd_connection_id}}",`+"
+    "connectionId": "{{grc_connection_id}}",`+"
 "+`
     "correlationId": "postman-ftr-be627565-6249-49aa-a49f-98fd9352376c"`+"
 "+`
@@ -235,14 +235,14 @@ func main() {
 </div>
 
 <div id=".NET-get-bag" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/bagdrop/v2/getbag");
+var client = new RestClient("https://{{baseurl}}/dispatchitem/v2/getbag");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
 request.AddHeader("location-id", "{{locationId}}");
 request.AddHeader("Content-Type", "application/json");
 var body = @"{
 " + "\n" +
-@"  ""connectionId"": ""{{sbd_connection_id}}"",
+@"  ""connectionId"": ""{{grc_connection_id}}"",
 " + "\n" +
 @"  ""correlationId"": ""postman-ftr-6f28d9ba-7aeb-4d52-9413-d789abeb87fb""
 " + "\n" +
@@ -258,8 +258,8 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample <span class="method post">POST</span>
-    <code class="inline-code">/bagdrop/v2/getbag</code> request to initiate a
-    bagdrop process.
+    <code class="inline-code">/dispatchitem/v2/getbag</code> request to initiate a
+    dispatchitem process.
 
 
     </p>
@@ -269,7 +269,7 @@ Console.WriteLine(response.Content);
 <h2>Request Body</h2>
 
 <p>
-    To successfully make the request, you must include the <code class="inline-code">connectionId</code> of the bagdrop device.
+    To successfully make the request, you must include the <code class="inline-code">connectionId</code> of the dispatchitem device.
 </p>
 
 
@@ -279,7 +279,7 @@ Console.WriteLine(response.Content);
     <pre>
             <code class="language-json">
 {
-    "connectionId": "{{sbd_connection_id}}",
+    "connectionId": "{{grc_connection_id}}",
     "correlationId": "postman-ftr-{{$guid}}"
 }
         </code>
@@ -289,7 +289,7 @@ Console.WriteLine(response.Content);
 <p class="caption">
 
         Sample Request Body for a <span class="method post">POST</span>
-        <code class="inline-code">/bagdrop/v2/getbag</code> request that provides a <code class="inline-code">connectionId</code> of the bagdrop device
+        <code class="inline-code">/dispatchitem/v2/getbag</code> request that provides a <code class="inline-code">connectionId</code> of the dispatchitem device
     </p>
 
 
@@ -302,21 +302,21 @@ Console.WriteLine(response.Content);
 <p>
     Upon making a
     <span class="method post">POST</span>
-        <code class="inline-code">/bagdrop/v2/getbag</code> request, the Bagdrop API acknowledges the request with a synchronous
+        <code class="inline-code">/dispatchitem/v2/getbag</code> request, the Dispatch API acknowledges the request with a synchronous
     message returns a
     <code class="inline-code">2xx</code> success status code (as seen in a tool
     like Postman).
 </p>
 <p>
-    The bagdrop process is initiated, and the door to the SBD opens (if there is a
+    The dispatchitem process is initiated, and the door to the GRC opens (if there is a
     door) so the passenger can place the bag on the belt. 
     
     <p>
-         A <code class="inline-code">GetBagResponse</code> message displays on the Service Bus, acknowledging that the request to initiate a bagdrop process was received
+         A <code class="inline-code">GetBagResponse</code> message displays on the Service Bus, acknowledging that the request to initiate a dispatchitem process was received
     </p>
     
     Baggage information
-    may be collected by the SBD and displayed in a
+    may be collected by the GRC and displayed in a
     <code class="inline-code">BagPlaced</code> message on the Service Bus.
 </p>
 <div class="method-example atom-one-light">
@@ -407,7 +407,7 @@ Console.WriteLine(response.Content);
                 </svg>
             </div>
             <div>
-                <a href="/bagdrop/endpoints/process-bag"
+                <a href="/dispatchitem/endpoints/process-bag"
                     >Process Bag</a
                 >
             </div>

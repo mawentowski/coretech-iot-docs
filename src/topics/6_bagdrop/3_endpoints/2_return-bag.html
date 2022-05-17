@@ -8,7 +8,7 @@
 <p>
     If an issue arises when the bag is in the
     <code class="inline-code">Process</code> position, and the customer
-    <em>can resolve the issue</em>, send a <span class="method post">POST </span><code class="inline-code">/bagdrop/v2/returnbag</code> request to open the
+    <em>can resolve the issue</em>, send a <span class="method post">POST </span><code class="inline-code">/dispatchitem/v2/returnbag</code> request to open the
     door and return the bag to the
     <code class="inline-code">Entry</code> position where the customer to
     resolve the issue.
@@ -18,7 +18,7 @@
 
 <div class="alert-section info-alert">
     <div class="">
-        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="/bagdrop/bagdrop-api-call-components">API Call Components</a>.
+        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="/dispatchitem/dispatchitem-api-call-components">API Call Components</a>.
 
     </div>
 </div>
@@ -60,11 +60,11 @@
     </div>
 
 <div id="bash-return-bag" class="tabcontent dark"><pre> <code>
-curl --location -g --request POST 'https://{{baseurl}}/bagdrop/v2/returnbag' \
+curl --location -g --request POST 'https://{{baseurl}}/dispatchitem/v2/returnbag' \
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "connectionId": "{{sbd_connection_id}}",
+    "connectionId": "{{grc_connection_id}}",
     "correlationId": "postman-ftr-6b5e91a5-a2c4-4ce8-85ef-ed3bcec5a030"
 }'
 </code>
@@ -76,7 +76,7 @@ require "uri"
 require "json"
 require "net/http"
 
-url = URI("https://{{baseurl}}/bagdrop/v2/returnbag")
+url = URI("https://{{baseurl}}/dispatchitem/v2/returnbag")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -85,7 +85,7 @@ request = Net::HTTP::Post.new(url)
 request["location-id"] = "{{locationId}}"
 request["Content-Type"] = "application/json"
 request.body = JSON.dump({
-    "connectionId": "{{sbd_connection_id}}",
+    "connectionId": "{{grc_connection_id}}",
     "correlationId": "postman-ftr-1a59eaf2-9922-44e2-9dbf-fa1572e98b96"
 })
 
@@ -99,10 +99,10 @@ puts response.read_body
 import requests
 import json
 
-url = "https://{{baseurl}}/bagdrop/v2/returnbag"
+url = "https://{{baseurl}}/dispatchitem/v2/returnbag"
 
 payload = json.dumps({
-    "connectionId": "{{sbd_connection_id}}",
+    "connectionId": "{{grc_connection_id}}",
     "correlationId": "postman-ftr-4d0f766a-3a36-4192-89b0-d63e71280fbc"
 })
 headers = {
@@ -123,7 +123,7 @@ print(response.text)
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/bagdrop/v2/returnbag',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/dispatchitem/v2/returnbag',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -132,7 +132,7 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'POST',
     CURLOPT_POSTFIELDS =>'{
-    "connectionId": "{{sbd_connection_id}}",
+    "connectionId": "{{grc_connection_id}}",
     "correlationId": "postman-ftr-781a8227-bb9a-4b99-9bf5-09ed2827893a"
 }',
     CURLOPT_HTTPHEADER => array(
@@ -151,10 +151,10 @@ echo $response;
 
 <div id="Java-return-bag" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("https://{{baseurl}}/bagdrop/v2/returnbag")
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/dispatchitem/v2/returnbag")
     .header("location-id", "{{locationId}}")
     .header("Content-Type", "application/json")
-    .body("{\r\n  \"connectionId\": \"{{sbd_connection_id}}\",\r\n  \"correlationId\": \"postman-ftr-937f88d5-d784-4323-bf9f-9add46915def\"\r\n}")
+    .body("{\r\n  \"connectionId\": \"{{grc_connection_id}}\",\r\n  \"correlationId\": \"postman-ftr-937f88d5-d784-4323-bf9f-9add46915def\"\r\n}")
     .asString();                
 </code>
 </pre>
@@ -162,13 +162,13 @@ HttpResponse<String> response = Unirest.post("https://{{baseurl}}/bagdrop/v2/ret
 
 <div id="Node-return-bag" class="tabcontent dark"><pre><code>
 var unirest = require('unirest');
-var req = unirest('POST', 'https://{{baseurl}}/bagdrop/v2/returnbag')
+var req = unirest('POST', 'https://{{baseurl}}/dispatchitem/v2/returnbag')
     .headers({
     'location-id': '{{locationId}}',
     'Content-Type': 'application/json'
     })
     .send(JSON.stringify({
-    "connectionId": "{{sbd_connection_id}}",
+    "connectionId": "{{grc_connection_id}}",
     "correlationId": "postman-ftr-2c1429b5-432f-466f-b5ba-5fff3b5e046e"
     }))
     .end(function (res) { 
@@ -191,12 +191,12 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/bagdrop/v2/returnbag"
+    url := "https://%7B%7Bbaseurl%7D%7D/dispatchitem/v2/returnbag"
     method := "POST"
 
     payload := strings.NewReader(`{`+"
 "+`
-    "connectionId": "{{sbd_connection_id}}",`+"
+    "connectionId": "{{grc_connection_id}}",`+"
 "+`
     "correlationId": "postman-ftr-805e2d41-1e9f-49b4-8583-10df1cebe6ad"`+"
 "+`
@@ -232,14 +232,14 @@ func main() {
 </div>
 
 <div id=".NET-return-bag" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/bagdrop/v2/returnbag");
+var client = new RestClient("https://{{baseurl}}/dispatchitem/v2/returnbag");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
 request.AddHeader("location-id", "{{locationId}}");
 request.AddHeader("Content-Type", "application/json");
 var body = @"{
 " + "\n" +
-@"  ""connectionId"": ""{{sbd_connection_id}}"",
+@"  ""connectionId"": ""{{grc_connection_id}}"",
 " + "\n" +
 @"  ""correlationId"": ""postman-ftr-2581be2b-d7d7-4210-b43b-ef4dc39e1063""
 " + "\n" +
@@ -255,7 +255,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
 
-   Sample <span class="method post">POST </span><code class="inline-code">/bagdrop/v2/returnbag</code> request to return the bag to the
+   Sample <span class="method post">POST </span><code class="inline-code">/dispatchitem/v2/returnbag</code> request to return the bag to the
         <code class="inline-code">Entry</code> position.
     </p>
 
@@ -265,7 +265,7 @@ Console.WriteLine(response.Content);
 <h2>Request Body</h2>
 
 <p>
-    To successfully make the request, you must include the <code class="inline-code">connectionId</code> of the bagdrop device.
+    To successfully make the request, you must include the <code class="inline-code">connectionId</code> of the dispatchitem device.
 </p>
 
 
@@ -275,7 +275,7 @@ Console.WriteLine(response.Content);
     <pre>
             <code class="language-json">
 {
-    "connectionId": "{{sbd_connection_id}}",
+    "connectionId": "{{grc_connection_id}}",
     "correlationId": "postman-ftr-{{$guid}}"
 }
         </code>
@@ -285,7 +285,7 @@ Console.WriteLine(response.Content);
 <p class="caption">
 
         Sample Request Body for a <span class="method post">POST</span>
-        <code class="inline-code">/bagdrop/v2/processbag</code> request that provides a <code class="inline-code">connectionId</code> of the bagdrop device
+        <code class="inline-code">/dispatchitem/v2/processbag</code> request that provides a <code class="inline-code">connectionId</code> of the dispatchitem device
     </p>
 
 
@@ -298,7 +298,7 @@ Console.WriteLine(response.Content);
 <p>
     Upon making a
     <span class="method post">POST</span>
-        <code class="inline-code">/bagdrop/v2/returnbag</code> request, the Bagdrop API acknowledges the request with a synchronous
+        <code class="inline-code">/dispatchitem/v2/returnbag</code> request, the Dispatch API acknowledges the request with a synchronous
     message returns a
     <code class="inline-code">2xx</code> success status code (as seen in a tool
     like Postman).
@@ -368,7 +368,7 @@ Console.WriteLine(response.Content);
                 </svg>
             </div>
             <div>
-                <a href="/bagdrop/endpoints/cancel-bag"
+                <a href="/dispatchitem/endpoints/cancel-bag"
                     >Cancel Bag</a
                 >
             </div>

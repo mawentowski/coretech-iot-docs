@@ -1,13 +1,13 @@
 <div class="title-box">
-    <h1 class="topic-title">Bagdrop API Call Components</h1>
+    <h1 class="topic-title">Dispatch API Call Components</h1>
     <div class="action-statement">
-        Learn about the required components of a Bagdrop API call
+        Learn about the required components of a Dispatch API call
     </div>
 </div>
 
 <p>
     Below is a sample <span class="method post">POST</span>
-    <code class="inline-code">/bagdrop/v2/getbag</code> call to the Bagdrop API
+    <code class="inline-code">/dispatchitem/v2/getbag</code> call to the Dispatch API
     that contains the required components:
     <ul>
         <li>Resource URL <code class=inline-code>https://</code></li>
@@ -43,29 +43,29 @@
     <div class="copied-popup hidden">Copied!</div>
     <div class="code-content dark">
         <pre><code class="language-bash">
-curl --location -g --request POST 'https://{{baseurl}}/bagdrop/v2/getbag' \
+curl --location -g --request POST 'https://{{baseurl}}/dispatchitem/v2/getbag' \
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "connectionId": "{{sbd_connection_id}}",
+    "connectionId": "{{grc_connection_id}}",
     "correlationId": "postman-ftr-904743f7-4c95-42f2-92d8-74b78f43f774"
 }'
 </code></pre>
     </div>
 </div>
 <p class="caption">
-    Sample Bagdrop API call containing the required components to successfully make the call
+    Sample Dispatch API call containing the required components to successfully make the call
 
 </p>
 
 
 
 <h2 id="resource-urls-4">Resource URLs</h2>
-<p>At present, Bagdrop API Resource URLs are comprised of:</p>
+<p>At present, Dispatch API Resource URLs are comprised of:</p>
 <ul>
     <li>
         A REST API standard method preceding the URL for accessing the endpoint.
-        In the case of the Bagdrop API, the only method used is <span class="method post">POST</span>.
+        In the case of the Dispatch API, the only method used is <span class="method post">POST</span>.
     </li>
     <li>
         A Base URL specific to the SITA Flex environment, sometimes displayed as
@@ -74,17 +74,17 @@ curl --location -g --request POST 'https://{{baseurl}}/bagdrop/v2/getbag' \
     </li>
     <li>
         The end path of the Resource URL is comprised of the API name (
-        <code class="inline-code">bagdrop</code>) followed by the endpoint name.
+        <code class="inline-code">dispatchitem</code>) followed by the endpoint name.
         For example, the end path
-        <code class="inline-code">/bagdrop/v2/getbag</code> contains the API
-        <code class="inline-code">bagdrop</code> followed by the endpoint
+        <code class="inline-code">/dispatchitem/v2/getbag</code> contains the API
+        <code class="inline-code">dispatchitem</code> followed by the endpoint
         <code class="inline-code">getbag</code>.
     </li>
 </ul>
 <div class="alert-section info-alert">
     <div class="">
         <p>
-            No path parameters are required when sending Bagdrop API requests.
+            No path parameters are required when sending Dispatch API requests.
         </p>
     </div>
 </div>
@@ -168,7 +168,7 @@ curl --location -g --request POST 'https://{{baseurl}}/bagdrop/v2/getbag' \
                 </svg>
             </div>
             <div>
-                <a href="/bagdrop/bagdrop-messages-overview">Messages Overview</a>
+                <a href="/dispatchitem/dispatchitem-messages-overview">Messages Overview</a>
             </div>
         </div>
     </ul>

@@ -38,7 +38,7 @@
 <ul>
     <li>Airport CUTE type workstations for check-in and boarding</li>
     <li>CUSS Type devices such as a Self-Service Kiosk</li>
-    <li>Self-Service BagDrop and Self-Service Boarding Gate</li>
+    <li>Self-Service Conveyor and Self-Service Boarding Gate</li>
 </ul>
 <h2 id="print-api">Print API</h2>
 <p>
@@ -146,8 +146,8 @@
 <h2 id="gateaccess-api">GateAccess API</h2>
 <p>
     The <a href="/gateAccess/gateAccess-overview">GateAccess API</a> endpoints
-    allow your airline backend to interact with Boarding Gate Readers (BGR/BCR)
-    and Self-Boarding Gates (SBG).
+    allow your airline backend to interact with Magstripe Readers (BGR/BCR) and
+    Self-Boarding Gates (SBG).
 </p>
 <p>The supported devices at present are the following:</p>
 <table class="main-table">
@@ -164,7 +164,7 @@
         </tr>
         <tr>
             <td>BGR</td>
-            <td>Boarding Gate Reader</td>
+            <td>Magstripe Reader</td>
         </tr>
         <tr>
             <td>SBG</td>
@@ -172,13 +172,13 @@
         </tr>
     </tbody>
 </table>
-<h2 id="bagdrop-api">Bagdrop API</h2>
+<h2 id="dispatchitem-api">Dispatch API</h2>
 <p>
-    The <a href="bagdrop/bagdrop-overview">Bagdrop API</a> endpoints allow your
-    airline backend to control a Self Bagdrop Unit to:
+    The <a href="dispatchitem/dispatchitem-overview">Dispatch API</a> endpoints
+    allow your airline backend to control a conveyor unit to:
 </p>
 <ul>
-    <li>move the bag between the various parts of the bagdrop process.</li>
+    <li>move the bag between the various parts of the dispatchitem process.</li>
     <li>
         retrieve information about the bag that is currently being processed by
         the unit.
@@ -194,8 +194,8 @@
     </thead>
     <tbody>
         <tr>
-            <td>SBD</td>
-            <td>Self-Bag Drop</td>
+            <td>GRC</td>
+            <td>Conveyor</td>
         </tr>
     </tbody>
 </table>

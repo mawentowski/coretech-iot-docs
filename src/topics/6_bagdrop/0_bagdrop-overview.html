@@ -1,51 +1,59 @@
 <div class="title-box">
-    <h1 class="topic-title">Bagdrop API</h1>
+    <h1 class="topic-title">Dispatch API</h1>
     <div class="action-statement">
-        Learn how to interact with a bagdrop device to complete a bagdrop
-        process
+        Learn how to interact with a dispatchitem device to complete a
+        dispatchitem process
     </div>
 </div>
 
 <div class="endpoints-summary">
     <p class="endpoints-summary-description">
-        The <strong>Bagdrop</strong> <strong>API</strong> endpoints allow your
-        airline backend to control a Self Bagdrop Unit.
+        The <strong>Dispatch</strong> <strong>API</strong> endpoints allow your
+        airline backend to control a conveyor unit.
     </p>
     <div class="method-example atom-one-light curl-custom two-col-width">
         <div class="method-example-top-bar">Endpoints</div>
         <div class="endpoints-container">
             <div class="endpoint-row">
                 <div class="end-path post-method">
-                    <a href="/bagdrop/v2/get-bag">/bagdrop/v2/getbag</a>
-                </div>
-            </div>
-            <div class="endpoint-row">
-                <div class="end-path post-method">
-                    <a href="/bagdrop/v2/process-bag"
-                        >/bagdrop/v2/processbag</a
+                    <a href="/dispatchitem/v2/get-bag"
+                        >/dispatchitem/v2/getbag</a
                     >
                 </div>
             </div>
             <div class="endpoint-row">
                 <div class="end-path post-method">
-                    <a href="/bagdrop/v2/print-receipt"
-                        >/bagdrop/v2/receiptprinted</a
+                    <a href="/dispatchitem/v2/process-bag"
+                        >/dispatchitem/v2/processbag</a
                     >
                 </div>
             </div>
             <div class="endpoint-row">
                 <div class="end-path post-method">
-                    <a href="/bagdrop/v2/release-bag">/bagdrop/v2/releasebag</a>
+                    <a href="/dispatchitem/v2/print-receipt"
+                        >/dispatchitem/v2/receiptprinted</a
+                    >
                 </div>
             </div>
             <div class="endpoint-row">
                 <div class="end-path post-method">
-                    <a href="/bagdrop/v2/return-bag">/bagdrop/v2/returnbag</a>
+                    <a href="/dispatchitem/v2/release-bag"
+                        >/dispatchitem/v2/releasebag</a
+                    >
                 </div>
             </div>
             <div class="endpoint-row">
                 <div class="end-path post-method">
-                    <a href="/bagdrop/v2/cancel-bag">/bagdrop/v2/cancelbag</a>
+                    <a href="/dispatchitem/v2/return-bag"
+                        >/dispatchitem/v2/returnbag</a
+                    >
+                </div>
+            </div>
+            <div class="endpoint-row">
+                <div class="end-path post-method">
+                    <a href="/dispatchitem/v2/cancel-bag"
+                        >/dispatchitem/v2/cancelbag</a
+                    >
                 </div>
             </div>
         </div>
@@ -55,12 +63,12 @@
 <p>They cover:</p>
 <ul>
     <li>
-        initiate a bag drop process to allow the passenger to place a bag on the
+        initiate a dispatch process to allow the passenger to place a bag on the
         belt.
     </li>
     <li>
-        move the bag through the various positions of the bagdrop unit that
-        correspond to the different stages of the bagdrop process.
+        move the bag through the various positions of the dispatchitem unit that
+        correspond to the different stages of the dispatchitem process.
     </li>
     <li>
         allow either the agent or the passenger to resolve any issues with the
@@ -78,8 +86,8 @@
     </thead>
     <tbody>
         <tr>
-            <td>SBD</td>
-            <td>Self-Bag Drop</td>
+            <td>GRC</td>
+            <td>Conveyor</td>
         </tr>
     </tbody>
 </table>
@@ -130,7 +138,7 @@
                 </svg>
             </div>
             <div>
-                <a href="/bagdrop/bagdrop-API-call-components"
+                <a href="/dispatchitem/dispatchitem-API-call-components"
                     >API Call Components</a
                 >
             </div>
