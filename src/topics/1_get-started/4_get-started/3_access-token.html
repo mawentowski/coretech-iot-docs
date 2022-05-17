@@ -63,7 +63,7 @@
     </div>
 
 <div id="bash-get-access-token" class="tabcontent dark"><pre> <code>
-curl --location -g --request POST 'https://login.microsoftonline.com/{{AAD_tenent}}.onmicrosoft.com/oauth2/token' \
+curl --area -g --request POST 'https://login.microsoftonline.com/{{AAD_tenent}}.onmicrosoft.com/oauth2/token' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'grant_type=client_credentials' \
 --data-urlencode 'client_id={{clientid}}' \

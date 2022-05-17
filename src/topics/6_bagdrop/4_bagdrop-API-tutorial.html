@@ -70,12 +70,12 @@
             </li>
             <li>
                 Ensure the
-                <code class="inline-code">{{location}}</code> variable
-                corresponds to the VM's machine name as seen in the Device View.
-                For example, a VM with machine name
+                <code class="inline-code">{{area}}</code> variable corresponds
+                to the VM's machine name as seen in the Device View. For
+                example, a VM with machine name
                 <code class="inline-code">ZZU1CKB005</code> as seen in the
                 Device view could correspond to a
-                <code class="inline-code">location</code> called
+                <code class="inline-code">area</code> called
                 <code class="inline-code">A-ZZU-MZUZUAIRPORT-ZZU1CKB005</code>
                 in the Postman Environment.
             </li>
@@ -195,8 +195,8 @@
                         Notice in the Request Body that the
                         <code class="inline-code">DeviceId</code> will be
                         populated based by the variable
-                        <code class="inline-code">{{location}}</code> in the
-                        Postman environment.
+                        <code class="inline-code">{{area}}</code> in the Postman
+                        environment.
                     </p>
                 </div>
             </div>
@@ -357,7 +357,7 @@
                 dispatchitem process is initiated. The property
                 <code class="inline-code">"Bag": null</code>
                 indicates there is no item information because, for the purpose
-                of this simulation, the passenger has not yet placed a item onto
+                of this simulation, the consumer has not yet placed a item onto
                 the belt.
             </li>
             <div class="method-example atom-one-light">
@@ -424,9 +424,8 @@
             <div class="alert-section info-alert">
                 <div class="">
                     <p>
-                        The item in its current state is simulating the
-                        passenger holding the item prior to placing the item on
-                        the belt.
+                        The item in its current state is simulating the consumer
+                        holding the item prior to placing the item on the belt.
                     </p>
                 </div>
             </div>
@@ -451,7 +450,7 @@
                     <li>
                         The item (in green) displays in the GRC image in the
                         <strong>Entry Area</strong> like when a real item is
-                        placed by a passenger in the
+                        placed by a consumer in the
                         <strong>Entry Area</strong> of an GRC.
                     </li>
                     <li>
@@ -469,11 +468,11 @@
         <div class="alert-section info-alert">
             <div class="">
                 <p>
-                    If the passenger is using a mobile app, the app may request
+                    If the consumer is using a mobile app, the app may request
                     confirmation that the item has been placed by displaying a
                     "I have placed the item" prompt. After tapping the button,
-                    the passenger is brought to the next step in the
-                    dispatchitem process.
+                    the consumer is brought to the next step in the dispatchitem
+                    process.
                 </p>
             </div>
         </div>
@@ -652,8 +651,7 @@
                         position to the
                         <code class="inline-code">Process</code>
                         position to simulate the belt moving down the item. The
-                        item is not accessible to the passenger in this
-                        position.
+                        item is not accessible to the consumer in this position.
                     </li>
                 </ul>
             </li>
@@ -674,7 +672,7 @@
                     A
                     <code class="inline-code">DoorClosing</code>
                     message may display on the Service Bus with an empty Message
-                    Body. This indicates the door has closed after the passenger
+                    Body. This indicates the door has closed after the consumer
                     placed the item on the belt.
                 </li>
                 <li>
@@ -902,8 +900,8 @@
                         <code class="inline-code">DoorOpening</code>
                         message displays on the Service Bus with an empty
                         Message Body. This simply indicates the door of the GRC
-                        has opened so the item can be accessible to the
-                        passenger to resolve the issue.
+                        has opened so the item can be accessible to the consumer
+                        to resolve the issue.
                     </li>
                     <li>
                         A

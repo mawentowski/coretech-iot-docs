@@ -63,8 +63,8 @@
     </div>
 
 <div id="bash-print-boarding-pass-pdf" class="tabcontent dark"><pre> <code>
-curl --location -g --request POST 'https://{{baseurl}}/print/v2/boardingpass/pdf' \
---header 'location-id: {{locationId}}' \
+curl --area -g --request POST 'https://{{baseurl}}/print/v2/boardingpass/pdf' \
+--header 'area-id: {{areaId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "attachmentId": "",
@@ -86,7 +86,7 @@ https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
 
 request = Net::HTTP::Post.new(url)
-request["location-id"] = "{{locationId}}"
+request["area-id"] = "{{areaId}}"
 request["Content-Type"] = "application/json"
 request.body = JSON.dump({
     "attachmentId": "",
@@ -111,7 +111,7 @@ payload = json.dumps({
     "printData": "JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb2"
 })
 headers = {
-    'location-id': '{{locationId}}',
+    'area-id': '{{areaId}}',
     'Content-Type': 'application/json'
 }
 conn.request("POST", "/print/v2/boardingpass/pdf", payload, headers)
@@ -142,7 +142,7 @@ curl_setopt_array($curl, array(
     "printData": "JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb2"
 }',
     CURLOPT_HTTPHEADER => array(
-    'location-id: {{locationId}}',
+    'area-id: {{areaId}}',
     'Content-Type: application/json'
     ),
 ));
@@ -158,7 +158,7 @@ echo $response;
 <div id="Java-print-boarding-pass-pdf" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("https://{{baseurl}}/print/v2/boardingpass/pdf")
-    .header("location-id", "{{locationId}}")
+    .header("area-id", "{{areaId}}")
     .header("Content-Type", "application/json")
     .body("{\r\n  \"attachmentId\": \"\",\r\n  \"relationId\": \"postman-ftr-30ad1141-bc89-4463-ad57-f14741d7a692\",\r\n  \"printData\": \"JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb2\"\r\n}")
     .asString();    
@@ -172,7 +172,7 @@ var options = {
     'method': 'POST',
     'url': 'https://{{baseurl}}/print/v2/boardingpass/pdf',
     'headers': {
-    'location-id': '{{locationId}}',
+    'area-id': '{{areaId}}',
     'Content-Type': 'application/json'
     },
     body: JSON.stringify({
@@ -223,7 +223,7 @@ func main() {
     fmt.Println(err)
     return
     }
-    req.Header.Add("location-id", "{{locationId}}")
+    req.Header.Add("area-id", "{{areaId}}")
     req.Header.Add("Content-Type", "application/json")
 
     res, err := client.Do(req)
@@ -248,7 +248,7 @@ func main() {
 var client = new RestClient("https://{{baseurl}}/print/v2/boardingpass/pdf");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
-request.AddHeader("location-id", "{{locationId}}");
+request.AddHeader("area-id", "{{areaId}}");
 request.AddHeader("Content-Type", "application/json");
 var body = @"{
 " + "\n" +
@@ -344,8 +344,8 @@ Console.WriteLine(response.Content);
     </div>
 
 <div id="bash-print-boarding-pass-legacyprint" class="tabcontent dark"><pre> <code>
-curl --location -g --request POST 'https://{{baseurl}}/print/v2/boardingpass/legacyprint' \
---header 'location-id: {{locationId}}' \
+curl --area -g --request POST 'https://{{baseurl}}/print/v2/boardingpass/legacyprint' \
+--header 'area-id: {{areaId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "attachmentId": "",
@@ -375,7 +375,7 @@ https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
 
 request = Net::HTTP::Post.new(url)
-request["location-id"] = "{{locationId}}"
+request["area-id"] = "{{areaId}}"
 request["Content-Type"] = "application/json"
 request.body = JSON.dump({
     "attachmentId": "",
@@ -417,7 +417,7 @@ payload = json.dumps({
     }
 })
 headers = {
-    'location-id': '{{locationId}}',
+    'area-id': '{{areaId}}',
     'Content-Type': 'application/json'
 }
 
@@ -454,7 +454,7 @@ curl_setopt_array($curl, array(
     }
 }',
     CURLOPT_HTTPHEADER => array(
-    'location-id: {{locationId}}',
+    'area-id: {{areaId}}',
     'Content-Type: application/json'
     ),
 ));
@@ -470,7 +470,7 @@ echo $response;
 <div id="Java-print-boarding-pass-legacyprint" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("https://{{baseurl}}/print/v2/boardingpass/legacyprint")
-    .header("location-id", "{{locationId}}")
+    .header("area-id", "{{areaId}}")
     .header("Content-Type", "application/json")
     .body("{\r\n  \"attachmentId\": \"\",\r\n  \"relationId\": \"postman-ftr-f1c53caf-81c1-4de7-bfe6-12e83811ff59\",\r\n  \"legacyPrintData\": {\r\n    \"pectab\": \"UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv\",\r\n    \"templates\": [\r\n        \"VFQwM18wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD\",\r\n        \"VFQwNF8wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD\"\r\n    ],\r\n    \"Logos\":[],\r\n    \"printData\": \"Q1AjMUMwMSMwMUojMDZBWktVUiAgICBBSE1FVE\"\r\n  }\r\n}")
     .asString();    
@@ -484,7 +484,7 @@ var options = {
     'method': 'POST',
     'url': 'https://{{baseurl}}/print/v2/boardingpass/legacyprint',
     'headers': {
-    'location-id': '{{locationId}}',
+    'area-id': '{{areaId}}',
     'Content-Type': 'application/json'
     },
     body: JSON.stringify({
@@ -559,7 +559,7 @@ func main() {
     fmt.Println(err)
     return
     }
-    req.Header.Add("location-id", "{{locationId}}")
+    req.Header.Add("area-id", "{{areaId}}")
     req.Header.Add("Content-Type", "application/json")
 
     res, err := client.Do(req)
@@ -584,7 +584,7 @@ func main() {
 var client = new RestClient("https://{{baseurl}}/print/v2/boardingpass/legacyprint");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
-request.AddHeader("location-id", "{{locationId}}");
+request.AddHeader("area-id", "{{areaId}}");
 request.AddHeader("Content-Type", "application/json");
 var body = @"{
 " + "\n" +
@@ -645,7 +645,7 @@ Console.WriteLine(response.Content);
     "relationId": "10099a59-6880-468d-ac66-8bbda5eb7d02",
     "legacyPrintData": {
         "pectab": "UFQjIz9WMU4jQDsjVElDS1QjQ0hLSU4jQk9BUkQjMDEwMTE...",
-        "logos": [
+        "icons": [
         "AAAAANH/wfDR/8Hw0f/B8NH/wfDR/8Hw0f/B8NH/wfDR/8H/B8NH//B..."
         ],
         "printData": "Q1AjMUMwMSMwMVYjMDJNMVZFUllMT05HRVhDRUVEU1NV..."

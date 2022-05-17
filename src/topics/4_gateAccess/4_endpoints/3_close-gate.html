@@ -66,8 +66,8 @@
     </div>
 
 <div id="bash-close-access" class="tabcontent dark"><pre> <code>
-curl --location -g --request POST 'https://{{baseurl}}/access/v2/closeaccesspoint' \
---header 'location-id: {{locationId}}' \
+curl --area -g --request POST 'https://{{baseurl}}/access/v2/closeaccesspoint' \
+--header 'area-id: {{areaId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "attachmentId": "{{msr_attachment_id}}",
@@ -88,7 +88,7 @@ https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
 
 request = Net::HTTP::Post.new(url)
-request["location-id"] = "{{locationId}}"
+request["area-id"] = "{{areaId}}"
 request["Content-Type"] = "application/json"
 request.body = JSON.dump({
     "attachmentId": "{{msr_attachment_id}}",
@@ -112,7 +112,7 @@ payload = json.dumps({
     "relationId": "postman-ftr-3a0504ad-15f2-4e97-9e3d-e74222accc28"
 })
 headers = {
-    'location-id': '{{locationId}}',
+    'area-id': '{{areaId}}',
     'Content-Type': 'application/json'
 }
 
@@ -142,7 +142,7 @@ curl_setopt_array($curl, array(
     "relationId": "postman-ftr-7952ff4e-4a25-4070-9bef-cfefed05dedf"
 }',
     CURLOPT_HTTPHEADER => array(
-    'location-id: {{locationId}}',
+    'area-id: {{areaId}}',
     'Content-Type: application/json'
     ),
 ));
@@ -158,7 +158,7 @@ echo $response;
 <div id="Java-close-access" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("https://{{baseurl}}/access/v2/closeaccesspoint")
-    .header("location-id", "{{locationId}}")
+    .header("area-id", "{{areaId}}")
     .header("Content-Type", "application/json")
     .body("{\r\n    \"attachmentId\": \"{{msr_attachment_id}}\",\r\n    \"relationId\": \"postman-ftr-d1b83c2c-f6fb-4c7d-bf9e-8a6f1de9748c\"\r\n}")
     .asString();     
@@ -172,7 +172,7 @@ var options = {
     'method': 'POST',
     'url': 'https://{{baseurl}}/access/v2/closeaccesspoint',
     'headers': {
-    'location-id': '{{locationId}}',
+    'area-id': '{{areaId}}',
     'Content-Type': 'application/json'
     },
     body: JSON.stringify({
@@ -220,7 +220,7 @@ func main() {
     fmt.Println(err)
     return
     }
-    req.Header.Add("location-id", "{{locationId}}")
+    req.Header.Add("area-id", "{{areaId}}")
     req.Header.Add("Content-Type", "application/json")
 
     res, err := client.Do(req)
@@ -245,7 +245,7 @@ func main() {
 var client = new RestClient("https://{{baseurl}}/access/v2/closeaccesspoint");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
-request.AddHeader("location-id", "{{locationId}}");
+request.AddHeader("area-id", "{{areaId}}");
 request.AddHeader("Content-Type", "application/json");
 var body = @"{
 " + "\n" +

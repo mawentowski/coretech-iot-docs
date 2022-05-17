@@ -43,8 +43,8 @@
     <div class="copied-popup hidden">Copied!</div>
     <div class="code-content dark">
         <pre><code class="language-bash">
-curl --location -g --request POST 'https://{{baseurl}}/access/v2/openaccesspoint' \
---header 'location-id: {{locationId}}' \
+curl --area -g --request POST 'https://{{baseurl}}/access/v2/openaccesspoint' \
+--header 'area-id: {{areaId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "attachmentId": "{{msr_attachment_id}}",
@@ -94,10 +94,10 @@ curl --location -g --request POST 'https://{{baseurl}}/access/v2/openaccesspoint
 </div>
     <h2 id="header-parameters-3">Header Parameters</h2>
     <p>
-        A <code class="inline-code">location-id</code> is required in the header
+        A <code class="inline-code">area-id</code> is required in the header
         of the request. CoreTech APIs use the Azure API Management service (APIM) to
-        route requests to the correct Azure Region based on the location code
-        extracted from the <code class="inline-code">LocationId</code>.
+        route requests to the correct Azure Region based on the area code
+        extracted from the <code class="inline-code">AreaId</code>.
     </p>
     <h2 id="authorization-headers-3">Authorization Headers</h2>
     <p>
@@ -127,7 +127,7 @@ curl --location -g --request POST 'https://{{baseurl}}/access/v2/openaccesspoint
                 When sending a
                 <code class="inline-code">access/v2/acceptconsumer</code>
                 or
-                <code class="inline-code">/access/v2/rejectpassenger</code>
+                <code class="inline-code">/access/v2/rejectconsumer</code>
                 request, a <code class="inline-code">Message</code> may be
                 included that displays on the device if the device is a Boarding
                 Gate Reader.
@@ -169,7 +169,7 @@ curl --location -g --request POST 'https://{{baseurl}}/access/v2/openaccesspoint
                 When sending a
                 <code class="inline-code">access/v2/acceptconsumer</code>
                 request, <code class="inline-code">ReceiptData</code> may be
-                passed to a device printer to print a receipt for the passenger.
+                passed to a device printer to print a receipt for the consumer.
             </li>
         </ul>
 
@@ -198,12 +198,12 @@ curl --location -g --request POST 'https://{{baseurl}}/access/v2/openaccesspoint
             <code class="inline-code">/access/v2/acceptconsumer</code>
             Request Body that passes
             <code class="inline-code">ReceiptData</code> to be printed for the
-            passenger
+            consumer
         </p>
         <ul>
             <li>
                 When sending a
-                <code class="inline-code">/access/v2/rejectpassenger</code>,
+                <code class="inline-code">/access/v2/rejectconsumer</code>,
                 you may specify if an
                 <code class="inline-code">Alarm</code> sounds.
             </li>

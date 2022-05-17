@@ -9,20 +9,20 @@
 <h2 id="reader-process">Magstripe Reader Process</h2>
 <p>
     The following is a summary of the access process when an attendant uses a
-    Magstripe Reader (MSR/KPR) to board passengers:
+    Magstripe Reader (MSR/KPR) to board consumers:
 </p>
 <ul>
     <li>
         The attendant overseeing the access process initiates boarding through a
         <code class="inline-code">/access/v2/openaccess</code> request.
     </li>
-    <li>An attendant takes the entry pass from the passenger and scans it.</li>
+    <li>An attendant takes the entry pass from the consumer and scans it.</li>
     <li>
-        The application backend determines if that passenger can be boarded and
-        displays the result for the attendant.
+        The application backend determines if that consumer can be granted
+        access and displays the result for the attendant.
     </li>
     <li>
-        If the passenger is accepted:
+        If the consumer is accepted:
         <ul>
             <li>
                 A
@@ -32,43 +32,42 @@
                 in the Request Body (e.g., "Passenger Okay to Board").
             </li>
             <li>
-                The attendant gives the entry pass back to the passenger, and
-                the passenger is then allowed to pass the attendant and board
-                the flight.
+                The attendant gives the entry pass back to the consumer, and the
+                consumer is then allowed to pass the attendant and board the
+                flight.
             </li>
         </ul>
     </li>
     <li>
-        If the passenger is rejected:
+        If the consumer is rejected:
         <ul>
             <li>
                 A
-                <code class="inline-code">/access/v2/rejectpassenger</code>
+                <code class="inline-code">/access/v2/rejectconsumer</code>
                 request is sent. A red light displays, along with any message
                 sent by the airline in the Request Body (e.g., "Passenger Not
                 Okay to Board").
             </li>
             <li>
-                The message can specifically say the reason why the passenger
-                was rejected or only provide a general reason.
+                The message can specifically say the reason why the consumer was
+                rejected or only provide a general reason.
             </li>
             <li>
-                Depending on the situation, the passenger may be sent a
-                different desk for an attendant to investigate the situation
-                further.
+                Depending on the situation, the consumer may be sent a different
+                desk for an attendant to investigate the situation further.
             </li>
         </ul>
     </li>
     <li>
-        Once all passengers are boarding, the attendant sends a
+        Once all consumers are boarding, the attendant sends a
         <code class="inline-code">/access/v2/closeaccesspoint</code> request
         that closes the access process.
     </li>
 </ul>
 <h2 id="access-process">Multi-Technology Reader Process</h2>
 <p>
-    The following is a summary of the access process when the passenger scans
-    his or her entry pass using at a Multi-Technology Reader.
+    The following is a summary of the access process when the consumer scans his
+    or her entry pass using at a Multi-Technology Reader.
 </p>
 <ul>
     <li>
@@ -77,42 +76,42 @@
     </li>
     <li>
         The access display turns green to indicate it is ready to process
-        passengers.
+        consumers.
     </li>
-    <li>The passenger scans his or her entry pass at the MTR.</li>
+    <li>The consumer scans his or her entry pass at the MTR.</li>
     <li>
-        The application backend determines if that passenger can be boarded.
+        The application backend determines if that consumer can be granted
+        access.
     </li>
     <li>
-        If the passenger is accepted:
+        If the consumer is accepted:
         <ul>
             <li>
                 A
                 <code class="inline-code">/access/v2/acceptconsumer</code>
                 request is sent. The access opens, and the display shows a green
-                arrow indicating to the passenger they may pass through. The
-                access point barrier then closes behind the passenger.
+                arrow indicating to the consumer they may pass through. The
+                access point barrier then closes behind the consumer.
             </li>
         </ul>
     </li>
     <li>
-        If the passenger is rejected:
+        If the consumer is rejected:
         <ul>
             <li>
                 A
-                <code class="inline-code">/access/v2/rejectpassenger</code>
+                <code class="inline-code">/access/v2/rejectconsumer</code>
                 request is sent. A red "X" displays, along with a message such
                 as "you cannot board, go see an attendant".
             </li>
             <li>
-                Depending on the situation, the passenger may be sent a
-                different desk for an attendant to investigate the situation
-                further.
+                Depending on the situation, the consumer may be sent a different
+                desk for an attendant to investigate the situation further.
             </li>
         </ul>
     </li>
     <li>
-        Once all passengers are boarding, the attendant sends a
+        Once all consumers are boarding, the attendant sends a
         <code class="inline-code">/access/v2/closeaccesspoint</code> request
         that ends the access process.
     </li>

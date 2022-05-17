@@ -1,15 +1,15 @@
 <div class="title-box">
-    <h1 class="topic-title">Get Location Capabilities</h1>
+    <h1 class="topic-title">Get Area Capabilities</h1>
     <div class="action-statement">
-        Determine the capabilities of the devices at a location
+        Determine the capabilities of the devices at a area
     </div>
 </div>
 
 <p>
     The <span class="method post">POST</span>
-    <code class="inline-code">/site/v2/locations/{locationId}</code> request
+    <code class="inline-code">/site/v2/areas/{areaId}</code> request
     provides a way for application backends to determine what devices are configured
-    at a location and their capabilities.
+    at a area and their capabilities.
 </p>
 <div class="alert-section info-alert">
     <div class="">
@@ -22,21 +22,21 @@
 
 <h2>Make an API Call</h2>
 <p>
-    You must pass the <code class="inline-code">locationId</code> as a path
+    You must pass the <code class="inline-code">areaId</code> as a path
     parameter in the request.
 </p>
 
 <div class="code-section with-tabs">
     <div class="code-section-header">
         <div class="code-tabs">
-            <button class="tablinks" onclick="openTab(event, 'bash-get-location-capabilities')" id="defaultOpen">curl</button>
-            <button class="tablinks" onclick="openTab(event, 'Ruby-get-location-capabilities')">Ruby</button>
-            <button class="tablinks" onclick="openTab(event, 'Python-get-location-capabilities')">Python</button>
-            <button class="tablinks" onclick="openTab(event, 'PHP-get-location-capabilities')">PHP</button>
-            <button class="tablinks" onclick="openTab(event, 'Java-get-location-capabilities')">Java</button>
-            <button class="tablinks" onclick="openTab(event, 'Node-get-location-capabilities')">Node</button>
-            <button class="tablinks" onclick="openTab(event, 'Go-get-location-capabilities')">Go</button>
-            <button class="tablinks" onclick="openTab(event, '.NET-get-location-capabilities')">.NET</button>
+            <button class="tablinks" onclick="openTab(event, 'bash-get-area-capabilities')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby-get-area-capabilities')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python-get-area-capabilities')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP-get-area-capabilities')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java-get-area-capabilities')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node-get-area-capabilities')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go-get-area-capabilities')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET-get-area-capabilities')">.NET</button>
         </div>
         <div class="copy-code-btn-container">
             <button class="copy-code-btn">
@@ -60,24 +60,24 @@
         Copied!
     </div>
 
-<div id="bash-get-location-capabilities" class="tabcontent dark"><pre> <code>
-curl --location -g --request GET 'https://{{baseurl}}/site/v2/locations/{{locationId}}' \
---header 'location-id: {{locationId}}'
+<div id="bash-get-area-capabilities" class="tabcontent dark"><pre> <code>
+curl --area -g --request GET 'https://{{baseurl}}/site/v2/areas/{{areaId}}' \
+--header 'area-id: {{areaId}}'
 </code>
 </pre>
 </div>
 
-<div id="Ruby-get-location-capabilities" class="tabcontent dark"><pre><code>
+<div id="Ruby-get-area-capabilities" class="tabcontent dark"><pre><code>
 require "uri"
 require "net/http"
 
-url = URI("https://{{baseurl}}/site/v2/locations/{{locationId}}")
+url = URI("https://{{baseurl}}/site/v2/areas/{{areaId}}")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
 
 request = Net::HTTP::Get.new(url)
-request["location-id"] = "{{locationId}}"
+request["area-id"] = "{{areaId}}"
 
 response = https.request(request)
 puts response.read_body
@@ -85,14 +85,14 @@ puts response.read_body
 </pre>
 </div>
 
-<div id="Python-get-location-capabilities" class="tabcontent dark"><pre> <code>
+<div id="Python-get-area-capabilities" class="tabcontent dark"><pre> <code>
 import requests
 
-url = "https://{{baseurl}}/site/v2/locations/{{locationId}}"
+url = "https://{{baseurl}}/site/v2/areas/{{areaId}}"
 
 payload={}
 headers = {
-    'location-id': '{{locationId}}'
+    'area-id': '{{areaId}}'
 }
 
 response = requests.request("GET", url, headers=headers, data=payload)
@@ -102,13 +102,13 @@ print(response.text)
 </pre>
 </div>
 
-<div id="PHP-get-location-capabilities" class="tabcontent dark"><pre> <code>
+<div id="PHP-get-area-capabilities" class="tabcontent dark"><pre> <code>
 <?php
 
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/site/v2/locations/%7B%7BlocationId%7D%7D',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/site/v2/areas/%7B%7BareaId%7D%7D',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -117,7 +117,7 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'GET',
     CURLOPT_HTTPHEADER => array(
-    'location-id: {{locationId}}'
+    'area-id: {{areaId}}'
     ),
 ));
 
@@ -129,22 +129,22 @@ echo $response;
 </pre>
 </div>
 
-<div id="Java-get-location-capabilities" class="tabcontent dark"><pre><code>
+<div id="Java-get-area-capabilities" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.get("https://{{baseurl}}/site/v2/locations/{{locationId}}")
-    .header("location-id", "{{locationId}}")
+HttpResponse<String> response = Unirest.get("https://{{baseurl}}/site/v2/areas/{{areaId}}")
+    .header("area-id", "{{areaId}}")
     .asString();
 </code>
 </pre>
 </div>
 
-<div id="Node-get-location-capabilities" class="tabcontent dark"><pre><code>
+<div id="Node-get-area-capabilities" class="tabcontent dark"><pre><code>
 var request = require('request');
 var options = {
     'method': 'GET',
-    'url': 'https://{{baseurl}}/site/v2/locations/{{locationId}}',
+    'url': 'https://{{baseurl}}/site/v2/areas/{{areaId}}',
     'headers': {
-    'location-id': '{{locationId}}'
+    'area-id': '{{areaId}}'
     }
 };
 request(options, function (error, response) {
@@ -155,7 +155,7 @@ request(options, function (error, response) {
 </pre>
 </div>
 
-<div id="Go-get-location-capabilities" class="tabcontent dark"><pre><code>
+<div id="Go-get-area-capabilities" class="tabcontent dark"><pre><code>
 package main
 
 import (
@@ -166,7 +166,7 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/site/v2/locations/%7B%7BlocationId%7D%7D"
+    url := "https://%7B%7Bbaseurl%7D%7D/site/v2/areas/%7B%7BareaId%7D%7D"
     method := "GET"
 
     client := &http.Client {
@@ -177,7 +177,7 @@ func main() {
     fmt.Println(err)
     return
     }
-    req.Header.Add("location-id", "{{locationId}}")
+    req.Header.Add("area-id", "{{areaId}}")
 
     res, err := client.Do(req)
     if err != nil {
@@ -197,11 +197,11 @@ func main() {
 </pre>
 </div>
 
-<div id=".NET-get-location-capabilities" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/site/v2/locations/{{locationId}}");
+<div id=".NET-get-area-capabilities" class="tabcontent dark"><pre><code>
+var client = new RestClient("https://{{baseurl}}/site/v2/areas/{{areaId}}");
 client.Timeout = -1;
 var request = new RestRequest(Method.GET);
-request.AddHeader("location-id", "{{locationId}}");
+request.AddHeader("area-id", "{{areaId}}");
 IRestResponse response = client.Execute(request);
 Console.WriteLine(response.Content);
 </code>
@@ -212,7 +212,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">Sample <span class="method post">POST</span>
     <code class="inline-code">/site/v2/reservation</code> request containing the
-    <code class="inline-code">LocationId</code> passed from the client app</p>
+    <code class="inline-code">AreaId</code> passed from the client app</p>
 
 
 <h2 id="response-body-2">Response</h2>
@@ -220,7 +220,7 @@ Console.WriteLine(response.Content);
     A successful request returns a
     <code class="inline-code">2xx</code> success status code with the JSON
     Response Body containing the list of devices and their capabilities at the
-    requested <code class="inline-code">locationId</code>:
+    requested <code class="inline-code">areaId</code>:
 </p>
 
 <div class="method-example atom-one-light">
@@ -284,7 +284,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample Response Body for <span class="method post">POST</span>
-    <code class="inline-code">/site/v2/locations/{locationId}</code> request.
+    <code class="inline-code">/site/v2/areas/{areaId}</code> request.
 </p>
 
 
@@ -294,10 +294,10 @@ Console.WriteLine(response.Content);
 <p>
     The Response Body includes a
     <code class="inline-code">deviceId</code> for each device configured at a
-    location.
+    area.
 </p>
 <p>
-    The <code class="inline-code">deviceId</code> is comprised of the location
+    The <code class="inline-code">deviceId</code> is comprised of the area
     (for example,
     <code class="inline-code">A-ZZU-MZUZUAIRPORT-ZZU1CKB004</code>), followed by
     the name of the device (for example,
@@ -305,7 +305,7 @@ Console.WriteLine(response.Content);
 </p>
 <p>
     The application backend then uses these IDs to connect to devices at the
-    location. For example, to connect to an MFP through a <span class="method post">POST</span> <code class="inline-code">/session/v2/attachments</code> request, you must
+    area. For example, to connect to an MFP through a <span class="method post">POST</span> <code class="inline-code">/session/v2/attachments</code> request, you must
     pass the <code class="inline-code">DeviceId</code> in the Request Body.
 </p>
 <h3 id="capabilities"><code class="inline-code">capabilities</code></h3>
@@ -346,7 +346,7 @@ Console.WriteLine(response.Content);
 <div class="alert-section tip-alert">
     <div class="">
         Returning a list of devices is useful to an application backend particularly
-        in cases where devices at a location have multiple capabilities and can
+        in cases where devices at a area have multiple capabilities and can
         receive different kinds of requests.
     </div>
 </div>

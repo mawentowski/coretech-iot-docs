@@ -12,10 +12,10 @@
 <h2 id="no-session-token">No Session Token</h2>
 <p>
     Previously, to use CoreTech APIs, a
-    <code class="inline-code">/v1/location/getsessiontoken</code> request must
-    be made to acquire a session token that tracks the session and maps all
-    calls made during the session. The Request Body needed to include a
-    <code class="inline-code">LocationID</code> and
+    <code class="inline-code">/v1/area/getsessiontoken</code> request must be
+    made to acquire a session token that tracks the session and maps all calls
+    made during the session. The Request Body needed to include a
+    <code class="inline-code">AreaID</code> and
     <code class="inline-code">CustomerCode</code>. The request returned the
     <code class="inline-code">SessionToken</code> to be included in the Request
     Body of all future API calls made during the session.
@@ -34,9 +34,9 @@
 <h2 id="subscribe-request-changes">Subscribe Request Changes</h2>
 <p>
     In V1, the response after sending a
-    <code class="inline-code">/v1/location/subscribe</code> request included a
-    <code class="inline-code">locationCapabilityList</code> with a list of
-    devices at the location and their statues. In V2, the
+    <code class="inline-code">/v1/area/subscribe</code> request included a
+    <code class="inline-code">areaCapabilityList</code> with a list of devices
+    at the area and their statues. In V2, the
     <code class="inline-code">/session/v2/subscriptions</code> request
     <em>only returns Service Bus details</em> for the new subscription.
 </p>
@@ -79,23 +79,23 @@
 <p>
     The new <span class="method post">POST</span>
     <code class="inline-code">/site/v2/reservations</code> request limits use of
-    a location to the application backend with a specific customer code that
-    made the request. The application backend must reserve the location to make
-    use of its devices.
+    a area to the application backend with a specific customer code that made
+    the request. The application backend must reserve the area to make use of
+    its devices.
 </p>
 <h2 id="no-device-status-request">No Device Status Request</h2>
 <p>
     There is a no longer a
-    <code class="inline-code">/v1/location/status/</code> request available to
-    return device statuses at a location. Instead, when you connect to a device,
-    a <code class="inline-code">DeviceStatus</code> message is displayed on the
+    <code class="inline-code">/v1/area/status/</code> request available to
+    return device statuses at a area. Instead, when you connect to a device, a
+    <code class="inline-code">DeviceStatus</code> message is displayed on the
     Service Bus that indicates the device status. When the device status changes
     in some cases, a new message is sent.
 </p>
 <p>
     The
-    <code class="inline-code">/session/v2/locations/{locationId}</code> returns
-    a list of devices and their capabilities, but not their statuses.
+    <code class="inline-code">/session/v2/areas/{areaId}</code> returns a list
+    of devices and their capabilities, but not their statuses.
 </p>
 <h2 id="connect-not-reserve">Connect, not Reserve</h2>
 <p>
@@ -105,7 +105,7 @@
     <code class="inline-code">/site/v2/reservations</code> endpoint, they are
     unrelated. Previously, the purpose of reserving a device was to connect to
     it. The new <code class="inline-code">/site/v2/reservations</code> endpoint
-    is about reserving a location for exclusive access to its devices.
+    is about reserving a area for exclusive access to its devices.
 </p>
 <p>
     Instead of connecting to a device through a

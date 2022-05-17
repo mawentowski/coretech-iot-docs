@@ -14,7 +14,7 @@
 <ul>
     <li>
         <p>
-            <strong>Reserve</strong> a location configured in the CoreTech IoT
+            <strong>Reserve</strong> a area configured in the CoreTech IoT
             environment by sending a POST
             <code class="inline-code">/site/v2/reservations</code> request.
         </p>
@@ -28,15 +28,15 @@
     </li>
     <li>
         <p>
-            <strong>Get Location Capabilities</strong> through a POST
-            <code class="inline-code">/site/v2/locations/{locationId}</code>
-            request that returns list of devices at a location and their
+            <strong>Get Area Capabilities</strong> through a POST
+            <code class="inline-code">/site/v2/areas/{areaId}</code>
+            request that returns list of devices at a area and their
             capabilities.
         </p>
     </li>
     <li>
         <p>
-            Create an attachment to Flex devices to receive messages on the
+            Create an attachment to IoT devices to receive messages on the
             subscription through a POST
             <code class="inline-code">/session/v2/attachments</code> request.
         </p>
@@ -45,17 +45,17 @@
 <div class="alert-section info-alert">
     <div class="">
         <p>
-            The Get Location Capabilities endpoint (
-            <code class="inline-code">/site/v2/locations/{locationId}</code>) is
-            not serviced by the Session API. It is serviced by the Location API.
+            The Get Area Capabilities endpoint (
+            <code class="inline-code">/site/v2/areas/{areaId}</code>) is not
+            serviced by the Session API. It is serviced by the Area API.
             However, it fits logically in the Session API flow at the time this
             documentation was written.
         </p>
 
         <p>
             Also, note that the Reserve (
-            <code class="inline-code">/site/v2/reservations</code>) and Get
-            Location Capabilities endpoints both contain the
+            <code class="inline-code">/site/v2/reservations</code>) and Get Area
+            Capabilities endpoints both contain the
             <code class="inline-code">/site</code> in their end paths.
             <code class="inline-code">/site</code> is just a way of logically
             grouping these two endpoints and is not an API.
@@ -63,7 +63,7 @@
     </div>
 </div>
 <p class="redacted">
-    Example locations configured in the CoreTech IoT environment include:
+    Example areas configured in the CoreTech IoT environment include:
 </p>
 <ul class="redacted">
     <li>Airport CUTE type workstations for check-in and boarding</li>
@@ -73,11 +73,10 @@
 <div class="alert-section tip-alert">
     <div class="">
         <p>
-            When reserving a location, the
-            <code class="inline-code">locationId</code> should not be confused
-            with a workstation with devices physically connected to it. Rather,
-            it is a logical entity that has certain capabilities associated with
-            it.
+            When reserving a area, the
+            <code class="inline-code">areaId</code> should not be confused with
+            a workstation with devices physically connected to it. Rather, it is
+            a logical entity that has certain capabilities associated with it.
         </p>
     </div>
 </div>
@@ -128,9 +127,7 @@
                 </svg>
             </div>
             <div>
-                <a href="/get-started/session/reserve-a-location"
-                    >Reserve a Location</a
-                >
+                <a href="/get-started/session/reserve-a-area">Reserve a Area</a>
             </div>
         </div>
     </ul>

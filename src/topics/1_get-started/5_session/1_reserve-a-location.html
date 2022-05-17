@@ -1,15 +1,15 @@
 <div class="title-box">
-    <h1 class="topic-title">Reserve a Location</h1>
+    <h1 class="topic-title">Reserve a Area</h1>
     <div class="action-statement">
-        Learn how to reserve a location to interact with its devices
+        Learn how to reserve a area to interact with its devices
     </div>
 </div>
 
 <p>
     The <span class="method post">POST</span>
     <code class="inline-code">/site/v2/reservations</code> request limits use of
-    a location to the application backend with a specific customer code that made the
-    request. The application backend must reserve the location to make use of its
+    a area to the application backend with a specific customer code that made the
+    request. The application backend must reserve the area to make use of its
     devices.
 </p>
 <div class="alert-section info-alert">
@@ -25,22 +25,22 @@
 
 <p>
     To successfully make the request, you must pass the
-    <code class="inline-code">LocationId</code> in the Request Body of the
-    location you wish to reserve.
+    <code class="inline-code">AreaId</code> in the Request Body of the
+    area you wish to reserve.
 </p>
 
 
 <div class="code-section with-tabs">
     <div class="code-section-header">
         <div class="code-tabs">
-            <button class="tablinks" onclick="openTab(event, 'bash-reserve-a-location')" id="defaultOpen">curl</button>
-            <button class="tablinks" onclick="openTab(event, 'Ruby-reserve-a-location')">Ruby</button>
-            <button class="tablinks" onclick="openTab(event, 'Python-reserve-a-location')">Python</button>
-            <button class="tablinks" onclick="openTab(event, 'PHP-reserve-a-location')">PHP</button>
-            <button class="tablinks" onclick="openTab(event, 'Java-reserve-a-location')">Java</button>
-            <button class="tablinks" onclick="openTab(event, 'Node-reserve-a-location')">Node</button>
-            <button class="tablinks" onclick="openTab(event, 'Go-reserve-a-location')">Go</button>
-            <button class="tablinks" onclick="openTab(event, '.NET-reserve-a-location')">.NET</button>
+            <button class="tablinks" onclick="openTab(event, 'bash-reserve-a-area')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby-reserve-a-area')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python-reserve-a-area')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP-reserve-a-area')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java-reserve-a-area')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node-reserve-a-area')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go-reserve-a-area')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET-reserve-a-area')">.NET</button>
         </div>
         <div class="copy-code-btn-container">
             <button class="copy-code-btn">
@@ -64,18 +64,18 @@
         Copied!
     </div>
 
-<div id="bash-reserve-a-location" class="tabcontent dark"><pre> <code>
-curl --location -g --request POST 'https://{{baseurl}}/site/v2/reservations' \
---header 'location-id: {{locationId}}' \
+<div id="bash-reserve-a-area" class="tabcontent dark"><pre> <code>
+curl --area -g --request POST 'https://{{baseurl}}/site/v2/reservations' \
+--header 'area-id: {{areaId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "LocationId": "{{locationId}}"
+    "AreaId": "{{areaId}}"
 }'
 </code>
 </pre>
 </div>
 
-<div id="Ruby-reserve-a-location" class="tabcontent dark"><pre><code>
+<div id="Ruby-reserve-a-area" class="tabcontent dark"><pre><code>
 require "uri"
 require "json"
 require "net/http"
@@ -86,10 +86,10 @@ https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
 
 request = Net::HTTP::Post.new(url)
-request["location-id"] = "{{locationId}}"
+request["area-id"] = "{{areaId}}"
 request["Content-Type"] = "application/json"
 request.body = JSON.dump({
-    "LocationId": "{{locationId}}"
+    "AreaId": "{{areaId}}"
 })
 
 response = https.request(request)
@@ -98,17 +98,17 @@ puts response.read_body
 </pre>
 </div>
 
-<div id="Python-reserve-a-location" class="tabcontent dark"><pre> <code>
+<div id="Python-reserve-a-area" class="tabcontent dark"><pre> <code>
 import requests
 import json
 
 url = "https://{{baseurl}}/site/v2/reservations"
 
 payload = json.dumps({
-    "LocationId": "{{locationId}}"
+    "AreaId": "{{areaId}}"
 })
 headers = {
-    'location-id': '{{locationId}}',
+    'area-id': '{{areaId}}',
     'Content-Type': 'application/json'
 }
 
@@ -119,7 +119,7 @@ print(response.text)
 </pre>
 </div>
 
-<div id="PHP-reserve-a-location" class="tabcontent dark"><pre> <code>
+<div id="PHP-reserve-a-area" class="tabcontent dark"><pre> <code>
 <?php
 
 $curl = curl_init();
@@ -134,10 +134,10 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'POST',
     CURLOPT_POSTFIELDS =>'{
-    "LocationId": "{{locationId}}"
+    "AreaId": "{{areaId}}"
 }',
     CURLOPT_HTTPHEADER => array(
-    'location-id: {{locationId}}',
+    'area-id: {{areaId}}',
     'Content-Type: application/json'
     ),
 ));
@@ -150,28 +150,28 @@ echo $response;
 </pre>
 </div>
 
-<div id="Java-reserve-a-location" class="tabcontent dark"><pre><code>
+<div id="Java-reserve-a-area" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("https://{{baseurl}}/site/v2/reservations")
-    .header("location-id", "{{locationId}}")
+    .header("area-id", "{{areaId}}")
     .header("Content-Type", "application/json")
-    .body("{\r\n    \"LocationId\": \"{{locationId}}\"\r\n}")
+    .body("{\r\n    \"AreaId\": \"{{areaId}}\"\r\n}")
     .asString();    
 </code>
 </pre>
 </div>
 
-<div id="Node-reserve-a-location" class="tabcontent dark"><pre><code>
+<div id="Node-reserve-a-area" class="tabcontent dark"><pre><code>
 var request = require('request');
 var options = {
     'method': 'POST',
     'url': 'https://{{baseurl}}/site/v2/reservations',
     'headers': {
-    'location-id': '{{locationId}}',
+    'area-id': '{{areaId}}',
     'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-    "LocationId": "{{locationId}}"
+    "AreaId": "{{areaId}}"
     })
 
 };
@@ -183,7 +183,7 @@ request(options, function (error, response) {
 </pre>
 </div>
 
-<div id="Go-reserve-a-location" class="tabcontent dark"><pre><code>
+<div id="Go-reserve-a-area" class="tabcontent dark"><pre><code>
 package main
 
 import (
@@ -200,7 +200,7 @@ func main() {
 
     payload := strings.NewReader(`{`+"
 "+`
-    "LocationId": "{{locationId}}"`+"
+    "AreaId": "{{areaId}}"`+"
 "+`
 }`)
 
@@ -212,7 +212,7 @@ func main() {
     fmt.Println(err)
     return
     }
-    req.Header.Add("location-id", "{{locationId}}")
+    req.Header.Add("area-id", "{{areaId}}")
     req.Header.Add("Content-Type", "application/json")
 
     res, err := client.Do(req)
@@ -233,15 +233,15 @@ func main() {
 </pre>
 </div>
 
-<div id=".NET-reserve-a-location" class="tabcontent dark"><pre><code>
+<div id=".NET-reserve-a-area" class="tabcontent dark"><pre><code>
 var client = new RestClient("https://{{baseurl}}/site/v2/reservations");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
-request.AddHeader("location-id", "{{locationId}}");
+request.AddHeader("area-id", "{{areaId}}");
 request.AddHeader("Content-Type", "application/json");
 var body = @"{
 " + "\n" +
-@"    ""LocationId"": ""{{locationId}}""
+@"    ""AreaId"": ""{{areaId}}""
 " + "\n" +
 @"}";
 request.AddParameter("application/json", body,  ParameterType.RequestBody);
@@ -256,7 +256,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">Sample <span class="method post">POST</span>
     <code class="inline-code">/site/v2/reservation</code> request containing the
-    <code class="inline-code">LocationId</code> passed from the client app</p>
+    <code class="inline-code">AreaId</code> passed from the client app</p>
 
 
 
@@ -266,7 +266,7 @@ Console.WriteLine(response.Content);
     <code class="inline-code">2xx</code> success status code with the JSON
     Response Body containing the <code class="inline-code">reservationId</code>.
     You must include this ID later in attachment requests to devices at the
-    reserved location.
+    reserved area.
 </p>
 
 <div class="method-example atom-one-light">
@@ -277,7 +277,7 @@ Console.WriteLine(response.Content);
     {
         "reservationId": "868e5715-2c82-426e-b7da-10e208dd865d",
         "customerCode": "ZZ",
-        "locationId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004",
+        "areaId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004",
         "expiryTime": "2021-11-24T19:26:30.846778+00:00"
     }
 ]
@@ -293,14 +293,14 @@ Console.WriteLine(response.Content);
 <p>
     The Response Body contains informational properties such as the
     <code class="inline-code">customerCode</code> encoded in the access token and
-    <code class="inline-code">locationID</code> passed in the Request Body. The
+    <code class="inline-code">areaID</code> passed in the Request Body. The
     property <code class="inline-code">expiryTime</code> indicates when the
     reservation is due to expire.
 </p>
 <div class="alert-section tip-alert">
     <div class="">
         <p>
-            It is important that application backends keep track of when a location
+            It is important that application backends keep track of when a area
             reservation is about to expire so it can request a new reservation
             if continued access is desired.
         </p>
@@ -309,7 +309,7 @@ Console.WriteLine(response.Content);
 
 <h2>Reservation Error</h2>
 <p>
-    Now that the location is reserved by an customer code, any request made by
+    Now that the area is reserved by an customer code, any request made by
     another airline will be rejected. This will occur until the
     reservation's <code class="inline-code">expiryTime</code> has been
     reached or the airline who made the reservation has sent a
@@ -318,7 +318,7 @@ Console.WriteLine(response.Content);
     reservation.
 </p>
 <p>
-    The following error displays when attempting to reserve a location that is
+    The following error displays when attempting to reserve a area that is
     already reserved:
 </p>
 
@@ -330,14 +330,14 @@ Console.WriteLine(response.Content);
     "type": "https://tools.ietf.org/html/rfc7231#section-6.5.1",
     "title": "Bad Request",
     "status": 400,
-    "detail": "Location reserved by other clients.",
+    "detail": "Area reserved by other clients.",
     "traceId": "00-25dd79293ba71f479ce30da826eecd09-3aa97e2de755f540-00"
 }
         </code>
         </pre>
 </div>
 <p class="caption">
-    Sample 400 Bad Request Error Message when a location is reserved by another
+    Sample 400 Bad Request Error Message when a area is reserved by another
     airline
 </p>
 
@@ -349,9 +349,9 @@ Console.WriteLine(response.Content);
 </p>
 <h2 id="best-practices">Deleting Reservations</h2>
 <p>
-    It is important to delete the reservation once done with a location because
+    It is important to delete the reservation once done with a area because
     an active reservation prevents other application backends from using the
-    location. This is achieved by sending a <span class="method del">DEL</span>
+    area. This is achieved by sending a <span class="method del">DEL</span>
     <code class="inline-code">/site/v2/reservations/{reservation_id}</code>
     request, passing in the
     <code class="inline-code">reservation_id</code> of the reservation to be

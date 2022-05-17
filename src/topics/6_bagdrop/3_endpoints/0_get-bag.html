@@ -10,7 +10,7 @@
     Send a <span class="method post">POST</span>
     <code class="inline-code">/dispatchitem/v2/getitem</code> request to initiate a
     dispatchitem process and open the door (if there is a door) of the GRC so the
-    passenger can place their item on the belt.
+    consumer can place their item on the belt.
 </p>
 
 <h2>Make an API Call</h2>
@@ -59,8 +59,8 @@
     </div>
 
 <div id="bash-get-item" class="tabcontent dark"><pre> <code>
-curl --location -g --request POST 'https://{{baseurl}}/dispatchitem/v2/getitem' \
---header 'location-id: {{locationId}}' \
+curl --area -g --request POST 'https://{{baseurl}}/dispatchitem/v2/getitem' \
+--header 'area-id: {{areaId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "attachmentId": "{{grc_attachment_id}}",
@@ -81,7 +81,7 @@ https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
 
 request = Net::HTTP::Post.new(url)
-request["location-id"] = "{{locationId}}"
+request["area-id"] = "{{areaId}}"
 request["Content-Type"] = "application/json"
 request.body = JSON.dump({
     "attachmentId": "{{grc_attachment_id}}",
@@ -105,7 +105,7 @@ payload = json.dumps({
     "relationId": "postman-ftr-787c1878-4a9c-45dc-8a5d-eb368c9c576a"
 })
 headers = {
-    'location-id': '{{locationId}}',
+    'area-id': '{{areaId}}',
     'Content-Type': 'application/json'
 }
 
@@ -135,7 +135,7 @@ curl_setopt_array($curl, array(
     "relationId": "postman-ftr-88ea89b0-0d30-44a4-968f-26a942029ae6"
 }',
     CURLOPT_HTTPHEADER => array(
-    'location-id: {{locationId}}',
+    'area-id: {{areaId}}',
     'Content-Type: application/json'
     ),
 ));
@@ -151,7 +151,7 @@ echo $response;
 <div id="Java-get-item" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("https://{{baseurl}}/dispatchitem/v2/getitem")
-    .header("location-id", "{{locationId}}")
+    .header("area-id", "{{areaId}}")
     .header("Content-Type", "application/json")
     .body("{\r\n  \"attachmentId\": \"{{grc_attachment_id}}\",\r\n  \"relationId\": \"postman-ftr-4aba285b-eba1-4dab-930d-b1e55f2d3c6b\"\r\n}")
     .asString();              
@@ -165,7 +165,7 @@ var options = {
     'method': 'POST',
     'url': 'https://{{baseurl}}/dispatchitem/v2/getitem',
     'headers': {
-    'location-id': '{{locationId}}',
+    'area-id': '{{areaId}}',
     'Content-Type': 'application/json'
     },
     body: JSON.stringify({
@@ -213,7 +213,7 @@ func main() {
     fmt.Println(err)
     return
     }
-    req.Header.Add("location-id", "{{locationId}}")
+    req.Header.Add("area-id", "{{areaId}}")
     req.Header.Add("Content-Type", "application/json")
 
     res, err := client.Do(req)
@@ -238,7 +238,7 @@ func main() {
 var client = new RestClient("https://{{baseurl}}/dispatchitem/v2/getitem");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
-request.AddHeader("location-id", "{{locationId}}");
+request.AddHeader("area-id", "{{areaId}}");
 request.AddHeader("Content-Type", "application/json");
 var body = @"{
 " + "\n" +
@@ -309,7 +309,7 @@ Console.WriteLine(response.Content);
 </p>
 <p>
     The dispatchitem process is initiated, and the door to the GRC opens (if there is a
-    door) so the passenger can place the item on the belt. 
+    door) so the consumer can place the item on the belt. 
     
     <p>
          A <code class="inline-code">GetBagResponse</code> message displays on the Service Bus, acknowledging that the request to initiate a dispatchitem process was received

@@ -43,8 +43,8 @@
     <div class="copied-popup hidden">Copied!</div>
     <div class="code-content dark">
         <pre><code class="language-bash">
-curl --location -g --request POST 'https://{{baseurl}}/dispatchitem/v2/getitem' \
---header 'location-id: {{locationId}}' \
+curl --area -g --request POST 'https://{{baseurl}}/dispatchitem/v2/getitem' \
+--header 'area-id: {{areaId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "attachmentId": "{{grc_attachment_id}}",
@@ -90,10 +90,10 @@ curl --location -g --request POST 'https://{{baseurl}}/dispatchitem/v2/getitem' 
 </div>
     <h2 id="header-parameters-4">Header Parameters</h2>
     <p>
-        A <code class="inline-code">location-id</code> is required in the header
+        A <code class="inline-code">area-id</code> is required in the header
         of requests. CoreTech APIs use the Azure API Management Service (APIM) to
         route requests to the correct Azure Region based on the customer code
-        extracted from the <code class="inline-code">LocationId</code>.
+        extracted from the <code class="inline-code">AreaId</code>.
     </p>
     <h2 id="authorization-headers-4">Authorization Headers</h2>
     <p>

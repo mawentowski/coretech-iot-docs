@@ -59,8 +59,8 @@
     </div>
 
 <div id="bash-cancel-item" class="tabcontent dark"><pre> <code>
-curl --location -g --request POST 'https://{{baseurl}}/dispatchitem/v2/cancelitem' \
---header 'location-id: {{locationId}}' \
+curl --area -g --request POST 'https://{{baseurl}}/dispatchitem/v2/cancelitem' \
+--header 'area-id: {{areaId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "attachmentId": "{{grc_attachment_id}}",
@@ -81,7 +81,7 @@ https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
 
 request = Net::HTTP::Post.new(url)
-request["location-id"] = "{{locationId}}"
+request["area-id"] = "{{areaId}}"
 request["Content-Type"] = "application/json"
 request.body = JSON.dump({
     "attachmentId": "{{grc_attachment_id}}",
@@ -105,7 +105,7 @@ payload = json.dumps({
     "relationId": "postman-ftr-d31de1b7-9c55-4470-bf4c-4d5272d2fbad"
 })
 headers = {
-    'location-id': '{{locationId}}',
+    'area-id': '{{areaId}}',
     'Content-Type': 'application/json'
 }
 
@@ -135,7 +135,7 @@ curl_setopt_array($curl, array(
     "relationId": "postman-ftr-ed9cdd23-b0e1-4a3b-b8af-ade08dbdb90f"
 }',
     CURLOPT_HTTPHEADER => array(
-    'location-id: {{locationId}}',
+    'area-id: {{areaId}}',
     'Content-Type: application/json'
     ),
 ));
@@ -151,7 +151,7 @@ echo $response;
 <div id="Java-cancel-item" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("https://{{baseurl}}/dispatchitem/v2/cancelitem")
-    .header("location-id", "{{locationId}}")
+    .header("area-id", "{{areaId}}")
     .header("Content-Type", "application/json")
     .body("{\r\n  \"attachmentId\": \"{{grc_attachment_id}}\",\r\n  \"relationId\": \"postman-ftr-1678c766-cf68-4508-8b33-428dbb631e26\"\r\n}")
     .asString();                  
@@ -165,7 +165,7 @@ var options = {
     'method': 'POST',
     'url': 'https://{{baseurl}}/dispatchitem/v2/cancelitem',
     'headers': {
-    'location-id': '{{locationId}}',
+    'area-id': '{{areaId}}',
     'Content-Type': 'application/json'
     },
     body: JSON.stringify({
@@ -213,7 +213,7 @@ func main() {
     fmt.Println(err)
     return
     }
-    req.Header.Add("location-id", "{{locationId}}")
+    req.Header.Add("area-id", "{{areaId}}")
     req.Header.Add("Content-Type", "application/json")
 
     res, err := client.Do(req)
@@ -238,7 +238,7 @@ func main() {
 var client = new RestClient("https://{{baseurl}}/dispatchitem/v2/cancelitem");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
-request.AddHeader("location-id", "{{locationId}}");
+request.AddHeader("area-id", "{{areaId}}");
 request.AddHeader("Content-Type", "application/json");
 var body = @"{
 " + "\n" +

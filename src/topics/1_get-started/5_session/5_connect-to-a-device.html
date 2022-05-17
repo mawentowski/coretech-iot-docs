@@ -8,7 +8,7 @@
 <p>
     The <span class="method post">POST</span>
     <code class="inline-code">/session/v2/attachments</code> request creates a
-    attachment to a device at specific location and associates that device to a
+    attachment to a device at specific area and associates that device to a
     subscription where it can send messages for the application backend to consume.
 </p>
 <h2 id="request-body-2">Make an API Call</h2>
@@ -30,7 +30,7 @@
                 <code class="inline-code">DeviceId</code>
             </td>
             <td>        ID returned after sending the
-                <code class="inline-code">/site/v2/locations/{locationId}</code> request
+                <code class="inline-code">/site/v2/areas/{areaId}</code> request
                 that listed devices configured at a site.</td>
         </tr>
         <tr>
@@ -41,9 +41,9 @@
         </tr>
         <tr>
             <td><code class="inline-code">ReservationId</code></td>
-            <td>       The ID of the location where
+            <td>       The ID of the area where
                 the device is configured. This ID tells the CoreTech API that the airline
-                has reserved the location where the device is located.</td>
+                has reserved the area where the device is located.</td>
         </tr>
 
     </tbody>
@@ -89,13 +89,13 @@
     </div>
 
 <div id="bash-connect-to-a-device" class="tabcontent dark"><pre> <code>
-curl --location -g --request POST 'https://{{baseurl}}/session/v2/attachments' \
---header 'location-id: {{locationId}}' \
+curl --area -g --request POST 'https://{{baseurl}}/session/v2/attachments' \
+--header 'area-id: {{areaId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "SubscriptionId": "",
     "ReservationId": "{{reservation_id}}",
-    "DeviceId": "{{locationId}}.MFP1"
+    "DeviceId": "{{areaId}}.MFP1"
 }'
 </code>
 </pre>
@@ -112,12 +112,12 @@ https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
 
 request = Net::HTTP::Post.new(url)
-request["location-id"] = "{{locationId}}"
+request["area-id"] = "{{areaId}}"
 request["Content-Type"] = "application/json"
 request.body = JSON.dump({
     "SubscriptionId": "",
     "ReservationId": "{{reservation_id}}",
-    "DeviceId": "{{locationId}}.MFP1"
+    "DeviceId": "{{areaId}}.MFP1"
 })
 
 response = https.request(request)
@@ -135,10 +135,10 @@ url = "https://{{baseurl}}/session/v2/attachments"
 payload = json.dumps({
     "SubscriptionId": "",
     "ReservationId": "{{reservation_id}}",
-    "DeviceId": "{{locationId}}.MFP1"
+    "DeviceId": "{{areaId}}.MFP1"
 })
 headers = {
-    'location-id': '{{locationId}}',
+    'area-id': '{{areaId}}',
     'Content-Type': 'application/json'
 }
 
@@ -166,10 +166,10 @@ curl_setopt_array($curl, array(
     CURLOPT_POSTFIELDS =>'{
     "SubscriptionId": "",
     "ReservationId": "{{reservation_id}}",
-    "DeviceId": "{{locationId}}.MFP1"
+    "DeviceId": "{{areaId}}.MFP1"
 }',
     CURLOPT_HTTPHEADER => array(
-    'location-id: {{locationId}}',
+    'area-id: {{areaId}}',
     'Content-Type: application/json'
     ),
 ));
@@ -185,9 +185,9 @@ echo $response;
 <div id="Java-connect-to-a-device" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("https://{{baseurl}}/session/v2/attachments")
-    .header("location-id", "{{locationId}}")
+    .header("area-id", "{{areaId}}")
     .header("Content-Type", "application/json")
-    .body("{\r\n    \"SubscriptionId\": \"\",\r\n    \"ReservationId\": \"{{reservation_id}}\",\r\n    \"DeviceId\": \"{{locationId}}.MFP1\"\r\n}")
+    .body("{\r\n    \"SubscriptionId\": \"\",\r\n    \"ReservationId\": \"{{reservation_id}}\",\r\n    \"DeviceId\": \"{{areaId}}.MFP1\"\r\n}")
     .asString();    
 </code>
 </pre>
@@ -199,13 +199,13 @@ var options = {
     'method': 'POST',
     'url': 'https://{{baseurl}}/session/v2/attachments',
     'headers': {
-    'location-id': '{{locationId}}',
+    'area-id': '{{areaId}}',
     'Content-Type': 'application/json'
     },
     body: JSON.stringify({
     "SubscriptionId": "",
     "ReservationId": "{{reservation_id}}",
-    "DeviceId": "{{locationId}}.MFP1"
+    "DeviceId": "{{areaId}}.MFP1"
     })
 
 };
@@ -238,7 +238,7 @@ func main() {
 "+`
     "ReservationId": "{{reservation_id}}",`+"
 "+`
-    "DeviceId": "{{locationId}}.MFP1"`+"
+    "DeviceId": "{{areaId}}.MFP1"`+"
 "+`
 }`)
 
@@ -250,7 +250,7 @@ func main() {
     fmt.Println(err)
     return
     }
-    req.Header.Add("location-id", "{{locationId}}")
+    req.Header.Add("area-id", "{{areaId}}")
     req.Header.Add("Content-Type", "application/json")
 
     res, err := client.Do(req)
@@ -275,7 +275,7 @@ func main() {
 var client = new RestClient("https://{{baseurl}}/session/v2/attachments");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
-request.AddHeader("location-id", "{{locationId}}");
+request.AddHeader("area-id", "{{areaId}}");
 request.AddHeader("Content-Type", "application/json");
 var body = @"{
 " + "\n" +
@@ -283,7 +283,7 @@ var body = @"{
 " + "\n" +
 @"    ""ReservationId"": ""{{reservation_id}}"",
 " + "\n" +
-@"    ""DeviceId"": ""{{locationId}}.MFP1""
+@"    ""DeviceId"": ""{{areaId}}.MFP1""
 " + "\n" +
 @"}";
 request.AddParameter("application/json", body,  ParameterType.RequestBody);

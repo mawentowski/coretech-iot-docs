@@ -8,8 +8,8 @@
 <p>
     The <span class="method get">GET</span>
     <code class="inline-code">/session/v2/subscriptions</code> request should be
-    sent prior to connecting to devices at a new location to determine if there
-    is an existing subscription in the same region as that location. 
+    sent prior to connecting to devices at a new area to determine if there
+    is an existing subscription in the same region as that area. 
     
 
 </p>
@@ -100,8 +100,8 @@
     </div>
 
 <div id="bash-check-for-subscription" class="tabcontent dark"><pre> <code>
-curl --location -g --request GET 'https://{{baseurl}}/session/v2/subscriptions' \
---header 'location-id: {{locationId}}'
+curl --area -g --request GET 'https://{{baseurl}}/session/v2/subscriptions' \
+--header 'area-id: {{areaId}}'
 </code>
 </pre>
 </div>
@@ -116,7 +116,7 @@ https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
 
 request = Net::HTTP::Get.new(url)
-request["location-id"] = "{{locationId}}"
+request["area-id"] = "{{areaId}}"
 
 response = https.request(request)
 puts response.read_body
@@ -131,7 +131,7 @@ url = "https://{{baseurl}}/session/v2/subscriptions"
 
 payload={}
 headers = {
-    'location-id': '{{locationId}}'
+    'area-id': '{{areaId}}'
 }
 
 response = requests.request("GET", url, headers=headers, data=payload)
@@ -156,7 +156,7 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'GET',
     CURLOPT_HTTPHEADER => array(
-    'location-id: {{locationId}}'
+    'area-id: {{areaId}}'
     ),
 ));
 
@@ -171,7 +171,7 @@ echo $response;
 <div id="Java-check-for-subscription" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.get("https://{{baseurl}}/session/v2/subscriptions")
-    .header("location-id", "{{locationId}}")
+    .header("area-id", "{{areaId}}")
     .asString();    
 </code>
 </pre>
@@ -183,7 +183,7 @@ var options = {
     'method': 'GET',
     'url': 'https://{{baseurl}}/session/v2/subscriptions',
     'headers': {
-    'location-id': '{{locationId}}'
+    'area-id': '{{areaId}}'
     }
 };
 request(options, function (error, response) {
@@ -216,7 +216,7 @@ func main() {
     fmt.Println(err)
     return
     }
-    req.Header.Add("location-id", "{{locationId}}")
+    req.Header.Add("area-id", "{{areaId}}")
 
     res, err := client.Do(req)
     if err != nil {
@@ -240,7 +240,7 @@ func main() {
 var client = new RestClient("https://{{baseurl}}/session/v2/subscriptions");
 client.Timeout = -1;
 var request = new RestRequest(Method.GET);
-request.AddHeader("location-id", "{{locationId}}");
+request.AddHeader("area-id", "{{areaId}}");
 IRestResponse response = client.Execute(request);
 Console.WriteLine(response.Content);
 </code>
@@ -250,7 +250,7 @@ Console.WriteLine(response.Content);
 </div>
 
 <p class="caption">Sample <span class="method get">GET</span>
-    <code class="inline-code">/session/v2/subscriptions</code> request, passing the <code class="inline-code">locationId</code> of the location to check for an existing subscription</p>
+    <code class="inline-code">/session/v2/subscriptions</code> request, passing the <code class="inline-code">areaId</code> of the area to check for an existing subscription</p>
 
 
 
@@ -260,7 +260,7 @@ Console.WriteLine(response.Content);
 <h3>Subscription in Region Exists</h3>
 <p>
     If <i>there is</i> an existing subscription that relates to the
-    <code class="inline-code">location-id</code> passed in the Request Header, a
+    <code class="inline-code">area-id</code> passed in the Request Header, a
     successful
     <span class="method get">GET</span>
     <code class="inline-code">/session/v2/subscriptions</code> request returns a
@@ -296,7 +296,7 @@ Console.WriteLine(response.Content);
 <p>
     The application backend would then pass the
     <code class="inline-code">subscriptionId</code> of the existing subscription
-    in requests to connect to devices at the location.
+    in requests to connect to devices at the area.
 </p>
 
 <div class="alert-section tip-alert">
@@ -316,7 +316,7 @@ Console.WriteLine(response.Content);
 <h3>Subscription in Region Does Not Exist</h3>
 <p>
     If <i>there is</i> an existing subscription that relates to the
-    <code class="inline-code">location-id</code> passed in the Request Header, a
+    <code class="inline-code">area-id</code> passed in the Request Header, a
     successful
     <span class="method get">GET</span>
     <code class="inline-code">/session/v2/subscriptions</code> request returns a
@@ -350,7 +350,7 @@ Console.WriteLine(response.Content);
     This response indicates a subscription does not exist the application backend
     should
     <a href="/get-started/session/create-a-subscription">create a subscription</a>
-    that can be used with the location.
+    that can be used with the area.
 </p>
 
 <div class="continued-reading-section">
@@ -449,8 +449,8 @@ Console.WriteLine(response.Content);
                 </svg>
             </div>
             <div>
-                <a href="/get-started/session/location-capabilities"
-                    >Determine Location Capabilities</a
+                <a href="/get-started/session/area-capabilities"
+                    >Determine Area Capabilities</a
                 >
             </div>
         </div>

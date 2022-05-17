@@ -1,15 +1,15 @@
 <div class="title-box">
     <h1 class="topic-title">Reject Passenger</h1>
     <div class="action-statement">
-        Reject a passenger if they are not approved for boarding
+        Reject a consumer if they are not approved for boarding
     </div>
 </div>
 
 <p>
     Send a
-    <span class="method post">POST</span> <code class="inline-code">/access/v2/rejectpassenger</code> request to
-    tell the Access API that a passenger is not allowed to board and must
-    see an attendant. Send this request each time a passenger is processed
+    <span class="method post">POST</span> <code class="inline-code">/access/v2/rejectconsumer</code> request to
+    tell the Access API that a consumer is not allowed to board and must
+    see an attendant. Send this request each time a consumer is processed
     unsuccessfully.
 </p>
 
@@ -29,14 +29,14 @@
 <div class="code-section with-tabs">
     <div class="code-section-header">
         <div class="code-tabs">
-            <button class="tablinks" onclick="openTab(event, 'bash-reject-passenger')" id="defaultOpen">curl</button>
-            <button class="tablinks" onclick="openTab(event, 'Ruby-reject-passenger')">Ruby</button>
-            <button class="tablinks" onclick="openTab(event, 'Python-reject-passenger')">Python</button>
-            <button class="tablinks" onclick="openTab(event, 'PHP-reject-passenger')">PHP</button>
-            <button class="tablinks" onclick="openTab(event, 'Java-reject-passenger')">Java</button>
-            <button class="tablinks" onclick="openTab(event, 'Node-reject-passenger')">Node</button>
-            <button class="tablinks" onclick="openTab(event, 'Go-reject-passenger')">Go</button>
-            <button class="tablinks" onclick="openTab(event, '.NET-reject-passenger')">.NET</button>
+            <button class="tablinks" onclick="openTab(event, 'bash-reject-consumer')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby-reject-consumer')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python-reject-consumer')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP-reject-consumer')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java-reject-consumer')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node-reject-consumer')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go-reject-consumer')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET-reject-consumer')">.NET</button>
         </div>
         <div class="copy-code-btn-container">
             <button class="copy-code-btn">
@@ -60,9 +60,9 @@
         Copied!
     </div>
 
-<div id="bash-reject-passenger" class="tabcontent dark"><pre> <code>
-curl --location -g --request POST 'https://{{baseurl}}/access/v2/rejectpassenger' \
---header 'location-id: {{locationId}}' \
+<div id="bash-reject-consumer" class="tabcontent dark"><pre> <code>
+curl --area -g --request POST 'https://{{baseurl}}/access/v2/rejectconsumer' \
+--header 'area-id: {{areaId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "attachmentId": "{{msr_attachment_id}}",
@@ -74,18 +74,18 @@ curl --location -g --request POST 'https://{{baseurl}}/access/v2/rejectpassenger
 </pre>
 </div>
 
-<div id="Ruby-reject-passenger" class="tabcontent dark"><pre><code>
+<div id="Ruby-reject-consumer" class="tabcontent dark"><pre><code>
 require "uri"
 require "json"
 require "net/http"
 
-url = URI("https://{{baseurl}}/access/v2/rejectpassenger")
+url = URI("https://{{baseurl}}/access/v2/rejectconsumer")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
 
 request = Net::HTTP::Post.new(url)
-request["location-id"] = "{{locationId}}"
+request["area-id"] = "{{areaId}}"
 request["Content-Type"] = "application/json"
 request.body = JSON.dump({
     "attachmentId": "{{msr_attachment_id}}",
@@ -103,11 +103,11 @@ puts response.read_body
 </pre>
 </div>
 
-<div id="Python-reject-passenger" class="tabcontent dark"><pre> <code>
+<div id="Python-reject-consumer" class="tabcontent dark"><pre> <code>
 import requests
 import json
 
-url = "https://{{baseurl}}/access/v2/rejectpassenger"
+url = "https://{{baseurl}}/access/v2/rejectconsumer"
 
 payload = json.dumps({
     "attachmentId": "{{msr_attachment_id}}",
@@ -119,7 +119,7 @@ payload = json.dumps({
     "alarm": True
 })
 headers = {
-    'location-id': '{{locationId}}',
+    'area-id': '{{areaId}}',
     'Content-Type': 'application/json'
 }
 
@@ -130,13 +130,13 @@ print(response.text)
 </pre>
 </div>
 
-<div id="PHP-reject-passenger" class="tabcontent dark"><pre> <code>
+<div id="PHP-reject-consumer" class="tabcontent dark"><pre> <code>
 <?php
 
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/access/v2/rejectpassenger',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/access/v2/rejectconsumer',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -151,7 +151,7 @@ curl_setopt_array($curl, array(
     "alarm": true
 }',
     CURLOPT_HTTPHEADER => array(
-    'location-id: {{locationId}}',
+    'area-id: {{areaId}}',
     'Content-Type: application/json'
     ),
 ));
@@ -164,10 +164,10 @@ echo $response;
 </pre>
 </div>
 
-<div id="Java-reject-passenger" class="tabcontent dark"><pre><code>
+<div id="Java-reject-consumer" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("https://{{baseurl}}/access/v2/rejectpassenger")
-    .header("location-id", "{{locationId}}")
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/access/v2/rejectconsumer")
+    .header("area-id", "{{areaId}}")
     .header("Content-Type", "application/json")
     .body("{\r\n    \"attachmentId\": \"{{msr_attachment_id}}\",\r\n    \"relationId\": \"postman-ftr-de1f8b06-de0a-48c5-b53f-e7de12f97b1c\",\r\n    \"message\": [ \"MSG Line 1\", \"MSG Line 2\" ],\r\n    \"alarm\": true\r\n}")
     .asString();    
@@ -175,11 +175,11 @@ HttpResponse<String> response = Unirest.post("https://{{baseurl}}/access/v2/reje
 </pre>
 </div>
 
-<div id="Node-reject-passenger" class="tabcontent dark"><pre><code>
+<div id="Node-reject-consumer" class="tabcontent dark"><pre><code>
 var unirest = require('unirest');
-var req = unirest('POST', 'https://{{baseurl}}/access/v2/rejectpassenger')
+var req = unirest('POST', 'https://{{baseurl}}/access/v2/rejectconsumer')
     .headers({
-    'location-id': '{{locationId}}',
+    'area-id': '{{areaId}}',
     'Content-Type': 'application/json'
     })
     .send(JSON.stringify({
@@ -199,7 +199,7 @@ var req = unirest('POST', 'https://{{baseurl}}/access/v2/rejectpassenger')
 </pre>
 </div>
 
-<div id="Go-reject-passenger" class="tabcontent dark"><pre><code>
+<div id="Go-reject-consumer" class="tabcontent dark"><pre><code>
 package main
 
 import (
@@ -211,7 +211,7 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/access/v2/rejectpassenger"
+    url := "https://%7B%7Bbaseurl%7D%7D/access/v2/rejectconsumer"
     method := "POST"
 
     payload := strings.NewReader(`{`+"
@@ -234,7 +234,7 @@ func main() {
     fmt.Println(err)
     return
     }
-    req.Header.Add("location-id", "{{locationId}}")
+    req.Header.Add("area-id", "{{areaId}}")
     req.Header.Add("Content-Type", "application/json")
 
     res, err := client.Do(req)
@@ -255,11 +255,11 @@ func main() {
 </pre>
 </div>
 
-<div id=".NET-reject-passenger" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/access/v2/rejectpassenger");
+<div id=".NET-reject-consumer" class="tabcontent dark"><pre><code>
+var client = new RestClient("https://{{baseurl}}/access/v2/rejectconsumer");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
-request.AddHeader("location-id", "{{locationId}}");
+request.AddHeader("area-id", "{{areaId}}");
 request.AddHeader("Content-Type", "application/json");
 var body = @"{
 " + "\n" +
@@ -283,7 +283,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample <span class="method post">POST</span>
-    access/v2/acceptconsumer</code> request that tells the API the passenger should not be boarded.</p>
+    access/v2/acceptconsumer</code> request that tells the API the consumer should not be granted access.</p>
 
 
 
@@ -291,12 +291,12 @@ Console.WriteLine(response.Content);
 
 <p>
     In the Request Body of the
-    <code class="inline-code">access/v2/rejectpassenger</code>
+    <code class="inline-code">access/v2/rejectconsumer</code>
     request, notice that a
     <code class="inline-code">Message</code> is included to display text on the
     device for the attendant.
     Also, there is an option to trigger an
-    <code class="inline-code">Alarm</code> sound when the passenger is rejected.
+    <code class="inline-code">Alarm</code> sound when the consumer is rejected.
 </p>
 
 <div class="method-example atom-one-light">
@@ -315,9 +315,9 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample
-    <code class="inline-code">access/v2/rejectpassenger</code>
+    <code class="inline-code">access/v2/rejectconsumer</code>
     Request Body with <code class="inline-code">Message</code> data to display
-    to the attendant that the passenger is 'Not Ok' to board
+    to the attendant that the consumer is 'Not Ok' to board
 </p>
 
 
@@ -326,7 +326,7 @@ Console.WriteLine(response.Content);
 
 <p>
     Upon making a
-    <code class="inline-code">access/v2/rejectpassenger</code>
+    <code class="inline-code">access/v2/rejectconsumer</code>
     request, the Access API acknowledges the request with a synchronous
     message, returning a
     <code class="inline-code">2xx</code> success status code (as seen in a tool
@@ -353,25 +353,25 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     <code class="inline-code">RejectPassengerResponse</code> Service Bus Message
-    Body indicating that request to reject the passenger was successful
+    Body indicating that request to reject the consumer was successful
 </p>
 <p>
     If the device is Magstripe Reader, a red light displays, along with the
     <code class="inline-code">Message</code> for the airline attendant such as
     <code class="inline-code">Passenger Not Okay to Board</code>. Depending on
-    the situation, the passenger may be sent a different desk for an attendant to
+    the situation, the consumer may be sent a different desk for an attendant to
     investigate the situation further.
 </p>
 <p>
     If the device is a Multi-Technology Reader, the
     <code class="inline-code">Message</code> is ignored, and a red "X" displays
-    to the passenger, along with a message such as "you cannot board, go see an
+    to the consumer, along with a message such as "you cannot board, go see an
     attendant".
 </p>
 <div class="alert-section info-alert redacted">
     <div class="">
         <p>
-            In the case of a gate, any messages displayed to the passenger are
+            In the case of a gate, any messages displayed to the consumer are
             not controlled by the Access API.
         </p>
     </div>

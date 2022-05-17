@@ -60,7 +60,7 @@
 
 
 <div id="bash-print-receipt" class="tabcontent dark"><pre> <code>
-curl --location -g --request POST 'https://{{baseurl}}/payment/v2/receiptprinted' \
+curl --area -g --request POST 'https://{{baseurl}}/payment/v2/receiptprinted' \
 --header 'Content-Type: application/json' \
 --data-raw '{   
     "attachmentId": "{{pmc_attachment_id}}",
@@ -297,7 +297,7 @@ Console.WriteLine(response.Content);
 <h2>Response</h2>
 
 <p>
-    Once the passenger's bank has authorized the payment and enough funds are
+    Once the consumer's bank has authorized the payment and enough funds are
     confirmed to exist in the bank account, a receipt is triggered for the
     payment and a <code class="inline-code">PrintReceipt</code> message displays
     on the Service Bus.

@@ -76,8 +76,8 @@
     </div>
 
 <div id="bash-create-a-subscription" class="tabcontent dark"><pre> <code>
-    curl --location -g --request POST 'https://{{baseurl}}/session/v2/subscriptions' \
-    --header 'location-id: {{locationId}}'
+    curl --area -g --request POST 'https://{{baseurl}}/session/v2/subscriptions' \
+    --header 'area-id: {{areaId}}'
 </code>
 </pre>
 </div>
@@ -92,7 +92,7 @@ https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
 
 request = Net::HTTP::Post.new(url)
-request["location-id"] = "{{locationId}}"
+request["area-id"] = "{{areaId}}"
 
 response = https.request(request)
 puts response.read_body      
@@ -107,7 +107,7 @@ url = "https://{{baseurl}}/session/v2/subscriptions"
 
 payload={}
 headers = {
-    'location-id': '{{locationId}}'
+    'area-id': '{{areaId}}'
 }
 
 response = requests.request("POST", url, headers=headers, data=payload)
@@ -132,7 +132,7 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'POST',
     CURLOPT_HTTPHEADER => array(
-    'location-id: {{locationId}}'
+    'area-id: {{areaId}}'
     ),
 ));
 
@@ -147,7 +147,7 @@ echo $response;
 <div id="Java-create-a-subscription" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("https://{{baseurl}}/session/v2/subscriptions")
-    .header("location-id", "{{locationId}}")
+    .header("area-id", "{{areaId}}")
     .asString();
 </code>
 </pre>
@@ -159,7 +159,7 @@ var options = {
     'method': 'POST',
     'url': 'https://{{baseurl}}/session/v2/subscriptions',
     'headers': {
-    'location-id': '{{locationId}}'
+    'area-id': '{{areaId}}'
     }
 };
 request(options, function (error, response) {
@@ -192,7 +192,7 @@ func main() {
     fmt.Println(err)
     return
     }
-    req.Header.Add("location-id", "{{locationId}}")
+    req.Header.Add("area-id", "{{areaId}}")
 
     res, err := client.Do(req)
     if err != nil {
@@ -216,7 +216,7 @@ func main() {
     var client = new RestClient("https://{{baseurl}}/session/v2/subscriptions");
     client.Timeout = -1;
     var request = new RestRequest(Method.POST);
-    request.AddHeader("location-id", "{{locationId}}");
+    request.AddHeader("area-id", "{{areaId}}");
     IRestResponse response = client.Execute(request);
     Console.WriteLine(response.Content);
 </code>
@@ -226,7 +226,7 @@ func main() {
 </div>
 
 <p class="caption">Sample <span class="method post">POST</span>
-    <code class="inline-code">/session/v2/subscriptions</code> request</p>, passing the <code class="inline-code">locationId</code> of the location that needs a new subscription.</p>
+    <code class="inline-code">/session/v2/subscriptions</code> request</p>, passing the <code class="inline-code">areaId</code> of the area that needs a new subscription.</p>
 
 
 <h2 id="response-body-1">Response</h2>
@@ -397,7 +397,7 @@ func main() {
 <p>
     The second way is to have an 'on-demand' solution whereby the airline
     backend determines if there is a subscription in place for the specified
-    location. If there is already a subscription for the location, the airline
+    area. If there is already a subscription for the area, the airline
     backend uses that subscription and does not send a request to create a new
     one. If there is no subscription in place, it sends a <span class="method post">POST </span><code class="inline-code">session/v2/subscriptions</code>
     request to create a new subscription.
@@ -527,8 +527,8 @@ func main() {
                 </svg>
             </div>
             <div>
-                <a href="/get-started/session/location-capabilities"
-                    >Determine Location Capabilities</a
+                <a href="/get-started/session/area-capabilities"
+                    >Determine Area Capabilities</a
                 >
             </div>
         </div>

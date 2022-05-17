@@ -114,9 +114,9 @@ namespace CoreTech.IoTApi.ServiceBusConsole.Core.Model
 
 <h2 id="flex-apis-reorganization">CoreTech APIs Reorganization</h2>
 <p>
-    Many of the endpoints associated with the V1 Locations API have been
-    replaced by the <strong>Session API</strong> endpoints, including requests
-    to create Service Bus Subscriptions and connect to devices.
+    Many of the endpoints associated with the V1 Areas API have been replaced by
+    the <strong>Session API</strong> endpoints, including requests to create
+    Service Bus Subscriptions and connect to devices.
 </p>
 <p>
     There is <strong>no longer a Device API</strong> that lets you reserve and
@@ -148,8 +148,8 @@ namespace CoreTech.IoTApi.ServiceBusConsole.Core.Model
         <p>
             Instead of unsubscribing from a Service Bus Subscription with a
             <span class="method post">POST</span>
-            <code class="inline-code">/v1/location/unsubscribe</code> request,
-            you now send a
+            <code class="inline-code">/v1/area/unsubscribe</code> request, you
+            now send a
             <strong>DEL</strong>
             <code class="inline-code"
                 >/session/v2/subscriptions/{subscription_id}</code

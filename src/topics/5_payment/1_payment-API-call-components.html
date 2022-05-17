@@ -46,7 +46,7 @@
     <div class="copied-popup hidden">Copied!</div>
     <div class="code-content dark">
         <pre><code class="language-bash">
-curl --location -g --request POST 'https://{{baseurl}}/payment/v2/process' \
+curl --area -g --request POST 'https://{{baseurl}}/payment/v2/process' \
 --header 'Content-Type: application/json' \
 --data-raw '{   
     "attachmentId": "{{pmc_attachment_id}}",
@@ -81,7 +81,7 @@ curl --location -g --request POST 'https://{{baseurl}}/payment/v2/process' \
 
 
 <h2 id="header-parameters">Header Parameters</h2>
-<p>A <code class="inline-code">location-id</code> is required in the header of the request. CoreTech APIs use the Azure API Management service (APIM) to route a request to the correct region based on the customer code extracted from the <code class="inline-code">LocationId</code>.</p>
+<p>A <code class="inline-code">area-id</code> is required in the header of the request. CoreTech APIs use the Azure API Management service (APIM) to route a request to the correct region based on the customer code extracted from the <code class="inline-code">AreaId</code>.</p>
 <h2 id="authorization-headers">Authorization Headers</h2>
 <p>An <code class="inline-code">access_token</code> is required in the Authorization Header of requests for authentication.</p>
 

@@ -55,8 +55,8 @@ reading travel documents.
     </div>
 
 <div id="bash-start-scanning" class="tabcontent dark"><pre> <code>
-curl --location -g --request POST 'https://{{baseurl}}/scan/v2/startscanning' \
---header 'location-id: {{locationId}}' \
+curl --area -g --request POST 'https://{{baseurl}}/scan/v2/startscanning' \
+--header 'area-id: {{areaId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "attachmentId": ""
@@ -76,7 +76,7 @@ https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
 
 request = Net::HTTP::Post.new(url)
-request["location-id"] = "{{locationId}}"
+request["area-id"] = "{{areaId}}"
 request["Content-Type"] = "application/json"
 request.body = JSON.dump({
     "attachmentId": ""
@@ -98,7 +98,7 @@ payload = json.dumps({
     "attachmentId": ""
 })
 headers = {
-    'location-id': '{{locationId}}',
+    'area-id': '{{areaId}}',
     'Content-Type': 'application/json'
 }
 
@@ -127,7 +127,7 @@ curl_setopt_array($curl, array(
     "attachmentId": ""
 }',
     CURLOPT_HTTPHEADER => array(
-    'location-id: {{locationId}}',
+    'area-id: {{areaId}}',
     'Content-Type: application/json'
     ),
 ));
@@ -143,7 +143,7 @@ echo $response;
 <div id="Java-start-scanning" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("https://{{baseurl}}/scan/v2/startscanning")
-    .header("location-id", "{{locationId}}")
+    .header("area-id", "{{areaId}}")
     .header("Content-Type", "application/json")
     .body("{\r\n    \"attachmentId\": \"\"\r\n}")
     .asString();      
@@ -157,7 +157,7 @@ var options = {
     'method': 'POST',
     'url': 'https://{{baseurl}}/scan/v2/startscanning',
     'headers': {
-    'location-id': '{{locationId}}',
+    'area-id': '{{areaId}}',
     'Content-Type': 'application/json'
     },
     body: JSON.stringify({
@@ -202,7 +202,7 @@ func main() {
     fmt.Println(err)
     return
   }
-  req.Header.Add("location-id", "{{locationId}}")
+  req.Header.Add("area-id", "{{areaId}}")
   req.Header.Add("Content-Type", "application/json")
 
   res, err := client.Do(req)
@@ -227,7 +227,7 @@ func main() {
 var client = new RestClient("https://{{baseurl}}/scan/v2/startscanning");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
-request.AddHeader("location-id", "{{locationId}}");
+request.AddHeader("area-id", "{{areaId}}");
 request.AddHeader("Content-Type", "application/json");
 var body = @"{
 " + "\n" +

@@ -60,8 +60,8 @@
     </div>
 
 <div id="bash-return-item" class="tabcontent dark"><pre> <code>
-curl --location -g --request POST 'https://{{baseurl}}/dispatchitem/v2/returnitem' \
---header 'location-id: {{locationId}}' \
+curl --area -g --request POST 'https://{{baseurl}}/dispatchitem/v2/returnitem' \
+--header 'area-id: {{areaId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "attachmentId": "{{grc_attachment_id}}",
@@ -82,7 +82,7 @@ https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
 
 request = Net::HTTP::Post.new(url)
-request["location-id"] = "{{locationId}}"
+request["area-id"] = "{{areaId}}"
 request["Content-Type"] = "application/json"
 request.body = JSON.dump({
     "attachmentId": "{{grc_attachment_id}}",
@@ -106,7 +106,7 @@ payload = json.dumps({
     "relationId": "postman-ftr-4d0f766a-3a36-4192-89b0-d63e71280fbc"
 })
 headers = {
-    'location-id': '{{locationId}}',
+    'area-id': '{{areaId}}',
     'Content-Type': 'application/json'
 }
 
@@ -136,7 +136,7 @@ curl_setopt_array($curl, array(
     "relationId": "postman-ftr-781a8227-bb9a-4b99-9bf5-09ed2827893a"
 }',
     CURLOPT_HTTPHEADER => array(
-    'location-id: {{locationId}}',
+    'area-id: {{areaId}}',
     'Content-Type: application/json'
     ),
 ));
@@ -152,7 +152,7 @@ echo $response;
 <div id="Java-return-item" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("https://{{baseurl}}/dispatchitem/v2/returnitem")
-    .header("location-id", "{{locationId}}")
+    .header("area-id", "{{areaId}}")
     .header("Content-Type", "application/json")
     .body("{\r\n  \"attachmentId\": \"{{grc_attachment_id}}\",\r\n  \"relationId\": \"postman-ftr-937f88d5-d784-4323-bf9f-9add46915def\"\r\n}")
     .asString();                
@@ -164,7 +164,7 @@ HttpResponse<String> response = Unirest.post("https://{{baseurl}}/dispatchitem/v
 var unirest = require('unirest');
 var req = unirest('POST', 'https://{{baseurl}}/dispatchitem/v2/returnitem')
     .headers({
-    'location-id': '{{locationId}}',
+    'area-id': '{{areaId}}',
     'Content-Type': 'application/json'
     })
     .send(JSON.stringify({
@@ -210,7 +210,7 @@ func main() {
     fmt.Println(err)
     return
     }
-    req.Header.Add("location-id", "{{locationId}}")
+    req.Header.Add("area-id", "{{areaId}}")
     req.Header.Add("Content-Type", "application/json")
 
     res, err := client.Do(req)
@@ -235,7 +235,7 @@ func main() {
 var client = new RestClient("https://{{baseurl}}/dispatchitem/v2/returnitem");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
-request.AddHeader("location-id", "{{locationId}}");
+request.AddHeader("area-id", "{{areaId}}");
 request.AddHeader("Content-Type", "application/json");
 var body = @"{
 " + "\n" +

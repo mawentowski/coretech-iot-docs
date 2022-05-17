@@ -74,15 +74,15 @@
 <h2 id="openaccessresponse">OpenAccessResponse</h2>
 <p>
     In an attendant-controlled area prior to boarding, the Multi-Technology
-    Reader (MTR) is in a 'closed' state where no passenger can scan their entry
+    Reader (MTR) is in a 'closed' state where no consumer can scan their entry
     pass and proceed through the access point.
 </p>
 <p>
     The attendant starts the access process by triggering the
     <code class="inline-code">/access/v2/openaccess</code> request. For a
     Multi-Technology Reader, the access device displays green and is now ready
-    to process passengers. When the attendant is using a Magstripe Reader (MSR)
-    to board passengers (a process not involving a access point), the boarding
+    to process consumers. When the attendant is using a Magstripe Reader (MSR)
+    to board consumers (a process not involving a access point), the boarding
     process is initiated and an attendant may begin scanning entry passes.
 </p>
 <div class="alert-section info-alert">
@@ -91,8 +91,8 @@
             The
             <code class="inline-code">/access/v2/openaccess</code> request is
             only sent once at the beginning of the process, not each time a
-            passenger needs to pass through it. Once all passengers are
-            processed, the access process is ended by sending a
+            consumer needs to pass through it. Once all consumers are processed,
+            the access process is ended by sending a
             <code class="inline-code">/access/v2/closeaccesspoint</code>
             request.
         </p>
@@ -131,13 +131,13 @@
 <h2 id="boardingpassdata">BoardingPassData</h2>
 <p>
     For a access process involving a Multi-Technology Reader (MTR) device, the
-    passenger may scan his or her entry pass. For a access process involving a
-    Magstripe Reader, the attendant may now scan the passenger's entry pass.
+    consumer may scan his or her entry pass. For a access process involving a
+    Magstripe Reader, the attendant may now scan the consumer's entry pass.
 </p>
 <p>
-    When a passenger scans a entry pass at an access point, the access point
+    When a consumer scans a entry pass at an access point, the access point
     barrier locks while it waits for the application backend to accept or reject
-    the passenger.
+    the consumer.
 </p>
 <p>
     A <code class="inline-code">BoardingPassData</code> message displays on the
@@ -161,8 +161,8 @@
 </p>
 <h2 id="timeout-error">Timeout Error</h2>
 <p>
-    If the passenger is not accepted or rejected by the application backend
-    after a certain period, the transaction will timeout and an
+    If the consumer is not accepted or rejected by the application backend after
+    a certain period, the transaction will timeout and an
     <code class="inline-code">ErrorOccurred</code> message displays on the
     Service Bus.
 </p>
@@ -207,9 +207,9 @@
 </ol>
 <h2 id="acceptconsumerresponse">AcceptConsumerResponse</h2>
 <p>
-    The application backend accepts the passenger by sending a
+    The application backend accepts the consumer by sending a
     <code class="inline-code">access/v2/acceptconsumer</code> request which
-    tells the Access API that the passenger has been boarded successfully.
+    tells the Access API that the consumer has been granted access successfully.
 </p>
 <p>
     In the Request Body of the
@@ -238,19 +238,19 @@
     Sample
     <code class="inline-code">access/v2/acceptconsumer</code> Request Body with
     <code class="inline-code">Message</code> data to display on a MSR device
-    that the passenger is 'Ok' to board
+    that the consumer is 'Ok' to board
 </p>
 <p>
     If <code class="inline-code">ReceiptData</code> is passed in the Request
     Body (as seen in the previous example), and the device is a Multi-Technology
     Reader, the device printer receives this data and can print the receipt for
-    the passenger.
+    the consumer.
 </p>
 
 <div class="alert-section warning-alert">
     <div class="">
         <p>
-            The passenger must then take the receipt for the access point to
+            The consumer must then take the receipt for the access point to
             open.
         </p>
     </div>
@@ -294,42 +294,42 @@
 
 <p class="caption">
     <code class="inline-code">AcceptConsumerResponse</code> Service Bus Message
-    Body indicating that request to accept the passenger was successful
+    Body indicating that request to accept the consumer was successful
 </p>
 <p>
     If the device is Magstripe Reader, a green light displays, along with a
     <code class="inline-code">Message</code> for the airline attendant such as
-    <code class="inline-code">Passenger Okay to Board</code>. The passenger is
+    <code class="inline-code">Passenger Okay to Board</code>. The consumer is
     then allowed to pass the attendant and enter the restricted area.
 </p>
 <p>
     If the device is a Multi-Technology Reader, the
     <code class="inline-code">Message</code> is ignored, and the access point
-    barrier opens with a green arrow that signals to the passenger they may now
+    barrier opens with a green arrow that signals to the consumer they may now
     proceed through the access point.
 </p>
 <div class="alert-section info-alert redacted">
     <div class="">
         <p>
-            In the case of a gate, any messages displayed to the passenger are
+            In the case of a gate, any messages displayed to the consumer are
             not controlled by the Access API.
         </p>
     </div>
 </div>
-<h2 id="rejectpassengerresponse">RejectPassengerResponse</h2>
+<h2 id="rejectconsumerresponse">RejectPassengerResponse</h2>
 <p>
-    The application backend rejects the passenger by sending a
-    <code class="inline-code">access/v2/rejectpassenger</code>
-    request which tells the Access API that the passenger was rejected and
-    cannot board.
+    The application backend rejects the consumer by sending a
+    <code class="inline-code">access/v2/rejectconsumer</code>
+    request which tells the Access API that the consumer was rejected and cannot
+    board.
 </p>
 <p>
     In the Request Body of the
-    <code class="inline-code">access/v2/rejectpassenger</code>
+    <code class="inline-code">access/v2/rejectconsumer</code>
     request, notice that a
     <code class="inline-code">Message</code> is included to display text on the
     device for the attendant. Also, there is an option to trigger an
-    <code class="inline-code">Alarm</code> sound when the passenger is rejected.
+    <code class="inline-code">Alarm</code> sound when the consumer is rejected.
 </p>
 
 <div class="method-example atom-one-light">
@@ -348,13 +348,13 @@
 
 <p class="caption">
     Sample
-    <code class="inline-code">access/v2/rejectpassenger</code>
+    <code class="inline-code">access/v2/rejectconsumer</code>
     Request Body with <code class="inline-code">Message</code> data to display
-    to the attendant that the passenger is 'Not Ok' to board
+    to the attendant that the consumer is 'Not Ok' to board
 </p>
 <p>
     Upon making a
-    <code class="inline-code">access/v2/rejectpassenger</code>
+    <code class="inline-code">access/v2/rejectconsumer</code>
     request, the Access API acknowledges the request with a synchronous message,
     returning a
     <code class="inline-code">2xx</code> success status code (as seen in a tool
@@ -381,32 +381,32 @@
 
 <p class="caption">
     <code class="inline-code">RejectPassengerResponse</code> Service Bus Message
-    Body indicating that request to reject the passenger was successful
+    Body indicating that request to reject the consumer was successful
 </p>
 <p>
     If the device is Magstripe Reader, a red light displays, along with the
     <code class="inline-code">Message</code> for the airline attendant such as
     <code class="inline-code">Passenger Not Okay to Board</code>. Depending on
-    the situation, the passenger may be sent a different desk for an attendant
-    to investigate the situation further.
+    the situation, the consumer may be sent a different desk for an attendant to
+    investigate the situation further.
 </p>
 <p>
     If the device is a Multi-Technology Reader, the
     <code class="inline-code">Message</code> is ignored, and a red "X" displays
-    to the passenger, along with a message such as "you cannot board, go see an
+    to the consumer, along with a message such as "you cannot board, go see an
     attendant".
 </p>
 <div class="alert-section info-alert redacted">
     <div class="">
         <p>
-            In the case of a gate, any messages displayed to the passenger are
+            In the case of a gate, any messages displayed to the consumer are
             not controlled by the Access API.
         </p>
     </div>
 </div>
 <h2 id="closeaccesspointresponse">CloseAccessPointResponse</h2>
 <p>
-    Once all passengers are boarded, the attendant sends a
+    Once all consumers are granted access, the attendant sends a
     <code class="inline-code">/access/v2/closeaccesspoint</code>
     request that closes the access process.
 </p>

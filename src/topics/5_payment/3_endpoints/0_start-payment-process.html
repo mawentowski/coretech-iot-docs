@@ -61,7 +61,7 @@
     </div>
 
 <div id="bash -start-payment-process" class="tabcontent dark"><pre> <code>
-curl --location -g --request POST 'https://{{baseurl}}/payment/v2/process' \
+curl --area -g --request POST 'https://{{baseurl}}/payment/v2/process' \
 --header 'Content-Type: application/json' \
 --data-raw '{   
     "attachmentId": "{{pmc_attachment_id}}",
