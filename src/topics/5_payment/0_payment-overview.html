@@ -1,5 +1,5 @@
 <div class="title-box">
-    <h1 class="topic-title">Payment API</h1>
+    <h1 class="topic-title">Remit API</h1>
     <div class="action-statement">
         Learn how to interact with a payment device to execute payment
         transactions
@@ -8,35 +8,33 @@
 
 <div class="endpoints-summary">
     <p class="endpoints-summary-description">
-        The Payment API endpoints allow your application backend to take a
-        payment from a customer using a secure PCI compliant payment solution.
+        The Remit API endpoints allow your application backend to take a payment
+        from a customer using a secure PCI compliant payment solution.
     </p>
     <div class="method-example atom-one-light curl-custom two-col-width">
         <div class="method-example-top-bar">Endpoints</div>
         <div class="endpoints-container">
             <div class="endpoint-row">
                 <div class="end-path post-method">
-                    <a href="/payment/start-payment-process"
-                        >/payment/v2/starttransaction</a
+                    <a href="/remit/start-remit-process"
+                        >/remit/v2starttransaction</a
                     >
                 </div>
             </div>
             <div class="endpoint-row">
                 <div class="end-path post-method">
-                    <a href="/payment/print-receipt">/payment/v2/billprinted</a>
+                    <a href="/remit/print-receipt">/remit/v2billprinted</a>
                 </div>
             </div>
             <div class="endpoint-row">
                 <div class="end-path post-method">
-                    <a href="/payment/verify-signature"
-                        >/payment/v2/verifysigned</a
-                    >
+                    <a href="/remit/verify-signature">/remit/v2verifysigned</a>
                 </div>
             </div>
             <div class="endpoint-row">
                 <div class="end-path post-method">
-                    <a href="/payment/complete-transaction"
-                        >/payment/v2/completetransaction</a
+                    <a href="/remit/complete-transaction"
+                        >/remit/v2completetransaction</a
                     >
                 </div>
             </div>
@@ -74,39 +72,39 @@
 <h2 id="endpoints">Endpoints</h2>
 <p>
     The end path for the Print API starts with <strong>POST</strong>
-    <code class="inline-code">/payment/v2/</code>, followed by the endpoint (i.e. payment action)
+    <code class="inline-code">/remit/v2</code>, followed by the endpoint (i.e. payment action)
     for a device to carry out.
 </p>
 <h3 id="post-paymentv2process">
-    <span class="method post">POST</span> <code class="inline-code">/payment/v2/starttransaction</code>
+    <span class="method post">POST</span> <code class="inline-code">/remit/v2starttransaction</code>
 </h3>
 <p>
     Send a <span class="method post">POST</span>
-    <code class="inline-code">/payment/v2/starttransaction</code> request to an PMC device to...
+    <code class="inline-code">/remit/v2starttransaction</code> request to an PMC device to...
 </p>
 <h3 id="post-paymentv2billprinted">
     <span class="method post">POST</span>
-    <code class="inline-code">/payment/v2/billprinted</code>
+    <code class="inline-code">/remit/v2billprinted</code>
 </h3>
 <p>
     Send a <span class="method post">POST</span>
-    <code class="inline-code">/payment/v2/billprinted</code> request to an PMC device to...
+    <code class="inline-code">/remit/v2billprinted</code> request to an PMC device to...
 </p>
 <h3 id="post-paymentv2verifysigned">
     <span class="method post">POST</span>
-    <code class="inline-code">/payment/v2/verifysigned</code>
+    <code class="inline-code">/remit/v2verifysigned</code>
 </h3>
 <p>
     Send a <span class="method post">POST</span>
-    <code class="inline-code">/payment/v2/verifysigned</code> request to an PMC device to...
+    <code class="inline-code">/remit/v2verifysigned</code> request to an PMC device to...
 </p>
 <h3 id="post-paymentv2completetransaction">
     <span class="method post">POST</span>
-    <code class="inline-code">/payment/v2/completetransaction</code>
+    <code class="inline-code">/remit/v2completetransaction</code>
 </h3>
 <p>
     Send a <span class="method post">POST</span>
-    <code class="inline-code">/payment/v2/completetransaction</code> request to an PMC
+    <code class="inline-code">/remit/v2completetransaction</code> request to an PMC
     device to...
 </p> -->
 
@@ -157,7 +155,7 @@
                 </svg>
             </div>
             <div>
-                <a href="/payment/payment-API-call-components"
+                <a href="/remit/remit-API-call-components"
                     >API Call Components</a
                 >
             </div>

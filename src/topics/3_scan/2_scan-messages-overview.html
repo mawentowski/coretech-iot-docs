@@ -234,7 +234,7 @@
     <code class="inline-code">DeviceStatus</code> Service Bus Message Body
     indicating the device is no longer 'in use' and is available to be claimed
 </p>
-<h2 id="barcoderead">BarcodeRead</h2>
+<h2 id="scancoderead">ScancodeRead</h2>
 <p>
     When the device executes a read, a message is sent to the Service Bus
     containing data in the Message Body determined by the type of read. The type
@@ -243,12 +243,12 @@
     returned.
 </p>
 <p>
-    For example, an FIS device that reads a barcode returns a
-    <code class="inline-code">BarcodeRead</code> message on the Service Bus,
-    providing the string that contains the barcode (
+    For example, an FIS device that reads a scancode returns a
+    <code class="inline-code">ScancodeRead</code> message on the Service Bus,
+    providing the string that contains the scancode (
     <code class="inline-code">ScanCodeData</code>) as well as the type of
-    barcode ( <code class="inline-code">BarCodeType</code>). The type of barcode
-    can be 1D, 2D, etc.
+    scancode ( <code class="inline-code">ScanCodeType</code>). The type of
+    scancode can be 1D, 2D, etc.
 </p>
 
 <div class="method-example atom-one-light">
@@ -257,15 +257,15 @@
             <code class="language-json">
 {
     "ScanCodeData":"6M1AZKUR AHMETKUR ERG6ULZ ZRHISTTK 1912 211Y024F0028 150&gt;10B1OO2211BTK 292352404859427 1 020K X\r\n",
-    "BarCodeType":"6"
+    "ScanCodeType":"6"
 }
         </code>
         </pre>
 </div>
 
 <p class="caption">
-    <code class="inline-code">BarcodeRead</code> Service Bus Message Body that
-    returned barcode data readned by an FIS device
+    <code class="inline-code">ScancodeRead</code> Service Bus Message Body that
+    returned scancode data readned by an FIS device
 </p>
 <h2 id="magneticcardread">MagneticCardRead</h2>
 <p>
@@ -305,11 +305,11 @@
         </p>
     </div>
 </div>
-<h2 id="traveldocumentread">TravelDocumentRead</h2>
+<h2 id="travelReadDocument">ReadDocument</h2>
 <p>
     An HHS device that reads a passport returns a
-    <code class="inline-code">TravelDocumentRead</code> message on the Service
-    Bus, providing the readned passport data as
+    <code class="inline-code">ReadDocument</code> message on the Service Bus,
+    providing the readned passport data as
     <code class="inline-code">ScanData</code> in the Message Body.
 </p>
 
@@ -326,9 +326,9 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">TravelDocumentRead</code> Service Bus Message Body
-    that returned passport <code class="inline-code">ScanData</code> readned by
-    an HHS device
+    <code class="inline-code">ReadDocument</code> Service Bus Message Body that
+    returned passport <code class="inline-code">ScanData</code> readned by an
+    HHS device
 </p>
 
 <div class="continued-reading-section">

@@ -11,7 +11,7 @@
 
 <p>
     Send a <span class="method post">POST</span>
-    <code class="inline-code">/payment/v2/starttransaction</code> request to the payment API to start a payment process.
+    <code class="inline-code">/remit/v2starttransaction</code> request to the payment API to start a payment process.
 </p>
 
 
@@ -19,7 +19,7 @@
 
 <div class="alert-section info-alert">
     <div class="">
-        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="/payment/payment-api-call-components">API Call Components</a>.
+        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="/remit/remit-api-call-components">API Call Components</a>.
 
     </div>
 </div>
@@ -29,14 +29,14 @@
 <div class="code-section with-tabs">
     <div class="code-section-header">
         <div class="code-tabs">
-            <button class="tablinks" onclick="openTab(event, 'bash -start-payment-process')" id="defaultOpen">curl</button>
-            <button class="tablinks" onclick="openTab(event, 'Ruby -start-payment-process')">Ruby</button>
-            <button class="tablinks" onclick="openTab(event, 'Python -start-payment-process')">Python</button>
-            <button class="tablinks" onclick="openTab(event, 'PHP -start-payment-process')">PHP</button>
-            <button class="tablinks" onclick="openTab(event, 'Java -start-payment-process')">Java</button>
-            <button class="tablinks" onclick="openTab(event, 'Node -start-payment-process')">Node</button>
-            <button class="tablinks" onclick="openTab(event, 'Go -start-payment-process')">Go</button>
-            <button class="tablinks" onclick="openTab(event, '.NET -start-payment-process')">.NET</button>
+            <button class="tablinks" onclick="openTab(event, 'bash -start-remit-process')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby -start-remit-process')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python -start-remit-process')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP -start-remit-process')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java -start-remit-process')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node -start-remit-process')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go -start-remit-process')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET -start-remit-process')">.NET</button>
         </div>
         <div class="copy-code-btn-container">
             <button class="copy-code-btn">
@@ -60,8 +60,8 @@
         Copied!
     </div>
 
-<div id="bash -start-payment-process" class="tabcontent dark"><pre> <code>
-curl --area -g --request POST 'https://{{baseurl}}/payment/v2/starttransaction' \
+<div id="bash -start-remit-process" class="tabcontent dark"><pre> <code>
+curl --area -g --request POST 'https://{{baseurl}}/remit/v2starttransaction' \
 --header 'Content-Type: application/json' \
 --data-raw '{   
     "attachmentId": "{{pmc_attachment_id}}",
@@ -74,12 +74,12 @@ curl --area -g --request POST 'https://{{baseurl}}/payment/v2/starttransaction' 
 </pre>
 </div>
 
-<div id="Ruby -start-payment-process" class="tabcontent dark"><pre><code>
+<div id="Ruby -start-remit-process" class="tabcontent dark"><pre><code>
 require "uri"
 require "json"
 require "net/http"
 
-url = URI("https://{{baseurl}}/payment/v2/starttransaction")
+url = URI("https://{{baseurl}}/remit/v2starttransaction")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -100,11 +100,11 @@ puts response.read_body
 </pre>
 </div>
 
-<div id="Python -start-payment-process" class="tabcontent dark"><pre> <code>
+<div id="Python -start-remit-process" class="tabcontent dark"><pre> <code>
 import requests
 import json
 
-url = "https://{{baseurl}}/payment/v2/starttransaction"
+url = "https://{{baseurl}}/remit/v2starttransaction"
 
 payload = json.dumps({
     "attachmentId": "{{pmc_attachment_id}}",
@@ -124,13 +124,13 @@ print(response.text)
 </pre>
 </div>
 
-<div id="PHP -start-payment-process" class="tabcontent dark"><pre> <code>
+<div id="PHP -start-remit-process" class="tabcontent dark"><pre> <code>
 <?php
 
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/payment/v2/starttransaction',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/remit/v2starttransaction',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -158,9 +158,9 @@ echo $response;
 </pre>
 </div>
 
-<div id="Java -start-payment-process" class="tabcontent dark"><pre><code>
+<div id="Java -start-remit-process" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("https://{{baseurl}}/payment/v2/starttransaction")
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/remit/v2starttransaction")
     .header("Content-Type", "application/json")
     .body("{   \r\n  \"attachmentId\": \"{{pmc_attachment_id}}\",\r\n  \"relationId\": \"correl_paymt\",\r\n  \"Amount\": 127.30,\r\n  \"CurrencyCode\": 978,\r\n  \"OriginatorsTransactionReference\":\"7b8f2e54-7003-4182-914d-495042c5c460\"\r\n}")
     .asString();           
@@ -168,11 +168,11 @@ HttpResponse<String> response = Unirest.post("https://{{baseurl}}/payment/v2/sta
 </pre>
 </div>
 
-<div id="Node -start-payment-process" class="tabcontent dark"><pre><code>
+<div id="Node -start-remit-process" class="tabcontent dark"><pre><code>
 var request = require('request');
 var options = {
     'method': 'POST',
-    'url': 'https://{{baseurl}}/payment/v2/starttransaction',
+    'url': 'https://{{baseurl}}/remit/v2starttransaction',
     'headers': {
     'Content-Type': 'application/json'
     },
@@ -193,7 +193,7 @@ request(options, function (error, response) {
 </pre>
 </div>
 
-<div id="Go -start-payment-process" class="tabcontent dark"><pre><code>
+<div id="Go -start-remit-process" class="tabcontent dark"><pre><code>
 package main
 
 import (
@@ -205,7 +205,7 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/payment/v2/starttransaction"
+    url := "https://%7B%7Bbaseurl%7D%7D/remit/v2starttransaction"
     method := "POST"
 
     payload := strings.NewReader(`{   `+"
@@ -250,8 +250,8 @@ func main() {
 </pre>
 </div>
 
-<div id=".NET -start-payment-process" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/payment/v2/starttransaction");
+<div id=".NET -start-remit-process" class="tabcontent dark"><pre><code>
+var client = new RestClient("https://{{baseurl}}/remit/v2starttransaction");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
 request.AddHeader("Content-Type", "application/json");
@@ -279,7 +279,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample <span class="method post">POST</span>
-    <code class="inline-code">/payment/v2/starttransaction</code> request to the payment API to start a payment process.</p>
+    <code class="inline-code">/remit/v2starttransaction</code> request to the payment API to start a payment process.</p>
 
 
 <h2>Request Body</h2>
@@ -289,7 +289,7 @@ Console.WriteLine(response.Content);
         <div class="">
             <p>
                 A
-                <code class="inline-code">relationId</code> must be passed in order for the Payment API to
+                <code class="inline-code">relationId</code> must be passed in order for the Remit API to
                 uniquely identify the transaction.
             </p>
         </div>
@@ -313,13 +313,13 @@ Console.WriteLine(response.Content);
 
 
 
-<p class="caption">POST</span> <code class="inline-code">/payment/v2/starttransaction</code> request</p>
+<p class="caption">POST</span> <code class="inline-code">/remit/v2starttransaction</code> request</p>
 
 <h2>Response</h2>
 
 <p>
     When a <span class="method post">POST</span>
-    <code class="inline-code">/payment/v2/starttransaction</code> request is sent, a
+    <code class="inline-code">/remit/v2starttransaction</code> request is sent, a
     payment transaction is initiated and a
     <code class="inline-code">ProcessPaymentResponse</code> message is
     displayed on the Service Bus.
@@ -374,7 +374,7 @@ Console.WriteLine(response.Content);
                 </svg>
             </div>
             <div>
-                <a href="/payment/print-receipt"
+                <a href="/remit/print-receipt"
                     >Print Receipt</a
                 >
             </div>

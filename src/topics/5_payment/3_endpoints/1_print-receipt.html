@@ -8,7 +8,7 @@
 
 <p>
     Send a <span class="method post">POST</span>
-    <code class="inline-code">/payment/v2/billprinted</code> request to acknowledge either that the receipt has been
+    <code class="inline-code">/remit/v2billprinted</code> request to acknowledge either that the receipt has been
     printed or stored.
 </p>
 
@@ -17,7 +17,7 @@
 
 <div class="alert-section info-alert">
     <div class="">
-        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="/payment/payment-api-call-components">API Call Components</a>.
+        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="/remit/remit-api-call-components">API Call Components</a>.
 
     </div>
 </div>
@@ -60,7 +60,7 @@
 
 
 <div id="bash-print-receipt" class="tabcontent dark"><pre> <code>
-curl --area -g --request POST 'https://{{baseurl}}/payment/v2/billprinted' \
+curl --area -g --request POST 'https://{{baseurl}}/remit/v2billprinted' \
 --header 'Content-Type: application/json' \
 --data-raw '{   
     "attachmentId": "{{pmc_attachment_id}}",
@@ -77,7 +77,7 @@ require "uri"
 require "json"
 require "net/http"
 
-url = URI("https://{{baseurl}}/payment/v2/billprinted")
+url = URI("https://{{baseurl}}/remit/v2billprinted")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -101,7 +101,7 @@ puts response.read_body
 import requests
 import json
 
-url = "https://{{baseurl}}/payment/v2/billprinted"
+url = "https://{{baseurl}}/remit/v2billprinted"
 
 payload = json.dumps({
     "attachmentId": "{{pmc_attachment_id}}",
@@ -126,7 +126,7 @@ print(response.text)
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/payment/v2/billprinted',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/remit/v2billprinted',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -155,7 +155,7 @@ echo $response;
 
 <div id="Java-print-receipt" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("https://{{baseurl}}/payment/v2/billprinted")
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/remit/v2billprinted")
     .header("Content-Type", "application/json")
     .body("{   \r\n  \"attachmentId\": \"{{pmc_attachment_id}}\",\r\n  \"isError\":false,\r\n  \"transactionError\": \"NO_ERROR\",\r\n  \"relationId\" : \"correl_paymt\"\r\n}")
     .asString();
@@ -167,7 +167,7 @@ HttpResponse<String> response = Unirest.post("https://{{baseurl}}/payment/v2/bil
 var request = require('request');
 var options = {
     'method': 'POST',
-    'url': 'https://{{baseurl}}/payment/v2/billprinted',
+    'url': 'https://{{baseurl}}/remit/v2billprinted',
     'headers': {
     'Content-Type': 'application/json'
     },
@@ -199,7 +199,7 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/payment/v2/billprinted"
+    url := "https://%7B%7Bbaseurl%7D%7D/remit/v2billprinted"
     method := "POST"
 
     payload := strings.NewReader(`{   `+"
@@ -243,7 +243,7 @@ func main() {
 </div>
 
 <div id=".NET-print-receipt" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/payment/v2/billprinted");
+var client = new RestClient("https://{{baseurl}}/remit/v2billprinted");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
 request.AddHeader("Content-Type", "application/json");
@@ -269,7 +269,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample <span class="method post">POST</span>
-    <code class="inline-code">/payment/v2/billprinted</code> request that acknowledges a receipt has been printed or stored.
+    <code class="inline-code">/remit/v2billprinted</code> request that acknowledges a receipt has been printed or stored.
 </p>
 
 
@@ -293,7 +293,7 @@ Console.WriteLine(response.Content);
     </div>
 
 
-<p class="caption">POST</span> <code class="inline-code">/payment/v2/billprinted</code>request</p>
+<p class="caption">POST</span> <code class="inline-code">/remit/v2billprinted</code>request</p>
 <h2>Response</h2>
 
 <p>
@@ -305,7 +305,7 @@ Console.WriteLine(response.Content);
 <p>
     The airline may choose to print the receipt or store its data. A
     <span class="method post">POST</span>
-    <code class="inline-code">/payment/v2/billprinted</code>
+    <code class="inline-code">/remit/v2billprinted</code>
     request must be made to acknowledge either that the receipt has been printed
     or stored. The payment device waits for this acknowledgment before
     proceeding to the next step in the payment transaction.
@@ -359,7 +359,7 @@ Console.WriteLine(response.Content);
                 </svg>
             </div>
             <div>
-                <a href="/payment/verify-signature"
+                <a href="/remit/verify-signature"
                     >Verify Signature</a
                 >
             </div>

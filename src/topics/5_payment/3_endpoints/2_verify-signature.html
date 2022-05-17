@@ -11,7 +11,7 @@
 
 <p>
     Send a <span class="method post">POST</span>
-    <code class="inline-code">/payment/v2/verifysigned</code> request to acknowledge the airline attendant has verified that the consumer's
+    <code class="inline-code">/remit/v2verifysigned</code> request to acknowledge the airline attendant has verified that the consumer's
     signature on the receipt and payment card are the same   
 </p>
 
@@ -22,7 +22,7 @@
 
 <div class="alert-section info-alert">
     <div class="">
-        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="/payment/payment-api-call-components">API Call Components</a>.
+        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="/remit/remit-api-call-components">API Call Components</a>.
 
     </div>
 </div>
@@ -64,7 +64,7 @@
     </div>
 
 <div id="bash -verify-signature" class="tabcontent dark"><pre> <code>
-curl --area -g --request POST 'https://{{baseurl}}/payment/v2/verifysigned' \
+curl --area -g --request POST 'https://{{baseurl}}/remit/v2verifysigned' \
 --header 'Content-Type: application/json' \
 --data-raw '{   
     "attachmentId": "{{pmc_attachment_id}}",
@@ -80,7 +80,7 @@ require "uri"
 require "json"
 require "net/http"
 
-url = URI("https://{{baseurl}}/payment/v2/verifysigned")
+url = URI("https://{{baseurl}}/remit/v2verifysigned")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -103,7 +103,7 @@ puts response.read_body
 import requests
 import json
 
-url = "https://{{baseurl}}/payment/v2/verifysigned"
+url = "https://{{baseurl}}/remit/v2verifysigned"
 
 payload = json.dumps({
     "attachmentId": "{{pmc_attachment_id}}",
@@ -127,7 +127,7 @@ print(response.text)
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/payment/v2/verifysigned',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/remit/v2verifysigned',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -155,7 +155,7 @@ echo $response;
 
 <div id="Java -verify-signature" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("https://{{baseurl}}/payment/v2/verifysigned")
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/remit/v2verifysigned")
     .header("Content-Type", "application/json")
     .body("{   \r\n  \"attachmentId\": \"{{pmc_attachment_id}}\",\r\n  \"verified\": true,\r\n  \"relationId\" : \"correl_paymt\"\r\n}")
     .asString();    
@@ -167,7 +167,7 @@ HttpResponse<String> response = Unirest.post("https://{{baseurl}}/payment/v2/ver
 var request = require('request');
 var options = {
     'method': 'POST',
-    'url': 'https://{{baseurl}}/payment/v2/verifysigned',
+    'url': 'https://{{baseurl}}/remit/v2verifysigned',
     'headers': {
     'Content-Type': 'application/json'
     },
@@ -198,7 +198,7 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/payment/v2/verifysigned"
+    url := "https://%7B%7Bbaseurl%7D%7D/remit/v2verifysigned"
     method := "POST"
 
     payload := strings.NewReader(`{   `+"
@@ -244,7 +244,7 @@ require "uri"
 require "json"
 require "net/http"
 
-url = URI("https://{{baseurl}}/payment/v2/verifysigned")
+url = URI("https://{{baseurl}}/remit/v2verifysigned")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -267,7 +267,7 @@ puts response.read_body
 
 <p class="caption">
     Sample <span class="method post">POST</span>
-    <code class="inline-code">/payment/v2/verifysigned</code> request to acknowledge the airline attendant has verified that the consumer's
+    <code class="inline-code">/remit/v2verifysigned</code> request to acknowledge the airline attendant has verified that the consumer's
     signature on the receipt and payment card are the same   
 </p>
 
@@ -312,8 +312,8 @@ puts response.read_body
     The attendant confirms they have verified the consumer's signature by pressing
     a button in an airline app, for example. A
     <span class="method post">POST</span>
-    <code class="inline-code">/payment/v2/verifysigned</code>
-    request is sent to the Payment API to acknowledge this.
+    <code class="inline-code">/remit/v2verifysigned</code>
+    request is sent to the Remit API to acknowledge this.
 </p>
 
 
@@ -365,7 +365,7 @@ puts response.read_body
                 </svg>
             </div>
             <div>
-                <a href="/payment/complete-transaction"
+                <a href="/remit/complete-transaction"
                     >Complete Transaction</a
                 >
             </div>

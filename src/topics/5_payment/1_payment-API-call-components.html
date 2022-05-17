@@ -1,16 +1,16 @@
 
 
 <div class="title-box">
-    <h1 class="topic-title">Payment API Call Components</h1>
+    <h1 class="topic-title">Remit API Call Components</h1>
     <div class="action-statement">
-        Learn about the required components of a Payment API call
+        Learn about the required components of a Remit API call
     </div>
 </div>
 
 
 <p>
     Below is a sample <span class="method post">POST</span>
-    <code class="inline-code">/payment/v2/starttransaction</code> call to the Payment API
+    <code class="inline-code">/remit/v2starttransaction</code> call to the Remit API
     that contains the required components:
     <ul>
         <li>Resource URL <code class=inline-code>https://</code></li>
@@ -46,7 +46,7 @@
     <div class="copied-popup hidden">Copied!</div>
     <div class="code-content dark">
         <pre><code class="language-bash">
-curl --area -g --request POST 'https://{{baseurl}}/payment/v2/starttransaction' \
+curl --area -g --request POST 'https://{{baseurl}}/remit/v2starttransaction' \
 --header 'Content-Type: application/json' \
 --data-raw '{   
     "attachmentId": "{{pmc_attachment_id}}",
@@ -59,22 +59,22 @@ curl --area -g --request POST 'https://{{baseurl}}/payment/v2/starttransaction' 
     </div>
 </div>
 <p class="caption">
-    Sample Payment API call containing the required components to successfully make the call
+    Sample Remit API call containing the required components to successfully make the call
 </p>
 
 
 
 <h2 id="resource-urls">Resource URLs</h2>
-<p>At present, Payment API Resource URLs are comprised of:</p>
+<p>At present, Remit API Resource URLs are comprised of:</p>
 <ul>
 <li>A REST API standard method preceding the URL for accessing the endpoint. In the case of the Print API, the only method used is <span class="method post">POST</span>.</li>
 <li>A Base URL specific to the CoreTech IoT environment, sometimes displayed as <code class="inline-code">{{baseurl}}</code> in the Resource URL in Postman.</li>
-<li>The end path of the Resource URL is comprised of the API name (<code class="inline-code">payment</code>) followed by the endpoint name. For example, the end path <code class="inline-code">/payment/v2/starttransaction</code> contains the API <code class="inline-code">payment</code> followed by the endpoint <code class="inline-code">process</code>.</li>
+<li>The end path of the Resource URL is comprised of the API name (<code class="inline-code">Remit</code>) followed by the endpoint name. For example, the end path <code class="inline-code">/remit/v2starttransaction</code> contains the API <code class="inline-code">remit</code> followed by the endpoint <code class="inline-code">process</code>.</li>
 </ul>
 
 <div class="alert-section info-alert">
     <div class="">
-        <p>No path parameters are required when sending Payment API requests.</p>
+        <p>No path parameters are required when sending Remit API requests.</p>
     </div>
 </div>
 
@@ -96,7 +96,7 @@ curl --area -g --request POST 'https://{{baseurl}}/payment/v2/starttransaction' 
 
 <h2 id="request-bodies">Request Bodies</h2>
 <p>All Request Bodies must include the <code class="inline-code">ConnectionId</code> of the device the application backend would like to interact with.</p>
-<h3 id="post-paymentv2process-1"><span class="method post">POST</span> <code class="inline-code">/payment/v2/starttransaction</code></h3>
+<h3 id="post-remitv2process-1"><span class="method post">POST</span> <code class="inline-code">/remit/v2starttransaction</code></h3>
 <p>The following is a sample Request Body for <action> using an PMC device.</p>
 
     <div class="method-example atom-one-light">
@@ -116,8 +116,8 @@ curl --area -g --request POST 'https://{{baseurl}}/payment/v2/starttransaction' 
 
 
 
-<p class="caption">POST</span> <code class="inline-code">/payment/v2/starttransaction</code> request</p>
-<h3 id="post-paymentv2billprinted-1"><span class="method post">POST</span> <code class="inline-code">/payment/v2/billprinted</code></h3>
+<p class="caption">POST</span> <code class="inline-code">/remit/v2starttransaction</code> request</p>
+<h3 id="post-remitv2billprinted-1"><span class="method post">POST</span> <code class="inline-code">/remit/v2billprinted</code></h3>
 <p>The following is a sample Request Body for <action> using an PMC device.</p>
 
     <div class="method-example atom-one-light">
@@ -135,8 +135,8 @@ curl --area -g --request POST 'https://{{baseurl}}/payment/v2/starttransaction' 
     </div>
 
 
-<p class="caption">POST</span> <code class="inline-code">/payment/v2/billprinted</code>request</p>
-<h3 id="post-paymentv2verifysigned-1"><span class="method post">POST</span> <code class="inline-code">/payment/v2/verifysigned</code></h3>
+<p class="caption">POST</span> <code class="inline-code">/remit/v2billprinted</code>request</p>
+<h3 id="post-remitv2verifysigned-1"><span class="method post">POST</span> <code class="inline-code">/remit/v2verifysigned</code></h3>
 <p>The following is a sample Request Body for <action> using an PMC device.</p>
 
 
@@ -154,8 +154,8 @@ curl --area -g --request POST 'https://{{baseurl}}/payment/v2/starttransaction' 
 </div>
 
 
-<p class="caption">POST</span> <code class="inline-code">/payment/v2/verifysigned</code> request</p>
-<h3 id="post-paymentv2completetransaction-1"><span class="method post">POST</span> <code class="inline-code">/payment/v2/completetransaction</code></h3>
+<p class="caption">POST</span> <code class="inline-code">/remit/v2verifysigned</code> request</p>
+<h3 id="post-remitv2completetransaction-1"><span class="method post">POST</span> <code class="inline-code">/remit/v2completetransaction</code></h3>
 <p>The following is a sample Request Body for <action> using an PMC device.</p>
 
     <div class="method-example atom-one-light">
@@ -171,7 +171,7 @@ curl --area -g --request POST 'https://{{baseurl}}/payment/v2/starttransaction' 
             </pre>
     </div>
 
-<p class="caption">POST</span> <code class="inline-code">/payment/v2/completetransaction</code> request</p>
+<p class="caption">POST</span> <code class="inline-code">/remit/v2completetransaction</code> request</p>
 <div class="continued-reading-section">
     <h2 class="continued-reading">Next Steps</h2>
     <ul class="continue-link-list">
@@ -219,7 +219,7 @@ curl --area -g --request POST 'https://{{baseurl}}/payment/v2/starttransaction' 
                 </svg>
             </div>
             <div>
-                <a href="/payment/payment-messages-overview"
+                <a href="/remit/remit-messages-overview"
                     >Service Bus Messages Overview</a
                 >
             </div>

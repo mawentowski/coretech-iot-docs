@@ -7,7 +7,7 @@
 
 <p>
     Send a <span class="method post">POST</span>
-   <code class="inline-code">/payment/v2/completetransaction</code> request to acknowledge the payment
+   <code class="inline-code">/remit/v2completetransaction</code> request to acknowledge the payment
     transaction has completed.
 </p>
 
@@ -18,7 +18,7 @@
 
 <div class="alert-section info-alert">
     <div class="">
-        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="/payment/payment-api-call-components">API Call Components</a>.
+        For information on the common components that make up a request, like the Resource URL, Header Parameters, or the Authorization Header, see <a href="/remit/remit-api-call-components">API Call Components</a>.
 
     </div>
 </div>
@@ -60,7 +60,7 @@
     </div>
 
 <div id="bash -complete-transaction" class="tabcontent dark"><pre> <code>
-curl --area -g --request POST 'https://{{baseurl}}/payment/v2/completetransaction' \
+curl --area -g --request POST 'https://{{baseurl}}/remit/v2completetransaction' \
 --header 'Content-Type: application/json' \
 --data-raw '{   
     "attachmentId": "{{pmc_attachment_id}}",
@@ -75,7 +75,7 @@ require "uri"
 require "json"
 require "net/http"
 
-url = URI("https://{{baseurl}}/payment/v2/completetransaction")
+url = URI("https://{{baseurl}}/remit/v2completetransaction")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -97,7 +97,7 @@ puts response.read_body
 import requests
 import json
 
-url = "https://{{baseurl}}/payment/v2/completetransaction"
+url = "https://{{baseurl}}/remit/v2completetransaction"
 
 payload = json.dumps({
     "attachmentId": "{{pmc_attachment_id}}",
@@ -120,7 +120,7 @@ print(response.text)
     $curl = curl_init();
     
     curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/payment/v2/completetransaction',
+      CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/remit/v2completetransaction',
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => '',
       CURLOPT_MAXREDIRS => 10,
@@ -147,7 +147,7 @@ print(response.text)
 
 <div id="Java -complete-transaction" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("https://{{baseurl}}/payment/v2/completetransaction")
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/remit/v2completetransaction")
     .header("Content-Type", "application/json")
     .body("{   \r\n  \"attachmentId\": \"{{pmc_attachment_id}}\",\r\n  \"relationId\": \"correl_paymt\"\r\n}")
     .asString();   
@@ -160,7 +160,7 @@ HttpResponse<String> response = Unirest.post("https://{{baseurl}}/payment/v2/com
 var request = require('request');
 var options = {
     'method': 'POST',
-    'url': 'https://{{baseurl}}/payment/v2/completetransaction',
+    'url': 'https://{{baseurl}}/remit/v2completetransaction',
     'headers': {
     'Content-Type': 'application/json'
     },
@@ -190,7 +190,7 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/payment/v2/completetransaction"
+    url := "https://%7B%7Bbaseurl%7D%7D/remit/v2completetransaction"
     method := "POST"
 
     payload := strings.NewReader(`{   `+"
@@ -230,7 +230,7 @@ func main() {
 </div>
 
 <div id=".NET -complete-transaction" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/payment/v2/completetransaction");
+var client = new RestClient("https://{{baseurl}}/remit/v2completetransaction");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
 request.AddHeader("Content-Type", "application/json");
@@ -252,7 +252,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample <span class="method post">POST</span>
-   <code class="inline-code">/payment/v2/completetransaction</code> request to acknowledge the payment
+   <code class="inline-code">/remit/v2completetransaction</code> request to acknowledge the payment
     transaction has completed.
 </p>
 
@@ -284,7 +284,7 @@ Console.WriteLine(response.Content);
 </p>
 <p>
     A <span class="method post">POST</span>
-    <code class="inline-code">/payment/v2/completetransaction</code>
+    <code class="inline-code">/remit/v2completetransaction</code>
     must be made to acknowledge that the transaction has completed.
 </p>
 

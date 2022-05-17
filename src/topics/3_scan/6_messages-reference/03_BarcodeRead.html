@@ -1,4 +1,4 @@
-<h1 id="barcoderead">BarcodeRead</h1>
+<h1 id="scancoderead">ScancodeRead</h1>
 <p>This message is received on the service bus for an FIS read.</p>
 <h2 id="message-properties">Message Properties</h2>
 <table class="main-table">
@@ -21,7 +21,7 @@
             <td>MessageType</td>
             <td>string</td>
             <td>M</td>
-            <td>BarcodeRead</td>
+            <td>ScancodeRead</td>
         </tr>
         <tr>
             <td>MessageVersion</td>
@@ -68,14 +68,14 @@
         <tr>
             <td>ScanCodeData</td>
             <td>string</td>
-            <td>A string containing the barcode.</td>
+            <td>A string containing the scancode.</td>
         </tr>
         <tr>
-            <td>BarCodeType</td>
+            <td>ScanCodeType</td>
             <td>string</td>
             <td>
                 Contains the
-                <a href="/read/messages-reference/BarcodeRead#bar-code-type"
+                <a href="/read/messages-reference/ScancodeRead#bar-code-type"
                     >bar code type</a
                 >
             </td>
@@ -133,7 +133,7 @@
             <code class="language-json">
 { 
     "ScanCodeData": "0000123456789", 
-    "BarCodeType": "1"
+    "ScanCodeType": "1"
 }          
         </code>
         </pre>
