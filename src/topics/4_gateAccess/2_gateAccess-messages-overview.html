@@ -73,17 +73,17 @@
 </p>
 <h2 id="opengateresponse">OpenGateResponse</h2>
 <p>
-    In an agent-controlled area prior to boarding, the Self-Boarding Gate (SBG)
-    is in a 'closed' state where no passenger can scan their boarding pass and
-    proceed through the gate.
+    In an attendant-controlled area prior to boarding, the Self-Boarding Gate
+    (SBG) is in a 'closed' state where no passenger can scan their boarding pass
+    and proceed through the gate.
 </p>
 <p>
-    The agent starts the boarding process by triggering the
+    The attendant starts the boarding process by triggering the
     <code class="inline-code">/gateaccess/v2/opengate</code> request. For a
     Self-Boarding Gate, the gate displays green and is now ready to process
-    passengers. When the agent is using a Magstripe Reader (BGR) to board
+    passengers. When the attendant is using a Magstripe Reader (BGR) to board
     passengers (a process not involving a gate), the boarding process is
-    initiated and an agent may begin scanning boarding passes.
+    initiated and an attendant may begin scanning boarding passes.
 </p>
 <div class="alert-section info-alert">
     <div class="">
@@ -131,12 +131,12 @@
 <p>
     For a boarding process involving a Self-Boarding Gate (SBG) device, the
     passenger may scan his or her boarding pass. For a boarding process
-    involving a Magstripe Reader, the agent may now scan the passenger's
+    involving a Magstripe Reader, the attendant may now scan the passenger's
     boarding pass.
 </p>
 <p>
     When a passenger scans a boarding pass at a gate, the gate locks while it
-    waits for the airline backend to accept or reject the passenger.
+    waits for the application backend to accept or reject the passenger.
 </p>
 <p>
     A <code class="inline-code">BoardingPassData</code> message displays on the
@@ -160,8 +160,8 @@
 </p>
 <h2 id="timeout-error">Timeout Error</h2>
 <p>
-    If the passenger is not accepted or rejected by the airline backend after a
-    certain period, the transaction will timeout and an
+    If the passenger is not accepted or rejected by the application backend
+    after a certain period, the transaction will timeout and an
     <code class="inline-code">ErrorOccurred</code> message displays on the
     Service Bus.
 </p>
@@ -206,7 +206,7 @@
 </ol>
 <h2 id="acceptconsumerresponse">AcceptConsumerResponse</h2>
 <p>
-    The airline backend accepts the passenger by sending a
+    The application backend accepts the passenger by sending a
     <code class="inline-code">gateaccess/v2/acceptconsumer</code> request which
     tells the GateAccess API that the passenger has been boarded successfully.
 </p>
@@ -214,8 +214,8 @@
     In the Request Body of the
     <code class="inline-code">gateaccess/v2/acceptconsumer</code> request,
     notice that a <code class="inline-code">Message</code> is included to
-    display text on the device for the agent (if the device is a Boarding Gate
-    Reader, not gate).
+    display text on the device for the attendant (if the device is a Boarding
+    Gate Reader, not gate).
 </p>
 
 <div class="method-example atom-one-light">
@@ -257,7 +257,7 @@
     <div class="">
         <p>
             It is also possible, but rarer, for there to be a printer for a
-            Magstripe Reader in an agent-driven boarding scenario.
+            Magstripe Reader in an attendant-driven boarding scenario.
         </p>
     </div>
 </div>
@@ -295,9 +295,9 @@
 </p>
 <p>
     If the device is Magstripe Reader, a green light displays, along with a
-    <code class="inline-code">Message</code> for the airline agent such as
+    <code class="inline-code">Message</code> for the airline attendant such as
     <code class="inline-code">Passenger Okay to Board</code>. The passenger is
-    then allowed to pass the agent and board the flight.
+    then allowed to pass the attendant and board the flight.
 </p>
 <p>
     If the device is a Self-Boarding Gate, the
@@ -315,7 +315,7 @@
 </div>
 <h2 id="rejectpassengerresponse">RejectPassengerResponse</h2>
 <p>
-    The airline backend rejects the passenger by sending a
+    The application backend rejects the passenger by sending a
     <code class="inline-code">gateaccess/v2/rejectpassenger</code>
     request which tells the GateAccess API that the passenger was rejected and
     cannot board.
@@ -325,8 +325,8 @@
     <code class="inline-code">gateaccess/v2/rejectpassenger</code>
     request, notice that a
     <code class="inline-code">Message</code> is included to display text on the
-    device for the agent (if the device is a Magstripe Reader, not gate). Also,
-    there is an option to trigger an
+    device for the attendant (if the device is a Magstripe Reader, not gate).
+    Also, there is an option to trigger an
     <code class="inline-code">Alarm</code> sound when the passenger is rejected.
 </p>
 
@@ -348,7 +348,7 @@
     Sample
     <code class="inline-code">gateaccess/v2/rejectpassenger</code>
     Request Body with <code class="inline-code">Message</code> data to display
-    to the agent that the passenger is 'Not Ok' to board
+    to the attendant that the passenger is 'Not Ok' to board
 </p>
 <p>
     Upon making a
@@ -383,16 +383,16 @@
 </p>
 <p>
     If the device is Magstripe Reader, a red light displays, along with the
-    <code class="inline-code">Message</code> for the airline agent such as
+    <code class="inline-code">Message</code> for the airline attendant such as
     <code class="inline-code">Passenger Not Okay to Board</code>. Depending on
-    the situation, the passenger may be sent a different desk for an agent to
-    investigate the situation further.
+    the situation, the passenger may be sent a different desk for an attendant
+    to investigate the situation further.
 </p>
 <p>
     If the device is a Self-Boarding Gate, the
     <code class="inline-code">Message</code> is ignored, and a red "X" displays
     to the passenger, along with a message such as "you cannot board, go see an
-    agent".
+    attendant".
 </p>
 <div class="alert-section info-alert">
     <div class="">
@@ -404,7 +404,7 @@
 </div>
 <h2 id="closegateresponse">CloseGateResponse</h2>
 <p>
-    Once all passengers are boarded, the agent sends a
+    Once all passengers are boarded, the attendant sends a
     <code class="inline-code">/gateaccess/v2/closegate</code>
     request that closes the boarding process.
 </p>

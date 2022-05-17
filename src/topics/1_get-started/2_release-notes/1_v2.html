@@ -16,7 +16,7 @@
     be made to acquire a session token that tracks the session and maps all
     calls made during the session. The Request Body needed to include a
     <code class="inline-code">LocationID</code> and
-    <code class="inline-code">AirlineCode</code>. The request returned the
+    <code class="inline-code">CustomerCode</code>. The request returned the
     <code class="inline-code">SessionToken</code> to be included in the Request
     Body of all future API calls made during the session.
 </p>
@@ -27,9 +27,9 @@
     contains the required information to map your API calls during the session.
     The <code class="inline-code">access_token</code> contains application
     registration details including the application name that contains the
-    <code class="inline-code">AirlineCode</code>. Certain roles assigned to that
-    <code class="inline-code">AirlineCode</code> govern the allowed interactions
-    with Flex APIs.
+    <code class="inline-code">CustomerCode</code>. Certain roles assigned to
+    that <code class="inline-code">CustomerCode</code> govern the allowed
+    interactions with Flex APIs.
 </p>
 <h2 id="subscribe-request-changes">Subscribe Request Changes</h2>
 <p>
@@ -79,9 +79,9 @@
 <p>
     The new <span class="method post">POST</span>
     <code class="inline-code">/site/v2/reservations</code> request limits use of
-    a location to the airline backend with a specific airline code that made the
-    request. The airline backend must reserve the location to make use of its
-    devices.
+    a location to the application backend with a specific customer code that
+    made the request. The application backend must reserve the location to make
+    use of its devices.
 </p>
 <h2 id="no-device-status-request">No Device Status Request</h2>
 <p>

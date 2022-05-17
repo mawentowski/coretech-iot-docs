@@ -26,7 +26,7 @@
         Flex.
     </li>
     <li>
-        Your airline backend to receive messages from the Azure Service Bus.
+        Your application backend to receive messages from the Azure Service Bus.
     </li>
 </ul>
 <div class="alert-section info-alert">
@@ -615,7 +615,7 @@
                         for the various dimensions. However, some GRCs have this
                         capability. When interacting with an actual GRC with the
                         capability to take measurements, those measurements will
-                        display. How your airline backend could use this
+                        display. How your application backend could use this
                         information is to potentially reject a bag if a bag's
                         <code class="inline-code">width</code>
                         is greater than a certain allowed amount, for example.
@@ -933,7 +933,8 @@
                     <p>
                         <strong>Note:</strong>
                         In a real-life scenario, the customer would resolve a
-                        minor issue if no intervention is required by the agent.
+                        minor issue if no intervention is required by the
+                        attendant.
                     </p>
                 </div>
             </div>
@@ -950,7 +951,7 @@
     <div class="section numbered-section">
         <div class="section-header">
             <h2 id="heading-2" class="numbered-h2">
-                Simulate an Agent Intervening to Resolve an Issue
+                Simulate an attendant Intervening to Resolve an Issue
             </h2>
             <span class="tag">Dispatch API</span>
         </div>
@@ -959,8 +960,8 @@
                 With the bag in the Process Area, send a
                 <code class="inline-code">/dispatchitem/v2/cancelbag</code>
                 request to simulate the dispatchitem returning the bag due to an
-                issue that requires agent assistance and cannot be resolved by
-                the customer.
+                issue that requires attendant assistance and cannot be resolved
+                by the customer.
                 <ul>
                     <li>
                         The bag moves from the
@@ -990,20 +991,21 @@
             <!-- 
             <p class="caption">
                 GRC Device Simulator showing the bag has returned to the Entry Area
-                where the agent can resolve the issue
+                where the attendant can resolve the issue
             </p> -->
             <div class="alert-section info-alert">
                 <div class="">
                     <p>
                         <strong>Note:</strong>
-                        In a real-life scenario, the agent would be alerted to
-                        resolve the issue at the GRC.
+                        In a real-life scenario, the attendant would be alerted
+                        to resolve the issue at the GRC.
                     </p>
                 </div>
             </div>
 
             <li>
-                To simulate the agent having resolved the issue, send another
+                To simulate the attendant having resolved the issue, send
+                another
                 <code class="inline-code">/dispatchitem/v2/processbag</code>
                 request to close the door and move the bag back the
                 <strong>Processing Area</strong>.

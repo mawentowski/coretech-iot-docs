@@ -93,15 +93,15 @@
 <p>
     A connection to a scan device (
     <code class="inline-code">/session/v2/connections</code>) is not enough to
-    receive unsolicited scan data from that device. The airline backend needs to
-    tell the device it wants to receive scan data 'exclusively' by sending a
-    <code class="inline-code">/scan/v2/startscanning</code> request.
+    receive unsolicited scan data from that device. The application backend
+    needs to tell the device it wants to receive scan data 'exclusively' by
+    sending a <code class="inline-code">/scan/v2/startscanning</code> request.
 </p>
 
 <div class="alert-section info-alert">
     <div class="">
         'Exclusively' using a device means it is locked and will only send scan
-        data to airline backend that made the request.
+        data to application backend that made the request.
     </div>
 </div>
 
@@ -179,7 +179,7 @@
 
 <p class="caption">
     <code class="inline-code">DeviceStatus</code> Service Bus Message Body
-    indicating the device is exclusively reserved by the airline backend
+    indicating the device is exclusively reserved by the application backend
 </p>
 <div class="alert-section info-alert">
     <div class="">
@@ -200,7 +200,8 @@
 <p>
     When input from the device is no longer needed, make a
     <code class="inline-code">/scan/v2/stopscanning</code> request to release
-    exclusive access to the device so it can be used by other airline backends.
+    exclusive access to the device so it can be used by other application
+    backends.
 </p>
 <p>
     The Scan API acknowledges the request with a synchronous message, returning

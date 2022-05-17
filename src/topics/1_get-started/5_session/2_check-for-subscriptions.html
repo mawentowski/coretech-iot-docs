@@ -33,7 +33,7 @@
             Maintaining two SAS tokens can be problematic, and therefore should be
             avoided. The <span class="method get">GET</span>
             <code class="inline-code">/session/v2/subscriptions</code>
-            request returns the information necessary for the airline backend to
+            request returns the information necessary for the application backend to
             determine whether a subscription is already in place to avoid multiple SAS
             tokens.
         </p>
@@ -294,7 +294,7 @@ Console.WriteLine(response.Content);
 </p>
 
 <p>
-    The airline backend would then pass the
+    The application backend would then pass the
     <code class="inline-code">subscriptionId</code> of the existing subscription
     in requests to connect to devices at the location.
 </p>
@@ -347,7 +347,7 @@ Console.WriteLine(response.Content);
     that no subscription exists
 </p>
 <p>
-    This response indicates a subscription does not exist the airline backend
+    This response indicates a subscription does not exist the application backend
     should
     <a href="/get-started/session/create-a-subscription">create a subscription</a>
     that can be used with the location.

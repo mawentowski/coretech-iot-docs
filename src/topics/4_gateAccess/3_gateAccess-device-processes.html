@@ -7,18 +7,21 @@
 
 <h2 id="boarding-gate-reader-process">Magstripe Reader Process</h2>
 <p>
-    The following is a summary of the boarding process when an agent uses a
+    The following is a summary of the boarding process when an attendant uses a
     Magstripe Reader (BGR/BCR) to board passengers:
 </p>
 <ul>
     <li>
-        The agent overseeing the boarding process initiates boarding through a
+        The attendant overseeing the boarding process initiates boarding through
+        a
         <code class="inline-code">/gateaccess/v2/opengate</code> request.
     </li>
-    <li>An agent takes the boarding pass from the passenger and scans it.</li>
     <li>
-        The airline backend determines if that passenger can be boarded and
-        displays the result for the agent.
+        An attendant takes the boarding pass from the passenger and scans it.
+    </li>
+    <li>
+        The application backend determines if that passenger can be boarded and
+        displays the result for the attendant.
     </li>
     <li>
         If the passenger is accepted:
@@ -31,9 +34,9 @@
                 in the Request Body (e.g., "Passenger Okay to Board").
             </li>
             <li>
-                The agent gives the boarding pass back to the passenger, and the
-                passenger is then allowed to pass the agent and board the
-                flight.
+                The attendant gives the boarding pass back to the passenger, and
+                the passenger is then allowed to pass the attendant and board
+                the flight.
             </li>
         </ul>
     </li>
@@ -53,13 +56,13 @@
             </li>
             <li>
                 Depending on the situation, the passenger may be sent a
-                different desk for an agent to investigate the situation
+                different desk for an attendant to investigate the situation
                 further.
             </li>
         </ul>
     </li>
     <li>
-        Once all passengers are boarding, the agent sends a
+        Once all passengers are boarding, the attendant sends a
         <code class="inline-code">/gateaccess/v2/closegate</code> request that
         closes the boarding process.
     </li>
@@ -71,7 +74,8 @@
 </p>
 <ul>
     <li>
-        The agent overseeing the boarding process initiates boarding through a
+        The attendant overseeing the boarding process initiates boarding through
+        a
         <code class="inline-code">/gateaccess/v2/opengate</code> request.
     </li>
     <li>
@@ -79,7 +83,9 @@
         passengers.
     </li>
     <li>The passenger scans his or her boarding pass at the SBG.</li>
-    <li>The airline backend determines if that passenger can be boarded.</li>
+    <li>
+        The application backend determines if that passenger can be boarded.
+    </li>
     <li>
         If the passenger is accepted:
         <ul>
@@ -99,17 +105,17 @@
                 A
                 <code class="inline-code">/gateaccess/v2/rejectpassenger</code>
                 request is sent. A red "X" displays, along with a message such
-                as "you cannot board, go see an agent".
+                as "you cannot board, go see an attendant".
             </li>
             <li>
                 Depending on the situation, the passenger may be sent a
-                different desk for an agent to investigate the situation
+                different desk for an attendant to investigate the situation
                 further.
             </li>
         </ul>
     </li>
     <li>
-        Once all passengers are boarding, the agent sends a
+        Once all passengers are boarding, the attendant sends a
         <code class="inline-code">/gateaccess/v2/closegate</code> request that
         ends the boarding process.
     </li>

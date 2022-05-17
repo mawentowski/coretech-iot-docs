@@ -9,7 +9,7 @@
     Send a
     <span class="method post">POST</span> <code class="inline-code">/gateaccess/v2/rejectpassenger</code> request to
     tell the GateAccess API that a passenger is not allowed to board and must
-    see an agent. Send this request each time a passenger is processed
+    see an attendant. Send this request each time a passenger is processed
     unsuccessfully.
 </p>
 
@@ -294,7 +294,7 @@ Console.WriteLine(response.Content);
     <code class="inline-code">gateaccess/v2/rejectpassenger</code>
     request, notice that a
     <code class="inline-code">Message</code> is included to display text on the
-    device for the agent (if the device is a Magstripe Reader, not gate).
+    device for the attendant (if the device is a Magstripe Reader, not gate).
     Also, there is an option to trigger an
     <code class="inline-code">Alarm</code> sound when the passenger is rejected.
 </p>
@@ -317,7 +317,7 @@ Console.WriteLine(response.Content);
     Sample
     <code class="inline-code">gateaccess/v2/rejectpassenger</code>
     Request Body with <code class="inline-code">Message</code> data to display
-    to the agent that the passenger is 'Not Ok' to board
+    to the attendant that the passenger is 'Not Ok' to board
 </p>
 
 
@@ -357,16 +357,16 @@ Console.WriteLine(response.Content);
 </p>
 <p>
     If the device is Magstripe Reader, a red light displays, along with the
-    <code class="inline-code">Message</code> for the airline agent such as
+    <code class="inline-code">Message</code> for the airline attendant such as
     <code class="inline-code">Passenger Not Okay to Board</code>. Depending on
-    the situation, the passenger may be sent a different desk for an agent to
+    the situation, the passenger may be sent a different desk for an attendant to
     investigate the situation further.
 </p>
 <p>
     If the device is a Self-Boarding Gate, the
     <code class="inline-code">Message</code> is ignored, and a red "X" displays
     to the passenger, along with a message such as "you cannot board, go see an
-    agent".
+    attendant".
 </p>
 <div class="alert-section info-alert">
     <div class="">

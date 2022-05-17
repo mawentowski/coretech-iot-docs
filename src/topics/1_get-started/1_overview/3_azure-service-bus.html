@@ -1,7 +1,7 @@
 <div class="title-box">
     <h1 class="topic-title">Azure Service Bus</h1>
     <div class="action-statement">
-        Learn about how Flex routes device messages to your airline backend.
+        Learn about how Flex routes device messages to your application backend.
     </div>
 </div>
 
@@ -11,8 +11,8 @@
 </p>
 <p>
     The Azure Service Bus is a message broker Flex uses to send messages to an
-    airline backend. The Service Bus subscription provides a back channel for
-    asynchronous and unsolicited messages from the platform and devices.
+    application backend. The Service Bus subscription provides a back channel
+    for asynchronous and unsolicited messages from the platform and devices.
 </p>
 
 <div class="alert-section info-alert">
@@ -32,7 +32,7 @@
 
 <p>A few key takeaways:</p>
 <ul>
-    <li><p>Each airline backend needs its own subscription.</p></li>
+    <li><p>Each application backend needs its own subscription.</p></li>
     <li>
         <p>
             Flex airports and their Flex locations will be configured in a
@@ -54,9 +54,9 @@
     </li>
     <li>
         <p>
-            It is the responsibility of the airline backend system to correctly
-            route the messages received on a subscription to the correct client
-            applications.
+            It is the responsibility of the application backend system to
+            correctly route the messages received on a subscription to the
+            correct client applications.
         </p>
     </li>
     <li><p>Flex communications are both synchronous and asynchronous.</p></li>
@@ -72,8 +72,8 @@
 <p>
     Instead, whenever a Flex API request is sent to a device, an action is
     carried out of the device and a 'response' Service Bus message is sent to
-    the Azure Service Bus subscription the airline backend is 'subscribed to'.
-    The
+    the Azure Service Bus subscription the application backend is 'subscribed
+    to'. The
     <code class="inline-code">MessageType</code> determines the type of
     information returned.
 </p>

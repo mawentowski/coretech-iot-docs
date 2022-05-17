@@ -1,13 +1,13 @@
 <div class="title-box">
     <h1 class="topic-title">Create a Subscription</h1>
-    <div class="action-statement">Request a subscription to connect your airline backend to the Service Bus</div>
+    <div class="action-statement">Request a subscription to connect your application backend to the Service Bus</div>
 </div>
 
 <p>
     The <span class="method post">POST</span>
     <code class="inline-code">/session/v2/subscriptions</code> request creates a
     subscription on the Azure Service Bus and returns a Service Bus endpoint and
-    SAS token for the airline backend to connect to the subscription.
+    SAS token for the application backend to connect to the subscription.
 </p>
 <p>
     Sending a <span class="method post">POST</span>
@@ -331,7 +331,7 @@ func main() {
     a specific Service Bus Subscription.
 </p>
 <p>
-    For example, when connecting to an ATB device, the airline backend will send
+    For example, when connecting to an ATB device, the application backend will send
     a <span class="method post">POST</span>
     <code class="inline-code">/session/v2/connections</code> request, including
     the <code class="inline-code">subscriptionId</code> in the Request Body. The
@@ -377,7 +377,7 @@ func main() {
 </p>
 <h2 id="best-practices-1">Best Practices</h2>
 <h3>How to handle subscriptions</h3>
-<p>The airline backend can handle subscriptions in several different ways.</p>
+<p>The application backend can handle subscriptions in several different ways.</p>
 
 <p>
     The first way is to keep a subscription alive through repeated calls to the
@@ -389,7 +389,7 @@ func main() {
 <div class="alert-section info-alert">
     <div class="">
         <p>
-            The SAS token contains the credentials needed by the airline backend
+            The SAS token contains the credentials needed by the application backend
             to access the Azure Service Bus.
         </p>
     </div>
@@ -405,7 +405,7 @@ func main() {
 <div class="alert-section info-alert">
     <div class="">
         <p>
-            The airline backend will only ever have one subscription for an
+            The application backend will only ever have one subscription for an
             Azure Region. So, if a new subscription is created, it will continue
             to use that subscription for all requests from client applications
             in that region.
@@ -429,14 +429,14 @@ func main() {
     request is made, and there is an existing SAS token that has yet to reach
     its
     <code class="inline-code">expiryTime</code>, there are now two SAS tokens.
-    In this case, the airline backend should disconnect from the old SAS token
+    In this case, the application backend should disconnect from the old SAS token
     and connect to the new one that has an
     <code class="inline-code">expiryTime</code>.
 </p>
 <div class="alert-section info-alert">
     <div class="">
         <p>
-            In best practice, an airline backend would never encounter a
+            In best practice, an application backend would never encounter a
             situation where it would need to disconnect from an old SAS token to
             use the new one. The ideal scenario would be to allow the old SAS
             token to expire then create a new one by sending a
@@ -446,7 +446,7 @@ func main() {
     </div>
 </div>
 <p>
-    If the airline backend drops an active connection the Azure Service Bus by
+    If the application backend drops an active connection the Azure Service Bus by
     disconnecting from a SAS token, no messages are lost. Any messages sent to
     the subscription are queued and will display once another connection is made
     with a new SAS token.

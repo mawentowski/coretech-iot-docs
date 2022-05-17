@@ -8,14 +8,14 @@
 <p>
     The <span class="method post">POST</span>
     <code class="inline-code">/site/v2/reservations</code> request limits use of
-    a location to the airline backend with a specific airline code that made the
-    request. The airline backend must reserve the location to make use of its
+    a location to the application backend with a specific customer code that made the
+    request. The application backend must reserve the location to make use of its
     devices.
 </p>
 <div class="alert-section info-alert">
     <div class="">
         <p>
-            Flex knows the airline code of the requester because it is encoded
+            Flex knows the customer code of the requester because it is encoded
             in the access token.
         </p>
     </div>
@@ -276,7 +276,7 @@ Console.WriteLine(response.Content);
 [
     {
         "reservationId": "868e5715-2c82-426e-b7da-10e208dd865d",
-        "airlineCode": "ZZ",
+        "customerCode": "ZZ",
         "locationId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004",
         "expiryTime": "2021-11-24T19:26:30.846778+00:00"
     }
@@ -292,7 +292,7 @@ Console.WriteLine(response.Content);
 
 <p>
     The Response Body contains informational properties such as the
-    <code class="inline-code">airlineCode</code> encoded in the access token and
+    <code class="inline-code">customerCode</code> encoded in the access token and
     <code class="inline-code">locationID</code> passed in the Request Body. The
     property <code class="inline-code">expiryTime</code> indicates when the
     reservation is due to expire.
@@ -300,7 +300,7 @@ Console.WriteLine(response.Content);
 <div class="alert-section tip-alert">
     <div class="">
         <p>
-            It is important that airline backends keep track of when a location
+            It is important that application backends keep track of when a location
             reservation is about to expire so it can request a new reservation
             if continued access is desired.
         </p>
@@ -309,7 +309,7 @@ Console.WriteLine(response.Content);
 
 <h2>Reservation Error</h2>
 <p>
-    Now that the location is reserved by an airline code, any request made by
+    Now that the location is reserved by an customer code, any request made by
     another airline will be rejected. This will occur until the
     reservation's <code class="inline-code">expiryTime</code> has been
     reached or the airline who made the reservation has sent a
@@ -330,7 +330,7 @@ Console.WriteLine(response.Content);
     "type": "https://tools.ietf.org/html/rfc7231#section-6.5.1",
     "title": "Bad Request",
     "status": 400,
-    "detail": "Location reserved by other airlines.",
+    "detail": "Location reserved by other clients.",
     "traceId": "00-25dd79293ba71f479ce30da826eecd09-3aa97e2de755f540-00"
 }
         </code>
@@ -350,7 +350,7 @@ Console.WriteLine(response.Content);
 <h2 id="best-practices">Deleting Reservations</h2>
 <p>
     It is important to delete the reservation once done with a location because
-    an active reservation prevents other airline backends from using the
+    an active reservation prevents other application backends from using the
     location. This is achieved by sending a <span class="method del">DEL</span>
     <code class="inline-code">/site/v2/reservations/{reservation_id}</code>
     request, passing in the

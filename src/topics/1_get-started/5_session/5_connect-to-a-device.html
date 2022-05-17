@@ -9,7 +9,7 @@
     The <span class="method post">POST</span>
     <code class="inline-code">/session/v2/connections</code> request creates a
     connection to a device at specific location and associates that device to a
-    subscription where it can send messages for the airline backend to consume.
+    subscription where it can send messages for the application backend to consume.
 </p>
 <h2 id="request-body-2">Make an API Call</h2>
 <p>
@@ -316,7 +316,7 @@ Console.WriteLine(response.Content);
 {
     "connectionId": "a060a6f1-ec5b-43cb-8f0b-bf6f8891ebdf",
     "reservationId": "46d2309e-0ec5-4ef9-98f1-e45a54c76688",
-    "subscriptionId": "87fd60f9-aea8-466e-9659-43ad928c75f6",
+    "subscriptionId": "87fd60f9-nft8-466e-9659-43ad928c75f6",
     "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB005.BTP1",
     "expiryTime": "2021-11-26T09:30:35.9528789+00:00"
 }
@@ -366,7 +366,7 @@ Console.WriteLine(response.Content);
         <div class="">
             <p>
                 If a connection is no longer needed, it is best practice to delete the
-                connection to allow other airline backends to connect to the device.
+                connection to allow other application backends to connect to the device.
                 This is achieved by sending a <span class="method del">DEL</span> <code class="inline-code">/session/v2/connections/{connection_id}</code>
                 request, passing in the
                 <code class="inline-code">connection_id</code> of the connection to be

@@ -8,14 +8,14 @@
 <p>
     The <span class="method post">POST</span>
     <code class="inline-code">/site/v2/locations/{locationId}</code> request
-    provides a way for airline backends to determine what devices are configured
+    provides a way for application backends to determine what devices are configured
     at a location and their capabilities.
 </p>
 <div class="alert-section info-alert">
     <div class="">
         <p>
             This request is not required, but it can return useful information
-            for an airline backend act upon.
+            for an application backend act upon.
         </p>
     </div>
 </div>
@@ -304,7 +304,7 @@ Console.WriteLine(response.Content);
     <code class="inline-code">.BGR1</code>).
 </p>
 <p>
-    The airline backend then uses these IDs to connect to devices at the
+    The application backend then uses these IDs to connect to devices at the
     location. For example, to connect to an ATB through a <span class="method post">POST</span> <code class="inline-code">/session/v2/connections</code> request, you must
     pass the <code class="inline-code">DeviceId</code> in the Request Body.
 </p>
@@ -345,7 +345,7 @@ Console.WriteLine(response.Content);
 
 <div class="alert-section tip-alert">
     <div class="">
-        Returning a list of devices is useful to an airline backend particularly
+        Returning a list of devices is useful to an application backend particularly
         in cases where devices at a location have multiple capabilities and can
         receive different kinds of requests.
     </div>
