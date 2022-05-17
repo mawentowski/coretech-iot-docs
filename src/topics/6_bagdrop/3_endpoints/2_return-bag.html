@@ -64,8 +64,8 @@ curl --location -g --request POST 'https://{{baseurl}}/dispatchitem/v2/returnite
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "connectionId": "{{grc_connection_id}}",
-    "correlationId": "postman-ftr-6b5e91a5-a2c4-4ce8-85ef-ed3bcec5a030"
+    "attachmentId": "{{grc_attachment_id}}",
+    "relationId": "postman-ftr-6b5e91a5-a2c4-4ce8-85ef-ed3bcec5a030"
 }'
 </code>
 </pre>
@@ -85,8 +85,8 @@ request = Net::HTTP::Post.new(url)
 request["location-id"] = "{{locationId}}"
 request["Content-Type"] = "application/json"
 request.body = JSON.dump({
-    "connectionId": "{{grc_connection_id}}",
-    "correlationId": "postman-ftr-1a59eaf2-9922-44e2-9dbf-fa1572e98b96"
+    "attachmentId": "{{grc_attachment_id}}",
+    "relationId": "postman-ftr-1a59eaf2-9922-44e2-9dbf-fa1572e98b96"
 })
 
 response = https.request(request)
@@ -102,8 +102,8 @@ import json
 url = "https://{{baseurl}}/dispatchitem/v2/returnitem"
 
 payload = json.dumps({
-    "connectionId": "{{grc_connection_id}}",
-    "correlationId": "postman-ftr-4d0f766a-3a36-4192-89b0-d63e71280fbc"
+    "attachmentId": "{{grc_attachment_id}}",
+    "relationId": "postman-ftr-4d0f766a-3a36-4192-89b0-d63e71280fbc"
 })
 headers = {
     'location-id': '{{locationId}}',
@@ -132,8 +132,8 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'POST',
     CURLOPT_POSTFIELDS =>'{
-    "connectionId": "{{grc_connection_id}}",
-    "correlationId": "postman-ftr-781a8227-bb9a-4b99-9bf5-09ed2827893a"
+    "attachmentId": "{{grc_attachment_id}}",
+    "relationId": "postman-ftr-781a8227-bb9a-4b99-9bf5-09ed2827893a"
 }',
     CURLOPT_HTTPHEADER => array(
     'location-id: {{locationId}}',
@@ -154,7 +154,7 @@ Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("https://{{baseurl}}/dispatchitem/v2/returnitem")
     .header("location-id", "{{locationId}}")
     .header("Content-Type", "application/json")
-    .body("{\r\n  \"connectionId\": \"{{grc_connection_id}}\",\r\n  \"correlationId\": \"postman-ftr-937f88d5-d784-4323-bf9f-9add46915def\"\r\n}")
+    .body("{\r\n  \"attachmentId\": \"{{grc_attachment_id}}\",\r\n  \"relationId\": \"postman-ftr-937f88d5-d784-4323-bf9f-9add46915def\"\r\n}")
     .asString();                
 </code>
 </pre>
@@ -168,8 +168,8 @@ var req = unirest('POST', 'https://{{baseurl}}/dispatchitem/v2/returnitem')
     'Content-Type': 'application/json'
     })
     .send(JSON.stringify({
-    "connectionId": "{{grc_connection_id}}",
-    "correlationId": "postman-ftr-2c1429b5-432f-466f-b5ba-5fff3b5e046e"
+    "attachmentId": "{{grc_attachment_id}}",
+    "relationId": "postman-ftr-2c1429b5-432f-466f-b5ba-5fff3b5e046e"
     }))
     .end(function (res) { 
     if (res.error) throw new Error(res.error); 
@@ -196,9 +196,9 @@ func main() {
 
     payload := strings.NewReader(`{`+"
 "+`
-    "connectionId": "{{grc_connection_id}}",`+"
+    "attachmentId": "{{grc_attachment_id}}",`+"
 "+`
-    "correlationId": "postman-ftr-805e2d41-1e9f-49b4-8583-10df1cebe6ad"`+"
+    "relationId": "postman-ftr-805e2d41-1e9f-49b4-8583-10df1cebe6ad"`+"
 "+`
 }`)
 
@@ -239,9 +239,9 @@ request.AddHeader("location-id", "{{locationId}}");
 request.AddHeader("Content-Type", "application/json");
 var body = @"{
 " + "\n" +
-@"  ""connectionId"": ""{{grc_connection_id}}"",
+@"  ""attachmentId"": ""{{grc_attachment_id}}"",
 " + "\n" +
-@"  ""correlationId"": ""postman-ftr-2581be2b-d7d7-4210-b43b-ef4dc39e1063""
+@"  ""relationId"": ""postman-ftr-2581be2b-d7d7-4210-b43b-ef4dc39e1063""
 " + "\n" +
 @"}";
 request.AddParameter("application/json", body,  ParameterType.RequestBody);
@@ -265,7 +265,7 @@ Console.WriteLine(response.Content);
 <h2>Request Body</h2>
 
 <p>
-    To successfully make the request, you must include the <code class="inline-code">connectionId</code> of the dispatchitem device.
+    To successfully make the request, you must include the <code class="inline-code">attachmentId</code> of the dispatchitem device.
 </p>
 
 
@@ -275,8 +275,8 @@ Console.WriteLine(response.Content);
     <pre>
             <code class="language-json">
 {
-    "connectionId": "{{grc_connection_id}}",
-    "correlationId": "postman-ftr-{{$guid}}"
+    "attachmentId": "{{grc_attachment_id}}",
+    "relationId": "postman-ftr-{{$guid}}"
 }
         </code>
         </pre>
@@ -285,7 +285,7 @@ Console.WriteLine(response.Content);
 <p class="caption">
 
         Sample Request Body for a <span class="method post">POST</span>
-        <code class="inline-code">/dispatchitem/v2/processitem</code> request that provides a <code class="inline-code">connectionId</code> of the dispatchitem device
+        <code class="inline-code">/dispatchitem/v2/processitem</code> request that provides a <code class="inline-code">attachmentId</code> of the dispatchitem device
     </p>
 
 

@@ -9,8 +9,8 @@
     Send a <span class="method post">POST</span>
     <code class="inline-code">/gateaccess/v2/opengate</code> request to
     initiate the boarding process. For a Multi-Technology Reader, the passenger is
-    now allowed to proceed to scan their boarding pass. For Boarding Gate
-    Readers, the attendant scanning boarding passes is now ready to receive
+    now allowed to proceed to scan their entry pass. For Boarding Gate
+    Readers, the attendant scanning entry passes is now ready to receive
     passengers in the queue.
 </p>
 
@@ -66,8 +66,8 @@ curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/opengate' \
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "connectionId": "{{msr_connection_id}}",
-    "correlationId": "postman-ftr-f0e0604c-e456-4c04-9f00-4c38ca7c8b72"
+    "attachmentId": "{{msr_attachment_id}}",
+    "relationId": "postman-ftr-f0e0604c-e456-4c04-9f00-4c38ca7c8b72"
 }'
 </code>
 </pre>
@@ -87,8 +87,8 @@ request = Net::HTTP::Post.new(url)
 request["location-id"] = "{{locationId}}"
 request["Content-Type"] = "application/json"
 request.body = JSON.dump({
-    "connectionId": "{{msr_connection_id}}",
-    "correlationId": "postman-ftr-65bb754f-7981-41bb-bfa1-7d28608d2034"
+    "attachmentId": "{{msr_attachment_id}}",
+    "relationId": "postman-ftr-65bb754f-7981-41bb-bfa1-7d28608d2034"
 })
 
 response = https.request(request)
@@ -104,8 +104,8 @@ import json
 url = "https://{{baseurl}}/gateaccess/v2/opengate"
 
 payload = json.dumps({
-    "connectionId": "{{msr_connection_id}}",
-    "correlationId": "postman-ftr-9ee68203-9768-4b31-8bfa-e7d463205a1c"
+    "attachmentId": "{{msr_attachment_id}}",
+    "relationId": "postman-ftr-9ee68203-9768-4b31-8bfa-e7d463205a1c"
 })
 headers = {
     'location-id': '{{locationId}}',
@@ -134,8 +134,8 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'POST',
     CURLOPT_POSTFIELDS =>'{
-    "connectionId": "{{msr_connection_id}}",
-    "correlationId": "postman-ftr-b0eb6c72-f104-4faf-a02b-5d7a7def3ad2"
+    "attachmentId": "{{msr_attachment_id}}",
+    "relationId": "postman-ftr-b0eb6c72-f104-4faf-a02b-5d7a7def3ad2"
 }',
     CURLOPT_HTTPHEADER => array(
     'location-id: {{locationId}}',
@@ -156,7 +156,7 @@ Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("https://{{baseurl}}/gateaccess/v2/opengate")
     .header("location-id", "{{locationId}}")
     .header("Content-Type", "application/json")
-    .body("{\r\n    \"connectionId\": \"{{msr_connection_id}}\",\r\n    \"correlationId\": \"postman-ftr-3298c851-60d1-41b5-8c8d-d40f3ce4788e\"\r\n}")
+    .body("{\r\n    \"attachmentId\": \"{{msr_attachment_id}}\",\r\n    \"relationId\": \"postman-ftr-3298c851-60d1-41b5-8c8d-d40f3ce4788e\"\r\n}")
     .asString();        
 </code>
 </pre>
@@ -172,8 +172,8 @@ var options = {
     'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-    "connectionId": "{{msr_connection_id}}",
-    "correlationId": "postman-ftr-d427d059-d9d1-4901-835f-211aabeadc4c"
+    "attachmentId": "{{msr_attachment_id}}",
+    "relationId": "postman-ftr-d427d059-d9d1-4901-835f-211aabeadc4c"
     })
 
 };
@@ -202,9 +202,9 @@ func main() {
 
     payload := strings.NewReader(`{`+"
 "+`
-    "connectionId": "{{msr_connection_id}}",`+"
+    "attachmentId": "{{msr_attachment_id}}",`+"
 "+`
-    "correlationId": "postman-ftr-ffd06d3c-5fb0-4a15-8ac0-d983728d52d5"`+"
+    "relationId": "postman-ftr-ffd06d3c-5fb0-4a15-8ac0-d983728d52d5"`+"
 "+`
 }`)
 
@@ -245,9 +245,9 @@ request.AddHeader("location-id", "{{locationId}}");
 request.AddHeader("Content-Type", "application/json");
 var body = @"{
 " + "\n" +
-@"    ""connectionId"": ""{{msr_connection_id}}"",
+@"    ""attachmentId"": ""{{msr_attachment_id}}"",
 " + "\n" +
-@"    ""correlationId"": ""postman-ftr-39d58787-8fea-4f43-abae-018551e6ab85""
+@"    ""relationId"": ""postman-ftr-39d58787-8fea-4f43-abae-018551e6ab85""
 " + "\n" +
 @"}";
 request.AddParameter("application/json", body,  ParameterType.RequestBody);
@@ -266,7 +266,7 @@ Console.WriteLine(response.Content);
 <h2>Request Body</h2>
 
 <p>
-    To successfully make the request, you must include the <code class="inline-code">connectionId</code> of the gate device.
+    To successfully make the request, you must include the <code class="inline-code">attachmentId</code> of the gate device.
 </p>
 
 
@@ -276,8 +276,8 @@ Console.WriteLine(response.Content);
     <pre>
             <code class="language-json">
 {
-    "connectionId": "{{msr_connection_id}}",
-    "correlationId": "postman-ftr-{{$guid}}"
+    "attachmentId": "{{msr_attachment_id}}",
+    "relationId": "postman-ftr-{{$guid}}"
 }
         </code>
         </pre>
@@ -285,7 +285,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample Request Body for <span class="method post">POST</span>
-    <code class="inline-code">/gateaccess/v2/opengate</code> request that provides a <code class="inline-code">connectionId</code> of the gate device
+    <code class="inline-code">/gateaccess/v2/opengate</code> request that provides a <code class="inline-code">attachmentId</code> of the gate device
 </p>
 
 
@@ -329,7 +329,7 @@ Console.WriteLine(response.Content);
             only sent once at the beginning of the process, not each time a
             passenger needs to pass through it. Once all passengers are
             processed, the boarding process is ended by sending a
-            <code class="inline-code">/gateaccess/v2/closegate</code> request.
+            <code class="inline-code">/gateaccess/v2/closeaccesspoint</code> request.
         </p>
     </div>
 </div>

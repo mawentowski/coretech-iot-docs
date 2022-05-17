@@ -65,8 +65,8 @@ curl --location -g --request POST 'https://{{baseurl}}/print/v2/itemtag/pdf' \
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "connectionId": "",
-    "correlationId": "postman-ftr-2f7a446c-ad5b-423d-883f-2f2920b978f7",
+    "attachmentId": "",
+    "relationId": "postman-ftr-2f7a446c-ad5b-423d-883f-2f2920b978f7",
     "printData": "JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb2"
 }'
 </code>
@@ -87,8 +87,8 @@ request = Net::HTTP::Post.new(url)
 request["location-id"] = "{{locationId}}"
 request["Content-Type"] = "application/json"
 request.body = JSON.dump({
-    "connectionId": "",
-    "correlationId": "postman-ftr-29f063b3-6f32-464f-8d59-350c2430ab23",
+    "attachmentId": "",
+    "relationId": "postman-ftr-29f063b3-6f32-464f-8d59-350c2430ab23",
     "printData": "JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb2"
 })
 
@@ -104,8 +104,8 @@ import json
 
 conn = http.client.HTTPSConnection("{{baseurl}}")
 payload = json.dumps({
-    "connectionId": "",
-    "correlationId": "postman-ftr-7cb0e14f-b200-4124-b3e1-83d24823ff30",
+    "attachmentId": "",
+    "relationId": "postman-ftr-7cb0e14f-b200-4124-b3e1-83d24823ff30",
     "printData": "JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb2"
 })
 headers = {
@@ -135,8 +135,8 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'POST',
     CURLOPT_POSTFIELDS =>'{
-    "connectionId": "",
-    "correlationId": "postman-ftr-ce1e2096-9d0d-41e5-8939-ee4e2bf14271",
+    "attachmentId": "",
+    "relationId": "postman-ftr-ce1e2096-9d0d-41e5-8939-ee4e2bf14271",
     "printData": "JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb2"
 }',
     CURLOPT_HTTPHEADER => array(
@@ -158,7 +158,7 @@ Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("https://{{baseurl}}/print/v2/itemtag/pdf")
     .header("location-id", "{{locationId}}")
     .header("Content-Type", "application/json")
-    .body("{\r\n  \"connectionId\": \"\",\r\n  \"correlationId\": \"postman-ftr-30ad1141-bc89-4463-ad57-f14741d7a692\",\r\n  \"printData\": \"JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb2\"\r\n}")
+    .body("{\r\n  \"attachmentId\": \"\",\r\n  \"relationId\": \"postman-ftr-30ad1141-bc89-4463-ad57-f14741d7a692\",\r\n  \"printData\": \"JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb2\"\r\n}")
     .asString();    
 </code>
 </pre>
@@ -174,8 +174,8 @@ var options = {
     'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-    "connectionId": "",
-    "correlationId": "postman-ftr-06da91c7-5135-41f7-825f-fe8bef0ec8cd",
+    "attachmentId": "",
+    "relationId": "postman-ftr-06da91c7-5135-41f7-825f-fe8bef0ec8cd",
     "printData": "JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb2"
     })
 
@@ -205,9 +205,9 @@ func main() {
 
     payload := strings.NewReader(`{`+"
 "+`
-    "connectionId": "",`+"
+    "attachmentId": "",`+"
 "+`
-    "correlationId": "postman-ftr-743316c2-e586-437b-9ef1-d03f2d3b10d8",`+"
+    "relationId": "postman-ftr-743316c2-e586-437b-9ef1-d03f2d3b10d8",`+"
 "+`
     "printData": "JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb2"`+"
 "+`
@@ -250,9 +250,9 @@ request.AddHeader("location-id", "{{locationId}}");
 request.AddHeader("Content-Type", "application/json");
 var body = @"{
 " + "\n" +
-@"  ""connectionId"": """",
+@"  ""attachmentId"": """",
 " + "\n" +
-@"  ""correlationId"": ""postman-ftr-4032de44-3392-4790-a01c-89d491c0b451"",
+@"  ""relationId"": ""postman-ftr-4032de44-3392-4790-a01c-89d491c0b451"",
 " + "\n" +
 @"  ""printData"": ""JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb2""
 " + "\n" +
@@ -289,8 +289,8 @@ Console.WriteLine(response.Content);
     <pre>
             <code class="language-json">
 {
-    "connectionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    "correlationId": "347d8924-73cf-4662-ad34-0ebfc28c4fc6",
+    "attachmentId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "relationId": "347d8924-73cf-4662-ad34-0ebfc28c4fc6",
     "printData": "JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb25EYXRlKEQ6MjAxODEwM...",
     "rfidData": {
         "licensePlateNumber": "507KLV",
@@ -354,8 +354,8 @@ curl --location -g --request POST 'https://{{baseurl}}/print/v2/itemtag/legacypr
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "connectionId": "",
-    "correlationId": "postman-ftr-6b58cb56-f2a7-48d7-bd16-237a1f1933fc",
+    "attachmentId": "",
+    "relationId": "postman-ftr-6b58cb56-f2a7-48d7-bd16-237a1f1933fc",
     "legacyPrintData": {
     "pectab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",
     "templates": [
@@ -384,8 +384,8 @@ request = Net::HTTP::Post.new(url)
 request["location-id"] = "{{locationId}}"
 request["Content-Type"] = "application/json"
 request.body = JSON.dump({
-    "connectionId": "",
-    "correlationId": "postman-ftr-5608720d-9139-47ad-8014-af1260417300",
+    "attachmentId": "",
+    "relationId": "postman-ftr-5608720d-9139-47ad-8014-af1260417300",
     "legacyPrintData": {
     "pectab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",
     "templates": [
@@ -410,8 +410,8 @@ import json
 url = "https://{{baseurl}}/print/v2/itemtag/legacyprint"
 
 payload = json.dumps({
-    "connectionId": "",
-    "correlationId": "postman-ftr-a0381506-464e-428a-8daf-81a8fdd719d2",
+    "attachmentId": "",
+    "relationId": "postman-ftr-a0381506-464e-428a-8daf-81a8fdd719d2",
     "legacyPrintData": {
     "pectab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",
     "templates": [
@@ -447,8 +447,8 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'POST',
     CURLOPT_POSTFIELDS =>'{
-    "connectionId": "",
-    "correlationId": "postman-ftr-625d341d-ea2d-4f4f-a61f-f1362774f83d",
+    "attachmentId": "",
+    "relationId": "postman-ftr-625d341d-ea2d-4f4f-a61f-f1362774f83d",
     "legacyPrintData": {
     "pectab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",
     "templates": [
@@ -478,7 +478,7 @@ Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("https://{{baseurl}}/print/v2/itemtag/legacyprint")
     .header("location-id", "{{locationId}}")
     .header("Content-Type", "application/json")
-    .body("{\r\n  \"connectionId\": \"\",\r\n  \"correlationId\": \"postman-ftr-f1c53caf-81c1-4de7-bfe6-12e83811ff59\",\r\n  \"legacyPrintData\": {\r\n    \"pectab\": \"UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv\",\r\n    \"templates\": [\r\n        \"VFQwM18wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD\",\r\n        \"VFQwNF8wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD\"\r\n    ],\r\n    \"Logos\":[],\r\n    \"printData\": \"Q1AjMUMwMSMwMUojMDZBWktVUiAgICBBSE1FVE\"\r\n  }\r\n}")
+    .body("{\r\n  \"attachmentId\": \"\",\r\n  \"relationId\": \"postman-ftr-f1c53caf-81c1-4de7-bfe6-12e83811ff59\",\r\n  \"legacyPrintData\": {\r\n    \"pectab\": \"UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv\",\r\n    \"templates\": [\r\n        \"VFQwM18wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD\",\r\n        \"VFQwNF8wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD\"\r\n    ],\r\n    \"Logos\":[],\r\n    \"printData\": \"Q1AjMUMwMSMwMUojMDZBWktVUiAgICBBSE1FVE\"\r\n  }\r\n}")
     .asString();    
 </code>
 </pre>
@@ -494,8 +494,8 @@ var options = {
     'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-    "connectionId": "",
-    "correlationId": "postman-ftr-d0294bc7-d5b0-4e73-8206-84eab0ade3b5",
+    "attachmentId": "",
+    "relationId": "postman-ftr-d0294bc7-d5b0-4e73-8206-84eab0ade3b5",
     "legacyPrintData": {
         "pectab": "UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv",
         "templates": [
@@ -533,9 +533,9 @@ func main() {
 
     payload := strings.NewReader(`{`+"
 "+`
-    "connectionId": "",`+"
+    "attachmentId": "",`+"
 "+`
-    "correlationId": "postman-ftr-8865857f-b20b-49b5-b1ee-bb4c5e713c54",`+"
+    "relationId": "postman-ftr-8865857f-b20b-49b5-b1ee-bb4c5e713c54",`+"
 "+`
     "legacyPrintData": {`+"
 "+`
@@ -594,9 +594,9 @@ request.AddHeader("location-id", "{{locationId}}");
 request.AddHeader("Content-Type", "application/json");
 var body = @"{
 " + "\n" +
-@"  ""connectionId"": """",
+@"  ""attachmentId"": """",
 " + "\n" +
-@"  ""correlationId"": ""postman-ftr-010d4303-34ef-411e-b8eb-77c4232af0cb"",
+@"  ""relationId"": ""postman-ftr-010d4303-34ef-411e-b8eb-77c4232af0cb"",
 " + "\n" +
 @"  ""legacyPrintData"": {
 " + "\n" +
@@ -646,8 +646,8 @@ Console.WriteLine(response.Content);
     <pre>
             <code class="language-json">
 {
-    "connectionId": "33ed0d5a-3a92-4f08-be97-73535d73fc09",
-    "correlationId": "10099a59-6880-468d-ac66-8bbda5eb7d02",
+    "attachmentId": "33ed0d5a-3a92-4f08-be97-73535d73fc09",
+    "relationId": "10099a59-6880-468d-ac66-8bbda5eb7d02",
     "legacyPrintData": {
         "pectab": "UFQjIz9WMU4jQDsjVElDS1QjQ0hLSU4jQk9BUkQjMDEwMTE...",
         "logos": [

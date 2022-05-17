@@ -1,4 +1,4 @@
-<h1 id="closegateresponse">CloseGateResponse</h1>
+<h1 id="closeaccesspointresponse">CloseAccessPointResponse</h1>
 <p>The response to the API call to close the gate device for boarding.</p>
 <h2 id="message-properties">Message Properties</h2>
 <table class="main-table">
@@ -21,7 +21,7 @@
             <td>MessageType</td>
             <td>string</td>
             <td>M</td>
-            <td>CloseGateResponse</td>
+            <td>CloseAccessPointResponse</td>
         </tr>
         <tr>
             <td>MessageVersion</td>
@@ -33,7 +33,7 @@
             <td>ConnectionId</td>
             <td>string</td>
             <td>M</td>
-            <td><em>connectionId</em></td>
+            <td><em>attachmentId</em></td>
         </tr>
         <tr>
             <td>CorrelationId</td>
@@ -76,7 +76,7 @@
 
         <tr>
             <td>Error</td>
-            <td><a href="/gateAccess/messages-reference/CloseGateResponse#gateerror">GateError</a></td>
+            <td><a href="/gateAccess/messages-reference/CloseAccessPointResponse#gateerror">GateError</a></td>
             <td>Contains the error fields</td>
         </tr>
     </tbody>
@@ -94,7 +94,7 @@
         <tr>
             <td>ErrorCode</td>
             <td>String</td>
-            <td>NotAbleToCloseGate</td>
+            <td>NotAbleToCloseAccessPoint</td>
         </tr>
         <tr>
             <td>Message</td>
@@ -123,7 +123,7 @@
 {
     "IsSuccess":false,
     "Error": {
-        "ErrorCode": "NotAbleToCloseGate",
+        "ErrorCode": "NotAbleToCloseAccessPoint",
         "Message": "Contains error message"
     }
 }

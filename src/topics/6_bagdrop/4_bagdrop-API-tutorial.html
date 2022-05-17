@@ -175,15 +175,15 @@
         <ol>
             <li>
                 In Postman, send a
-                <code class="inline-code">/session/v2/connections</code> request
+                <code class="inline-code">/session/v2/attachments</code> request
                 to connect to the GRC.
                 <ul>
                     <li>
-                        After connecting to a device, a connection
+                        After connecting to a device, an attachment
                         <code class="inline-code">expiryTime</code> is returned
                         in the Response Body set to
                         <strong>30 minutes</strong> from the time the
-                        <code class="inline-code">session/v2/connections</code>
+                        <code class="inline-code">session/v2/attachments</code>
                         request was made.
                     </li>
                 </ul>
@@ -237,10 +237,10 @@
                     <p>
                         In the Tests tab of Postman, there is a Javascript
                         function that updates the
-                        <code class="inline-code">grc_connection_id</code>
+                        <code class="inline-code">grc_attachment_id</code>
                         environmental variable after connecting to the GRC. This
                         variable makes it so you do not need to manually enter a
-                        <code class="inline-code">connectionId</code> in
+                        <code class="inline-code">attachmentId</code> in
                         subsequent calls to the dispatchitem API.
                     </p>
                 </div>
@@ -723,17 +723,17 @@
             </ul>
         </ol>
 
-        <h3 id="not-enough-time-remaining-on-connection">
-            Not enough time remaining on connection
+        <h3 id="not-enough-time-remaining-on-attachment">
+            Not enough time remaining on attachment
         </h3>
         <p>
             A Dispatch API returns a
             <code class="inline-code">400 Bad Request</code>
-            error status code when the connection to a device is soon to reach
+            error status code when the attachment to a device is soon to reach
             its 30-minute
             <code class="inline-code">expiryTime</code>
             set after the <span class="method post">POST</span
-            ><code class="inline-code"> /session/v2/connections</code>
+            ><code class="inline-code"> /session/v2/attachments</code>
             was made.
         </p>
 
@@ -745,7 +745,7 @@
     "type": "https://tools.ietf.org/html/rfc7231#section-6.5.1",
     "title": "Bad Request",
     "status": 400,
-    "detail": "Not enough time remaining on connection.",
+    "detail": "Not enough time remaining on attachment.",
     "traceId": "00-baf5325b0757fc408018bca88119a826-65e7e75f65b69c4a-00"
 }           
                 </code>
@@ -753,12 +753,12 @@
         </div>
 
         <p class="caption">
-            The connection to the device is soon to be expired
+            The attachment to the device is soon to be expired
         </p>
         <p>
             The resolution is to simply send another
-            <code class="inline-code">session/v2/connections</code>
-            request to create a new connection and receive a new
+            <code class="inline-code">session/v2/attachments</code>
+            request to create a new attachment and receive a new
             <code class="inline-code">expiryTime</code>.
         </p>
         <h3 id="timeout-at-process-area-1">Timeout at Process Area</h3>

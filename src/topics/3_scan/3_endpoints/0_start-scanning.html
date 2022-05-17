@@ -59,7 +59,7 @@ curl --location -g --request POST 'https://{{baseurl}}/scan/v2/startscanning' \
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "connectionId": ""
+    "attachmentId": ""
 }'
 </code>
 </pre>
@@ -79,7 +79,7 @@ request = Net::HTTP::Post.new(url)
 request["location-id"] = "{{locationId}}"
 request["Content-Type"] = "application/json"
 request.body = JSON.dump({
-    "connectionId": ""
+    "attachmentId": ""
 })
 
 response = https.request(request)
@@ -95,7 +95,7 @@ import json
 url = "https://{{baseurl}}/scan/v2/startscanning"
 
 payload = json.dumps({
-    "connectionId": ""
+    "attachmentId": ""
 })
 headers = {
     'location-id': '{{locationId}}',
@@ -124,7 +124,7 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'POST',
     CURLOPT_POSTFIELDS =>'{
-    "connectionId": ""
+    "attachmentId": ""
 }',
     CURLOPT_HTTPHEADER => array(
     'location-id: {{locationId}}',
@@ -145,7 +145,7 @@ Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("https://{{baseurl}}/scan/v2/startscanning")
     .header("location-id", "{{locationId}}")
     .header("Content-Type", "application/json")
-    .body("{\r\n    \"connectionId\": \"\"\r\n}")
+    .body("{\r\n    \"attachmentId\": \"\"\r\n}")
     .asString();      
 </code>
 </pre>
@@ -161,7 +161,7 @@ var options = {
     'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-    "connectionId": ""
+    "attachmentId": ""
     })
 
 };
@@ -190,7 +190,7 @@ func main() {
 
   payload := strings.NewReader(`{`+"
 "+`
-    "connectionId": ""`+"
+    "attachmentId": ""`+"
 "+`
 }`)
 
@@ -231,7 +231,7 @@ request.AddHeader("location-id", "{{locationId}}");
 request.AddHeader("Content-Type", "application/json");
 var body = @"{
 " + "\n" +
-@"    ""connectionId"": """"
+@"    ""attachmentId"": """"
 " + "\n" +
 @"}";
 request.AddParameter("application/json", body,  ParameterType.RequestBody);
@@ -250,7 +250,7 @@ Console.WriteLine(response.Content);
 <h2>Request Body</h4>
 
 <p>
-    To successfully make the request, you must include the <code class="inline-code">connectionId</code> of the device you wish to reserve and start scanning.
+    To successfully make the request, you must include the <code class="inline-code">attachmentId</code> of the device you wish to reserve and start scanning.
 </p>
 
 
@@ -260,7 +260,7 @@ Console.WriteLine(response.Content);
     <pre>
             <code class="language-json">
 {
-    "connectionId": "{{hhs_connection_id}}"
+    "attachmentId": "{{hhs_attachment_id}}"
 }
         </code>
         </pre>
@@ -268,7 +268,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample Request Body for <span class="method post">POST</span>
-    <code class="inline-code">/scan/v2/startscanning</code> request that provides a <code class="inline-code">connectionId</code> of the device you wish to gain access to
+    <code class="inline-code">/scan/v2/startscanning</code> request that provides a <code class="inline-code">attachmentId</code> of the device you wish to gain access to
 </p>
 
 

@@ -47,8 +47,8 @@ curl --location -g --request POST 'https://{{baseurl}}/print/v2/boardingpass/pdf
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "connectionId": "",
-    "correlationId": "postman-ftr-bce64c5d-7384-4959-88cc-8acaa43c0d72",
+    "attachmentId": "",
+    "relationId": "postman-ftr-bce64c5d-7384-4959-88cc-8acaa43c0d72",
     "printData": "JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb25EYXRx"
 }'
 </code></pre>
@@ -116,8 +116,8 @@ curl --location -g --request POST 'https://{{baseurl}}/print/v2/boardingpass/pdf
     <pre>
             <code class="language-json">
 {
-    "connectionId": "{{MFP_connection_id}}",
-    "correlationId": "postman-ftr-{{$guid}}",
+    "attachmentId": "{{MFP_attachment_id}}",
+    "relationId": "postman-ftr-{{$guid}}",
     "printData": "JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb2"
 }  
         </code>

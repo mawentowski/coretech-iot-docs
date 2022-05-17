@@ -9,10 +9,10 @@
 
 
 <p>
-    Send a <span class="method post">POST</span><code class="inline-code">/gateaccess/v2/closegate</code> request to
+    Send a <span class="method post">POST</span><code class="inline-code">/gateaccess/v2/closeaccesspoint</code> request to
     end the boarding process. For a Multi-Technology Reader, this triggers the gate
     to close. For Magstripe Readers, this indicates the boarding process has
-    ended and the attendant scanning boarding passes will no longer do so unless the
+    ended and the attendant scanning entry passes will no longer do so unless the
     boarding process is initiated over again (
     <code class="inline-code">/gateaccess/v2/opengate</code>).
 </p>
@@ -67,12 +67,12 @@
     </div>
 
 <div id="bash-close-gate" class="tabcontent dark"><pre> <code>
-curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/closegate' \
+curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/closeaccesspoint' \
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "connectionId": "{{msr_connection_id}}",
-    "correlationId": "postman-ftr-bf7503f8-d8f8-4a3f-9b95-30f3c4e47685"
+    "attachmentId": "{{msr_attachment_id}}",
+    "relationId": "postman-ftr-bf7503f8-d8f8-4a3f-9b95-30f3c4e47685"
 }'
 </code>
 </pre>
@@ -83,7 +83,7 @@ require "uri"
 require "json"
 require "net/http"
 
-url = URI("https://{{baseurl}}/gateaccess/v2/closegate")
+url = URI("https://{{baseurl}}/gateaccess/v2/closeaccesspoint")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -92,8 +92,8 @@ request = Net::HTTP::Post.new(url)
 request["location-id"] = "{{locationId}}"
 request["Content-Type"] = "application/json"
 request.body = JSON.dump({
-    "connectionId": "{{msr_connection_id}}",
-    "correlationId": "postman-ftr-eb7d0d31-5942-47ba-b6c4-87528f174a9d"
+    "attachmentId": "{{msr_attachment_id}}",
+    "relationId": "postman-ftr-eb7d0d31-5942-47ba-b6c4-87528f174a9d"
 })
 
 response = https.request(request)
@@ -106,11 +106,11 @@ puts response.read_body
 import requests
 import json
 
-url = "https://{{baseurl}}/gateaccess/v2/closegate"
+url = "https://{{baseurl}}/gateaccess/v2/closeaccesspoint"
 
 payload = json.dumps({
-    "connectionId": "{{msr_connection_id}}",
-    "correlationId": "postman-ftr-3a0504ad-15f2-4e97-9e3d-e74222accc28"
+    "attachmentId": "{{msr_attachment_id}}",
+    "relationId": "postman-ftr-3a0504ad-15f2-4e97-9e3d-e74222accc28"
 })
 headers = {
     'location-id': '{{locationId}}',
@@ -130,7 +130,7 @@ print(response.text)
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/gateaccess/v2/closegate',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/gateaccess/v2/closeaccesspoint',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -139,8 +139,8 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'POST',
     CURLOPT_POSTFIELDS =>'{
-    "connectionId": "{{msr_connection_id}}",
-    "correlationId": "postman-ftr-7952ff4e-4a25-4070-9bef-cfefed05dedf"
+    "attachmentId": "{{msr_attachment_id}}",
+    "relationId": "postman-ftr-7952ff4e-4a25-4070-9bef-cfefed05dedf"
 }',
     CURLOPT_HTTPHEADER => array(
     'location-id: {{locationId}}',
@@ -158,10 +158,10 @@ echo $response;
 
 <div id="Java-close-gate" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("https://{{baseurl}}/gateaccess/v2/closegate")
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/gateaccess/v2/closeaccesspoint")
     .header("location-id", "{{locationId}}")
     .header("Content-Type", "application/json")
-    .body("{\r\n    \"connectionId\": \"{{msr_connection_id}}\",\r\n    \"correlationId\": \"postman-ftr-d1b83c2c-f6fb-4c7d-bf9e-8a6f1de9748c\"\r\n}")
+    .body("{\r\n    \"attachmentId\": \"{{msr_attachment_id}}\",\r\n    \"relationId\": \"postman-ftr-d1b83c2c-f6fb-4c7d-bf9e-8a6f1de9748c\"\r\n}")
     .asString();     
 </code>
 </pre>
@@ -171,14 +171,14 @@ HttpResponse<String> response = Unirest.post("https://{{baseurl}}/gateaccess/v2/
 var request = require('request');
 var options = {
     'method': 'POST',
-    'url': 'https://{{baseurl}}/gateaccess/v2/closegate',
+    'url': 'https://{{baseurl}}/gateaccess/v2/closeaccesspoint',
     'headers': {
     'location-id': '{{locationId}}',
     'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-    "connectionId": "{{msr_connection_id}}",
-    "correlationId": "postman-ftr-b7e7d48b-588d-400b-9e0a-762afe19be6a"
+    "attachmentId": "{{msr_attachment_id}}",
+    "relationId": "postman-ftr-b7e7d48b-588d-400b-9e0a-762afe19be6a"
     })
 
 };
@@ -202,14 +202,14 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/gateaccess/v2/closegate"
+    url := "https://%7B%7Bbaseurl%7D%7D/gateaccess/v2/closeaccesspoint"
     method := "POST"
 
     payload := strings.NewReader(`{`+"
 "+`
-    "connectionId": "{{msr_connection_id}}",`+"
+    "attachmentId": "{{msr_attachment_id}}",`+"
 "+`
-    "correlationId": "postman-ftr-99ffafb1-09d4-487e-b452-fe4e6cd7a074"`+"
+    "relationId": "postman-ftr-99ffafb1-09d4-487e-b452-fe4e6cd7a074"`+"
 "+`
 }`)
 
@@ -243,16 +243,16 @@ func main() {
 </div>
 
 <div id=".NET-close-gate" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/gateaccess/v2/closegate");
+var client = new RestClient("https://{{baseurl}}/gateaccess/v2/closeaccesspoint");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
 request.AddHeader("location-id", "{{locationId}}");
 request.AddHeader("Content-Type", "application/json");
 var body = @"{
 " + "\n" +
-@"    ""connectionId"": ""{{msr_connection_id}}"",
+@"    ""attachmentId"": ""{{msr_attachment_id}}"",
 " + "\n" +
-@"    ""correlationId"": ""postman-ftr-837d58df-e40c-47ae-8441-747813118a85""
+@"    ""relationId"": ""postman-ftr-837d58df-e40c-47ae-8441-747813118a85""
 " + "\n" +
 @"}";
 request.AddParameter("application/json", body,  ParameterType.RequestBody);
@@ -277,7 +277,7 @@ Console.WriteLine(response.Content);
 
 
 <p>
-    To successfully make the request, you must include the <code class="inline-code">connectionId</code> of the gate device.
+    To successfully make the request, you must include the <code class="inline-code">attachmentId</code> of the gate device.
 </p>
 
 
@@ -286,8 +286,8 @@ Console.WriteLine(response.Content);
     <pre>
             <code class="language-json">
 {
-    "connectionId": "{{msr_connection_id}}",
-    "correlationId": "postman-ftr-{{$guid}}"
+    "attachmentId": "{{msr_attachment_id}}",
+    "relationId": "postman-ftr-{{$guid}}"
 }
         </code>
         </pre>
@@ -299,14 +299,14 @@ Console.WriteLine(response.Content);
 <h2>Response</h2>
 <p>
     Upon making a
-    <code class="inline-code">/gateaccess/v2/closegate</code>
+    <code class="inline-code">/gateaccess/v2/closeaccesspoint</code>
     request, the GateAccess API acknowledges the request with a synchronous
     message, returning a
     <code class="inline-code">2xx</code> success status code (as seen in a tool
     like Postman).
 </p>
 <p>
-    A <code class="inline-code">CloseGateResponse</code> message displays on the
+    A <code class="inline-code">CloseAccessPointResponse</code> message displays on the
     Service Bus simply indicating that the boarding process has ended, as
     indicated by the <code class="inline-code">IsSuccess</code> property set to
     <code class="inline-code">true</code>.
@@ -325,7 +325,7 @@ Console.WriteLine(response.Content);
 </div>
 
 <p class="caption">
-    <code class="inline-code">CloseGateResponse</code> Service Bus Message Body
+    <code class="inline-code">CloseAccessPointResponse</code> Service Bus Message Body
     indicating the request to end the boarding process has succeeded
 </p>
 

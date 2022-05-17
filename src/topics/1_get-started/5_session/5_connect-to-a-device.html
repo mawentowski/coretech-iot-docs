@@ -7,14 +7,14 @@
 
 <p>
     The <span class="method post">POST</span>
-    <code class="inline-code">/session/v2/connections</code> request creates a
-    connection to a device at specific location and associates that device to a
+    <code class="inline-code">/session/v2/attachments</code> request creates a
+    attachment to a device at specific location and associates that device to a
     subscription where it can send messages for the application backend to consume.
 </p>
 <h2 id="request-body-2">Make an API Call</h2>
 <p>
     You must pass three properties in the Request Body of a
-    <code class="inline-code">/session/v2/connections</code> request:
+    <code class="inline-code">/session/v2/attachments</code> request:
 </p>
 
 <table class="main-table">
@@ -48,7 +48,7 @@
 
     </tbody>
 </table>
-<p class="caption">Required Request Body properties to make a <span class="method post">POST</span> <code class="inline-code">/session/v2/connections</code> request</p>
+<p class="caption">Required Request Body properties to make a <span class="method post">POST</span> <code class="inline-code">/session/v2/attachments</code> request</p>
 
 
 
@@ -89,7 +89,7 @@
     </div>
 
 <div id="bash-connect-to-a-device" class="tabcontent dark"><pre> <code>
-curl --location -g --request POST 'https://{{baseurl}}/session/v2/connections' \
+curl --location -g --request POST 'https://{{baseurl}}/session/v2/attachments' \
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -106,7 +106,7 @@ require "uri"
 require "json"
 require "net/http"
 
-url = URI("https://{{baseurl}}/session/v2/connections")
+url = URI("https://{{baseurl}}/session/v2/attachments")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -130,7 +130,7 @@ puts response.read_body
 import requests
 import json
 
-url = "https://{{baseurl}}/session/v2/connections"
+url = "https://{{baseurl}}/session/v2/attachments"
 
 payload = json.dumps({
     "SubscriptionId": "",
@@ -155,7 +155,7 @@ print(response.text)
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/session/v2/connections',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/session/v2/attachments',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -184,7 +184,7 @@ echo $response;
 
 <div id="Java-connect-to-a-device" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("https://{{baseurl}}/session/v2/connections")
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/session/v2/attachments")
     .header("location-id", "{{locationId}}")
     .header("Content-Type", "application/json")
     .body("{\r\n    \"SubscriptionId\": \"\",\r\n    \"ReservationId\": \"{{reservation_id}}\",\r\n    \"DeviceId\": \"{{locationId}}.MFP1\"\r\n}")
@@ -197,7 +197,7 @@ HttpResponse<String> response = Unirest.post("https://{{baseurl}}/session/v2/con
 var request = require('request');
 var options = {
     'method': 'POST',
-    'url': 'https://{{baseurl}}/session/v2/connections',
+    'url': 'https://{{baseurl}}/session/v2/attachments',
     'headers': {
     'location-id': '{{locationId}}',
     'Content-Type': 'application/json'
@@ -229,7 +229,7 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/session/v2/connections"
+    url := "https://%7B%7Bbaseurl%7D%7D/session/v2/attachments"
     method := "POST"
 
     payload := strings.NewReader(`{`+"
@@ -272,7 +272,7 @@ func main() {
 </div>
 
 <div id=".NET-connect-to-a-device" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/session/v2/connections");
+var client = new RestClient("https://{{baseurl}}/session/v2/attachments");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
 request.AddHeader("location-id", "{{locationId}}");
@@ -296,7 +296,7 @@ Console.WriteLine(response.Content);
 </div>
 
 <p class="caption">Sample <span class="method post">POST</span>
-    <code class="inline-code">/session/v2/connections</code> API call providing a <code class="inline-code">connectionId</code> of a IJP device
+    <code class="inline-code">/session/v2/attachments</code> API call providing a <code class="inline-code">attachmentId</code> of a IJP device
 </p>
 
 
@@ -305,7 +305,7 @@ Console.WriteLine(response.Content);
 <h2 id="response-body-3">Response</h2>
 <p>
     A successful request returns a <code class="inline-code">2xx</code> success
-    status code with the JSON Response Body containing the connection details.
+    status code with the JSON Response Body containing the attachment details.
 </p>
 
 
@@ -314,7 +314,7 @@ Console.WriteLine(response.Content);
     <pre>
             <code class="language-json">
 {
-    "connectionId": "a060a6f1-ec5b-43cb-8f0b-bf6f8891ebdf",
+    "attachmentId": "a060a6f1-ec5b-43cb-8f0b-bf6f8891ebdf",
     "reservationId": "46d2309e-0ec5-4ef9-98f1-e45a54c76688",
     "subscriptionId": "87fd60f9-nft8-466e-9659-43ad928c75f6",
     "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB005.IJP1",
@@ -329,30 +329,30 @@ Console.WriteLine(response.Content);
 
 
 <p class="caption">Sample <span class="method post">POST</span>
-    <code class="inline-code">/session/v2/connections</code> response showing the new <code class="inline-code">connectionId</code> that can be used to connect to the device
+    <code class="inline-code">/session/v2/attachments</code> response showing the new <code class="inline-code">attachmentId</code> that can be used to connect to the device
 </p>
 
 
 
 <p>
-    The returned <code class="inline-code">connectionId</code> is now associated
+    The returned <code class="inline-code">attachmentId</code> is now associated
     to the <code class="inline-code">subscriptionId</code>, so any messages
     coming from the device will display on that subscription. The airline
-    backend will now use this <code class="inline-code">connectionId</code> to
+    backend will now use this <code class="inline-code">attachmentId</code> to
     send commands to the device through Flex.
 </p>
 <p>
     An <code class="inline-code">expiryTime</code> set to
     <strong>5 minutes</strong> from the time of the request is returned. This
-    indicates when the connection to the device expires.
+    indicates when the attachment to the device expires.
 </p>
 <div class="alert-section info-alert">
     <div class="">
         <p>
             If continued access to the device is desired, ensure to send another
             <span class="method post">POST</span>
-            <code class="inline-code">/session/v2/connections</code> request to
-            create a new connection at the time of expiry of the old connection.
+            <code class="inline-code">/session/v2/attachments</code> request to
+            create a new attachment at the time of expiry of the old attachment.
         </p>
     </div>
 </div>
@@ -365,11 +365,11 @@ Console.WriteLine(response.Content);
     <div class="alert-section tip-alert">
         <div class="">
             <p>
-                If a connection is no longer needed, it is best practice to delete the
-                connection to allow other application backends to connect to the device.
-                This is achieved by sending a <span class="method del">DEL</span> <code class="inline-code">/session/v2/connections/{connection_id}</code>
+                If an attachment is no longer needed, it is best practice to delete the
+                attachment to allow other application backends to connect to the device.
+                This is achieved by sending a <span class="method del">DEL</span> <code class="inline-code">/session/v2/attachments/{attachment_id}</code>
                 request, passing in the
-                <code class="inline-code">connection_id</code> of the connection to be
+                <code class="inline-code">attachment_id</code> of the attachment to be
                 deleted as a path parameter.
             </p>
         </div>
@@ -382,7 +382,7 @@ Console.WriteLine(response.Content);
     After having successfully completed the Session API flow, you are now ready
     to explore all of the Flex APIs. There are dedicated sections for each API,
     each providing an overview of how the API works and a step-by-step
-    walkthrough that uses Postman, a VM, and a Service Bus connection to
+    walkthrough that uses Postman, a VM, and a Service Bus attachment to
     interact with the API.
 </p>
 <!-- These are links at the bottom with the book icons -->

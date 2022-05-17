@@ -16,9 +16,7 @@
         a
         <code class="inline-code">/gateaccess/v2/opengate</code> request.
     </li>
-    <li>
-        An attendant takes the boarding pass from the passenger and scans it.
-    </li>
+    <li>An attendant takes the entry pass from the passenger and scans it.</li>
     <li>
         The application backend determines if that passenger can be boarded and
         displays the result for the attendant.
@@ -34,7 +32,7 @@
                 in the Request Body (e.g., "Passenger Okay to Board").
             </li>
             <li>
-                The attendant gives the boarding pass back to the passenger, and
+                The attendant gives the entry pass back to the passenger, and
                 the passenger is then allowed to pass the attendant and board
                 the flight.
             </li>
@@ -63,14 +61,14 @@
     </li>
     <li>
         Once all passengers are boarding, the attendant sends a
-        <code class="inline-code">/gateaccess/v2/closegate</code> request that
-        closes the boarding process.
+        <code class="inline-code">/gateaccess/v2/closeaccesspoint</code> request
+        that closes the boarding process.
     </li>
 </ul>
 <h2 id="self-boarding-gate-process">Multi-Technology Reader Process</h2>
 <p>
     The following is a summary of the boarding process when the passenger scans
-    his or her boarding pass using at a Multi-Technology Reader.
+    his or her entry pass using at a Multi-Technology Reader.
 </p>
 <ul>
     <li>
@@ -82,7 +80,7 @@
         The gate display turns green to indicate it is ready to process
         passengers.
     </li>
-    <li>The passenger scans his or her boarding pass at the MTR.</li>
+    <li>The passenger scans his or her entry pass at the MTR.</li>
     <li>
         The application backend determines if that passenger can be boarded.
     </li>
@@ -116,8 +114,8 @@
     </li>
     <li>
         Once all passengers are boarding, the attendant sends a
-        <code class="inline-code">/gateaccess/v2/closegate</code> request that
-        ends the boarding process.
+        <code class="inline-code">/gateaccess/v2/closeaccesspoint</code> request
+        that ends the boarding process.
     </li>
 </ul>
 <div class="continued-reading-section">

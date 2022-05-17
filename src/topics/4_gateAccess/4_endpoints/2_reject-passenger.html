@@ -65,8 +65,8 @@ curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/rejectpasse
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "connectionId": "{{msr_connection_id}}",
-    "correlationId": "postman-ftr-02ba25f7-8328-4ff6-8fd9-034d9f2a9cc1",
+    "attachmentId": "{{msr_attachment_id}}",
+    "relationId": "postman-ftr-02ba25f7-8328-4ff6-8fd9-034d9f2a9cc1",
     "message": [ "MSG Line 1", "MSG Line 2" ],
     "alarm": true
 }'
@@ -88,8 +88,8 @@ request = Net::HTTP::Post.new(url)
 request["location-id"] = "{{locationId}}"
 request["Content-Type"] = "application/json"
 request.body = JSON.dump({
-    "connectionId": "{{msr_connection_id}}",
-    "correlationId": "postman-ftr-92d80fea-ea8b-4d37-8b40-dd1f043a6234",
+    "attachmentId": "{{msr_attachment_id}}",
+    "relationId": "postman-ftr-92d80fea-ea8b-4d37-8b40-dd1f043a6234",
     "message": [
     "MSG Line 1",
     "MSG Line 2"
@@ -110,8 +110,8 @@ import json
 url = "https://{{baseurl}}/gateaccess/v2/rejectpassenger"
 
 payload = json.dumps({
-    "connectionId": "{{msr_connection_id}}",
-    "correlationId": "postman-ftr-d6e4e0a1-caef-4508-8ecb-773f4ffcab1d",
+    "attachmentId": "{{msr_attachment_id}}",
+    "relationId": "postman-ftr-d6e4e0a1-caef-4508-8ecb-773f4ffcab1d",
     "message": [
     "MSG Line 1",
     "MSG Line 2"
@@ -145,8 +145,8 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'POST',
     CURLOPT_POSTFIELDS =>'{
-    "connectionId": "{{msr_connection_id}}",
-    "correlationId": "postman-ftr-68155bf1-460f-4b84-b442-0a4207760d66",
+    "attachmentId": "{{msr_attachment_id}}",
+    "relationId": "postman-ftr-68155bf1-460f-4b84-b442-0a4207760d66",
     "message": [ "MSG Line 1", "MSG Line 2" ],
     "alarm": true
 }',
@@ -169,7 +169,7 @@ Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("https://{{baseurl}}/gateaccess/v2/rejectpassenger")
     .header("location-id", "{{locationId}}")
     .header("Content-Type", "application/json")
-    .body("{\r\n    \"connectionId\": \"{{msr_connection_id}}\",\r\n    \"correlationId\": \"postman-ftr-de1f8b06-de0a-48c5-b53f-e7de12f97b1c\",\r\n    \"message\": [ \"MSG Line 1\", \"MSG Line 2\" ],\r\n    \"alarm\": true\r\n}")
+    .body("{\r\n    \"attachmentId\": \"{{msr_attachment_id}}\",\r\n    \"relationId\": \"postman-ftr-de1f8b06-de0a-48c5-b53f-e7de12f97b1c\",\r\n    \"message\": [ \"MSG Line 1\", \"MSG Line 2\" ],\r\n    \"alarm\": true\r\n}")
     .asString();    
 </code>
 </pre>
@@ -183,8 +183,8 @@ var req = unirest('POST', 'https://{{baseurl}}/gateaccess/v2/rejectpassenger')
     'Content-Type': 'application/json'
     })
     .send(JSON.stringify({
-    "connectionId": "{{msr_connection_id}}",
-    "correlationId": "postman-ftr-79890a72-7276-4571-96eb-3e4fff040d50",
+    "attachmentId": "{{msr_attachment_id}}",
+    "relationId": "postman-ftr-79890a72-7276-4571-96eb-3e4fff040d50",
     "message": [
         "MSG Line 1",
         "MSG Line 2"
@@ -216,9 +216,9 @@ func main() {
 
     payload := strings.NewReader(`{`+"
 "+`
-    "connectionId": "{{msr_connection_id}}",`+"
+    "attachmentId": "{{msr_attachment_id}}",`+"
 "+`
-    "correlationId": "postman-ftr-71ad8dcc-b292-482b-8005-f010262b1942",`+"
+    "relationId": "postman-ftr-71ad8dcc-b292-482b-8005-f010262b1942",`+"
 "+`
     "message": [ "MSG Line 1", "MSG Line 2" ],`+"
 "+`
@@ -263,9 +263,9 @@ request.AddHeader("location-id", "{{locationId}}");
 request.AddHeader("Content-Type", "application/json");
 var body = @"{
 " + "\n" +
-@"    ""connectionId"": ""{{msr_connection_id}}"",
+@"    ""attachmentId"": ""{{msr_attachment_id}}"",
 " + "\n" +
-@"    ""correlationId"": ""postman-ftr-dbe3842b-ee44-415e-af8b-ee5c4e17a47a"",
+@"    ""relationId"": ""postman-ftr-dbe3842b-ee44-415e-af8b-ee5c4e17a47a"",
 " + "\n" +
 @"    ""message"": [ ""MSG Line 1"", ""MSG Line 2"" ],
 " + "\n" +
@@ -304,7 +304,7 @@ Console.WriteLine(response.Content);
     <pre>
             <code class="language-json">
 {
-    "ConnectionId": "{{msr_connection_id}}",
+    "ConnectionId": "{{msr_attachment_id}}",
     "CorrelationId": "{{$guid}}",
     "Message": [ "Passenger Not Ok to Board" ],
     "Alarm": true

@@ -47,8 +47,8 @@ curl --location -g --request POST 'https://{{baseurl}}/print/v2/boardingpass/pdf
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "connectionId": "",
-    "correlationId": "postman-ftr-bce64c5d-7384-4959-88cc-8acaa43c0d72",
+    "attachmentId": "",
+    "relationId": "postman-ftr-bce64c5d-7384-4959-88cc-8acaa43c0d72",
     "printData": "JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb25EYXRx"
 }'
 </code></pre>
@@ -83,7 +83,7 @@ curl --location -g --request POST 'https://{{baseurl}}/print/v2/boardingpass/pdf
         endpoint. For example, when sending a <span class="method post">POST </span><code class="inline-code">/print/v2/boardingpass/</code> request, you
         must append the path parameter
         <code class="inline-code">{type}</code> to the end path to indicate the
-        requested print format for the boarding pass: <span class="method post">POST </span><code class="inline-code">/print/v2/boardingpass/pdf</code>.
+        requested print format for the entry pass: <span class="method post">POST </span><code class="inline-code">/print/v2/boardingpass/pdf</code>.
     </li>
 </ul>
 <h2 id="header-parameters-1">Header Parameters</h2>

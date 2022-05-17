@@ -38,7 +38,7 @@
     ],
     "timestamp": "2021-11-05 11:42:40Z",
     "trace_id": "e2f39c31-d6fb-4c66-9c35-a815eeb33300",
-    "correlation_id": "225c9f55-e2ef-4c24-8619-306a0ce36cbd",
+    "relation_id": "225c9f55-e2ef-4c24-8619-306a0ce36cbd",
     "error_uri": "https://login.microsoftonline.com/error?code=900023"
 }
         </code>
@@ -89,7 +89,7 @@
 
 <p class="caption">Response Body when no subscription exists</p>
 <ul>
-    <li>when the connection to a device has expired:</li>
+    <li>when the attachment to a device has expired:</li>
 </ul>
 
 <div class="method-example atom-one-light">
@@ -102,8 +102,8 @@
     "status": 400,
     "traceId": "00-815de99286d3954fa69fce27b1ce06df-819ec6565c1c944a-00",
     "errors": {
-        "$.connectionId": [
-            "The JSON value could not be converted to System.Guid. Path: $.connectionId | LineNumber: 1 | BytePositionInLine: 20."
+        "$.attachmentId": [
+            "The JSON value could not be converted to System.Guid. Path: $.attachmentId | LineNumber: 1 | BytePositionInLine: 20."
         ]
     }
 }
@@ -111,11 +111,11 @@
         </pre>
 </div>
 
-<p class="caption">Response Body when connection to device has expired</p>
+<p class="caption">Response Body when attachment to device has expired</p>
 <ul>
     <li>
-        when attempting to delete a connection to a device when at present there
-        is no connection.
+        when attempting to delete an attachment to a device when at present
+        there is no attachment.
     </li>
 </ul>
 
@@ -129,7 +129,7 @@
     "status": 400,
     "traceId": "00-ddcc4b696af7fc4e90e1566144750fbb-51c76a2b58fbdd49-00",
     "errors": {
-        "connectionId": [
+        "attachmentId": [
             "The value 'null' is not valid."
         ]
     }
@@ -139,7 +139,7 @@
 </div>
 
 <p class="caption">
-    Response Body when attempting to delete a connection when it does not exist
+    Response Body when attempting to delete an attachment when it does not exist
 </p>
 <p>
     To determine which scenario applies, check the
@@ -153,20 +153,20 @@
         create and receive details for a new subscription.
     </li>
     <li>
-        If the error says <code class="inline-code">connectionId</code> with a
+        If the error says <code class="inline-code">attachmentId</code> with a
         <code class="inline-code">could not be converted</code> message, then
-        the connection to the device has expired. Simply connect to the device
+        the attachment to the device has expired. Simply connect to the device
         again.
     </li>
     <li>
-        If the error says <code class="inline-code">connectionId</code> with a
+        If the error says <code class="inline-code">attachmentId</code> with a
         <code class="inline-code">The value 'null' is not valid.</code>
-        message, then there is no connection to delete.
+        message, then there is no attachment to delete.
     </li>
 </ul>
-<h3 id="connection-has-expired">Connection has expired</h3>
+<h3 id="attachment-has-expired">Connection has expired</h3>
 <p>
-    A Flex API returns this error when the connection to a device has expired.
+    A Flex API returns this error when the attachment to a device has expired.
 </p>
 
 <div class="method-example atom-one-light">
@@ -185,21 +185,21 @@
 </div>
 
 <p class="caption">
-    Response Body when the connection to the device has expired
+    Response Body when the attachment to the device has expired
 </p>
 <p>
-    After connecting to a device, a connection
+    After connecting to a device, an attachment
     <code class="inline-code">expiryTime</code> is returned in the Response Body
     set to <strong>30 minutes</strong> from the time the
-    <code class="inline-code">session/v2/connections</code> request was made.
+    <code class="inline-code">session/v2/attachments</code> request was made.
 </p>
 <p>
     The resolution is to simply send another
-    <code class="inline-code">session/v2/connections</code> request.
+    <code class="inline-code">session/v2/attachments</code> request.
 </p>
-<h3 id="no-connection-exists">No Connection Exists</h3>
+<h3 id="no-attachment-exists">No Connection Exists</h3>
 <p>
-    A Flex API returns this error when the connection to a device has expired.
+    A Flex API returns this error when the attachment to a device has expired.
 </p>
 
 <div class="method-example atom-one-light">
@@ -218,17 +218,17 @@
 </div>
 
 <p class="caption">
-    Response Body when the connection to the device has expired
+    Response Body when the attachment to the device has expired
 </p>
 <p>
-    After connecting to a device, a connection
+    After connecting to a device, an attachment
     <code class="inline-code">expiryTime</code> is returned in the Response Body
     set to <strong>30 minutes</strong> from the time the
-    <code class="inline-code">session/v2/connections</code> request was made.
+    <code class="inline-code">session/v2/attachments</code> request was made.
 </p>
 <p>
     The resolution is to simply send another
-    <code class="inline-code">session/v2/connections</code> request.
+    <code class="inline-code">session/v2/attachments</code> request.
 </p>
 <h2 id="401-unauthorized">401 Unauthorized</h2>
 <p>

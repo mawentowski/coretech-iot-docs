@@ -67,8 +67,8 @@ curl --location -g --request POST 'https://{{baseurl}}/gateaccess/v2/acceptconsu
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "connectionId": "{{msr_connection_id}}",
-    "correlationId": "postman-ftr-bf20f851-b098-4c2e-a2e4-357c832f360c",
+    "attachmentId": "{{msr_attachment_id}}",
+    "relationId": "postman-ftr-bf20f851-b098-4c2e-a2e4-357c832f360c",
     "message": ["MSG Line 1", "MSG Line 2"],
     "receiptData": {
         "data": "#NN#RD#FONT1#SIZE7#FREEBOARDING RECEIPT#FONT1#SIZE7#FREECLASS CHANGE#FONT1#SIZE0#FREE#FONT1#SIZE"
@@ -92,8 +92,8 @@ request = Net::HTTP::Post.new(url)
 request["location-id"] = "{{locationId}}"
 request["Content-Type"] = "application/json"
 request.body = JSON.dump({
-    "connectionId": "{{msr_connection_id}}",
-    "correlationId": "postman-ftr-02982da0-52d0-4250-bbcd-0757650490de",
+    "attachmentId": "{{msr_attachment_id}}",
+    "relationId": "postman-ftr-02982da0-52d0-4250-bbcd-0757650490de",
     "message": [
     "MSG Line 1",
     "MSG Line 2"
@@ -116,8 +116,8 @@ import json
 url = "https://{{baseurl}}/gateaccess/v2/acceptconsumer"
 
 payload = json.dumps({
-    "connectionId": "{{msr_connection_id}}",
-    "correlationId": "postman-ftr-24413429-2d13-4d17-ab65-5efa3086c1ea",
+    "attachmentId": "{{msr_attachment_id}}",
+    "relationId": "postman-ftr-24413429-2d13-4d17-ab65-5efa3086c1ea",
     "message": [
     "MSG Line 1",
     "MSG Line 2"
@@ -153,8 +153,8 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'POST',
     CURLOPT_POSTFIELDS =>'{
-    "connectionId": "{{msr_connection_id}}",
-    "correlationId": "postman-ftr-57377a49-604f-4866-82d0-defb611b655d",
+    "attachmentId": "{{msr_attachment_id}}",
+    "relationId": "postman-ftr-57377a49-604f-4866-82d0-defb611b655d",
     "message": ["MSG Line 1", "MSG Line 2"],
     "receiptData": {
         "data": "#NN#RD#FONT1#SIZE7#FREEBOARDING RECEIPT#FONT1#SIZE7#FREECLASS CHANGE#FONT1#SIZE0#FREE#FONT1#SIZE0#FREEYour class has changed - See Below#FONT1#SIZE0#FREE#FONT1#SIZE3#NAMELEE/MAYLIN MDM#FONT1#SIZE3#FREE#FONT1#SIZE3#ALCDMH#FONT1#SIZE3#FLNR0002#FONT1#SIZE3#DATE16JAN#FONT1#SIZE3#BORDKUL#FONT1#SIZE3#DESTLHR#FONT1#SIZE3#SQNR8#FONT1#SIZE7#SEAT1K#FONT1#SIZE7#CLSSF#FONT1#SIZE0#FREE"
@@ -179,7 +179,7 @@ Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("https://{{baseurl}}/gateaccess/v2/acceptconsumer")
     .header("location-id", "{{locationId}}")
     .header("Content-Type", "application/json")
-    .body("{\r\n    \"connectionId\": \"{{msr_connection_id}}\",\r\n    \"correlationId\": \"postman-ftr-b1c7ce13-2b9f-4426-acd3-ed5bf06f8831\",\r\n    \"message\": [\"MSG Line 1\", \"MSG Line 2\"],\r\n    \"receiptData\": {\r\n      \"data\": \"#NN#RD#FONT1#SIZE7#FREEBOARDING RECEIPT#FONT1#SIZE7#FREECLASS CHANGE#FONT1#SIZE0#FREE#FONT1#SIZE0#FREEYour class has changed - See Below#FONT1#SIZE0#FREE#FONT1#SIZE3#NAMELEE/MAYLIN MDM#FONT1#SIZE3#FREE#FONT1#SIZE3#ALCDMH#FONT1#SIZE3#FLNR0002#FONT1#SIZE3#DATE16JAN#FONT1#SIZE3#BORDKUL#FONT1#SIZE3#DESTLHR#FONT1#SIZE3#SQNR8#FONT1#SIZE7#SEAT1K#FONT1#SIZE7#CLSSF#FONT1#SIZE0#FREE\"\r\n    }\r\n}")
+    .body("{\r\n    \"attachmentId\": \"{{msr_attachment_id}}\",\r\n    \"relationId\": \"postman-ftr-b1c7ce13-2b9f-4426-acd3-ed5bf06f8831\",\r\n    \"message\": [\"MSG Line 1\", \"MSG Line 2\"],\r\n    \"receiptData\": {\r\n      \"data\": \"#NN#RD#FONT1#SIZE7#FREEBOARDING RECEIPT#FONT1#SIZE7#FREECLASS CHANGE#FONT1#SIZE0#FREE#FONT1#SIZE0#FREEYour class has changed - See Below#FONT1#SIZE0#FREE#FONT1#SIZE3#NAMELEE/MAYLIN MDM#FONT1#SIZE3#FREE#FONT1#SIZE3#ALCDMH#FONT1#SIZE3#FLNR0002#FONT1#SIZE3#DATE16JAN#FONT1#SIZE3#BORDKUL#FONT1#SIZE3#DESTLHR#FONT1#SIZE3#SQNR8#FONT1#SIZE7#SEAT1K#FONT1#SIZE7#CLSSF#FONT1#SIZE0#FREE\"\r\n    }\r\n}")
     .asString();         
 </code>
 </pre>
@@ -195,8 +195,8 @@ var options = {
     'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-    "connectionId": "{{msr_connection_id}}",
-    "correlationId": "postman-ftr-02fa0fce-04a0-4a69-aa1f-25d0dbf77d78",
+    "attachmentId": "{{msr_attachment_id}}",
+    "relationId": "postman-ftr-02fa0fce-04a0-4a69-aa1f-25d0dbf77d78",
     "message": [
         "MSG Line 1",
         "MSG Line 2"
@@ -232,9 +232,9 @@ func main() {
 
     payload := strings.NewReader(`{`+"
 "+`
-    "connectionId": "{{msr_connection_id}}",`+"
+    "attachmentId": "{{msr_attachment_id}}",`+"
 "+`
-    "correlationId": "postman-ftr-54ca5304-8d32-40dc-9b75-013abbdbae73",`+"
+    "relationId": "postman-ftr-54ca5304-8d32-40dc-9b75-013abbdbae73",`+"
 "+`
     "message": ["MSG Line 1", "MSG Line 2"],`+"
 "+`
@@ -283,9 +283,9 @@ request.AddHeader("location-id", "{{locationId}}");
 request.AddHeader("Content-Type", "application/json");
 var body = @"{
 " + "\n" +
-@"    ""connectionId"": ""{{msr_connection_id}}"",
+@"    ""attachmentId"": ""{{msr_attachment_id}}"",
 " + "\n" +
-@"    ""correlationId"": ""postman-ftr-65afe0b7-8ddd-43bf-8c9e-29d58b4b1a8b"",
+@"    ""relationId"": ""postman-ftr-65afe0b7-8ddd-43bf-8c9e-29d58b4b1a8b"",
 " + "\n" +
 @"    ""message"": [""MSG Line 1"", ""MSG Line 2""],
 " + "\n" +
@@ -325,7 +325,7 @@ Console.WriteLine(response.Content);
     <pre>
             <code class="language-json">
 {
-    "ConnectionId": "{{msr_connection_id}}",
+    "ConnectionId": "{{msr_attachment_id}}",
     "CorrelationId": "{{$guid}}",
     "Message": ["Passenger Okay to Board"],
     "ReceiptData": {
@@ -398,7 +398,7 @@ Console.WriteLine(response.Content);
     If the device is Magstripe Reader, a green light displays, along with a
     <code class="inline-code">Message</code> for the airline attendant such as
     <code class="inline-code">Passenger Okay to Board</code>. The passenger is
-    then allowed to pass the attendant and board the flight.
+    then allowed to pass the attendant and enter the restricted area.
 </p>
 <p>
     If the device is a Multi-Technology Reader, the

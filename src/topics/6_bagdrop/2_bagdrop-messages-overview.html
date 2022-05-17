@@ -33,7 +33,7 @@
         <code class="inline-code">DeviceInUse</code> property changes from
         <code class="inline-code">false</code> (the value displayed after
         sending the <span class="method post">POST</span
-        ><code class="inline-code"> /session/v2/connections</code> request) to
+        ><code class="inline-code"> /session/v2/attachments</code> request) to
         <code class="inline-code">true</code>.
     </li>
 </ul>
@@ -285,7 +285,7 @@
     </li>
     <li>
         <p>
-            A <code class="inline-code">CancelBagResponse</code> is received
+            A <code class="inline-code">AbortItemResponse</code> is received
             after a
             <code class="inline-code">/dispatchitem/v2/cancelitem</code>
             request is sent to return the item to the
@@ -298,8 +298,7 @@
             A <code class="inline-code">ReleaseBagResponse</code> is received
             after a
             <code class="inline-code">/dispatchitem/v2/releaseitem</code>
-            request is sent to release the item to the Baggage Handling System
-            (BHS Area).
+            request is sent to release the item to the Item Handling System.
         </p>
     </li>
 </ul>

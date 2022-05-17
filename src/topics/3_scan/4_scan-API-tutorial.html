@@ -149,15 +149,15 @@
         <ol>
             <li>
                 In Postman, send a
-                <code class="inline-code">/session/v2/connections</code> request
+                <code class="inline-code">/session/v2/attachments</code> request
                 to connect to the HHS.
                 <ul>
                     <li>
-                        After connecting to a device, a connection
+                        After connecting to a device, an attachment
                         <code class="inline-code">expiryTime</code> is returned
                         in the Response Body set to
                         <strong>30 minutes</strong> from the time the
-                        <code class="inline-code">session/v2/connections</code>
+                        <code class="inline-code">session/v2/attachments</code>
                         request was made.
                     </li>
                 </ul>
@@ -212,10 +212,10 @@
                     <p>
                         In the Tests tab of Postman, there is some Javascript
                         that updates the
-                        <code class="inline-code">hhs_connection_id</code>
+                        <code class="inline-code">hhs_attachment_id</code>
                         environmental variable after connecting to the HHS. This
                         variable is used so you do not need to manually enter a
-                        <code class="inline-code">connectionId</code> in
+                        <code class="inline-code">attachmentId</code> in
                         subsequent calls to the Print API.
                     </p>
                 </div>

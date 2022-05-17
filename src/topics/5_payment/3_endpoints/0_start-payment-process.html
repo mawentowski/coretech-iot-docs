@@ -64,8 +64,8 @@
 curl --location -g --request POST 'https://{{baseurl}}/payment/v2/process' \
 --header 'Content-Type: application/json' \
 --data-raw '{   
-    "connectionId": "{{pmc_connection_id}}",
-    "correlationId": "correl_paymt",
+    "attachmentId": "{{pmc_attachment_id}}",
+    "relationId": "correl_paymt",
     "Amount": 127.30,
     "CurrencyCode": 978,
     "OriginatorsTransactionReference":"c6155047-f26b-4344-b057-64b684348403"
@@ -87,8 +87,8 @@ https.use_ssl = true
 request = Net::HTTP::Post.new(url)
 request["Content-Type"] = "application/json"
 request.body = JSON.dump({
-    "connectionId": "{{pmc_connection_id}}",
-    "correlationId": "correl_paymt",
+    "attachmentId": "{{pmc_attachment_id}}",
+    "relationId": "correl_paymt",
     "Amount": 127.3,
     "CurrencyCode": 978,
     "OriginatorsTransactionReference": "adc40457-b339-4bbc-8a22-93e1b4c822f3"
@@ -107,8 +107,8 @@ import json
 url = "https://{{baseurl}}/payment/v2/process"
 
 payload = json.dumps({
-    "connectionId": "{{pmc_connection_id}}",
-    "correlationId": "correl_paymt",
+    "attachmentId": "{{pmc_attachment_id}}",
+    "relationId": "correl_paymt",
     "Amount": 127.3,
     "CurrencyCode": 978,
     "OriginatorsTransactionReference": "7b9b2b07-17a7-4cf3-858c-5452e3123e4c"
@@ -139,8 +139,8 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'POST',
     CURLOPT_POSTFIELDS =>'{   
-    "connectionId": "{{pmc_connection_id}}",
-    "correlationId": "correl_paymt",
+    "attachmentId": "{{pmc_attachment_id}}",
+    "relationId": "correl_paymt",
     "Amount": 127.30,
     "CurrencyCode": 978,
     "OriginatorsTransactionReference":"b01eb302-ba27-4e4d-83d8-0d014c0b9539"
@@ -162,7 +162,7 @@ echo $response;
 Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("https://{{baseurl}}/payment/v2/process")
     .header("Content-Type", "application/json")
-    .body("{   \r\n  \"connectionId\": \"{{pmc_connection_id}}\",\r\n  \"correlationId\": \"correl_paymt\",\r\n  \"Amount\": 127.30,\r\n  \"CurrencyCode\": 978,\r\n  \"OriginatorsTransactionReference\":\"7b8f2e54-7003-4182-914d-495042c5c460\"\r\n}")
+    .body("{   \r\n  \"attachmentId\": \"{{pmc_attachment_id}}\",\r\n  \"relationId\": \"correl_paymt\",\r\n  \"Amount\": 127.30,\r\n  \"CurrencyCode\": 978,\r\n  \"OriginatorsTransactionReference\":\"7b8f2e54-7003-4182-914d-495042c5c460\"\r\n}")
     .asString();           
 </code>
 </pre>
@@ -177,8 +177,8 @@ var options = {
     'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-    "connectionId": "{{pmc_connection_id}}",
-    "correlationId": "correl_paymt",
+    "attachmentId": "{{pmc_attachment_id}}",
+    "relationId": "correl_paymt",
     "Amount": 127.3,
     "CurrencyCode": 978,
     "OriginatorsTransactionReference": "6cfd6466-f40f-4b06-8ba3-629452046216"
@@ -210,9 +210,9 @@ func main() {
 
     payload := strings.NewReader(`{   `+"
 "+`
-    "connectionId": "{{pmc_connection_id}}",`+"
+    "attachmentId": "{{pmc_attachment_id}}",`+"
 "+`
-    "correlationId": "correl_paymt",`+"
+    "relationId": "correl_paymt",`+"
 "+`
     "Amount": 127.30,`+"
 "+`
@@ -257,9 +257,9 @@ var request = new RestRequest(Method.POST);
 request.AddHeader("Content-Type", "application/json");
 var body = @"{   
 " + "\n" +
-@"  ""connectionId"": ""{{pmc_connection_id}}"",
+@"  ""attachmentId"": ""{{pmc_attachment_id}}"",
 " + "\n" +
-@"  ""correlationId"": ""correl_paymt"",
+@"  ""relationId"": ""correl_paymt"",
 " + "\n" +
 @"  ""Amount"": 127.30,
 " + "\n" +
@@ -289,7 +289,7 @@ Console.WriteLine(response.Content);
         <div class="">
             <p>
                 A
-                <code class="inline-code">correlationId</code> must be passed in order for the Payment API to
+                <code class="inline-code">relationId</code> must be passed in order for the Payment API to
                 uniquely identify the transaction.
             </p>
         </div>
@@ -301,8 +301,8 @@ Console.WriteLine(response.Content);
         <pre>
                 <code class="language-json">
 {
-    "connectionId": "{{pmc_connection_id}}",
-    "correlationId": "correl_paymt",
+    "attachmentId": "{{pmc_attachment_id}}",
+    "relationId": "correl_paymt",
     "Amount": 127.30,
     "CurrencyCode": 978,
     "OriginatorsTransactionReference":"{{$guid}}"

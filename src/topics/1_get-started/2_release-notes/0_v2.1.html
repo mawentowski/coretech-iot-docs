@@ -131,9 +131,9 @@ namespace Sita.IoTApi.ServiceBusConsole.Core.Model
     <li>
         The request to reserve a device is now made to the Session API by
         sending a <span class="method post">POST</span>
-        <code class="inline-code">/session/v2/connections</code> request, and
+        <code class="inline-code">/session/v2/attachments</code> request, and
         you may use the <span class="method del">DEL</span> method to delete the
-        connection (or reservation as referred to in V1).
+        attachment (or reservation as referred to in V1).
     </li>
 </ul>
 <h2 id="new-del-methods">New <span class="method del">DEL</span> Methods</h2>
@@ -164,9 +164,9 @@ namespace Sita.IoTApi.ServiceBusConsole.Core.Model
                 >POST</span
             >
             <code class="inline-code">/v1/device/release</code>), you send a
-            request to delete the connection <strong>DEL</strong>
+            request to delete the attachment <strong>DEL</strong>
             <code class="inline-code"
-                >/session/v2/connections/{connection_id}</code
+                >/session/v2/attachments/{attachment_id}</code
             >.
         </p>
     </li>

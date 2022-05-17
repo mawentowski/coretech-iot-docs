@@ -74,8 +74,8 @@
 <h2 id="opengateresponse">OpenGateResponse</h2>
 <p>
     In an attendant-controlled area prior to boarding, the Multi-Technology
-    Reader (MTR) is in a 'closed' state where no passenger can scan their
-    boarding pass and proceed through the gate.
+    Reader (MTR) is in a 'closed' state where no passenger can scan their entry
+    pass and proceed through the gate.
 </p>
 <p>
     The attendant starts the boarding process by triggering the
@@ -83,7 +83,7 @@
     Multi-Technology Reader, the gate displays green and is now ready to process
     passengers. When the attendant is using a Magstripe Reader (MSR) to board
     passengers (a process not involving a gate), the boarding process is
-    initiated and an attendant may begin scanning boarding passes.
+    initiated and an attendant may begin scanning entry passes.
 </p>
 <div class="alert-section info-alert">
     <div class="">
@@ -93,7 +93,8 @@
             only sent once at the beginning of the process, not each time a
             passenger needs to pass through it. Once all passengers are
             processed, the boarding process is ended by sending a
-            <code class="inline-code">/gateaccess/v2/closegate</code> request.
+            <code class="inline-code">/gateaccess/v2/closeaccesspoint</code>
+            request.
         </p>
     </div>
 </div>
@@ -130,13 +131,12 @@
 <h2 id="boardingpassdata">BoardingPassData</h2>
 <p>
     For a boarding process involving a Multi-Technology Reader (MTR) device, the
-    passenger may scan his or her boarding pass. For a boarding process
-    involving a Magstripe Reader, the attendant may now scan the passenger's
-    boarding pass.
+    passenger may scan his or her entry pass. For a boarding process involving a
+    Magstripe Reader, the attendant may now scan the passenger's entry pass.
 </p>
 <p>
-    When a passenger scans a boarding pass at a gate, the gate locks while it
-    waits for the application backend to accept or reject the passenger.
+    When a passenger scans a entry pass at a gate, the gate locks while it waits
+    for the application backend to accept or reject the passenger.
 </p>
 <p>
     A <code class="inline-code">BoardingPassData</code> message displays on the
@@ -156,7 +156,7 @@
 
 <p class="caption">
     <code class="inline-code">BoardingPassData</code> Service Bus Message Body
-    including scanned boarding pass data
+    including scanned entry pass data
 </p>
 <h2 id="timeout-error">Timeout Error</h2>
 <p>
@@ -185,15 +185,15 @@
 <ol>
     <li>
         Send a
-        <code class="inline-code">/gateaccess/v2/closegate</code> request
+        <code class="inline-code">/gateaccess/v2/closeaccesspoint</code> request
     </li>
     <li>
-        Delete the connection to the MSR through a <strong>DEL</strong>
-        <code class="inline-code">/session/v2/connections</code> request.
+        Delete the attachment to the MSR through a <strong>DEL</strong>
+        <code class="inline-code">/session/v2/attachments</code> request.
     </li>
     <li>
-        Create a new connection to the MSR through a <strong>POST</strong>
-        <code class="inline-code">/session/v2/connections</code> request.
+        Create a new attachment to the MSR through a <strong>POST</strong>
+        <code class="inline-code">/session/v2/attachments</code> request.
     </li>
     <li>
         Send a
@@ -223,7 +223,7 @@
     <pre>
             <code class="language-json">
 {
-    "ConnectionId": "{{msr_connection_id}}",
+    "ConnectionId": "{{msr_attachment_id}}",
     "CorrelationId": "{{$guid}}",
     "Message": ["Passenger Okay to Board"],
     "ReceiptData": {
@@ -297,7 +297,7 @@
     If the device is Magstripe Reader, a green light displays, along with a
     <code class="inline-code">Message</code> for the airline attendant such as
     <code class="inline-code">Passenger Okay to Board</code>. The passenger is
-    then allowed to pass the attendant and board the flight.
+    then allowed to pass the attendant and enter the restricted area.
 </p>
 <p>
     If the device is a Multi-Technology Reader, the
@@ -335,7 +335,7 @@
     <pre>
             <code class="language-json">
 {
-    "ConnectionId": "{{msr_connection_id}}",
+    "ConnectionId": "{{msr_attachment_id}}",
     "CorrelationId": "{{$guid}}",
     "Message": [ "Passenger Not Ok to Board" ],
     "Alarm": true
@@ -402,23 +402,23 @@
         </p>
     </div>
 </div>
-<h2 id="closegateresponse">CloseGateResponse</h2>
+<h2 id="closeaccesspointresponse">CloseAccessPointResponse</h2>
 <p>
     Once all passengers are boarded, the attendant sends a
-    <code class="inline-code">/gateaccess/v2/closegate</code>
+    <code class="inline-code">/gateaccess/v2/closeaccesspoint</code>
     request that closes the boarding process.
 </p>
 <p>
     Upon making a
-    <code class="inline-code">/gateaccess/v2/closegate</code>
+    <code class="inline-code">/gateaccess/v2/closeaccesspoint</code>
     request, the GateAccess API acknowledges the request with a synchronous
     message, returning a
     <code class="inline-code">2xx</code> success status code (as seen in a tool
     like Postman).
 </p>
 <p>
-    A <code class="inline-code">CloseGateResponse</code> message displays on the
-    Service Bus simply indicating that the boarding process has ended, as
+    A <code class="inline-code">CloseAccessPointResponse</code> message displays
+    on the Service Bus simply indicating that the boarding process has ended, as
     indicated by the <code class="inline-code">IsSuccess</code> property set to
     <code class="inline-code">true</code>.
 </p>
@@ -436,8 +436,9 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">CloseGateResponse</code> Service Bus Message Body
-    indicating the request to end the boarding process has succeeded
+    <code class="inline-code">CloseAccessPointResponse</code> Service Bus
+    Message Body indicating the request to end the boarding process has
+    succeeded
 </p>
 <div class="continued-reading-section">
     <h2 class="continued-reading">See Also</h2>

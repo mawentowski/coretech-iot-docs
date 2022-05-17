@@ -47,7 +47,7 @@ curl --location -g --request POST 'https://{{baseurl}}/scan/v2/startscanning' \
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "connectionId": ""
+    "attachmentId": ""
 }'
 </code></pre>
     </div>
@@ -110,7 +110,7 @@ curl --location -g --request POST 'https://{{baseurl}}/scan/v2/startscanning' \
     The Request Body for both a
     <code class="inline-code">/scan/v2/startscanning</code> and
     <code class="inline-code">/scan/v2/stopscanning</code> request are the same,
-    only providing a <code class="inline-code">connectionId</code> of the
+    only providing a <code class="inline-code">attachmentId</code> of the
     device.
 </p>
 

@@ -49,8 +49,8 @@
 curl --location -g --request POST 'https://{{baseurl}}/payment/v2/process' \
 --header 'Content-Type: application/json' \
 --data-raw '{   
-    "connectionId": "{{pmc_connection_id}}",
-    "correlationId": "correl_paymt",
+    "attachmentId": "{{pmc_attachment_id}}",
+    "relationId": "correl_paymt",
     "Amount": 127.30,
     "CurrencyCode": 978,
     "OriginatorsTransactionReference":"143f4ddb-3939-47ca-bb80-c38601d057d4"
@@ -104,8 +104,8 @@ curl --location -g --request POST 'https://{{baseurl}}/payment/v2/process' \
         <pre>
                 <code class="language-json">
 {
-    "connectionId": "{{pmc_connection_id}}",
-    "correlationId": "correl_paymt",
+    "attachmentId": "{{pmc_attachment_id}}",
+    "relationId": "correl_paymt",
     "Amount": 127.30,
     "CurrencyCode": 978,
     "OriginatorsTransactionReference":"{{$guid}}"
@@ -125,10 +125,10 @@ curl --location -g --request POST 'https://{{baseurl}}/payment/v2/process' \
         <pre>
                 <code class="language-json">
 {
-    "connectionId": "{{pmc_connection_id}}",
+    "attachmentId": "{{pmc_attachment_id}}",
     "isError":false,
     "transactionError": "NO_ERROR",
-    "correlationId" : "correl_paymt"
+    "relationId" : "correl_paymt"
 }
             </code>
             </pre>
@@ -145,9 +145,9 @@ curl --location -g --request POST 'https://{{baseurl}}/payment/v2/process' \
     <pre>
             <code class="language-json">
 {
-    "connectionId": "{{pmc_connection_id}}",
+    "attachmentId": "{{pmc_attachment_id}}",
     "verified": true,
-    "correlationId" : "correl_paymt"
+    "relationId" : "correl_paymt"
 }
         </code>
         </pre>
@@ -163,9 +163,9 @@ curl --location -g --request POST 'https://{{baseurl}}/payment/v2/process' \
         <pre>
                 <code class="language-json">
 {
-    "connectionId": "{{pmc_connection_id}}",
+    "attachmentId": "{{pmc_attachment_id}}",
     "verified": true,
-    "correlationId" : "correl_paymt"
+    "relationId" : "correl_paymt"
 }
             </code>
             </pre>

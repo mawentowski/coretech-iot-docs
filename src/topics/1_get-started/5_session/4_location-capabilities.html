@@ -237,7 +237,7 @@ Console.WriteLine(response.Content);
     {
         "deviceId": "A-ZZU-MZUZUAIRPORT-ZZU1CKB004.IJP1",
         "capabilities": [
-            "PrintBagTag"
+            "PrintItemTag"
         ]
     },
     {
@@ -305,7 +305,7 @@ Console.WriteLine(response.Content);
 </p>
 <p>
     The application backend then uses these IDs to connect to devices at the
-    location. For example, to connect to an MFP through a <span class="method post">POST</span> <code class="inline-code">/session/v2/connections</code> request, you must
+    location. For example, to connect to an MFP through a <span class="method post">POST</span> <code class="inline-code">/session/v2/attachments</code> request, you must
     pass the <code class="inline-code">DeviceId</code> in the Request Body.
 </p>
 <h3 id="capabilities"><code class="inline-code">capabilities</code></h3>
@@ -313,7 +313,7 @@ Console.WriteLine(response.Content);
     Many times, you can determine the capabilities of a device by simply looking
     at the <code class="inline-code">deviceId</code>. For example, the
     <code class="inline-code">MFP</code> device only has the capability to print
-    a boarding pass. So, when a
+    a entry pass. So, when a
     <code class="inline-code">deviceId</code> contains
     <code class="inline-code">.MFP</code>, it is assumed that device only has
     the <code class="inline-code">PrintBoardingPass</code> capability.
@@ -334,13 +334,13 @@ Console.WriteLine(response.Content);
 </div>
 
 <p class="caption">
-    Sample MFP Device that only has the capability is to print a boarding pass
+    Sample MFP Device that only has the capability is to print a entry pass
 </p>
 <p>
     However, some devices have multiple capabilities. For example, a General
     Purpose Printer (3DP) may have both the capabilities
     <code class="inline-code">PrintBoardingPass</code> and
-    <code class="inline-code">PrintBagTag</code>.
+    <code class="inline-code">PrintItemTag</code>.
 </p>
 
 <div class="alert-section tip-alert">

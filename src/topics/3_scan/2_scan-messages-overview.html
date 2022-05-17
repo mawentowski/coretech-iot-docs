@@ -91,8 +91,8 @@
     <code class="inline-code">True</code>
 </h3>
 <p>
-    A connection to a scan device (
-    <code class="inline-code">/session/v2/connections</code>) is not enough to
+    A attachment to a scan device (
+    <code class="inline-code">/session/v2/attachments</code>) is not enough to
     receive unsolicited scan data from that device. The application backend
     needs to tell the device it wants to receive scan data 'exclusively' by
     sending a <code class="inline-code">/scan/v2/startscanning</code> request.
@@ -186,7 +186,7 @@
         <p>
             The same
             <code class="inline-code">ScanDeviceStatus</code> message is sent to
-            all subscribers with an active connection to the scan device to
+            all subscribers with an active attachment to the scan device to
             indicate the device can no longer be given a
             <code class="inline-code">/scan/v2/startscanning</code>
             request.
@@ -212,7 +212,7 @@
 <p>
     An asynchronous
     <code class="inline-code">ScanDeviceStatus</code> message is sent to all
-    subscribers with an active connection to the scan device to indicate the
+    subscribers with an active attachment to the scan device to indicate the
     device is no longer exclusively being used (<code class="inline-code"
         >"DeviceInUse": "false"</code
     >) and is available to successfully receive a

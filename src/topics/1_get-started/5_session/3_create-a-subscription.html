@@ -13,8 +13,8 @@
     Sending a <span class="method post">POST</span>
     <code class="inline-code">/session/v2/subscriptions</code> request does not
     'subscribe' to the Service Bus, it only creates a subscription and returns
-    connection details. The application must then connect to the Service Bus
-    connection using the connection details provided.
+    attachment details. The application must then connect to the Service Bus
+    attachment using the attachment details provided.
 </p>
 
 <div class="alert-section tip-alert">
@@ -245,7 +245,7 @@ func main() {
     "topicName": "airline-messages",
     "subscriptionName": "2c73e63e-a3ef-4fcc-b13c-d2a90912bca8c",
     "expiryTime": "2021-10-22T23:54:50.8272178+00:00",
-    "connectionString": "Endpoint=sb://flex-pry-eastus-asb.servicebus.windows.net;SharedAccessSignature=SharedAccessSignature sr=https%3A%2F%2Fflex-pry-eastus-asb.servicebus.windows.net%2Fairline-messages%2Fsubscriptions%2F2c73e63e-a3ef-4fcc-b13c-d290912bca8c%2F&amp;sig=dL2mHQJgfnCIc5SZZ8UgmzSPYoAIJkGEqN7hmAgFKz8%3D&amp;se=1634946891&amp;skn=ClientAccessKey"
+    "attachmentstring": "Endpoint=sb://flex-pry-eastus-asb.servicebus.windows.net;SharedAccessSignature=SharedAccessSignature sr=https%3A%2F%2Fflex-pry-eastus-asb.servicebus.windows.net%2Fairline-messages%2Fsubscriptions%2F2c73e63e-a3ef-4fcc-b13c-d290912bca8c%2F&amp;sig=dL2mHQJgfnCIc5SZZ8UgmzSPYoAIJkGEqN7hmAgFKz8%3D&amp;se=1634946891&amp;skn=ClientAccessKey"
 }
             </code>
             </pre>
@@ -276,11 +276,11 @@ func main() {
     </div>
 </div>
 
-<h3 id="connectionstring">
-    <code class="inline-code">connectionString</code>
+<h3 id="attachmentstring">
+    <code class="inline-code">attachmentstring</code>
 </h3>
 <p>
-    The <code class="inline-code">connectionString</code> returned in the
+    The <code class="inline-code">attachmentstring</code> returned in the
     Response Body contains the subscription's Service Bus endpoint that begins
     after <code class="inline-code">Endpoint=</code>. In the example Response
     Body displayed previously, the endpoint is:
@@ -327,15 +327,15 @@ func main() {
 </h3>
 <p>
     The <code class="inline-code">subscriptionId</code> is a Flex-specific ID
-    passed in the Request Body of connection requests to associate a device with
+    passed in the Request Body of attachment requests to associate a device with
     a specific Service Bus Subscription.
 </p>
 <p>
     For example, when connecting to an MFP device, the application backend will send
     a <span class="method post">POST</span>
-    <code class="inline-code">/session/v2/connections</code> request, including
+    <code class="inline-code">/session/v2/attachments</code> request, including
     the <code class="inline-code">subscriptionId</code> in the Request Body. The
-    returned <code class="inline-code">connectionID</code> is now associated to
+    returned <code class="inline-code">attachmentID</code> is now associated to
     the subscription, and thus Flex knows to route any messages coming from the
     device to that specific subscription.
 </p>
@@ -384,7 +384,7 @@ func main() {
     <span class="method post">POST </span><code class="inline-code">session/v2/subscriptions</code>
     endpoint to create a new SAS token when the old one expires. The SAS token
     is contained in the
-    <code class="inline-code">connectionString</code> in the Response Body.
+    <code class="inline-code">attachmentstring</code> in the Response Body.
 </p>
 <div class="alert-section info-alert">
     <div class="">
@@ -446,9 +446,9 @@ func main() {
     </div>
 </div>
 <p>
-    If the application backend drops an active connection the Azure Service Bus by
+    If the application backend drops an active attachment the Azure Service Bus by
     disconnecting from a SAS token, no messages are lost. Any messages sent to
-    the subscription are queued and will display once another connection is made
+    the subscription are queued and will display once another attachment is made
     with a new SAS token.
 </p>
 <h3 id="protect-subscriptions-details">Protect Subscriptions Details</h3>
