@@ -1,14 +1,14 @@
 <div class="title-box">
     <h1 class="topic-title">Process Bag</h1>
     <div class="action-statement">
-        Process a bag so it continues the dispatchitem process
+        Process a item so it continues the dispatchitem process
     </div>
 </div>
 
 <p>
-    After the passenger places a bag on the belt, the bag's measurements are
-    taken, and a settled weight is calculated. Send a <span class="method post">POST </span><code class="inline-code">/dispatchitem/v2/processbag</code> request to close the
-    door and move the bag from the
+    After the passenger places a item on the belt, the item's measurements are
+    taken, and a settled weight is calculated. Send a <span class="method post">POST </span><code class="inline-code">/dispatchitem/v2/processitem</code> request to close the
+    door and move the item from the
     <code class="inline-code">Entry</code> position to the
     <code class="inline-code">Process</code> position.
 </p>
@@ -27,14 +27,14 @@
 <div class="code-section with-tabs">
     <div class="code-section-header">
         <div class="code-tabs">
-            <button class="tablinks" onclick="openTab(event, 'bash-process-bag')" id="defaultOpen">curl</button>
-            <button class="tablinks" onclick="openTab(event, 'Ruby-process-bag')">Ruby</button>
-            <button class="tablinks" onclick="openTab(event, 'Python-process-bag')">Python</button>
-            <button class="tablinks" onclick="openTab(event, 'PHP-process-bag')">PHP</button>
-            <button class="tablinks" onclick="openTab(event, 'Java-process-bag')">Java</button>
-            <button class="tablinks" onclick="openTab(event, 'Node-process-bag')">Node</button>
-            <button class="tablinks" onclick="openTab(event, 'Go-process-bag')">Go</button>
-            <button class="tablinks" onclick="openTab(event, '.NET-process-bag')">.NET</button>
+            <button class="tablinks" onclick="openTab(event, 'bash-process-item')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby-process-item')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python-process-item')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP-process-item')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java-process-item')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node-process-item')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go-process-item')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET-process-item')">.NET</button>
         </div>
         <div class="copy-code-btn-container">
             <button class="copy-code-btn">
@@ -58,8 +58,8 @@
         Copied!
     </div>
 
-<div id="bash-process-bag" class="tabcontent dark"><pre> <code>
-curl --location -g --request POST 'https://{{baseurl}}/dispatchitem/v2/processbag' \
+<div id="bash-process-item" class="tabcontent dark"><pre> <code>
+curl --location -g --request POST 'https://{{baseurl}}/dispatchitem/v2/processitem' \
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -70,12 +70,12 @@ curl --location -g --request POST 'https://{{baseurl}}/dispatchitem/v2/processba
 </pre>
 </div>
 
-<div id="Ruby-process-bag" class="tabcontent dark"><pre><code>
+<div id="Ruby-process-item" class="tabcontent dark"><pre><code>
 require "uri"
 require "json"
 require "net/http"
 
-url = URI("https://{{baseurl}}/dispatchitem/v2/processbag")
+url = URI("https://{{baseurl}}/dispatchitem/v2/processitem")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -94,11 +94,11 @@ puts response.read_body
 </pre>
 </div>
 
-<div id="Python-process-bag" class="tabcontent dark"><pre> <code>
+<div id="Python-process-item" class="tabcontent dark"><pre> <code>
 import requests
 import json
 
-url = "https://{{baseurl}}/dispatchitem/v2/processbag"
+url = "https://{{baseurl}}/dispatchitem/v2/processitem"
 
 payload = json.dumps({
     "connectionId": "{{grc_connection_id}}",
@@ -116,13 +116,13 @@ print(response.text)
 </pre>
 </div>
 
-<div id="PHP-process-bag" class="tabcontent dark"><pre> <code>
+<div id="PHP-process-item" class="tabcontent dark"><pre> <code>
 <?php
 
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/dispatchitem/v2/processbag',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/dispatchitem/v2/processitem',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -148,9 +148,9 @@ echo $response;
 </pre>
 </div>
 
-<div id="Java-process-bag" class="tabcontent dark"><pre><code>
+<div id="Java-process-item" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("https://{{baseurl}}/dispatchitem/v2/processbag")
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/dispatchitem/v2/processitem")
     .header("location-id", "{{locationId}}")
     .header("Content-Type", "application/json")
     .body("{\r\n  \"connectionId\": \"{{grc_connection_id}}\",\r\n  \"correlationId\": \"postman-ftr-54083030-a0f7-4a5d-a095-8e7bfcea9e5e\"\r\n}")
@@ -159,11 +159,11 @@ HttpResponse<String> response = Unirest.post("https://{{baseurl}}/dispatchitem/v
 </pre>
 </div>
 
-<div id="Node-process-bag" class="tabcontent dark"><pre><code>
+<div id="Node-process-item" class="tabcontent dark"><pre><code>
 var request = require('request');
 var options = {
     'method': 'POST',
-    'url': 'https://{{baseurl}}/dispatchitem/v2/processbag',
+    'url': 'https://{{baseurl}}/dispatchitem/v2/processitem',
     'headers': {
     'location-id': '{{locationId}}',
     'Content-Type': 'application/json'
@@ -182,7 +182,7 @@ request(options, function (error, response) {
 </pre>
 </div>
 
-<div id="Go-process-bag" class="tabcontent dark"><pre><code>
+<div id="Go-process-item" class="tabcontent dark"><pre><code>
 package main
 
 import (
@@ -194,7 +194,7 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/dispatchitem/v2/processbag"
+    url := "https://%7B%7Bbaseurl%7D%7D/dispatchitem/v2/processitem"
     method := "POST"
 
     payload := strings.NewReader(`{`+"
@@ -234,8 +234,8 @@ func main() {
 </pre>
 </div>
 
-<div id=".NET-process-bag" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/dispatchitem/v2/processbag");
+<div id=".NET-process-item" class="tabcontent dark"><pre><code>
+var client = new RestClient("https://{{baseurl}}/dispatchitem/v2/processitem");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
 request.AddHeader("location-id", "{{locationId}}");
@@ -258,8 +258,8 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
 
-        <code class="inline-code">/dispatchitem/v2/processbag</code> request to close the
-        door and move the bag along the belt.
+        <code class="inline-code">/dispatchitem/v2/processitem</code> request to close the
+        door and move the item along the belt.
     </p>
 
     
@@ -288,7 +288,7 @@ Console.WriteLine(response.Content);
 <p class="caption">
 
         Sample Request Body for a <span class="method post">POST</span>
-        <code class="inline-code">/dispatchitem/v2/processbag</code> request that provides a <code class="inline-code">connectionId</code> of the dispatchitem device
+        <code class="inline-code">/dispatchitem/v2/processitem</code> request that provides a <code class="inline-code">connectionId</code> of the dispatchitem device
     </p>
 
 
@@ -308,13 +308,13 @@ Console.WriteLine(response.Content);
 </p>
 
 <p> 
-    A <code class="inline-code">ProcessBagResponse</code> message displays on the Service Bus, acknowledging that the request to process the bag was received.
+    A <code class="inline-code">ProcessBagResponse</code> message displays on the Service Bus, acknowledging that the request to process the item was received.
 
 </p>
 
 <p>
     A <code class="inline-code">BagChanged</code> message displays on the Service Bus and is identical to the
-    <code class="inline-code">BagPlaced</code> message and displays baggage
+    <code class="inline-code">BagPlaced</code> message and displays item
     information collected through a measurement. The property
     <code class="inline-code">Position</code> changes from
     <code class="inline-code">Entry</code> to
@@ -372,7 +372,7 @@ Console.WriteLine(response.Content);
                 </svg>
             </div>
             <div>
-                <a href="/dispatchitem/endpoints/return-bag"
+                <a href="/dispatchitem/endpoints/return-item"
                     >Return Bag</a
                 >
             </div>

@@ -247,9 +247,9 @@
     For example, an FIS device that scans a barcode returns a
     <code class="inline-code">BarcodeRead</code> message on the Service Bus,
     providing the string that contains the barcode (
-    <code class="inline-code">BarCodeData</code>) as well as the type of barcode
-    ( <code class="inline-code">BarCodeType</code>). The type of barcode can be
-    1D, 2D, etc.
+    <code class="inline-code">ScanCodeData</code>) as well as the type of
+    barcode ( <code class="inline-code">BarCodeType</code>). The type of barcode
+    can be 1D, 2D, etc.
 </p>
 
 <div class="method-example atom-one-light">
@@ -257,7 +257,7 @@
     <pre>
             <code class="language-json">
 {
-    "BarCodeData":"6M1AZKUR AHMETKUR ERG6ULZ ZRHISTTK 1912 211Y024F0028 150&gt;10B1OO2211BTK 292352404859427 1 020K X\r\n",
+    "ScanCodeData":"6M1AZKUR AHMETKUR ERG6ULZ ZRHISTTK 1912 211Y024F0028 150&gt;10B1OO2211BTK 292352404859427 1 020K X\r\n",
     "BarCodeType":"6"
 }
         </code>
@@ -311,7 +311,7 @@
     An HHS device that scans a passport returns a
     <code class="inline-code">TravelDocumentRead</code> message on the Service
     Bus, providing the scanned passport data as
-    <code class="inline-code">MrzData</code> in the Message Body.
+    <code class="inline-code">ScanData</code> in the Message Body.
 </p>
 
 <div class="method-example atom-one-light">
@@ -320,7 +320,7 @@
     <pre>
         <code class="language-json">
 {
-    "MrzData": "P&lt;D&lt;&lt;SCHMIDT&lt;&lt;KARL&lt;HEINZ&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;\r1234567897D&lt;&lt;0102030M0405063&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8",
+    "ScanData": "P&lt;D&lt;&lt;SCHMIDT&lt;&lt;KARL&lt;HEINZ&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;\r1234567897D&lt;&lt;0102030M0405063&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8",
 }
     </code>
     </pre>
@@ -328,7 +328,7 @@
 
 <p class="caption">
     <code class="inline-code">TravelDocumentRead</code> Service Bus Message Body
-    that returned passport <code class="inline-code">MrzData</code> scanned by
+    that returned passport <code class="inline-code">ScanData</code> scanned by
     an HHS device
 </p>
 

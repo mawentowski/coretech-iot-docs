@@ -3,13 +3,13 @@
 <div class="title-box">
     <h1 class="topic-title">Release Bag</h1>
     <div class="action-statement">
-        Complete the dispatchitem process and dispatch the bag
+        Complete the dispatchitem process and dispatch the item
     </div>
 </div>
  
 <p>
-    Once the bag has been processed, send a <span class="method post">POST </span><code class="inline-code">/dispatchitem/v2/releasebag</code> request to move the
-    bag to the Baggage Handling System (BHS Area) and complete the dispatchitem
+    Once the item has been processed, send a <span class="method post">POST </span><code class="inline-code">/dispatchitem/v2/releaseitem</code> request to move the
+    item to the Baggage Handling System (BHS Area) and complete the dispatchitem
     process.
 </p>
 <h2>Make an API Call</h2>
@@ -26,14 +26,14 @@
 <div class="code-section with-tabs">
     <div class="code-section-header">
         <div class="code-tabs">
-            <button class="tablinks" onclick="openTab(event, 'bash-release-bag')" id="defaultOpen">curl</button>
-            <button class="tablinks" onclick="openTab(event, 'Ruby-release-bag')">Ruby</button>
-            <button class="tablinks" onclick="openTab(event, 'Python-release-bag')">Python</button>
-            <button class="tablinks" onclick="openTab(event, 'PHP-release-bag')">PHP</button>
-            <button class="tablinks" onclick="openTab(event, 'Java-release-bag')">Java</button>
-            <button class="tablinks" onclick="openTab(event, 'Node-release-bag')">Node</button>
-            <button class="tablinks" onclick="openTab(event, 'Go-release-bag')">Go</button>
-            <button class="tablinks" onclick="openTab(event, '.NET-release-bag')">.NET</button>
+            <button class="tablinks" onclick="openTab(event, 'bash-release-item')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby-release-item')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python-release-item')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP-release-item')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java-release-item')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node-release-item')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go-release-item')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET-release-item')">.NET</button>
         </div>
         <div class="copy-code-btn-container">
             <button class="copy-code-btn">
@@ -57,8 +57,8 @@
         Copied!
     </div>
 
-<div id="bash-release-bag" class="tabcontent dark"><pre> <code>
-curl --location -g --request POST 'https://{{baseurl}}/dispatchitem/v2/releasebag' \
+<div id="bash-release-item" class="tabcontent dark"><pre> <code>
+curl --location -g --request POST 'https://{{baseurl}}/dispatchitem/v2/releaseitem' \
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -69,12 +69,12 @@ curl --location -g --request POST 'https://{{baseurl}}/dispatchitem/v2/releaseba
 </pre>
 </div>
 
-<div id="Ruby-release-bag" class="tabcontent dark"><pre><code>
+<div id="Ruby-release-item" class="tabcontent dark"><pre><code>
 require "uri"
 require "json"
 require "net/http"
 
-url = URI("https://{{baseurl}}/dispatchitem/v2/releasebag")
+url = URI("https://{{baseurl}}/dispatchitem/v2/releaseitem")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -93,11 +93,11 @@ puts response.read_body
 </pre>
 </div>
 
-<div id="Python-release-bag" class="tabcontent dark"><pre> <code>
+<div id="Python-release-item" class="tabcontent dark"><pre> <code>
 import requests
 import json
 
-url = "https://{{baseurl}}/dispatchitem/v2/releasebag"
+url = "https://{{baseurl}}/dispatchitem/v2/releaseitem"
 
 payload = json.dumps({
     "connectionId": "{{grc_connection_id}}",
@@ -115,13 +115,13 @@ print(response.text)
 </pre>
 </div>
 
-<div id="PHP-release-bag" class="tabcontent dark"><pre> <code>
+<div id="PHP-release-item" class="tabcontent dark"><pre> <code>
 <?php
 
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/dispatchitem/v2/releasebag',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/dispatchitem/v2/releaseitem',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -147,9 +147,9 @@ echo $response;
 </pre>
 </div>
 
-<div id="Java-release-bag" class="tabcontent dark"><pre><code>
+<div id="Java-release-item" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("https://{{baseurl}}/dispatchitem/v2/releasebag")
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/dispatchitem/v2/releaseitem")
     .header("location-id", "{{locationId}}")
     .header("Content-Type", "application/json")
     .body("{\r\n  \"connectionId\": \"{{grc_connection_id}}\",\r\n  \"correlationId\": \"postman-ftr-d5ce7ad7-0304-4ccb-86dc-1439716c0c7f\"\r\n}")
@@ -158,11 +158,11 @@ HttpResponse<String> response = Unirest.post("https://{{baseurl}}/dispatchitem/v
 </pre>
 </div>
 
-<div id="Node-release-bag" class="tabcontent dark"><pre><code>
+<div id="Node-release-item" class="tabcontent dark"><pre><code>
 var request = require('request');
 var options = {
     'method': 'POST',
-    'url': 'https://{{baseurl}}/dispatchitem/v2/releasebag',
+    'url': 'https://{{baseurl}}/dispatchitem/v2/releaseitem',
     'headers': {
     'location-id': '{{locationId}}',
     'Content-Type': 'application/json'
@@ -181,7 +181,7 @@ request(options, function (error, response) {
 </pre>
 </div>
 
-<div id="Go-release-bag" class="tabcontent dark"><pre><code>
+<div id="Go-release-item" class="tabcontent dark"><pre><code>
 package main
 
 import (
@@ -193,7 +193,7 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/dispatchitem/v2/releasebag"
+    url := "https://%7B%7Bbaseurl%7D%7D/dispatchitem/v2/releaseitem"
     method := "POST"
 
     payload := strings.NewReader(`{`+"
@@ -233,8 +233,8 @@ func main() {
 </pre>
 </div>
 
-<div id=".NET-release-bag" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/dispatchitem/v2/releasebag");
+<div id=".NET-release-item" class="tabcontent dark"><pre><code>
+var client = new RestClient("https://{{baseurl}}/dispatchitem/v2/releaseitem");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
 request.AddHeader("location-id", "{{locationId}}");
@@ -257,7 +257,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
 
-    Sample <span class="method post">POST </span><code class="inline-code">/dispatchitem/v2/releasebag</code> request to complete the dispatchitem
+    Sample <span class="method post">POST </span><code class="inline-code">/dispatchitem/v2/releaseitem</code> request to complete the dispatchitem
     process.
     </p>
 
@@ -288,7 +288,7 @@ Console.WriteLine(response.Content);
 <p class="caption">
 
         Sample Request Body for a <span class="method post">POST</span>
-        <code class="inline-code">/dispatchitem/v2/releasebag</code> request that provides a <code class="inline-code">connectionId</code> of the dispatchitem device
+        <code class="inline-code">/dispatchitem/v2/releaseitem</code> request that provides a <code class="inline-code">connectionId</code> of the dispatchitem device
     </p>
 
 
@@ -301,19 +301,19 @@ Console.WriteLine(response.Content);
 <p>
     Upon making a
     <span class="method post">POST</span>
-        <code class="inline-code">/dispatchitem/v2/cancelbag</code> request, the Dispatch API acknowledges the request with a synchronous
+        <code class="inline-code">/dispatchitem/v2/cancelitem</code> request, the Dispatch API acknowledges the request with a synchronous
     message returns a
     <code class="inline-code">2xx</code> success status code (as seen in a tool
     like Postman).
 </p>
 <p>
-    A <code class="inline-code">ReleaseBagResponse</code> message displays on the Service Bus, acknowledging that the request to release the bag was received.
+    A <code class="inline-code">ReleaseBagResponse</code> message displays on the Service Bus, acknowledging that the request to release the item was received.
 
 </p>
 
 <p>
     A <code class="inline-code">BagChanged</code> message displays on the Service Bus and is identical to the
-    <code class="inline-code">BagPlaced</code> message and displays baggage
+    <code class="inline-code">BagPlaced</code> message and displays item
     information collected through a measurement. The property
     <code class="inline-code">Position</code> changes from
     <code class="inline-code">Process</code> to

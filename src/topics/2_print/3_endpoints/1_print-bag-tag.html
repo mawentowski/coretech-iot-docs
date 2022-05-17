@@ -1,7 +1,7 @@
 <div class="title-box">
-    <h1 class="topic-title">Print a Bag Tag</h1>
+    <h1 class="topic-title">Print a Item Tag</h1>
     <div class="action-statement">
-        Command a device to print a bag tag in the different formats
+        Command a device to print a item tag in the different formats
     </div>
 </div>
 
@@ -21,8 +21,8 @@
 <h3>Print a PDF</h3>
 <p>
     Send a <span class="method post">POST</span>
-    <code class="inline-code">/print/v2/baggagetag/pdf</code> request to an
-    IJP device to print a bag tag in PDF format. 
+    <code class="inline-code">/print/v2/itemgagetag/pdf</code> request to an
+    IJP device to print a item tag in PDF format. 
 </p>
 
 
@@ -61,7 +61,7 @@
     </div>
 
 <div id="bash-print-boarding-pass-pdf" class="tabcontent dark"><pre> <code>
-curl --location -g --request POST 'https://{{baseurl}}/print/v2/bagtag/pdf' \
+curl --location -g --request POST 'https://{{baseurl}}/print/v2/itemtag/pdf' \
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -78,7 +78,7 @@ require "uri"
 require "json"
 require "net/http"
 
-url = URI("https://{{baseurl}}/print/v2/bagtag/pdf")
+url = URI("https://{{baseurl}}/print/v2/itemtag/pdf")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -112,7 +112,7 @@ headers = {
     'location-id': '{{locationId}}',
     'Content-Type': 'application/json'
 }
-conn.request("POST", "/print/v2/bagtag/pdf", payload, headers)
+conn.request("POST", "/print/v2/itemtag/pdf", payload, headers)
 res = conn.getresponse()
 data = res.read()
 print(data.decode("utf-8"))
@@ -126,7 +126,7 @@ print(data.decode("utf-8"))
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/print/v2/bagtag/pdf',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/print/v2/itemtag/pdf',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -155,7 +155,7 @@ echo $response;
 
 <div id="Java-print-boarding-pass-pdf" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("https://{{baseurl}}/print/v2/bagtag/pdf")
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/print/v2/itemtag/pdf")
     .header("location-id", "{{locationId}}")
     .header("Content-Type", "application/json")
     .body("{\r\n  \"connectionId\": \"\",\r\n  \"correlationId\": \"postman-ftr-30ad1141-bc89-4463-ad57-f14741d7a692\",\r\n  \"printData\": \"JVBERi0xLjQKJdP0zOEKMSAwIG9iago8PAovQ3JlYXRpb2\"\r\n}")
@@ -168,7 +168,7 @@ HttpResponse<String> response = Unirest.post("https://{{baseurl}}/print/v2/bagta
 var request = require('request');
 var options = {
     'method': 'POST',
-    'url': 'https://{{baseurl}}/print/v2/bagtag/pdf',
+    'url': 'https://{{baseurl}}/print/v2/itemtag/pdf',
     'headers': {
     'location-id': '{{locationId}}',
     'Content-Type': 'application/json'
@@ -200,7 +200,7 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/print/v2/bagtag/pdf"
+    url := "https://%7B%7Bbaseurl%7D%7D/print/v2/itemtag/pdf"
     method := "POST"
 
     payload := strings.NewReader(`{`+"
@@ -243,7 +243,7 @@ func main() {
 </div>
 
 <div id=".NET-print-boarding-pass-pdf" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/print/v2/bagtag/pdf");
+var client = new RestClient("https://{{baseurl}}/print/v2/itemtag/pdf");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
 request.AddHeader("location-id", "{{locationId}}");
@@ -270,17 +270,17 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample <span class="method post">POST</span>
-    <code class="inline-code">/print/v2/bagtag/pdf</code> API call that issues a command to a device to print a bag tag in PDF format
+    <code class="inline-code">/print/v2/itemtag/pdf</code> API call that issues a command to a device to print a item tag in PDF format
 </p>
 
 <h4>Request Body</h4>
 
 <p>
-    The following is a sample Request Body for printing a bag tag using a
+    The following is a sample Request Body for printing a item tag using a
     IJP device in PDF format. The PDF data are represented by
     <code class="inline-code">printData</code> (same as when printing a PDF
     using an MFP). However, there is another data property called
-    <code class="inline-code">rfidData</code> associated with baggage tag
+    <code class="inline-code">rfidData</code> associated with item tag
     data that is specific to the IJP.
 </p>
 
@@ -303,15 +303,15 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample Request Body for <span class="method post">POST</span>
-    <code class="inline-code">/print/v2/bagtag/pdf</code> request
+    <code class="inline-code">/print/v2/itemtag/pdf</code> request
 </p>
 
 
 <h3>Print in Legacy format</h3>
 <p>
     Send a <span class="method post">POST</span>
-    <code class="inline-code">/print/v2/bagtag/legacyprint</code> request to an
-   IJP device to print a bag tag in <span class="method post">legacyprint</span> format. 
+    <code class="inline-code">/print/v2/itemtag/legacyprint</code> request to an
+   IJP device to print a item tag in <span class="method post">legacyprint</span> format. 
 </p>
 
 <div class="code-section with-tabs">
@@ -350,7 +350,7 @@ Console.WriteLine(response.Content);
 
 
 <div id="bash-print-boarding-pass-legacyprint" class="tabcontent dark"><pre> <code>
-curl --location -g --request POST 'https://{{baseurl}}/print/v2/bagtag/legacyprint' \
+curl --location -g --request POST 'https://{{baseurl}}/print/v2/itemtag/legacyprint' \
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -375,7 +375,7 @@ require "uri"
 require "json"
 require "net/http"
 
-url = URI("https://{{baseurl}}/print/v2/bagtag/legacyprint")
+url = URI("https://{{baseurl}}/print/v2/itemtag/legacyprint")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -407,7 +407,7 @@ puts response.read_body
 import requests
 import json
 
-url = "https://{{baseurl}}/print/v2/bagtag/legacyprint"
+url = "https://{{baseurl}}/print/v2/itemtag/legacyprint"
 
 payload = json.dumps({
     "connectionId": "",
@@ -438,7 +438,7 @@ print(response.text)
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/print/v2/bagtag/legacyprint',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/print/v2/itemtag/legacyprint',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -475,7 +475,7 @@ echo $response;
 
 <div id="Java-print-boarding-pass-legacyprint" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("https://{{baseurl}}/print/v2/bagtag/legacyprint")
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/print/v2/itemtag/legacyprint")
     .header("location-id", "{{locationId}}")
     .header("Content-Type", "application/json")
     .body("{\r\n  \"connectionId\": \"\",\r\n  \"correlationId\": \"postman-ftr-f1c53caf-81c1-4de7-bfe6-12e83811ff59\",\r\n  \"legacyPrintData\": {\r\n    \"pectab\": \"UFRfXz9KMlpfQEBfVC8vX1QvL0NJX1Qv\",\r\n    \"templates\": [\r\n        \"VFQwM18wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD\",\r\n        \"VFQwNF8wMkIwMjYwNDUwMTgwMDIyMDAwNjAwMD\"\r\n    ],\r\n    \"Logos\":[],\r\n    \"printData\": \"Q1AjMUMwMSMwMUojMDZBWktVUiAgICBBSE1FVE\"\r\n  }\r\n}")
@@ -488,7 +488,7 @@ HttpResponse<String> response = Unirest.post("https://{{baseurl}}/print/v2/bagta
 var request = require('request');
 var options = {
     'method': 'POST',
-    'url': 'https://{{baseurl}}/print/v2/bagtag/legacyprint',
+    'url': 'https://{{baseurl}}/print/v2/itemtag/legacyprint',
     'headers': {
     'location-id': '{{locationId}}',
     'Content-Type': 'application/json'
@@ -528,7 +528,7 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/print/v2/bagtag/legacyprint"
+    url := "https://%7B%7Bbaseurl%7D%7D/print/v2/itemtag/legacyprint"
     method := "POST"
 
     payload := strings.NewReader(`{`+"
@@ -587,7 +587,7 @@ func main() {
 </div>
 
 <div id=".NET-print-boarding-pass-legacyprint" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/print/v2/bagtag/legacyprint");
+var client = new RestClient("https://{{baseurl}}/print/v2/itemtag/legacyprint");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
 request.AddHeader("location-id", "{{locationId}}");
@@ -628,14 +628,14 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample <span class="method post">POST</span>
-    <code class="inline-code">/print/v2/bagtag/pdf</code>  request that issues a command to a device to print a bag tag in PDF format
+    <code class="inline-code">/print/v2/itemtag/pdf</code>  request that issues a command to a device to print a item tag in PDF format
 </p>
 
 
 <h4>Request Body</h4>
 
 <p>
-    The following is a sample Request Body for printing a bag tag in Legacy Print
+    The following is a sample Request Body for printing a item tag in Legacy Print
     format. Notice that
     <code class="inline-code">legacyPrintData</code> is used instead of
     <code class="inline-code">printData</code>.
@@ -661,7 +661,7 @@ Console.WriteLine(response.Content);
 </div>
 
 <p class="caption">
-    Sample Request Body for printing a bag tag in Legacy format
+    Sample Request Body for printing a item tag in Legacy format
 </p>
 
 <h2>Response</h2>

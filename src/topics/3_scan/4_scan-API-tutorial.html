@@ -23,7 +23,8 @@
         Flex.
     </li>
     <li>
-        Your application backend to receive messages from the Azure Service Bus.
+        Your application backend to receive messages from the Message Service
+        Bus.
     </li>
 </ul>
 <p>
@@ -387,14 +388,14 @@
                 Check the Service Bus for a new
                 <code class="inline-code">TravelDocumentRead</code>
                 message that includes the scanned passport data as
-                <code class="inline-code">MrzData</code> in the Message Body.
+                <code class="inline-code">ScanData</code> in the Message Body.
             </li>
             <div class="method-example atom-one-light">
                 <div class="method-example-top-bar">Service Bus Message</div>
                 <pre>
                         <code class="language-json">
 {
-    "MrzData": "P&lt;D&lt;&lt;SCHMIDT&lt;&lt;KARL&lt;HEINZ&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;\r1234567897D&lt;&lt;0102030M0405063&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8"
+    "ScanData": "P&lt;D&lt;&lt;SCHMIDT&lt;&lt;KARL&lt;HEINZ&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;\r1234567897D&lt;&lt;0102030M0405063&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8"
 }
                     </code>
                     </pre>
@@ -402,7 +403,7 @@
             <p class="caption">
                 <code class="inline-code">TravelDocumentRead</code>
                 Service Bus Message Body that returned passport
-                <code class="inline-code">MrzData</code>
+                <code class="inline-code">ScanData</code>
                 'scanned' by the HHS device
             </p>
         </ol>

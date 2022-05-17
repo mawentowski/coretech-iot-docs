@@ -8,9 +8,9 @@
 
 <p>
     Send a <span class="method post">POST</span>
-    <code class="inline-code">/dispatchitem/v2/getbag</code> request to initiate a
+    <code class="inline-code">/dispatchitem/v2/getitem</code> request to initiate a
     dispatchitem process and open the door (if there is a door) of the GRC so the
-    passenger can place their bag on the belt.
+    passenger can place their item on the belt.
 </p>
 
 <h2>Make an API Call</h2>
@@ -27,14 +27,14 @@
 <div class="code-section with-tabs">
     <div class="code-section-header">
         <div class="code-tabs">
-            <button class="tablinks" onclick="openTab(event, 'bash-get-bag')" id="defaultOpen">curl</button>
-            <button class="tablinks" onclick="openTab(event, 'Ruby-get-bag')">Ruby</button>
-            <button class="tablinks" onclick="openTab(event, 'Python-get-bag')">Python</button>
-            <button class="tablinks" onclick="openTab(event, 'PHP-get-bag')">PHP</button>
-            <button class="tablinks" onclick="openTab(event, 'Java-get-bag')">Java</button>
-            <button class="tablinks" onclick="openTab(event, 'Node-get-bag')">Node</button>
-            <button class="tablinks" onclick="openTab(event, 'Go-get-bag')">Go</button>
-            <button class="tablinks" onclick="openTab(event, '.NET-get-bag')">.NET</button>
+            <button class="tablinks" onclick="openTab(event, 'bash-get-item')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby-get-item')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python-get-item')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP-get-item')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java-get-item')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node-get-item')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go-get-item')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET-get-item')">.NET</button>
         </div>
         <div class="copy-code-btn-container">
             <button class="copy-code-btn">
@@ -58,8 +58,8 @@
         Copied!
     </div>
 
-<div id="bash-get-bag" class="tabcontent dark"><pre> <code>
-curl --location -g --request POST 'https://{{baseurl}}/dispatchitem/v2/getbag' \
+<div id="bash-get-item" class="tabcontent dark"><pre> <code>
+curl --location -g --request POST 'https://{{baseurl}}/dispatchitem/v2/getitem' \
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -70,12 +70,12 @@ curl --location -g --request POST 'https://{{baseurl}}/dispatchitem/v2/getbag' \
 </pre>
 </div>
 
-<div id="Ruby-get-bag" class="tabcontent dark"><pre><code>
+<div id="Ruby-get-item" class="tabcontent dark"><pre><code>
 require "uri"
 require "json"
 require "net/http"
 
-url = URI("https://{{baseurl}}/dispatchitem/v2/getbag")
+url = URI("https://{{baseurl}}/dispatchitem/v2/getitem")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -94,11 +94,11 @@ puts response.read_body
 </pre>
 </div>
 
-<div id="Python-get-bag" class="tabcontent dark"><pre> <code>
+<div id="Python-get-item" class="tabcontent dark"><pre> <code>
 import requests
 import json
 
-url = "https://{{baseurl}}/dispatchitem/v2/getbag"
+url = "https://{{baseurl}}/dispatchitem/v2/getitem"
 
 payload = json.dumps({
     "connectionId": "{{grc_connection_id}}",
@@ -116,13 +116,13 @@ print(response.text)
 </pre>
 </div>
 
-<div id="PHP-get-bag" class="tabcontent dark"><pre> <code>
+<div id="PHP-get-item" class="tabcontent dark"><pre> <code>
 <?php
 
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/dispatchitem/v2/getbag',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/dispatchitem/v2/getitem',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -148,9 +148,9 @@ echo $response;
 </pre>
 </div>
 
-<div id="Java-get-bag" class="tabcontent dark"><pre><code>
+<div id="Java-get-item" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("https://{{baseurl}}/dispatchitem/v2/getbag")
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/dispatchitem/v2/getitem")
     .header("location-id", "{{locationId}}")
     .header("Content-Type", "application/json")
     .body("{\r\n  \"connectionId\": \"{{grc_connection_id}}\",\r\n  \"correlationId\": \"postman-ftr-4aba285b-eba1-4dab-930d-b1e55f2d3c6b\"\r\n}")
@@ -159,11 +159,11 @@ HttpResponse<String> response = Unirest.post("https://{{baseurl}}/dispatchitem/v
 </pre>
 </div>
 
-<div id="Node-get-bag" class="tabcontent dark"><pre><code>
+<div id="Node-get-item" class="tabcontent dark"><pre><code>
 var request = require('request');
 var options = {
     'method': 'POST',
-    'url': 'https://{{baseurl}}/dispatchitem/v2/getbag',
+    'url': 'https://{{baseurl}}/dispatchitem/v2/getitem',
     'headers': {
     'location-id': '{{locationId}}',
     'Content-Type': 'application/json'
@@ -182,7 +182,7 @@ request(options, function (error, response) {
 </pre>
 </div>
 
-<div id="Go-get-bag" class="tabcontent dark"><pre><code>
+<div id="Go-get-item" class="tabcontent dark"><pre><code>
 package main
 
 import (
@@ -194,7 +194,7 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/dispatchitem/v2/getbag"
+    url := "https://%7B%7Bbaseurl%7D%7D/dispatchitem/v2/getitem"
     method := "POST"
 
     payload := strings.NewReader(`{`+"
@@ -234,8 +234,8 @@ func main() {
 </pre>
 </div>
 
-<div id=".NET-get-bag" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/dispatchitem/v2/getbag");
+<div id=".NET-get-item" class="tabcontent dark"><pre><code>
+var client = new RestClient("https://{{baseurl}}/dispatchitem/v2/getitem");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
 request.AddHeader("location-id", "{{locationId}}");
@@ -258,7 +258,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample <span class="method post">POST</span>
-    <code class="inline-code">/dispatchitem/v2/getbag</code> request to initiate a
+    <code class="inline-code">/dispatchitem/v2/getitem</code> request to initiate a
     dispatchitem process.
 
 
@@ -289,7 +289,7 @@ Console.WriteLine(response.Content);
 <p class="caption">
 
         Sample Request Body for a <span class="method post">POST</span>
-        <code class="inline-code">/dispatchitem/v2/getbag</code> request that provides a <code class="inline-code">connectionId</code> of the dispatchitem device
+        <code class="inline-code">/dispatchitem/v2/getitem</code> request that provides a <code class="inline-code">connectionId</code> of the dispatchitem device
     </p>
 
 
@@ -302,14 +302,14 @@ Console.WriteLine(response.Content);
 <p>
     Upon making a
     <span class="method post">POST</span>
-        <code class="inline-code">/dispatchitem/v2/getbag</code> request, the Dispatch API acknowledges the request with a synchronous
+        <code class="inline-code">/dispatchitem/v2/getitem</code> request, the Dispatch API acknowledges the request with a synchronous
     message returns a
     <code class="inline-code">2xx</code> success status code (as seen in a tool
     like Postman).
 </p>
 <p>
     The dispatchitem process is initiated, and the door to the GRC opens (if there is a
-    door) so the passenger can place the bag on the belt. 
+    door) so the passenger can place the item on the belt. 
     
     <p>
          A <code class="inline-code">GetBagResponse</code> message displays on the Service Bus, acknowledging that the request to initiate a dispatchitem process was received
@@ -355,7 +355,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     <code class="inline-code">BagPlaced</code> Service Bus message displaying
-    properties of the 'placed' bag
+    properties of the 'placed' item
 </p>
 
 
@@ -407,7 +407,7 @@ Console.WriteLine(response.Content);
                 </svg>
             </div>
             <div>
-                <a href="/dispatchitem/endpoints/process-bag"
+                <a href="/dispatchitem/endpoints/process-item"
                     >Process Bag</a
                 >
             </div>

@@ -10,7 +10,7 @@
 <p>
     Follow along with this walkthrough to experience the Dispatch API, including
     connecting to an GRC and completing an entire dispatchitem process that ends
-    with releasing the bag to the Baggage Handling System (BHS).
+    with releasing the item to the Item Handling System.
 </p>
 <p>The following tools are used to demonstrate the Print API:</p>
 <ul>
@@ -26,7 +26,8 @@
         Flex.
     </li>
     <li>
-        Your application backend to receive messages from the Azure Service Bus.
+        Your application backend to receive messages from the Message Service
+        Bus.
     </li>
 </ul>
 <div class="alert-section info-alert">
@@ -228,7 +229,7 @@
                 being used (<code class="inline-code"
                     >"DeviceInUse": "false"</code
                 >). The device is available to successfully receive a
-                <code class="inline-code">/dispatchitem/v2/getbag</code>
+                <code class="inline-code">/dispatchitem/v2/getitem</code>
                 request.
             </p>
             <div class="alert-section info-alert">
@@ -292,7 +293,7 @@
         <ol>
             <li>
                 In Postman, send a
-                <code class="inline-code">/dispatchitem/v2/getbag</code>
+                <code class="inline-code">/dispatchitem/v2/getitem</code>
                 request.
                 <ul>
                     <li>
@@ -312,7 +313,7 @@
                 <div class="">
                     <p>
                         On a real conveyor, a message such as "Please place your
-                        bag on the belt" would display.
+                        item on the belt" would display.
                     </p>
                 </div>
             </div>
@@ -355,8 +356,8 @@
                 message displays on the Service Bus which is an indication the
                 dispatchitem process is initiated. The property
                 <code class="inline-code">"Bag": null</code>
-                indicates there is no bag information because, for the purpose
-                of this simulation, the passenger has not yet placed a bag onto
+                indicates there is no item information because, for the purpose
+                of this simulation, the passenger has not yet placed a item onto
                 the belt.
             </li>
             <div class="method-example atom-one-light">
@@ -374,7 +375,7 @@
 
             <p class="caption">
                 <code class="inline-code">GetBagResponse</code> Service Bus
-                Message indicating no baggage data has been collected
+                Message indicating no item data has been collected
             </p>
         </ul>
 
@@ -384,14 +385,14 @@
             <code class="inline-code">ConveyorTransactionTimeout</code>
             message displays on the service bus with an empty Message Body when
             too much time has elapsed since the
-            <code class="inline-code">/dispatchitem/v2/getbag</code>
+            <code class="inline-code">/dispatchitem/v2/getitem</code>
             request was made. Another
-            <code class="inline-code">/dispatchitem/v2/getbag</code>
+            <code class="inline-code">/dispatchitem/v2/getitem</code>
             request must be made to restart the dispatchitem process. If you
             send a
-            <code class="inline-code">/dispatchitem/v2/processbag</code>
+            <code class="inline-code">/dispatchitem/v2/processitem</code>
             request when a timeout has occurred, and you have not sent the
-            <code class="inline-code">/dispatchitem/v2/getbag</code>
+            <code class="inline-code">/dispatchitem/v2/getitem</code>
             request, you will receive an error status code.
         </p>
     </div>
@@ -423,8 +424,9 @@
             <div class="alert-section info-alert">
                 <div class="">
                     <p>
-                        The bag in its current state is simulating the passenger
-                        holding the bag prior to placing the bag on the belt.
+                        The item in its current state is simulating the
+                        passenger holding the item prior to placing the item on
+                        the belt.
                     </p>
                 </div>
             </div>
@@ -435,7 +437,9 @@
                     <li>
                         If the door has turned red (door is closed), send
                         another
-                        <code class="inline-code">/dispatchitem/v2/getbag</code>
+                        <code class="inline-code"
+                            >/dispatchitem/v2/getitem</code
+                        >
                         request to open it.
                     </li>
                 </ul>
@@ -445,8 +449,8 @@
                 button you clicked earlier.
                 <ul>
                     <li>
-                        The bag (in green) displays in the GRC image in the
-                        <strong>Entry Area</strong> like when a real bag is
+                        The item (in green) displays in the GRC image in the
+                        <strong>Entry Area</strong> like when a real item is
                         placed by a passenger in the
                         <strong>Entry Area</strong> of an GRC.
                     </li>
@@ -466,10 +470,10 @@
             <div class="">
                 <p>
                     If the passenger is using a mobile app, the app may request
-                    confirmation that the bag has been placed by displaying a "I
-                    have placed the bag" prompt. After tapping the button, the
-                    passenger is brought to the next step in the dispatchitem
-                    process.
+                    confirmation that the item has been placed by displaying a
+                    "I have placed the item" prompt. After tapping the button,
+                    the passenger is brought to the next step in the
+                    dispatchitem process.
                 </p>
             </div>
         </div>
@@ -487,11 +491,11 @@
             properties called <strong>Bounce</strong>.
         </p>
         <p>
-            In the previous step, you placed a bag onto the belt. When this
+            In the previous step, you placed a item onto the belt. When this
             occurred, the belt was 'in-motion' while the weight on the belt
             settled, like a real conveyor. The
             <strong>Bounce</strong> properties simulate the fluctuation of
-            weight while the weight of the bag settles.
+            weight while the weight of the item settles.
         </p>
         <p>
             The settled weight is calculated after the specified number of
@@ -502,7 +506,7 @@
         <!-- <p class="caption">
             GRC Device Simulator showing
             <code class="inline-code">Bounce</code>
-            Properties that simulate the motion of the belt after placing a bag
+            Properties that simulate the motion of the belt after placing a item
         </p> -->
         <p>To view the settled weight:</p>
         <ol>
@@ -517,7 +521,7 @@
                         <strong>Bounce</strong> events are shown. For each
                         event, a weight measurement is taken. Within the
                         characters of the event string,
-                        <code class="inline-code">SW=2</code> means the bag is
+                        <code class="inline-code">SW=2</code> means the item is
                         still settling on the weight scale. Notice how from one
                         event to the next, the weight goes up and down,
                         indicated by the
@@ -529,7 +533,7 @@
                     <p>
                         In the last event, the
                         <code class="inline-code">SW=4</code> indicates this
-                        measurement is the final measurement taken when the bag
+                        measurement is the final measurement taken when the item
                         has settled and not in motion.
                     </p>
                 </li>
@@ -579,12 +583,12 @@
 
             <p class="caption">
                 <code class="inline-code">BagPlaced</code>
-                Service Bus message displaying properties of the 'placed bag'
+                Service Bus message displaying properties of the 'placed item'
             </p>
             <p>
                 The
                 <code class="inline-code">"Position": "Entry"</code>
-                indicates that the bag is currently located on the
+                indicates that the item is currently located on the
                 <code class="inline-code">Entry</code> position of the GRC unit.
             </p>
             <div class="alert-section info-alert">
@@ -594,15 +598,15 @@
                         <code class="inline-code">Position</code>
                         will update when new measurements are made as the
                         dispatchitem process progresses and the position of the
-                        bag changes.
+                        item changes.
                     </p>
                 </div>
             </div>
             <p>
                 <code class="inline-code">"IsSuccess": true</code>
-                indicates that a bag has been placed on the belt, and a settled
-                weight has been calculated for the bag, in addition to other
-                measurements such as the dimensions of the bag.
+                indicates that a item has been placed on the belt, and a settled
+                weight has been calculated for the item, in addition to other
+                measurements such as the dimensions of the item.
             </p>
             <div class="alert-section info-alert">
                 <div class="">
@@ -610,13 +614,13 @@
                         The GRC device in the GRC Device Simulator is not
                         capable of providing a the
                         <code class="inline-code">VolumeResult</code>
-                        that includes the baggage dimensions, returning
+                        that includes the item dimensions, returning
                         <code class="inline-code">"Amount": 0.0</code>
                         for the various dimensions. However, some GRCs have this
                         capability. When interacting with an actual GRC with the
                         capability to take measurements, those measurements will
                         display. How your application backend could use this
-                        information is to potentially reject a bag if a bag's
+                        information is to potentially reject a item if a item's
                         <code class="inline-code">width</code>
                         is greater than a certain allowed amount, for example.
                     </p>
@@ -633,7 +637,7 @@
         <ol>
             <li>
                 In Postman, send a
-                <code class="inline-code">/dispatchitem/v2/processbag</code>
+                <code class="inline-code">/dispatchitem/v2/processitem</code>
                 request.
                 <ul>
                     <li>
@@ -643,17 +647,18 @@
                     </li>
                     <li>
                         In the GRC Device Simulator, notice that the door has
-                        closed, and the bag has now moved from the
+                        closed, and the item has now moved from the
                         <code class="inline-code">Entry</code>
                         position to the
                         <code class="inline-code">Process</code>
-                        position to simulate the belt moving down the bag. The
-                        bag is not accessible to the passenger in this position.
+                        position to simulate the belt moving down the item. The
+                        item is not accessible to the passenger in this
+                        position.
                     </li>
                 </ul>
             </li>
             <!-- <p class="caption">
-            Device Simulator showing the bag has moved to the Processing Area
+            Device Simulator showing the item has moved to the Processing Area
         </p> -->
             <div class="alert-section info-alert">
                 <div class="">
@@ -670,12 +675,12 @@
                     <code class="inline-code">DoorClosing</code>
                     message may display on the Service Bus with an empty Message
                     Body. This indicates the door has closed after the passenger
-                    placed the bag on the belt.
+                    placed the item on the belt.
                 </li>
                 <li>
                     A
                     <code class="inline-code">BagChanged</code>
-                    message displays on the Service Bus which indicates the bag
+                    message displays on the Service Bus which indicates the item
                     has changed position. This message looks like the
                     <code class="inline-code">BagPlaced</code>
                     message, except with the property
@@ -687,13 +692,13 @@
             <div class="alert-section info-alert">
                 <div class="">
                     <p>
-                        In the simulation, the same baggage information
-                        collected from the measurement taken in the
+                        In the simulation, the same item information collected
+                        from the measurement taken in the
                         <strong>Entry Area</strong>
                         is displayed in the
                         <code class="inline-code">BagChanged</code>
                         message. However, on a real dispatchitem, it is possible
-                        the baggage information may change. For example, the GRC
+                        the item information may change. For example, the GRC
                         may be configured to take a measurement in the
                         <strong>Processing Area</strong>
                         rather than
@@ -707,13 +712,13 @@
                 <li>
                     A
                     <code class="inline-code">ProcessBagResponse</code>
-                    message displays on the Service Bus that indicates the bag
+                    message displays on the Service Bus that indicates the item
                     was successfully processed (<code>"IsSuccess": true</code>).
                     This message, like the
                     <code class="inline-code">Bag Placed</code>
                     and
                     <code class="inline-code">BagChanged</code>
-                    messages, displays the baggage measurements.
+                    messages, displays the item measurements.
                 </li>
             </ul>
         </ol>
@@ -769,7 +774,7 @@
         <ol>
             <li>
                 <p>
-                    Right-click the bag in the GRC Device Simulator and select
+                    Right-click the item in the GRC Device Simulator and select
                     <strong>Remove</strong>.
                 </p>
             </li>
@@ -777,8 +782,8 @@
                 <p>
                     Check the Service Bus for a
                     <code class="inline-code">StatusChanged</code>
-                    message which indicates the bag was removed. The device then
-                    goes
+                    message which indicates the item was removed. The device
+                    then goes
                     <code class="inline-code">Offline</code>.
                 </p>
             </li>
@@ -797,7 +802,7 @@
 
             <p class="caption">
                 <code class="inline-code">StatusChanged</code>
-                Service Bus message indicating the bag was unexpectedly removed
+                Service Bus message indicating the item was unexpectedly removed
                 from the Processing area
             </p>
             <div class="alert-section info-alert">
@@ -805,7 +810,7 @@
                     <p>
                         <strong>Note:</strong>
                         In a dispatch process with a real GRC, unexpectedly
-                        removing the bag from the belt displays the same
+                        removing the item from the belt displays the same
                         <code class="inline-code">ConveyorStatus</code>.
                     </p>
                 </div>
@@ -851,7 +856,7 @@
 
             <li>
                 Send a
-                <code class="inline-code">/dispatchitem/v2/getbag</code>
+                <code class="inline-code">/dispatchitem/v2/getitem</code>
                 request.
                 <ul>
                     <li>
@@ -875,20 +880,20 @@
         </div>
         <ol>
             <li>
-                With the bag in the Process Area, send a
-                <code class="inline-code">/dispatchitem/v2/returnbag</code>
-                to simulate the GRC returning the bag to the customer to resolve
-                an issue.
+                With the item in the Process Area, send a
+                <code class="inline-code">/dispatchitem/v2/returnitem</code>
+                to simulate the GRC returning the item to the customer to
+                resolve an issue.
                 <ul>
                     <li>
-                        The bag moves from the
+                        The item moves from the
                         <strong>Processing Area</strong>
                         back to the
                         <strong>Entry Area</strong>
                         and the door opens for a short period. If the door
                         closes, sending another
                         <code class="inline-code"
-                            >/dispatchitem/v2/returnbag</code
+                            >/dispatchitem/v2/returnitem</code
                         >
                         request will open the door again.
                     </li>
@@ -897,14 +902,14 @@
                         <code class="inline-code">DoorOpening</code>
                         message displays on the Service Bus with an empty
                         Message Body. This simply indicates the door of the GRC
-                        has opened so the bag can be accessible to the passenger
-                        to resolve the issue.
+                        has opened so the item can be accessible to the
+                        passenger to resolve the issue.
                     </li>
                     <li>
                         A
                         <code class="inline-code">BagChanged</code>
                         message displays on the Service Bus which indicates the
-                        bag has changed
+                        item has changed
                         <code class="inline-code">Position</code>
                         from the
                         <code class="inline-code">Process</code>
@@ -916,7 +921,7 @@
                         A
                         <code class="inline-code">ReturnBagResponse</code>
                         message displays on the Service Bus which indicates the
-                        request to return the bag to the
+                        request to return the item to the
                         <code class="inline-code">Entry</code>
                         position was successful (
                         <code class="inline-code">"IsSuccess":true</code>).
@@ -925,7 +930,7 @@
             </li>
 
             <!-- <p class="caption">
-                GRC Device Simulator showing the bag has returned to the Entry Area
+                GRC Device Simulator showing the item has returned to the Entry Area
                 where the customer can resolve the issue
             </p> -->
             <div class="alert-section info-alert">
@@ -941,8 +946,8 @@
 
             <li>
                 To simulate the customer having resolved the issue, send another
-                <code class="inline-code">/dispatchitem/v2/processbag</code>
-                request to close the door and move the bag back the
+                <code class="inline-code">/dispatchitem/v2/processitem</code>
+                request to close the door and move the item back the
                 <strong>Processing Area</strong>.
             </li>
         </ol>
@@ -957,14 +962,14 @@
         </div>
         <ol>
             <li>
-                With the bag in the Process Area, send a
-                <code class="inline-code">/dispatchitem/v2/cancelbag</code>
-                request to simulate the dispatchitem returning the bag due to an
-                issue that requires attendant assistance and cannot be resolved
-                by the customer.
+                With the item in the Process Area, send a
+                <code class="inline-code">/dispatchitem/v2/cancelitem</code>
+                request to simulate the dispatchitem returning the item due to
+                an issue that requires attendant assistance and cannot be
+                resolved by the customer.
                 <ul>
                     <li>
-                        The bag moves from the
+                        The item moves from the
                         <strong>Processing</strong>
                         <strong>Area</strong>
                         back to the
@@ -976,13 +981,13 @@
                         The same messages received on the Service Bus after
                         sending a
                         <code class="inline-code"
-                            >/dispatchitem/v2/returnbag</code
+                            >/dispatchitem/v2/returnitem</code
                         >
                         request are received after sending a
                         <code class="inline-code"
-                            >/dispatchitem/v2/cancelbag</code
+                            >/dispatchitem/v2/cancelitem</code
                         >
-                        request. They indicate the bag has returned to the
+                        request. They indicate the item has returned to the
                         <strong>Entry</strong>
                         <strong>Area</strong>.
                     </li>
@@ -990,7 +995,7 @@
             </li>
             <!-- 
             <p class="caption">
-                GRC Device Simulator showing the bag has returned to the Entry Area
+                GRC Device Simulator showing the item has returned to the Entry Area
                 where the attendant can resolve the issue
             </p> -->
             <div class="alert-section info-alert">
@@ -1006,8 +1011,8 @@
             <li>
                 To simulate the attendant having resolved the issue, send
                 another
-                <code class="inline-code">/dispatchitem/v2/processbag</code>
-                request to close the door and move the bag back the
+                <code class="inline-code">/dispatchitem/v2/processitem</code>
+                request to close the door and move the item back the
                 <strong>Processing Area</strong>.
             </li>
         </ol>
@@ -1016,62 +1021,68 @@
     <div class="section numbered-section">
         <div class="section-header">
             <h2 id="heading-2" class="numbered-h2">
-                Release the Bag to the BHS
+                Release the Bag to the Item Handling System
             </h2>
             <span class="tag">Dispatch API</span>
         </div>
         <ol>
             <li>
                 <p>
-                    With the bag in the
+                    With the item in the
                     <strong>Process</strong>
                     Area, send a
-                    <code class="inline-code">/dispatchitem/v2/releasebag</code>
+                    <code class="inline-code"
+                        >/dispatchitem/v2/releaseitem</code
+                    >
                     request to simulate the completion of the dispatchitem
-                    process with the GRC unit releasing the bag.
+                    process with the GRC unit releasing the item.
                 </p>
                 <ul>
                     <li>
-                        The bag moves from the
+                        The item moves from the
                         <strong>Processing Area</strong>
                         to the
-                        <strong>BHS Release Area</strong>
+                        <strong>Release Area</strong>
                         where it will remain in the VM until it is removed.
                     </li>
                     <li>
                         A
                         <code class="inline-code">BagChanged</code>
                         message displays on the Service Bus which indicates the
-                        bag's position has changed.
+                        item's position has changed.
                     </li>
                     <li>
                         A
                         <code class="inline-code">ReleaseBagResponse</code>
                         message displays on the Service Bus which indicates the
-                        request to release the bag to the BHS was successful
-                        (<code class="inline-code">"IsSuccess":true</code>).
+                        request to release the item to the Item Handling System
+                        was successful (<code class="inline-code"
+                            >"IsSuccess":true</code
+                        >).
                     </li>
                     <li>
                         You can start a new dispatch process at this point by
-                        adding a new bag, sending a
-                        <code class="inline-code">/dispatchitem/v2/getbag</code>
-                        request, then placing the new bag on the belt
+                        adding a new item, sending a
+                        <code class="inline-code"
+                            >/dispatchitem/v2/getitem</code
+                        >
+                        request, then placing the new item on the belt
                         (performing the same process again).
                     </li>
                 </ul>
             </li>
             <p>
                 If you wish, you can start a new dispatch process at this point
-                by adding a new bag, sending a
-                <code class="inline-code">/dispatchitem/v2/getbag</code>
-                request, then placing the new bag on the belt.
+                by adding a new item, sending a
+                <code class="inline-code">/dispatchitem/v2/getitem</code>
+                request, then placing the new item on the belt.
             </p>
         </ol>
     </div>
 </div>
 
 <!-- <p class="caption">
-    GRC Device Simulator showing the bag has been successfully released to the
+    GRC Device Simulator showing the item has been successfully released to the
     BHS Release Area
 </p> -->
 

@@ -1,15 +1,15 @@
 <div class="title-box">
     <h1 class="topic-title">Return Bag</h1>
     <div class="action-statement">
-        Return the bag to the customer to resolve the issue 
+        Return the item to the customer to resolve the issue 
     </div>
 </div>
  
 <p>
-    If an issue arises when the bag is in the
+    If an issue arises when the item is in the
     <code class="inline-code">Process</code> position, and the customer
-    <em>can resolve the issue</em>, send a <span class="method post">POST </span><code class="inline-code">/dispatchitem/v2/returnbag</code> request to open the
-    door and return the bag to the
+    <em>can resolve the issue</em>, send a <span class="method post">POST </span><code class="inline-code">/dispatchitem/v2/returnitem</code> request to open the
+    door and return the item to the
     <code class="inline-code">Entry</code> position where the customer to
     resolve the issue.
 </p>
@@ -28,14 +28,14 @@
 <div class="code-section with-tabs">
     <div class="code-section-header">
         <div class="code-tabs">
-            <button class="tablinks" onclick="openTab(event, 'bash-return-bag')" id="defaultOpen">curl</button>
-            <button class="tablinks" onclick="openTab(event, 'Ruby-return-bag')">Ruby</button>
-            <button class="tablinks" onclick="openTab(event, 'Python-return-bag')">Python</button>
-            <button class="tablinks" onclick="openTab(event, 'PHP-return-bag')">PHP</button>
-            <button class="tablinks" onclick="openTab(event, 'Java-return-bag')">Java</button>
-            <button class="tablinks" onclick="openTab(event, 'Node-return-bag')">Node</button>
-            <button class="tablinks" onclick="openTab(event, 'Go-return-bag')">Go</button>
-            <button class="tablinks" onclick="openTab(event, '.NET-return-bag')">.NET</button>
+            <button class="tablinks" onclick="openTab(event, 'bash-return-item')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby-return-item')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python-return-item')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP-return-item')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java-return-item')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node-return-item')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go-return-item')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET-return-item')">.NET</button>
         </div>
         <div class="copy-code-btn-container">
             <button class="copy-code-btn">
@@ -59,8 +59,8 @@
         Copied!
     </div>
 
-<div id="bash-return-bag" class="tabcontent dark"><pre> <code>
-curl --location -g --request POST 'https://{{baseurl}}/dispatchitem/v2/returnbag' \
+<div id="bash-return-item" class="tabcontent dark"><pre> <code>
+curl --location -g --request POST 'https://{{baseurl}}/dispatchitem/v2/returnitem' \
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -71,12 +71,12 @@ curl --location -g --request POST 'https://{{baseurl}}/dispatchitem/v2/returnbag
 </pre>
 </div>
 
-<div id="Ruby-return-bag" class="tabcontent dark"><pre><code>
+<div id="Ruby-return-item" class="tabcontent dark"><pre><code>
 require "uri"
 require "json"
 require "net/http"
 
-url = URI("https://{{baseurl}}/dispatchitem/v2/returnbag")
+url = URI("https://{{baseurl}}/dispatchitem/v2/returnitem")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -95,11 +95,11 @@ puts response.read_body
 </pre>
 </div>
 
-<div id="Python-return-bag" class="tabcontent dark"><pre> <code>
+<div id="Python-return-item" class="tabcontent dark"><pre> <code>
 import requests
 import json
 
-url = "https://{{baseurl}}/dispatchitem/v2/returnbag"
+url = "https://{{baseurl}}/dispatchitem/v2/returnitem"
 
 payload = json.dumps({
     "connectionId": "{{grc_connection_id}}",
@@ -117,13 +117,13 @@ print(response.text)
 </pre>
 </div>
 
-<div id="PHP-return-bag" class="tabcontent dark"><pre> <code>
+<div id="PHP-return-item" class="tabcontent dark"><pre> <code>
 <?php
 
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/dispatchitem/v2/returnbag',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/dispatchitem/v2/returnitem',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -149,9 +149,9 @@ echo $response;
 </pre>
 </div>
 
-<div id="Java-return-bag" class="tabcontent dark"><pre><code>
+<div id="Java-return-item" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("https://{{baseurl}}/dispatchitem/v2/returnbag")
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/dispatchitem/v2/returnitem")
     .header("location-id", "{{locationId}}")
     .header("Content-Type", "application/json")
     .body("{\r\n  \"connectionId\": \"{{grc_connection_id}}\",\r\n  \"correlationId\": \"postman-ftr-937f88d5-d784-4323-bf9f-9add46915def\"\r\n}")
@@ -160,9 +160,9 @@ HttpResponse<String> response = Unirest.post("https://{{baseurl}}/dispatchitem/v
 </pre>
 </div>
 
-<div id="Node-return-bag" class="tabcontent dark"><pre><code>
+<div id="Node-return-item" class="tabcontent dark"><pre><code>
 var unirest = require('unirest');
-var req = unirest('POST', 'https://{{baseurl}}/dispatchitem/v2/returnbag')
+var req = unirest('POST', 'https://{{baseurl}}/dispatchitem/v2/returnitem')
     .headers({
     'location-id': '{{locationId}}',
     'Content-Type': 'application/json'
@@ -179,7 +179,7 @@ var req = unirest('POST', 'https://{{baseurl}}/dispatchitem/v2/returnbag')
 </pre>
 </div>
 
-<div id="Go-return-bag" class="tabcontent dark"><pre><code>
+<div id="Go-return-item" class="tabcontent dark"><pre><code>
 package main
 
 import (
@@ -191,7 +191,7 @@ import (
 
 func main() {
 
-    url := "https://%7B%7Bbaseurl%7D%7D/dispatchitem/v2/returnbag"
+    url := "https://%7B%7Bbaseurl%7D%7D/dispatchitem/v2/returnitem"
     method := "POST"
 
     payload := strings.NewReader(`{`+"
@@ -231,8 +231,8 @@ func main() {
 </pre>
 </div>
 
-<div id=".NET-return-bag" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/dispatchitem/v2/returnbag");
+<div id=".NET-return-item" class="tabcontent dark"><pre><code>
+var client = new RestClient("https://{{baseurl}}/dispatchitem/v2/returnitem");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
 request.AddHeader("location-id", "{{locationId}}");
@@ -255,7 +255,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
 
-   Sample <span class="method post">POST </span><code class="inline-code">/dispatchitem/v2/returnbag</code> request to return the bag to the
+   Sample <span class="method post">POST </span><code class="inline-code">/dispatchitem/v2/returnitem</code> request to return the item to the
         <code class="inline-code">Entry</code> position.
     </p>
 
@@ -285,7 +285,7 @@ Console.WriteLine(response.Content);
 <p class="caption">
 
         Sample Request Body for a <span class="method post">POST</span>
-        <code class="inline-code">/dispatchitem/v2/processbag</code> request that provides a <code class="inline-code">connectionId</code> of the dispatchitem device
+        <code class="inline-code">/dispatchitem/v2/processitem</code> request that provides a <code class="inline-code">connectionId</code> of the dispatchitem device
     </p>
 
 
@@ -298,19 +298,19 @@ Console.WriteLine(response.Content);
 <p>
     Upon making a
     <span class="method post">POST</span>
-        <code class="inline-code">/dispatchitem/v2/returnbag</code> request, the Dispatch API acknowledges the request with a synchronous
+        <code class="inline-code">/dispatchitem/v2/returnitem</code> request, the Dispatch API acknowledges the request with a synchronous
     message returns a
     <code class="inline-code">2xx</code> success status code (as seen in a tool
     like Postman).
 </p>
 <p>
-    A <code class="inline-code">ReturnBagResponse</code> message displays on the Service Bus, acknowledging that the request to return the bag was received.
+    A <code class="inline-code">ReturnBagResponse</code> message displays on the Service Bus, acknowledging that the request to return the item was received.
 
 </p>
 
 <p>
     A <code class="inline-code">BagChanged</code> message displays on the Service Bus and is identical to the
-    <code class="inline-code">BagPlaced</code> message and displays baggage
+    <code class="inline-code">BagPlaced</code> message and displays item
     information collected through a measurement. The property
     <code class="inline-code">Position</code> changes from
     <code class="inline-code">Process</code> to
@@ -368,7 +368,7 @@ Console.WriteLine(response.Content);
                 </svg>
             </div>
             <div>
-                <a href="/dispatchitem/endpoints/cancel-bag"
+                <a href="/dispatchitem/endpoints/cancel-item"
                     >Cancel Bag</a
                 >
             </div>

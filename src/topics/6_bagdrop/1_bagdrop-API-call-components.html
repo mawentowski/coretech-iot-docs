@@ -7,7 +7,7 @@
 
 <p>
     Below is a sample <span class="method post">POST</span>
-    <code class="inline-code">/dispatchitem/v2/getbag</code> call to the Dispatch API
+    <code class="inline-code">/dispatchitem/v2/getitem</code> call to the Dispatch API
     that contains the required components:
     <ul>
         <li>Resource URL <code class=inline-code>https://</code></li>
@@ -43,7 +43,7 @@
     <div class="copied-popup hidden">Copied!</div>
     <div class="code-content dark">
         <pre><code class="language-bash">
-curl --location -g --request POST 'https://{{baseurl}}/dispatchitem/v2/getbag' \
+curl --location -g --request POST 'https://{{baseurl}}/dispatchitem/v2/getitem' \
 --header 'location-id: {{locationId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -76,9 +76,9 @@ curl --location -g --request POST 'https://{{baseurl}}/dispatchitem/v2/getbag' \
         The end path of the Resource URL is comprised of the API name (
         <code class="inline-code">dispatchitem</code>) followed by the endpoint name.
         For example, the end path
-        <code class="inline-code">/dispatchitem/v2/getbag</code> contains the API
+        <code class="inline-code">/dispatchitem/v2/getitem</code> contains the API
         <code class="inline-code">dispatchitem</code> followed by the endpoint
-        <code class="inline-code">getbag</code>.
+        <code class="inline-code">getitem</code>.
     </li>
 </ul>
 <div class="alert-section info-alert">
