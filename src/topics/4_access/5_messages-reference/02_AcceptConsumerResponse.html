@@ -121,7 +121,7 @@
     "IsSuccess":false,
     "Error": {
         "ErrorCode": "NotAbleToAcceptConsumer",
-        "Message": "BoardingCancelledByPassenger"
+        "Message": "EnteringCancelledByConsumer"
     }
 }
         </code>
@@ -137,29 +137,29 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>BoardingCancelledByPassenger</td>
+                    <td>EnteringCancelledByConsumer</td>
                     <td>
-                        Boarding was cancelled by consumer leaving through the
+                        Entering was cancelled by consumer leaving through the
                         access point entrance
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        FraudErrorPassengerGrantedAccessThenOnePassengerCrossedFromOppositeSide
+                        FraudErrorConsumerGrantedAccessThenOneConsumerCrossedFromOppositeSide
                     </td>
                     <td>
                         One consumer was granted access and one crossed from opposite side
                     </td>
                 </tr>
                 <tr>
-                    <td>FraudErrorPassengerGrantedAccessThenReturnedToEntrance</td>
+                    <td>FraudErrorConsumerGrantedAccessThenReturnedToEntrance</td>
                     <td>
                         One consumer was granted access but then returned to the entrance
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        FraudErrorPassengerGrantedAccessThenTwoPassengerCrossedFromOppositeSide
+                        FraudErrorConsumerGrantedAccessThenTwoConsumerCrossedFromOppositeSide
                     </td>
                     <td>
                         One consumer was granted access and two crossed from opposite side
@@ -209,31 +209,31 @@
                     <td>Bill print failed due to technical issue</td>
                 </tr>
                 <tr class="redacted">
-                    <td>TailGateFraudOnePassengerGrantedAccess</td>
+                    <td>TailGateFraudOneConsumerGrantedAccess</td>
                     <td>
                         Tail gate fraud, 1 consumer was granted access and 1 consumer
                         returned
                     </td>
                 </tr>
                 <tr class="redacted">
-                    <td>TailGateFraudTwoPassengersGrantedAccess</td>
+                    <td>TailGateFraudTwoConsumersGrantedAccess</td>
                     <td>Tail gate fraud, 2 consumers was granted access at same time</td>
                 </tr>
                 <tr>
-                    <td>TimedOutPassengerDidNotTakeBill</td>
+                    <td>TimedOutConsumerDidNotTakeBill</td>
                     <td>
                         A bill was printed but the consumer did not take it
                         in time
                     </td>
                 </tr>
                 <tr>
-                    <td>TimedOutPassengerDidNotWalkThroughGate</td>
+                    <td>TimedOutConsumerDidNotWalkThroughGate</td>
                     <td>
                         The consumer failed to pass through the access point in time
                     </td>
                 </tr>
                 <tr>
-                    <td>TimedOutPassengerTookBillTooLate</td>
+                    <td>TimedOutConsumerTookBillTooLate</td>
                     <td>
                         A bill was printed but the consumer took it too late
                     </td>

@@ -9,8 +9,7 @@
     Send a <span class="method post">POST</span>
     <code class="inline-code">/access/v2/openaccess</code> request to
     initiate the access process. For a Multi-Technology Reader, the consumer is
-    now allowed to proceed to scan their entry pass. For Boarding Gate
-    Readers, the attendant reading entry passes is now ready to receive
+    now allowed to proceed to scan their entry pass. For Magstripe Readers, the attendant reading entry passes is now ready to receive
     consumers in the queue.
 </p>
 
@@ -300,7 +299,7 @@ Console.WriteLine(response.Content);
 </p>
 <p>
     An <code class="inline-code">OpenGateResponse</code> message displays on the
-    Service Bus, simply indicating that the request to start the boarding
+    Service Bus, simply indicating that the request to start the queueing
     process succeeded with <code class="inline-code">IsSuccess</code> set to
     <code class="inline-code">true</code>.
 </p>
@@ -386,7 +385,7 @@ Console.WriteLine(response.Content);
             </div>
             <div>
                 <a href="/access/accept-consumer"
-                    >Accept Passenger</a
+                    >Accept Consumer</a
                 >
             </div>
         </div>

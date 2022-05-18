@@ -9,11 +9,11 @@
 <h2 id="reader-process">Magstripe Reader Process</h2>
 <p>
     The following is a summary of the access process when an attendant uses a
-    Magstripe Reader (MSR/KPR) to board consumers:
+    Magstripe Reader (MSR/KPR) to queue consumers:
 </p>
 <ul>
     <li>
-        The attendant overseeing the access process initiates boarding through a
+        The attendant overseeing the access process initiates queueing through a
         <code class="inline-code">/access/v2/openaccess</code> request.
     </li>
     <li>An attendant takes the entry pass from the consumer and scans it.</li>
@@ -29,12 +29,16 @@
                 <code class="inline-code">/access/v2/acceptconsumer</code>
                 request is sent. A green light displays, along with any
                 <code class="inline-code">Message</code> passed by the airline
-                in the Request Body (e.g., "Passenger Okay to Board").
+                in the Request Body (e.g., "Consumer Okay to Enter").
             </li>
-            <li>
+            <li class="redacted">
                 The attendant gives the entry pass back to the consumer, and the
                 consumer is then allowed to pass the attendant and board the
                 flight.
+            </li>
+            <li>
+                The attendant gives the entry pass back to the consumer, and the
+                consumer is then allowed to pass the attendant and enter the restricted access area.
             </li>
         </ul>
     </li>
@@ -45,8 +49,8 @@
                 A
                 <code class="inline-code">/access/v2/rejectconsumer</code>
                 request is sent. A red light displays, along with any message
-                sent by the airline in the Request Body (e.g., "Passenger Not
-                Okay to Board").
+                sent by the airline in the Request Body (e.g., "Consumer Not
+                Okay to Enter").
             </li>
             <li>
                 The message can specifically say the reason why the consumer was
@@ -71,7 +75,7 @@
 </p>
 <ul>
     <li>
-        The attendant overseeing the access process initiates boarding through a
+        The attendant overseeing the access process initiates queueing through a
         <code class="inline-code">/access/v2/openaccess</code> request.
     </li>
     <li>
@@ -102,7 +106,7 @@
                 A
                 <code class="inline-code">/access/v2/rejectconsumer</code>
                 request is sent. A red "X" displays, along with a message such
-                as "you cannot board, go see an attendant".
+                as "you cannot enter, go see an attendant".
             </li>
             <li>
                 Depending on the situation, the consumer may be sent a different
@@ -163,8 +167,8 @@
                 </svg>
             </div>
             <div>
-                <a href="/access/access-device-processes/open-access"
-                    >Open Access Barrier</a
+                <a href="/access/endpoints/open-accesspoint"
+                    >Open Access Point</a
                 >
             </div>
         </div>

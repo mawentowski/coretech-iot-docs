@@ -33,14 +33,14 @@
 <div class="code-section with-tabs">
     <div class="code-section-header">
         <div class="code-tabs">
-            <button class="tablinks" onclick="openTab(event, 'bash-claim-a-area')" id="defaultOpen">curl</button>
-            <button class="tablinks" onclick="openTab(event, 'Ruby-claim-a-area')">Ruby</button>
-            <button class="tablinks" onclick="openTab(event, 'Python-claim-a-area')">Python</button>
-            <button class="tablinks" onclick="openTab(event, 'PHP-claim-a-area')">PHP</button>
-            <button class="tablinks" onclick="openTab(event, 'Java-claim-a-area')">Java</button>
-            <button class="tablinks" onclick="openTab(event, 'Node-claim-a-area')">Node</button>
-            <button class="tablinks" onclick="openTab(event, 'Go-claim-a-area')">Go</button>
-            <button class="tablinks" onclick="openTab(event, '.NET-claim-a-area')">.NET</button>
+            <button class="tablinks" onclick="openTab(event, 'bash-claim-an-area')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby-claim-an-area')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python-claim-an-area')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP-claim-an-area')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java-claim-an-area')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node-claim-an-area')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go-claim-an-area')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET-claim-an-area')">.NET</button>
         </div>
         <div class="copy-code-btn-container">
             <button class="copy-code-btn">
@@ -64,7 +64,7 @@
         Copied!
     </div>
 
-<div id="bash-claim-a-area" class="tabcontent dark"><pre> <code>
+<div id="bash-claim-an-area" class="tabcontent dark"><pre> <code>
 curl --area -g --request POST 'https://{{baseurl}}/environment/v2/claims' \
 --header 'area-id: {{areaId}}' \
 --header 'Content-Type: application/json' \
@@ -75,7 +75,7 @@ curl --area -g --request POST 'https://{{baseurl}}/environment/v2/claims' \
 </pre>
 </div>
 
-<div id="Ruby-claim-a-area" class="tabcontent dark"><pre><code>
+<div id="Ruby-claim-an-area" class="tabcontent dark"><pre><code>
 require "uri"
 require "json"
 require "net/http"
@@ -98,7 +98,7 @@ puts response.read_body
 </pre>
 </div>
 
-<div id="Python-claim-a-area" class="tabcontent dark"><pre> <code>
+<div id="Python-claim-an-area" class="tabcontent dark"><pre> <code>
 import requests
 import json
 
@@ -119,7 +119,7 @@ print(response.text)
 </pre>
 </div>
 
-<div id="PHP-claim-a-area" class="tabcontent dark"><pre> <code>
+<div id="PHP-claim-an-area" class="tabcontent dark"><pre> <code>
 <?php
 
 $curl = curl_init();
@@ -150,7 +150,7 @@ echo $response;
 </pre>
 </div>
 
-<div id="Java-claim-a-area" class="tabcontent dark"><pre><code>
+<div id="Java-claim-an-area" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("https://{{baseurl}}/environment/v2/claims")
     .header("area-id", "{{areaId}}")
@@ -161,7 +161,7 @@ HttpResponse<String> response = Unirest.post("https://{{baseurl}}/environment/v2
 </pre>
 </div>
 
-<div id="Node-claim-a-area" class="tabcontent dark"><pre><code>
+<div id="Node-claim-an-area" class="tabcontent dark"><pre><code>
 var request = require('request');
 var options = {
     'method': 'POST',
@@ -183,7 +183,7 @@ request(options, function (error, response) {
 </pre>
 </div>
 
-<div id="Go-claim-a-area" class="tabcontent dark"><pre><code>
+<div id="Go-claim-an-area" class="tabcontent dark"><pre><code>
 package main
 
 import (
@@ -233,7 +233,7 @@ func main() {
 </pre>
 </div>
 
-<div id=".NET-claim-a-area" class="tabcontent dark"><pre><code>
+<div id=".NET-claim-an-area" class="tabcontent dark"><pre><code>
 var client = new RestClient("https://{{baseurl}}/environment/v2/claims");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
@@ -406,7 +406,7 @@ Console.WriteLine(response.Content);
                 </svg>
             </div>
             <div>
-                <a href="/get-started/sync/check-for-linkages"
+                <a href="/get-started/sync/check-for-linkage"
                     >Check for an existing linkage</a
                 >
             </div>

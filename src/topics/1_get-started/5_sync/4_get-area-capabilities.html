@@ -29,14 +29,14 @@
 <div class="code-section with-tabs">
     <div class="code-section-header">
         <div class="code-tabs">
-            <button class="tablinks" onclick="openTab(event, 'bash-get-area-capabilities')" id="defaultOpen">curl</button>
-            <button class="tablinks" onclick="openTab(event, 'Ruby-get-area-capabilities')">Ruby</button>
-            <button class="tablinks" onclick="openTab(event, 'Python-get-area-capabilities')">Python</button>
-            <button class="tablinks" onclick="openTab(event, 'PHP-get-area-capabilities')">PHP</button>
-            <button class="tablinks" onclick="openTab(event, 'Java-get-area-capabilities')">Java</button>
-            <button class="tablinks" onclick="openTab(event, 'Node-get-area-capabilities')">Node</button>
-            <button class="tablinks" onclick="openTab(event, 'Go-get-area-capabilities')">Go</button>
-            <button class="tablinks" onclick="openTab(event, '.NET-get-area-capabilities')">.NET</button>
+            <button class="tablinks" onclick="openTab(event, 'bash-get-get-area-capabilities')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby-get-get-area-capabilities')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python-get-get-area-capabilities')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP-get-get-area-capabilities')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java-get-get-area-capabilities')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node-get-get-area-capabilities')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go-get-get-area-capabilities')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET-get-get-area-capabilities')">.NET</button>
         </div>
         <div class="copy-code-btn-container">
             <button class="copy-code-btn">
@@ -60,14 +60,14 @@
         Copied!
     </div>
 
-<div id="bash-get-area-capabilities" class="tabcontent dark"><pre> <code>
+<div id="bash-get-get-area-capabilities" class="tabcontent dark"><pre> <code>
 curl --area -g --request GET 'https://{{baseurl}}/environment/v2/areas/{{areaId}}' \
 --header 'area-id: {{areaId}}'
 </code>
 </pre>
 </div>
 
-<div id="Ruby-get-area-capabilities" class="tabcontent dark"><pre><code>
+<div id="Ruby-get-get-area-capabilities" class="tabcontent dark"><pre><code>
 require "uri"
 require "net/http"
 
@@ -85,7 +85,7 @@ puts response.read_body
 </pre>
 </div>
 
-<div id="Python-get-area-capabilities" class="tabcontent dark"><pre> <code>
+<div id="Python-get-get-area-capabilities" class="tabcontent dark"><pre> <code>
 import requests
 
 url = "https://{{baseurl}}/environment/v2/areas/{{areaId}}"
@@ -102,7 +102,7 @@ print(response.text)
 </pre>
 </div>
 
-<div id="PHP-get-area-capabilities" class="tabcontent dark"><pre> <code>
+<div id="PHP-get-get-area-capabilities" class="tabcontent dark"><pre> <code>
 <?php
 
 $curl = curl_init();
@@ -129,7 +129,7 @@ echo $response;
 </pre>
 </div>
 
-<div id="Java-get-area-capabilities" class="tabcontent dark"><pre><code>
+<div id="Java-get-get-area-capabilities" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.get("https://{{baseurl}}/environment/v2/areas/{{areaId}}")
     .header("area-id", "{{areaId}}")
@@ -138,7 +138,7 @@ HttpResponse<String> response = Unirest.get("https://{{baseurl}}/environment/v2/
 </pre>
 </div>
 
-<div id="Node-get-area-capabilities" class="tabcontent dark"><pre><code>
+<div id="Node-get-get-area-capabilities" class="tabcontent dark"><pre><code>
 var request = require('request');
 var options = {
     'method': 'GET',
@@ -155,7 +155,7 @@ request(options, function (error, response) {
 </pre>
 </div>
 
-<div id="Go-get-area-capabilities" class="tabcontent dark"><pre><code>
+<div id="Go-get-get-area-capabilities" class="tabcontent dark"><pre><code>
 package main
 
 import (
@@ -197,7 +197,7 @@ func main() {
 </pre>
 </div>
 
-<div id=".NET-get-area-capabilities" class="tabcontent dark"><pre><code>
+<div id=".NET-get-get-area-capabilities" class="tabcontent dark"><pre><code>
 var client = new RestClient("https://{{baseurl}}/environment/v2/areas/{{areaId}}");
 client.Timeout = -1;
 var request = new RestRequest(Method.GET);
@@ -399,7 +399,7 @@ Console.WriteLine(response.Content);
             </div>
             <div>
                 <a href="/get-started/sync/attach-to-a-device"
-                    >attach to a device</a
+                    >Attach to a device</a
                 >
             </div>
         </div>

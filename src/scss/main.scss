@@ -1251,7 +1251,7 @@ a.api-tag::after {
     display: flex;
     flex-grow: 1;
     position: relative;
-    margin-left: 12px;
+    margin-left: 43px;
 
     .search-prepend {
         position: absolute;
@@ -1537,7 +1537,7 @@ h2 + .alert-section {
     position: absolute;
     width: 16px;
     height: 16px;
-    left: 39px;
+    left: 33px;
     top: 1.7;
 
     /* top: 32.24px; */
@@ -1545,7 +1545,7 @@ h2 + .alert-section {
     font-family: Questrial, sans-serif;
     color: #4cb7e7;
     font-size: 19px;
-    content: 'Docs';
+    content: 'Concept';
 }
 
 #hidden-breadcrumb.topic-breadcrumb {
@@ -1562,4 +1562,8 @@ table + h3 {
 
 span.no-break {
     word-break: none;
+}
+
+.redacted {
+    display: none;
 }

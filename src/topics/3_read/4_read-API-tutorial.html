@@ -1,5 +1,5 @@
 <div class="title-box">
-    <h1 class="topic-title">Scan API Tutorial</h1>
+    <h1 class="topic-title">Read API Tutorial</h1>
     <div class="action-statement">
         Follow these step-by-step instructions to complete an interaction with a
         read device.
@@ -7,7 +7,7 @@
 </div>
 
 <p>
-    Follow along with this walkthrough to experience the Scan API, including
+    Follow along with this walkthrough to experience the Read API, including
     attaching to a device, issuing a read command, then reading the response.
     The following tools are used to demonstrate the Render API:
 </p>
@@ -105,7 +105,7 @@
     <div class="section numbered-section">
         <div class="section-header">
             <h2 id="heading-2" class="numbered-h2">Add an OSR Device</h2>
-            <span class="tag">Scan API</span>
+            <span class="tag">Read API</span>
         </div>
         <div class="alert-section info-alert">
             <div class="">
@@ -144,7 +144,7 @@
     <div class="section numbered-section">
         <div class="section-header">
             <h2 id="heading-2" class="numbered-h2">attach to the HHS</h2>
-            <span class="tag">Scan API</span>
+            <span class="tag">Read API</span>
         </div>
         <ol>
             <li>
@@ -279,7 +279,7 @@
     <div class="section numbered-section">
         <div class="section-header">
             <h2 id="heading-2" class="numbered-h2">Claim the HHS</h2>
-            <span class="tag">Scan API</span>
+            <span class="tag">Read API</span>
         </div>
         <p>
             The next step is to claim the HHS to give the application backend
@@ -292,7 +292,7 @@
                 request.
                 <ul>
                     <li>
-                        If successful, the Scan API returns a
+                        If successful, the Read API returns a
                         <code class="inline-code">2xx</code> success status code
                         with the Response Body containing an
                         <code class="inline-code">accessExpiryTime</code>
@@ -311,7 +311,7 @@
                     </pre>
             </div>
             <p class="caption">
-                Scan API Response Body containing the date-time when exclusive
+                Read API Response Body containing the date-time when exclusive
                 access to the device expires
             </p>
             <li>
@@ -355,7 +355,7 @@
     <div class="section numbered-section">
         <div class="section-header">
             <h2 id="heading-2" class="numbered-h2">Simulate a Passport Scan</h2>
-            <span class="tag">Scan API</span>
+            <span class="tag">Read API</span>
         </div>
         <p>
             Using the VM, you will simulate an HHS reading a passport by
@@ -411,7 +411,7 @@
     <div class="section numbered-section">
         <div class="section-header">
             <h2 id="heading-2" class="numbered-h2">Release the HHS</h2>
-            <span class="tag">Scan API</span>
+            <span class="tag">Read API</span>
         </div>
         <ol>
             <li>
@@ -420,7 +420,7 @@
                 request to release the device from exclusive access.
                 <ul>
                     <li>
-                        The Scan API acknowledges the request by returning a
+                        The Read API acknowledges the request by returning a
                         <code class="inline-code">2xx</code> success status
                         code, as seen in a tool like Postman.
                     </li>

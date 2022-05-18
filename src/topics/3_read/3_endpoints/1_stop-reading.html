@@ -1,13 +1,14 @@
 <div class="title-box">
-    <h1 class="topic-title">Start Scanning</h1>
+    <h1 class="topic-title">Stop Reading</h1>
     <div class="action-statement">
-        Initiate reading on a device
+        Stop the reading process on an active read device
     </div>
 </div>
 
 Send a <span class="method post">POST</span>
-<code class="inline-code">/read/v2/startreading</code> request to gain exclusive access to a device so it can start
-reading documents.
+<code class="inline-code">/read/v2/stopreading</code> 
+request to release a device from exclusive access so other airline
+backends can reserve the device and use it to read documents.
 
 <h2>Make an API Call</h2>
 
@@ -23,14 +24,14 @@ reading documents.
 <div class="code-section with-tabs">
     <div class="code-section-header">
         <div class="code-tabs">
-            <button class="tablinks" onclick="openTab(event, 'bash-start-reading')" id="defaultOpen">curl</button>
-            <button class="tablinks" onclick="openTab(event, 'Ruby-start-reading')">Ruby</button>
-            <button class="tablinks" onclick="openTab(event, 'Python-start-reading')">Python</button>
-            <button class="tablinks" onclick="openTab(event, 'PHP-start-reading')">PHP</button>
-            <button class="tablinks" onclick="openTab(event, 'Java-start-reading')">Java</button>
-            <button class="tablinks" onclick="openTab(event, 'Node-start-reading')">Node</button>
-            <button class="tablinks" onclick="openTab(event, 'Go-start-reading')">Go</button>
-            <button class="tablinks" onclick="openTab(event, '.NET-start-reading')">.NET</button>
+            <button class="tablinks" onclick="openTab(event, 'bash-stop-reading')" id="defaultOpen">curl</button>
+            <button class="tablinks" onclick="openTab(event, 'Ruby-stop-reading')">Ruby</button>
+            <button class="tablinks" onclick="openTab(event, 'Python-stop-reading')">Python</button>
+            <button class="tablinks" onclick="openTab(event, 'PHP-stop-reading')">PHP</button>
+            <button class="tablinks" onclick="openTab(event, 'Java-stop-reading')">Java</button>
+            <button class="tablinks" onclick="openTab(event, 'Node-stop-reading')">Node</button>
+            <button class="tablinks" onclick="openTab(event, 'Go-stop-reading')">Go</button>
+            <button class="tablinks" onclick="openTab(event, '.NET-stop-reading')">.NET</button>
         </div>
         <div class="copy-code-btn-container">
             <button class="copy-code-btn">
@@ -54,8 +55,8 @@ reading documents.
         Copied!
     </div>
 
-<div id="bash-start-reading" class="tabcontent dark"><pre> <code>
-curl --area -g --request POST 'https://{{baseurl}}/read/v2/startreading' \
+<div id="bash-stop-reading" class="tabcontent dark"><pre> <code>
+curl --area -g --request POST 'https://{{baseurl}}/read/v2/stopreading' \
 --header 'area-id: {{areaId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -65,12 +66,12 @@ curl --area -g --request POST 'https://{{baseurl}}/read/v2/startreading' \
 </pre>
 </div>
 
-<div id="Ruby-start-reading" class="tabcontent dark"><pre><code>
+<div id="Ruby-stop-reading" class="tabcontent dark"><pre><code>
 require "uri"
 require "json"
 require "net/http"
 
-url = URI("https://{{baseurl}}/read/v2/startreading")
+url = URI("https://{{baseurl}}/read/v2/stopreading")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -88,11 +89,11 @@ puts response.read_body
 </pre>
 </div>
 
-<div id="Python-start-reading" class="tabcontent dark"><pre> <code>
+<div id="Python-stop-reading" class="tabcontent dark"><pre> <code>
 import requests
 import json
 
-url = "https://{{baseurl}}/read/v2/startreading"
+url = "https://{{baseurl}}/read/v2/stopreading"
 
 payload = json.dumps({
     "attachmentId": ""
@@ -109,13 +110,13 @@ print(response.text)
 </pre>
 </div>
 
-<div id="PHP-start-reading" class="tabcontent dark"><pre> <code>
+<div id="PHP-stop-reading" class="tabcontent dark"><pre> <code>
 <?php
 
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/read/v2/startreading',
+    CURLOPT_URL => 'https://%7B%7Bbaseurl%7D%7D/read/v2/stopreading',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -140,9 +141,9 @@ echo $response;
 </pre>
 </div>
 
-<div id="Java-start-reading" class="tabcontent dark"><pre><code>
+<div id="Java-stop-reading" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("https://{{baseurl}}/read/v2/startreading")
+HttpResponse<String> response = Unirest.post("https://{{baseurl}}/read/v2/stopreading")
     .header("area-id", "{{areaId}}")
     .header("Content-Type", "application/json")
     .body("{\r\n    \"attachmentId\": \"\"\r\n}")
@@ -151,11 +152,11 @@ HttpResponse<String> response = Unirest.post("https://{{baseurl}}/read/v2/startr
 </pre>
 </div>
 
-<div id="Node-start-reading" class="tabcontent dark"><pre><code>
+<div id="Node-stop-reading" class="tabcontent dark"><pre><code>
 var request = require('request');
 var options = {
     'method': 'POST',
-    'url': 'https://{{baseurl}}/read/v2/startreading',
+    'url': 'https://{{baseurl}}/read/v2/stopreading',
     'headers': {
     'area-id': '{{areaId}}',
     'Content-Type': 'application/json'
@@ -173,7 +174,7 @@ request(options, function (error, response) {
 </pre>
 </div>
 
-<div id="Go-start-reading" class="tabcontent dark"><pre><code>
+<div id="Go-stop-reading" class="tabcontent dark"><pre><code>
 ppackage main
 
 import (
@@ -185,7 +186,7 @@ import (
 
 func main() {
 
-  url := "https://%7B%7Bbaseurl%7D%7D/read/v2/startreading"
+  url := "https://%7B%7Bbaseurl%7D%7D/read/v2/stopreading"
   method := "POST"
 
   payload := strings.NewReader(`{`+"
@@ -223,8 +224,8 @@ func main() {
 </pre>
 </div>
 
-<div id=".NET-start-reading" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://{{baseurl}}/read/v2/startreading");
+<div id=".NET-stop-reading" class="tabcontent dark"><pre><code>
+var client = new RestClient("https://{{baseurl}}/read/v2/stopreading");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
 request.AddHeader("area-id", "{{areaId}}");
@@ -245,12 +246,12 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample <span class="method post">POST</span>
-    <code class="inline-code">/read/v2/startreading</code> request to claim an HHS device for exclusive access so it can start reading ID cards</p>
+    <code class="inline-code">/read/v2/stopreading</code> request to releaese an HHS device from exclusive access and stop the reading process</p>
 
 <h2>Request Body</h4>
 
 <p>
-    To successfully make the request, you must include the <code class="inline-code">attachmentId</code> of the device you wish to claim and start reading.
+    To successfully make the request, you must include the <code class="inline-code">attachmentId</code> of the device you wish to release.
 </p>
 
 
@@ -268,66 +269,49 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample Request Body for <span class="method post">POST</span>
-    <code class="inline-code">/read/v2/startreading</code> request that provides a <code class="inline-code">attachmentId</code> of the device you wish to gain access to
+    <code class="inline-code">/read/v2/stopreading</code> request that provides a <code class="inline-code">attachmentId</code> of the device to release</p>
 </p>
 
 
 <h2>Response</h2>
 
 
-
 <p>
-    Upon making a
-    <code class="inline-code">/read/v2/startreading</code> request, the Scan
-    API acknowledges the request with a synchronous message, returning a
+    The Read API acknowledges the request with a synchronous message, returning
+    a
     <code class="inline-code">2xx</code> success status code (as seen in a tool
-    like Postman) and an <code class="inline-code">accessExpiryTime</code> in
-    the Response Body.
+    like Postman).
+</p>
+<p>
+    An asynchronous
+    <code class="inline-code">ScanDeviceStatus</code> message is sent to all
+    developers with an active attachment to the read device to indicate the
+    device is no longer exclusively being used (<code class="inline-code"
+        >"DeviceInUse": "false"</code
+    >) and is available to successfully receive a
+    <code class="inline-code">/read/v2/startreading</code> request.
 </p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Response</div>
+    <div class="method-example-top-bar">Service Bus Message</div>
     <pre>
             <code class="language-json">
 {
-    "accessExpiryTime": "2021-09-30T14:50:07.347Z"
+    "DeviceStatus": "Online",
+    "DeviceInUse": "false"
 }
         </code>
         </pre>
 </div>
 
 <p class="caption">
-    Scan API Response Body containing the date-time when exclusive access to the
-    device expires
+    <code class="inline-code">DeviceStatus</code> Service Bus Message Body
+    indicating the device is no longer 'in use' and is available to be claimed
 </p>
-<p>
-    Unless explicitly released through a
-    <code class="inline-code">/read/v2/stopreading</code> request, exclusive
-    access to the device will automatically release once the
-    <code class="inline-code">accessExpiryTime</code> has been reached. This
-    date-time is <strong>5 minutes</strong> from the time the
-    <code class="inline-code">/read/v2/startreading</code> request was made.
-</p>
-<div class="alert-section info-alert">
-    <div class="">
-        <p>
-            Subsequent calls to
-            <code class="inline-code">/read/v2/startreading</code> will extend
-            the <code class="inline-code">accessExpiryTime</code> by five
-            minutes from the time of the request. Repeated requests can be used
-            to maintain exclusive access for a longer period.
-        </p>
-    </div>
-</div>
-
-
-
-
-
 
 
 <div class="continued-reading-section">
-    <h2 class="continued-reading">Next Steps</h2>
+    <h2 class="continued-reading">See Also</h2>
     <ul class="continue-link-list">
 
         <div class="continue-link-row">
@@ -374,8 +358,8 @@ Console.WriteLine(response.Content);
                 </svg>
             </div>
             <div>
-                <a href="/read/stop-reading"
-                    >Stop Scanning</a
+                <a href="/read/read-API-tutorial"
+                    >Read API Tutorial</a
                 >
             </div>
         </div>

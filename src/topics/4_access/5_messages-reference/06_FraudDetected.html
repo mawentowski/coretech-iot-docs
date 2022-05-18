@@ -1,6 +1,6 @@
 <h1 id="frauddetected">FraudDetected</h1>
 <p>
-    Message containing the details of a fraud alert sent from the self boarding
+    Message containing the details of a fraud alert sent from the self queueing
     access device.
 </p>
 <h2 id="message-properties">Message Properties</h2>
@@ -87,7 +87,7 @@
     <pre>
         <code class="language-json">
 {
-    "ErrorCode": "PassengerBoardingSidewise",
+    "ErrorCode": "ConsumerEnteringSidewise",
 }
         </code>
         </pre>
@@ -102,33 +102,32 @@
         </thead>
         <tbody>
             <tr>
-                <td>PassengerBoardingSidewise</td>
+                <td>ConsumerEnteringSidewise</td>
                 <td>
-                    FRXS = Passenger was granted access without authorisation
+                    FRXS = Consumer was granted access without authorisation
                     sidewise
                 </td>
             </tr>
             <tr>
-                <td>PassengerGrantedAccessWithoutAuthorization</td>
-                <td>FRXX = Passenger was granted access without authorisation</td>
+                <td>ConsumerGrantedAccessWithoutAuthorization</td>
+                <td>FRXX = Consumer was granted access without authorisation</td>
             </tr>
             <tr>
-                <td>PassengerCrawledUnderGate</td>
+                <td>ConsumerCrawledUnderGate</td>
                 <td>
-                    FRXU = Passenger was granted access without authorisation
+                    FRXU = Consumer was granted access without authorisation
                     crawling under
                 </td>
             </tr>
             <tr>
-                <td>PassengerEnteredOppositeSide</td>
+                <td>ConsumerEnteredOppositeSide</td>
                 <td>
-                    FRXJ = Passenger entered from opposite side without boarding
-                    authorization and passing to the entrance side (jumping
+                    FRXJ = Consumer entered from opposite side without queueing authorization and passing to the entrance side (jumping
                     over)
                 </td>
             </tr>
             <tr>
-                <td>PassengerJumpedOverGateParameter</td>
+                <td>ConsumerJumpedOverGateParameter</td>
                 <td>FRXO = Other person jumped over from opposite side</td>
             </tr>
             <tr>

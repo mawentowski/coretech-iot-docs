@@ -1,13 +1,13 @@
 <div class="title-box">
-    <h1 class="topic-title">Scan API Call Components</h1>
+    <h1 class="topic-title">Read API Call Components</h1>
     <div class="action-statement">
-        Learn about the required components of a Scan API call
+        Learn about the required components of a Read API call
     </div>
 </div>
 
 <p>
     Below is a sample <span class="method post">POST</span>
-    <code class="inline-code">/read/v2/startreading</code> call to the Scan API
+    <code class="inline-code">/read/v2/startreading</code> call to the Read API
     that contains the required components:
     <ul>
         <li>Resource URL <code class=inline-code>https://</code></li>
@@ -53,15 +53,15 @@ curl --area -g --request POST 'https://{{baseurl}}/read/v2/startreading' \
     </div>
 </div>
 <p class="caption">
-    Sample Scan API call containing the required components to successfully make the call
+    Sample Read API call containing the required components to successfully make the call
 
 </p>
 <h2>Resource URLs</h2>
-<p>At present, Scan API Resource URLs are comprised of:</p>
+<p>At present, Read API Resource URLs are comprised of:</p>
 <ul>
     <li>
         A REST API standard method preceding the URL for accessing the endpoint.
-        In the case of the Scan API, the only method used is <span class="method post">POST</span>.
+        In the case of the Read API, the only method used is <span class="method post">POST</span>.
     </li>
     <li>
         A Base URL specific to the CoreTech IoT environment, sometimes displayed as
@@ -79,7 +79,7 @@ curl --area -g --request POST 'https://{{baseurl}}/read/v2/startreading' \
 </ul>
 <div class="alert-section info-alert">
     <div class="">
-        <p>No path parameters are required when sending Scan API requests.</p>
+        <p>No path parameters are required when sending Read API requests.</p>
     </div>
 </div>
 <h2 id="header-parameters-2">Header Parameters</h2>

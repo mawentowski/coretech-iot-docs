@@ -73,16 +73,23 @@
 </p>
 <h2 id="openaccessresponse">OpenAccessResponse</h2>
 <p>
-    In an attendant-controlled area prior to boarding, the Multi-Technology
+    In an attendant-controlled area prior to entering, the Multi-Technology
     Reader (MTR) is in a 'closed' state where no consumer can scan their entry
     pass and proceed through the access point.
 </p>
-<p>
+<p class="redacted">
     The attendant starts the access process by triggering the
     <code class="inline-code">/access/v2/openaccess</code> request. For a
     Multi-Technology Reader, the access device displays green and is now ready
     to process consumers. When the attendant is using a Magstripe Reader (MSR)
     to board consumers (a process not involving a access point), the boarding
+    process is initiated and an attendant may begin reading entry passes.
+</p>
+<p>
+    The attendant starts the access process by triggering the
+    <code class="inline-code">/access/v2/openaccess</code> request. For a
+    Multi-Technology Reader, the access device displays green and is now ready
+    to process consumers. When the attendant is using a Magstripe Reader (MSR), the queueing
     process is initiated and an attendant may begin reading entry passes.
 </p>
 <div class="alert-section info-alert">
@@ -107,7 +114,7 @@
 </p>
 <p>
     An <code class="inline-code">OpenAccessResponse</code> message displays on
-    the Service Bus, simply indicating that the request to start the boarding
+    the Service Bus, simply indicating that the request to start the queueing
     process succeeded with <code class="inline-code">IsSuccess</code> set to
     <code class="inline-code">true</code>.
 </p>
@@ -225,9 +232,9 @@
 {
     "AttachmentId": "{{msr_attachment_id}}",
     "CorrelationId": "{{$guid}}",
-    "Message": ["Passenger Okay to Board"],
+    "Message": ["Consumer Okay to Enter"],
     "BillData": {
-        "Data": "#NN#RD#FONT1#SIZE7#FREEBOARDING RECEIPT#FONT1#SIZE7#FREECLASS CHANGE#FONT1#SIZE0#FREE#FONT1#SIZE0#FREEYour class has changed - See Below#FONT1#SIZE0#FREE#FONT1#SIZE3#NAMELEE/MAYLIN MDM#FONT1#SIZE3#FREE#FONT1#SIZE3#ALCDMH#FONT1#SIZE3#FLNR0002#FONT1#SIZE3#DATE16JAN#FONT1#SIZE3#BORDKUL#FONT1#SIZE3#DESTLHR#FONT1#SIZE3#SQNR8#FONT1#SIZE7#SEAT1K#FONT1#SIZE7#CLSSF#FONT1#SIZE0#FREE"
+        "Data": "#NN#RD#FONT1#SIZE7#FREEQUEUEING RECEIPT#FONT1#SIZE7#FREECLASS CHANGE#FONT1#SIZE0#FREE#FONT1#SIZE0#FREEYour class has changed - See Below#FONT1#SIZE0#FREE#FONT1#SIZE3#NAMELEE/MAYLIN MDM#FONT1#SIZE3#FREE#FONT1#SIZE3#ALCDMH#FONT1#SIZE3#FLNR0002#FONT1#SIZE3#DATE16JAN#FONT1#SIZE3#BORDKUL#FONT1#SIZE3#DESTLHR#FONT1#SIZE3#SQNR8#FONT1#SIZE7#SEAT1K#FONT1#SIZE7#CLSSF#FONT1#SIZE0#FREE"
     }
 }
         </code>
@@ -238,7 +245,7 @@
     Sample
     <code class="inline-code">access/v2/acceptconsumer</code> Request Body with
     <code class="inline-code">Message</code> data to display on a MSR device
-    that the consumer is 'Ok' to board
+    that the consumer is 'Ok' to enter
 </p>
 <p>
     If <code class="inline-code">BillData</code> is passed in the Request
@@ -260,7 +267,7 @@
     <div class="">
         <p>
             It is also possible, but rarer, for there to be a printer for a
-            Magstripe Reader in an attendant-driven boarding scenario.
+            Magstripe Reader in an attendant-driven queueing scenario.
         </p>
     </div>
 </div>
@@ -299,7 +306,7 @@
 <p>
     If the device is Magstripe Reader, a green light displays, along with a
     <code class="inline-code">Message</code> for the airline attendant such as
-    <code class="inline-code">Passenger Okay to Board</code>. The consumer is
+    <code class="inline-code">Consumer Okay to Enter</code>. The consumer is
     then allowed to pass the attendant and enter the restricted area.
 </p>
 <p>
@@ -321,7 +328,7 @@
     The application backend rejects the consumer by sending a
     <code class="inline-code">access/v2/rejectconsumer</code>
     request which tells the Access API that the consumer was rejected and cannot
-    board.
+    enter.
 </p>
 <p>
     In the Request Body of the
@@ -339,7 +346,7 @@
 {
     "AttachmentId": "{{msr_attachment_id}}",
     "CorrelationId": "{{$guid}}",
-    "Message": [ "Passenger Not Ok to Board" ],
+    "Message": [ "Consumer Not Ok to Enter" ],
     "Alarm": true
 }
         </code>
@@ -350,7 +357,7 @@
     Sample
     <code class="inline-code">access/v2/rejectconsumer</code>
     Request Body with <code class="inline-code">Message</code> data to display
-    to the attendant that the consumer is 'Not Ok' to board
+    to the attendant that the consumer is 'Not Ok' to enter
 </p>
 <p>
     Upon making a
@@ -386,14 +393,14 @@
 <p>
     If the device is Magstripe Reader, a red light displays, along with the
     <code class="inline-code">Message</code> for the airline attendant such as
-    <code class="inline-code">Passenger Not Okay to Board</code>. Depending on
+    <code class="inline-code">Consumer Not Okay to Enter</code>. Depending on
     the situation, the consumer may be sent a different desk for an attendant to
     investigate the situation further.
 </p>
 <p>
     If the device is a Multi-Technology Reader, the
     <code class="inline-code">Message</code> is ignored, and a red "X" displays
-    to the consumer, along with a message such as "you cannot board, go see an
+    to the consumer, along with a message such as "you cannot enter, go see an
     attendant".
 </p>
 <div class="alert-section info-alert redacted">

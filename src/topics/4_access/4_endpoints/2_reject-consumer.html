@@ -1,14 +1,14 @@
 <div class="title-box">
-    <h1 class="topic-title">Reject Passenger</h1>
+    <h1 class="topic-title">Reject Consumer</h1>
     <div class="action-statement">
-        Reject a consumer if they are not approved for boarding
+        Reject a consumer if they are not approved to enter
     </div>
 </div>
 
 <p>
     Send a
     <span class="method post">POST</span> <code class="inline-code">/access/v2/rejectconsumer</code> request to
-    tell the Access API that a consumer is not allowed to board and must
+    tell the Access API that a consumer is not allowed to enter and must
     see an attendant. Send this request each time a consumer is processed
     unsuccessfully.
 </p>
@@ -306,7 +306,7 @@ Console.WriteLine(response.Content);
 {
     "AttachmentId": "{{msr_attachment_id}}",
     "CorrelationId": "{{$guid}}",
-    "Message": [ "Passenger Not Ok to Board" ],
+    "Message": [ "Consumer Not Ok to Enter" ],
     "Alarm": true
 }
         </code>
@@ -358,14 +358,14 @@ Console.WriteLine(response.Content);
 <p>
     If the device is Magstripe Reader, a red light displays, along with the
     <code class="inline-code">Message</code> for the airline attendant such as
-    <code class="inline-code">Passenger Not Okay to Board</code>. Depending on
+    <code class="inline-code">Consumer Not Okay to Enter</code>. Depending on
     the situation, the consumer may be sent a different desk for an attendant to
     investigate the situation further.
 </p>
 <p>
     If the device is a Multi-Technology Reader, the
     <code class="inline-code">Message</code> is ignored, and a red "X" displays
-    to the consumer, along with a message such as "you cannot board, go see an
+    to the consumer, along with a message such as "you cannot enter, go see an
     attendant".
 </p>
 <div class="alert-section info-alert redacted">
