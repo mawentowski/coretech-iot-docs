@@ -315,15 +315,15 @@ Console.WriteLine(response.Content);
          A <code class="inline-code">GetItemResponse</code> message displays on the IoT Message Service, acknowledging that the request to initiate a dispatch process was received
     </p>
     
-    Baggage information
+    Item information
     may be collected by the GRC and displayed in a
-    <code class="inline-code">BagPlaced</code> message on the IoT Message Service.
+    <code class="inline-code">ItemPlaced</code> message on the IoT Message Service.
 </p>
 <div class="method-example atom-one-light">
     <div class="method-example-top-bar">Message</div>
     <pre>
                     <code class="language-json">
-"Bag": {
+"Item": {
     "Tags": [],
     "Weight": {
         "Amount": 23.8,
@@ -354,7 +354,7 @@ Console.WriteLine(response.Content);
 </div>
 
 <p class="caption">
-    <code class="inline-code">BagPlaced</code> IoT Message Service message displaying
+    <code class="inline-code">ItemPlaced</code> IoT Message Service message displaying
     properties of the 'placed' item
 </p>
 

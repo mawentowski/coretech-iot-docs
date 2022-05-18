@@ -1,5 +1,5 @@
 <div class="title-box">
-    <h1 class="topic-title">Messages</h1>
+    <h1 class="topic-title">Remit API Messages</h1>
     <div class="action-statement">
         Learn about the most common messages and how your app should use them
     </div>
@@ -11,15 +11,15 @@
     encountered when sending Remit API requests are described.
 </p>
 
-<h2 id="readdevicestatus">PaymentDeviceStatus</h2>
+<h2 id="readdevicestatus">RemittanceDeviceStatus</h2>
 <h3 id="devicestatus-as-online">
     <code class="inline-code">DeviceStatus</code> as
     <code class="inline-code">Online</code>
 </h3>
 <p>
     After you attach to a device, a
-    <code class="inline-code">PaymentDeviceStatus</code> message is displayed on
-    the IoT Message Service that should indicate the
+    <code class="inline-code">RemittanceDeviceStatus</code> message is displayed
+    on the IoT Message Service that should indicate the
     <code class="inline-code">DeviceStatus</code> is
     <code class="inline-code">Online</code> with the
     <code class="inline-code">DeviceInUse</code> property set to
@@ -39,7 +39,7 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">PaymentDeviceStatus</code> Message Body showing
+    <code class="inline-code">RemittanceDeviceStatus</code> Message Body showing
     the payment device is <code class="inline-code">Online</code> and not
     currently 'In Use'
 </p>
@@ -61,8 +61,8 @@
     If a device status changes from <code class="inline-code">Online</code> to
     <code class="inline-code">Offline</code> or
     <code class="inline-code">PoweredOff</code>, a
-    <code class="inline-code">PaymentDeviceStatus</code> message is sent with an
-    updated <code class="inline-code">DeviceStatus</code>.
+    <code class="inline-code">RemittanceDeviceStatus</code> message is sent with
+    an updated <code class="inline-code">DeviceStatus</code>.
 </p>
 <p>
     The following sample message is returned when the
@@ -83,11 +83,11 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">PaymentDeviceStatus</code> Message Body showing
+    <code class="inline-code">RemittanceDeviceStatus</code> Message Body showing
     the payment device is
     <code class="inline-code">PoweredOff</code>
 </p>
-<h2>Process PaymentResponse</h2>
+<h2>ProcessRemittanceResponse</h2>
 <p>
     When a <span class="method post">POST</span>
     <code class="inline-code">/remit/v2starttransaction</code> request is sent,
@@ -147,12 +147,12 @@
     <code class="inline-code">/remit/v2completetransaction</code>
     must be made to acknowledge that the transaction has completed.
 </p>
-<h2>PaymentTransactionTimeout</h2>
+<h2>RemittanceTransactionTimeout</h2>
 <p>
     After a certain amount of time has elapsed since the last payment request
     was made, a
-    <code class="inline-code">PaymentTransactionTimeout</code> will display on
-    the IoT Message Service.
+    <code class="inline-code">RemittanceTransactionTimeout</code> will display
+    on the IoT Message Service.
 </p>
 <p>
     A new transaction must be initiated to by sending another

@@ -2,7 +2,7 @@
 <div class="title-box">
     <h1 class="topic-title">Close Access Point</h1>
     <div class="action-statement">
-        unattach from the access device and end the access process
+        Unattach from the access device and end the access process
     </div>
 </div>
 
@@ -10,10 +10,9 @@
 
 <p>
     Send a <span class="method post">POST</span><code class="inline-code">/access/v2/closeaccesspoint</code> request to
-    end the access process. For a Multi-Technology Reader, this triggers the access point barrier to close. For Magstripe Readers, this indicates the access process has
+    end the access process. For a Multi-Technology Reader, this triggers the access point barrier to close. For Proximity Readers, this indicates the access process has
     ended and the attendant reading entry passes will no longer do so unless the
-    access process is initiated over again (
-    <code class="inline-code">/access/v2/openaccess</code>).
+    access process is initiated over again (<code class="inline-code">/access/v2/openaccess</code>).
 </p>
 
 
@@ -70,7 +69,7 @@ curl --area -g --request POST 'https://{{baseurl}}/access/v2/closeaccesspoint' \
 --header 'area-id: {{areaId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "attachmentId": "{{msr_attachment_id}}",
+    "attachmentId": "{{PXR_attachment_id}}",
     "relationId": "postman-ftr-bf7503f8-d8f8-4a3f-9b95-30f3c4e47685"
 }'
 </code>
@@ -91,7 +90,7 @@ request = Net::HTTP::Post.new(url)
 request["area-id"] = "{{areaId}}"
 request["Content-Type"] = "application/json"
 request.body = JSON.dump({
-    "attachmentId": "{{msr_attachment_id}}",
+    "attachmentId": "{{PXR_attachment_id}}",
     "relationId": "postman-ftr-eb7d0d31-5942-47ba-b6c4-87528f174a9d"
 })
 
@@ -108,7 +107,7 @@ import json
 url = "https://{{baseurl}}/access/v2/closeaccesspoint"
 
 payload = json.dumps({
-    "attachmentId": "{{msr_attachment_id}}",
+    "attachmentId": "{{PXR_attachment_id}}",
     "relationId": "postman-ftr-3a0504ad-15f2-4e97-9e3d-e74222accc28"
 })
 headers = {
@@ -138,7 +137,7 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'POST',
     CURLOPT_POSTFIELDS =>'{
-    "attachmentId": "{{msr_attachment_id}}",
+    "attachmentId": "{{PXR_attachment_id}}",
     "relationId": "postman-ftr-7952ff4e-4a25-4070-9bef-cfefed05dedf"
 }',
     CURLOPT_HTTPHEADER => array(
@@ -160,7 +159,7 @@ Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("https://{{baseurl}}/access/v2/closeaccesspoint")
     .header("area-id", "{{areaId}}")
     .header("Content-Type", "application/json")
-    .body("{\r\n    \"attachmentId\": \"{{msr_attachment_id}}\",\r\n    \"relationId\": \"postman-ftr-d1b83c2c-f6fb-4c7d-bf9e-8a6f1de9748c\"\r\n}")
+    .body("{\r\n    \"attachmentId\": \"{{PXR_attachment_id}}\",\r\n    \"relationId\": \"postman-ftr-d1b83c2c-f6fb-4c7d-bf9e-8a6f1de9748c\"\r\n}")
     .asString();     
 </code>
 </pre>
@@ -176,7 +175,7 @@ var options = {
     'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-    "attachmentId": "{{msr_attachment_id}}",
+    "attachmentId": "{{PXR_attachment_id}}",
     "relationId": "postman-ftr-b7e7d48b-588d-400b-9e0a-762afe19be6a"
     })
 
@@ -206,7 +205,7 @@ func main() {
 
     payload := strings.NewReader(`{`+"
 "+`
-    "attachmentId": "{{msr_attachment_id}}",`+"
+    "attachmentId": "{{PXR_attachment_id}}",`+"
 "+`
     "relationId": "postman-ftr-99ffafb1-09d4-487e-b452-fe4e6cd7a074"`+"
 "+`
@@ -249,7 +248,7 @@ request.AddHeader("area-id", "{{areaId}}");
 request.AddHeader("Content-Type", "application/json");
 var body = @"{
 " + "\n" +
-@"    ""attachmentId"": ""{{msr_attachment_id}}"",
+@"    ""attachmentId"": ""{{PXR_attachment_id}}"",
 " + "\n" +
 @"    ""relationId"": ""postman-ftr-837d58df-e40c-47ae-8441-747813118a85""
 " + "\n" +
@@ -265,7 +264,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample <span class="method post">POST</span>
-    access/v2/acceptconsumer</code> request that tells the API to end the access process.</p>
+    access/v2/acceptconsumer</code> request that tells the API to end the access process</p>
 
 
 
@@ -285,7 +284,7 @@ Console.WriteLine(response.Content);
     <pre>
             <code class="language-json">
 {
-    "attachmentId": "{{msr_attachment_id}}",
+    "attachmentId": "{{PXR_attachment_id}}",
     "relationId": "postman-ftr-{{$guid}}"
 }
         </code>

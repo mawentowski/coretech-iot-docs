@@ -1,5 +1,5 @@
 <div class="title-box">
-    <h1 class="topic-title">Messages</h1>
+    <h1 class="topic-title">Access API Messages</h1>
     <div class="action-statement">
         Learn about the most common messages and how your app should use them
     </div>
@@ -81,15 +81,15 @@
     The attendant starts the access process by triggering the
     <code class="inline-code">/access/v2/openaccess</code> request. For a
     Multi-Technology Reader, the access device displays green and is now ready
-    to process consumers. When the attendant is using a Magstripe Reader (MSR)
-    to board consumers (a process not involving a access point), the boarding
+    to process consumers. When the attendant is using a Proximity Reader (PXR)
+    to board consumers (a process not involving an access point), the boarding
     process is initiated and an attendant may begin reading entry passes.
 </p>
 <p>
     The attendant starts the access process by triggering the
     <code class="inline-code">/access/v2/openaccess</code> request. For a
     Multi-Technology Reader, the access device displays green and is now ready
-    to process consumers. When the attendant is using a Magstripe Reader (MSR), the queueing
+    to process consumers. When the attendant is using a Proximity Reader (PXR), the queueing
     process is initiated and an attendant may begin reading entry passes.
 </p>
 <div class="alert-section info-alert">
@@ -137,9 +137,9 @@
 </p>
 <h2 id="entrypassdata">EntryPassData</h2>
 <p>
-    For a access process involving a Multi-Technology Reader (MTR) device, the
-    consumer may scan his or her entry pass. For a access process involving a
-    Magstripe Reader, the attendant may now scan the consumer's entry pass.
+    For an access process involving a Multi-Technology Reader (MTR) device, the
+    consumer may scan his or her entry pass. For an access process involving a
+    Proximity Reader, the attendant may now scan the consumer's entry pass.
 </p>
 <p>
     When a consumer scans a entry pass at an access point, the access point
@@ -148,7 +148,7 @@
 </p>
 <p>
     A <code class="inline-code">EntryPassData</code> message displays on the
-    IoT Message Service, including the scanned scancode as a Base64-encoded string.
+    IoT Message Service, including the read scancode as a Base64-encoded string.
 </p>
 
 <div class="method-example atom-one-light">
@@ -196,11 +196,11 @@
         <code class="inline-code">/access/v2/closeaccesspoint</code> request
     </li>
     <li>
-        Delete the attachment to the MSR through a <strong>DEL</strong>
+        Delete the attachment to the PXR through a <strong>DEL</strong>
         <code class="inline-code">/sync/v2/attachments</code> request.
     </li>
     <li>
-        Create a new attachment to the MSR through a <strong>POST</strong>
+        Create a new attachment to the PXR through a <strong>POST</strong>
         <code class="inline-code">/sync/v2/attachments</code> request.
     </li>
     <li>
@@ -230,7 +230,7 @@
     <pre>
             <code class="language-json">
 {
-    "AttachmentId": "{{msr_attachment_id}}",
+    "AttachmentId": "{{PXR_attachment_id}}",
     "CorrelationId": "{{$guid}}",
     "Message": ["Consumer Okay to Enter"],
     "BillData": {
@@ -244,7 +244,7 @@
 <p class="caption">
     Sample
     <code class="inline-code">access/v2/acceptconsumer</code> Request Body with
-    <code class="inline-code">Message</code> data to display on a MSR device
+    <code class="inline-code">Message</code> data to display on a PXR device
     that the consumer is 'Ok' to enter
 </p>
 <p>
@@ -267,7 +267,7 @@
     <div class="">
         <p>
             It is also possible, but rarer, for there to be a printer for a
-            Magstripe Reader in an attendant-driven queueing scenario.
+            Proximity Reader in an attendant-driven queueing scenario.
         </p>
     </div>
 </div>
@@ -304,7 +304,7 @@
     Body indicating that request to accept the consumer was successful
 </p>
 <p>
-    If the device is Magstripe Reader, a green light displays, along with a
+    If the device is Proximity Reader, a green light displays, along with a
     <code class="inline-code">Message</code> for the airline attendant such as
     <code class="inline-code">Consumer Okay to Enter</code>. The consumer is
     then allowed to pass the attendant and enter the restricted area.
@@ -323,7 +323,7 @@
         </p>
     </div>
 </div>
-<h2 id="rejectconsumerresponse">rejectconsumerResponse</h2>
+<h2 id="rejectconsumerresponse">RejectConsumerResponse</h2>
 <p>
     The application backend rejects the consumer by sending a
     <code class="inline-code">access/v2/rejectconsumer</code>
@@ -344,7 +344,7 @@
     <pre>
             <code class="language-json">
 {
-    "AttachmentId": "{{msr_attachment_id}}",
+    "AttachmentId": "{{PXR_attachment_id}}",
     "CorrelationId": "{{$guid}}",
     "Message": [ "Consumer Not Ok to Enter" ],
     "Alarm": true
@@ -369,7 +369,7 @@
 </p>
 <p>
     A
-    <code class="inline-code">rejectconsumerResponse</code> message displays on
+    <code class="inline-code">RejectConsumerResponse</code> message displays on
     the IoT Message Service that simply indicates that the request was made with no
     errors.
 </p>
@@ -387,11 +387,11 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">rejectconsumerResponse</code> Message
+    <code class="inline-code">RejectConsumerResponse</code> Message
     Body indicating that request to reject the consumer was successful
 </p>
 <p>
-    If the device is Magstripe Reader, a red light displays, along with the
+    If the device is Proximity Reader, a red light displays, along with the
     <code class="inline-code">Message</code> for the airline attendant such as
     <code class="inline-code">Consumer Not Okay to Enter</code>. Depending on
     the situation, the consumer may be sent a different desk for an attendant to

@@ -1,7 +1,7 @@
 <div class="title-box">
     <h1 class="topic-title">Read API Messages Overview</h1>
     <div class="action-statement">
-        Learn about the most common messages and how your app should use them.
+        Learn about the most common messages and how your app should use them
     </div>
 </div>
 
@@ -10,14 +10,14 @@
     <code class="inline-code">Message Types</code>. Only the most common ones
     encountered when sending Read API requests are described.
 </p>
-<h2 id="readdevicestatus">ScanDeviceStatus</h2>
+<h2 id="readdevicestatus">ReadDeviceStatus</h2>
 <h3 id="devicestatus-as-online">
     <code class="inline-code">DeviceStatus</code> as
     <code class="inline-code">Online</code>
 </h3>
 <p>
     After you attach to a device, a
-    <code class="inline-code">ScanDeviceStatus</code> message is displayed on
+    <code class="inline-code">ReadDeviceStatus</code> message is displayed on
     the IoT Message Service that should indicate the
     <code class="inline-code">DeviceStatus</code> is
     <code class="inline-code">Online</code> with the
@@ -38,7 +38,7 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">ScanDeviceStatus</code> Message Body showing the
+    <code class="inline-code">ReadDeviceStatus</code> Message Body showing the
     read device is <code class="inline-code">Online</code> and not currently 'In
     Use'
 </p>
@@ -48,7 +48,7 @@
             <strong>Note</strong>:
             <code class="inline-code">"DeviceInUse": "false"</code>
             is the default value when no application instance has claimed the
-            device ( <code class="inline-code">/read/v2/startreading</code>).
+            device (<code class="inline-code">/read/v2/startreading</code>).
         </p>
     </div>
 </div>
@@ -60,7 +60,7 @@
     <code class="inline-code">Online</code> to
     <code class="inline-code">Offline</code> or
     <code class="inline-code">PoweredOff</code>, a
-    <code class="inline-code">ScanDeviceStatus</code> message is sent with an
+    <code class="inline-code">ReadDeviceStatus</code> message is sent with an
     updated <code class="inline-code">DeviceStatus</code>.
 </p>
 <p>
@@ -82,7 +82,7 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">ScanDeviceStatus</code> Message Body showing the
+    <code class="inline-code">ReadDeviceStatus</code> Message Body showing the
     read device is
     <code class="inline-code">PoweredOff</code>
 </p>
@@ -91,11 +91,12 @@
     <code class="inline-code">True</code>
 </h3>
 <p>
-    A attachment to a read device (
-    <code class="inline-code">/sync/v2/attachments</code>) is not enough to
-    receive unsolicited read data from that device. The application backend
-    needs to tell the device it wants to receive read data 'exclusively' by
-    sending a <code class="inline-code">/read/v2/startreading</code> request.
+    A attachment to a read device (<code class="inline-code"
+        >/sync/v2/attachments</code
+    >) is not enough to receive unsolicited read data from that device. The
+    application backend needs to tell the device it wants to receive read data
+    'exclusively' by sending a
+    <code class="inline-code">/read/v2/startreading</code> request.
 </p>
 
 <div class="alert-section info-alert">
@@ -152,16 +153,15 @@
     Now that the request has been successfully made, the Read API sends the
     <code class="inline-code">DeviceID</code> of the device to the IoT Hub where
     it is then routed to the correct server and device. After carrying out the
-    command, another <code class="inline-code">ScanDeviceStatus</code> message
+    command, another <code class="inline-code">ReadDeviceStatus</code> message
     is routed to the IoT Message Service linkage.
 </p>
 <p>
     In the Message Body, the
     <code class="inline-code">DeviceInUse</code> property is set to
     <code class="inline-code">true</code> which indicates that the device is now
-    exclusively claimed and now may begin sending messages to the airline
-    backend that made the
-    <code class="inline-code">/read/v2/startreading</code> request.
+    exclusively claimed and now may begin sending messages to the backend that
+    made the <code class="inline-code">/read/v2/startreading</code> request.
 </p>
 
 <div class="method-example atom-one-light">
@@ -184,7 +184,7 @@
     <div class="">
         <p>
             The same
-            <code class="inline-code">ScanDeviceStatus</code> message is sent to
+            <code class="inline-code">ReadDeviceStatus</code> message is sent to
             all developers with an active attachment to the read device to
             indicate the device can no longer be given a
             <code class="inline-code">/read/v2/startreading</code>
@@ -210,7 +210,7 @@
 </p>
 <p>
     An asynchronous
-    <code class="inline-code">ScanDeviceStatus</code> message is sent to all
+    <code class="inline-code">ReadDeviceStatus</code> message is sent to all
     developers with an active attachment to the read device to indicate the
     device is no longer exclusively being used (<code class="inline-code"
         >"DeviceInUse": "false"</code
@@ -243,7 +243,7 @@
     returned.
 </p>
 <p>
-    For example, an FIS device that reads a scancode returns a
+    For example, an LSR device that reads a scancode returns a
     <code class="inline-code">ScancodeRead</code> message on the IoT Message
     Service, providing the string that contains the scancode (
     <code class="inline-code">ScanCodeData</code>) as well as the type of
@@ -265,11 +265,11 @@
 
 <p class="caption">
     <code class="inline-code">ScancodeRead</code> Message Body that returned
-    scancode data readned by an FIS device
+    scancode data read by an LSR device
 </p>
 <h2 id="magneticcardread">MagneticCardRead</h2>
 <p>
-    An FBS device that reads the magnetic strip on the back of a payment card
+    An PXR device that reads the magnetic strip on the back of a payment card
     returns a
     <code class="inline-code">MagneticCardRead</code> message on the Service
     Bus, providing the <code class="inline-code">CardType</code> and
@@ -293,7 +293,7 @@
 
 <p class="caption">
     <code class="inline-code">MagneticCardRead</code> Message Body that returned
-    credit card data readned by an FBS device
+    credit card data read by an PXR device
 </p>
 <div class="alert-section info-alert">
     <div class="">
@@ -307,10 +307,10 @@
 </div>
 <h2 id="travelReadDocument">ReadDocument</h2>
 <p>
-    An HHS device that reads a passport returns a
+    An OCR device that reads an ID card returns a
     <code class="inline-code">ReadDocument</code> message on the IoT Message
-    Service, providing the readned passport data as
-    <code class="inline-code">ScanData</code> in the Message Body.
+    Service, providing the read ID card data as
+    <code class="inline-code">ReadData</code> in the Message Body.
 </p>
 
 <div class="method-example atom-one-light">
@@ -319,15 +319,15 @@
     <pre>
         <code class="language-json">
 {
-    "ScanData": "P&lt;D&lt;&lt;SCHMIDT&lt;&lt;KARL&lt;HEINZ&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;\r1234567897D&lt;&lt;0102030M0405063&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8",
+    "ReadData": "P&lt;D&lt;&lt;SCHMIDT&lt;&lt;KARL&lt;HEINZ&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;\r1234567897D&lt;&lt;0102030M0405063&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8",
 }
     </code>
     </pre>
 </div>
 
 <p class="caption">
-    <code class="inline-code">ReadDocument</code> Message Body that returned
-    passport <code class="inline-code">ScanData</code> readned by an HHS device
+    <code class="inline-code">ReadDocument</code> Message Body that returned ID
+    card <code class="inline-code">ReadData</code> read by an OCR device
 </p>
 
 <div class="continued-reading-section">

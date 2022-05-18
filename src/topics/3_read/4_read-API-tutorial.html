@@ -2,7 +2,7 @@
     <h1 class="topic-title">Read API Tutorial</h1>
     <div class="action-statement">
         Follow these step-by-step instructions to complete an interaction with a
-        read device.
+        read device
     </div>
 </div>
 
@@ -28,8 +28,8 @@
     </li>
 </ul>
 <p>
-    You will be interacting with an HHS device and simulating the reading of a
-    passport in the VM. With this knowledge, you can apply the same steps to
+    You will be interacting with an OCR device and simulating the reading of a
+    ID card in the VM. With this knowledge, you can apply the same steps to
     interacting with other read devices.
 </p>
 <div class="alert-section info-alert">
@@ -75,10 +75,12 @@
                 <code class="inline-code">{{area}}</code> variable corresponds
                 to the VM's machine name as seen in the Device View. For
                 example, a VM with machine name
-                <code class="inline-code">ZZU1CKB005</code> as seen in the
-                Device view could correspond to a
+                <code class="inline-code">BF4CE647</code> as seen in the Device
+                view could correspond to a
                 <code class="inline-code">area</code> called
-                <code class="inline-code">A-ZZU-MZUZUAIRPORT-ZZU1CKB005</code>
+                <code class="inline-code"
+                    >bf4ce647-c5d8-44b0-ba06-5d222460fa84</code
+                >
                 in the Postman Environment.
             </li>
         </ul>
@@ -109,7 +111,7 @@
         </div>
         <div class="alert-section info-alert">
             <div class="">
-                <p>If an HHS has already been added, skip this section.</p>
+                <p>If an OCR has already been added, skip this section.</p>
             </div>
         </div>
         <ol>
@@ -118,7 +120,7 @@
                 <strong>Add Device</strong>.
             </li>
             <li>
-                Select <strong>HHS</strong> from the
+                Select <strong>OCR</strong> from the
                 <strong>Device Type</strong> drop-down.
             </li>
             <li>Leave the other settings as is.</li>
@@ -126,7 +128,7 @@
                 Click <strong>Add Device</strong>.
                 <ul>
                     <li>
-                        The HHS device is now available in the Device Simulator.
+                        The OCR device is now available in the Device Simulator.
                     </li>
                 </ul>
             </li>
@@ -134,7 +136,7 @@
                 On the device, click <strong>Run</strong>.
                 <ul>
                     <li>
-                        An HHS Device Simulator screen displays. You may keep it
+                        An OCR Device Simulator screen displays. You may keep it
                         open for later use.
                     </li>
                 </ul>
@@ -143,14 +145,14 @@
     </div>
     <div class="section numbered-section">
         <div class="section-header">
-            <h2 id="heading-2" class="numbered-h2">attach to the HHS</h2>
+            <h2 id="heading-2" class="numbered-h2">Attach to the OCR</h2>
             <span class="tag">Read API</span>
         </div>
         <ol>
             <li>
                 In Postman, send a
                 <code class="inline-code">/sync/v2/attachments</code> request to
-                attach to the HHS.
+                attach to the OCR.
                 <ul>
                     <li>
                         After attaching to a device, an attachment
@@ -175,7 +177,7 @@
             </div>
             <li>
                 Check the IoT Message Service linkage for a
-                <code class="inline-code">ScanDeviceStatus</code> message:
+                <code class="inline-code">ReadDeviceStatus</code> message:
             </li>
             <div class="method-example atom-one-light">
                 <div class="method-example-top-bar">Message</div>
@@ -190,7 +192,7 @@
             </div>
 
             <p class="caption">
-                <code class="inline-code">ScanDeviceStatus</code> IoT Message
+                <code class="inline-code">ReadDeviceStatus</code> IoT Message
                 Service Message Body showing the read device is
                 <code class="inline-code">Online</code> and not currently 'In
                 Use'
@@ -212,8 +214,8 @@
                     <p>
                         In the Tests tab of Postman, there is some Javascript
                         that updates the
-                        <code class="inline-code">hhs_attachment_id</code>
-                        environmental variable after attaching to the HHS. This
+                        <code class="inline-code">ocr_attachment_id</code>
+                        environmental variable after attaching to the OCR. This
                         variable is used so you do not need to manually enter a
                         <code class="inline-code">attachmentId</code> in
                         subsequent calls to the Render API.
@@ -238,13 +240,13 @@
             <ol>
                 <li>Click <strong>Run</strong>.</li>
                 <li>
-                    In the Device View, check to see if the HHS
+                    In the Device View, check to see if the OCR
                     <strong>Status</strong> is now
                     <code class="inline-code">Online</code>.
                 </li>
                 <li>
                     Check the IoT Message Service for a new
-                    <code class="inline-code">ScanDeviceStatus</code>
+                    <code class="inline-code">ReadDeviceStatus</code>
                     message indicating the GRC is now
                     <code class="inline-code">Online</code>.
                     <ul>
@@ -260,13 +262,13 @@
                 <li>Click <strong>Stop</strong>.</li>
                 <li>Click <strong>Run</strong>.</li>
                 <li>
-                    In the Device View, check to see if the HHS
+                    In the Device View, check to see if the OCR
                     <strong>Status</strong> is now
                     <code class="inline-code">Online</code>.
                 </li>
                 <li>
                     Check the IoT Message Service for a new
-                    <code class="inline-code">ScanDeviceStatus</code>
+                    <code class="inline-code">ReadDeviceStatus</code>
                     message indicating the GRC is now
                     <code class="inline-code">Online</code>.
                     <ul>
@@ -278,11 +280,11 @@
     </div>
     <div class="section numbered-section">
         <div class="section-header">
-            <h2 id="heading-2" class="numbered-h2">Claim the HHS</h2>
+            <h2 id="heading-2" class="numbered-h2">Claim the OCR</h2>
             <span class="tag">Read API</span>
         </div>
         <p>
-            The next step is to claim the HHS to give the application backend
+            The next step is to claim the OCR to give the application backend
             exclusive access to interact with it.
         </p>
         <ol>
@@ -316,7 +318,7 @@
             </p>
             <li>
                 Check the IoT Message Service for a new
-                <code class="inline-code">ScanDeviceStatus</code>
+                <code class="inline-code">ReadDeviceStatus</code>
                 message.
                 <ul>
                     <li>
@@ -354,16 +356,16 @@
 
     <div class="section numbered-section">
         <div class="section-header">
-            <h2 id="heading-2" class="numbered-h2">Simulate a Passport Scan</h2>
+            <h2 id="heading-2" class="numbered-h2">Simulate an ID card Scan</h2>
             <span class="tag">Read API</span>
         </div>
         <p>
-            Using the VM, you will simulate an HHS reading a passport by
+            Using the VM, you will simulate an OCR reading an ID card by
             manually entering MRZ data then reading that data to the device.
         </p>
         <ol>
             <li>
-                With the HHS Simulator in the VM, manually enter some data in
+                With the OCR Simulator in the VM, manually enter some data in
                 the
                 <strong>MRZ Data</strong> text box, then click the
                 <strong>Read</strong> button.
@@ -379,38 +381,38 @@
                     </p>
                 </div>
             </div>
-            <p class="caption">HHS Device Simulator with MRZ Data entered</p>
+            <p class="caption">OCR Device Simulator with MRZ Data entered</p>
             <li>
-                Click the <strong>Read</strong> button to simulate the HHS
+                Click the <strong>Read</strong> button to simulate the OCR
                 executing a read and collecting the MRZ data.
             </li>
             <li>
                 Check the IoT Message Service for a new
                 <code class="inline-code">ReadDocument</code>
-                message that includes the readned passport data as
-                <code class="inline-code">ScanData</code> in the Message Body.
+                message that includes the read ID card data as
+                <code class="inline-code">ReadData</code> in the Message Body.
             </li>
             <div class="method-example atom-one-light">
                 <div class="method-example-top-bar">Message</div>
                 <pre>
                         <code class="language-json">
 {
-    "ScanData": "P&lt;D&lt;&lt;SCHMIDT&lt;&lt;KARL&lt;HEINZ&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;\r1234567897D&lt;&lt;0102030M0405063&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8"
+    "ReadData": "P&lt;D&lt;&lt;SCHMIDT&lt;&lt;KARL&lt;HEINZ&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;\r1234567897D&lt;&lt;0102030M0405063&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8"
 }
                     </code>
                     </pre>
             </div>
             <p class="caption">
                 <code class="inline-code">ReadDocument</code>
-                Message Body that returned passport
-                <code class="inline-code">ScanData</code>
-                'readned' by the HHS device
+                Message Body that returned ID card
+                <code class="inline-code">ReadData</code>
+                'read' by the OCR device
             </p>
         </ol>
     </div>
     <div class="section numbered-section">
         <div class="section-header">
-            <h2 id="heading-2" class="numbered-h2">Release the HHS</h2>
+            <h2 id="heading-2" class="numbered-h2">Release the OCR</h2>
             <span class="tag">Read API</span>
         </div>
         <ol>
@@ -428,7 +430,7 @@
             </li>
             <li>
                 Check the IoT Message Service for a
-                <code class="inline-code">ScanDeviceStatus</code>
+                <code class="inline-code">ReadDeviceStatus</code>
                 message indicating the device is no longer 'in use'.
             </li>
 
@@ -447,7 +449,7 @@
                 <code class="inline-code">DeviceStatus</code> IoT Message
                 Service Message Body indicating the device is no longer 'in use'
                 and is available to be claimed by another backend or the same
-                airline backend
+                backend
             </p>
         </ol>
     </div>

@@ -617,6 +617,8 @@ span.tag {
     height: fit-content;
     padding: 2px 5px;
     margin: 4px 10px;
+    word-break: break-word;
+    text-align: center;
 }
 
 span.tag:nth-of-type(2) {
@@ -643,6 +645,19 @@ h2 {
         padding-bottom: 0;
     }
 
+    .section.numbered-section {
+        .section-header::before {
+            padding-top: 2.3px;
+            counter-increment: section; /* Increment the value of section counter by 1 */
+            font-size: 21px;
+            color: #4F576A;
+            padding-right: 16px;
+            content: counter(
+                section
+            ); /* Display counter value in default style (decimal) */
+        }
+    }
+
     // margin-bottom: 32px;
 
     h2.numbered-h2 {
@@ -652,11 +667,12 @@ h2 {
 
     h2.numbered-h2::before {
         color: #8c98a5;
-        padding-right: 10px;
-        counter-increment: section; /* Increment the value of section counter by 1 */
-        content: counter(
-            section
-        ); /* Display counter value in default style (decimal) */
+
+        // padding-right: 10px;
+        // counter-increment: section; /* Increment the value of section counter by 1 */
+        // content: counter(
+        //     section
+        // ); /* Display counter value in default style (decimal) */
     }
 }
 

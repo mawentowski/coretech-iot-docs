@@ -1,9 +1,9 @@
-<h1 id="accesserroroccurred">GateErrorOccurred</h1>
+<h1 id="accesserroroccurred">AccessPointErrorOccurred</h1>
 <p>Gate error message as received from the access device.</p>
 <h2 id="message-properties">Message Properties</h2>
 <p>
-    User properties are used to aid in the deserialization of the service bus
-    messages. These properties can be read from the service bus message and used
+    User properties are used to aid in the deserialization of the Message Service
+    messages. These properties can be read from the Message Service message and used
     to determine how to deserialize the message body.
 </p>
 <table class="main-table">
@@ -26,7 +26,7 @@
             <td>MessageType</td>
             <td>string</td>
             <td>M</td>
-            <td>GateErrorOccurred</td>
+            <td>AccessPointErrorOccurred</td>
         </tr>
         <tr>
             <td>MessageVersion</td>
@@ -74,11 +74,11 @@
         <tr>
             <td>ErrorCode</td>
             <td>string</td>
-            <td>Contains the access <a href="/access/messages-reference/GateErrorOccurred#technical-error-code">technical error code</a>.</td>
+            <td>Contains the access <a href="/access/messages-reference/AccessPointErrorOccurred#technical-error-code">technical error code</a>.</td>
         </tr>
     </tbody>
 </table>
-<p><strong>Example GateErrorOccurred JSON Message</strong></p>
+<p><strong>Example AccessPointErrorOccurred JSON Message</strong></p>
 <div class="method-example atom-one-light">
     <div class="method-example-top-bar">Message</div>
     <pre>

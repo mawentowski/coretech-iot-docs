@@ -1,5 +1,5 @@
 <div class="title-box">
-    <h1 class="topic-title">Messages</h1>
+    <h1 class="topic-title">Dispatch API Messages</h1>
     <div class="action-statement">
         Learn about the most common messages and how your app should use them
     </div>
@@ -20,7 +20,7 @@
         when the <code class="inline-code">DeviceStatus</code> changes. For
         example, when the GRC goes from
         <code class="inline-code">Online</code> to
-        <code class="inline-code">Offline</code>, or vice versa. An GRC may go
+        <code class="inline-code">Offline</code>, or vice versa. A GRC may go
         <code class="inline-code">Offline</code> due to an issue with the
         device, or when a
         <code class="inline-code">ConveyorTransactionTimeout</code> occurs.
@@ -99,20 +99,20 @@
         <p>Both messages contain an empty Message Body.</p>
     </div>
 </div>
-<h2 id="itemplaced">BagPlaced</h2>
+<h2 id="itemplaced">ItemPlaced</h2>
 <p>
     After a <code class="inline-code">/dispatch/v2/getitem</code> request
     initiates the dispatch process, the door to the GRC opens (if there is a
-    door) so the consumer can place the item on the belt. Baggage information
-    may be collected by the GRC and displayed in a
-    <code class="inline-code">BagPlaced</code> message on the IoT Message
+    door) so the consumer can place the item on the belt. Item information may
+    be collected by the GRC and displayed in a
+    <code class="inline-code">ItemPlaced</code> message on the IoT Message
     Service.
 </p>
 <div class="method-example atom-one-light">
     <div class="method-example-top-bar">Message</div>
     <pre>
                     <code class="language-json">
-"Bag": {
+"Item": {
     "Tags": [],
     "Weight": {
         "Amount": 23.8,
@@ -143,7 +143,7 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">BagPlaced</code> IoT Message Service message
+    <code class="inline-code">ItemPlaced</code> IoT Message Service message
     displaying properties of the 'placed' item
 </p>
 <p>
@@ -158,17 +158,17 @@
     been calculated for the item, in addition to other measurements such as the
     dimensions of the item.
 </p>
-<h2 id="itemchanged">BagChanged</h2>
+<h2 id="itemchanged">ItemChanged</h2>
 <p>
     The structure of the
-    <code class="inline-code">BagChanged</code> message is identical to the
-    <code class="inline-code">BagPlaced</code> message and displays item
+    <code class="inline-code">ItemChanged</code> message is identical to the
+    <code class="inline-code">ItemPlaced</code> message and displays item
     information collected through a measurement.
 </p>
 <p>
     The property of importance is
     <code class="inline-code">Position</code>. Whenever a item moves from one
-    position to the next, a <code class="inline-code">BagChanged</code> message
+    position to the next, a <code class="inline-code">ItemChanged</code> message
     displays that indicates the value of
     <code class="inline-code">Position</code> has changed. For example, when the
     item moves from the <strong>Entry Area</strong> to the
@@ -191,24 +191,24 @@
         <code class="inline-code">Entry</code> position).
     </li>
     <li>
-        Baggage information may be collected a second time at the
+        Item information may be collected a second time at the
         <code class="inline-code">Process</code> position, updating the values
         collected at the <code class="inline-code">Entry</code> position.
     </li>
     <li>
-        Baggage information is not collected at all at the
+        Item information is not collected at all at the
         <code class="inline-code">Process</code> position. The item information
         matches the information collected in the
         <code class="inline-code">Entry</code> position.
     </li>
 </ul>
-<h2 id="itemresponses">BagResponses</h2>
+<h2 id="itemresponses">ItemResponses</h2>
 <div class="alert-section info-alert">
     <div class="">
         <p>
             For this documentation, IoT Message Service
             <code class="inline-code">MessageTypes</code> that contain the text
-            <code class="inline-code">BagResponse</code> are grouped together
+            <code class="inline-code">ItemResponse</code> are grouped together
             since they all simply confirm the success or failure of a request.
             In actuality, the <code class="inline-code">MessageTypes</code> will
             be specific to the type of request that was sent. For example, after
@@ -219,26 +219,26 @@
     </div>
 </div>
 <p>
-    <code class="inline-code">BagResponse</code> messages display on the Service
-    Bus after sending requests to the Dispatch API at different stages of a
-    dispatch process and are often sent in conjunction with other types of
-    messages such as a <code class="inline-code">BagChanged</code> and
+    <code class="inline-code">ItemResponse</code> messages display on the
+    Service Bus after sending requests to the Dispatch API at different stages
+    of a dispatch process and are often sent in conjunction with other types of
+    messages such as a <code class="inline-code">ItemChanged</code> and
     <code class="inline-code">ConveyorDeviceStatus</code> message.
 </p>
 <p>
     The only purpose of a
-    <code class="inline-code">BagResponse</code> message is to indicate whether
-    the request was successful (
-    <code class="inline-code">"IsSuccess": true</code>). The structure of
-    <code class="inline-code">BagResponse</code> messages are identical to the
-    <code class="inline-code">BagPlaced</code> and
-    <code class="inline-code">BagChanged</code> messages that display collected
+    <code class="inline-code">ItemResponse</code> message is to indicate whether
+    the request was successful (<code class="inline-code"
+        >"IsSuccess": true</code
+    >). The structure of <code class="inline-code">ItemResponse</code> messages
+    are identical to the <code class="inline-code">ItemPlaced</code> and
+    <code class="inline-code">ItemChanged</code> messages that display collected
     item information.
 </p>
 <p>
     The following
-    <code class="inline-code">BagResponse</code> messages display on the Service
-    Bus by endpoint:
+    <code class="inline-code">ItemResponse</code> messages display on the
+    Service Bus by endpoint:
 </p>
 <ul>
     <li>
@@ -248,9 +248,9 @@
     </li>
     <p>
         If the GRC has a door, the property
-        <code class="inline-code">"Bag": null</code> is returned which indicates
-        no item information was collected because a item has not been placed on
-        the belt yet.
+        <code class="inline-code">"Item": null</code> is returned which
+        indicates no item information was collected because a item has not been
+        placed on the belt yet.
     </p>
     <p>
         If the GRC does not have a door, the
@@ -318,11 +318,11 @@
     <pre>
                         <code class="language-json">
 {
-    "Bag":null,
+    "Item":null,
     "IsSuccess":false,
     "Error":{
         "ErrorCode":"UnknownError",
-        "Message":"AdjustItem failed, device status: . Bag cannot be Returned."
+        "Message":"AdjustItem failed, device status: . Item cannot be Returned."
     }
 }
                     </code>

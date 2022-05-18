@@ -67,7 +67,7 @@ curl --area -g --request POST 'https://{{baseurl}}/access/v2/acceptconsumer' \
 --header 'area-id: {{areaId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "attachmentId": "{{msr_attachment_id}}",
+    "attachmentId": "{{PXR_attachment_id}}",
     "relationId": "postman-ftr-bf20f851-b098-4c2e-a2e4-357c832f360c",
     "message": ["MSG Line 1", "MSG Line 2"],
     "billData": {
@@ -92,7 +92,7 @@ request = Net::HTTP::Post.new(url)
 request["area-id"] = "{{areaId}}"
 request["Content-Type"] = "application/json"
 request.body = JSON.dump({
-    "attachmentId": "{{msr_attachment_id}}",
+    "attachmentId": "{{PXR_attachment_id}}",
     "relationId": "postman-ftr-02982da0-52d0-4250-bbcd-0757650490de",
     "message": [
     "MSG Line 1",
@@ -116,7 +116,7 @@ import json
 url = "https://{{baseurl}}/access/v2/acceptconsumer"
 
 payload = json.dumps({
-    "attachmentId": "{{msr_attachment_id}}",
+    "attachmentId": "{{PXR_attachment_id}}",
     "relationId": "postman-ftr-24413429-2d13-4d17-ab65-5efa3086c1ea",
     "message": [
     "MSG Line 1",
@@ -153,7 +153,7 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'POST',
     CURLOPT_POSTFIELDS =>'{
-    "attachmentId": "{{msr_attachment_id}}",
+    "attachmentId": "{{PXR_attachment_id}}",
     "relationId": "postman-ftr-57377a49-604f-4866-82d0-defb611b655d",
     "message": ["MSG Line 1", "MSG Line 2"],
     "billData": {
@@ -179,7 +179,7 @@ Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("https://{{baseurl}}/access/v2/acceptconsumer")
     .header("area-id", "{{areaId}}")
     .header("Content-Type", "application/json")
-    .body("{\r\n    \"attachmentId\": \"{{msr_attachment_id}}\",\r\n    \"relationId\": \"postman-ftr-b1c7ce13-2b9f-4426-acd3-ed5bf06f8831\",\r\n    \"message\": [\"MSG Line 1\", \"MSG Line 2\"],\r\n    \"billData\": {\r\n      \"data\": \"#NN#RD#FONT1#SIZE7#FREEQUEUEING RECEIPT#FONT1#SIZE7#FREECLASS CHANGE#FONT1#SIZE0#FREE#FONT1#SIZE0#FREEYour class has changed - See Below#FONT1#SIZE0#FREE#FONT1#SIZE3#NAMELEE/MAYLIN MDM#FONT1#SIZE3#FREE#FONT1#SIZE3#ALCDMH#FONT1#SIZE3#FLNR0002#FONT1#SIZE3#DATE16JAN#FONT1#SIZE3#BORDKUL#FONT1#SIZE3#DESTLHR#FONT1#SIZE3#SQNR8#FONT1#SIZE7#SEAT1K#FONT1#SIZE7#CLSSF#FONT1#SIZE0#FREE\"\r\n    }\r\n}")
+    .body("{\r\n    \"attachmentId\": \"{{PXR_attachment_id}}\",\r\n    \"relationId\": \"postman-ftr-b1c7ce13-2b9f-4426-acd3-ed5bf06f8831\",\r\n    \"message\": [\"MSG Line 1\", \"MSG Line 2\"],\r\n    \"billData\": {\r\n      \"data\": \"#NN#RD#FONT1#SIZE7#FREEQUEUEING RECEIPT#FONT1#SIZE7#FREECLASS CHANGE#FONT1#SIZE0#FREE#FONT1#SIZE0#FREEYour class has changed - See Below#FONT1#SIZE0#FREE#FONT1#SIZE3#NAMELEE/MAYLIN MDM#FONT1#SIZE3#FREE#FONT1#SIZE3#ALCDMH#FONT1#SIZE3#FLNR0002#FONT1#SIZE3#DATE16JAN#FONT1#SIZE3#BORDKUL#FONT1#SIZE3#DESTLHR#FONT1#SIZE3#SQNR8#FONT1#SIZE7#SEAT1K#FONT1#SIZE7#CLSSF#FONT1#SIZE0#FREE\"\r\n    }\r\n}")
     .asString();         
 </code>
 </pre>
@@ -195,7 +195,7 @@ var options = {
     'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-    "attachmentId": "{{msr_attachment_id}}",
+    "attachmentId": "{{PXR_attachment_id}}",
     "relationId": "postman-ftr-02fa0fce-04a0-4a69-aa1f-25d0dbf77d78",
     "message": [
         "MSG Line 1",
@@ -232,7 +232,7 @@ func main() {
 
     payload := strings.NewReader(`{`+"
 "+`
-    "attachmentId": "{{msr_attachment_id}}",`+"
+    "attachmentId": "{{PXR_attachment_id}}",`+"
 "+`
     "relationId": "postman-ftr-54ca5304-8d32-40dc-9b75-013abbdbae73",`+"
 "+`
@@ -283,7 +283,7 @@ request.AddHeader("area-id", "{{areaId}}");
 request.AddHeader("Content-Type", "application/json");
 var body = @"{
 " + "\n" +
-@"    ""attachmentId"": ""{{msr_attachment_id}}"",
+@"    ""attachmentId"": ""{{PXR_attachment_id}}"",
 " + "\n" +
 @"    ""relationId"": ""postman-ftr-65afe0b7-8ddd-43bf-8c9e-29d58b4b1a8b"",
 " + "\n" +
@@ -324,7 +324,7 @@ Console.WriteLine(response.Content);
     <pre>
             <code class="language-json">
 {
-    "AttachmentId": "{{msr_attachment_id}}",
+    "AttachmentId": "{{PXR_attachment_id}}",
     "CorrelationId": "{{$guid}}",
     "Message": ["Consumer Okay to Enter"],
     "BillData": {
@@ -338,7 +338,7 @@ Console.WriteLine(response.Content);
 <p class="caption">
     Sample
     <code class="inline-code">access/v2/acceptconsumer</code> Request Body
-    with <code class="inline-code">Message</code> data to display on a MSR
+    with <code class="inline-code">Message</code> data to display on a PXR
     device that the consumer is 'Ok' to board
 </p>
 <p>
@@ -393,7 +393,7 @@ Console.WriteLine(response.Content);
     Body indicating that request to accept the consumer was successful
 </p>
 <p>
-    If the device is Magstripe Reader, a green light displays, along with a
+    If the device is Proximity Reader, a green light displays, along with a
     <code class="inline-code">Message</code> for the airline attendant such as
     <code class="inline-code">Consumer Okay to Enter</code>. The consumer is
     then allowed to pass the attendant and enter the restricted area.

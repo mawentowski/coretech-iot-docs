@@ -1,7 +1,7 @@
 <div class="title-box">
-    <h1 class="topic-title">Open Gate</h1>
+    <h1 class="topic-title">Open Access Point</h1>
     <div class="action-statement">
-        Initiate a access process on a access device
+        Initiate an access process on an access device
     </div>
 </div>
 
@@ -9,7 +9,7 @@
     Send a <span class="method post">POST</span>
     <code class="inline-code">/access/v2/openaccess</code> request to
     initiate the access process. For a Multi-Technology Reader, the consumer is
-    now allowed to proceed to scan their entry pass. For Magstripe Readers, the attendant reading entry passes is now ready to receive
+    now allowed to proceed to scan their entry pass. For Proximity Readers, the attendant reading entry passes is now ready to receive
     consumers in the queue.
 </p>
 
@@ -65,7 +65,7 @@ curl --area -g --request POST 'https://{{baseurl}}/access/v2/openaccess' \
 --header 'area-id: {{areaId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "attachmentId": "{{msr_attachment_id}}",
+    "attachmentId": "{{PXR_attachment_id}}",
     "relationId": "postman-ftr-f0e0604c-e456-4c04-9f00-4c38ca7c8b72"
 }'
 </code>
@@ -86,7 +86,7 @@ request = Net::HTTP::Post.new(url)
 request["area-id"] = "{{areaId}}"
 request["Content-Type"] = "application/json"
 request.body = JSON.dump({
-    "attachmentId": "{{msr_attachment_id}}",
+    "attachmentId": "{{PXR_attachment_id}}",
     "relationId": "postman-ftr-65bb754f-7981-41bb-bfa1-7d28608d2034"
 })
 
@@ -103,7 +103,7 @@ import json
 url = "https://{{baseurl}}/access/v2/openaccess"
 
 payload = json.dumps({
-    "attachmentId": "{{msr_attachment_id}}",
+    "attachmentId": "{{PXR_attachment_id}}",
     "relationId": "postman-ftr-9ee68203-9768-4b31-8bfa-e7d463205a1c"
 })
 headers = {
@@ -133,7 +133,7 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'POST',
     CURLOPT_POSTFIELDS =>'{
-    "attachmentId": "{{msr_attachment_id}}",
+    "attachmentId": "{{PXR_attachment_id}}",
     "relationId": "postman-ftr-b0eb6c72-f104-4faf-a02b-5d7a7def3ad2"
 }',
     CURLOPT_HTTPHEADER => array(
@@ -155,7 +155,7 @@ Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("https://{{baseurl}}/access/v2/openaccess")
     .header("area-id", "{{areaId}}")
     .header("Content-Type", "application/json")
-    .body("{\r\n    \"attachmentId\": \"{{msr_attachment_id}}\",\r\n    \"relationId\": \"postman-ftr-3298c851-60d1-41b5-8c8d-d40f3ce4788e\"\r\n}")
+    .body("{\r\n    \"attachmentId\": \"{{PXR_attachment_id}}\",\r\n    \"relationId\": \"postman-ftr-3298c851-60d1-41b5-8c8d-d40f3ce4788e\"\r\n}")
     .asString();        
 </code>
 </pre>
@@ -171,7 +171,7 @@ var options = {
     'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-    "attachmentId": "{{msr_attachment_id}}",
+    "attachmentId": "{{PXR_attachment_id}}",
     "relationId": "postman-ftr-d427d059-d9d1-4901-835f-211aabeadc4c"
     })
 
@@ -201,7 +201,7 @@ func main() {
 
     payload := strings.NewReader(`{`+"
 "+`
-    "attachmentId": "{{msr_attachment_id}}",`+"
+    "attachmentId": "{{PXR_attachment_id}}",`+"
 "+`
     "relationId": "postman-ftr-ffd06d3c-5fb0-4a15-8ac0-d983728d52d5"`+"
 "+`
@@ -244,7 +244,7 @@ request.AddHeader("area-id", "{{areaId}}");
 request.AddHeader("Content-Type", "application/json");
 var body = @"{
 " + "\n" +
-@"    ""attachmentId"": ""{{msr_attachment_id}}"",
+@"    ""attachmentId"": ""{{PXR_attachment_id}}"",
 " + "\n" +
 @"    ""relationId"": ""postman-ftr-39d58787-8fea-4f43-abae-018551e6ab85""
 " + "\n" +
@@ -260,7 +260,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample <span class="method post">POST</span>
-    <code class="inline-code">access/v2/openaccess</code> request to initiate the access process on a access device</p>
+    <code class="inline-code">access/v2/openaccess</code> request to initiate the access process on an access device</p>
 
 <h2>Request Body</h2>
 
@@ -275,7 +275,7 @@ Console.WriteLine(response.Content);
     <pre>
             <code class="language-json">
 {
-    "attachmentId": "{{msr_attachment_id}}",
+    "attachmentId": "{{PXR_attachment_id}}",
     "relationId": "postman-ftr-{{$guid}}"
 }
         </code>

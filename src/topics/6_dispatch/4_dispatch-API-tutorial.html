@@ -6,10 +6,9 @@
     </div>
 </div>
 
-<h2 id="dispatch-api-walkthrough">Dispatch API Tutorial</h2>
 <p>
     Follow along with this walkthrough to experience the Dispatch API, including
-    attaching to an GRC and completing an entire dispatch process that ends with
+    attaching to A GRC and completing an entire dispatch process that ends with
     releasing the item to the Item Handling System.
 </p>
 <p>The following tools are used to demonstrate the Render API:</p>
@@ -73,10 +72,12 @@
                 <code class="inline-code">{{area}}</code> variable corresponds
                 to the VM's machine name as seen in the Device View. For
                 example, a VM with machine name
-                <code class="inline-code">ZZU1CKB005</code> as seen in the
-                Device view could correspond to a
+                <code class="inline-code">BF4CE647</code> as seen in the Device
+                view could correspond to a
                 <code class="inline-code">area</code> called
-                <code class="inline-code">A-ZZU-MZUZUAIRPORT-ZZU1CKB005</code>
+                <code class="inline-code"
+                    >bf4ce647-c5d8-44b0-ba06-5d222460fa84</code
+                >
                 in the Postman Environment.
             </li>
         </ul>
@@ -102,16 +103,16 @@
 <div class="numbered-sections-container">
     <div class="section numbered-section">
         <div class="section-header">
-            <h2 id="heading-2" class="numbered-h2">Add an GRC Device</h2>
+            <h2 id="heading-2" class="numbered-h2">Add a GRC Device</h2>
             <span class="tag">Dispatch API</span>
         </div>
         <div class="alert-section info-alert">
             <div class="">
-                <p>If an GRC has already been added, skip this section.</p>
+                <p>If A GRC has already been added, skip this section.</p>
             </div>
         </div>
         <!-- 
-        <p class="caption">Add an GRC in Device Simulator</p> -->
+        <p class="caption">Add A GRC in Device Simulator</p> -->
 
         <ol>
             <li>
@@ -144,13 +145,13 @@
             </li>
             <li>
                 <p>
-                    Click the <strong>GRC Bag Door</strong> drop-down and select
-                    <strong>(1) Door is installed</strong>.
+                    Click the <strong>GRC Item Door</strong> drop-down and
+                    select <strong>(1) Door is installed</strong>.
                 </p>
             </li>
 
             <!-- <p class="caption">
-            GRC Bag Door Setting set to
+            GRC Item Door Setting set to
             <code class="inline-code">Door is installed</code>
         </p> -->
 
@@ -159,7 +160,7 @@
                 On the device, click <strong>Run</strong>.
                 <ul>
                     <li>
-                        An GRC Device Simulator screen displays. You may keep it
+                        A GRC Device Simulator screen displays. You may keep it
                         open for later use.
                     </li>
                 </ul>
@@ -169,7 +170,7 @@
 
     <div class="section numbered-section">
         <div class="section-header">
-            <h2 id="heading-2" class="numbered-h2">attach to the GRC</h2>
+            <h2 id="heading-2" class="numbered-h2">Attach to the GRC</h2>
             <span class="tag">Dispatch API</span>
         </div>
         <ol>
@@ -266,12 +267,12 @@
                     <strong>Status</strong> is now
                     <code class="inline-code">Online</code>.
                 </li>
-
-                <p>
-                    <em>If <u>it is</u> running</em>, from the Device Simulator
-                    on the VM:
-                </p>
-
+            </ol>
+            <p>
+                <em>If <u>it is</u> running</em>, from the Device Simulator on
+                the VM:
+            </p>
+            <ol>
                 <li>Click <strong>Stop</strong>.</li>
                 <li>Click <strong>Run</strong>.</li>
                 <li>
@@ -354,7 +355,7 @@
                 <code class="inline-code">GetItemResponse</code>
                 message displays on the IoT Message Service which is an
                 indication the dispatch process is initiated. The property
-                <code class="inline-code">"Bag": null</code>
+                <code class="inline-code">"Item": null</code>
                 indicates there is no item information because, for the purpose
                 of this simulation, the consumer has not yet placed a item onto
                 the belt.
@@ -364,7 +365,7 @@
                 <pre>
                         <code class="language-json">
 {
-    "Bag": null,
+    "Item": null,
     "IsSuccess": true,
     "Error": null
 }  
@@ -382,8 +383,8 @@
         <p>
             A
             <code class="inline-code">ConveyorTransactionTimeout</code>
-            message displays on the service bus with an empty Message Body when
-            too much time has elapsed since the
+            message displays on the Message Service with an empty Message Body
+            when too much time has elapsed since the
             <code class="inline-code">/dispatch/v2/getitem</code>
             request was made. Another
             <code class="inline-code">/dispatch/v2/getitem</code>
@@ -397,25 +398,25 @@
 
     <div class="section numbered-section">
         <div class="section-header">
-            <h2 id="heading-2" class="numbered-h2">Place a Bag on the Belt</h2>
+            <h2 id="heading-2" class="numbered-h2">Place a Item on the Belt</h2>
             <span class="tag">Dispatch API</span>
         </div>
         <ol>
             <li>
                 <p>
                     With the GRC Device Simulator open, click
-                    <strong>New Bag</strong>.
+                    <strong>New Item</strong>.
                 </p>
 
                 <ul>
-                    <li>A <strong>New Bag</strong> window displays.</li>
+                    <li>A <strong>New Item</strong> window displays.</li>
                 </ul>
             </li>
             <li><p>Leave all settings as is.</p></li>
             <li>
-                <p>Click <strong>Create Bag</strong>.</p>
+                <p>Click <strong>Create Item</strong>.</p>
                 <ul>
-                    <li>A new <strong>Bag #</strong> panel is displayed.</li>
+                    <li>A new <strong>Item #</strong> panel is displayed.</li>
                 </ul>
             </li>
 
@@ -440,14 +441,14 @@
                 </ul>
             </li>
             <li>
-                Click <strong>Place Selected Bag</strong> next to the New Bag
+                Click <strong>Place Selected Item</strong> next to the New Item
                 button you clicked earlier.
                 <ul>
                     <li>
                         The item (in green) displays in the GRC image in the
                         <strong>Entry Area</strong> like when a real item is
                         placed by a consumer in the
-                        <strong>Entry Area</strong> of an GRC.
+                        <strong>Entry Area</strong> of A GRC.
                     </li>
                     <li>
                         The
@@ -481,8 +482,8 @@
         </div>
         <p>
             In the GRC Device Simulator, notice above the
-            <strong>New Bag</strong> and
-            <strong>Place Selected Bag</strong> buttons is a field with two
+            <strong>New Item</strong> and
+            <strong>Place Selected Item</strong> buttons is a field with two
             properties called <strong>Bounce</strong>.
         </p>
         <p>
@@ -535,7 +536,7 @@
                 <li>
                     <p>
                         A
-                        <code class="inline-code">BagPlaced</code>
+                        <code class="inline-code">ItemPlaced</code>
                         message displays on the IoT Message Service once a
                         settled weight is determined:
                     </p>
@@ -546,7 +547,7 @@
                 <pre>
                     <code class="language-json">
 {
-    "Bag": {
+    "Item": {
         "Tags": [],
         "Weight": {
             "Amount": 23.8,
@@ -577,7 +578,7 @@
             </div>
 
             <p class="caption">
-                <code class="inline-code">BagPlaced</code>
+                <code class="inline-code">ItemPlaced</code>
                 IoT Message Service message displaying properties of the 'placed
                 item'
             </p>
@@ -627,7 +628,7 @@
 
     <div class="section numbered-section">
         <div class="section-header">
-            <h2 id="heading-2" class="numbered-h2">Process the Bag</h2>
+            <h2 id="heading-2" class="numbered-h2">Process the Item</h2>
             <span class="tag">Dispatch API</span>
         </div>
         <ol>
@@ -658,7 +659,7 @@
             <div class="alert-section info-alert">
                 <div class="">
                     <p>
-                        On a real conveyor, a message such as "Processing Bag,
+                        On a real conveyor, a message such as "Processing Item,
                         please wait." would display and the door to the conveyor
                         would close (if not already closed).
                     </p>
@@ -674,10 +675,10 @@
                 </li>
                 <li>
                     A
-                    <code class="inline-code">BagChanged</code>
+                    <code class="inline-code">ItemChanged</code>
                     message displays on the IoT Message Service which indicates
                     the item has changed position. This message looks like the
-                    <code class="inline-code">BagPlaced</code>
+                    <code class="inline-code">ItemPlaced</code>
                     message, except with the property
                     <code class="inline-code">Position</code>
                     set to
@@ -691,7 +692,7 @@
                         from the measurement taken in the
                         <strong>Entry Area</strong>
                         is displayed in the
-                        <code class="inline-code">BagChanged</code>
+                        <code class="inline-code">ItemChanged</code>
                         message. However, on a real dispatch, it is possible the
                         item information may change. For example, the GRC may be
                         configured to take a measurement in the
@@ -711,9 +712,9 @@
                     the item was successfully processed (<code
                         >"IsSuccess": true</code
                     >). This message, like the
-                    <code class="inline-code">Bag Placed</code>
+                    <code class="inline-code">Item Placed</code>
                     and
-                    <code class="inline-code">BagChanged</code>
+                    <code class="inline-code">ItemChanged</code>
                     messages, displays the item measurements.
                 </li>
             </ul>
@@ -728,8 +729,8 @@
             error status code when the attachment to a device is soon to reach
             its 30-minute
             <code class="inline-code">expiryTime</code>
-            set after the <span class="method post">POST</span
-            ><code class="inline-code"> /sync/v2/attachments</code>
+            set after the <span class="method post">POST</span>
+            <code class="inline-code">/sync/v2/attachments</code>
             was made.
         </p>
 
@@ -790,7 +791,7 @@
                         <code class="language-json">
 {
     "DeviceStatus":"Offline",
-    "ConveyorStatus":"BagRemovedUnexpectedly"
+    "ConveyorStatus":"ItemRemovedUnexpectedly"
 }                   
                     </code>
                     </pre>
@@ -901,7 +902,7 @@
                     </li>
                     <li>
                         A
-                        <code class="inline-code">BagChanged</code>
+                        <code class="inline-code">ItemChanged</code>
                         message displays on the IoT Message Service which
                         indicates the item has changed
                         <code class="inline-code">Position</code>
@@ -1011,7 +1012,7 @@
     <div class="section numbered-section">
         <div class="section-header">
             <h2 id="heading-2" class="numbered-h2">
-                Release the Bag to the Item Handling System
+                Release the Item to the Item Handling System
             </h2>
             <span class="tag">Dispatch API</span>
         </div>
@@ -1035,7 +1036,7 @@
                     </li>
                     <li>
                         A
-                        <code class="inline-code">BagChanged</code>
+                        <code class="inline-code">ItemChanged</code>
                         message displays on the IoT Message Service which
                         indicates the item's position has changed.
                     </li>

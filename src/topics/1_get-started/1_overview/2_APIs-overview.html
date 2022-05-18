@@ -26,7 +26,8 @@
     environment so it can receive messages from those devices.
 </p>
 <p>
-    When using this API, you must <strong>link</strong> to the IoT Message Service, <strong>claim</strong> a area for exclusive access, then create an
+    When using this API, you must <strong>link</strong> to the IoT Message
+    Service, <strong>claim</strong> a area for exclusive access, then create an
     attachment to IoT devices to receive messages on the linkage.
 </p>
 <p class="redacted">
@@ -75,9 +76,8 @@
 </table>
 <h2 id="read-api">Read API</h2>
 <p>
-    The <a href="/read/read-overview">Read API</a> endpoints allow your airline
-    backend to use devices to read documents like entry passes, item tags, and
-    ID cards.
+    The <a href="/read/read-overview">Read API</a> endpoints allow your backend
+    to use devices to read documents like entry passes, item tags, and ID cards.
 </p>
 <p>The supported devices at present are the following:</p>
 <table class="main-table">
@@ -89,16 +89,16 @@
     </thead>
     <tbody>
         <tr>
-            <td>FIS</td>
-            <td>Feed-in scanner</td>
+            <td>LSR</td>
+            <td>Laser Sensor Reader</td>
         </tr>
         <tr>
-            <td>FBS</td>
-            <td>Flatbed Scanners</td>
+            <td>PXR</td>
+            <td>Magnetic Stripe Readers</td>
         </tr>
         <tr>
-            <td>HHS</td>
-            <td>Handheld scanner</td>
+            <td>OCR</td>
+            <td>Optical Character Recognition</td>
         </tr>
     </tbody>
 </table>
@@ -143,7 +143,7 @@
 <h2 id="access-api">Access API</h2>
 <p>
     The <a href="/access/access-overview">Access API</a> endpoints allow your
-    application backend to interact with Magstripe Readers (MSR/KPR) and
+    application backend to interact with Proximity Readers (PXR) and
     Multi-Technology Readers (MTR).
 </p>
 <p>The supported devices at present are the following:</p>
@@ -160,8 +160,8 @@
             <td>Keypad Reader</td>
         </tr>
         <tr>
-            <td>MSR</td>
-            <td>Magstripe Reader</td>
+            <td>PXR</td>
+            <td>Proximity Reader</td>
         </tr>
         <tr>
             <td>MTR</td>

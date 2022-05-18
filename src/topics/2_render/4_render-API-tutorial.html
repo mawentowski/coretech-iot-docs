@@ -8,7 +8,7 @@
 
 <p>
     Follow along with this walkthrough to experience the Render API, including
-    attaching to a device, issuing a print command, then reading the response.
+    attaching to a device, issuing a render command, then reading the response.
     The following tools are used to demonstrate the Render API:
 </p>
 <ul>
@@ -82,10 +82,12 @@
                 <code class="inline-code">{{area}}</code> variable corresponds
                 to the VM's machine name as seen in the Device View. For
                 example, a VM with machine name
-                <code class="inline-code">ZZU1CKB005</code> as seen in the
+                <code class="inline-code">BF4CE647</code> as seen in the
                 Device view could correspond to a
                 <code class="inline-code">area</code> called
-                <code class="inline-code">A-ZZU-MZUZUAIRPORT-ZZU1CKB005</code>
+                <code class="inline-code"
+                    >bf4ce647-c5d8-44b0-ba06-5d222460fa84</code
+                >
                 in the Postman Environment.
             </li>
         </ul>
@@ -149,7 +151,7 @@
     </div>
     <div class="section numbered-section">
         <div class="section-header">
-            <h2 id="heading-2" class="numbered-h2">attach to the MFP</h2>
+            <h2 id="heading-2" class="numbered-h2">Attach to the MFP</h2>
             <span class="tag">Render API</span>
         </div>
 
@@ -182,7 +184,7 @@
             </div>
             <li>
                 Check the IoT Message Service linkage for a
-                <code class="inline-code">PrintDeviceStatus</code> message:
+                <code class="inline-code">RenderDeviceStatus</code> message:
             </li>
             <div class="method-example atom-one-light">
                 <div class="method-example-top-bar">Message</div>
@@ -196,7 +198,7 @@
             </code>
             </pre>
                 <p class="caption">
-                    <code class="inline-code">PrintDeviceStatus</code> Service
+                    <code class="inline-code">RenderDeviceStatus</code> Service
                     Bus Message indicating the device is online
                 </p>
             </div>
@@ -262,7 +264,7 @@
     </div>
     <div class="section numbered-section">
         <div class="section-header">
-            <h2 id="heading-2" class="numbered-h2">Print a Entry Pass PDF</h2>
+            <h2 id="heading-2" class="numbered-h2">Render an Entry Pass PDF</h2>
             <span class="tag">Render API</span>
         </div>
         <ol>
@@ -285,7 +287,7 @@
             <li>
                 <p>
                     Check the IoT Message Service for a new
-                    <code class="inline-code">PrintResponse</code> message.
+                    <code class="inline-code">RenderResponse</code> message.
                 </p>
                 <ul>
                     <li>
@@ -317,7 +319,7 @@
                     </pre>
             </div>
             <p class="caption">
-                <code class="inline-code">PrintResponse</code> IoT Message
+                <code class="inline-code">RenderResponse</code> IoT Message
                 Service Message indicating a successful print
             </p>
             <li>
@@ -356,28 +358,28 @@
             </li>
             <li>
                 Check the IoT Message Service for a new
-                <code class="inline-code">PrintResponse</code> message.
+                <code class="inline-code">RenderResponse</code> message.
             </li>
             <div class="method-example atom-one-light">
                 <div class="method-example-top-bar">Message</div>
                 <pre>
                         <code class="language-json">
-        {
-            "IsSuccess": false,
-            "Error": {
-                "ErrorCode": "NotAbleToPrint",
-                "Message": "PrintNotOk/UnSuccessfulPrint, with Jammed"
-            },
-            "SuccessfulPrints": "0"
-        }
+{
+    "IsSuccess": false,
+    "Error": {
+        "ErrorCode": "NotAbleToPrint",
+        "Message": "PrintNotOk/UnSuccessfulPrint, with Jammed"
+    },
+    "SuccessfulPrints": "0"
+}
                     </code>
                     </pre>
             </div>
         </ol>
 
         <p class="caption">
-            <code class="inline-code">PrintResponse</code> Message indicating an
-            unsuccessful print with reason
+            <code class="inline-code">RenderResponse</code> Message indicating
+            an unsuccessful print with reason
             <code class="inline-code">Message</code>
         </p>
         <p>

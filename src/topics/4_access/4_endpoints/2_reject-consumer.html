@@ -65,7 +65,7 @@ curl --area -g --request POST 'https://{{baseurl}}/access/v2/rejectconsumer' \
 --header 'area-id: {{areaId}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "attachmentId": "{{msr_attachment_id}}",
+    "attachmentId": "{{PXR_attachment_id}}",
     "relationId": "postman-ftr-02ba25f7-8328-4ff6-8fd9-034d9f2a9cc1",
     "message": [ "MSG Line 1", "MSG Line 2" ],
     "alarm": true
@@ -88,7 +88,7 @@ request = Net::HTTP::Post.new(url)
 request["area-id"] = "{{areaId}}"
 request["Content-Type"] = "application/json"
 request.body = JSON.dump({
-    "attachmentId": "{{msr_attachment_id}}",
+    "attachmentId": "{{PXR_attachment_id}}",
     "relationId": "postman-ftr-92d80fea-ea8b-4d37-8b40-dd1f043a6234",
     "message": [
     "MSG Line 1",
@@ -110,7 +110,7 @@ import json
 url = "https://{{baseurl}}/access/v2/rejectconsumer"
 
 payload = json.dumps({
-    "attachmentId": "{{msr_attachment_id}}",
+    "attachmentId": "{{PXR_attachment_id}}",
     "relationId": "postman-ftr-d6e4e0a1-caef-4508-8ecb-773f4ffcab1d",
     "message": [
     "MSG Line 1",
@@ -145,7 +145,7 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'POST',
     CURLOPT_POSTFIELDS =>'{
-    "attachmentId": "{{msr_attachment_id}}",
+    "attachmentId": "{{PXR_attachment_id}}",
     "relationId": "postman-ftr-68155bf1-460f-4b84-b442-0a4207760d66",
     "message": [ "MSG Line 1", "MSG Line 2" ],
     "alarm": true
@@ -169,7 +169,7 @@ Unirest.setTimeouts(0, 0);
 HttpResponse<String> response = Unirest.post("https://{{baseurl}}/access/v2/rejectconsumer")
     .header("area-id", "{{areaId}}")
     .header("Content-Type", "application/json")
-    .body("{\r\n    \"attachmentId\": \"{{msr_attachment_id}}\",\r\n    \"relationId\": \"postman-ftr-de1f8b06-de0a-48c5-b53f-e7de12f97b1c\",\r\n    \"message\": [ \"MSG Line 1\", \"MSG Line 2\" ],\r\n    \"alarm\": true\r\n}")
+    .body("{\r\n    \"attachmentId\": \"{{PXR_attachment_id}}\",\r\n    \"relationId\": \"postman-ftr-de1f8b06-de0a-48c5-b53f-e7de12f97b1c\",\r\n    \"message\": [ \"MSG Line 1\", \"MSG Line 2\" ],\r\n    \"alarm\": true\r\n}")
     .asString();    
 </code>
 </pre>
@@ -183,7 +183,7 @@ var req = unirest('POST', 'https://{{baseurl}}/access/v2/rejectconsumer')
     'Content-Type': 'application/json'
     })
     .send(JSON.stringify({
-    "attachmentId": "{{msr_attachment_id}}",
+    "attachmentId": "{{PXR_attachment_id}}",
     "relationId": "postman-ftr-79890a72-7276-4571-96eb-3e4fff040d50",
     "message": [
         "MSG Line 1",
@@ -216,7 +216,7 @@ func main() {
 
     payload := strings.NewReader(`{`+"
 "+`
-    "attachmentId": "{{msr_attachment_id}}",`+"
+    "attachmentId": "{{PXR_attachment_id}}",`+"
 "+`
     "relationId": "postman-ftr-71ad8dcc-b292-482b-8005-f010262b1942",`+"
 "+`
@@ -263,7 +263,7 @@ request.AddHeader("area-id", "{{areaId}}");
 request.AddHeader("Content-Type", "application/json");
 var body = @"{
 " + "\n" +
-@"    ""attachmentId"": ""{{msr_attachment_id}}"",
+@"    ""attachmentId"": ""{{PXR_attachment_id}}"",
 " + "\n" +
 @"    ""relationId"": ""postman-ftr-dbe3842b-ee44-415e-af8b-ee5c4e17a47a"",
 " + "\n" +
@@ -304,7 +304,7 @@ Console.WriteLine(response.Content);
     <pre>
             <code class="language-json">
 {
-    "AttachmentId": "{{msr_attachment_id}}",
+    "AttachmentId": "{{PXR_attachment_id}}",
     "CorrelationId": "{{$guid}}",
     "Message": [ "Consumer Not Ok to Enter" ],
     "Alarm": true
@@ -334,7 +334,7 @@ Console.WriteLine(response.Content);
 </p>
 <p>
     A
-    <code class="inline-code">rejectconsumerResponse</code> message displays on
+    <code class="inline-code">RejectConsumerResponse</code> message displays on
     the IoT Message Service that simply indicates that the request was made with no
     errors.
 </p>
@@ -352,11 +352,11 @@ Console.WriteLine(response.Content);
 </div>
 
 <p class="caption">
-    <code class="inline-code">rejectconsumerResponse</code> Message
+    <code class="inline-code">RejectConsumerResponse</code> Message
     Body indicating that request to reject the consumer was successful
 </p>
 <p>
-    If the device is Magstripe Reader, a red light displays, along with the
+    If the device is Proximity Reader, a red light displays, along with the
     <code class="inline-code">Message</code> for the airline attendant such as
     <code class="inline-code">Consumer Not Okay to Enter</code>. Depending on
     the situation, the consumer may be sent a different desk for an attendant to

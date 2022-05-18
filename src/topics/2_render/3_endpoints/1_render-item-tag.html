@@ -1,7 +1,7 @@
 <div class="title-box">
-    <h1 class="topic-title">Print a Item Tag</h1>
+    <h1 class="topic-title">Render an Item Tag</h1>
     <div class="action-statement">
-        Command a device to print a item tag in the different formats
+        Command a device to print an item tag in the different formats
     </div>
 </div>
 
@@ -22,7 +22,7 @@
 <p>
     Send a <span class="method post">POST</span>
     <code class="inline-code">/render/v2/itemgagetag/pdf</code> request to an
-    IJP device to print a item tag in PDF format. 
+    IJP device to print an item tag in PDF format. 
 </p>
 
 
@@ -270,7 +270,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample <span class="method post">POST</span>
-    <code class="inline-code">/render/v2/itemtag/pdf</code> API call that issues a command to a device to print a item tag in PDF format
+    <code class="inline-code">/render/v2/itemtag/pdf</code> API call that issues a command to a device to print an item tag in PDF format
 </p>
 
 <h4>Request Body</h4>
@@ -311,7 +311,7 @@ Console.WriteLine(response.Content);
 <p>
     Send a <span class="method post">POST</span>
     <code class="inline-code">/render/v2/itemtag/legacyprint</code> request to an
-   IJP device to print a item tag in <span class="method post">legacyprint</span> format. 
+   IJP device to print an item tag in <code class="inline-code">legacyprint</code> format. 
 </p>
 
 <div class="code-section with-tabs">
@@ -628,7 +628,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample <span class="method post">POST</span>
-    <code class="inline-code">/render/v2/itemtag/pdf</code>  request that issues a command to a device to print a item tag in PDF format
+    <code class="inline-code">/render/v2/itemtag/pdf</code>  request that issues a command to a device to print an item tag in PDF format
 </p>
 
 
@@ -668,7 +668,7 @@ Console.WriteLine(response.Content);
 <h3>Successful Print</h3>
 <p>
     A successful print returns a
-    <code class="inline-code">PrintResponse</code> message with
+    <code class="inline-code">RenderResponse</code> message with
     <code class="inline-code">IsSuccess</code> set to
     <code class="inline-code">true</code>, in which case the number of
     successful prints is returned.
@@ -688,14 +688,14 @@ Console.WriteLine(response.Content);
 </div>
 
 <p class="caption">
-    <code class="inline-code">PrintResponse</code> Message
+    <code class="inline-code">RenderResponse</code> Message
     indicating a successful print
 </p>
 
 <h3>Unsuccessful Print</h3>
 <p>
     For an unsuccessful print, a
-    <code class="inline-code">PrintResponse</code> message displays with
+    <code class="inline-code">RenderResponse</code> message displays with
     <code class="inline-code">IsSuccess</code> set to
     <code class="inline-code">false</code> in the Message Body. An
     <code class="inline-code">ErrorCode</code> and
@@ -720,7 +720,7 @@ Console.WriteLine(response.Content);
 </div>
 
 <p class="caption">
-    <code class="inline-code">PrintResponse</code> Message
+    <code class="inline-code">RenderResponse</code> Message
     indicating an unsuccessful print due to a paper jam
 </p>
 <div class="alert-section info-alert">

@@ -1,6 +1,6 @@
-<h1 id="itemresponse-messages">BagResponse Messages</h1>
+<h1 id="itemresponse-messages">ItemResponse Messages</h1>
 <p>
-    Standard format Bag Response messages received at stages of the dispatch
+    Standard format Item Response messages received at stages of the dispatch
     process.
 </p>
 <h2 id="message-properties">Message Properties</h2>
@@ -25,8 +25,8 @@
             <td>string</td>
             <td>M</td>
             <td>
-                <a href="/dispatch/messages-reference/BagResponseMessages#itemresponsemessagetype"
-                    >BagResponseMessageType</a
+                <a href="/dispatch/messages-reference/ItemResponseMessages#itemresponsemessagetype"
+                    >ItemResponseMessageType</a
                 >
             </td>
         </tr>
@@ -62,7 +62,7 @@
         </tr>
     </tbody>
 </table>
-<h3 id="itemresponsemessagetype">BagResponseMessageType</h3>
+<h3 id="itemresponsemessagetype">ItemResponseMessageType</h3>
 <table class="main-table">
     <thead>
         <tr>
@@ -71,13 +71,13 @@
     </thead>
     <tbody>
         <tr>
-            <td>BagChanged</td>
+            <td>ItemChanged</td>
         </tr>
         <tr>
-            <td>BagPlaced</td>
+            <td>ItemPlaced</td>
         </tr>
         <tr>
-            <td>BagRemoved</td>
+            <td>ItemRemoved</td>
         </tr>
         <tr>
             <td>AbortItemResponse</td>
@@ -107,8 +107,8 @@
     </thead>
     <tbody>
         <tr>
-            <td>Bag</td>
-            <td><a href="/dispatch/messages-reference/BagResponseMessages#item">Bag</a></td>
+            <td>Item</td>
+            <td><a href="/dispatch/messages-reference/ItemResponseMessages#item">Item</a></td>
             <td>See details below</td>
         </tr>
         <tr>
@@ -118,12 +118,12 @@
         </tr>
         <tr>
             <td>Error</td>
-            <td><a href="/dispatch/messages-reference/BagResponseMessages#error">Error</a></td>
+            <td><a href="/dispatch/messages-reference/ItemResponseMessages#error">Error</a></td>
             <td>See details below</td>
         </tr>
     </tbody>
 </table>
-<h3 id="item">Bag</h3>
+<h3 id="item">Item</h3>
 <table class="main-table">
     <thead>
         <tr>
@@ -140,7 +140,7 @@
         </tr>
         <tr>
             <td>Weight</td>
-            <td><a href="/dispatch/messages-reference/BagResponseMessages#measurement">Measurement</a></td>
+            <td><a href="/dispatch/messages-reference/ItemResponseMessages#measurement">Measurement</a></td>
             <td>see below</td>
         </tr>
         <tr>
@@ -150,7 +150,7 @@
         </tr>
         <tr>
             <td>VolumeResult</td>
-            <td><a href="/dispatch/messages-reference/BagResponseMessages#volumeresult">VolumeResult</a></td>
+            <td><a href="/dispatch/messages-reference/ItemResponseMessages#volumeresult">VolumeResult</a></td>
             <td>Volume of the item</td>
         </tr>
     </tbody>
@@ -167,17 +167,17 @@
     <tbody>
         <tr>
             <td>Width</td>
-            <td><a href="/dispatch/messages-reference/BagResponseMessages#measurement">Measurement</a></td>
+            <td><a href="/dispatch/messages-reference/ItemResponseMessages#measurement">Measurement</a></td>
             <td></td>
         </tr>
         <tr>
             <td>Height</td>
-            <td><a href="/dispatch/messages-reference/BagResponseMessages#measurement">Measurement</a></td>
+            <td><a href="/dispatch/messages-reference/ItemResponseMessages#measurement">Measurement</a></td>
             <td></td>
         </tr>
         <tr>
             <td>Length</td>
-            <td><a href="/dispatch/messages-reference/BagResponseMessages#measurement">Measurement</a></td>
+            <td><a href="/dispatch/messages-reference/ItemResponseMessages#measurement">Measurement</a></td>
             <td></td>
         </tr>
         <tr>
@@ -221,7 +221,7 @@
     <tbody>
         <tr>
             <td>ErrorCode</td>
-            <td><a href="/dispatch/messages-reference/BagResponseMessages#errorcode">ErrorCode</a></td>
+            <td><a href="/dispatch/messages-reference/ItemResponseMessages#errorcode">ErrorCode</a></td>
             <td>See details below</td>
         </tr>
         <tr>
@@ -240,7 +240,7 @@
     </thead>
     <tbody>
         <tr>
-            <td>NoBagFound</td>
+            <td>NoItemFound</td>
         </tr>
         <tr>
             <td>HoldingAreaFull</td>
@@ -258,37 +258,37 @@
             <td>UnknownError</td>
         </tr>
         <tr>
-            <td>BagIsTooLong</td>
+            <td>ItemIsTooLong</td>
         </tr>
         <tr>
-            <td>BagIsTooHigh</td>
+            <td>ItemIsTooHigh</td>
         </tr>
         <tr>
-            <td>BagIsJammed</td>
+            <td>ItemIsJammed</td>
         </tr>
         <tr>
-            <td>UnexpectedBagDetectedInRear</td>
+            <td>UnexpectedItemDetectedInRear</td>
         </tr>
         <tr>
-            <td>BagIsTooFlat</td>
+            <td>ItemIsTooFlat</td>
         </tr>
         <tr>
-            <td>BagIsTooShort</td>
+            <td>ItemIsTooShort</td>
         </tr>
         <tr>
-            <td>BagWeightIsOverBhsUpperLimit</td>
+            <td>ItemWeightIsOverBhsUpperLimit</td>
         </tr>
         <tr>
-            <td>BagWeightIsUnderBhsLowerLimit</td>
+            <td>ItemWeightIsUnderBhsLowerLimit</td>
         </tr>
         <tr>
-            <td>TooManyBags</td>
+            <td>TooManyItems</td>
         </tr>
         <tr>
-            <td>BagIsConstantlyMoving</td>
+            <td>ItemIsConstantlyMoving</td>
         </tr>
         <tr>
-            <td>BagIsNotConveyable</td>
+            <td>ItemIsNotConveyable</td>
         </tr>
         <tr>
             <td>BhsOffline</td>
@@ -297,10 +297,10 @@
             <td>BhsBusy</td>
         </tr>
         <tr>
-            <td>BagInEntryNotRemovedInTime</td>
+            <td>ItemInEntryNotRemovedInTime</td>
         </tr>
         <tr>
-            <td>BagWeightUnexpectedlyChanged</td>
+            <td>ItemWeightUnexpectedlyChanged</td>
         </tr>
     </tbody>
 </table>
@@ -310,7 +310,7 @@
     <pre>
         <code class="language-json">
 {
-    "Bag": {
+    "Item": {
         "Tags": [
              "0123456789"
         ],
@@ -347,7 +347,7 @@
         <pre>
         <code class="language-json">
 {
-    "Bag": {
+    "Item": {
         "Tags": [
             "0123456789"
         ],

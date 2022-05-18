@@ -293,8 +293,7 @@ func main() {
 </p>
 <p>
     The <code class="inline-code">SharedAccessSignature</code>, also known as a
-    SAS token, follows the IoT Message Service endpoint and contains the airline
-    backend's credentials for accessing the linkage. The entire value of
+    SAS token, follows the IoT Message Service endpoint and contains the airline backend's credentials for accessing the linkage. The entire value of
     the SAS token needs to be passed in the Authorization Header of requests
     made to the IoT Message Service REST API.
 </p>
@@ -395,10 +394,8 @@ func main() {
     </div>
 </div>
 <p>
-    The second way is to have an 'on-demand' solution whereby the airline
-    backend determines if there is a linkage in place for the specified
-    area. If there is already a linkage for the area, the airline
-    backend uses that linkage and does not send a request to create a new
+    The second way is to have an 'on-demand' solution whereby the airline backend determines if there is a linkage in place for the specified
+    area. If there is already a linkage for the area, the airline backend uses that linkage and does not send a request to create a new
     one. If there is no linkage in place, it sends a <span class="method post">POST </span><code class="inline-code">sync/v2/linkages</code>
     request to create a new linkage.
 </p>

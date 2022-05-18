@@ -246,7 +246,7 @@ Console.WriteLine(response.Content);
 
 <p class="caption">
     Sample <span class="method post">POST</span>
-    <code class="inline-code">/read/v2/stopreading</code> request to releaese an HHS device from exclusive access and stop the reading process</p>
+    <code class="inline-code">/read/v2/stopreading</code> request to release an OCR device from exclusive access and stop the reading process</p>
 
 <h2>Request Body</h4>
 
@@ -261,7 +261,7 @@ Console.WriteLine(response.Content);
     <pre>
             <code class="language-json">
 {
-    "attachmentId": "{{hhs_attachment_id}}"
+    "attachmentId": "{{ocr_attachment_id}}"
 }
         </code>
         </pre>
@@ -284,7 +284,7 @@ Console.WriteLine(response.Content);
 </p>
 <p>
     An asynchronous
-    <code class="inline-code">ScanDeviceStatus</code> message is sent to all
+    <code class="inline-code">ReadDeviceStatus</code> message is sent to all
     developers with an active attachment to the read device to indicate the
     device is no longer exclusively being used (<code class="inline-code"
         >"DeviceInUse": "false"</code

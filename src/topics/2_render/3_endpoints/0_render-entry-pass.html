@@ -1,7 +1,7 @@
 <div class="title-box">
-    <h1 class="topic-title">Print a Entry Pass</h1>
+    <h1 class="topic-title">Render an Entry Pass</h1>
     <div class="action-statement">
-        Command a device to print a entry pass in the different formats
+        Command a device to print an entry pass in different formats
     </div>
 </div>
 
@@ -22,7 +22,7 @@
 <p>
     Send a <span class="method post">POST</span>
     <code class="inline-code">/render/v2/entrypass/{type}</code> request to an
-    MFP device to print a entry pass in the specified format
+    MFP device to print an entry pass in the specified format
     <code class="inline-code">{type}</code>. Using this endpoint, entry passes may be printed in either <code class="inline-code">pdf</code> or
     <code class="inline-code">svg</code> format. In the example below, PDF format is requested.
 </p>
@@ -305,7 +305,7 @@ Console.WriteLine(response.Content);
 <p>
     Send a <span class="method post">POST</span>
     <code class="inline-code">/render/v2/entrypass/legacyprint</code> request to an
-    MFP device to print a entry pass in <span class="method post">Legacy Print</span> format. 
+    MFP device to print an entry pass in <code class="inline-code">Legacy Print</code> format. 
 </p>
 
 <div class="code-section with-tabs">
@@ -662,7 +662,7 @@ Console.WriteLine(response.Content);
 <h3>Successful Print</h3>
 <p>
     A successful print returns a
-    <code class="inline-code">PrintResponse</code> message with
+    <code class="inline-code">RenderResponse</code> message with
     <code class="inline-code">IsSuccess</code> set to
     <code class="inline-code">true</code>, in which case the number of
     successful prints is returned.
@@ -682,14 +682,14 @@ Console.WriteLine(response.Content);
 </div>
 
 <p class="caption">
-    <code class="inline-code">PrintResponse</code> Message
+    <code class="inline-code">RenderResponse</code> Message
     indicating a successful print
 </p>
 
 <h3>Unsuccessful Print</h3>
 <p>
     For an unsuccessful print, a
-    <code class="inline-code">PrintResponse</code> message displays with
+    <code class="inline-code">RenderResponse</code> message displays with
     <code class="inline-code">IsSuccess</code> set to
     <code class="inline-code">false</code> in the Message Body. An
     <code class="inline-code">ErrorCode</code> and
@@ -714,7 +714,7 @@ Console.WriteLine(response.Content);
 </div>
 
 <p class="caption">
-    <code class="inline-code">PrintResponse</code> Message
+    <code class="inline-code">RenderResponse</code> Message
     indicating an unsuccessful print due to a paper jam
 </p>
 <div class="alert-section info-alert">

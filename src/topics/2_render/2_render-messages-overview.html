@@ -11,14 +11,14 @@
     encountered when sending Render API requests are described.
 </p>
 
-<h2 id="printdevicestatus">PrintDeviceStatus</h2>
+<h2 id="RenderDeviceStatus">RenderDeviceStatus</h2>
 <h3 id="devicestatus-is-online">
     <code class="inline-code">DeviceStatus</code> is
     <code class="inline-code">Online</code>
 </h3>
 <p>
     After you attach to a print device, a
-    <code class="inline-code">PrintDeviceStatus</code> message is displayed on
+    <code class="inline-code">RenderDeviceStatus</code> message is displayed on
     the IoT Message Service that should indicate the
     <code class="inline-code">DeviceStatus</code> is
     <code class="inline-code">Online</code>.
@@ -38,8 +38,8 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">PrintDeviceStatus</code> Message showing the Print
-    device is <code class="inline-code">Online</code>
+    <code class="inline-code">RenderDeviceStatus</code> Message showing the
+    Print device is <code class="inline-code">Online</code>
 </p>
 <h3 id="devicestatus-changes">
     <code class="inline-code">DeviceStatus</code> Changes
@@ -49,7 +49,7 @@
     goes <code class="inline-code">Offline</code> or the paper becomes jammed),
     a <code class="inline-code">DeviceStatus</code> message may display after
     requesting a print followed by an unsuccessful
-    <code class="inline-code">PrintResponse</code> message.
+    <code class="inline-code">RenderResponse</code> message.
 </p>
 
 <div class="method-example atom-one-light">
@@ -69,10 +69,10 @@
     <code class="inline-code">DeviceStatus</code> Message sent after requesting
     a print on a printer with a paper jam
 </p>
-<h2 id="printresponse">PrintResponse</h2>
+<h2 id="printresponse">RenderResponse</h2>
 <p>
     After sending a request to print to a device, the
-    <code class="inline-code">PrintResponse</code> is the primary
+    <code class="inline-code">RenderResponse</code> is the primary
     <code class="inline-code">MessageType</code> received on the IoT Message
     Service after making a print request. It is virtually identical across
     devices and print formats. Its sole purpose to indicate if the print was
@@ -107,7 +107,7 @@
 <h3>Successful Print</h3>
 <p>
     A successful print returns a
-    <code class="inline-code">PrintResponse</code> message with
+    <code class="inline-code">RenderResponse</code> message with
     <code class="inline-code">IsSuccess</code> set to
     <code class="inline-code">true</code>, in which case the number of
     successful prints is returned.
@@ -127,14 +127,14 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">PrintResponse</code> Message indicating a
+    <code class="inline-code">RenderResponse</code> Message indicating a
     successful print
 </p>
 
 <h3>Unsuccessful Print</h3>
 <p>
     For an unsuccessful print, a
-    <code class="inline-code">PrintResponse</code> message displays with
+    <code class="inline-code">RenderResponse</code> message displays with
     <code class="inline-code">IsSuccess</code> set to
     <code class="inline-code">false</code> in the Message Body. An
     <code class="inline-code">ErrorCode</code> and
@@ -159,7 +159,7 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">PrintResponse</code> Message indicating an
+    <code class="inline-code">RenderResponse</code> Message indicating an
     unsuccessful print due to a paper jam
 </p>
 <div class="alert-section info-alert">
