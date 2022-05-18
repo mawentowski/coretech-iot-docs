@@ -6,7 +6,7 @@
 <p>
     The <span class="method post">POST</span>
     <code class="inline-code">/sync/v2/linkages</code> request creates a
-    linkage on the Azure Service Bus and returns a Service Bus endpoint and
+    linkage on the IoT Message Service and returns a Service Bus endpoint and
     SAS token for the application backend to attach to the linkage.
 </p>
 <p>
@@ -25,7 +25,7 @@
             library:
             <a
                 href="https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview#client-libraries"
-                >Azure Service Bus messaging overview - Azure Service Bus</a
+                >IoT Message Service messaging overview - IoT Message Service</a
             >.
         </p>
     </div>
@@ -296,14 +296,14 @@ func main() {
     SAS token, follows the Service Bus endpoint and contains the airline
     backend's credentials for accessing the linkage. The entire value of
     the SAS token needs to be passed in the Authorization Header of requests
-    made to the Azure Service Bus REST API.
+    made to the IoT Message Service REST API.
 </p>
 <div class="alert-section tip-alert">
     <div class="">
         <p>
             It is not necessary to understand the contents of the SAS token. It
             is important to include the full SAS token value in the HTTP
-            Authorization Headers of requests sent to the Azure Service Bus REST
+            Authorization Headers of requests sent to the IoT Message Service REST
             API. Without these credentials, you will receive a
             <code class="inline-code">Not Authorized</code> error message.
         </p>
@@ -317,7 +317,7 @@ func main() {
             on
             <a
                 href="https://docs.microsoft.com/en-us/azure/service-bus-messaging/"
-                >Azure Service Bus Messaging</a
+                >IoT Message Service Messaging</a
             >.
         </p>
     </div>
@@ -390,7 +390,7 @@ func main() {
     <div class="">
         <p>
             The SAS token contains the credentials needed by the application backend
-            to access the Azure Service Bus.
+            to access the IoT Message Service.
         </p>
     </div>
 </div>
@@ -446,7 +446,7 @@ func main() {
     </div>
 </div>
 <p>
-    If the application backend drops an active attachment the Azure Service Bus by
+    If the application backend drops an active attachment the IoT Message Service by
     unattaching from a SAS token, no messages are lost. Any messages sent to
     the linkage are queued and will display once another attachment is made
     with a new SAS token.
@@ -458,8 +458,8 @@ func main() {
     Service Bus linkage details should not be shared amongst several
     parties. They should remain secret for specific usage in your application at
     any given point and should not have several consumers who link to this
-    Azure Service Bus. It is recommended that the Web Server backend of your
-    application links to this Azure Service Bus linkage and then any
+    IoT Message Service. It is recommended that the Web Server backend of your
+    application links to this IoT Message Service linkage and then any
     clients that need to be notified are signaled by your backend application
     using another technology such as SignalR, or an equivalent.
 </p>
@@ -469,7 +469,7 @@ func main() {
     an auto-delete on idle takes care of the linkage removal (<code class="inline-code"
         >AutoDeleteOnIdle</code
     >
-    property in Azure Service Bus). Currently, the time is controlled by CoreTech services and is set to <strong>24 hours</strong>.
+    property in IoT Message Service). Currently, the time is controlled by CoreTech services and is set to <strong>24 hours</strong>.
 </p>
 <h3 id="deleting-linkages">Deleting Linkages</h3>
 <p>
