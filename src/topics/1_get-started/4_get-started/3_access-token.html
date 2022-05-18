@@ -63,7 +63,7 @@
     </div>
 
 <div id="bash-get-access-token" class="tabcontent dark"><pre> <code>
-curl --area -g --request POST 'https://login.microsoftonline.com/{{AAD_tenent}}.onmicrosoft.com/oauth2/token' \
+curl --area -g --request POST 'https://login.coretechonline.com/{{AAD_tenent}}.oncoretech.com/oauth2/token' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'grant_type=client_credentials' \
 --data-urlencode 'client_id={{clientid}}' \
@@ -77,7 +77,7 @@ curl --area -g --request POST 'https://login.microsoftonline.com/{{AAD_tenent}}.
 require "uri"
 require "net/http"
 
-url = URI("https://login.microsoftonline.com/{{AAD_tenent}}.onmicrosoft.com/oauth2/token")
+url = URI("https://login.coretechonline.com/{{AAD_tenent}}.oncoretech.com/oauth2/token")
 
 https = Net::HTTP.new(url.host, url.port)
 https.use_ssl = true
@@ -95,7 +95,7 @@ puts response.read_body
 <div id="Python-get-access-token" class="tabcontent dark"><pre> <code>
 import requests
 
-url = "https://login.microsoftonline.com/{{AAD_tenent}}.onmicrosoft.com/oauth2/token"
+url = "https://login.coretechonline.com/{{AAD_tenent}}.oncoretech.com/oauth2/token"
 
 payload='grant_type=client_credentials&client_id=%7B%7Bclientid%7D%7D&client_secret=%7B%7Bclientsecret%7D%7D&resource=%7B%7Bresourceid%7D%7D'
 headers = {
@@ -115,7 +115,7 @@ print(response.text)
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://login.microsoftonline.com/%7B%7BAAD_tenent%7D%7D.onmicrosoft.com/oauth2/token',
+    CURLOPT_URL => 'https://login.coretechonline.com/%7B%7BAAD_tenent%7D%7D.oncoretech.com/oauth2/token',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -140,7 +140,7 @@ echo $response;
 
 <div id="Java-get-access-token" class="tabcontent dark"><pre><code>
 Unirest.setTimeouts(0, 0);
-HttpResponse<String> response = Unirest.post("https://login.microsoftonline.com/{{AAD_tenent}}.onmicrosoft.com/oauth2/token")
+HttpResponse<String> response = Unirest.post("https://login.coretechonline.com/{{AAD_tenent}}.oncoretech.com/oauth2/token")
     .header("Content-Type", "application/x-www-form-urlencoded")
     .field("grant_type", "client_credentials")
     .field("client_id", "{{clientid}}")
@@ -155,7 +155,7 @@ HttpResponse<String> response = Unirest.post("https://login.microsoftonline.com/
 var request = require('request');
 var options = {
     'method': 'POST',
-    'url': 'https://login.microsoftonline.com/{{AAD_tenent}}.onmicrosoft.com/oauth2/token',
+    'url': 'https://login.coretechonline.com/{{AAD_tenent}}.oncoretech.com/oauth2/token',
     'headers': {
     'Content-Type': 'application/x-www-form-urlencoded'
     },
@@ -196,7 +196,7 @@ linkage, err = sub.Update("sub_49ty4767H20z6a", params)
 </div>
 
 <div id=".NET-get-access-token" class="tabcontent dark"><pre><code>
-var client = new RestClient("https://login.microsoftonline.com/{{AAD_tenent}}.onmicrosoft.com/oauth2/token");
+var client = new RestClient("https://login.coretechonline.com/{{AAD_tenent}}.oncoretech.com/oauth2/token");
 client.Timeout = -1;
 var request = new RestRequest(Method.POST);
 request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
