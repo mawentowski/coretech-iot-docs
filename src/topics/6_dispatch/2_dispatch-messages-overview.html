@@ -1,0 +1,430 @@
+<div class="title-box">
+    <h1 class="topic-title">Service Bus Messages</h1>
+    <div class="action-statement">
+        Learn about the most common messages and how your app should use them
+    </div>
+</div>
+
+<p>
+    The following is not an exhaustive list of all possible Service Bus
+    <code class="inline-code">Message Types</code>. Only the most common ones
+    encountered when sending Dispatch API requests are described.
+</p>
+<h2 id="dispatchdevicestatus">ConveyorDeviceStatus</h2>
+<p>
+    A <code class="inline-code">ConveyorDeviceStatus</code> message displays on
+    the Service Bus:
+</p>
+<ul>
+    <li>
+        when the <code class="inline-code">DeviceStatus</code> changes. For
+        example, when the GRC goes from
+        <code class="inline-code">Online</code> to
+        <code class="inline-code">Offline</code>, or vice versa. An GRC may go
+        <code class="inline-code">Offline</code> due to an issue with the
+        device, or when a
+        <code class="inline-code">ConveyorTransactionTimeout</code> occurs.
+    </li>
+    <li>
+        after a
+        <code class="inline-code">/dispatch/v2/getitem</code> request is sent,
+        which initiates the dispatch process and reserves the GRC for exclusive
+        access by the application backend. The
+        <code class="inline-code">DeviceInUse</code> property changes from
+        <code class="inline-code">false</code> (the value displayed after
+        sending the <span class="method post">POST</span
+        ><code class="inline-code"> /sync/v2/attachments</code> request) to
+        <code class="inline-code">true</code>.
+    </li>
+</ul>
+
+<div class="method-example atom-one-light">
+    <div class="method-example-top-bar">Service Bus Message</div>
+    <pre>
+            <code class="language-json">
+{
+    "DeviceStatus": "Online",
+    "DeviceInUse": true
+}
+        </code>
+        </pre>
+</div>
+
+<p class="caption">
+    Example <code class="inline-code">ConveyorDeviceStatus</code> Service Bus
+    Message indicating the device is online and exclusively claimed
+</p>
+<h2 id="dooropening-and-doorclosing">DoorOpening and DoorClosing</h2>
+<div class="alert-section info-alert">
+    <div class="">
+        <p>
+            These messages only display if the GRC is configured to have a door.
+        </p>
+    </div>
+</div>
+<p>
+    A <code class="inline-code">DoorOpening</code> message displays on the
+    Service Bus:
+</p>
+<ul>
+    <li>
+        When a <code class="inline-code">/dispatch/v2/getitem</code> request is
+        sent that opens the door to the GRC so the consumer can place her item
+        on the belt.
+    </li>
+    <li>
+        When an issue has occurred and either a
+        <code class="inline-code">/dispatch/v2/returnitem</code> or
+        <code class="inline-code">/dispatch/v2/cancelitem</code> request was
+        sent to open the door and return the item to the
+        <code class="inline-code">Entry</code> position so the issue can be
+        resolved by the customer or an attendant.
+    </li>
+</ul>
+<p>
+    A <code class="inline-code">DoorClosing</code> message displays on the
+    Service Bus:
+</p>
+<ul>
+    <li>
+        after a
+        <code class="inline-code">/dispatch/v2/processitem</code> request is
+        sent. The door to the GRC closes and the item moves from the
+        <code class="inline-code">Entry</code> position to the
+        <code class="inline-code">Process</code> position.
+    </li>
+</ul>
+<div class="alert-section info-alert">
+    <div class="">
+        <p>Both messages contain an empty Message Body.</p>
+    </div>
+</div>
+<h2 id="itemplaced">BagPlaced</h2>
+<p>
+    After a <code class="inline-code">/dispatch/v2/getitem</code> request
+    initiates the dispatch process, the door to the GRC opens (if there is a
+    door) so the consumer can place the item on the belt. Baggage information
+    may be collected by the GRC and displayed in a
+    <code class="inline-code">BagPlaced</code> message on the Service Bus.
+</p>
+<div class="method-example atom-one-light">
+    <div class="method-example-top-bar">Service Bus Message</div>
+    <pre>
+                    <code class="language-json">
+"Bag": {
+    "Tags": [],
+    "Weight": {
+        "Amount": 23.8,
+        "Unit": "Kg"
+    },
+    "Position": "Entry",
+    "VolumeResult": {
+        "Width": {
+            "Amount": 0.0,
+            "Unit": "Cm"
+        },
+        "Height": {
+            "Amount": 0.0,
+            "Unit": "Cm"
+        },
+        "Length": {
+            "Amount": 0.0,
+            "Unit": "Cm"
+        },
+        "TubDetection": "NoTub"
+    }
+},
+"IsSuccess": true,
+"Error": null
+}
+                </code>
+                </pre>
+</div>
+
+<p class="caption">
+    <code class="inline-code">BagPlaced</code> Service Bus message displaying
+    properties of the 'placed' item
+</p>
+<p>
+    The
+    <code class="inline-code">"Position": "Entry"</code>
+    indicates that the item is currently located on the
+    <code class="inline-code">Entry</code> position of the GRC unit.
+</p>
+<p>
+    <code class="inline-code">"IsSuccess": true</code>
+    indicates that a item has been placed on the belt, and a settled weight has
+    been calculated for the item, in addition to other measurements such as the
+    dimensions of the item.
+</p>
+<h2 id="itemchanged">BagChanged</h2>
+<p>
+    The structure of the
+    <code class="inline-code">BagChanged</code> message is identical to the
+    <code class="inline-code">BagPlaced</code> message and displays item
+    information collected through a measurement.
+</p>
+<p>
+    The property of importance is
+    <code class="inline-code">Position</code>. Whenever a item moves from one
+    position to the next, a <code class="inline-code">BagChanged</code> message
+    displays that indicates the value of
+    <code class="inline-code">Position</code> has changed. For example, when the
+    item moves from the <strong>Entry Area</strong> to the
+    <strong>Process Area</strong>, the property
+    <code class="inline-code">Position</code> changes from
+    <code class="inline-code">Entry</code> to
+    <code class="inline-code">Process</code>. When the item moves back from
+    <code class="inline-code">Process</code> to
+    <code class="inline-code">Entry</code>, in the case of an issue, this
+    message displays as well.
+</p>
+<p>
+    Regarding the item information, the following scenarios are possible,
+    depending on the configuration of the GRC:
+</p>
+<ul>
+    <li>
+        The <code class="inline-code">Process</code> position may be the
+        first-time item information was collected (not the
+        <code class="inline-code">Entry</code> position).
+    </li>
+    <li>
+        Baggage information may be collected a second time at the
+        <code class="inline-code">Process</code> position, updating the values
+        collected at the <code class="inline-code">Entry</code> position.
+    </li>
+    <li>
+        Baggage information is not collected at all at the
+        <code class="inline-code">Process</code> position. The item information
+        matches the information collected in the
+        <code class="inline-code">Entry</code> position.
+    </li>
+</ul>
+<h2 id="itemresponses">BagResponses</h2>
+<div class="alert-section info-alert">
+    <div class="">
+        <p>
+            For this documentation, Service Bus
+            <code class="inline-code">MessageTypes</code> that contain the text
+            <code class="inline-code">BagResponse</code> are grouped together
+            since they all simply confirm the success or failure of a request.
+            In actuality, the <code class="inline-code">MessageTypes</code> will
+            be specific to the type of request that was sent. For example, after
+            a <code class="inline-code">/dispatch/v2/getitem</code> request is
+            sent, a <code class="inline-code">GetItemResponse</code> response
+            displays on the Service Bus.
+        </p>
+    </div>
+</div>
+<p>
+    <code class="inline-code">BagResponse</code> messages display on the Service
+    Bus after sending requests to the Dispatch API at different stages of a
+    dispatch process and are often sent in conjunction with other types of
+    messages such as a <code class="inline-code">BagChanged</code> and
+    <code class="inline-code">ConveyorDeviceStatus</code> message.
+</p>
+<p>
+    The only purpose of a
+    <code class="inline-code">BagResponse</code> message is to indicate whether
+    the request was successful (
+    <code class="inline-code">"IsSuccess": true</code>). The structure of
+    <code class="inline-code">BagResponse</code> messages are identical to the
+    <code class="inline-code">BagPlaced</code> and
+    <code class="inline-code">BagChanged</code> messages that display collected
+    item information.
+</p>
+<p>
+    The following
+    <code class="inline-code">BagResponse</code> messages display on the Service
+    Bus by endpoint:
+</p>
+<ul>
+    <li>
+        A <code class="inline-code">GetItemResponse</code> is received after a
+        <code class="inline-code">/dispatch/v2/getitem</code> request is sent to
+        initiate the dispatch process and open the GRC door if there is one.
+    </li>
+    <p>
+        If the GRC has a door, the property
+        <code class="inline-code">"Bag": null</code> is returned which indicates
+        no item information was collected because a item has not been placed on
+        the belt yet.
+    </p>
+    <p>
+        If the GRC does not have a door, the
+        <code class="inline-code">GetItemResponse</code> message includes the
+        item information collected from the item placed on the belt at the time
+        the <code class="inline-code">/dispatch/v2/getitem</code> request was
+        sent.
+    </p>
+</ul>
+
+<ul>
+    <li>
+        <p>
+            A <code class="inline-code">CheckItemResponse</code> is received
+            after a
+            <code class="inline-code">/dispatch/v2/processitem</code>
+            request is sent to move the item from the
+            <code class="inline-code">Entry</code> position to the
+            <code class="inline-code">Process</code> position where the item can
+            be processed.
+        </p>
+    </li>
+    <li>
+        <p>
+            A <code class="inline-code">AdjustItemResponse</code> is received
+            after a
+            <code class="inline-code">/dispatch/v2/returnitem</code>
+            request is sent to return the item to the
+            <code class="inline-code">Entry</code> position
+            <em>where the consumer</em> can resolve an issue.
+        </p>
+    </li>
+    <li>
+        <p>
+            A <code class="inline-code">AbortItemResponse</code> is received
+            after a
+            <code class="inline-code">/dispatch/v2/cancelitem</code>
+            request is sent to return the item to the
+            <code class="inline-code">Entry</code> position
+            <em>where the attendant</em> can resolve an issue.
+        </p>
+    </li>
+    <li>
+        <p>
+            A <code class="inline-code">dispatchResponse</code> is received
+            after a
+            <code class="inline-code">/dispatch/v2/releaseitem</code>
+            request is sent to release the item to the Item Handling System.
+        </p>
+    </li>
+</ul>
+<h3 id="errorcodes">ErrorCodes</h3>
+<p>
+    If a request fails, the Service Bus message will return no item information
+    with an
+    <code class="inline-code">ErrorCode</code> and
+    <code class="inline-code">Message</code> describing why the request failed.
+    A possible cause is there was a
+    <code class="inline-code">ConveyorTransactionTimeout</code> that prevents
+    sending any further requests to the GRC.
+</p>
+
+<div class="method-example atom-one-light">
+    <div class="method-example-top-bar">Service Bus Message</div>
+    <pre>
+                        <code class="language-json">
+{
+    "Bag":null,
+    "IsSuccess":false,
+    "Error":{
+        "ErrorCode":"UnknownError",
+        "Message":"AdjustItem failed, device status: . Bag cannot be Returned."
+    }
+}
+                    </code>
+                    </pre>
+</div>
+
+<p class="caption">
+    Sample
+    <code class="inline-code">AdjustItemResponse</code> Message indicating the
+    reason the request failed
+</p>
+<h2 id="dispatchtransactiontimeout">ConveyorTransactionTimeout</h2>
+<p>
+    A
+    <code class="inline-code">ConveyorTransactionTimeout</code>
+    message displays on the Service Bus with an empty Message Body when too much
+    time has elapsed since the last Dispatch API request was made.
+</p>
+<h3 id="timeout-at-entry-area">Timeout at Entry Area</h3>
+<p>
+    If this error occurs when the item is in the
+    <code class="inline-code">Entry</code> position, another
+    <code class="inline-code">/dispatch/v2/getitem</code> request must be made
+    to restart the dispatch process. If you send a
+    <code class="inline-code">/dispatch/v2/processitem</code> request when a
+    timeout has occurred, and you have not sent the
+    <code class="inline-code">/dispatch/v2/getitem</code> request, you will
+    receive an error status code.
+</p>
+<h3 id="timeout-at-process-area">Timeout at Process Area</h3>
+<p>
+    If this error occurs when the item is in the
+    <code class="inline-code">Process</code> position, a
+    <code class="inline-code">ConveyorDeviceStatus</code> message also displays
+    on the Service Bus indicating the device is no longer 'in use' (<code
+        class="inline-code"
+        >"DeviceInUse": false</code
+    >).
+</p>
+<p>
+    You will receive an error status code when sending any further requests. For
+    example, if you attempt to send a
+    <code class="inline-code">/dispatch/v2/releaseitem</code> request to
+    continue to the next phase in the dispatch process, you will receive an
+    error.
+</p>
+<p>
+    At this stage, sending another
+    <code class="inline-code">/dispatch/v2/getitem</code> request to restart the
+    conveyor process will not resolve the issue because there is a item located
+    in the <code class="inline-code">Process</code> position that requires
+    action. The process cannot be restarted until the item is removed.
+</p>
+
+<div class="continued-reading-section">
+    <h2 class="continued-reading">Next Steps</h2>
+    <ul class="continue-link-list">
+        <div class="continue-link-row">
+            <div class="svg-container">
+                <svg
+                    version="1.1"
+                    id="Capa_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    x="0px"
+                    y="0px"
+                    viewBox="0 0 482.204 482.204"
+                    style="enable-background: new 0 0 482.204 482.204"
+                    xml:space="preserve"
+                >
+                    <g>
+                        <path
+                            style="fill: #5469d4"
+                            d="M83.127,344.477c54.602,1.063,101.919,9.228,136.837,23.613c0.596,0.244,1.227,0.366,1.852,0.366
+                    c0.95,0,1.895-0.279,2.706-0.822c1.349-0.902,2.158-2.418,2.158-4.041l0.019-261.017c0-1.992-1.215-3.783-3.066-4.519
+                    L85.019,42.899c-1.496-0.596-3.193-0.411-4.527,0.494c-1.334,0.906-2.133,2.413-2.133,4.025v292.197
+                    C78.359,342.264,80.479,344.425,83.127,344.477z"
+                        />
+                        <path
+                            style="fill: #5469d4"
+                            d="M480.244,89.256c-1.231-0.917-2.824-1.198-4.297-0.759l-49.025,14.657
+                    c-2.06,0.616-3.471,2.51-3.471,4.659v252.151c0,0,0.218,3.978-3.97,3.978c-4.796,0-7.946,0-7.946,0
+                    c-39.549,0-113.045,4.105-160.93,31.6l-9.504,5.442l-9.503-5.442c-47.886-27.494-121.381-31.6-160.93-31.6c0,0-8.099,0-10.142,0
+                    c-1.891,0-1.775-2.272-1.775-2.271V107.813c0-2.149-1.411-4.043-3.47-4.659L6.256,88.497c-1.473-0.439-3.066-0.158-4.298,0.759
+                    S0,91.619,0,93.155v305.069c0,1.372,0.581,2.681,1.597,3.604c1.017,0.921,2.375,1.372,3.741,1.236
+                    c14.571-1.429,37.351-3.131,63.124-3.131c56.606,0,102.097,8.266,131.576,23.913c4.331,2.272,29.441,15.803,41.065,15.803
+                    c11.624,0,36.733-13.53,41.063-15.803c29.48-15.647,74.971-23.913,131.577-23.913c25.771,0,48.553,1.702,63.123,3.131
+                    c1.367,0.136,2.725-0.315,3.742-1.236c1.016-0.923,1.596-2.231,1.596-3.604V93.155C482.203,91.619,481.476,90.173,480.244,89.256z
+                    "
+                        />
+                        <path
+                            style="fill: #5469d4"
+                            d="M257.679,367.634c0.812,0.543,1.757,0.822,2.706,0.822c0.626,0,1.256-0.122,1.853-0.366
+                    c34.917-14.386,82.235-22.551,136.837-23.613c2.648-0.052,4.769-2.213,4.769-4.861V47.418c0-1.613-0.799-3.12-2.133-4.025
+                    c-1.334-0.904-3.031-1.09-4.528-0.494L258.569,98.057c-1.851,0.736-3.065,2.527-3.065,4.519l0.019,261.017
+                    C255.521,365.216,256.331,366.732,257.679,367.634z"
+                        />
+                    </g>
+                </svg>
+            </div>
+            <div>
+                <a href="/dispatch/endpoints/get-item">Get Bag</a>
+            </div>
+        </div>
+    </ul>
+</div>

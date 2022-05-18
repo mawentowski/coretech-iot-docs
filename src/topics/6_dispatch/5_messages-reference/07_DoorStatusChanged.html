@@ -1,0 +1,117 @@
+<h1 id="doorstatuschanged">DoorStatusChanged</h1>
+<p>Message to indicate a change in the door status.</p>
+<h2 id="message-properties">Message Properties</h2>
+<table class="main-table">
+    <thead>
+        <tr>
+            <th>Field</th>
+            <th>Type</th>
+            <th>Mandatory/Optional</th>
+            <th>Value/Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>MessageNamespace</td>
+            <td>string</td>
+            <td>M</td>
+            <td>dispatch</td>
+        </tr>
+        <tr>
+            <td>MessageType</td>
+            <td>string</td>
+            <td>M</td>
+            <td>DoorStatusChanged</td>
+        </tr>
+        <tr>
+            <td>MessageVersion</td>
+            <td>string</td>
+            <td>M</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>AttachmentId</td>
+            <td>string</td>
+            <td>M</td>
+            <td><em>attachmentId</em></td>
+        </tr>
+        <tr>
+            <td>CorrelationId</td>
+            <td>string</td>
+            <td>M</td>
+            <td><em>user_defined_string</em></td>
+        </tr>
+        <tr>
+            <td>DeviceId</td>
+            <td>string</td>
+            <td>M</td>
+            <td><em>deviceId</em></td>
+        </tr>
+        <tr>
+            <td>Timestamp</td>
+            <td>DateTime</td>
+            <td>M</td>
+            <td><em>timestamp</em></td>
+        </tr>
+    </tbody>
+</table>
+<h2 id="message-body">Message Body</h2>
+<table class="main-table">
+    <thead>
+        <tr>
+            <th>Field</th>
+            <th>Type</th>
+            <th>Description/Values</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>DoorStatus</td>
+            <td><a href="/dispatch/messages-reference/DoorStatusChanged#doorstatus">DoorStatus</a></td>
+            <td>See details below</td>
+        </tr>
+    </tbody>
+</table>
+<h3 id="doorstatus">DoorStatus</h3>
+<table class="main-table">
+    <thead>
+        <tr>
+            <th>DoorStatus</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Open</td>
+        </tr>
+        <tr>
+            <td>Closed</td>
+        </tr>
+        <tr>
+            <td>PowerOff</td>
+        </tr>
+        <tr>
+            <td>Jammed</td>
+        </tr>
+        <tr>
+            <td>NotInstalled</td>
+        </tr>
+        <tr>
+            <td>IntrusionDetected</td>
+        </tr>
+        <tr>
+            <td>Unknown</td>
+        </tr>
+    </tbody>
+</table>
+<p><strong>Message Body Sample Success JSON</strong></p>
+<div class="method-example atom-one-light">
+    <div class="method-example-top-bar">Service Bus Message</div>
+    <pre>
+        <code class="language-json">
+{
+   "DoorStatus": "Open"
+}
+        </code>
+        </pre>
+</div>
+</div>
