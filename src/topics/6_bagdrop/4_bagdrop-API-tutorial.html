@@ -9,8 +9,8 @@
 <h2 id="dispatchitem-api-walkthrough">Dispatch API Tutorial</h2>
 <p>
     Follow along with this walkthrough to experience the Dispatch API, including
-    connecting to an GRC and completing an entire dispatch process that ends
-    with releasing the item to the Item Handling System.
+    attaching to an GRC and completing an entire dispatch process that ends with
+    releasing the item to the Item Handling System.
 </p>
 <p>The following tools are used to demonstrate the Render API:</p>
 <ul>
@@ -169,17 +169,17 @@
 
     <div class="section numbered-section">
         <div class="section-header">
-            <h2 id="heading-2" class="numbered-h2">Connect to the GRC</h2>
+            <h2 id="heading-2" class="numbered-h2">attach to the GRC</h2>
             <span class="tag">Dispatch API</span>
         </div>
         <ol>
             <li>
                 In Postman, send a
                 <code class="inline-code">/sync/v2/attachments</code> request to
-                connect to the GRC.
+                attach to the GRC.
                 <ul>
                     <li>
-                        After connecting to a device, an attachment
+                        After attaching to a device, an attachment
                         <code class="inline-code">expiryTime</code> is returned
                         in the Response Body set to
                         <strong>30 minutes</strong> from the time the
@@ -238,7 +238,7 @@
                         In the Tests tab of Postman, there is a Javascript
                         function that updates the
                         <code class="inline-code">grc_attachment_id</code>
-                        environmental variable after connecting to the GRC. This
+                        environmental variable after attaching to the GRC. This
                         variable makes it so you do not need to manually enter a
                         <code class="inline-code">attachmentId</code> in
                         subsequent calls to the dispatchitem API.

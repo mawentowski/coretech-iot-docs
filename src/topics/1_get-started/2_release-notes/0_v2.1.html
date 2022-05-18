@@ -70,7 +70,7 @@ namespace CoreTech.IoTApi.ServiceBusConsole.Core.Model
         public string MessageNamespace { get; set; }
         public string MessageType { get; set; }
         public string MessageVersion { get; set; }
-        public string ConnectionId { get; set; }
+        public string AttachmentId { get; set; }
         public string DeviceId { get; set; }
         public string CorrelationId { get; set; }
         public string Timestamp { get; set; }
@@ -96,7 +96,7 @@ namespace CoreTech.IoTApi.ServiceBusConsole.Core.Model
             MessageNamespace = message.UserProperties["MessageNamespace"]?.ToString();
             MessageType = message.UserProperties["MessageType"]?.ToString();
             MessageVersion = message.UserProperties["MessageVersion"]?.ToString();
-            ConnectionId = message.UserProperties["ConnectionId"]?.ToString();
+            AttachmentId = message.UserProperties["AttachmentId"]?.ToString();
             DeviceId = message.UserProperties["DeviceId"]?.ToString();
             Timestamp = message.UserProperties["Timestamp"]?.ToString();
             CorrelationId = message.CorrelationId;
@@ -116,7 +116,7 @@ namespace CoreTech.IoTApi.ServiceBusConsole.Core.Model
 <p>
     Many of the endpoints associated with the V1 Areas API have been replaced by
     the <strong>Sync API</strong> endpoints, including requests to create
-    Service Bus Linkages and connect to devices.
+    Service Bus Linkages and attach to devices.
 </p>
 <p>
     There is <strong>no longer a Device API</strong> that lets you claim and

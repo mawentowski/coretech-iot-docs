@@ -8,7 +8,7 @@
 <p>
     The <span class="method get">GET</span>
     <code class="inline-code">/sync/v2/linkages</code> request should be
-    sent prior to connecting to devices at a new area to determine if there
+    sent prior to attaching to devices at a new area to determine if there
     is an existing linkage in the same region as that area. 
     
 
@@ -27,7 +27,7 @@
             Sending a <span class="method post">POST</span>
             <code class="inline-code">/sync/v2/linkages</code> request when
             <i>there is</i> an existing linkage creates a new SAS token, resulting
-            in two SAS tokens available to connect to the same linkage.
+            in two SAS tokens available to attach to the same linkage.
         </p>
         <p>
             Maintaining two SAS tokens can be problematic, and therefore should be
@@ -296,7 +296,7 @@ Console.WriteLine(response.Content);
 <p>
     The application backend would then pass the
     <code class="inline-code">linkageId</code> of the existing linkage
-    in requests to connect to devices at the area.
+    in requests to attach to devices at the area.
 </p>
 
 <div class="alert-section tip-alert">

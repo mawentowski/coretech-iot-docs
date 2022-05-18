@@ -102,7 +102,7 @@ puts response.read_body
 import http.client
 import json
 
-conn = http.client.HTTPSConnection("{{baseurl}}")
+conn = http.client.HTTPSAttachment("{{baseurl}}")
 payload = json.dumps({
     "attachmentId": "",
     "relationId": "postman-ftr-7cb0e14f-b200-4124-b3e1-83d24823ff30",

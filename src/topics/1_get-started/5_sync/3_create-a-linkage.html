@@ -1,19 +1,19 @@
 <div class="title-box">
     <h1 class="topic-title">Create a Linkage</h1>
-    <div class="action-statement">Request a linkage to connect your application backend to the Service Bus</div>
+    <div class="action-statement">Request a linkage to attach your application backend to the Service Bus</div>
 </div>
 
 <p>
     The <span class="method post">POST</span>
     <code class="inline-code">/sync/v2/linkages</code> request creates a
     linkage on the Azure Service Bus and returns a Service Bus endpoint and
-    SAS token for the application backend to connect to the linkage.
+    SAS token for the application backend to attach to the linkage.
 </p>
 <p>
     Sending a <span class="method post">POST</span>
     <code class="inline-code">/sync/v2/linkages</code> request does not
     'link' to the Service Bus, it only creates a linkage and returns
-    attachment details. The application must then connect to the Service Bus
+    attachment details. The application must then attach to the Service Bus
     attachment using the attachment details provided.
 </p>
 
@@ -254,7 +254,7 @@ func main() {
 <p class="caption">
     Sample Response Body for <span class="method post">POST</span>
     <code class="inline-code">sync/v2/linkages</code> request containing
-    details for connecting to the linkage
+    details for attaching to the linkage
 </p>
 
 <div class="alert-section warning-alert">
@@ -331,7 +331,7 @@ func main() {
     a specific Service Bus Linkage.
 </p>
 <p>
-    For example, when connecting to an MFP device, the application backend will send
+    For example, when attaching to an MFP device, the application backend will send
     a <span class="method post">POST</span>
     <code class="inline-code">/sync/v2/attachments</code> request, including
     the <code class="inline-code">linkageId</code> in the Request Body. The
@@ -364,7 +364,7 @@ func main() {
 <p>
     The Response Body also contains properties that are Service Bus-specific.
     These properties are passed in verbatim when you use the Microsoft SDK to
-    connect to the linkage.
+    attach to the linkage.
 </p>
 <p>
     The <code class="inline-code">topicName</code> and
@@ -429,15 +429,15 @@ func main() {
     request is made, and there is an existing SAS token that has yet to reach
     its
     <code class="inline-code">expiryTime</code>, there are now two SAS tokens.
-    In this case, the application backend should disconnect from the old SAS token
-    and connect to the new one that has an
+    In this case, the application backend should unattach from the old SAS token
+    and attach to the new one that has an
     <code class="inline-code">expiryTime</code>.
 </p>
 <div class="alert-section info-alert">
     <div class="">
         <p>
             In best practice, an application backend would never encounter a
-            situation where it would need to disconnect from an old SAS token to
+            situation where it would need to unattach from an old SAS token to
             use the new one. The ideal scenario would be to allow the old SAS
             token to expire then create a new one by sending a
             <code class="inline-code">sync/v2/linkages</code>
@@ -447,7 +447,7 @@ func main() {
 </div>
 <p>
     If the application backend drops an active attachment the Azure Service Bus by
-    disconnecting from a SAS token, no messages are lost. Any messages sent to
+    unattaching from a SAS token, no messages are lost. Any messages sent to
     the linkage are queued and will display once another attachment is made
     with a new SAS token.
 </p>

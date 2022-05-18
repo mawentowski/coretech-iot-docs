@@ -8,7 +8,7 @@
 
 <p>
     Follow along with this walkthrough to experience the Render API, including
-    connecting to a device, issuing a print command, then reading the response.
+    attaching to a device, issuing a print command, then reading the response.
     The following tools are used to demonstrate the Render API:
 </p>
 <ul>
@@ -144,7 +144,7 @@
     </div>
     <div class="section numbered-section">
         <div class="section-header">
-            <h2 id="heading-2" class="numbered-h2">Connect to the MFP</h2>
+            <h2 id="heading-2" class="numbered-h2">attach to the MFP</h2>
             <span class="tag">Render API</span>
         </div>
 
@@ -152,10 +152,10 @@
             <li>
                 In Postman, send a
                 <code class="inline-code">/sync/v2/attachments</code> request to
-                connect to the MFP.
+                attach to the MFP.
                 <ul>
                     <li>
-                        After connecting to a device, an attachment
+                        After attaching to a device, an attachment
                         <code class="inline-code">expiryTime</code> is returned
                         in the Response Body set to
                         <strong>30 minutes</strong> from the time the
@@ -211,7 +211,7 @@
                         In the Tests tab of Postman, there is some Javascript
                         that updates the
                         <code class="inline-code">MFP_attachment_id</code>
-                        environmental variable after connecting to the MFP. This
+                        environmental variable after attaching to the MFP. This
                         variable is used so you do not need to manually enter a
                         <code class="inline-code">attachmentId</code> in
                         subsequent calls to the Render API.

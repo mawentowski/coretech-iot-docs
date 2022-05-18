@@ -119,7 +119,7 @@ curl --area -g --request POST 'https://{{baseurl}}/access/v2/openaccesspoint' \
         <h2 id="request-bodies-3">Request Bodies</h2>
         <p>
             All Request Bodies must include the
-            <code class="inline-code">ConnectionId</code> of the device the
+            <code class="inline-code">AttachmentId</code> of the device the
             application backend is sending the command to.
         </p>
         <ul>
@@ -146,7 +146,7 @@ curl --area -g --request POST 'https://{{baseurl}}/access/v2/openaccesspoint' \
             <pre>
                     <code class="language-json">
 {
-    "ConnectionId": "{{msr_attachment_id}}",
+    "AttachmentId": "{{msr_attachment_id}}",
     "CorrelationId": "{{$guid}}",
     "Message": ["MSG Line 1", "MSG Line 2"],
     "ReceiptData": {
@@ -179,7 +179,7 @@ curl --area -g --request POST 'https://{{baseurl}}/access/v2/openaccesspoint' \
             <pre>
                     <code class="language-json">
 {
-    "ConnectionId": "{{msr_attachment_id}}",
+    "AttachmentId": "{{msr_attachment_id}}",
     "CorrelationId": "{{$guid}}",
     "Message": [""],
     "ReceiptData": {

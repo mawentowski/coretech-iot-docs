@@ -65,7 +65,7 @@
 </p>
 <ul>
     <li>
-        when attempting to connect to, or interact with, a device when a
+        when attempting to attach to, or interact with, a device when a
         <code class="inline-code">sync/v2/linkages</code> request was made
         unsuccessfully during this session:
     </li>
@@ -157,7 +157,7 @@
     <li>
         If the error says <code class="inline-code">attachmentId</code> with a
         <code class="inline-code">could not be converted</code> message, then
-        the attachment to the device has expired. Simply connect to the device
+        the attachment to the device has expired. Simply attach to the device
         again.
     </li>
     <li>
@@ -166,7 +166,7 @@
         message, then there is no attachment to delete.
     </li>
 </ul>
-<h3 id="attachment-has-expired">Connection has expired</h3>
+<h3 id="attachment-has-expired">Attachment has expired</h3>
 <p>
     An CoreTech API returns this error when the attachment to a device has
     expired.
@@ -180,7 +180,7 @@
     "type": "https://tools.ietf.org/html/rfc7231#section-6.5.1",
     "title": "Bad Request",
     "status": 400,
-    "detail": "Connection has expired.",
+    "detail": "Attachment has expired.",
     "traceId": "00-baf5325b0757fc408018bca88119a826-65e7e75f65b69c4a-00"
 }
         </code>
@@ -191,7 +191,7 @@
     Response Body when the attachment to the device has expired
 </p>
 <p>
-    After connecting to a device, an attachment
+    After attaching to a device, an attachment
     <code class="inline-code">expiryTime</code> is returned in the Response Body
     set to <strong>30 minutes</strong> from the time the
     <code class="inline-code">sync/v2/attachments</code> request was made.
@@ -200,7 +200,7 @@
     The resolution is to simply send another
     <code class="inline-code">sync/v2/attachments</code> request.
 </p>
-<h3 id="no-attachment-exists">No Connection Exists</h3>
+<h3 id="no-attachment-exists">No Attachment Exists</h3>
 <p>
     A CoreTech APIs return this error when the attachment to a device has
     expired.
@@ -214,7 +214,7 @@
     "type": "https://tools.ietf.org/html/rfc7231#section-6.5.1",
     "title": "Bad Request",
     "status": 400,
-    "detail": "No Connection Exists.",
+    "detail": "No Attachment Exists.",
     "traceId": "00-baf5325b0757fc408018bca88119a826-65e7e75f65b69c4a-00"
 }  
         </code>
@@ -225,7 +225,7 @@
     Response Body when the attachment to the device has expired
 </p>
 <p>
-    After connecting to a device, an attachment
+    After attaching to a device, an attachment
     <code class="inline-code">expiryTime</code> is returned in the Response Body
     set to <strong>30 minutes</strong> from the time the
     <code class="inline-code">sync/v2/attachments</code> request was made.
@@ -274,7 +274,7 @@
     Ensure that you refresh this access token by sending another Get Access
     Token request if continued access is required.
 </p>
-<p>After refreshing the access token, you must reconnect to devices.</p>
+<p>After refreshing the access token, you must reattach to devices.</p>
 <h2 id="403-forbidden">403 Forbidden</h2>
 <p>The client did not have permission to access the requested resource.</p>
 <h3 id="forbidden">Forbidden</h3>

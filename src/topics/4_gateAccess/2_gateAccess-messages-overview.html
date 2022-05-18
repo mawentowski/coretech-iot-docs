@@ -16,7 +16,7 @@
     <code class="inline-code">Online</code>
 </h3>
 <p>
-    After you connect a device, a
+    After you attach a device, a
     <code class="inline-code">AccessDeviceStatus</code> message is displayed on
     the Service Bus that should indicate the
     <code class="inline-code">DeviceStatus</code> is
@@ -223,7 +223,7 @@
     <pre>
             <code class="language-json">
 {
-    "ConnectionId": "{{msr_attachment_id}}",
+    "AttachmentId": "{{msr_attachment_id}}",
     "CorrelationId": "{{$guid}}",
     "Message": ["Passenger Okay to Board"],
     "ReceiptData": {
@@ -337,7 +337,7 @@
     <pre>
             <code class="language-json">
 {
-    "ConnectionId": "{{msr_attachment_id}}",
+    "AttachmentId": "{{msr_attachment_id}}",
     "CorrelationId": "{{$guid}}",
     "Message": [ "Passenger Not Ok to Board" ],
     "Alarm": true
