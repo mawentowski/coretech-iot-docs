@@ -1,12 +1,12 @@
 <div class="title-box">
-    <h1 class="topic-title">Service Bus Messages</h1>
+    <h1 class="topic-title">Messages</h1>
     <div class="action-statement">
         Learn about the most common messages and how your app should use them
     </div>
 </div>
 
 <p>
-    The following is not an exhaustive list of all possible Service Bus
+    The following is not an exhaustive list of all possible IoT Message Service
     <code class="inline-code">Message Types</code>. Only the most common ones
     encountered when sending Access API requests are described.
 </p>
@@ -18,13 +18,13 @@
 <p>
     After you attach a device, a
     <code class="inline-code">AccessDeviceStatus</code> message is displayed on
-    the Service Bus that should indicate the
+    the IoT Message Service that should indicate the
     <code class="inline-code">DeviceStatus</code> is
     <code class="inline-code">Online</code>.
 </p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Service Bus Message</div>
+    <div class="method-example-top-bar">Message</div>
     <pre>
             <code class="language-json">
 {
@@ -35,7 +35,7 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">AccessDeviceStatus</code> Service Bus Message Body
+    <code class="inline-code">AccessDeviceStatus</code> Message Body
     showing the Access device is <code class="inline-code">Online</code>
 </p>
 <h3 id="devicestatus-changes-2">
@@ -57,7 +57,7 @@
 </p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Service Bus Message</div>
+    <div class="method-example-top-bar">Message</div>
     <pre>
             <code class="language-json">
 {
@@ -68,7 +68,7 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">AccessDeviceStatus</code> Service Bus Message Body
+    <code class="inline-code">AccessDeviceStatus</code> Message Body
     showing an access device is <code class="inline-code">PoweredOff</code>
 </p>
 <h2 id="openaccessresponse">OpenAccessResponse</h2>
@@ -114,13 +114,13 @@
 </p>
 <p>
     An <code class="inline-code">OpenAccessResponse</code> message displays on
-    the Service Bus, simply indicating that the request to start the queueing
+    the IoT Message Service, simply indicating that the request to start the queueing
     process succeeded with <code class="inline-code">IsSuccess</code> set to
     <code class="inline-code">true</code>.
 </p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Service Bus Message</div>
+    <div class="method-example-top-bar">Message</div>
     <pre>
             <code class="language-json">
 {
@@ -132,7 +132,7 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">OpenAccessResponse</code> Service Bus Message Body
+    <code class="inline-code">OpenAccessResponse</code> Message Body
     indicating the request to initiate the access process has succeeded
 </p>
 <h2 id="entrypassdata">EntryPassData</h2>
@@ -148,11 +148,11 @@
 </p>
 <p>
     A <code class="inline-code">EntryPassData</code> message displays on the
-    Service Bus, including the scanned scancode as a Base64-encoded string.
+    IoT Message Service, including the scanned scancode as a Base64-encoded string.
 </p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Service Bus Message</div>
+    <div class="method-example-top-bar">Message</div>
     <pre>
             <code class="language-json">
 {
@@ -163,7 +163,7 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">EntryPassData</code> Service Bus Message Body
+    <code class="inline-code">EntryPassData</code> Message Body
     including scanned entry pass data
 </p>
 <h2 id="timeout-error">Timeout Error</h2>
@@ -171,11 +171,11 @@
     If the consumer is not accepted or rejected by the application backend after
     a certain period, the transaction will timeout and an
     <code class="inline-code">ErrorOccurred</code> message displays on the
-    Service Bus.
+    IoT Message Service.
 </p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Service Bus Message</div>
+    <div class="method-example-top-bar">Message</div>
     <pre>
             <code class="language-json">
 {
@@ -186,7 +186,7 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">ErrorOccurred</code> Service Bus Message Body
+    <code class="inline-code">ErrorOccurred</code> Message Body
     indicating a timeout has occurred
 </p>
 <p>To resolve:</p>
@@ -226,7 +226,7 @@
 </p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Service Bus Message</div>
+    <div class="method-example-top-bar">Message</div>
     <pre>
             <code class="language-json">
 {
@@ -281,12 +281,12 @@
 </p>
 <p>
     An <code class="inline-code">AcceptConsumerResponse</code> message displays
-    on the Service Bus simply indicating that the request was made with no
+    on the IoT Message Service simply indicating that the request was made with no
     errors.
 </p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Service Bus Message</div>
+    <div class="method-example-top-bar">Message</div>
     <pre>
             <code class="language-json">
 { 
@@ -300,7 +300,7 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">AcceptConsumerResponse</code> Service Bus Message
+    <code class="inline-code">AcceptConsumerResponse</code> Message
     Body indicating that request to accept the consumer was successful
 </p>
 <p>
@@ -340,7 +340,7 @@
 </p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Service Bus Message</div>
+    <div class="method-example-top-bar">Message</div>
     <pre>
             <code class="language-json">
 {
@@ -370,12 +370,12 @@
 <p>
     A
     <code class="inline-code">rejectconsumerResponse</code> message displays on
-    the Service Bus that simply indicates that the request was made with no
+    the IoT Message Service that simply indicates that the request was made with no
     errors.
 </p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Service Bus Message</div>
+    <div class="method-example-top-bar">Message</div>
     <pre>
             <code class="language-json">
 {
@@ -387,7 +387,7 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">rejectconsumerResponse</code> Service Bus Message
+    <code class="inline-code">rejectconsumerResponse</code> Message
     Body indicating that request to reject the consumer was successful
 </p>
 <p>
@@ -427,13 +427,13 @@
 </p>
 <p>
     A <code class="inline-code">CloseAccessPointResponse</code> message displays
-    on the Service Bus simply indicating that the access process has ended, as
+    on the IoT Message Service simply indicating that the access process has ended, as
     indicated by the <code class="inline-code">IsSuccess</code> property set to
     <code class="inline-code">true</code>.
 </p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Service Bus Message</div>
+    <div class="method-example-top-bar">Message</div>
     <pre>
             <code class="language-json">
 {
@@ -445,7 +445,7 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">CloseAccessPointResponse</code> Service Bus
+    <code class="inline-code">CloseAccessPointResponse</code> IoT Message Service
     Message Body indicating the request to end the access process has succeeded
 </p>
 <div class="continued-reading-section">

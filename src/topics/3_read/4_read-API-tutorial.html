@@ -174,11 +174,11 @@
                 </div>
             </div>
             <li>
-                Check the Service Bus linkage for a
+                Check the IoT Message Service linkage for a
                 <code class="inline-code">ScanDeviceStatus</code> message:
             </li>
             <div class="method-example atom-one-light">
-                <div class="method-example-top-bar">Service Bus Message</div>
+                <div class="method-example-top-bar">Message</div>
                 <pre>
                         <code class="language-json">
 {
@@ -190,8 +190,8 @@
             </div>
 
             <p class="caption">
-                <code class="inline-code">ScanDeviceStatus</code> Service Bus
-                Message Body showing the read device is
+                <code class="inline-code">ScanDeviceStatus</code> IoT Message
+                Service Message Body showing the read device is
                 <code class="inline-code">Online</code> and not currently 'In
                 Use'
             </p>
@@ -243,7 +243,7 @@
                     <code class="inline-code">Online</code>.
                 </li>
                 <li>
-                    Check the Service Bus for a new
+                    Check the IoT Message Service for a new
                     <code class="inline-code">ScanDeviceStatus</code>
                     message indicating the GRC is now
                     <code class="inline-code">Online</code>.
@@ -265,7 +265,7 @@
                     <code class="inline-code">Online</code>.
                 </li>
                 <li>
-                    Check the Service Bus for a new
+                    Check the IoT Message Service for a new
                     <code class="inline-code">ScanDeviceStatus</code>
                     message indicating the GRC is now
                     <code class="inline-code">Online</code>.
@@ -315,7 +315,7 @@
                 access to the device expires
             </p>
             <li>
-                Check the Service Bus for a new
+                Check the IoT Message Service for a new
                 <code class="inline-code">ScanDeviceStatus</code>
                 message.
                 <ul>
@@ -333,7 +333,7 @@
                 </ul>
             </li>
             <div class="method-example atom-one-light">
-                <div class="method-example-top-bar">Service Bus Message</div>
+                <div class="method-example-top-bar">Message</div>
                 <pre>
                         <code class="language-json">
 {
@@ -344,8 +344,8 @@
                     </pre>
             </div>
             <p class="caption">
-                <code class="inline-code">DeviceStatus</code> Service Bus
-                Message Body indicating the device is
+                <code class="inline-code">DeviceStatus</code> IoT Message
+                Service Message Body indicating the device is
                 <code class="inline-code">Online</code> and is exclusively
                 claimed by the application backend
             </p>
@@ -385,13 +385,13 @@
                 executing a read and collecting the MRZ data.
             </li>
             <li>
-                Check the Service Bus for a new
+                Check the IoT Message Service for a new
                 <code class="inline-code">ReadDocument</code>
                 message that includes the readned passport data as
                 <code class="inline-code">ScanData</code> in the Message Body.
             </li>
             <div class="method-example atom-one-light">
-                <div class="method-example-top-bar">Service Bus Message</div>
+                <div class="method-example-top-bar">Message</div>
                 <pre>
                         <code class="language-json">
 {
@@ -402,7 +402,7 @@
             </div>
             <p class="caption">
                 <code class="inline-code">ReadDocument</code>
-                Service Bus Message Body that returned passport
+                Message Body that returned passport
                 <code class="inline-code">ScanData</code>
                 'readned' by the HHS device
             </p>
@@ -427,13 +427,13 @@
                 </ul>
             </li>
             <li>
-                Check the Service Bus for a
+                Check the IoT Message Service for a
                 <code class="inline-code">ScanDeviceStatus</code>
                 message indicating the device is no longer 'in use'.
             </li>
 
             <div class="method-example atom-one-light">
-                <div class="method-example-top-bar">Service Bus Message</div>
+                <div class="method-example-top-bar">Message</div>
                 <pre>
                         <code class="language-json">
 {
@@ -444,10 +444,10 @@
                     </pre>
             </div>
             <p class="caption">
-                <code class="inline-code">DeviceStatus</code> Service Bus
-                Message Body indicating the device is no longer 'in use' and is
-                available to be claimed by another backend or the same airline
-                backend
+                <code class="inline-code">DeviceStatus</code> IoT Message
+                Service Message Body indicating the device is no longer 'in use'
+                and is available to be claimed by another backend or the same
+                airline backend
             </p>
         </ol>
     </div>

@@ -6,7 +6,7 @@
 </div>
 
 <p>
-    The following is not an exhaustive list of all possible Service Bus
+    The following is not an exhaustive list of all possible IoT Message Service
     <code class="inline-code">Message Types</code>. Only the most common ones
     encountered when sending Render API requests are described.
 </p>
@@ -19,13 +19,13 @@
 <p>
     After you attach to a print device, a
     <code class="inline-code">PrintDeviceStatus</code> message is displayed on
-    the Service Bus that should indicate the
+    the IoT Message Service that should indicate the
     <code class="inline-code">DeviceStatus</code> is
     <code class="inline-code">Online</code>.
 </p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Service Bus Response</div>
+    <div class="method-example-top-bar">IoT Message Service Response</div>
     <pre>
             <code class="language-json">
 {
@@ -38,8 +38,8 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">PrintDeviceStatus</code> Service Bus Message
-    showing the Print device is <code class="inline-code">Online</code>
+    <code class="inline-code">PrintDeviceStatus</code> Message showing the Print
+    device is <code class="inline-code">Online</code>
 </p>
 <h3 id="devicestatus-changes">
     <code class="inline-code">DeviceStatus</code> Changes
@@ -53,7 +53,7 @@
 </p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Service Bus Response</div>
+    <div class="method-example-top-bar">IoT Message Service Response</div>
     <pre>
             <code class="language-json">
 {
@@ -66,17 +66,17 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">DeviceStatus</code> Service Bus Message sent after
-    requesting a print on a printer with a paper jam
+    <code class="inline-code">DeviceStatus</code> Message sent after requesting
+    a print on a printer with a paper jam
 </p>
 <h2 id="printresponse">PrintResponse</h2>
 <p>
     After sending a request to print to a device, the
     <code class="inline-code">PrintResponse</code> is the primary
-    <code class="inline-code">MessageType</code> received on the Service Bus
-    after making a print request. It is virtually identical across devices and
-    print formats. Its sole purpose to indicate if the print was successful and
-    how many documents were printed.
+    <code class="inline-code">MessageType</code> received on the IoT Message
+    Service after making a print request. It is virtually identical across
+    devices and print formats. Its sole purpose to indicate if the print was
+    successful and how many documents were printed.
 </p>
 <p>
     Upon making a <span class="method post">POST</span>
@@ -95,9 +95,10 @@
     example, printing).
 </p>
 <p>
-    The Render API then routes the messages to the Service Bus topic for sending
-    messages to clients (<code class="inline-code">airline-messages</code>),
-    returned as <code class="inline-code">MessageData</code> in the
+    The Render API then routes the messages to the IoT Message Service topic for
+    sending messages to clients (<code class="inline-code"
+        >airline-messages</code
+    >), returned as <code class="inline-code">MessageData</code> in the
     <strong>Message Body</strong>.
     <code class="inline-code">MessageData</code> indicates if the request was
     successful.
@@ -113,7 +114,7 @@
 </p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Service Bus Response</div>
+    <div class="method-example-top-bar">IoT Message Service Response</div>
     <pre>
             <code class="language-json">
 {
@@ -126,8 +127,8 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">PrintResponse</code> Service Bus Message
-    indicating a successful print
+    <code class="inline-code">PrintResponse</code> Message indicating a
+    successful print
 </p>
 
 <h3>Unsuccessful Print</h3>
@@ -142,7 +143,7 @@
 </p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Service Bus Response</div>
+    <div class="method-example-top-bar">IoT Message Service Response</div>
     <pre>
             <code class="language-json">
 {
@@ -158,8 +159,8 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">PrintResponse</code> Service Bus Message
-    indicating an unsuccessful print due to a paper jam
+    <code class="inline-code">PrintResponse</code> Message indicating an
+    unsuccessful print due to a paper jam
 </p>
 <div class="alert-section info-alert">
     <div class="">

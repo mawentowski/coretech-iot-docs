@@ -312,15 +312,15 @@ Console.WriteLine(response.Content);
     door) so the consumer can place the item on the belt. 
     
     <p>
-         A <code class="inline-code">GetItemResponse</code> message displays on the Service Bus, acknowledging that the request to initiate a dispatch process was received
+         A <code class="inline-code">GetItemResponse</code> message displays on the IoT Message Service, acknowledging that the request to initiate a dispatch process was received
     </p>
     
     Baggage information
     may be collected by the GRC and displayed in a
-    <code class="inline-code">BagPlaced</code> message on the Service Bus.
+    <code class="inline-code">BagPlaced</code> message on the IoT Message Service.
 </p>
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Service Bus Message</div>
+    <div class="method-example-top-bar">Message</div>
     <pre>
                     <code class="language-json">
 "Bag": {
@@ -354,7 +354,7 @@ Console.WriteLine(response.Content);
 </div>
 
 <p class="caption">
-    <code class="inline-code">BagPlaced</code> Service Bus message displaying
+    <code class="inline-code">BagPlaced</code> IoT Message Service message displaying
     properties of the 'placed' item
 </p>
 

@@ -38,11 +38,11 @@
     <code class="inline-code">areaCapabilityList</code> with a list of devices
     at the area and their statues. In V2, the
     <code class="inline-code">/sync/v2/linkages</code> request
-    <em>only returns Service Bus details</em> for the new linkage.
+    <em>only returns IoT Message Service details</em> for the new linkage.
 </p>
 <p>
-    The Service Bus details are largely the same, except some of the property
-    names are different.
+    The IoT Message Service details are largely the same, except some of the
+    property names are different.
 </p>
 <ul>
     <li>
@@ -55,7 +55,7 @@
         contained within the
         <code class="inline-code">attachmentstring</code> that holds all
         information required for Azure to validate you have access to the Azure
-        Service Bus.
+        IoT Message Service.
     </li>
     <li>
         The property <code class="inline-code">serviceBusTopic</code> has
@@ -71,8 +71,8 @@
     <li>
         Both properties <code class="inline-code">serviceBusTopic</code> and
         <code class="inline-code">linkageName</code> are identifiers to tell
-        your application which specific channel it should read Service Bus
-        messages.
+        your application which specific channel it should read IoT Message
+        Service messages.
     </li>
 </ul>
 <h2 id="new-reservation-endpoint">New Reservation Endpoint</h2>
@@ -89,8 +89,8 @@
     <code class="inline-code">/v1/area/status/</code> request available to
     return device statuses at a area. Instead, when you attach to a device, a
     <code class="inline-code">DeviceStatus</code> message is displayed on the
-    Service Bus that indicates the device status. When the device status changes
-    in some cases, a new message is sent.
+    IoT Message Service that indicates the device status. When the device status
+    changes in some cases, a new message is sent.
 </p>
 <p>
     The

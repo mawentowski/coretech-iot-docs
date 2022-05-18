@@ -6,7 +6,7 @@
 </div>
 
 <p>
-    The following is not an exhaustive list of all possible Service Bus
+    The following is not an exhaustive list of all possible IoT Message Service
     <code class="inline-code">Message Types</code>. Only the most common ones
     encountered when sending Read API requests are described.
 </p>
@@ -18,7 +18,7 @@
 <p>
     After you attach to a device, a
     <code class="inline-code">ScanDeviceStatus</code> message is displayed on
-    the Service Bus that should indicate the
+    the IoT Message Service that should indicate the
     <code class="inline-code">DeviceStatus</code> is
     <code class="inline-code">Online</code> with the
     <code class="inline-code">DeviceInUse</code> property set to
@@ -26,7 +26,7 @@
 </p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Service Bus Message</div>
+    <div class="method-example-top-bar">Message</div>
     <pre>
             <code class="language-json">
 {
@@ -38,9 +38,9 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">ScanDeviceStatus</code> Service Bus Message Body
-    showing the read device is <code class="inline-code">Online</code> and not
-    currently 'In Use'
+    <code class="inline-code">ScanDeviceStatus</code> Message Body showing the
+    read device is <code class="inline-code">Online</code> and not currently 'In
+    Use'
 </p>
 <div class="alert-section info-alert">
     <div class="">
@@ -70,7 +70,7 @@
 </p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Service Bus Message</div>
+    <div class="method-example-top-bar">Message</div>
     <pre>
             <code class="language-json">
 {
@@ -82,8 +82,8 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">ScanDeviceStatus</code> Service Bus Message Body
-    showing the read device is
+    <code class="inline-code">ScanDeviceStatus</code> Message Body showing the
+    read device is
     <code class="inline-code">PoweredOff</code>
 </p>
 <h3 id="deviceinuse-as-true">
@@ -115,7 +115,7 @@
 </p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Service Bus Message</div>
+    <div class="method-example-top-bar">Message</div>
     <pre>
             <code class="language-json">
 {
@@ -153,7 +153,7 @@
     <code class="inline-code">DeviceID</code> of the device to the IoT Hub where
     it is then routed to the correct server and device. After carrying out the
     command, another <code class="inline-code">ScanDeviceStatus</code> message
-    is routed to the Service Bus linkage.
+    is routed to the IoT Message Service linkage.
 </p>
 <p>
     In the Message Body, the
@@ -165,7 +165,7 @@
 </p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Service Bus Message</div>
+    <div class="method-example-top-bar">Message</div>
     <pre>
             <code class="language-json">
 {
@@ -177,8 +177,8 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">DeviceStatus</code> Service Bus Message Body
-    indicating the device is exclusively claimed by the application backend
+    <code class="inline-code">DeviceStatus</code> Message Body indicating the
+    device is exclusively claimed by the application backend
 </p>
 <div class="alert-section info-alert">
     <div class="">
@@ -219,7 +219,7 @@
 </p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Service Bus Message</div>
+    <div class="method-example-top-bar">Message</div>
     <pre>
             <code class="language-json">
 {
@@ -231,28 +231,28 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">DeviceStatus</code> Service Bus Message Body
-    indicating the device is no longer 'in use' and is available to be claimed
+    <code class="inline-code">DeviceStatus</code> Message Body indicating the
+    device is no longer 'in use' and is available to be claimed
 </p>
 <h2 id="scancoderead">ScancodeRead</h2>
 <p>
-    When the device executes a read, a message is sent to the Service Bus
-    containing data in the Message Body determined by the type of read. The type
-    of device determines the
+    When the device executes a read, a message is sent to the IoT Message
+    Service containing data in the Message Body determined by the type of read.
+    The type of device determines the
     <code class="inline-code">MessageType</code>, as well as the type of data
     returned.
 </p>
 <p>
     For example, an FIS device that reads a scancode returns a
-    <code class="inline-code">ScancodeRead</code> message on the Service Bus,
-    providing the string that contains the scancode (
+    <code class="inline-code">ScancodeRead</code> message on the IoT Message
+    Service, providing the string that contains the scancode (
     <code class="inline-code">ScanCodeData</code>) as well as the type of
     scancode ( <code class="inline-code">ScanCodeType</code>). The type of
     scancode can be 1D, 2D, etc.
 </p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Service Bus Message</div>
+    <div class="method-example-top-bar">Message</div>
     <pre>
             <code class="language-json">
 {
@@ -264,8 +264,8 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">ScancodeRead</code> Service Bus Message Body that
-    returned scancode data readned by an FIS device
+    <code class="inline-code">ScancodeRead</code> Message Body that returned
+    scancode data readned by an FIS device
 </p>
 <h2 id="magneticcardread">MagneticCardRead</h2>
 <p>
@@ -277,7 +277,7 @@
 </p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Service Bus Message</div>
+    <div class="method-example-top-bar">Message</div>
     <pre>
             <code class="language-json">
 {
@@ -292,15 +292,15 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">MagneticCardRead</code> Service Bus Message Body
-    that returned credit card data readned by an FBS device
+    <code class="inline-code">MagneticCardRead</code> Message Body that returned
+    credit card data readned by an FBS device
 </p>
 <div class="alert-section info-alert">
     <div class="">
         <p>
             The magnetic stripe on the back of a card is separated into 4
-            tracks/rows of data that are returned by the Service Bus as multiple
-            lines of
+            tracks/rows of data that are returned by the IoT Message Service as
+            multiple lines of
             <code class="inline-code">Track</code> data in the Message Body.
         </p>
     </div>
@@ -308,13 +308,13 @@
 <h2 id="travelReadDocument">ReadDocument</h2>
 <p>
     An HHS device that reads a passport returns a
-    <code class="inline-code">ReadDocument</code> message on the Service Bus,
-    providing the readned passport data as
+    <code class="inline-code">ReadDocument</code> message on the IoT Message
+    Service, providing the readned passport data as
     <code class="inline-code">ScanData</code> in the Message Body.
 </p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Service Bus Message</div>
+    <div class="method-example-top-bar">Message</div>
 
     <pre>
         <code class="language-json">
@@ -326,9 +326,8 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">ReadDocument</code> Service Bus Message Body that
-    returned passport <code class="inline-code">ScanData</code> readned by an
-    HHS device
+    <code class="inline-code">ReadDocument</code> Message Body that returned
+    passport <code class="inline-code">ScanData</code> readned by an HHS device
 </p>
 
 <div class="continued-reading-section">

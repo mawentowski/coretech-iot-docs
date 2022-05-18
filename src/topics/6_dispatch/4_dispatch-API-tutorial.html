@@ -131,8 +131,8 @@
                     <li>The GRC is now available in the Device Simulator.</li>
                     <li>
                         By default, the GRC does not have a door. To trigger
-                        door-related Service Bus messages, you will add a door
-                        to the GRC in the following steps.
+                        door-related IoT Message Service messages, you will add
+                        a door to the GRC in the following steps.
                     </li>
                 </ul>
             </li>
@@ -202,12 +202,12 @@
             </div>
 
             <li>
-                Check the Service Bus linkage for a
+                Check the IoT Message Service linkage for a
                 <code class="inline-code">ConveyorDeviceStatus</code> message
                 shown below.
             </li>
             <div class="method-example atom-one-light">
-                <div class="method-example-top-bar">Service Bus Message</div>
+                <div class="method-example-top-bar">Message</div>
                 <pre>
                         <code class="language-json">
 {
@@ -323,11 +323,11 @@
             <li>
                 An updated
                 <code class="inline-code">ConveyorDeviceStatus</code>
-                message displays on the Service Bus, indicating the GRC is now
-                'In Use'.
+                message displays on the IoT Message Service, indicating the GRC
+                is now 'In Use'.
             </li>
             <div class="method-example atom-one-light">
-                <div class="method-example-top-bar">Service Bus Message</div>
+                <div class="method-example-top-bar">Message</div>
                 <pre>
                         <code class="language-json">
 {
@@ -340,28 +340,27 @@
 
             <p class="caption">
                 <code class="inline-code">ConveyorDeviceStatus</code>
-                Service Bus Message indicating the device is now exclusively
-                claimed
+                Message indicating the device is now exclusively claimed
             </p>
 
             <li>
                 A
                 <code class="inline-code">DoorOpening</code> message displays on
-                the Service Bus with an empty Message Body. This simply
+                the IoT Message Service with an empty Message Body. This simply
                 indicates the door of the GRC has opened.
             </li>
             <li>
                 A
                 <code class="inline-code">GetItemResponse</code>
-                message displays on the Service Bus which is an indication the
-                dispatch process is initiated. The property
+                message displays on the IoT Message Service which is an
+                indication the dispatch process is initiated. The property
                 <code class="inline-code">"Bag": null</code>
                 indicates there is no item information because, for the purpose
                 of this simulation, the consumer has not yet placed a item onto
                 the belt.
             </li>
             <div class="method-example atom-one-light">
-                <div class="method-example-top-bar">Service Bus Message</div>
+                <div class="method-example-top-bar">Message</div>
                 <pre>
                         <code class="language-json">
 {
@@ -374,8 +373,8 @@
             </div>
 
             <p class="caption">
-                <code class="inline-code">GetItemResponse</code> Service Bus
-                Message indicating no item data has been collected
+                <code class="inline-code">GetItemResponse</code> IoT Message
+                Service Message indicating no item data has been collected
             </p>
         </ul>
 
@@ -537,8 +536,8 @@
                     <p>
                         A
                         <code class="inline-code">BagPlaced</code>
-                        message displays on the Service Bus once a settled
-                        weight is determined:
+                        message displays on the IoT Message Service once a
+                        settled weight is determined:
                     </p>
                 </li>
             </ul>
@@ -579,7 +578,8 @@
 
             <p class="caption">
                 <code class="inline-code">BagPlaced</code>
-                Service Bus message displaying properties of the 'placed item'
+                IoT Message Service message displaying properties of the 'placed
+                item'
             </p>
             <p>
                 The
@@ -668,15 +668,15 @@
                 <li>
                     A
                     <code class="inline-code">DoorClosing</code>
-                    message may display on the Service Bus with an empty Message
-                    Body. This indicates the door has closed after the consumer
-                    placed the item on the belt.
+                    message may display on the IoT Message Service with an empty
+                    Message Body. This indicates the door has closed after the
+                    consumer placed the item on the belt.
                 </li>
                 <li>
                     A
                     <code class="inline-code">BagChanged</code>
-                    message displays on the Service Bus which indicates the item
-                    has changed position. This message looks like the
+                    message displays on the IoT Message Service which indicates
+                    the item has changed position. This message looks like the
                     <code class="inline-code">BagPlaced</code>
                     message, except with the property
                     <code class="inline-code">Position</code>
@@ -707,9 +707,10 @@
                 <li>
                     A
                     <code class="inline-code">CheckItemResponse</code>
-                    message displays on the Service Bus that indicates the item
-                    was successfully processed (<code>"IsSuccess": true</code>).
-                    This message, like the
+                    message displays on the IoT Message Service that indicates
+                    the item was successfully processed (<code
+                        >"IsSuccess": true</code
+                    >). This message, like the
                     <code class="inline-code">Bag Placed</code>
                     and
                     <code class="inline-code">BagChanged</code>
@@ -733,7 +734,7 @@
         </p>
 
         <div class="method-example atom-one-light">
-            <div class="method-example-top-bar">Service Bus Message</div>
+            <div class="method-example-top-bar">Message</div>
             <pre>
                     <code class="language-json">
 {
@@ -760,8 +761,8 @@
         <p>
             A
             <code class="inline-code">ConveyorTransactionTimeout</code>
-            message displays on the Service Bus with an empty Message Body when
-            too much time has elapsed since the
+            message displays on the IoT Message Service with an empty Message
+            Body when too much time has elapsed since the
             <code class="inline-code">/dispatch/v2/process</code>
             request was made.
         </p>
@@ -775,7 +776,7 @@
             </li>
             <li>
                 <p>
-                    Check the Service Bus for a
+                    Check the IoT Message Service for a
                     <code class="inline-code">StatusChanged</code>
                     message which indicates the item was removed. The device
                     then goes
@@ -797,8 +798,8 @@
 
             <p class="caption">
                 <code class="inline-code">StatusChanged</code>
-                Service Bus message indicating the item was unexpectedly removed
-                from the Processing area
+                IoT Message Service message indicating the item was unexpectedly
+                removed from the Processing area
             </p>
             <div class="alert-section info-alert">
                 <div class="">
@@ -824,15 +825,15 @@
                     <li>
                         An updated
                         <code class="inline-code">ConveyorDeviceStatus</code>
-                        message displays on the Service Bus, indicating the GRC
-                        is now
+                        message displays on the IoT Message Service, indicating
+                        the GRC is now
                         <code class="inline-code">Online</code>.
                     </li>
                 </ul>
             </li>
 
             <div class="method-example atom-one-light">
-                <div class="method-example-top-bar">Service Bus Message</div>
+                <div class="method-example-top-bar">Message</div>
                 <pre>
                         <code class="language-json">
 {
@@ -845,7 +846,7 @@
 
             <p class="caption">
                 <code class="inline-code">ConveyorDeviceStatus</code>
-                Service Bus Message indicating the device is now
+                Message indicating the device is now
                 <code class="inline-code">Online</code>
             </p>
 
@@ -859,7 +860,7 @@
                         <code class="inline-code">2xx</code>
                         status code returns a successful
                         <code class="inline-code">GetItemResponse</code>
-                        message on the Service Bus.
+                        message on the IoT Message Service.
                     </li>
                 </ul>
             </li>
@@ -893,16 +894,16 @@
                     <li>
                         A
                         <code class="inline-code">DoorOpening</code>
-                        message displays on the Service Bus with an empty
-                        Message Body. This simply indicates the door of the GRC
-                        has opened so the item can be accessible to the consumer
-                        to resolve the issue.
+                        message displays on the IoT Message Service with an
+                        empty Message Body. This simply indicates the door of
+                        the GRC has opened so the item can be accessible to the
+                        consumer to resolve the issue.
                     </li>
                     <li>
                         A
                         <code class="inline-code">BagChanged</code>
-                        message displays on the Service Bus which indicates the
-                        item has changed
+                        message displays on the IoT Message Service which
+                        indicates the item has changed
                         <code class="inline-code">Position</code>
                         from the
                         <code class="inline-code">Process</code>
@@ -913,8 +914,8 @@
                     <li>
                         A
                         <code class="inline-code">AdjustItemResponse</code>
-                        message displays on the Service Bus which indicates the
-                        request to return the item to the
+                        message displays on the IoT Message Service which
+                        indicates the request to return the item to the
                         <code class="inline-code">Entry</code>
                         position was successful (
                         <code class="inline-code">"IsSuccess":true</code>).
@@ -971,8 +972,8 @@
                         and the door opens for a short period.
                     </li>
                     <li>
-                        The same messages received on the Service Bus after
-                        sending a
+                        The same messages received on the IoT Message Service
+                        after sending a
                         <code class="inline-code">/dispatch/v2/returnitem</code>
                         request are received after sending a
                         <code class="inline-code">/dispatch/v2/cancelitem</code>
@@ -1035,15 +1036,16 @@
                     <li>
                         A
                         <code class="inline-code">BagChanged</code>
-                        message displays on the Service Bus which indicates the
-                        item's position has changed.
+                        message displays on the IoT Message Service which
+                        indicates the item's position has changed.
                     </li>
                     <li>
                         A
                         <code class="inline-code">dispatchResponse</code>
-                        message displays on the Service Bus which indicates the
-                        request to release the item to the Item Handling System
-                        was successful (<code class="inline-code"
+                        message displays on the IoT Message Service which
+                        indicates the request to release the item to the Item
+                        Handling System was successful (<code
+                            class="inline-code"
                             >"IsSuccess":true</code
                         >).
                     </li>

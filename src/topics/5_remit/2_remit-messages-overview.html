@@ -1,12 +1,12 @@
 <div class="title-box">
-    <h1 class="topic-title">Service Bus Messages</h1>
+    <h1 class="topic-title">Messages</h1>
     <div class="action-statement">
         Learn about the most common messages and how your app should use them
     </div>
 </div>
 
 <p>
-    The following is not an exhaustive list of all possible Service Bus
+    The following is not an exhaustive list of all possible IoT Message Service
     <code class="inline-code">Message Types</code>. Only the most common ones
     encountered when sending Remit API requests are described.
 </p>
@@ -19,7 +19,7 @@
 <p>
     After you attach to a device, a
     <code class="inline-code">PaymentDeviceStatus</code> message is displayed on
-    the Service Bus that should indicate the
+    the IoT Message Service that should indicate the
     <code class="inline-code">DeviceStatus</code> is
     <code class="inline-code">Online</code> with the
     <code class="inline-code">DeviceInUse</code> property set to
@@ -27,7 +27,7 @@
 </p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Service Bus Message</div>
+    <div class="method-example-top-bar">Message</div>
     <pre>
             <code class="language-json">
 {
@@ -39,9 +39,9 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">PaymentDeviceStatus</code> Service Bus Message
-    Body showing the payment device is
-    <code class="inline-code">Online</code> and not currently 'In Use'
+    <code class="inline-code">PaymentDeviceStatus</code> Message Body showing
+    the payment device is <code class="inline-code">Online</code> and not
+    currently 'In Use'
 </p>
 
 <div class="alert-section info-alert">
@@ -71,7 +71,7 @@
 </p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Service Bus Message</div>
+    <div class="method-example-top-bar">Message</div>
     <pre>
             <code class="language-json">
 {
@@ -83,8 +83,8 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">PaymentDeviceStatus</code> Service Bus Message
-    Body showing the payment device is
+    <code class="inline-code">PaymentDeviceStatus</code> Message Body showing
+    the payment device is
     <code class="inline-code">PoweredOff</code>
 </p>
 <h2>Process PaymentResponse</h2>
@@ -93,7 +93,7 @@
     <code class="inline-code">/remit/v2starttransaction</code> request is sent,
     a payment transaction is initiated and a
     <code class="inline-code">ProcessRemittanceResponse</code> message is
-    displayed on the Service Bus.
+    displayed on the IoT Message Service.
 </p>
 <p>
     In the Request Body, a
@@ -110,8 +110,8 @@
 <p>
     Once the consumer's bank has authorized the payment and enough funds are
     confirmed to exist in the bank account, a bill is triggered for the payment
-    and a <code class="inline-code">PrintBill</code> message displays on the
-    Service Bus.
+    and a <code class="inline-code">PrintBill</code> message displays on the IoT
+    Message Service.
 </p>
 <p>
     The airline may choose to print the bill or store its data. A
@@ -142,8 +142,8 @@
 <h2>EndTransaction</h2>
 <p>
     Once a payment transaction has completed, a
-    <code class="inline-code">EndTransaction</code> message displays on the
-    Service Bus. A <span class="method post">POST</span>
+    <code class="inline-code">EndTransaction</code> message displays on the IoT
+    Message Service. A <span class="method post">POST</span>
     <code class="inline-code">/remit/v2completetransaction</code>
     must be made to acknowledge that the transaction has completed.
 </p>
@@ -152,7 +152,7 @@
     After a certain amount of time has elapsed since the last payment request
     was made, a
     <code class="inline-code">PaymentTransactionTimeout</code> will display on
-    the Service Bus.
+    the IoT Message Service.
 </p>
 <p>
     A new transaction must be initiated to by sending another

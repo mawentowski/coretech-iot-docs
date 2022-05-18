@@ -1,26 +1,26 @@
 <div class="title-box">
     <h1 class="topic-title">Create a Linkage</h1>
-    <div class="action-statement">Request a linkage to attach your application backend to the Service Bus</div>
+    <div class="action-statement">Request a linkage to attach your application backend to the IoT Message Service</div>
 </div>
 
 <p>
     The <span class="method post">POST</span>
     <code class="inline-code">/sync/v2/linkages</code> request creates a
-    linkage on the IoT Message Service and returns a Service Bus endpoint and
+    linkage on the IoT Message Service and returns a IoT Message Service endpoint and
     SAS token for the application backend to attach to the linkage.
 </p>
 <p>
     Sending a <span class="method post">POST</span>
     <code class="inline-code">/sync/v2/linkages</code> request does not
-    'link' to the Service Bus, it only creates a linkage and returns
-    attachment details. The application must then attach to the Service Bus
+    'link' to the IoT Message Service, it only creates a linkage and returns
+    attachment details. The application must then attach to the IoT Message Service
     attachment using the attachment details provided.
 </p>
 
 <div class="alert-section tip-alert">
     <div class="">
         <p>
-            The Microsoft Service Bus documentation provides best practices for
+            The Microsoft IoT Message Service documentation provides best practices for
             how applications should be configured to do this for each client
             library:
             <a
@@ -233,7 +233,7 @@ func main() {
 <p>
     A successful request returns a
     <code class="inline-code">2xx</code> success status code with the JSON
-    Response Body containing the Service Bus details for the new linkage.
+    Response Body containing the IoT Message Service details for the new linkage.
 </p>
 
 <div class="method-example atom-one-light">
@@ -281,19 +281,19 @@ func main() {
 </h3>
 <p>
     The <code class="inline-code">attachmentstring</code> returned in the
-    Response Body contains the linkage's Service Bus endpoint that begins
+    Response Body contains the linkage's IoT Message Service endpoint that begins
     after <code class="inline-code">Endpoint=</code>. In the example Response
     Body displayed previously, the endpoint is:
     <code class="inline-code"
         >sb://flex-pry-eastus-asb.servicebus.windows.net</code
     >. Notice the endpoint contains the environment. In the example, the
     Pre-Production environment is named <code class="inline-code">pry</code> and
-    the Azure Region containing the linkage is
+    the Message Service Region containing the linkage is
     <code class="inline-code">eastus</code>.
 </p>
 <p>
     The <code class="inline-code">SharedAccessSignature</code>, also known as a
-    SAS token, follows the Service Bus endpoint and contains the airline
+    SAS token, follows the IoT Message Service endpoint and contains the airline
     backend's credentials for accessing the linkage. The entire value of
     the SAS token needs to be passed in the Authorization Header of requests
     made to the IoT Message Service REST API.
@@ -328,7 +328,7 @@ func main() {
 <p>
     The <code class="inline-code">linkageId</code> is a CoreTech API-specific ID
     passed in the Request Body of attachment requests to associate a device with
-    a specific Service Bus Linkage.
+    a specific IoT Message Service Linkage.
 </p>
 <p>
     For example, when attaching to an MFP device, the application backend will send
@@ -360,16 +360,16 @@ func main() {
     <strong>12 hours</strong> from the time the request was made, at which point
     the linkage expires.
 </p>
-<h3 id="service-bus-properties">Service Bus Properties</h3>
+<h3 id="service-bus-properties">IoT Message Service Properties</h3>
 <p>
-    The Response Body also contains properties that are Service Bus-specific.
+    The Response Body also contains properties that are IoT Message Service-specific.
     These properties are passed in verbatim when you use the Microsoft SDK to
     attach to the linkage.
 </p>
 <p>
     The <code class="inline-code">topicName</code> and
     <code class="inline-code">linkageName</code> are identifiers to tell
-    your application which specific linkage it should read Service Bus
+    your application which specific linkage it should read IoT Message Service
     messages. The <code class="inline-code">topicName</code> has a fixed value
     of <code class="inline-code">airline-messages</code> in all situations, and
     <code class="inline-code">linkageName</code> is a GUID returned per
@@ -406,7 +406,7 @@ func main() {
     <div class="">
         <p>
             The application backend will only ever have one linkage for an
-            Azure Region. So, if a new linkage is created, it will continue
+            Message Service Region. So, if a new linkage is created, it will continue
             to use that linkage for all requests from client applications
             in that region.
         </p>
@@ -455,7 +455,7 @@ func main() {
 <p>
     Since CoreTech IoT only expects to be interacting with the one authenticated
     system such as your Application Web Server, it is recommended that the Azure
-    Service Bus linkage details should not be shared amongst several
+    IoT Message Service linkage details should not be shared amongst several
     parties. They should remain secret for specific usage in your application at
     any given point and should not have several consumers who link to this
     IoT Message Service. It is recommended that the Web Server backend of your

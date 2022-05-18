@@ -35,9 +35,9 @@
     to interacting with other print devices.
 </p>
 <p class="redacted">
-    You will be interacting with an MFP device since it supports the most print format possibilities like
-    SVG, PDF, or Legacy Print. With this knowledge, you can apply the same steps
-    to interacting with other print devices.
+    You will be interacting with an MFP device since it supports the most print
+    format possibilities like SVG, PDF, or Legacy Print. With this knowledge,
+    you can apply the same steps to interacting with other print devices.
 </p>
 <div class="alert-section info-alert">
     <div class="">
@@ -181,11 +181,11 @@
                 </div>
             </div>
             <li>
-                Check the Service Bus linkage for a
+                Check the IoT Message Service linkage for a
                 <code class="inline-code">PrintDeviceStatus</code> message:
             </li>
             <div class="method-example atom-one-light">
-                <div class="method-example-top-bar">Service Bus Message</div>
+                <div class="method-example-top-bar">Message</div>
                 <pre>
                 <code class="language-json">
 {
@@ -284,7 +284,7 @@
             </li>
             <li>
                 <p>
-                    Check the Service Bus for a new
+                    Check the IoT Message Service for a new
                     <code class="inline-code">PrintResponse</code> message.
                 </p>
                 <ul>
@@ -305,7 +305,7 @@
                 </ul>
             </li>
             <div class="method-example atom-one-light">
-                <div class="method-example-top-bar">Service Bus Message</div>
+                <div class="method-example-top-bar">Message</div>
                 <pre>
                         <code class="language-json">
         {
@@ -317,8 +317,8 @@
                     </pre>
             </div>
             <p class="caption">
-                <code class="inline-code">PrintResponse</code> Service Bus
-                Message indicating a successful print
+                <code class="inline-code">PrintResponse</code> IoT Message
+                Service Message indicating a successful print
             </p>
             <li>
                 Go to the <strong>MFP Simulator</strong> window in the VM.
@@ -355,11 +355,11 @@
                 request.
             </li>
             <li>
-                Check the Service Bus for a new
+                Check the IoT Message Service for a new
                 <code class="inline-code">PrintResponse</code> message.
             </li>
             <div class="method-example atom-one-light">
-                <div class="method-example-top-bar">Service Bus Message</div>
+                <div class="method-example-top-bar">Message</div>
                 <pre>
                         <code class="language-json">
         {
@@ -376,8 +376,8 @@
         </ol>
 
         <p class="caption">
-            <code class="inline-code">PrintResponse</code> Service Bus Message
-            indicating an unsuccessful print with reason
+            <code class="inline-code">PrintResponse</code> Message indicating an
+            unsuccessful print with reason
             <code class="inline-code">Message</code>
         </p>
         <p>

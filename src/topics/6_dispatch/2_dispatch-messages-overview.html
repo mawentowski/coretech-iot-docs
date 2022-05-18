@@ -1,19 +1,19 @@
 <div class="title-box">
-    <h1 class="topic-title">Service Bus Messages</h1>
+    <h1 class="topic-title">Messages</h1>
     <div class="action-statement">
         Learn about the most common messages and how your app should use them
     </div>
 </div>
 
 <p>
-    The following is not an exhaustive list of all possible Service Bus
+    The following is not an exhaustive list of all possible IoT Message Service
     <code class="inline-code">Message Types</code>. Only the most common ones
     encountered when sending Dispatch API requests are described.
 </p>
 <h2 id="dispatchdevicestatus">ConveyorDeviceStatus</h2>
 <p>
     A <code class="inline-code">ConveyorDeviceStatus</code> message displays on
-    the Service Bus:
+    the IoT Message Service:
 </p>
 <ul>
     <li>
@@ -39,7 +39,7 @@
 </ul>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Service Bus Message</div>
+    <div class="method-example-top-bar">Message</div>
     <pre>
             <code class="language-json">
 {
@@ -51,8 +51,8 @@
 </div>
 
 <p class="caption">
-    Example <code class="inline-code">ConveyorDeviceStatus</code> Service Bus
-    Message indicating the device is online and exclusively claimed
+    Example <code class="inline-code">ConveyorDeviceStatus</code> IoT Message
+    Service Message indicating the device is online and exclusively claimed
 </p>
 <h2 id="dooropening-and-doorclosing">DoorOpening and DoorClosing</h2>
 <div class="alert-section info-alert">
@@ -63,8 +63,8 @@
     </div>
 </div>
 <p>
-    A <code class="inline-code">DoorOpening</code> message displays on the
-    Service Bus:
+    A <code class="inline-code">DoorOpening</code> message displays on the IoT
+    Message Service:
 </p>
 <ul>
     <li>
@@ -82,8 +82,8 @@
     </li>
 </ul>
 <p>
-    A <code class="inline-code">DoorClosing</code> message displays on the
-    Service Bus:
+    A <code class="inline-code">DoorClosing</code> message displays on the IoT
+    Message Service:
 </p>
 <ul>
     <li>
@@ -105,10 +105,11 @@
     initiates the dispatch process, the door to the GRC opens (if there is a
     door) so the consumer can place the item on the belt. Baggage information
     may be collected by the GRC and displayed in a
-    <code class="inline-code">BagPlaced</code> message on the Service Bus.
+    <code class="inline-code">BagPlaced</code> message on the IoT Message
+    Service.
 </p>
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Service Bus Message</div>
+    <div class="method-example-top-bar">Message</div>
     <pre>
                     <code class="language-json">
 "Bag": {
@@ -142,8 +143,8 @@
 </div>
 
 <p class="caption">
-    <code class="inline-code">BagPlaced</code> Service Bus message displaying
-    properties of the 'placed' item
+    <code class="inline-code">BagPlaced</code> IoT Message Service message
+    displaying properties of the 'placed' item
 </p>
 <p>
     The
@@ -205,7 +206,7 @@
 <div class="alert-section info-alert">
     <div class="">
         <p>
-            For this documentation, Service Bus
+            For this documentation, IoT Message Service
             <code class="inline-code">MessageTypes</code> that contain the text
             <code class="inline-code">BagResponse</code> are grouped together
             since they all simply confirm the success or failure of a request.
@@ -213,7 +214,7 @@
             be specific to the type of request that was sent. For example, after
             a <code class="inline-code">/dispatch/v2/getitem</code> request is
             sent, a <code class="inline-code">GetItemResponse</code> response
-            displays on the Service Bus.
+            displays on the IoT Message Service.
         </p>
     </div>
 </div>
@@ -303,8 +304,8 @@
 </ul>
 <h3 id="errorcodes">ErrorCodes</h3>
 <p>
-    If a request fails, the Service Bus message will return no item information
-    with an
+    If a request fails, the IoT Message Service message will return no item
+    information with an
     <code class="inline-code">ErrorCode</code> and
     <code class="inline-code">Message</code> describing why the request failed.
     A possible cause is there was a
@@ -313,7 +314,7 @@
 </p>
 
 <div class="method-example atom-one-light">
-    <div class="method-example-top-bar">Service Bus Message</div>
+    <div class="method-example-top-bar">Message</div>
     <pre>
                         <code class="language-json">
 {
@@ -337,8 +338,8 @@
 <p>
     A
     <code class="inline-code">ConveyorTransactionTimeout</code>
-    message displays on the Service Bus with an empty Message Body when too much
-    time has elapsed since the last Dispatch API request was made.
+    message displays on the IoT Message Service with an empty Message Body when
+    too much time has elapsed since the last Dispatch API request was made.
 </p>
 <h3 id="timeout-at-entry-area">Timeout at Entry Area</h3>
 <p>
@@ -356,10 +357,8 @@
     If this error occurs when the item is in the
     <code class="inline-code">Process</code> position, a
     <code class="inline-code">ConveyorDeviceStatus</code> message also displays
-    on the Service Bus indicating the device is no longer 'in use' (<code
-        class="inline-code"
-        >"DeviceInUse": false</code
-    >).
+    on the IoT Message Service indicating the device is no longer 'in use'
+    (<code class="inline-code">"DeviceInUse": false</code>).
 </p>
 <p>
     You will receive an error status code when sending any further requests. For
