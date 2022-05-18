@@ -276,7 +276,8 @@
                             <ul class="footer-lines">
                                 <li>
                                     <p>
-                                        Questions? <a href="#">Contact Us</a>.
+                                        Questions? <a
+                                        href="mailto:mark.wentowski@techwritex.com">Contact Us</a>.
                                     </p>
                                 </li>
 
@@ -298,17 +299,27 @@
                             <div class="signup-prompt">
                                 <p>Sign up for developer updates:</p>
                             </div>
+                            <p class="after-submit hidden">
+                                You are signed up and will receive the latest developer updates!
+                            </p>
                             <div class="newsletter-submit-container">
-                                <input
-                                    type="text"
-                                    class="search-field"
-                                    placeholder=""
-                                />
-                                <div class="newsletter-append">
-                                    <span class="newsletter-append-text">
-                                        Sign up
-                                    </span>
-                                </div>
+                                <form id="newsletter-form" role="form">
+                                    <input
+                                        class="form-control"
+                                        id="newsletter-input"
+                                        placeholder="Email address"
+                                        required
+                                        type="email"
+                                    />
+                                    <div class="newsletter-append">
+
+                                        <span class="newsletter-append-text">
+                                            <button class="plain" id="newsletter-subscription-button" type="submit">
+                                                Sign up
+                                            </button>
+                                        </span>
+                                    </div>
+                                </form>
                             </div>
 
                             <div class="subscribe">
@@ -774,6 +785,7 @@ subscription = service.Update("sub_49ty4767H20z6a", options);
         <script src="js/left-nav.js" type="module"></script>
         <script src="js/toggle-toc.js" type="module"></script>
         <script src="js/feedback-received.js" type="module"></script>
+        <script src="js/submit-newsletter.js" type="module"></script>
         <script
             src="js/viewport-width-range-collection.js"
             type="module"
