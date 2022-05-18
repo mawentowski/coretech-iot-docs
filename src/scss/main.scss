@@ -650,7 +650,7 @@ h2 {
             padding-top: 2.3px;
             counter-increment: section; /* Increment the value of section counter by 1 */
             font-size: 21px;
-            color: #4F576A;
+            color: #4f576a;
             padding-right: 16px;
             content: counter(
                 section
@@ -674,6 +674,14 @@ h2 {
         //     section
         // ); /* Display counter value in default style (decimal) */
     }
+}
+
+.feedback-received-message {
+    border: 0.1px solid #ddd;
+    background-color: #ffffe0;
+    display: inline-block;
+    border-radius: 10px;
+    padding: 10px;
 }
 
 .alert-section {

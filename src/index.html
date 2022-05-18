@@ -258,13 +258,19 @@
                 <div class="document-footer">
                     <div class="rating-section">
                         <h2 class="rating-question">Was this page helpful?</h2>
-                        <button type="button" class="rating-btn">
+                        <button type="button" class="rating-btn yes">
                             <i class="fa fa-thumbs-up"></i> Yes
                         </button>
                         <button type="button" class="rating-btn">
                             <i class="fa fa-thumbs-up"></i> No
                         </button>
+
                     </div>
+                    <div class="feedback-received-message hidden">
+                        <div class="">We have received your feedback!
+                        </div>
+                    </div>
+
                     <div class="footer-bottom">
                         <div class="footer-col">
                             <ul class="footer-lines">
@@ -767,6 +773,7 @@ subscription = service.Update("sub_49ty4767H20z6a", options);
         <script src="js/drop-down.js"></script>
         <script src="js/left-nav.js" type="module"></script>
         <script src="js/toggle-toc.js" type="module"></script>
+        <script src="js/feedback-received.js" type="module"></script>
         <script
             src="js/viewport-width-range-collection.js"
             type="module"
